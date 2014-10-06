@@ -5,7 +5,7 @@ App::uses('DataobjectsController', 'Dane.Controller');
 class PrawoController extends DataobjectsController
 {
 	
-	public $initLayers = array('docs', 'tags', 'counters');
+	public $initLayers = array('docs', 'tags', 'counters', 'files');
 	public $helpers = array('Document');
 	
 	public $objectOptions = array(
@@ -17,6 +17,7 @@ class PrawoController extends DataobjectsController
 	public function view($package = 1) {
 		
 		$this->_prepareView();
+		
 		
 		$this->set('document', $this->API->document( $this->object->getData('dokument_id') ));
 		
@@ -173,25 +174,12 @@ class PrawoController extends DataobjectsController
 		    	
 		    	if( $item['count'] ) {
 		    		
-			    	if( $item['dropdown']=='1' ) {
-				    	
-				    	$dropdowns[] = array(
-				    		'id' => $item['slug'],
-			                'href' => $href_base . '/' . $item['slug'],
-			                'label' => $item['nazwa'],
-			                'count' => $item['count'],
-				    	);
-				    	
-			    	} else {
-			    	
-				    	$menu['items'][] = array(
-				    		'id' => $item['slug'],
-			                'href' => $href_base . '/' . $item['slug'],
-			                'label' => $item['nazwa'],
-			                'count' => $item['count'],
-				    	);
-			    	
-			    	}
+			    	$dropdowns[] = array(
+			    		'id' => $item['slug'],
+		                'href' => $href_base . '/' . $item['slug'],
+		                'label' => $item['nazwa'],
+		                'count' => $item['count'],
+			    	);
 		    	
 		    	}
 		    	

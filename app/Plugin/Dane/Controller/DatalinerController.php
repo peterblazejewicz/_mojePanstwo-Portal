@@ -9,11 +9,12 @@ class DatalinerController extends DaneAppController {
 		
 		$data = array();
 		
+		$conditions = $this->request->query['conditions'];
+				
 		$objects = $this->Dataobject->find('all', array(
-			'conditions' => array(
-				'dataset' => 'prawo',
-			),
-			'order' => '_date desc',
+			'conditions' => $conditions,
+			'order' => '_date asc',
+			'limit' => 30,
 		));
 				
 		foreach( $objects as $object ) {
@@ -23,40 +24,13 @@ class DatalinerController extends DaneAppController {
 				'type' => 'blog_post',
 				'date' => $object->getDate(),
 				'title' => 'Prawo',
-				'content' => 'jkl',
+				'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 64px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
 			);
 			
 		}
 		
 		
-		$year = '2014';
-		$data = array(
-        array(
-            'type'    =>  'blog_post',
-            'date'    =>  $year . '-12-21',
-            'title'   =>  'Blog Post',
-            'content' => '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        ),
-        array(
-            'type'    =>  'blog_post',
-            'date'    =>  $year . '-11-21',
-            'title'   =>  'Blog Post',
-            'content' => '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        ),
-        array(
-            'type'    =>  'blog_post',
-            'date'    =>  $year . '-10-21',
-            'title'   =>  'Blog Post',
-            'content' => '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        ),
-        array(
-            'type'    =>  'blog_post',
-            'date'    =>  $year . '-09-21',
-            'title'   =>  'Blog Post',
-            'content' => '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-        )
-    );
-		
+				
 		$this->set('data', $data);
 		$this->set('_serialize', 'data');
 		

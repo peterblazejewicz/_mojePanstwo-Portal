@@ -6,7 +6,7 @@
 	$this->Combinator->add_libs('js', 'Dane.dataliner.js');
 
 	echo $this->Element('dataobject/pageBegin');
-			
+		
 ?>
 
 
@@ -68,6 +68,24 @@
                     <? } ?>
 
                     
+                    <li class="dataHighlight topborder">
+		                <p class="_label">Źródło</p>
+		
+		                <p class="_value sources">
+			            <?
+				            $isap_str = 'W';
+							if( $object->getData('zrodlo')=='DzU' )
+								$isap_str .= 'DU';
+							elseif( $object->getData('zrodlo')=='MP' )
+								$isap_str .= 'MP';
+								
+							$isap_str .= $object->getData('rok');
+							$isap_str .= str_pad($object->getData('nr'), 3, "0", STR_PAD_LEFT);
+							$isap_str .= str_pad($object->getData('poz'), 4, "0", STR_PAD_LEFT);
+			            ?>
+			                <a href="http://isap.sejm.gov.pl/DetailsServlet?id=<?= $isap_str ?>" target="_blank">ISAP</a>
+		                </p>
+		            </li>
                     
                     
 	            </ul>
@@ -81,11 +99,23 @@
 	           	
 	           	<div class="block">
 	           		<div class="block-header">
-	           			<h2 class="label">Historia tego aktu prawnego</h2>
+	           			<h2 class="label">Powiązane akty prawne</h2>
 	           		</div>
 	           		<div class="content">
-			           	<div class="dataliner" data-params="<?= addslashes(json_encode(array(
-			           		'source' => 'prawo:' . $object->getId(), 
+			           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode(array(
+			           		'requestsData' => array(
+			           			'conditions' => array(
+				           			'_source' => 'prawo.historia:' . $object->getId(),
+			           			),
+			           		),
+			           		'initData' => array(
+			           			array(
+				           			'type' => 'blog_post',
+					                'date' => $object->getDate(),
+					                'title' => 'Opublikowanie pierwotnej wersji aktu',
+									'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 64px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
+					            ),
+			           		), 
 			           	))) ?>"></div>
 	           		</div>
 	           	</div>

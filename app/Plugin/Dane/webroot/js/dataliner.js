@@ -2,23 +2,14 @@ var Dataliner = Class.extend({
 	
 	init: function(div) {
 		
-		var init_data = [
-            {
-                type:     'blog_post',
-                date:     '2013-12-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            },
-            {
-                type:     'blog_post',
-                date:     '2013-11-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            }
-        ];
-		
 		this.div = $(div);
-		this.timeline = new Timeline(this.div, init_data);
+
+		this.params = this.div.data('params');
+		
+		this.timeline = new Timeline(this.div, this.params.initData);
+		this.timeline.setOptions({
+			order: 'asc'
+		});
 	    this.timeline.display();
 		this.loadData();
 		
@@ -29,7 +20,7 @@ var Dataliner = Class.extend({
 		$.ajax('/dane/dataliner/index.json', {
             type     : 'GET',
             dataType : 'json',
-            data     : {},
+            data     : this.params.requestsData,
             success  : $.proxy(function(data) {
                 // remove loading
                 // button.removeClass('loading').text('Load More');
@@ -39,22 +30,11 @@ var Dataliner = Class.extend({
 
                 // append new data
                 
-                console.log('success', data);
+                console.log('success', data);                
+                this.timeline.appendData(data);
                 
-                this.timeline.appendData([
-            {
-                type:     'blog_post',
-                date:     '2012-12-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            },
-            {
-                type:     'blog_post',
-                date:     '2011-11-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            }
-        ]);
+                // console.log('success', _data);
+                // this.timeline.appendData(_data);
 
                 // scroll to new data
                 // $.scrollTo('#timeline_date_separator_' + year, 500);
