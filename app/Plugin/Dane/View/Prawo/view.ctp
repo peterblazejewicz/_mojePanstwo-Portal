@@ -11,7 +11,7 @@
 
 
 	<div class="prawo row">
-	    <div class="col-lg-2 objectSide">
+	    <div class="col-lg-3 objectSide">
 	        <div class="objectSideInner">
 	            <ul class="dataHighlights side">
 	            
@@ -94,33 +94,57 @@
 	    </div>
 	
 	
-	    <div class="col-lg-10 objectMain">
+	    <div class="col-lg-9 objectMain">
 	        <div class="object">
-	           	
-	           	<div class="block">
-	           		<div class="block-header">
-	           			<h2 class="label">Powiązane akty prawne</h2>
-	           		</div>
-	           		<div class="content">
-			           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode(array(
-			           		'requestsData' => array(
-			           			'conditions' => array(
-				           			'_source' => 'prawo.historia:' . $object->getId(),
-			           			),
-			           		),
-			           		'initData' => array(
-			           			array(
-				           			'type' => 'blog_post',
-					                'date' => $object->getDate(),
-					                'title' => 'Opublikowanie pierwotnej wersji aktu',
-									'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 64px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
-					            ),
-			           		), 
-			           	))) ?>"></div>
-	           		</div>
-	           	</div>
-	           	
- 
+	        	
+	        	<? if( $files = $object->getLayer('files') ) {?>
+		           		<div id="tresc">
+		           			<div class="row">
+		           			<? foreach( $files as $file ) {?>
+		           				<div class="col-md-<?= 12 / count($files) ?> text-center">
+		           					
+					   				<a class="megalink" href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>" style="background-image: url(http://docs.sejmometr.pl/thumb/5/<?= $file['dokument_id'] ?>.png);">
+					   					<div class="inner">
+						   					<h2><?= $file['title'] ?></h2>
+						   					<button class="btn btn-primary">Czytaj</button>
+					   					</div>
+					   				</a>
+					   				
+					   					           						
+		           				</div>
+		           			<? } ?>	
+		           			</div>
+		           		</div>
+		           	<? } ?>
+	        	
+	        	<div class="block-group">
+		           	
+		           	
+		           	
+		           	<div class="block">
+		           		<div class="block-header">
+		           			<h2 class="label">Powiązane akty prawne</h2>
+		           		</div>
+		           		<div class="content">
+				           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode(array(
+				           		'requestsData' => array(
+				           			'conditions' => array(
+					           			'_source' => 'prawo.historia:' . $object->getId(),
+				           			),
+				           		),
+				           		'initData' => array(
+				           			array(
+					           			'type' => 'blog_post',
+						                'date' => $object->getDate(),
+						                'title' => 'Opublikowanie pierwotnej wersji aktu',
+										'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 56px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
+						            ),
+				           		), 
+				           	))) ?>"></div>
+		           		</div>
+		           	</div>
+		           	
+	        	</div>
 
 	           	
 	           	<? /*

@@ -24,7 +24,7 @@ class DatalinerController extends DaneAppController {
 				'type' => 'blog_post',
 				'date' => $object->getDate(),
 				'title' => 'Prawo',
-				'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 64px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
+				'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 56px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
 			);
 			
 		}
