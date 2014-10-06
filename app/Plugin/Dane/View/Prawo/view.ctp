@@ -1,6 +1,10 @@
 <?
 
 	$this->Combinator->add_libs('css', $this->Less->css('view-prawo', array('plugin' => 'Dane')));
+	$this->Combinator->add_libs('css', 'timeline');
+	$this->Combinator->add_libs('js', 'timeline');
+	$this->Combinator->add_libs('js', 'Dane.dataliner.js');
+
 	echo $this->Element('dataobject/pageBegin');
 			
 ?>
@@ -74,7 +78,23 @@
 	
 	    <div class="col-lg-10 objectMain">
 	        <div class="object">
-	            	            
+	           	
+	           	<div class="block">
+	           		<div class="block-header">
+	           			<h2 class="label">Historia tego aktu prawnego</h2>
+	           		</div>
+	           		<div class="content">
+			           	<div class="dataliner" data-params="<?= addslashes(json_encode(array(
+			           		'source' => 'prawo:' . $object->getId(), 
+			           	))) ?>"></div>
+	           		</div>
+	           	</div>
+	           	
+ 
+
+	           	
+	           	<? /*
+	           	          
 	            <? if( 
 	            	( $object->getData('typ_id')==1 ) && 
 	            	( isset($counters_dictionary) ) && 
@@ -91,6 +111,8 @@
 				<? } ?>
 	            
 	            <?= $this->Document->place( $document ) ?>
+	            
+	            <? */ ?>
 	            	
 	
 	        </div>
