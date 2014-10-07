@@ -36,7 +36,6 @@
     );
 
     cockpitLogo.after(searchEngine);
-
     searchEngineInput = $('._mojePanstwoCockpitSearchInput');
 
     (searchEngineButton = searchEngine.find('._mojePanstwoCockpitSearchContentButton')).click(function (e) {
