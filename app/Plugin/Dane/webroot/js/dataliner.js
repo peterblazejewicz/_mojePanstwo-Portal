@@ -17,27 +17,22 @@ var Dataliner = Class.extend({
 	
 	loadData: function() {
 		
+		var data = this.params.requestData;
+		data['page'] = 2;
+		
+		
 		$.ajax('/dane/dataliner/index.json', {
             type     : 'GET',
             dataType : 'json',
-            data     : this.params.requestsData,
+            data     : data,
             success  : $.proxy(function(data) {
-                // remove loading
-                // button.removeClass('loading').text('Load More');
-
-                // add a new menu item
-                // $('<div>').text(year).appendTo($('#menu'));
-
-                // append new data
                 
                 console.log('success', data);                
                 this.timeline.appendData(data);
-                
-                // console.log('success', _data);
-                // this.timeline.appendData(_data);
 
                 // scroll to new data
                 // $.scrollTo('#timeline_date_separator_' + year, 500);
+                
             }, this)
         });
 		

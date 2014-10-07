@@ -8,6 +8,8 @@ class PrawoController extends DataobjectsController
 	public $initLayers = array('docs', 'tags', 'counters', 'files');
 	public $helpers = array('Document');
 	
+	public $uses = array('Dane.Dataliner');
+	
 	public $objectOptions = array(
         // 'hlFields' => array('isap_status_str', 'sygnatura', 'data_wydania', 'data_publikacji', 'data_wejscia_w_zycie'),
         'hlFields' => array(),
@@ -18,8 +20,31 @@ class PrawoController extends DataobjectsController
 		
 		$this->_prepareView();
 		
+		$datalinerParams = array(
+			'requestData' => array(
+	   			'conditions' => array(
+	       			'_source' => 'prawo.historia:' . $this->object->getId(),
+	   			),
+	   		),
+		);
 		
-		$this->set('document', $this->API->document( $this->object->getData('dokument_id') ));
+		$data = $this->Dataliner->index(array(
+			'conditions' => $datalinerParams['requestData']['conditions'],
+		));
+		
+		$datalinerParams['initData'] = $data;
+		
+		/*
+		'type' => 'blog_post',
+						                'date' => $object->getDate(),
+						                'title' => 'Opublikowanie pierwotnej wersji aktu',
+										'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 56px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>'
+		*/
+		
+		$this->set('datalinerParams', $datalinerParams);
+		
+		
+		// $this->set('document', $this->API->document( $this->object->getData('dokument_id') ));
 		
 		
 		
@@ -157,11 +182,22 @@ class PrawoController extends DataobjectsController
 	            array(
 	            	'id' => '',
 	                'href' => $href_base,
-	                'label' => 'Treść',
+	                'label' => 'Metryka',
 	            ),
 	        )
 	    );
 	    
+	    if( $files = $this->object->getLayer('files') ) {
+		    foreach( $files as $file ) {
+			    
+			    $menu['items'][] = array(
+			    	'id' => $file['slug'],
+	                'href' => $href_base . '/' . $file['slug'],
+	                'label' => $file['title'],
+			    );
+			    
+		    }
+	    }
 	    
 	    
 	    if( $items = $this->object->getLayer('counters') ) {
