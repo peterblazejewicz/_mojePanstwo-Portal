@@ -78,18 +78,31 @@ class PrawoController extends DataobjectsController
 	
 	public function tekst_aktualny() {
 		
-		$this->initLayers = array('tekst_aktualny');
 		$this->_prepareView();
 		
-		if( $data = $this->object->getLayer('tekst_aktualny') ) {
-			
-			$this->redirect('/dane/ustawy/' . $data);
-			
-		} else {
-			
-			$this->redirect($this->referer());
-			
-		}
+		$dokument_id = false;
+		
+		if( $files = $this->object->getLayer('files') )
+			foreach( $files as $file )
+				if( $file['slug']=='tekst_aktualny' )
+					{ $dokument_id = $file['dokument_id']; break; }
+		
+		$this->set('document', $this->API->document( $dokument_id ));
+		
+	}
+	
+	public function tekst_pierwotny() {
+		
+		$this->_prepareView();
+		
+		$dokument_id = false;
+		
+		if( $files = $this->object->getLayer('files') )
+			foreach( $files as $file )
+				if( $file['slug']=='tekst_pierwotny' )
+					{ $dokument_id = $file['dokument_id']; break; }
+		
+		$this->set('document', $this->API->document( $dokument_id ));
 		
 	}
 	
@@ -100,6 +113,7 @@ class PrawoController extends DataobjectsController
             // 'source' => 'poslowie.wspolpracownicy:' . $this->object->getId(),
             'dataset' => 'prawo',
             'noResultsTitle' => 'Brak aktów',
+            'title' => $title,
             'conditions' => array(
             	$id => $this->object->getId(),
             ),
@@ -166,6 +180,10 @@ class PrawoController extends DataobjectsController
 		return $this->connections_view('dyrektywy_europejskie', 'Dyrektywy europejskie');		
 	}
 	
+	public function odeslania() {
+		return $this->connections_view('odeslania', 'Odesłania');		
+	}
+	
 	
 	public function beforeRender()
 	{
@@ -187,17 +205,7 @@ class PrawoController extends DataobjectsController
 	        )
 	    );
 	    
-	    if( $files = $this->object->getLayer('files') ) {
-		    foreach( $files as $file ) {
-			    
-			    $menu['items'][] = array(
-			    	'id' => $file['slug'],
-	                'href' => $href_base . '/' . $file['slug'],
-	                'label' => $file['title'],
-			    );
-			    
-		    }
-	    }
+	    
 	    
 	    
 	    if( $items = $this->object->getLayer('counters') ) {
@@ -225,12 +233,24 @@ class PrawoController extends DataobjectsController
 			
 			    $menu['items'][] = array(
 			    	'id' => 'more',
-			    	'label' => 'Więcej',
+			    	'label' => 'Powiązane akty',
 			    	'dropdown' => array(
 			    		'items' => $dropdowns,
 			    	),
 			    );
 			    
+		    }
+		    
+		    if( $files = $this->object->getLayer('files') ) {
+			    foreach( $files as $file ) {
+				    
+				    $menu['items'][] = array(
+				    	'id' => $file['slug'],
+		                'href' => $href_base . '/' . $file['slug'],
+		                'label' => $file['title'],
+				    );
+				    
+			    }
 		    }
 		    
 	    }

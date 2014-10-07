@@ -1,114 +1,103 @@
-body {
-	background-color: #F3F3F3;
-}
-
 #_wrapper {
-	background-color: inherit;
-}
+    background-color: #F3F3F3;
 
-#_mojePanstwoCockpit {
-	.container {
-		width: 100%;
-	}
-}
+    .appHeader {
+        background-color: #E9E9E9;
+        border-bottom: 1px solid #BBB;
+    }
 
-footer {
-	position: fixed;
-	bottom: 0;
-	height: 25px;
-	padding: 5px 0;
-	font-size: 10px;
-	
-	.container {
-		width: 100%;
-		padding: 0;
-	}
-}
+    h1 {
+        font-family: "Lato", sans-serif;
+        font-size: 26px;
+        font-weight: 300;
 
-.cookieLaw {
-	bottom: 25px !important;
-}
+        strong {
+            font-weight: 400;
+        }
+    }
 
-#prawo {
+    h2 {
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+    }
 
-	#tagsDiv {
-		background-color: #FFF;
-		border-right: 1px solid #DDD;
-		
-		.input-group {
-			background-color: #F0F0F0;
-		    margin: 0;
-		    padding: 10px 10px 10px 15px;
-		    border-bottom: 1px solid #DDD;
-		    position: fixed;
-		    left: -7px;
-		    width: 25%;
-		}
-		
-		.nav {
-			
-			height: 400px;
-		    overflow: scroll;
-		    position: fixed;
-		    top: 95px;
-		    width: 25%;
-		    left: 0;
-		    background-color: #F0F0F0;
-			
-		}
-		
-		.nav > li {
-			
-			-webkit-transition: left 0.5s ease-out;
-			-moz-transition: left 0.5s ease-out;
-			-o-transition: left 0.5s ease-out;
-			transition: left 0.5s ease-out;
-			
-			
-			
-			
-		    left: 0%;
-		    top: 0;
-		    height: 31px;
-		    width: 100%;
-		    display: block;
-		    position: absolute;
-			
-			&._hidden {
-				left: -100%;
-			}
-			
-			&._active {				
-				a, a:hover, a:focus {
-					background-color: #5cb85c;
-					color: #FFF;
-					
-					span {
-						color: #FFF;
+    .innerContent {
+        text-align: center;
+
+        .main_input {
+            margin: 20px 0 10px;
+
+            input {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 45px;
+                height: 45px;
+
+                &.loading {
+                    background: url(../../img/loader/search-loading.png) center center no-repeat #5CB85C;
+
+                    &:before {
+                        content: ' ';
+                    }
+                }
+            }
+        }
+
+        #shortcuts {
+            margin: 1.5em 0;
+            position: relative;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    padding: 10px;
+                    font-weight: 300;
+                    font-size: 16px;
+                    display: inline;
+                    position: relative;
+
+                    a {
+                        color: #157AB5;
+                    }
+                    
+                    &.active:before {
+						border-bottom: 15px solid #BBB;
+					    border-left: 15px solid transparent;
+					    border-right: 15px solid transparent;
+					    bottom: -13px;
+					    content: " ";
+					    height: 0;
+					    left: 50%;
+					    margin-left: -10px;
+					    position: absolute;
+					    width: 0;
 					}
-				}
-			}
-		
-		}
-		
-		.nav > li > a {
-			font-size: 12px;
-		    font-weight: 500;
-		    padding: 5px;
-		    margin: 5px 15px 5px 10px;
-		    text-transform: uppercase;
-			
-			&:hover, &:focus {
-				background-color: #DDD;
-			}
-		}
-		
-		.nav-pills > li > a > .badge {
-			background-color: inherit;
-			color: #999;
-			font-weight: 300;
-		}
-	}
-	
-}
+					
+					&.active:after {
+						border-bottom: 15px solid #F3F3F3;
+					    border-left: 15px solid transparent;
+					    border-right: 15px solid transparent;
+					    bottom: -15px;
+					    content: " ";
+					    height: 0;
+					    left: 50%;
+					    margin-left: -10px;
+					    position: absolute;
+					    width: 0;
+					}
+                }
+               
+            }
 
+            
+        }
+    }
+
+}

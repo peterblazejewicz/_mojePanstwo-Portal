@@ -1,4 +1,4 @@
 <?php
-Router::connect('/prawo', array('plugin' => 'Prawo', 'controller' => 'prawo', 'action' => 'index'));
-Router::connect('/ustawy/szukaj', array('plugin' => 'ustawy', 'controller' => 'ustawy', 'action' => 'search'));
-Router::connect('/ustawy/:action', array('plugin' => 'ustawy', 'controller' => 'ustawy'));
+Router::connect('/prawo', array('plugin' => 'prawo', 'controller' => 'prawo', 'action' => 'index'));
+Router::connect('/prawo/szukaj', array('plugin' => 'prawo', 'controller' => 'prawo', 'action' => 'search'));
+Router::connect('/prawo/:action', array('plugin' => 'prawo', 'controller' => 'prawo'));

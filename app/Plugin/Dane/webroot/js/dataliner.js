@@ -3,12 +3,30 @@ var Dataliner = Class.extend({
 	init: function(div) {
 		
 		this.div = $(div);
-
 		this.params = this.div.data('params');
+
+		this.timeline_div = this.div.find('.timeline');
+		this.options_div = this.div.find('.options');
 		
-		this.timeline = new Timeline(this.div, this.params.initData);
+		this.options_select = this.options_div.find('select');
+		if( this.options_select.length ) {
+			
+			//this.options_div.slideDown();
+			
+			/*
+			this.options_select.multipleSelect({
+	            filter: false,
+	            placeholder: "Filtry...",
+	            width: 300,
+	            selectAll: false,
+	        });
+	        */
+			
+		}
+		
+		this.timeline = new Timeline(this.timeline_div, this.params.initData);
 		this.timeline.setOptions({
-			order: 'asc'
+			order: 'desc'
 		});
 	    this.timeline.display();
 		this.loadData();

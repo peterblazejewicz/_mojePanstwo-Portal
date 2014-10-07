@@ -12,12 +12,60 @@ class PrawoController extends AppController
     {
 
 
-        $_dane = $this->API->Dane();
-        $_prawo = $this->API->Prawo();
+        $api = $this->API->Dane();
+        $data = array();
 
-		$tags = $_prawo->getExposedTags();
-		$this->set('tags', $tags);
-        
+
+        // NIEDAWNO WESZŁY
+
+        $api->searchDataset('ustawy', array(
+            'conditions' => array(
+                'prawo.data_wejscia_w_zycie' => '[* TO NOW/DAY]',
+            ),
+            'limit' => 5,
+            'order' => 'prawo.data_wejscia_w_zycie desc',
+        ));
+        $data['niedawno_weszly'] = $api->getObjects();
+
+
+        // NIEDŁUGO WEJDĄ
+
+        $api->searchDataset('ustawy', array(
+            'conditions' => array(
+                'prawo.data_wejscia_w_zycie' => '[NOW/DAY TO *]',
+            ),
+            'limit' => 5,
+            'order' => 'prawo.data_wejscia_w_zycie asc',
+        ));
+        $data['niedlugo_wejda'] = $api->getObjects();
+
+
+        // KODEKSY
+
+        $api->searchDataset('ustawy', array(
+            'conditions' => array(
+                'status_id' => '1',
+                'typ_id' => '3',
+            ),
+            'limit' => 15,
+            'order' => 'tytul_skrocony asc',
+        ));
+        $data['kodeksy'] = $api->getObjects();
+
+
+        // KONSTYTUCJE
+
+        $api->searchDataset('ustawy', array(
+            'conditions' => array(
+                'status_id' => '1',
+                'typ_id' => '2',
+            ),
+            'limit' => 15,
+            'order' => 'tytul_skrocony asc',
+        ));
+        $data['konstytucje'] = $api->getObjects();
+
+        $this->set('data', $data);
 
 
     }
@@ -30,26 +78,27 @@ class PrawoController extends AppController
             $search = array();
 
             $q = @$this->request->query['q'];
+            if ($q) {
+                $api->searchDataset('ustawy', array(
+                    'conditions' => array(
+                        'q' => $q,
+                        'status_id' => '1',
+                    ),
+                    'limit' => 10,
+                ));
+                $objects = $api->getObjects();
 
+                foreach ($objects as $obj)
+                    $search[] = array_merge($obj->getData(), array(
+                        'data_slowna' => dataSlownie($obj->getData('prawo.data_publikacji')),
+                        'hl' => $obj->getHlText(),
+                    ));
+            }
 
-            $api->searchDataset('prawo', array(
-                'conditions' => array(
-                    'q' => $q,
-                    'status_id' => '1',
-                ),
-                'facet' => array('haslo_id'),
-                'limit' => 10,
-            ));
-            
-            $objects = $api->getObjects();      		                    
-
-            $this->set('search', array(
-            	'objects' => $api->getObjects(),
-            	'facets' => $api->getFacets(), 
-            ));
+            $this->set('search', $search);
             $this->set('_serialize', array('search'));
 
-        }
+        } else $this->redirect('/ustawy');
     }
 
 } 

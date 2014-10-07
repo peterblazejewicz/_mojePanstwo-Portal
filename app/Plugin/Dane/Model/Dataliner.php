@@ -15,7 +15,7 @@ class Dataliner extends AppModel
 			
 		$objects = $dataobject->find('all', array(
 			'conditions' => $query['conditions'],
-			'order' => '_date asc',
+			'order' => '_date desc',
 			'limit' => 20,
 			'page' => $query['page'],
 		));

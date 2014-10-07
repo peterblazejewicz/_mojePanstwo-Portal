@@ -2,6 +2,8 @@
 
 	$this->Combinator->add_libs('css', $this->Less->css('view-prawo', array('plugin' => 'Dane')));
 	$this->Combinator->add_libs('css', 'timeline');
+	$this->Combinator->add_libs('css', 'multiple_select');
+	$this->Combinator->add_libs('js', 'jquery_multiple_select');
 	$this->Combinator->add_libs('js', 'timeline');
 	$this->Combinator->add_libs('js', 'Dane.dataliner.js');
 
@@ -97,51 +99,51 @@
 	    <div class="col-lg-9 objectMain">
 	        <div class="object">
 	        	
-	        	<div class="block-group">
-	        	<? if( $files = $object->getLayer('files') ) {?>
-		           		<div class="block" id="tresc">
-		           			
-		           			<div class="row">
-		           			<? foreach( $files as $file ) {?>
-		           				<div class="col-md-6">
-		           					
-					   				<div class="row">
-					   					<div class="col-md-3">
-					   					
-					   						<a href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>">
-					   							<img src="http://docs.sejmometr.pl/thumb/2/<?= $file['dokument_id'] ?>.png" />
-					   						</a>
-						   					
-					   					</div>
-					   					
-					   					<div class="col-md-9">
-					   						<div class="h_cont"><h2 class="label"><?= $file['title'] ?></h2></div>
-					   						<p class="desc"><?= $file['desc'] ?></p>
-					   						<p class="btn_cont"><a href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>" class="btn btn-primary">Czytaj</a></p>
-					   					</div>
-					   				</div>
-					   				
-					   					           						
-		           				</div>
-		           			<? } ?>	
-		           			</div>
-		           			
-		           		</div>
-		           	<? } ?>
 	        	
+	        	
+	        	<? if( ($files = $object->getLayer('files')) && ($file = array_shift($files)) ) {?>
+		        
+				<a href="/dane/prawo/<?=$object->getId()?>/<?=$file['slug']?>" class="banner">
+					<div class="row">
+						<div class="col-md-5 cont img_cont">
+							<img src="http://docs.sejmometr.pl/thumb/5/<?= $file['dokument_id'] ?>.png" />
+						</div>
+						<div class="col-md-6 cont text_cont">
+							<p>Przeczytaj tekst aktualnie obowiązujący</p>
+						</div>
+						<div class="col-md-1 cont arrow_cont">
+							<span class="glyphicon glyphicon-arrow-right"></span>
+						</div>
+					</div>
+				</a>
+		        
+		        <? if( $file = array_shift($files) ) {?>
+		        	<div class="banner_addon_cont">
+			        	<a class="banner_addon" href="/dane/prawo/<?=$object->getId()?>/<?=$file['slug']?>"><?= $file['title'] ?> &raquo;</a>
+		        	</div>
+		        <? } ?>
+	           	<? } ?>
 		           	
 		           	
+	           	
+	           	<div class="block">
+	           		<div class="block-header">
+	           			<h2 class="label">Powiązane akty prawne</h2>
+	           		</div>
+	           		<div class="content">
+			           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode( $datalinerParams )) ?>">
+				           	<div class="options text-center" style="display: none;">
+					           	<select multiple="multiple text-left">
+							    <? foreach( $object->getLayer('counters') as $item ) {?>
+							        <option value="<?= $item['id'] ?>"><?= $item['nazwa'] ?></option>
+							    <? } ?>
+							    </select>
+				           	</div>
+				           	<div class="timeline"></div>
+			           	</div>
+	           		</div>
+	           	</div>
 		           	
-		           	<div class="block">
-		           		<div class="block-header">
-		           			<h2 class="label">Historia zmian</h2>
-		           		</div>
-		           		<div class="content">
-				           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode( $datalinerParams )) ?>"></div>
-		           		</div>
-		           	</div>
-		           	
-	        	</div>
 
 	           	
 	           	<? /*
