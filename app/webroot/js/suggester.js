@@ -1,0 +1,122 @@
+(function ($) {
+    var suggesterBlock;
+
+    if ((suggesterBlock = $('.suggesterBlock')).length) {
+        $.each(suggesterBlock, function (index, block) {
+            var suggesterInput = $(block).find('input.form-control'),
+                suggesterBtn = $(block).find('.input-group-btn .btn'),
+                suggesterData = {
+                    'preset': suggesterInput.data('preset')
+                },
+                suggesterCache = {};
+
+            suggesterInput.autocomplete({
+                minLength: 2,
+                delay: 200,
+                source: function (request, response) {
+                    var term = request.term;
+
+                    suggesterBtn = this.element.parents('form').find('.input-group-btn .btn');
+
+                    if (term in suggesterCache) {
+                        response(suggesterCache[term]);
+                    } else {
+                        suggesterBtn.addClass('loading');
+                        var parm = "q=" + request.term;
+                        if (suggesterData.preset)
+                            parm += "&preset=" + suggesterData.preset;
+                        $.getJSON("/dane/suggest.json?" + parm, function (data) {
+
+                            var results = $.map(data.hits, function (item) {
+                                var shortTitleLimit = 200,
+                                    shortTitle = '';
+
+                                if (item.dataset == 'twitter') {
+
+                                    shortTitle = item.title.replace(/(<([^>]+)>)/ig, "");
+
+
+                                } else {
+
+                                    if (item.title.length > shortTitleLimit) {
+
+                                        shortTitle = item.title.substr(0, shortTitleLimit);
+                                        shortTitle = shortTitle.substr(0, Math.min(shortTitle.length, shortTitle.lastIndexOf(" "))) + '...';
+                                    } else {
+
+                                        shortTitle = item.title;
+
+                                    }
+
+                                }
+
+
+                                return {
+                                    type: 'item',
+                                    title: item.title,
+                                    shortTitle: shortTitle,
+                                    value: item.id,
+                                    link: item.dataset + '/' + item.id,
+                                    label: item.label
+                                };
+                            });
+
+                            suggesterCache[term] = results;
+
+                            if (results.length == 0) {
+                                $('.ui-autocomplete').hide();
+                                suggesterInput.removeClass('open');
+                                suggesterBtn.removeClass('loading');
+                            } else {
+                                results.push({
+                                    type: 'button',
+                                    q: request.term
+                                });
+                                response(results);
+                            }
+                        });
+                    }
+                },
+                open: function (ui) {
+                    $('#ui-id-' + (index + 1)).css({
+                        'margin-top': Math.floor((suggesterInput.offset().top + suggesterInput.outerHeight()) - parseInt($('#ui-id-' + (index + 1)).css('top'))) + 'px',
+                        'width': suggesterInput.outerWidth() - 1
+                    });
+                    suggesterInput.addClass('open');
+                    suggesterBtn.removeClass('loading');
+                },
+                close: function () {
+                    suggesterInput.removeClass('open');
+                },
+                select: function (event, ui) {
+                    if (ui.item)
+                        suggesterInput.val(ui.item.title);
+                    return false;
+                }
+            });
+
+            suggesterInput.data("ui-autocomplete")._renderItem = function (ul, item) {
+                if (item.type == 'item') {
+                    return $('<li></li>').addClass("row")
+                        .append(
+                        $('<a></a>').attr({'href': '/dane/' + item.link, 'target': '_self'})
+                            .append(
+                            $('<p></p>').addClass('col-xs-3 col-md-2').addClass('_label').html('<span class="label label-default label-sm">' + item.label + '</span>')
+                        )
+                            .append(
+                            $('<p></p>').addClass('col-md-9 col-md-10').addClass('_title').text(item.shortTitle)
+                        )
+                    )
+                        .appendTo(ul)
+                } else if (item.type == 'button') {
+                    return $('<li></li>').addClass("row button").append(
+                        $('<a></a>').addClass('btn btn-success').attr({
+                            'href': '/dane/szukaj?q=' + item.q,
+                            'target': '_self'
+                        }).html('<span class="glyphicon glyphicon-search"> </span> ' + _mPHeart.suggester.fullSearch)
+                    ).appendTo(ul);
+                }
+            }
+        });
+    }
+}(jQuery));

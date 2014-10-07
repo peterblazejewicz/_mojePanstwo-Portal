@@ -123,10 +123,10 @@ var DataObjectesAjax = {
         var innerSearch;
 
         if ((innerSearch = $('#innerSearch')).length) {
-            innerSearch.keyup(function () {
-                if (innerSearch.val() != innerSearch.data('last')) {
+            innerSearch.keyup(function (e) {
+                if (innerSearch.val() != innerSearch.data('last') && (e.which != "13")) {
                     innerSearch.data('last', innerSearch.val());
-                    setTimeout(DataObjectesAjax.objectsReload, 500);
+                    setTimeout(DataObjectesAjax.objectsReload, 1000);
                 }
             })
         }
@@ -337,11 +337,14 @@ var DataObjectesAjax = {
 
         formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
 
+        if (sortSerialize)
+            formSerialize += '&' + sortSerialize;
+
         History.pushState({
-            filters: formSerialize + '&' + sortSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
+            filters: formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
             reloadForm: 'sorting',
             page: "Dane"
-        }, jQuery(document).find("title").html(), "?" + formSerialize + sortSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web');
     },
     /*GATHER FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     objectsReload: function () {
@@ -359,6 +362,7 @@ var DataObjectesAjax = {
     /*GATHER SORT AND FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     pageReload: function (target) {
         var paginationSerialize = jQuery(target).attr('href').split("?").pop();
+
         History.pushState({
             filters: paginationSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
             reloadForm: 'page',
