@@ -1,12 +1,7 @@
 <?
 
 	$this->Combinator->add_libs('css', $this->Less->css('view-prawo', array('plugin' => 'Dane')));
-	$this->Combinator->add_libs('css', 'timeline');
-	$this->Combinator->add_libs('css', 'multiple_select');
-	$this->Combinator->add_libs('js', 'jquery_multiple_select');
-	$this->Combinator->add_libs('js', 'timeline');
-	$this->Combinator->add_libs('js', 'Dane.dataliner.js');
-
+	
 	echo $this->Element('dataobject/pageBegin');
 		
 ?>
@@ -131,16 +126,10 @@
 	           			<h2 class="label">Powiązane akty prawne</h2>
 	           		</div>
 	           		<div class="content">
-			           	<div class="dataliner" data-params="<?= htmlspecialchars(json_encode( $datalinerParams )) ?>">
-				           	<div class="options text-center" style="display: none;">
-					           	<select multiple="multiple text-left">
-							    <? foreach( $object->getLayer('counters') as $item ) {?>
-							        <option value="<?= $item['id'] ?>"><?= $item['nazwa'] ?></option>
-							    <? } ?>
-							    </select>
-				           	</div>
-				           	<div class="timeline"></div>
-			           	</div>
+			           	<? echo $this->element('datasearcher', array(
+			           		'params' => $datalinerParams,
+			           		'options' => $object->getLayer('counters'),
+			           	)); ?>
 	           		</div>
 	           	</div>
 		           	
