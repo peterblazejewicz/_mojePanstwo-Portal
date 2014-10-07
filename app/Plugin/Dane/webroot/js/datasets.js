@@ -1,10 +1,11 @@
 $(document).ready(function () {
-    var $hackerList = $('#hacker-list'),
-        options = {
-            valueNames: [ 'title', 'desc', 'hidden' ]
-        };
+    var options = {
+            valueNames: ['title', 'desc', 'hidden']
+        },
+        $hackerList = $('#hacker-list'),
+        hackerList = new List('hacker-list', options);
 
-    var hackerList = new List('hacker-list', options);
+    $('.searchInput .search').focus();
 
     $hackerList.find('.searchInput').submit(function (event) {
         event.preventDefault();

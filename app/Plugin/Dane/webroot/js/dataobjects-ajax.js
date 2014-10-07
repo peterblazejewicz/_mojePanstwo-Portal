@@ -123,6 +123,7 @@ var DataObjectesAjax = {
         var innerSearch;
 
         if ((innerSearch = $('#innerSearch')).length) {
+            innerSearch.focus();
             innerSearch.keyup(function (e) {
                 if (innerSearch.val() != innerSearch.data('last') && (e.which != "13")) {
                     innerSearch.data('last', innerSearch.val());
