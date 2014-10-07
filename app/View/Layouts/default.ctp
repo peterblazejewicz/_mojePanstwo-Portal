@@ -158,7 +158,7 @@ echo $this->Html->script('../plugins/bootstrap-switch/bootstrap-switch.js');?>
             twoDig: "<?php switch (Configure::read('Config.language')) { case 'pol': echo "pl"; break; case 'eng': echo "en"; break; }  ?>",
             threeDig: "<?php echo Configure::read('Config.language'); ?>"
         },
-        globalSearch: {
+	    suggester: {
             phrase: '<?php echo @htmlspecialchars($q) ?>',
             placeholder: 'Szukaj w danych publicznych...',
             fullSearch: 'Pełne szukanie'

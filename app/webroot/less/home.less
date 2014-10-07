@@ -63,67 +63,10 @@
         }
 
         .globalSearch {
-            @searchHeight: 45px;
-
             font-weight: 400;
             font-size: 18px;
             margin-bottom: 1em;
             color: #000000;
-
-            .input-group {
-                width: 100%;
-
-                input {
-                    border-radius: 5px 0 0 5px;
-                }
-
-                .ui-autocomplete-input.open {
-                    border-bottom-left-radius: 0;
-                    -webkit-border-bottom-left-radius: 0;
-                }
-
-                .form-control,
-                .input-group-btn button {
-                    height: @searchHeight;
-                    font-size: 16px;
-                }
-                .form-control {
-                    color: #333;
-                    width: 97%;
-                    margin-right: -(@searchHeight);
-                    padding-right: (@searchHeight + 5);
-                }
-
-                .form-control::-webkit-input-placeholder {
-                    color: #AAA;
-                }
-
-                .form-control:-moz-placeholder {
-                    /* Firefox 18- */
-                    color: #AAA;
-                }
-
-                .form-control::-moz-placeholder {
-                    /* Firefox 19+ */
-                    color: #AAA;
-                }
-
-                .form-control:-ms-input-placeholder {
-                    color: #AAA;
-                }
-
-                .input-group-btn button {
-                    color: #FFFFFF;
-                    width: @searchHeight + 10;
-                    height: @searchHeight;
-                    display: block;
-                    z-index: 2;
-
-                    &.loading {
-                        background: url(/img/loader/search-loading.png) center center no-repeat #5CB85C;
-                    }
-                }
-            }
         }
 
         /*        .globalSearch {
