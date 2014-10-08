@@ -11,21 +11,37 @@ class PrawoController extends AppController
 
     public function weszly()
     {
-
-
+		
+		$filter_field = 'typ_id';
+		$default_filters = array('1', '5');
+		
+		$filters = $this->API->Prawo()->getTypes();
+		foreach( $filters as &$filter )
+			if( in_array($filter['id'], $default_filters) )
+				$filter['selected'] = true;
+		
+		
         $datalinerParams = array(
 			'requestData' => array(
 	   			'conditions' => array(
 	       			'_source' => 'prawo.weszly',
+	       			'dataset' => 'prawo',
 	   			),
+	   			'order' => 'data_wejscia_w_zycie desc',
 	   		),
 		);
 		
 		$data = $this->Dataliner->index(array(
-			'conditions' => $datalinerParams['requestData']['conditions'],
+			'conditions' => array_merge($datalinerParams['requestData']['conditions'], array(
+				$filter_field => $default_filters,
+			)),
+			'order' => 'data_wejscia_w_zycie desc',
 		));
 				
 		$datalinerParams['initData'] = $data;
+		$datalinerParams['filters'] = $filters;
+		$datalinerParams['filterField'] = $filter_field;
+		
 		$this->set('datalinerParams', $datalinerParams);
 
 		

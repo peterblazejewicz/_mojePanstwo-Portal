@@ -6,7 +6,10 @@ var Dataliner = Class.extend({
 		this.timeline_div = this.div.find('.timeline');
 		this.filters_div = this.div.find('.filters');
 		
-		this.requestData = this.div.data('requestData');
+		this.requestData = this.div.data('requestdata');
+		this.filterField = this.div.data('filterfield');
+
+		console.log('this.requestdata', this.requestData);
 		
 		this.initData = [];
 		
@@ -15,7 +18,7 @@ var Dataliner = Class.extend({
 			
 			var li = jQuery( lis[i] );
 			this.initData.push({
-				type: li.data('type'),
+				type: li.data('type') ? li.data('type') : 'Element',
 				date: li.find('> .date').html(),
 				title: li.find('> .title').html(),
 				content: li.find('> .content').html()
@@ -30,14 +33,13 @@ var Dataliner = Class.extend({
 			
 			this.filters_div.slideDown();
 			
-			/*
-			this.options_select.multipleSelect({
+			this.filters_div_select.multipleSelect({
 	            filter: false,
 	            placeholder: "Filtry...",
 	            width: 300,
-	            selectAll: false,
+	            selectAll: true,
+	            onClick: $.proxy(this.onFilterClick, this)
 	        });
-	        */
 			
 		}
 		
@@ -46,29 +48,52 @@ var Dataliner = Class.extend({
 			order: 'desc'
 		});
 	    this.timeline.display();
-		this.loadData();
 		
 	},
 	
-	loadData: function() {
+	onFilterClick: function(view) {
 		
-		var data = this.params.requestData;
-		data['page'] = 2;
+		this.loadData(1);
+		
+	},
+	
+	loadData: function(page) {
 		
 		
+		console.log('this.requestData', this.requestData);
+
+		var data = this.requestData;		
+		data['conditions'][ this.filterField ] = this.filters_div_select.val();
+		data['page'] = page;
+				
 		$.ajax('/dane/dataliner/index.json', {
             type     : 'GET',
             dataType : 'json',
             data     : data,
-            success  : $.proxy(function(data) {
+            success  : $.proxy(function(page, data) {
                 
-                console.log('success', data);                
-                this.timeline.appendData(data);
-
-                // scroll to new data
-                // $.scrollTo('#timeline_date_separator_' + year, 500);
+                console.log('data', data);                
                 
-            }, this)
+                if( page==1 ) {
+					
+					console.log('reset', this.timeline);
+					
+					this.timeline_div.html('');
+					
+					this.timeline = new Timeline(this.timeline_div, data);
+					this.timeline.setOptions({
+						order: 'desc'
+					});
+				    this.timeline.display();
+					
+				} else {
+                	
+                	console.log('continue');
+	                this.timeline.appendData(data);
+				
+				}
+                
+            }, this, page)
         });
 		
 	},
@@ -95,79 +120,3 @@ $(document).ready(function() {
     }    
     
 })
-
-
-
-
-
-
-		/*
-
-var init_data = [
-            {
-                type:     'blog_post',
-                date:     '2013-12-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            },
-            {
-                type:     'blog_post',
-                date:     '2013-11-09',
-                title:    'Blog Post',
-                content:  '<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            }
-        ];
-
-        var timeline = new Timeline($(elements[i]), init_data);
-        timeline.setOptions({
-            animation:       true,
-            lightbox:        true,
-            first_separator: true,
-            separator:       'year',
-            columnMode:      'dual',
-            order:           'desc'
-        });
-        timeline.display();
-		
-		
-        // menu click
-        $(document).on('click', '#menu > div', function(e) {
-            $.scrollTo('#timeline_date_separator_' + $(this).text(), 500);
-        });
-
-        // load more click
-        var year = 2013;
-        $('#loadmore').on('click', function(e) {
-            var button = $(this);
-
-            if (button.hasClass('loading')) {
-                return;
-            }
-
-            year--;
-            button.addClass('loading').text('Loading...');
-
-            $.ajax('ajax_data.php', {
-                type     : 'POST',
-                dataType : 'json',
-                data     : {year: year},
-                success  : function(data) {
-                    // remove loading
-                    button.removeClass('loading').text('Load More');
-
-                    // add a new menu item
-                    $('<div>').text(year).appendTo($('#menu'));
-
-                    // append new data
-                    timeline.appendData(data);
-
-                    // scroll to new data
-                    $.scrollTo('#timeline_date_separator_' + year, 500);
-                }
-            });
-        });
-		
-	    // var timeline = new Timeline($(  ), timeline_data);
-	    // timeline.display();
-	    
-	    */

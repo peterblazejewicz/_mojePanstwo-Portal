@@ -12,10 +12,15 @@ class Dataliner extends AppModel
 		
 		if( !isset($query['page']) || !is_numeric($query['page']) )
 			$query['page'] = 1;
-			
+		
+		
+		$conditions = isset( $query['conditions'] ) ? $query['conditions'] : array();
+		$facets = isset( $query['facets'] ) ? $query['facets'] : array();
+		$order = isset( $query['order'] ) ? $query['order'] : '_date desc';
+		
 		$objects = $dataobject->find('all', array(
-			'conditions' => $query['conditions'],
-			'order' => '_date desc',
+			'conditions' => $conditions,
+			'order' => $order,
 			'limit' => 20,
 			'page' => $query['page'],
 		));
@@ -25,8 +30,8 @@ class Dataliner extends AppModel
 			$object = $object['Dataobject'];			
 			$data[] = array(
 				'type' => 'blog_post',
-				'date' => $object->getDate(),
-				'title' => 'Prawo',
+				'date' => $object->getData('data_wejscia_w_zycie'),
+				'title' => $object->getData('typ_nazwa'),
 				'content' => '<div class="row"><div class="col-md-2 text-center"><img src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
 			);
 			

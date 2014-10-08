@@ -23,9 +23,5 @@
 </div>
 
 <div class="container">
-	<? echo $this->element('dataliner', array(
-   		'initData' => $datalinerParams['initData'],
-   		'requestData' => $datalinerParams['requestData'],
-   		'filters' => false,
-   	)); ?>
+	<? echo $this->element('dataliner', $datalinerParams); ?>
 </div>

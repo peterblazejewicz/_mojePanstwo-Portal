@@ -1,18 +1,19 @@
 <?
 	$this->Combinator->add_libs('css', 'timeline');
 	$this->Combinator->add_libs('css', 'multiple_select');
+	$this->Combinator->add_libs('css', $this->Less->css('dataliner'));
 	$this->Combinator->add_libs('js', 'jquery_multiple_select');
 	$this->Combinator->add_libs('js', 'timeline');
 	$this->Combinator->add_libs('js', 'Dane.dataliner.js');
 ?>
 
 
-<div class="dataliner" data-requestData="<?=htmlspecialchars(json_encode( $requestData ))?>">
+<div class="dataliner" data-requestdata="<?= htmlspecialchars(json_encode( $requestData )) ?>" data-filterfield="<?= $filterField ?>">
 	<div class="filters text-center" style="display: none;">
 	   	<? if( isset($filters) && !empty($filters) ) {?>
 		   	<select multiple="multiple text-left">
 		    <? foreach( $filters as $filter ) {?>
-		        <option value="<?= $filter['id'] ?>"><?= $filter['nazwa'] ?></option>
+		        <option<? if( isset($filter['selected']) && $filter['selected'] ){?> selected="selected"<?}?> value="<?= $filter['id'] ?>" ><?= $filter['nazwa'] ?></option>
 		    <? } ?>
 		    </select>
 	    <? } ?>
