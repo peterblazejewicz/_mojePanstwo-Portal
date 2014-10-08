@@ -84,3 +84,9 @@
 #_wrapper .dataliner {
   margin: 20px;
 }
+
+#_wrapper .dataliner .endlessLoader {
+    height: 40px;
+    width: 100%;
+    display: block;
+}

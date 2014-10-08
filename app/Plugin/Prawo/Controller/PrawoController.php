@@ -13,7 +13,7 @@ class PrawoController extends AppController
     {
 		
 		$filter_field = 'typ_id';
-		$default_filters = array('1', '5');
+	    $default_filters = array( '1' );
 		
 		$filters = $this->API->Prawo()->getTypes();
 		foreach( $filters as &$filter )
