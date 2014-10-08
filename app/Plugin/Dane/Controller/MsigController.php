@@ -26,6 +26,15 @@ class MSiGController extends DataobjectsController
 		}
 	}
 	
+	public function dokument() {
+		
+		$this->_prepareView();
+		
+		$this->set('document', $this->API->document( $this->object->getData('dokument_id') ));
+		$this->render('view');
+
+	}
+	
 	public function dzialy() {
 		
 		$this->_prepareView();
@@ -33,6 +42,14 @@ class MSiGController extends DataobjectsController
 		if( $id = @$this->request->params['pass'][0] ) {
 						
 			$dzial = $this->API->getObject('msig_dzialy', $id, array());
+			
+			if( $dzial->getData('msig_id')!=$this->object->getId() ) {
+				
+				$this->redirect('/dane/msig/' . $dzial->getData('msig_id') . '/dzialy/' . $dzial->getId() );
+				die();
+				
+			}
+			
 			$this->set('document', $this->API->document( $dzial->getData('dokument_id') ));
 			
             $this->set('dzial', $dzial);
@@ -75,6 +92,16 @@ class MSiGController extends DataobjectsController
 	            $item
 	        )
 	    );
+	    
+	    if( $dzialy = $this->object->getLayer('toc') ) {
+	    	
+	    	$menu['items'][] = array(
+	    		'id' => 'dokument',
+	    		'label' => 'Dokument',
+	    		'href' => $href_base . '/dokument',
+	    	);
+	    	
+	    }
 	    
         $menu['selected'] = ( $this->request->params['action'] == 'view' ) ? '' : $this->request->params['action'];        
         $this->set('_menu', $menu);
