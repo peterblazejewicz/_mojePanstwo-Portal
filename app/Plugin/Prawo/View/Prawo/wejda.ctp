@@ -3,7 +3,7 @@
 
 <div class="appHeader">
     <div class="container innerContent">
-        <h1><?php echo __d('prawo', 'LC_USTAWY_HEADLINE'); ?></h1>
+        <h1>Przeglądaj <strong>prawo</strong> obowiązujące w Polsce</h1>
 
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             
@@ -14,14 +14,10 @@
             	'action' => '/prawo',
         	)); ?>
             
-            <div id="shortcuts">
-                <ul>
-                    <li class="active"><a href="/weszly">Niedawno weszły w życie</a></li>
-                    <li><a href="/wejda">Niedługo wejdą w życie</a></li>
-                    <li><a href="/slowa_kluczowe">Słowa kluczowe</a></li>
-                </ul>
-                <div class="shortcutArrow"></div>
-            </div>
+            <? echo $this->Element('Prawo.menu', array(
+            	'selected' => 'wejda'
+            )); ?>
+            
         </div>
     </div>
 </div>

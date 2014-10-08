@@ -7,15 +7,30 @@ class PrawoController extends AppController
         'RequestHandler'
     );
     public $helpers = array('Dane.Dataobject');
+    public $uses = array('Dane.Dataliner');
 
-    public function index()
+    public function weszly()
     {
 
 
-        $api = $this->API->Dane();
-        $data = array();
+        $datalinerParams = array(
+			'requestData' => array(
+	   			'conditions' => array(
+	       			'_source' => 'prawo.weszly',
+	   			),
+	   		),
+		);
+		
+		$data = $this->Dataliner->index(array(
+			'conditions' => $datalinerParams['requestData']['conditions'],
+		));
+				
+		$datalinerParams['initData'] = $data;
+		$this->set('datalinerParams', $datalinerParams);
 
-
+		
+		
+		/*
         // NIEDAWNO WESZŁY
 
         $api->searchDataset('ustawy', array(
@@ -27,7 +42,7 @@ class PrawoController extends AppController
         ));
         $data['niedawno_weszly'] = $api->getObjects();
 
-
+		
         // NIEDŁUGO WEJDĄ
 
         $api->searchDataset('ustawy', array(
@@ -66,10 +81,23 @@ class PrawoController extends AppController
         $data['konstytucje'] = $api->getObjects();
 
         $this->set('data', $data);
+        */
 
 
     }
-
+	
+	public function wejda()
+    {
+    
+    
+    }
+    
+    public function slowa_kluczowe()
+    {
+    
+    
+    }
+	
     public function search()
     {
         if (isset($this->request->params['ext']) && ($this->request->params['ext'] == 'json')) {

@@ -81,3 +81,6 @@
   position: absolute;
   width: 0;
 }
+#_wrapper .dataliner {
+  margin: 20px;
+}

@@ -126,7 +126,7 @@
 	           			<h2 class="label">Powiązane akty prawne</h2>
 	           		</div>
 	           		<div class="content">
-			           	<? echo $this->element('datasearcher', array(
+			           	<? echo $this->element('dataliner', array(
 			           		'params' => $datalinerParams,
 			           		'options' => $object->getLayer('counters'),
 			           	)); ?>

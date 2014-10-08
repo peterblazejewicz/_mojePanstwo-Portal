@@ -3,15 +3,32 @@ var Dataliner = Class.extend({
 	init: function(div) {
 		
 		this.div = $(div);
-		this.params = this.div.data('params');
-
 		this.timeline_div = this.div.find('.timeline');
-		this.options_div = this.div.find('.options');
+		this.filters_div = this.div.find('.filters');
 		
-		this.options_select = this.options_div.find('select');
-		if( this.options_select.length ) {
+		this.requestData = this.div.data('requestData');
+		
+		this.initData = [];
+		
+		var lis = this.timeline_div.find('ul li');
+		for( var i=0; i<lis.length; i++ ) {
 			
-			//this.options_div.slideDown();
+			var li = jQuery( lis[i] );
+			this.initData.push({
+				type: li.data('type'),
+				date: li.find('> .date').html(),
+				title: li.find('> .title').html(),
+				content: li.find('> .content').html()
+			});
+			
+		}
+		
+		this.timeline_div.html('').show();			
+		
+		this.filters_div_select = this.filters_div.find('select');
+		if( this.filters_div_select.length ) {
+			
+			this.filters_div.slideDown();
 			
 			/*
 			this.options_select.multipleSelect({
@@ -24,7 +41,7 @@ var Dataliner = Class.extend({
 			
 		}
 		
-		this.timeline = new Timeline(this.timeline_div, this.params.initData);
+		this.timeline = new Timeline(this.timeline_div, this.initData);
 		this.timeline.setOptions({
 			order: 'desc'
 		});
