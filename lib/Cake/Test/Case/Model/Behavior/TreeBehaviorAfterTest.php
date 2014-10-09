@@ -73,20 +73,22 @@ class TreeBehaviorAfterTest extends CakeTestCase {
 			)
 		);
 		$result                      = $this->Tree->save( array(
-				'AfterTree' => array(
-					'name'      => 'Six and One Half',
-					'parent_id' => 6
-				)
-			) );
+			'AfterTree' => array(
+				'name'      => 'Six and One Half',
+				'parent_id' => 6
+			)
+		) );
 		$expected['AfterTree']['id'] = $this->Tree->id;
 		$this->assertEquals( $expected, $result );
 
-		$expected = array( 'AfterTree' => array( 'name'      => 'Six and One Half',
-		                                         'parent_id' => 6,
-		                                         'lft'       => 11,
-		                                         'rght'      => 12,
-		                                         'id'        => 8
-		)
+		$expected = array(
+			'AfterTree' => array(
+				'name'      => 'Six and One Half',
+				'parent_id' => 6,
+				'lft'       => 11,
+				'rght'      => 12,
+				'id'        => 8
+			)
 		);
 		$result   = $this->Tree->find( 'all' );
 		$this->assertEquals( $expected, $result[7] );

@@ -200,9 +200,9 @@ class SessionComponentTest extends CakeTestCase {
 		$this->assertEquals( array( 'path' => 'some value' ), $Session->read( 'Test.key' ) );
 		$this->assertTrue( $Session->write( 'Test.key.path2', 'another value' ) );
 		$this->assertEquals( array(
-				'path'  => 'some value',
-				'path2' => 'another value'
-			), $Session->read( 'Test.key' ) );
+			'path'  => 'some value',
+			'path2' => 'another value'
+		), $Session->read( 'Test.key' ) );
 		$Session->delete( 'Test' );
 
 		$array = array( 'key1' => 'val1', 'key2' => 'val2', 'key3' => 'val3' );
@@ -257,31 +257,31 @@ class SessionComponentTest extends CakeTestCase {
 
 		$Session->setFlash( 'This is a test message' );
 		$this->assertEquals( array(
-				'message' => 'This is a test message',
-				'element' => 'default',
-				'params'  => array()
-			), $Session->read( 'Message.flash' ) );
+			'message' => 'This is a test message',
+			'element' => 'default',
+			'params'  => array()
+		), $Session->read( 'Message.flash' ) );
 
 		$Session->setFlash( 'This is a test message', 'test', array( 'name' => 'Joel Moss' ) );
 		$this->assertEquals( array(
-				'message' => 'This is a test message',
-				'element' => 'test',
-				'params'  => array( 'name' => 'Joel Moss' )
-			), $Session->read( 'Message.flash' ) );
+			'message' => 'This is a test message',
+			'element' => 'test',
+			'params'  => array( 'name' => 'Joel Moss' )
+		), $Session->read( 'Message.flash' ) );
 
 		$Session->setFlash( 'This is a test message', 'default', array(), 'myFlash' );
 		$this->assertEquals( array(
-				'message' => 'This is a test message',
-				'element' => 'default',
-				'params'  => array()
-			), $Session->read( 'Message.myFlash' ) );
+			'message' => 'This is a test message',
+			'element' => 'default',
+			'params'  => array()
+		), $Session->read( 'Message.myFlash' ) );
 
 		$Session->setFlash( 'This is a test message', 'non_existing_layout' );
 		$this->assertEquals( array(
-				'message' => 'This is a test message',
-				'element' => 'default',
-				'params'  => array()
-			), $Session->read( 'Message.myFlash' ) );
+			'message' => 'This is a test message',
+			'element' => 'default',
+			'params'  => array()
+		), $Session->read( 'Message.myFlash' ) );
 
 		$Session->delete( 'Message' );
 	}

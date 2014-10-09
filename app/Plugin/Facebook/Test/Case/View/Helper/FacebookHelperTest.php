@@ -50,11 +50,11 @@ class FacebookHelperTestCase extends CakeTestCase {
 		$this->assertEqual( '<a href="#" onclick="FB.api({ method: &#039;Auth.revokeAuthorization&#039; }, function(response) {window.location.reload();});">disconnect</a>', $results );
 
 		$results = $this->Facebook->disconnect( array(
-				'redirect' => array(
-					'controller' => 'users',
-					'action'     => 'logout'
-				)
-			) );
+			'redirect' => array(
+				'controller' => 'users',
+				'action'     => 'logout'
+			)
+		) );
 		$this->assertEqual( '<a href="#" onclick="FB.api({ method: &#039;Auth.revokeAuthorization&#039; }, function(response) {window.location = &#039;/users/logout&#039;});">logout</a>', $results );
 
 		$results = $this->Facebook->disconnect( array( 'confirm' => 'Are you sure?' ) );

@@ -66,9 +66,9 @@ class PhpAclTest extends CakeTestCase {
 		$this->assertEquals( array( array( PhpAro::DEFAULT_ROLE ) ), $this->Acl->Aro->roles( 'foobar' ) );
 		$this->Acl->Aro->addRole( array( 'User/foobar' => 'Role/accounting' ) );
 		$this->assertEquals( array(
-				array( 'Role/accounting' ),
-				array( 'User/foobar' )
-			), $this->Acl->Aro->roles( 'foobar' ) );
+			array( 'Role/accounting' ),
+			array( 'User/foobar' )
+		), $this->Acl->Aro->roles( 'foobar' ) );
 	}
 
 	/**
@@ -299,12 +299,12 @@ class PhpAclTest extends CakeTestCase {
 		$this->assertEquals( array( 'foo', '*-bar', '?-baz' ), $this->Acl->Aco->resolve( 'foo/*-bar/?-baz' ) );
 
 		$this->assertEquals( array(
-				'foo',
-				'bar',
-				'[a-f0-9]{24}',
-				'*_bla',
-				'bla'
-			), $this->Acl->Aco->resolve( 'foo/bar/[a-f0-9]{24}/*_bla/bla' ) );
+			'foo',
+			'bar',
+			'[a-f0-9]{24}',
+			'*_bla',
+			'bla'
+		), $this->Acl->Aco->resolve( 'foo/bar/[a-f0-9]{24}/*_bla/bla' ) );
 
 		// multiple slashes will be squashed to a single, trimmed and then exploded
 		$this->assertEquals( array( 'foo', 'bar' ), $this->Acl->Aco->resolve( 'foo//bar' ) );

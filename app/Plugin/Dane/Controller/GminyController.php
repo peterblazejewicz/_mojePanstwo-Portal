@@ -288,7 +288,7 @@ class GminyController extends DataobjectsController {
 			$sub_id    = ( isset( $this->request->params['pass'][2] ) && $this->request->params['pass'][2] ) ? $this->request->params['pass'][2] : false;
 
 
-			$posiedzenie = $this->API->getObject( 'krakow_posiedzenia', $this->request->params['pass'][0], array(
+			$posiedzenie         = $this->API->getObject( 'krakow_posiedzenia', $this->request->params['pass'][0], array(
 				'layers' => array( 'neighbours', 'terms' ),
 			) );
 
@@ -315,14 +315,14 @@ class GminyController extends DataobjectsController {
 
 
 			$render_view = 'punkty';
-			$subaction   = 'punkty';
+			$subaction           = 'punkty';
 
 			switch ( $subaction ) {
 
 				case "punkty": {
 
 					$submenu['selected'] = 'punkty';
-					$render_view         = 'posiedzenie-punkty';
+					$render_view = 'posiedzenie-punkty';
 
 					$this->dataobjectsBrowserView( array(
 						'source'         => 'krakow_posiedzenia.punkty:' . $posiedzenie->getId(),
@@ -1086,20 +1086,20 @@ class GminyController extends DataobjectsController {
 				'dropdown' => array(
 					'items' => array(
 						array(
-							'id'    => 'urzednicy',
+							'id'   => 'urzednicy',
 							'label' => 'Urzędnicy',
-							'href'  => $href_base . '/urzednicy',
+							'href' => $href_base . '/urzednicy',
 						),
 						array(
-							'id'    => 'jednostki',
+							'id'   => 'jednostki',
 							'label' => 'Jednostki organizacyjne',
-							'href'  => $href_base . '/jednostki',
+							'href' => $href_base . '/jednostki',
 						),
 						array(
 							'topborder' => true,
-							'id'        => 'oswiadczenia',
-							'label'     => 'Oświadczenia majątkowe',
-							'href'      => $href_base . '/oswiadczenia',
+							'id'    => 'oswiadczenia',
+							'label' => 'Oświadczenia majątkowe',
+							'href'  => $href_base . '/oswiadczenia',
 						)
 					),
 				),

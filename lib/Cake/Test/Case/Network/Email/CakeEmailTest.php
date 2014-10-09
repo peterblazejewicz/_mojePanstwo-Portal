@@ -219,9 +219,9 @@ class CakeEmailTest extends CakeTestCase {
 
 		$this->setExpectedException( 'SocketException' );
 		$result = $this->CakeEmail->from( array(
-				'cake@cakephp.org' => 'CakePHP',
-				'fail@cakephp.org' => 'From can only be one address'
-			) );
+			'cake@cakephp.org' => 'CakePHP',
+			'fail@cakephp.org' => 'From can only be one address'
+		) );
 	}
 
 	/**
@@ -408,16 +408,16 @@ class CakeEmailTest extends CakeTestCase {
 		$this->assertSame( $expected, $result );
 
 		$result   = $this->CakeEmail->formatAddress( array(
-				'cake@cakephp.org' => 'cake@cakephp.org',
-				'php@cakephp.org'  => 'php@cakephp.org'
-			) );
+			'cake@cakephp.org' => 'cake@cakephp.org',
+			'php@cakephp.org'  => 'php@cakephp.org'
+		) );
 		$expected = array( 'cake@cakephp.org', 'php@cakephp.org' );
 		$this->assertSame( $expected, $result );
 
 		$result   = $this->CakeEmail->formatAddress( array(
-				'cake@cakephp.org' => 'CakePHP',
-				'php@cakephp.org'  => 'Cake'
-			) );
+			'cake@cakephp.org' => 'CakePHP',
+			'php@cakephp.org'  => 'Cake'
+		) );
 		$expected = array( 'CakePHP <cake@cakephp.org>', 'Cake <php@cakephp.org>' );
 		$this->assertSame( $expected, $result );
 
@@ -490,27 +490,27 @@ class CakeEmailTest extends CakeTestCase {
 		$this->assertSame( $this->CakeEmail->readReceipt(), array( 'readreceipt@cakephp.org' => 'ReadReceipt CakePHP' ) );
 		$this->assertSame( $this->CakeEmail->returnPath(), array( 'returnpath@cakephp.org' => 'ReturnPath CakePHP' ) );
 		$this->assertSame( $this->CakeEmail->to(), array(
-				'to@cakephp.org'  => 'To CakePHP',
-				'to2@cakephp.org' => 'To2 CakePHP'
-			) );
+			'to@cakephp.org'  => 'To CakePHP',
+			'to2@cakephp.org' => 'To2 CakePHP'
+		) );
 		$this->assertSame( $this->CakeEmail->cc(), array(
-				'cc@cakephp.org'  => 'Cc CakePHP',
-				'cc2@cakephp.org' => 'Cc2 CakePHP'
-			) );
+			'cc@cakephp.org'  => 'Cc CakePHP',
+			'cc2@cakephp.org' => 'Cc2 CakePHP'
+		) );
 		$this->assertSame( $this->CakeEmail->bcc(), array(
-				'bcc@cakephp.org'  => 'Bcc CakePHP',
-				'bcc2@cakephp.org' => 'Bcc2 CakePHP'
-			) );
+			'bcc@cakephp.org'  => 'Bcc CakePHP',
+			'bcc2@cakephp.org' => 'Bcc2 CakePHP'
+		) );
 
 		$headers = $this->CakeEmail->getHeaders( array_fill_keys( array(
-					'from',
-					'replyTo',
-					'readReceipt',
-					'returnPath',
-					'to',
-					'cc',
-					'bcc'
-				), true ) );
+			'from',
+			'replyTo',
+			'readReceipt',
+			'returnPath',
+			'to',
+			'cc',
+			'bcc'
+		), true ) );
 		$this->assertSame( $headers['From'], 'CakePHP <cake@cakephp.org>' );
 		$this->assertSame( $headers['Reply-To'], 'ReplyTo CakePHP <replyto@cakephp.org>' );
 		$this->assertSame( $headers['Disposition-Notification-To'], 'ReadReceipt CakePHP <readreceipt@cakephp.org>' );
@@ -810,9 +810,9 @@ class CakeEmailTest extends CakeTestCase {
 		$this->CakeEmail->addAttachments( CAKE . 'bootstrap.php' );
 		$this->CakeEmail->addAttachments( array( CAKE . 'bootstrap.php' ) );
 		$this->CakeEmail->addAttachments( array(
-				'other.txt' => CAKE . 'bootstrap.php',
-				'license'   => CAKE . 'LICENSE.txt'
-			) );
+			'other.txt' => CAKE . 'bootstrap.php',
+			'license'   => CAKE . 'LICENSE.txt'
+		) );
 		$expected = array(
 			'basics.php'    => array( 'file' => CAKE . 'basics.php', 'mimetype' => 'text/plain' ),
 			'bootstrap.php' => array( 'file' => CAKE . 'bootstrap.php', 'mimetype' => 'application/octet-stream' ),
@@ -1613,21 +1613,21 @@ class CakeEmailTest extends CakeTestCase {
 		$this->assertContains( "Content-Type: application/octet-stream\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"my.file.txt\"", $result['message'] );
 
 		$this->CakeEmail->attachments( array(
-				'file.txt' => array(
-					'file'     => CAKE . 'basics.php',
-					'mimetype' => 'text/plain'
-				)
-			) );
+			'file.txt' => array(
+				'file'     => CAKE . 'basics.php',
+				'mimetype' => 'text/plain'
+			)
+		) );
 		$result = $this->CakeEmail->send( 'body' );
 		$this->assertContains( "Content-Type: text/plain\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"file.txt\"", $result['message'] );
 
 		$this->CakeEmail->attachments( array(
-				'file2.txt' => array(
-					'file'      => CAKE . 'basics.php',
-					'mimetype'  => 'text/plain',
-					'contentId' => 'a1b1c1'
-				)
-			) );
+			'file2.txt' => array(
+				'file'      => CAKE . 'basics.php',
+				'mimetype'  => 'text/plain',
+				'contentId' => 'a1b1c1'
+			)
+		) );
 		$result = $this->CakeEmail->send( 'body' );
 		$this->assertContains( "Content-Type: text/plain\r\nContent-Transfer-Encoding: base64\r\nContent-ID: <a1b1c1>\r\nContent-Disposition: inline; filename=\"file2.txt\"", $result['message'] );
 	}

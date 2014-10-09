@@ -315,11 +315,11 @@ class SmtpTransportTest extends CakeTestCase {
 		$date = date( DATE_RFC2822 );
 		$email->setHeaders( array( 'X-Mailer' => SmtpCakeEmail::EMAIL_CLIENT, 'Date' => $date ) );
 		$email->expects( $this->any() )->method( 'message' )->will( $this->returnValue( array(
-					'First Line',
-					'Second Line',
-					'.Third Line',
-					''
-				) ) );
+			'First Line',
+			'Second Line',
+			'.Third Line',
+			''
+		) ) );
 
 		$data = "From: CakePHP Test <noreply@cakephp.org>\r\n";
 		$data .= "To: CakePHP <cake@cakephp.org>\r\n";

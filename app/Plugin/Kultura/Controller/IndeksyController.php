@@ -6,7 +6,7 @@ class IndeksyController extends AppController {
 
 	public function view() {
 
-		$id  = $this->request->params['id'];
+		$id = $this->request->params['id'];
 		$api = mpapiComponent::getApi()->Kultura();
 
 		$index = $api->getIndex( $id );

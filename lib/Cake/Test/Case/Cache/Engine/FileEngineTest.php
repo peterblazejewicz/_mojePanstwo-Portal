@@ -321,11 +321,12 @@ class FileEngineTest extends CakeTestCase {
 	 * @return void
 	 */
 	public function testRemoveWindowsSlashesFromCache() {
-		Cache::config( 'windows_test', array( 'engine'    => 'File',
-		                                      'isWindows' => true,
-		                                      'prefix'    => null,
-		                                      'path'      => TMP
-			) );
+		Cache::config( 'windows_test', array(
+			'engine'    => 'File',
+			'isWindows' => true,
+			'prefix'    => null,
+			'path'      => TMP
+		) );
 
 		$expected = array(
 			'C:\dev\prj2\sites\cake\libs'               => array(
@@ -473,10 +474,11 @@ class FileEngineTest extends CakeTestCase {
 	 * @return void
 	 */
 	public function testGroupsReadWrite() {
-		Cache::config( 'file_groups', array( 'engine'   => 'File',
-		                                     'duration' => 3600,
-		                                     'groups'   => array( 'group_a', 'group_b' )
-			) );
+		Cache::config( 'file_groups', array(
+			'engine'   => 'File',
+			'duration' => 3600,
+			'groups'   => array( 'group_a', 'group_b' )
+		) );
 		$this->assertTrue( Cache::write( 'test_groups', 'value', 'file_groups' ) );
 		$this->assertEquals( 'value', Cache::read( 'test_groups', 'file_groups' ) );
 
@@ -535,14 +537,16 @@ class FileEngineTest extends CakeTestCase {
 	 * @return void
 	 */
 	public function testGroupClear() {
-		Cache::config( 'file_groups', array( 'engine'   => 'File',
-		                                     'duration' => 3600,
-		                                     'groups'   => array( 'group_a', 'group_b' )
-			) );
-		Cache::config( 'file_groups2', array( 'engine'   => 'File',
-		                                      'duration' => 3600,
-		                                      'groups'   => array( 'group_b' )
-			) );
+		Cache::config( 'file_groups', array(
+			'engine'   => 'File',
+			'duration' => 3600,
+			'groups'   => array( 'group_a', 'group_b' )
+		) );
+		Cache::config( 'file_groups2', array(
+			'engine'   => 'File',
+			'duration' => 3600,
+			'groups'   => array( 'group_b' )
+		) );
 		Cache::config( 'file_groups3', array(
 			'engine'   => 'File',
 			'duration' => 3600,

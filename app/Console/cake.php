@@ -19,7 +19,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$ds         = DIRECTORY_SEPARATOR;
+$ds = DIRECTORY_SEPARATOR;
 $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 
 if ( function_exists( 'ini_set' ) ) {

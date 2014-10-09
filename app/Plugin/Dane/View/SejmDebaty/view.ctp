@@ -1,9 +1,9 @@
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'view-sejmdebaty', array( 'plugin' => 'Dane' ) ) ); ?>
 
 <?
-$object        = $this->viewVars['object'];
+$object = $this->viewVars['object'];
 $objectOptions = $this->viewVars['objectOptions'];
-$menu          = $this->viewVars['menu'];
+$menu   = $this->viewVars['menu'];
 
 $buttons = isset( $objectOptions['buttons'] ) ? $objectOptions['buttons'] : array( 'shoutIt' );
 ?>

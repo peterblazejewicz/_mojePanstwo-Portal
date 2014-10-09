@@ -1,5 +1,5 @@
 <?
-$object        = $this->viewVars['object'];
+$object = $this->viewVars['object'];
 $objectOptions = $this->viewVars['objectOptions'];
 
 if ( isset( $titleTag ) ) {

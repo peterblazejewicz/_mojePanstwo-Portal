@@ -595,9 +595,9 @@ class DbAclTest extends CakeTestCase {
 		array_unshift( $permissions, 'Current Permissions :' );
 		if ( $printTreesToo ) {
 			debug( array(
-					'aros' => $this->Acl->Aro->generateTreeList(),
-					'acos' => $this->Acl->Aco->generateTreeList()
-				) );
+				'aros' => $this->Acl->Aro->generateTreeList(),
+				'acos' => $this->Acl->Aco->generateTreeList()
+			) );
 		}
 		debug( implode( "\r\n", $permissions ) );
 	}

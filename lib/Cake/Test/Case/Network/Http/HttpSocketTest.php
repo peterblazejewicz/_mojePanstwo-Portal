@@ -207,11 +207,11 @@ class HttpSocketTest extends CakeTestCase {
 		if ( ! class_exists( 'MockHttpSocket' ) ) {
 			$this->getMock( 'TestHttpSocket', array( 'read', 'write', 'connect' ), array(), 'MockHttpSocket' );
 			$this->getMock( 'TestHttpSocket', array(
-					'read',
-					'write',
-					'connect',
-					'request'
-				), array(), 'MockHttpSocketRequests' );
+				'read',
+				'write',
+				'connect',
+				'request'
+			), array(), 'MockHttpSocketRequests' );
 		}
 
 		$this->Socket        = new MockHttpSocket();
@@ -1059,16 +1059,16 @@ class HttpSocketTest extends CakeTestCase {
 		$this->RequestSocket->expects( $this->at( 5 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'GET',
-				                    'uri'    => 'https://secure.example.com/test.php?one=two'
-			                    ) );
+			                    'method' => 'GET',
+			                    'uri'    => 'https://secure.example.com/test.php?one=two'
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 6 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'GET',
-				                    'uri'    => 'https://example.com/oauth/access?clientid=123&redirect_uri=http%3A%2F%2Fexample.com&code=456'
-			                    ) );
+			                    'method' => 'GET',
+			                    'uri'    => 'https://example.com/oauth/access?clientid=123&redirect_uri=http%3A%2F%2Fexample.com&code=456'
+		                    ) );
 
 		$this->RequestSocket->get( 'http://www.google.com/' );
 		$this->RequestSocket->get( 'http://www.google.com/', array( 'foo' => 'bar' ) );
@@ -1112,11 +1112,11 @@ class HttpSocketTest extends CakeTestCase {
 			)
 		) );
 		$this->assertEquals( $socket->request['auth'], array(
-				'Basic' => array(
-					'user' => 'joel',
-					'pass' => 'hunter2'
-				)
-			) );
+			'Basic' => array(
+				'user' => 'joel',
+				'pass' => 'hunter2'
+			)
+		) );
 		$this->assertTrue( strpos( $socket->request['header'], 'Authorization: Basic am9lbDpodW50ZXIy' ) !== false );
 	}
 
@@ -1153,19 +1153,19 @@ class HttpSocketTest extends CakeTestCase {
 		$this->RequestSocket->expects( $this->at( 1 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'POST',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array( 'Foo' => 'bar' )
-			                    ) );
+			                    'method' => 'POST',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array( 'Foo' => 'bar' )
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 2 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'POST',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => null,
-				                    'line'   => 'Hey Server'
-			                    ) );
+			                    'method' => 'POST',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => null,
+			                    'line'   => 'Hey Server'
+		                    ) );
 
 		$this->RequestSocket->post( 'http://www.google.com/' );
 		$this->RequestSocket->post( 'http://www.google.com/', array( 'Foo' => 'bar' ) );
@@ -1186,19 +1186,19 @@ class HttpSocketTest extends CakeTestCase {
 		$this->RequestSocket->expects( $this->at( 1 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'PUT',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array( 'Foo' => 'bar' )
-			                    ) );
+			                    'method' => 'PUT',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array( 'Foo' => 'bar' )
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 2 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'PUT',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => null,
-				                    'line'   => 'Hey Server'
-			                    ) );
+			                    'method' => 'PUT',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => null,
+			                    'line'   => 'Hey Server'
+		                    ) );
 
 		$this->RequestSocket->put( 'http://www.google.com/' );
 		$this->RequestSocket->put( 'http://www.google.com/', array( 'Foo' => 'bar' ) );
@@ -1215,27 +1215,27 @@ class HttpSocketTest extends CakeTestCase {
 		$this->RequestSocket->expects( $this->at( 0 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'PATCH',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array()
-			                    ) );
+			                    'method' => 'PATCH',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array()
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 1 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'PATCH',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array( 'Foo' => 'bar' )
-			                    ) );
+			                    'method' => 'PATCH',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array( 'Foo' => 'bar' )
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 2 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'PATCH',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => null,
-				                    'line'   => 'Hey Server'
-			                    ) );
+			                    'method' => 'PATCH',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => null,
+			                    'line'   => 'Hey Server'
+		                    ) );
 
 		$this->RequestSocket->patch( 'http://www.google.com/' );
 		$this->RequestSocket->patch( 'http://www.google.com/', array( 'Foo' => 'bar' ) );
@@ -1252,27 +1252,27 @@ class HttpSocketTest extends CakeTestCase {
 		$this->RequestSocket->expects( $this->at( 0 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'DELETE',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array()
-			                    ) );
+			                    'method' => 'DELETE',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array()
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 1 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'DELETE',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => array( 'Foo' => 'bar' )
-			                    ) );
+			                    'method' => 'DELETE',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => array( 'Foo' => 'bar' )
+		                    ) );
 
 		$this->RequestSocket->expects( $this->at( 2 ) )
 		                    ->method( 'request' )
 		                    ->with( array(
-				                    'method' => 'DELETE',
-				                    'uri'    => 'http://www.google.com/',
-				                    'body'   => null,
-				                    'line'   => 'Hey Server'
-			                    ) );
+			                    'method' => 'DELETE',
+			                    'uri'    => 'http://www.google.com/',
+			                    'body'   => null,
+			                    'line'   => 'Hey Server'
+		                    ) );
 
 		$this->RequestSocket->delete( 'http://www.google.com/' );
 		$this->RequestSocket->delete( 'http://www.google.com/', array( 'Foo' => 'bar' ) );
@@ -1299,9 +1299,9 @@ class HttpSocketTest extends CakeTestCase {
 		$this->assertEquals( false, $r );
 
 		$r = $this->Socket->buildRequestLine( array(
-				'method' => 'GET',
-				'uri'    => 'http://www.cakephp.org/search?q=socket'
-			) );
+			'method' => 'GET',
+			'uri'    => 'http://www.cakephp.org/search?q=socket'
+		) );
 		$this->assertEquals( "GET /search?q=socket HTTP/1.1\r\n", $r );
 
 		$request = array(
@@ -1430,10 +1430,10 @@ class HttpSocketTest extends CakeTestCase {
 		) );
 
 		$uri = $this->Socket->parseUri( 'http://www.cakephp.org', array(
-				'host'     => 'piephp.org',
-				'user'     => 'bob',
-				'fragment' => 'results'
-			) );
+			'host'     => 'piephp.org',
+			'user'     => 'bob',
+			'fragment' => 'results'
+		) );
 		$this->assertEquals( $uri, array(
 			'host'     => 'www.cakephp.org',
 			'user'     => 'bob',
@@ -1449,9 +1449,9 @@ class HttpSocketTest extends CakeTestCase {
 		) );
 
 		$uri = $this->Socket->parseUri( 'www.cakephp.org:59', array(
-				'scheme' => array( 'http', 'https' ),
-				'port'   => 80
-			) );
+			'scheme' => array( 'http', 'https' ),
+			'port'   => 80
+		) );
 		$this->assertEquals( $uri, array(
 			'scheme' => 'http',
 			'port'   => 59,
@@ -1459,10 +1459,10 @@ class HttpSocketTest extends CakeTestCase {
 		) );
 
 		$uri = $this->Socket->parseUri( array(
-				'scheme' => 'http',
-				'host'   => 'www.google.com',
-				'port'   => 8080
-			), array( 'scheme' => array( 'http', 'https' ), 'host' => 'www.google.com', 'port' => array( 80, 443 ) ) );
+			'scheme' => 'http',
+			'host'   => 'www.google.com',
+			'port'   => 8080
+		), array( 'scheme' => array( 'http', 'https' ), 'host' => 'www.google.com', 'port' => array( 80, 443 ) ) );
 		$this->assertEquals( $uri, array(
 			'scheme' => 'http',
 			'host'   => 'www.google.com',
@@ -1528,10 +1528,10 @@ class HttpSocketTest extends CakeTestCase {
 		$this->assertEquals( 'http://www.cakephp.org/foo', $r );
 
 		$r = $this->Socket->buildUri( array(
-				'host'  => 'www.cakephp.org',
-				'path'  => '/search',
-				'query' => array( 'q' => 'HttpSocket' )
-			) );
+			'host'  => 'www.cakephp.org',
+			'path'  => '/search',
+			'query' => array( 'q' => 'HttpSocket' )
+		) );
 		$this->assertEquals( 'http://www.cakephp.org/search?q=HttpSocket', $r );
 
 		$r = $this->Socket->buildUri( array( 'host' => 'www.cakephp.org', 'fragment' => 'bar' ) );

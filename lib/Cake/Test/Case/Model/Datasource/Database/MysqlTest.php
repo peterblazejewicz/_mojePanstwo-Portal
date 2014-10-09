@@ -883,10 +883,10 @@ class MysqlTest extends CakeTestCase {
 	public function testVirtualFieldSeparators() {
 		$this->loadFixtures( 'BinaryTest' );
 		$model                = new CakeTestModel( array(
-				'table' => 'binary_tests',
-				'ds'    => 'test',
-				'name'  => 'BinaryTest'
-			) );
+			'table' => 'binary_tests',
+			'ds'    => 'test',
+			'name'  => 'BinaryTest'
+		) );
 		$model->virtualFields = array(
 			'other__field' => 'SUM(id)'
 		);
@@ -1304,14 +1304,14 @@ class MysqlTest extends CakeTestCase {
 		static $base = null;
 		if ( $base === null ) {
 			$base              = array_fill_keys( array(
-					'conditions',
-					'fields',
-					'joins',
-					'order',
-					'limit',
-					'offset',
-					'group'
-				), array() );
+				'conditions',
+				'fields',
+				'joins',
+				'order',
+				'limit',
+				'offset',
+				'group'
+			), array() );
 			$base['callbacks'] = null;
 		}
 
@@ -2332,9 +2332,9 @@ class MysqlTest extends CakeTestCase {
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Dbo->conditions( array(
-				'HardCandy.name LIKE' => 'to be or%',
-				'Candy.name LIKE'     => '%not to be%'
-			) );
+			'HardCandy.name LIKE' => 'to be or%',
+			'Candy.name LIKE'     => '%not to be%'
+		) );
 		$expected = " WHERE `HardCandy`.`name` LIKE 'to be or%' AND `Candy`.`name` LIKE '%not to be%'";
 		$this->assertEquals( $expected, $result );
 
@@ -2681,29 +2681,29 @@ class MysqlTest extends CakeTestCase {
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Dbo->conditions( array(
-				'Article2.rate_sum BETWEEN ? AND ?' => array(
-					0,
-					10
-				)
-			), true, true, $this->Model );
+			'Article2.rate_sum BETWEEN ? AND ?' => array(
+				0,
+				10
+			)
+		), true, true, $this->Model );
 		$expected = " WHERE `Article2`.`rate_sum` BETWEEN 0 AND 10";
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Dbo->conditions( array(
-				'Article2.rate_sum BETWEEN ? AND ?' => array(
-					'0',
-					'10'
-				)
-			), true, true, $this->Model );
+			'Article2.rate_sum BETWEEN ? AND ?' => array(
+				'0',
+				'10'
+			)
+		), true, true, $this->Model );
 		$expected = " WHERE `Article2`.`rate_sum` BETWEEN 0 AND 10";
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Dbo->conditions( array(
-				'Article2.rate_sum BETWEEN ? AND ?' => array(
-					'1',
-					'10'
-				)
-			), true, true, $this->Model );
+			'Article2.rate_sum BETWEEN ? AND ?' => array(
+				'1',
+				'10'
+			)
+		), true, true, $this->Model );
 		$expected = " WHERE `Article2`.`rate_sum` BETWEEN 1 AND 10";
 		$this->assertEquals( $expected, $result );
 	}
@@ -2924,37 +2924,37 @@ class MysqlTest extends CakeTestCase {
 		$this->assertRegExp( '/^\s*SELECT\s+id\s+FROM\s+table\s+WHERE\s+1=1\s*$/', $result );
 
 		$result = $this->Dbo->renderStatement( 'update', array(
-				'fields'     => 'value=2',
-				'table'      => 'table',
-				'conditions' => 'WHERE 1=1',
-				'alias'      => ''
-			) );
+			'fields'     => 'value=2',
+			'table'      => 'table',
+			'conditions' => 'WHERE 1=1',
+			'alias'      => ''
+		) );
 		$this->assertRegExp( '/^\s*UPDATE\s+table\s+SET\s+value=2\s+WHERE\s+1=1\s*$/', $result );
 
 		$result = $this->Dbo->renderStatement( 'update', array(
-				'fields'     => 'value=2',
-				'table'      => 'table',
-				'conditions' => 'WHERE 1=1',
-				'alias'      => 'alias',
-				'joins'      => ''
-			) );
+			'fields'     => 'value=2',
+			'table'      => 'table',
+			'conditions' => 'WHERE 1=1',
+			'alias'      => 'alias',
+			'joins'      => ''
+		) );
 		$this->assertRegExp( '/^\s*UPDATE\s+table\s+AS\s+alias\s+SET\s+value=2\s+WHERE\s+1=1\s*$/', $result );
 
 		$result = $this->Dbo->renderStatement( 'delete', array(
-				'fields'     => 'value=2',
-				'table'      => 'table',
-				'conditions' => 'WHERE 1=1',
-				'alias'      => ''
-			) );
+			'fields'     => 'value=2',
+			'table'      => 'table',
+			'conditions' => 'WHERE 1=1',
+			'alias'      => ''
+		) );
 		$this->assertRegExp( '/^\s*DELETE\s+FROM\s+table\s+WHERE\s+1=1\s*$/', $result );
 
 		$result = $this->Dbo->renderStatement( 'delete', array(
-				'fields'     => 'value=2',
-				'table'      => 'table',
-				'conditions' => 'WHERE 1=1',
-				'alias'      => 'alias',
-				'joins'      => ''
-			) );
+			'fields'     => 'value=2',
+			'table'      => 'table',
+			'conditions' => 'WHERE 1=1',
+			'alias'      => 'alias',
+			'joins'      => ''
+		) );
 		$this->assertRegExp( '/^\s*DELETE\s+alias\s+FROM\s+table\s+AS\s+alias\s+WHERE\s+1=1\s*$/', $result );
 	}
 

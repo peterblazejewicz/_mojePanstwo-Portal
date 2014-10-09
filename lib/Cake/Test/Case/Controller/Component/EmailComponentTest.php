@@ -66,15 +66,15 @@ class DebugCompTransport extends AbstractTransport {
 	public function send( CakeEmail $email ) {
 		$email->addHeaders( array( 'Date' => EmailComponentTest::$sentDate ) );
 		$headers = $email->getHeaders( array_fill_keys( array(
-					'from',
-					'replyTo',
-					'readReceipt',
-					'returnPath',
-					'to',
-					'cc',
-					'bcc',
-					'subject'
-				), true ) );
+			'from',
+			'replyTo',
+			'readReceipt',
+			'returnPath',
+			'to',
+			'cc',
+			'bcc',
+			'subject'
+		), true ) );
 		$to      = $headers['To'];
 		$subject = $headers['Subject'];
 		unset( $headers['To'], $headers['Subject'] );

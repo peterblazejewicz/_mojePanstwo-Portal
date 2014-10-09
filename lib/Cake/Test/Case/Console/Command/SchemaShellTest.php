@@ -285,9 +285,9 @@ class SchemaShellTest extends CakeTestCase {
 
 		$this->Shell->Schema->expects( $this->at( 1 ) )->method( 'read' );
 		$this->Shell->Schema->expects( $this->at( 1 ) )->method( 'write' )->with( array(
-				'schema data',
-				'file' => 'schema_0.php'
-			) );
+			'schema data',
+			'file' => 'schema_0.php'
+		) );
 
 		$this->Shell->generate();
 	}

@@ -24,11 +24,11 @@ class I18nSchema extends CakeSchema {
 	public $name = 'i18n';
 	public $i18n = array(
 		'id'          => array(
-			'type' => 'integer',
-			'null' => false,
+			'type'    => 'integer',
+			'null'    => false,
 			'default' => null,
-			'length' => 10,
-			'key' => 'primary'
+			'length'  => 10,
+			'key'     => 'primary'
 		),
 		'locale'      => array( 'type' => 'string', 'null' => false, 'length' => 6, 'key' => 'index' ),
 		'model'       => array( 'type' => 'string', 'null' => false, 'key' => 'index' ),

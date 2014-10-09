@@ -56,11 +56,11 @@ class MailTransportTest extends CakeTestCase {
 		$date = date( DATE_RFC2822 );
 		$email->setHeaders( array( 'X-Mailer' => 'CakePHP Email', 'Date' => $date ) );
 		$email->expects( $this->any() )->method( 'message' )->will( $this->returnValue( array(
-					'First Line',
-					'Second Line',
-					'.Third Line',
-					''
-				) ) );
+			'First Line',
+			'Second Line',
+			'.Third Line',
+			''
+		) ) );
 
 		$data = "From: CakePHP Test <noreply@cakephp.org>" . PHP_EOL;
 		$data .= "Return-Path: CakePHP Return <pleasereply@cakephp.org>" . PHP_EOL;

@@ -1,6 +1,6 @@
 <?
 
-$fid   = 'switcher_input_' . $switcher['name'];
+$fid = 'switcher_input_' . $switcher['name'];
 $fname = '!' . $switcher['name'];
 
 $checked = ( array_key_exists( $fname, $conditions ) && ( $conditions[ $fname ] == '1' ) );

@@ -45,17 +45,17 @@ class DataobjectsController extends DaneAppController {
 		$params = array(
 			'q' => $q,
 		);
-		$data   = $this->API->Dane()->suggest( $params );
+		$data = $this->API->Dane()->suggest( $params );
 
 		$hits = array();
 
 		foreach ( $data as $d ) {
 			$hits[] = array(
-				'date'    => $d->getDate(),
-				'label'   => $d->getLayer( 'label' ),
-				'title'   => $d->getTitle(),
+				'date'  => $d->getDate(),
+				'label' => $d->getLayer( 'label' ),
+				'title' => $d->getTitle(),
 				'dataset' => $d->getDataset(),
-				'id'      => $d->getId(),
+				'id'    => $d->getId(),
 			);
 		}
 

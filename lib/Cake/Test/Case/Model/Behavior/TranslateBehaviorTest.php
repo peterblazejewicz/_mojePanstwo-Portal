@@ -146,49 +146,55 @@ class TranslateBehaviorTest extends CakeTestCase {
 		$expected = array(
 			'TranslatedItem' => array( 'id' => 1, 'slug' => 'first_translated', 'translated_article_id' => 1 ),
 			'Title'          => array(
-				array( 'id'          => 1,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Title #1'
+				array(
+					'id'          => 1,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Title #1'
 				),
-				array( 'id'          => 3,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titel #1'
+				array(
+					'id'          => 3,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titel #1'
 				),
-				array( 'id'          => 5,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titulek #1'
+				array(
+					'id'          => 5,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titulek #1'
 				)
 			),
 			'Content'        => array(
-				array( 'id'          => 2,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Content #1'
+				array(
+					'id'          => 2,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Content #1'
 				),
-				array( 'id'          => 4,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Inhalt #1'
+				array(
+					'id'          => 4,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Inhalt #1'
 				),
-				array( 'id'          => 6,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Obsah #1'
+				array(
+					'id'          => 6,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Obsah #1'
 				)
 			)
 		);
@@ -344,49 +350,55 @@ class TranslateBehaviorTest extends CakeTestCase {
 				'translated_article_id' => 1,
 			),
 			'Title'          => array(
-				array( 'id'          => 1,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Title #1'
+				array(
+					'id'          => 1,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Title #1'
 				),
-				array( 'id'          => 3,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titel #1'
+				array(
+					'id'          => 3,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titel #1'
 				),
-				array( 'id'          => 5,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titulek #1'
+				array(
+					'id'          => 5,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titulek #1'
 				)
 			),
 			'Content'        => array(
-				array( 'id'          => 2,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Content #1'
+				array(
+					'id'          => 2,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Content #1'
 				),
-				array( 'id'          => 4,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Inhalt #1'
+				array(
+					'id'          => 4,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Inhalt #1'
 				),
-				array( 'id'          => 6,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Obsah #1'
+				array(
+					'id'          => 6,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Obsah #1'
 				)
 			)
 		);
@@ -566,20 +578,26 @@ class TranslateBehaviorTest extends CakeTestCase {
 		$TestModel->locale = 'eng';
 		$result            = $TestModel->find( 'all', array( 'fields' => array( 'slug', 'TranslatedItem.content' ) ) );
 		$expected          = array(
-			array( 'TranslatedItem' => array( 'slug'    => 'first_translated',
-			                                  'locale'  => 'eng',
-			                                  'content' => 'Content #1'
-			)
+			array(
+				'TranslatedItem' => array(
+					'slug'    => 'first_translated',
+					'locale'  => 'eng',
+					'content' => 'Content #1'
+				)
 			),
-			array( 'TranslatedItem' => array( 'slug'    => 'second_translated',
-			                                  'locale'  => 'eng',
-			                                  'content' => 'Content #2'
-			)
+			array(
+				'TranslatedItem' => array(
+					'slug'    => 'second_translated',
+					'locale'  => 'eng',
+					'content' => 'Content #2'
+				)
 			),
-			array( 'TranslatedItem' => array( 'slug'    => 'third_translated',
-			                                  'locale'  => 'eng',
-			                                  'content' => 'Content #3'
-			)
+			array(
+				'TranslatedItem' => array(
+					'slug'    => 'third_translated',
+					'locale'  => 'eng',
+					'content' => 'Content #3'
+				)
 			)
 		);
 		$this->assertEquals( $expected, $result );
@@ -620,8 +638,10 @@ class TranslateBehaviorTest extends CakeTestCase {
 		$TestModel->create( $data );
 		$TestModel->save();
 		$result   = $TestModel->read();
-		$expected = array( 'TranslatedItem' => array_merge( $data, array( 'id'     => $TestModel->id,
-		                                                                  'locale' => 'spa'
+		$expected = array(
+			'TranslatedItem' => array_merge( $data, array(
+				'id'     => $TestModel->id,
+				'locale' => 'spa'
 			) )
 		);
 		$this->assertEquals( $expected, $result );
@@ -835,9 +855,10 @@ class TranslateBehaviorTest extends CakeTestCase {
 
 		$TestModel         = new TranslatedItem();
 		$TestModel->locale = 'spa';
-		$oldData           = array( 'slug'                  => 'fourth_translated',
-		                            'title'                 => 'Leyenda #4',
-		                            'translated_article_id' => 1
+		$oldData           = array(
+			'slug'                  => 'fourth_translated',
+			'title'                 => 'Leyenda #4',
+			'translated_article_id' => 1
 		);
 		$TestModel->create( $oldData );
 		$TestModel->save();
@@ -884,35 +905,39 @@ class TranslateBehaviorTest extends CakeTestCase {
 				'translated_article_id' => null,
 			),
 			'Title'          => array(
-				array( 'id'          => 21,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 4,
-				       'field'       => 'title',
-				       'content'     => 'New title'
+				array(
+					'id'          => 21,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 4,
+					'field'       => 'title',
+					'content'     => 'New title'
 				),
-				array( 'id'          => 22,
-				       'locale'      => 'spa',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 4,
-				       'field'       => 'title',
-				       'content'     => 'Nuevo leyenda'
+				array(
+					'id'          => 22,
+					'locale'      => 'spa',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 4,
+					'field'       => 'title',
+					'content'     => 'Nuevo leyenda'
 				)
 			),
 			'Content'        => array(
-				array( 'id'          => 19,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 4,
-				       'field'       => 'content',
-				       'content'     => 'New content'
+				array(
+					'id'          => 19,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 4,
+					'field'       => 'content',
+					'content'     => 'New content'
 				),
-				array( 'id'          => 20,
-				       'locale'      => 'spa',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 4,
-				       'field'       => 'content',
-				       'content'     => 'Nuevo contenido'
+				array(
+					'id'          => 20,
+					'locale'      => 'spa',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 4,
+					'field'       => 'content',
+					'content'     => 'Nuevo contenido'
 				)
 			)
 		);
@@ -954,49 +979,55 @@ class TranslateBehaviorTest extends CakeTestCase {
 				'translated_article_id' => 1,
 			),
 			'Title'          => array(
-				array( 'id'          => 1,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'New Title #1'
+				array(
+					'id'          => 1,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'New Title #1'
 				),
-				array( 'id'          => 3,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Neue Titel #1'
+				array(
+					'id'          => 3,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Neue Titel #1'
 				),
-				array( 'id'          => 5,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Novy Titulek #1'
+				array(
+					'id'          => 5,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Novy Titulek #1'
 				)
 			),
 			'Content'        => array(
-				array( 'id'          => 2,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'New Content #1'
+				array(
+					'id'          => 2,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'New Content #1'
 				),
-				array( 'id'          => 4,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Neue Inhalt #1'
+				array(
+					'id'          => 4,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Neue Inhalt #1'
 				),
-				array( 'id'          => 6,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Novy Obsah #1'
+				array(
+					'id'          => 6,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Novy Obsah #1'
 				)
 			)
 		);
@@ -1042,56 +1073,63 @@ class TranslateBehaviorTest extends CakeTestCase {
 				'translated_article_id' => 1,
 			),
 			'Title'          => array(
-				array( 'id'          => 1,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Updated Title #1'
+				array(
+					'id'          => 1,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Updated Title #1'
 				),
-				array( 'id'          => 3,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titel #1'
+				array(
+					'id'          => 3,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titel #1'
 				),
-				array( 'id'          => 5,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Titulek #1'
+				array(
+					'id'          => 5,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Titulek #1'
 				),
-				array( 'id'          => 19,
-				       'locale'      => 'spa',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'title',
-				       'content'     => 'Nuevo leyenda #1'
+				array(
+					'id'          => 19,
+					'locale'      => 'spa',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'title',
+					'content'     => 'Nuevo leyenda #1'
 				)
 			),
 			'Content'        => array(
-				array( 'id'          => 2,
-				       'locale'      => 'eng',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Content #1'
+				array(
+					'id'          => 2,
+					'locale'      => 'eng',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Content #1'
 				),
-				array( 'id'          => 4,
-				       'locale'      => 'deu',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Inhalt #1'
+				array(
+					'id'          => 4,
+					'locale'      => 'deu',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Inhalt #1'
 				),
-				array( 'id'          => 6,
-				       'locale'      => 'cze',
-				       'model'       => 'TranslatedItem',
-				       'foreign_key' => 1,
-				       'field'       => 'content',
-				       'content'     => 'Upraveny obsah #1'
+				array(
+					'id'          => 6,
+					'locale'      => 'cze',
+					'model'       => 'TranslatedItem',
+					'foreign_key' => 1,
+					'field'       => 'content',
+					'content'     => 'Upraveny obsah #1'
 				)
 			)
 		);

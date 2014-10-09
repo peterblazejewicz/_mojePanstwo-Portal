@@ -929,9 +929,10 @@ class JsBaseEngineTest extends CakeTestCase {
 			$this->assertEquals( $expected, $result );
 		}
 
-		$object = array( 'title'   => 'New thing',
-		                 'indexes' => array( 5, 6, 7, 8 ),
-		                 'object'  => array( 'inner' => array( 'value' => 1 ) )
+		$object = array(
+			'title'   => 'New thing',
+			'indexes' => array( 5, 6, 7, 8 ),
+			'object'  => array( 'inner' => array( 'value' => 1 ) )
 		);
 		$result = $this->JsEngine->object( $object, array( 'prefix' => 'PREFIX', 'postfix' => 'POSTFIX' ) );
 		$this->assertRegExp( '/^PREFIX/', $result );
@@ -973,9 +974,9 @@ class JsBaseEngineTest extends CakeTestCase {
 		$this->assertEquals( $expected, $result );
 
 		$result   = $JsEngine->testParseOptions( array(
-				'url'     => '/posts/view/1',
-				'success' => 'doSuccess'
-			), array( 'success' ) );
+			'url'     => '/posts/view/1',
+			'success' => 'doSuccess'
+		), array( 'success' ) );
 		$expected = 'success:doSuccess, url:"\\/posts\\/view\\/1"';
 		$this->assertEquals( $expected, $result );
 	}

@@ -393,15 +393,15 @@ class KrsPodmiotyController extends DataobjectsController {
 		if ( $this->request->params['id'] == 481129 ) { // KOMITET KONKURSOWY KRAKÓW 2022
 
 			$menu['items'][] = array(
-				'id'    => 'umowy',
-				'href'  => $href_base . '/umowy',
+				'id'   => 'umowy',
+				'href' => $href_base . '/umowy',
 				'label' => 'Podpisane umowy',
 				'count' => 94,
 			);
 
 			$menu['items'][] = array(
-				'id'    => 'faktury',
-				'href'  => $href_base . '/faktury',
+				'id'   => 'faktury',
+				'href' => $href_base . '/faktury',
 				'label' => 'Faktury',
 				'count' => 129,
 			);
@@ -409,8 +409,8 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		if ( $counters['liczba_oddzialow'] ) {
 			$menu['items'][] = array(
-				'id'    => 'oddzialy',
-				'href'  => $href_base . '/oddzialy',
+				'id'   => 'oddzialy',
+				'href' => $href_base . '/oddzialy',
 				'label' => 'Oddziały',
 				'count' => $counters['liczba_oddzialow'],
 			);
@@ -419,8 +419,8 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		if ( $counters['liczba_zmian_umow'] ) {
 			$menu['items'][] = array(
-				'id'    => 'zmiany_umow',
-				'href'  => $href_base . '/zmiany_umow',
+				'id'   => 'zmiany_umow',
+				'href' => $href_base . '/zmiany_umow',
 				'label' => 'Zmiany umów',
 				'count' => $counters['liczba_zmian_umow'],
 			);
@@ -428,8 +428,8 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		if ( $counters['liczba_emisji_akcji'] ) {
 			$menu['items'][] = array(
-				'id'    => 'emisje_akcji',
-				'href'  => $href_base . '/emisje_akcji',
+				'id'   => 'emisje_akcji',
+				'href' => $href_base . '/emisje_akcji',
 				'label' => 'Emisje akcji',
 				'count' => $counters['liczba_emisji_akcji'],
 			);
@@ -437,8 +437,8 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		if ( $this->request->params['action'] == 'kultura' ) {
 			$menu['items'][] = array(
-				'id'    => 'kultura',
-				'href'  => $href_base . '/kultura',
+				'id'   => 'kultura',
+				'href' => $href_base . '/kultura',
 				'label' => 'Indeksy kultury',
 			);
 		}

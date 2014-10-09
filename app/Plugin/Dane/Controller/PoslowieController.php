@@ -551,8 +551,8 @@ class PoslowieController extends DataobjectsController {
 			'dropdown' => array(
 				'items' => array(
 					array(
-						'id'    => 'wszystkie',
-						'href'  => $href_base . '/aktywnosci',
+						'id'   => 'wszystkie',
+						'href' => $href_base . '/aktywnosci',
 						'label' => 'Wszystkie',
 					),
 					array(
@@ -562,13 +562,13 @@ class PoslowieController extends DataobjectsController {
 						'label'     => 'Wystąpienia',
 					),
 					array(
-						'id'    => 'glosowania',
-						'href'  => $href_base . '/glosowania',
+						'id'   => 'glosowania',
+						'href' => $href_base . '/glosowania',
 						'label' => 'Wyniki głosowsań',
 					),
 					array(
-						'id'    => 'interpelacje',
-						'href'  => $href_base . '/interpelacje',
+						'id'   => 'interpelacje',
+						'href' => $href_base . '/interpelacje',
 						'label' => 'Interpelacje',
 					),
 				),

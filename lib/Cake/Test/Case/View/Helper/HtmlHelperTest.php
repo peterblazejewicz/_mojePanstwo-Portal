@@ -213,10 +213,10 @@ class HtmlHelperTest extends CakeTestCase {
 		Router::reload();
 
 		$result   = $this->Html->link( 'Posts', array(
-				'controller' => 'posts',
-				'action'     => 'index',
-				'full_base'  => true
-			) );
+			'controller' => 'posts',
+			'action'     => 'index',
+			'full_base'  => true
+		) );
 		$expected = array( 'a' => array( 'href' => Router::fullBaseUrl() . '/posts' ), 'Posts', '/a' );
 		$this->assertTags( $result, $expected );
 
@@ -232,9 +232,9 @@ class HtmlHelperTest extends CakeTestCase {
 		$this->assertTags( $result, $expected );
 
 		$result   = $this->Html->link( 'Home', '/home', array(
-				'escape'  => false,
-				'confirm' => 'Confirm\'s "nightmares"'
-			) );
+			'escape'  => false,
+			'confirm' => 'Confirm\'s "nightmares"'
+		) );
 		$expected = array(
 			'a' => array(
 				'href'    => '/home',
@@ -450,30 +450,30 @@ class HtmlHelperTest extends CakeTestCase {
 
 		$result = $this->Html->image( 'test.gif?one=two&three=four' );
 		$this->assertTags( $result, array(
-				'img' => array(
-					'src' => 'img/test.gif?one=two&amp;three=four',
-					'alt' => ''
-				)
-			) );
+			'img' => array(
+				'src' => 'img/test.gif?one=two&amp;three=four',
+				'alt' => ''
+			)
+		) );
 
 		$result = $this->Html->image( 'test.gif', array( 'pathPrefix' => '/my/custom/path/' ) );
 		$this->assertTags( $result, array( 'img' => array( 'src' => '/my/custom/path/test.gif', 'alt' => '' ) ) );
 
 		$result = $this->Html->image( 'test.gif', array( 'pathPrefix' => 'http://cakephp.org/assets/img/' ) );
 		$this->assertTags( $result, array(
-				'img' => array(
-					'src' => 'http://cakephp.org/assets/img/test.gif',
-					'alt' => ''
-				)
-			) );
+			'img' => array(
+				'src' => 'http://cakephp.org/assets/img/test.gif',
+				'alt' => ''
+			)
+		) );
 
 		$result = $this->Html->image( 'test.gif', array( 'pathPrefix' => '//cakephp.org/assets/img/' ) );
 		$this->assertTags( $result, array(
-				'img' => array(
-					'src' => '//cakephp.org/assets/img/test.gif',
-					'alt' => ''
-				)
-			) );
+			'img' => array(
+				'src' => '//cakephp.org/assets/img/test.gif',
+				'alt' => ''
+			)
+		) );
 
 		$previousConfig = Configure::read( 'App.imageBaseUrl' );
 		Configure::write( 'App.imageBaseUrl', '//cdn.cakephp.org/img/' );
@@ -517,22 +517,22 @@ class HtmlHelperTest extends CakeTestCase {
 		$this->Html->request->webroot = '/';
 		$result                       = $this->Html->image( 'cake.icon.png' );
 		$this->assertTags( $result, array(
-				'img' => array(
-					'src' => 'preg:/\/img\/cake\.icon\.png\?\d+/',
-					'alt' => ''
-				)
-			) );
+			'img' => array(
+				'src' => 'preg:/\/img\/cake\.icon\.png\?\d+/',
+				'alt' => ''
+			)
+		) );
 
 		Configure::write( 'debug', 0 );
 		Configure::write( 'Asset.timestamp', 'force' );
 
 		$result = $this->Html->image( 'cake.icon.png' );
 		$this->assertTags( $result, array(
-				'img' => array(
-					'src' => 'preg:/\/img\/cake\.icon\.png\?\d+/',
-					'alt' => ''
-				)
-			) );
+			'img' => array(
+				'src' => 'preg:/\/img\/cake\.icon\.png\?\d+/',
+				'alt' => ''
+			)
+		) );
 
 		$this->Html->request->webroot = '/testing/longer/';
 		$result                       = $this->Html->image( 'cake.icon.png' );
@@ -712,9 +712,9 @@ class HtmlHelperTest extends CakeTestCase {
 		Configure::write( 'Asset.filter.css', false );
 
 		$result                   = explode( "\n", trim( $this->Html->css( array(
-						'cake.generic',
-						'vendor.generic'
-					) ) ) );
+			'cake.generic',
+			'vendor.generic'
+		) ) ) );
 		$expected['link']['href'] = 'preg:/.*css\/cake\.generic\.css/';
 		$this->assertTags( $result[0], $expected );
 		$expected['link']['href'] = 'preg:/.*css\/vendor\.generic\.css/';
@@ -833,9 +833,9 @@ class HtmlHelperTest extends CakeTestCase {
 		Configure::write( 'Asset.filter.css', false );
 
 		$result                   = explode( "\n", trim( $this->Html->css( array(
-						'TestPlugin.test_plugin_asset',
-						'TestPlugin.vendor.generic'
-					) ) ) );
+			'TestPlugin.test_plugin_asset',
+			'TestPlugin.vendor.generic'
+		) ) ) );
 		$expected['link']['href'] = 'preg:/.*test_plugin\/css\/test_plugin_asset\.css/';
 		$this->assertTags( $result[0], $expected );
 		$expected['link']['href'] = 'preg:/.*test_plugin\/css\/vendor\.generic\.css/';
@@ -1396,28 +1396,28 @@ class HtmlHelperTest extends CakeTestCase {
 		Configure::write( 'App.encoding', null );
 		$result = $this->Html->charset();
 		$this->assertTags( $result, array(
-				'meta' => array(
-					'http-equiv' => 'Content-Type',
-					'content'    => 'text/html; charset=utf-8'
-				)
-			) );
+			'meta' => array(
+				'http-equiv' => 'Content-Type',
+				'content'    => 'text/html; charset=utf-8'
+			)
+		) );
 
 		Configure::write( 'App.encoding', 'ISO-8859-1' );
 		$result = $this->Html->charset();
 		$this->assertTags( $result, array(
-				'meta' => array(
-					'http-equiv' => 'Content-Type',
-					'content'    => 'text/html; charset=iso-8859-1'
-				)
-			) );
+			'meta' => array(
+				'http-equiv' => 'Content-Type',
+				'content'    => 'text/html; charset=iso-8859-1'
+			)
+		) );
 
 		$result = $this->Html->charset( 'UTF-7' );
 		$this->assertTags( $result, array(
-				'meta' => array(
-					'http-equiv' => 'Content-Type',
-					'content'    => 'text/html; charset=UTF-7'
-				)
-			) );
+			'meta' => array(
+				'http-equiv' => 'Content-Type',
+				'content'    => 'text/html; charset=UTF-7'
+			)
+		) );
 	}
 
 	/**
@@ -1529,10 +1529,10 @@ class HtmlHelperTest extends CakeTestCase {
 		$this->Html->addCrumb( 'Second', '#second' );
 
 		$result   = $this->Html->getCrumbs( ' - ', array(
-				'url'    => '/home',
-				'text'   => '<img src="/home.png" />',
-				'escape' => false
-			) );
+			'url'    => '/home',
+			'text'   => '<img src="/home.png" />',
+			'escape' => false
+		) );
 		$expected = array(
 			array( 'a' => array( 'href' => '/home' ) ),
 			'img' => array( 'src' => '/home.png' ),
@@ -1914,69 +1914,69 @@ class HtmlHelperTest extends CakeTestCase {
 	public function testMeta() {
 		$result = $this->Html->meta( 'this is an rss feed', array( 'controller' => 'posts', 'ext' => 'rss' ) );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/posts\.rss/',
-					'type'  => 'application/rss+xml',
-					'rel'   => 'alternate',
-					'title' => 'this is an rss feed'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/posts\.rss/',
+				'type'  => 'application/rss+xml',
+				'rel'   => 'alternate',
+				'title' => 'this is an rss feed'
+			)
+		) );
 
 		$result = $this->Html->meta( 'rss', array(
-				'controller' => 'posts',
-				'ext'        => 'rss'
-			), array( 'title' => 'this is an rss feed' ) );
+			'controller' => 'posts',
+			'ext'        => 'rss'
+		), array( 'title' => 'this is an rss feed' ) );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/posts\.rss/',
-					'type'  => 'application/rss+xml',
-					'rel'   => 'alternate',
-					'title' => 'this is an rss feed'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/posts\.rss/',
+				'type'  => 'application/rss+xml',
+				'rel'   => 'alternate',
+				'title' => 'this is an rss feed'
+			)
+		) );
 
 		$result = $this->Html->meta( 'atom', array( 'controller' => 'posts', 'ext' => 'xml' ) );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/posts\.xml/',
-					'type'  => 'application/atom+xml',
-					'title' => 'atom'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/posts\.xml/',
+				'type'  => 'application/atom+xml',
+				'title' => 'atom'
+			)
+		) );
 
 		$result = $this->Html->meta( 'non-existing' );
 		$this->assertTags( $result, array( '<meta' ) );
 
 		$result = $this->Html->meta( 'non-existing', '/posts.xpp' );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/posts\.xpp/',
-					'type'  => 'application/rss+xml',
-					'rel'   => 'alternate',
-					'title' => 'non-existing'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/posts\.xpp/',
+				'type'  => 'application/rss+xml',
+				'rel'   => 'alternate',
+				'title' => 'non-existing'
+			)
+		) );
 
 		$result = $this->Html->meta( 'non-existing', '/posts.xpp', array( 'type' => 'atom' ) );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/posts\.xpp/',
-					'type'  => 'application/atom+xml',
-					'title' => 'non-existing'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/posts\.xpp/',
+				'type'  => 'application/atom+xml',
+				'title' => 'non-existing'
+			)
+		) );
 
 		$result = $this->Html->meta( 'atom', array(
-				'controller' => 'posts',
-				'ext'        => 'xml'
-			), array( 'link' => '/articles.rss' ) );
+			'controller' => 'posts',
+			'ext'        => 'xml'
+		), array( 'link' => '/articles.rss' ) );
 		$this->assertTags( $result, array(
-				'link' => array(
-					'href'  => 'preg:/.*\/articles\.rss/',
-					'type'  => 'application/atom+xml',
-					'title' => 'atom'
-				)
-			) );
+			'link' => array(
+				'href'  => 'preg:/.*\/articles\.rss/',
+				'type'  => 'application/atom+xml',
+				'title' => 'atom'
+			)
+		) );
 
 		$result   = $this->Html->meta( array( 'link' => 'favicon.ico', 'rel' => 'icon' ) );
 		$expected = array(
@@ -2012,20 +2012,20 @@ class HtmlHelperTest extends CakeTestCase {
 
 		$result = $this->Html->meta( 'keywords', 'these, are, some, meta, keywords' );
 		$this->assertTags( $result, array(
-				'meta' => array(
-					'name'    => 'keywords',
-					'content' => 'these, are, some, meta, keywords'
-				)
-			) );
+			'meta' => array(
+				'name'    => 'keywords',
+				'content' => 'these, are, some, meta, keywords'
+			)
+		) );
 		$this->assertRegExp( '/\s+\/>$/', $result );
 
 		$result = $this->Html->meta( 'description', 'this is the meta description' );
 		$this->assertTags( $result, array(
-				'meta' => array(
-					'name'    => 'description',
-					'content' => 'this is the meta description'
-				)
-			) );
+			'meta' => array(
+				'name'    => 'description',
+				'content' => 'this is the meta description'
+			)
+		) );
 
 		$result = $this->Html->meta( array( 'name' => 'ROBOTS', 'content' => 'ALL' ) );
 		$this->assertTags( $result, array( 'meta' => array( 'name' => 'ROBOTS', 'content' => 'ALL' ) ) );
@@ -2044,9 +2044,9 @@ class HtmlHelperTest extends CakeTestCase {
 		           ->with( 'metaTags', $this->stringContains( 'favicon.ico' ) );
 
 		$result = $this->Html->meta( array(
-				'name'    => 'ROBOTS',
-				'content' => 'ALL'
-			), null, array( 'inline' => false ) );
+			'name'    => 'ROBOTS',
+			'content' => 'ALL'
+		), null, array( 'inline' => false ) );
 		$this->assertNull( $result );
 
 		$result = $this->Html->meta( 'icon', 'favicon.ico', array( 'block' => 'metaTags' ) );
@@ -2064,10 +2064,10 @@ class HtmlHelperTest extends CakeTestCase {
 		$this->assertTags( $result, $expected );
 
 		$result   = $this->Html->tableHeaders( array(
-				'ID',
-				array( 'Name' => array( 'class' => 'highlight' ) ),
-				'Date'
-			) );
+			'ID',
+			array( 'Name' => array( 'class' => 'highlight' ) ),
+			'Date'
+		) );
 		$expected = array(
 			'<tr',
 			'<th',
@@ -2084,10 +2084,10 @@ class HtmlHelperTest extends CakeTestCase {
 		$this->assertTags( $result, $expected );
 
 		$result   = $this->Html->tableHeaders( array(
-				'ID',
-				array( 'Name' => array( 'class' => 'highlight', 'width' => '120px' ) ),
-				'Date'
-			) );
+			'ID',
+			array( 'Name' => array( 'class' => 'highlight', 'width' => '120px' ) ),
+			'Date'
+		) );
 		$expected = array(
 			'<tr',
 			'<th',
@@ -2424,10 +2424,10 @@ class HtmlHelperTest extends CakeTestCase {
 		);
 
 		$result = $this->Html->getCrumbList( null, array(
-				'url'    => '/home',
-				'text'   => '<img src="/home.png" />',
-				'escape' => false
-			) );
+			'url'    => '/home',
+			'text'   => '<img src="/home.png" />',
+			'escape' => false
+		) );
 		$this->assertTags(
 			$result,
 			array(

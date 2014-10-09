@@ -238,9 +238,9 @@ class ModelTaskTest extends CakeTestCase {
 		$this->Task->interactive = true;
 
 		$this->Task->expects( $this->once() )->method( 'getAllTables' )->will( $this->returnValue( array(
-					'articles',
-					'bake_odd'
-				) ) );
+			'articles',
+			'bake_odd'
+		) ) );
 		$this->Task->expects( $this->any() )->method( 'in' )
 		           ->will( $this->onConsecutiveCalls(
 			           2 // bake_odd
@@ -275,9 +275,9 @@ class ModelTaskTest extends CakeTestCase {
 		$this->Task->args        = array( 'BakeOdd' );
 
 		$this->Task->expects( $this->once() )->method( 'getAllTables' )->will( $this->returnValue( array(
-					'articles',
-					'bake_odd'
-				) ) );
+			'articles',
+			'bake_odd'
+		) ) );
 
 		$this->Task->listAll();
 
@@ -307,10 +307,10 @@ class ModelTaskTest extends CakeTestCase {
 		$this->Task->initValidations();
 
 		$result   = $this->Task->fieldValidation( 'text', array(
-				'type'   => 'string',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'string',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'notEmpty' => 'notEmpty' );
 		$this->assertEquals( $expected, $result );
 
@@ -323,26 +323,26 @@ class ModelTaskTest extends CakeTestCase {
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Task->fieldValidation( 'email', array(
-				'type'   => 'string',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'string',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'email' => 'email' );
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Task->fieldValidation( 'test', array(
-				'type'   => 'integer',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'integer',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'numeric' => 'numeric' );
 		$this->assertEquals( $expected, $result );
 
 		$result   = $this->Task->fieldValidation( 'test', array(
-				'type'   => 'boolean',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'boolean',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'boolean' => 'boolean' );
 		$this->assertEquals( $expected, $result );
 	}
@@ -359,10 +359,10 @@ class ModelTaskTest extends CakeTestCase {
 		           ->will( $this->onConsecutiveCalls( '24', 'y', '18', 'n' ) );
 
 		$result   = $this->Task->fieldValidation( 'text', array(
-				'type'   => 'string',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'string',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'notEmpty' => 'notEmpty', 'maxLength' => 'maxLength' );
 		$this->assertEquals( $expected, $result );
 	}
@@ -384,10 +384,10 @@ class ModelTaskTest extends CakeTestCase {
 		           ->with( $this->stringContains( 'make a valid' ) );
 
 		$result   = $this->Task->fieldValidation( 'text', array(
-				'type'   => 'string',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'string',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'notEmpty' => 'notEmpty' );
 		$this->assertEquals( $expected, $result );
 	}
@@ -404,10 +404,10 @@ class ModelTaskTest extends CakeTestCase {
 		           ->will( $this->onConsecutiveCalls( '/^[a-z]{0,9}$/', 'n' ) );
 
 		$result   = $this->Task->fieldValidation( 'text', array(
-				'type'   => 'string',
-				'length' => 10,
-				'null'   => false
-			) );
+			'type'   => 'string',
+			'length' => 10,
+			'null'   => false
+		) );
 		$expected = array( 'a_z_0_9' => '/^[a-z]{0,9}$/' );
 		$this->assertEquals( $expected, $result );
 	}
@@ -1126,9 +1126,9 @@ TEXT;
 		$this->Task->args       = array( 'BakeOdd' );
 		$this->Task->expects( $this->once() )->method( '_checkUnitTest' )->will( $this->returnValue( true ) );
 		$this->Task->expects( $this->once() )->method( 'getAllTables' )->will( $this->returnValue( array(
-					'articles',
-					'bake_odd'
-				) ) );
+			'articles',
+			'bake_odd'
+		) ) );
 		$object = new Model( array( 'name' => 'BakeOdd', 'table' => 'bake_odd', 'ds' => 'test' ) );
 		$this->Task->expects( $this->once() )->method( '_getModelObject' )->with( 'BakeOdd', 'bake_odd' )->will( $this->returnValue( $object ) );
 		$this->Task->expects( $this->once() )->method( 'bake' )->with( $object, false )->will( $this->returnValue( true ) );
@@ -1160,9 +1160,9 @@ TEXT;
 		$this->Task->args       = array( 'BakeOdd' );
 		$this->Task->expects( $this->once() )->method( '_checkUnitTest' )->will( $this->returnValue( true ) );
 		$this->Task->expects( $this->once() )->method( 'getAllTables' )->will( $this->returnValue( array(
-					'articles',
-					'bake_odd'
-				) ) );
+			'articles',
+			'bake_odd'
+		) ) );
 		$object = new Model( array( 'name' => 'BakeOdd', 'table' => 'bake_odd', 'ds' => 'test' ) );
 		$this->Task->expects( $this->once() )->method( '_getModelObject' )->will( $this->returnValue( $object ) );
 		$this->Task->expects( $this->once() )->method( 'doAssociations' )->will( $this->returnValue( array() ) );

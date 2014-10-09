@@ -18,7 +18,7 @@
  * @since         CakePHP(tm) v 2.0
  */
 
-$ds         = DIRECTORY_SEPARATOR;
+$ds = DIRECTORY_SEPARATOR;
 $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 
 if ( function_exists( 'ini_set' ) ) {

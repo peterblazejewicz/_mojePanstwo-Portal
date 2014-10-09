@@ -1182,9 +1182,9 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->assertEquals( 1, count( $token['csrfTokens'] ), 'Missing the csrf token.' );
 		$this->assertEquals( strtotime( '+10 minutes' ), current( $token['csrfTokens'] ), 'Token expiry does not match' );
 		$this->assertEquals( array(
-				'key',
-				'unlockedFields'
-			), array_keys( $this->Controller->request->params['_Token'] ), 'Keys don not match' );
+			'key',
+			'unlockedFields'
+		), array_keys( $this->Controller->request->params['_Token'] ), 'Keys don not match' );
 	}
 
 	/**

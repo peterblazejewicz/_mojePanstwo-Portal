@@ -63,24 +63,24 @@ class InstytucjeController extends DataobjectsController {
 
 		if ( isset( $_menu['budzet_czesci'] ) && ! empty( $_menu['budzet_czesci'] ) ) {
 			$menu['items'][] = array(
-				'id'    => 'budzet',
-				'href'  => $href_base . '/budzet',
+				'id'   => 'budzet',
+				'href' => $href_base . '/budzet',
 				'label' => 'Budżet',
 			);
 		}
 
 		if ( isset( $_menu['zamowienia_udzielone'] ) && ! empty( $_menu['zamowienia_udzielone'] ) ) {
 			$menu['items'][] = array(
-				'id'    => 'zamowienia',
-				'href'  => $href_base . '/zamowienia',
+				'id'   => 'zamowienia',
+				'href' => $href_base . '/zamowienia',
 				'label' => 'Zamówienia publiczne',
 			);
 		}
 
 		if ( isset( $_menu['prawo'] ) && $_menu['prawo'] ) {
 			$menu['items'][] = array(
-				'id'    => 'prawo',
-				'href'  => $href_base . '/prawo',
+				'id'   => 'prawo',
+				'href' => $href_base . '/prawo',
 				'label' => 'Akty prawne',
 			);
 		}

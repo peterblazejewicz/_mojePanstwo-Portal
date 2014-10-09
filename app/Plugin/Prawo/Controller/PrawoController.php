@@ -38,8 +38,8 @@ class PrawoController extends AppController {
 			'order'      => 'data_wejscia_w_zycie desc',
 		) );
 
-		$datalinerParams['initData']    = $data;
-		$datalinerParams['filters']     = $filters;
+		$datalinerParams['initData'] = $data;
+		$datalinerParams['filters']  = $filters;
 		$datalinerParams['filterField'] = $filter_field;
 
 		$this->set( 'datalinerParams', $datalinerParams );

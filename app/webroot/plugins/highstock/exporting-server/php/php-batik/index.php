@@ -19,8 +19,8 @@ define ( 'BATIK_PATH', 'batik-rasterizer.jar' );
 ///////////////////////////////////////////////////////////////////////////////
 ini_set( 'magic_quotes_gpc', 'off' );
 
-$type     = $_POST['type'];
-$svg      = (string) $_POST['svg'];
+$type = $_POST['type'];
+$svg  = (string) $_POST['svg'];
 $filename = (string) $_POST['filename'];
 
 // prepare variables
@@ -41,15 +41,15 @@ $tempName = md5( rand() );
 // allow no other than predefined types
 if ( $type == 'image/png' ) {
 	$typeString = '-m image/png';
-	$ext        = 'png';
+	$ext  = 'png';
 
 } elseif ( $type == 'image/jpeg' ) {
 	$typeString = '-m image/jpeg';
-	$ext        = 'jpg';
+	$ext  = 'jpg';
 
 } elseif ( $type == 'application/pdf' ) {
 	$typeString = '-m application/pdf';
-	$ext        = 'pdf';
+	$ext  = 'pdf';
 
 } elseif ( $type == 'image/svg+xml' ) {
 	$ext = 'svg';

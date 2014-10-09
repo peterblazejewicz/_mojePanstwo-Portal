@@ -468,7 +468,7 @@ class DataobjectsBrowserComponent extends Component {
 		}
 
 
-		$facets     = $controller->Dataobject->facets;
+		$facets = $controller->Dataobject->facets;
 		$didyoumean = $controller->Dataobject->didyoumean;
 
 		$total = $controller->Dataobject->total;
@@ -501,7 +501,7 @@ class DataobjectsBrowserComponent extends Component {
 				compact( 'objects', 'page', 'defaults' ),
 				array(
 					'dataBrowser' => $this,
-					'defaults'    => $config['defaults'],
+					'defaults' => $config['defaults'],
 				)
 			) );
 

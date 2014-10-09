@@ -261,20 +261,23 @@ class RssHelperTest extends CakeTestCase {
 	 */
 	public function testItems() {
 		$items = array(
-			array( 'title'       => 'title1',
-			       'guid'        => 'http://www.example.com/guid1',
-			       'link'        => 'http://www.example.com/link1',
-			       'description' => 'description1'
+			array(
+				'title'       => 'title1',
+				'guid'        => 'http://www.example.com/guid1',
+				'link'        => 'http://www.example.com/link1',
+				'description' => 'description1'
 			),
-			array( 'title'       => 'title2',
-			       'guid'        => 'http://www.example.com/guid2',
-			       'link'        => 'http://www.example.com/link2',
-			       'description' => 'description2'
+			array(
+				'title'       => 'title2',
+				'guid'        => 'http://www.example.com/guid2',
+				'link'        => 'http://www.example.com/link2',
+				'description' => 'description2'
 			),
-			array( 'title'       => 'title3',
-			       'guid'        => 'http://www.example.com/guid3',
-			       'link'        => 'http://www.example.com/link3',
-			       'description' => 'description3'
+			array(
+				'title'       => 'title3',
+				'guid'        => 'http://www.example.com/guid3',
+				'link'        => 'http://www.example.com/link3',
+				'description' => 'description3'
 			)
 		);
 
@@ -326,20 +329,23 @@ class RssHelperTest extends CakeTestCase {
 		$this->assertTags( $result, $expected );
 
 		$items = array(
-			array( 'title'       => 'title1',
-			       'guid'        => 'http://www.example.com/guid1',
-			       'link'        => 'http://www.example.com/link1',
-			       'description' => 'description1'
+			array(
+				'title'       => 'title1',
+				'guid'        => 'http://www.example.com/guid1',
+				'link'        => 'http://www.example.com/link1',
+				'description' => 'description1'
 			),
-			array( 'title'       => 'title2',
-			       'guid'        => 'http://www.example.com/guid2',
-			       'link'        => 'http://www.example.com/link2',
-			       'description' => 'description2'
+			array(
+				'title'       => 'title2',
+				'guid'        => 'http://www.example.com/guid2',
+				'link'        => 'http://www.example.com/link2',
+				'description' => 'description2'
 			),
-			array( 'title'       => 'title3',
-			       'guid'        => 'http://www.example.com/guid3',
-			       'link'        => 'http://www.example.com/link3',
-			       'description' => 'description3'
+			array(
+				'title'       => 'title3',
+				'guid'        => 'http://www.example.com/guid3',
+				'link'        => 'http://www.example.com/link3',
+				'description' => 'description3'
 			)
 		);
 

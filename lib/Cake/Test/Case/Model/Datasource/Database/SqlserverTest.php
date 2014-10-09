@@ -142,11 +142,12 @@ class SqlserverTestModel extends CakeTestModel {
 	 * @var array
 	 */
 	protected $_schema = array(
-		'id'         => array( 'type'    => 'integer',
-		                       'null'    => '',
-		                       'default' => '',
-		                       'length'  => '8',
-		                       'key'     => 'primary'
+		'id'         => array(
+			'type'    => 'integer',
+			'null'    => '',
+			'default' => '',
+			'length'  => '8',
+			'key'     => 'primary'
 		),
 		'client_id'  => array( 'type' => 'integer', 'null' => '', 'default' => '0', 'length' => '11' ),
 		'name'       => array( 'type' => 'string', 'null' => '', 'default' => '', 'length' => '255' ),
@@ -558,11 +559,12 @@ class SqlserverTest extends CakeTestCase {
 		$expected = '[name] nvarchar(255) NOT NULL';
 		$this->assertEquals( $expected, $result );
 
-		$column   = array( 'name'    => 'name',
-		                   'type'    => 'string',
-		                   'null'    => false,
-		                   'default' => null,
-		                   'length'  => '255'
+		$column   = array(
+			'name'    => 'name',
+			'type'    => 'string',
+			'null'    => false,
+			'default' => null,
+			'length'  => '255'
 		);
 		$result   = $this->db->buildColumn( $column );
 		$expected = '[name] nvarchar(255) NOT NULL';

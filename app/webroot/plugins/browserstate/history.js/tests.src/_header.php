@@ -4,7 +4,7 @@ $dir = dirname( __FILE__ );
 $out = "$dir/../tests";
 
 # Base URL
-$base_url  = '/';
+$base_url = '/';
 $tests_url = $base_url . 'tests';
 
 # Data

@@ -286,9 +286,9 @@ class InstallerTest extends TestCase {
 		$package = new Package( 'foo', '1.0.0', '1.0.0' );
 
 		$installer = $this->getMock( 'Composer\Installers\Installer', array( 'getInstallPath' ), array(
-				$this->io,
-				$this->composer
-			) );
+			$this->io,
+			$this->composer
+		) );
 		$installer->expects( $this->once() )->method( 'getInstallPath' )->with( $package )->will( $this->returnValue( sys_get_temp_dir() . '/foo' ) );
 
 		$repo = $this->getMock( 'Composer\Repository\InstalledRepositoryInterface' );

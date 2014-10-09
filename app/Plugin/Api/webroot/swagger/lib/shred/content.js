@@ -158,10 +158,10 @@ Content.registerProcessor = function (types, processor) {
 
 // Register the identity processor, which is used for text-based media types.
 var identity = function (x) {
-        return x;
-    }, toString = function (x) {
-        return x.toString();
-    }
+    return x;
+}, toString = function (x) {
+    return x.toString();
+}
 Content.registerProcessor(
     ["text/html", "text/plain", "text"],
     {parser: identity, stringify: toString});

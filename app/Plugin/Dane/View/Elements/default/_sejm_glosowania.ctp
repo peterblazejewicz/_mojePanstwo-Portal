@@ -6,7 +6,7 @@
 
 <?
 $wynikiKlubowe = array();
-$data          = $object->loadLayer( 'wynikiKlubowe' );
+$data = $object->loadLayer( 'wynikiKlubowe' );
 foreach ( $data as $d ) {
 	$wynikiKlubowe[ $d['wynik_id'] ][] = $d;
 }

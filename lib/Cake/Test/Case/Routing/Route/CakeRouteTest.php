@@ -83,9 +83,9 @@ class CakeRouteTest extends CakeTestCase {
 		$this->assertEquals( array( 'id' ), $route->keys );
 
 		$route  = new CakeRoute( '/:plugin/:controller/:action/*', array(
-				'plugin' => 'test_plugin',
-				'action' => 'index'
-			) );
+			'plugin' => 'test_plugin',
+			'action' => 'index'
+		) );
 		$result = $route->compile();
 		$this->assertRegExp( $result, '/test_plugin/posts/index' );
 		$this->assertRegExp( $result, '/test_plugin/posts/edit/5' );
@@ -211,10 +211,10 @@ class CakeRouteTest extends CakeTestCase {
 		$this->assertRegExp( $result, '/page/this_is_the_slug' );
 		$this->assertEquals( array( 'extra', 'slug' ), $route->keys );
 		$this->assertEquals( array(
-				'extra'  => '[a-z1-9_]*',
-				'slug'   => '[a-z1-9_]+',
-				'action' => 'view'
-			), $route->options );
+			'extra'  => '[a-z1-9_]*',
+			'slug'   => '[a-z1-9_]+',
+			'action' => 'view'
+		), $route->options );
 		$expected = array(
 			'controller' => 'pages',
 			'action'     => 'view'
@@ -288,20 +288,20 @@ class CakeRouteTest extends CakeTestCase {
 
 		$route  = new CakeRoute( '/:plugin/:id/*', array( 'controller' => 'posts', 'action' => 'view' ) );
 		$result = $route->match( array(
-				'plugin'     => 'test',
-				'controller' => 'posts',
-				'action'     => 'view',
-				'id'         => '1'
-			) );
+			'plugin'     => 'test',
+			'controller' => 'posts',
+			'action'     => 'view',
+			'id'         => '1'
+		) );
 		$this->assertEquals( '/test/1/', $result );
 
 		$result = $route->match( array(
-				'plugin'     => 'fo',
-				'controller' => 'posts',
-				'action'     => 'view',
-				'id'         => '1',
-				'0'
-			) );
+			'plugin'     => 'fo',
+			'controller' => 'posts',
+			'action'     => 'view',
+			'id'         => '1',
+			'0'
+		) );
 		$this->assertEquals( '/fo/1/0', $result );
 
 		$result = $route->match( array( 'plugin' => 'fo', 'controller' => 'nodes', 'action' => 'view', 'id' => 1 ) );
@@ -396,23 +396,23 @@ class CakeRouteTest extends CakeTestCase {
 		$this->assertEquals( '/posts/view/0', $result );
 
 		$result = $route->match( array(
-				'controller' => 'posts',
-				'action'     => 'view',
-				'plugin'     => null,
-				5,
-				'page'       => 1,
-				'limit'      => 20,
-				'order'      => 'title'
-			) );
+			'controller' => 'posts',
+			'action'     => 'view',
+			'plugin'     => null,
+			5,
+			'page'       => 1,
+			'limit'      => 20,
+			'order'      => 'title'
+		) );
 		$this->assertEquals( '/posts/view/5/page:1/limit:20/order:title', $result );
 
 		$result = $route->match( array(
-				'controller' => 'posts',
-				'action'     => 'view',
-				'plugin'     => null,
-				'word space',
-				'order'      => 'Θ'
-			) );
+			'controller' => 'posts',
+			'action'     => 'view',
+			'plugin'     => null,
+			'word space',
+			'order'      => 'Θ'
+		) );
 		$this->assertEquals( '/posts/view/word%20space/order:%CE%98', $result );
 
 		$route  = new CakeRoute( '/test2/*', array( 'controller' => 'pages', 'action' => 'display', 2 ) );
@@ -474,11 +474,11 @@ class CakeRouteTest extends CakeTestCase {
 	public function testNamedParamsWithNullFalse() {
 		$route  = new CakeRoute( '/:controller/:action/*' );
 		$result = $route->match( array(
-				'controller' => 'posts',
-				'action'     => 'index',
-				'page'       => null,
-				'sort'       => false
-			) );
+			'controller' => 'posts',
+			'action'     => 'index',
+			'page'       => null,
+			'sort'       => false
+		) );
 		$this->assertEquals( '/posts/index/', $result );
 	}
 
@@ -496,19 +496,19 @@ class CakeRouteTest extends CakeTestCase {
 		$this->assertEquals( '/posts/view/9', $result );
 
 		$result = $route->match( array(
-				'plugin'     => null,
-				'controller' => 'posts',
-				'action'     => 'view',
-				'id'         => '922'
-			) );
+			'plugin'     => null,
+			'controller' => 'posts',
+			'action'     => 'view',
+			'id'         => '922'
+		) );
 		$this->assertEquals( '/posts/view/922', $result );
 
 		$result = $route->match( array(
-				'plugin'     => null,
-				'controller' => 'posts',
-				'action'     => 'view',
-				'id'         => 'a99'
-			) );
+			'plugin'     => null,
+			'controller' => 'posts',
+			'action'     => 'view',
+			'id'         => 'a99'
+		) );
 		$this->assertFalse( $result );
 	}
 
@@ -647,10 +647,10 @@ class CakeRouteTest extends CakeTestCase {
 	public function testParseWithHttpHeaderConditions() {
 		$_SERVER['REQUEST_METHOD'] = 'GET';
 		$route                     = new CakeRoute( '/sample', array(
-				'controller' => 'posts',
-				'action'     => 'index',
-				'[method]'   => 'POST'
-			) );
+			'controller' => 'posts',
+			'action'     => 'index',
+			'[method]'   => 'POST'
+		) );
 
 		$this->assertFalse( $route->parse( '/sample' ) );
 	}
@@ -814,10 +814,10 @@ class CakeRouteTest extends CakeTestCase {
 
 		$route = new CakeRoute( '/sales/*', array( 'controller' => 'sales', 'action' => 'index' ) );
 		$this->assertFalse( $route->match( array(
-					'controller' => 'sales',
-					'action'     => 'index',
-					'admin'      => 1
-				) ), 'Greedy named consume routing prefixes.' );
+			'controller' => 'sales',
+			'action'     => 'index',
+			'admin'      => 1
+		) ), 'Greedy named consume routing prefixes.' );
 	}
 
 	/**

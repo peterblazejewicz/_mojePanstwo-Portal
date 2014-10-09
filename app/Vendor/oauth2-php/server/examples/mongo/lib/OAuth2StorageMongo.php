@@ -60,10 +60,11 @@ class OAuth2StorageMongo implements IOAuth2GrantCode, IOAuth2RefreshTokens {
 	 * Redirect URI to be stored.
 	 */
 	public function addClient( $client_id, $client_secret, $redirect_uri ) {
-		$this->db->clients->insert( array( "_id"          => $client_id,
-		                                   "pw"           => $this->hash( $client_secret, $client_id ),
-		                                   "redirect_uri" => $redirect_uri
-			) );
+		$this->db->clients->insert( array(
+			"_id"          => $client_id,
+			"pw"           => $this->hash( $client_secret, $client_id ),
+			"redirect_uri" => $redirect_uri
+		) );
 	}
 
 	/**
@@ -117,11 +118,12 @@ class OAuth2StorageMongo implements IOAuth2GrantCode, IOAuth2RefreshTokens {
 	 * Implements IOAuth2Storage::setAccessToken().
 	 */
 	public function setAccessToken( $oauth_token, $client_id, $user_id, $expires, $scope = null ) {
-		$this->db->tokens->insert( array( "_id"       => $oauth_token,
-		                                  "client_id" => $client_id,
-		                                  "expires"   => $expires,
-		                                  "scope"     => $scope
-			) );
+		$this->db->tokens->insert( array(
+			"_id"       => $oauth_token,
+			"client_id" => $client_id,
+			"expires"   => $expires,
+			"scope"     => $scope
+		) );
 	}
 
 	/**
@@ -173,12 +175,13 @@ class OAuth2StorageMongo implements IOAuth2GrantCode, IOAuth2RefreshTokens {
 	 * Implements IOAuth2Storage::setAuthCode().
 	 */
 	public function setAuthCode( $code, $client_id, $user_id, $redirect_uri, $expires, $scope = null ) {
-		$this->db->auth_codes->insert( array( "_id"          => $code,
-		                                      "client_id"    => $client_id,
-		                                      "redirect_uri" => $redirect_uri,
-		                                      "expires"      => $expires,
-		                                      "scope"        => $scope
-			) );
+		$this->db->auth_codes->insert( array(
+			"_id"          => $code,
+			"client_id"    => $client_id,
+			"redirect_uri" => $redirect_uri,
+			"expires"      => $expires,
+			"scope"        => $scope
+		) );
 	}
 
 	/**

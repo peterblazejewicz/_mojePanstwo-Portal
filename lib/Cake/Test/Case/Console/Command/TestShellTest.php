@@ -338,11 +338,12 @@ class TestShellTest extends CakeTestCase {
 
 		$this->Shell->expects( $this->once() )->method( '_run' )
 		            ->with(
-			            array( 'app'    => false,
-			                   'plugin' => null,
-			                   'core'   => true,
-			                   'output' => 'text',
-			                   'case'   => 'Basics'
+			            array(
+				            'app'    => false,
+				            'plugin' => null,
+				            'core'   => true,
+				            'output' => 'text',
+				            'case'   => 'Basics'
 			            ),
 			            array( '--filter', 'myFilter', '--colors', '--verbose' )
 		            );

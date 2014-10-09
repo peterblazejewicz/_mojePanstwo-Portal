@@ -1246,9 +1246,9 @@ class AuthComponentTest extends CakeTestCase {
 	 */
 	public function testLogoutTrigger() {
 		$this->getMock( 'BaseAuthenticate', array(
-				'authenticate',
-				'logout'
-			), array(), 'LogoutTriggerMockAuthenticate', false );
+			'authenticate',
+			'logout'
+		), array(), 'LogoutTriggerMockAuthenticate', false );
 
 		$this->Auth->authenticate = array( 'LogoutTriggerMock' );
 		$mock                     = $this->Auth->constructAuthenticate();

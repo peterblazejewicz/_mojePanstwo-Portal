@@ -108,9 +108,9 @@ class TreeBehaviorUuidTest extends CakeTestCase {
 		$parentId = $parent[ $modelClass ]['id'];
 
 		$data           = $this->Tree->find( 'first', array(
-				'fields'     => array( 'id' ),
-				'conditions' => array( $modelClass . '.name' => '1.1.1' )
-			) );
+			'fields'     => array( 'id' ),
+			'conditions' => array( $modelClass . '.name' => '1.1.1' )
+		) );
 		$this->Tree->id = $data[ $modelClass ]['id'];
 		$this->Tree->saveField( $parentField, $parentId );
 		$direct  = $this->Tree->children( $parentId, true, array( 'name', $leftField, $rightField ) );
@@ -140,9 +140,9 @@ class TreeBehaviorUuidTest extends CakeTestCase {
 		$parentId = $parent[ $modelClass ]['id'];
 
 		$data                  = $this->Tree->find( 'first', array(
-				'fields'     => array( 'id' ),
-				'conditions' => array( $modelClass . '.name' => '1.1.1' )
-			) );
+			'fields'     => array( 'id' ),
+			'conditions' => array( $modelClass . '.name' => '1.1.1' )
+		) );
 		$this->Tree->id        = $data[ $modelClass ]['id'];
 		$this->Tree->whitelist = array( $parentField, 'name', 'description' );
 		$this->Tree->saveField( $parentField, $parentId );
@@ -272,9 +272,10 @@ class TreeBehaviorUuidTest extends CakeTestCase {
 		$this->Tree->bindModel( array(
 			'belongsTo' => array(
 				'Dummy' =>
-					array( 'className'  => $modelClass,
-					       'foreignKey' => $parentField,
-					       'conditions' => array( 'Dummy.id' => null )
+					array(
+						'className'  => $modelClass,
+						'foreignKey' => $parentField,
+						'conditions' => array( 'Dummy.id' => null )
 					)
 			)
 		), false );
@@ -316,9 +317,10 @@ class TreeBehaviorUuidTest extends CakeTestCase {
 		$this->Tree->bindModel( array(
 			'belongsTo' => array(
 				'Dummy' =>
-					array( 'className'  => $modelClass,
-					       'foreignKey' => $parentField,
-					       'conditions' => array( 'Dummy.id' => null )
+					array(
+						'className'  => $modelClass,
+						'foreignKey' => $parentField,
+						'conditions' => array( 'Dummy.id' => null )
 					)
 			)
 		), false );
