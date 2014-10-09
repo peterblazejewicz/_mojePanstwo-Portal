@@ -2,7 +2,10 @@
 <?php $this->Combinator->add_libs('css', $this->Less->css('view-gminy', array('plugin' => 'Dane'))); ?>
 <?php $this->Combinator->add_libs('css', $this->Less->css('dataobjectslider', array('plugin' => 'Dane'))) ?>
 
-<?php if ($object->getId() == '903') $this->Combinator->add_libs('css', $this->Less->css('view-gminy-krakow', array('plugin' => 'Dane'))); ?>
+<?php if ($object->getId() == '903') {
+	$this->Combinator->add_libs('css', $this->Less->css('view-gminy-krakow', array('plugin' => 'Dane')));
+	$this->Combinator->add_libs('js', 'Dane.view-gminy-krakow');
+} ?>
 
 <?php $this->Combinator->add_libs('js', '../plugins/highcharts/js/highcharts'); ?>
 <?php $this->Combinator->add_libs('js', '../plugins/highcharts/locals'); ?>
@@ -10,6 +13,8 @@
 <?
 echo $this->Element('dataobject/pageBegin');
 ?>
+
+
 
 <div class="gminy row">
 <div class="col-lg-3 objectSide">
@@ -120,8 +125,6 @@ echo $this->Element('dataobject/pageBegin');
 <div class="object mpanel">
 
 <div class="block-group">
-
-<? debug($object->getLayer('ostatnie_posiedzenie')); ?>
 
 <?php if (($object->getId() == '903') && ($posiedzenie = $object->getLayer('ostatnie_posiedzenie')) && !empty($posiedzenie['data']) && !empty($posiedzenie['terms'])) { ?>
 
@@ -479,6 +482,19 @@ echo $this->Element('dataobject/pageBegin');
                 )) ?>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="zamowienia_publiczne_zamkniete" class="block">
+    <div class="block-header">
+        <h2 class="pull-left label">Dzielnice</h2>
+        <a class="btn btn-default btn-sm pull-right"
+           href="<?= Router::url(array('action' => 'dzielnice', 'id' => $object->getId())) ?>">Zobacz
+            listę</a>
+    </div>
+
+    <div class="content">
+        <div id="dzielnice_map"></div>
     </div>
 </div>
 
