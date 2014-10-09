@@ -24,10 +24,7 @@ var Dataliner = Class.extend({
         this.timeline_div.html('').show();
         this.filters_div_select = this.filters_div.find('select');
         if (this.filters_div_select.length) {
-            this.filters_div_select.selectpicker({
-                style: 'btn-info',
-                size: 4
-            });
+            this.filters_div_select.selectpicker();
             this.filters_div.slideDown();
         }
 
@@ -56,12 +53,13 @@ var Dataliner = Class.extend({
                         });
                         this.timeline_div.html('');
                         this.timeline.display();
-
+                        $('.endlessLoader').data('page', 1);
                     } else {
                         this.timeline.appendData(data);
                     }
                 } else {
                     $('.endlessLoader').hide();
+                    intervalRunable = false;
                 }
             }, this, page)
         });
@@ -76,7 +74,7 @@ $(document).ready(function () {
         var dataliner = new Dataliner(elements[i]);
         $(elements[i]).find('.bootstrap-select .dropdown-menu a').click(function (e) {
             e.preventDefault();
-            dataliner.loadData(1);
+            $.proxy(dataliner.loadData(1), this);
         });
         __dataliners.push(dataliner);
         if (jQuery('.endlessLoader').length) {
@@ -84,6 +82,7 @@ $(document).ready(function () {
             if ($endlessLoader.data('page') == undefined) $endlessLoader.data('page', 1);
             intervalMain = setInterval(function () {
                 if (isElementVisibled('.endlessLoader') && intervalRunable) {
+                    intervalRunable = false;
                     $endlessLoader.data('page', $endlessLoader.data('page') + 1);
                     dataliner.loadData($endlessLoader.data('page'));
                 }

@@ -703,6 +703,7 @@ function Timeline(element, data, $, undefined) {
         $(SELF._iframe_queue).each(function(index, queue) {
             queue.element.removeClass('loading').html('<iframe frameborder="0" src="' + queue.url + '"></iframe>');
         });
+        intervalRunable = true;
     };
 
     /*
