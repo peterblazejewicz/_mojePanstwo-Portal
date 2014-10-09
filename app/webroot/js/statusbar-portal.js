@@ -9,7 +9,7 @@
         $('<div></div>').addClass('_mojePanstwoCockpitSearchContent').append(
             $('<div></div>').addClass('_mojePanstwoCockpitSearchContentButton _mojePanstwoCockpitIcons _mojePanstwoCockpitIcons-search _mojePanstwoCockpitBorderLeft')
         ).append(
-            $('<div></div>').addClass('_mojePanstwoCockpitSearchInput').append(
+            $('<div></div>').addClass('_mojePanstwoCockpitSearchInput suggesterBlock').append(
                 $('<div></div>').addClass('container').append(
                     $('<div></div>').addClass('col-md-12').append(
                         $('<form></form>').attr({'action': '/dane/szukaj', 'method': 'GET'}).append(
