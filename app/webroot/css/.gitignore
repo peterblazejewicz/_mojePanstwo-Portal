@@ -1,2 +1,4 @@
+!.gitignore
+!empty
 !cake.generic.css
 *.css
