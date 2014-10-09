@@ -1,8 +1,8 @@
 <?
-$this->Combinator->add_libs( 'css', 'timeline' );
-$this->Combinator->add_libs( 'css', $this->Less->css( 'dataliner' ) );
-$this->Combinator->add_libs( 'js', 'timeline' );
-$this->Combinator->add_libs( 'js', 'Dane.dataliner.js' );
+$this->Combinator->add_libs( 'css', $this->Less->css( 'timeline', array( 'plugin' => 'Dane' ) ) );
+$this->Combinator->add_libs( 'css', $this->Less->css( 'dataliner', array( 'plugin' => 'Dane' ) ) );
+$this->Combinator->add_libs( 'js', 'Dane.timeline' );
+$this->Combinator->add_libs( 'js', 'Dane.dataliner' );
 ?>
 
 
