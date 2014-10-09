@@ -1,13 +1,13 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"cartesian";
+    "cartesian";
 import
-"geo";
+    "geo";
 import
-"rotation";
+    "rotation";
 import
-"spherical";
+    "spherical";
 
 d3.geo.circle = function () {
     var origin = [0, 0],

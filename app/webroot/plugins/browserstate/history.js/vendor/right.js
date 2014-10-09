@@ -54,7 +54,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Boolean flag if the function should not overwrite intersecting values
          * @return Object extended destination object
          */
-            $ext = RightJS.$ext = function (dest, source, dont_overwrite) {
+        $ext = RightJS.$ext = function (dest, source, dont_overwrite) {
             var src = source || {}, key;
 
             for (key in src) {
@@ -72,7 +72,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param String javascript
          * @return void
          */
-            $eval = RightJS.$eval = function (text) {
+        $eval = RightJS.$eval = function (text) {
             if (text) {
                 if ('execScript' in window) {
                     current_Document.win()._.execScript(text);
@@ -88,7 +88,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @return void
          * @throws Break
          */
-            $break = RightJS.$break = function () {
+        $break = RightJS.$break = function () {
             throw new Break();
         },
 
@@ -99,7 +99,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param names Object aliases hash
          * @return Object the extended objects
          */
-            $alias = RightJS.$alias = function (object, names) {
+        $alias = RightJS.$alias = function (object, names) {
             for (var new_name in names) {
                 object[new_name] = object[names[new_name]];
             }
@@ -123,7 +123,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value
          * @return boolean check result
          */
-            defined = RightJS.defined = function (value) {
+        defined = RightJS.defined = function (value) {
             return typeof(value) !== 'undefined';
         },
 
@@ -134,7 +134,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value
          * @return boolean check result
          */
-            isFunction = RightJS.isFunction = function (value) {
+        isFunction = RightJS.isFunction = function (value) {
             return typeof(value) === 'function';
         },
 
@@ -144,7 +144,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value
          * @return boolean check result
          */
-            isString = RightJS.isString = function (value) {
+        isString = RightJS.isString = function (value) {
             return typeof(value) === 'string';
         },
 
@@ -155,7 +155,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value to check
          * @return boolean check result
          */
-            isNumber = RightJS.isNumber = function (value) {
+        isNumber = RightJS.isNumber = function (value) {
             return typeof(value) === 'number' && !isNaN(value);
         },
 
@@ -165,7 +165,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value
          * @return boolean check result
          */
-            isHash = RightJS.isHash = function (value) {
+        isHash = RightJS.isHash = function (value) {
             return to_s.call(value) === '[object Object]';
         },
 
@@ -175,7 +175,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value to check
          * @return boolean check result
          */
-            isArray = RightJS.isArray = function (value) {
+        isArray = RightJS.isArray = function (value) {
             return to_s.call(value) === '[object Array]';
         },
 
@@ -185,7 +185,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value to check
          * @return boolean check result
          */
-            isElement = RightJS.isElement = function (value) {
+        isElement = RightJS.isElement = function (value) {
             return value != null && value.nodeType === 1;
         },
 
@@ -195,7 +195,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param mixed value to check
          * @return boolean check result
          */
-            isNode = RightJS.isNode = function (value) {
+        isNode = RightJS.isNode = function (value) {
             return value != null && value.nodeType != null;
         },
 
@@ -205,7 +205,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param String element id or Element to extend
          * @return Element or null
          */
-            $ = RightJS.$ = function (object) {
+        $ = RightJS.$ = function (object) {
             if (object instanceof Wrapper) {
                 return object;
             } else if (typeof object === 'string') {
@@ -222,7 +222,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Boolean raw search marker
          * @return Array search result
          */
-            $$ = RightJS.$$ = function (css_rule, raw) {
+        $$ = RightJS.$$ = function (css_rule, raw) {
             return current_Document.find(css_rule, raw);
         },
 
@@ -233,7 +233,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param object options
          * @return Element instance
          */
-            $E = RightJS.$E = function (tag_name, options) {
+        $E = RightJS.$E = function (tag_name, options) {
             return new Element(tag_name, options);
         },
 
@@ -243,7 +243,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param String string
          * @return Array of words
          */
-            $w = RightJS.$w = function (string) {
+        $w = RightJS.$w = function (string) {
             return string.trim().split(/\s+/);
         },
 
@@ -253,7 +253,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Object object
          * @return Integer uniq id
          */
-            $uid = RightJS.$uid = function (item) {
+        $uid = RightJS.$uid = function (item) {
             return UID_KEY in item ? item[UID_KEY] : (item[UID_KEY] = UID++);
         },
 
@@ -263,7 +263,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Object iterable
          * @return Array list
          */
-            $A = RightJS.$A = function (it) {
+        $A = RightJS.$A = function (it) {
             return slice.call(it, 0);
         };
 
@@ -290,7 +290,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
     if (isHash(HTML)) {
         isHash = RightJS.isHash = function (value) {
             return to_s.call(value) === '[object Object]' &&
-                value != null && value.hasOwnProperty != null;
+            value != null && value.hasOwnProperty != null;
         };
     }
 
@@ -591,19 +591,19 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
 // JavaScript 1.6 methods recatching up or faking
         for_each = A_proto.forEach || function (callback, scope) {
-            for (var i = 0, l = this.length; i < l; i++) {
-                callback.call(scope, this[i], i, this);
-            }
-        },
+                for (var i = 0, l = this.length; i < l; i++) {
+                    callback.call(scope, this[i], i, this);
+                }
+            },
 
         filter = A_proto.filter || function (callback, scope) {
-            for (var result = [], j = 0, i = 0, l = this.length; i < l; i++) {
-                if (callback.call(scope, this[i], i, this)) {
-                    result[j++] = this[i];
+                for (var result = [], j = 0, i = 0, l = this.length; i < l; i++) {
+                    if (callback.call(scope, this[i], i, this)) {
+                        result[j++] = this[i];
+                    }
                 }
-            }
-            return result;
-        },
+                return result;
+            },
 
         reject = function (callback, scope) {
             for (var result = [], j = 0, i = 0, l = this.length; i < l; i++) {
@@ -615,29 +615,29 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
         },
 
         map = A_proto.map || function (callback, scope) {
-            for (var result = [], i = 0, l = this.length; i < l; i++) {
-                result[i] = callback.call(scope, this[i], i, this);
-            }
-            return result;
-        },
+                for (var result = [], i = 0, l = this.length; i < l; i++) {
+                    result[i] = callback.call(scope, this[i], i, this);
+                }
+                return result;
+            },
 
         some = A_proto.some || function (callback, scope) {
-            for (var i = 0, l = this.length; i < l; i++) {
-                if (callback.call(scope, this[i], i, this)) {
-                    return true;
+                for (var i = 0, l = this.length; i < l; i++) {
+                    if (callback.call(scope, this[i], i, this)) {
+                        return true;
+                    }
                 }
-            }
-            return false;
-        },
+                return false;
+            },
 
         every = A_proto.every || function (callback, scope) {
-            for (var i = 0, l = this.length; i < l; i++) {
-                if (!callback.call(scope, this[i], i, this)) {
-                    return false;
+                for (var i = 0, l = this.length; i < l; i++) {
+                    if (!callback.call(scope, this[i], i, this)) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        },
+                return true;
+            },
 
         first = function (callback, scope) {
             for (var i = 0, l = this.length; i < l; i++) {
@@ -1206,7 +1206,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
         startsWith: function (string, ignorecase) {
             return (ignorecase !== true ? this.indexOf(string) :
                 this.toLowerCase().indexOf(string.toLowerCase())
-                ) === 0;
+            ) === 0;
         },
 
         /**
@@ -1220,7 +1220,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
             return this.length - (
                 ignorecase !== true ? this.lastIndexOf(string) :
                     this.toLowerCase().lastIndexOf(string.toLowerCase())
-                ) === string.length;
+            ) === string.length;
         },
 
         /**
@@ -1525,13 +1525,13 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
                             } else if (to_s.call(value) === '[object Date]') {
                                 return '"' + value.getUTCFullYear() + '-' +
-                                    zerofy(value.getUTCMonth() + 1) + '-' +
-                                    zerofy(value.getUTCDate()) + 'T' +
-                                    zerofy(value.getUTCHours()) + ':' +
-                                    zerofy(value.getUTCMinutes()) + ':' +
-                                    zerofy(value.getUTCSeconds()) + '.' +
-                                    zerofy(value.getMilliseconds()) + 'Z' +
-                                    '"';
+                                zerofy(value.getUTCMonth() + 1) + '-' +
+                                zerofy(value.getUTCDate()) + 'T' +
+                                zerofy(value.getUTCHours()) + ':' +
+                                zerofy(value.getUTCMinutes()) + ':' +
+                                zerofy(value.getUTCSeconds()) + '.' +
+                                zerofy(value.getMilliseconds()) + 'Z' +
+                                '"';
 
                             } else {
                                 var result = [], key;
@@ -1552,8 +1552,8 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
                         // checking the JSON string consistency
                         if (/^[\],:{}\s]*$/.test(string.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                            .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                            .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+                                .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                                .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
                             return new Function('return ' + string)();
                         }
                     }
@@ -1633,7 +1633,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          *
          * Copyright (C) 2008-2011 Nikolay Nemshilov
          */
-            Class_Methods = {
+        Class_Methods = {
             /**
              * this method will extend the class-level with the given objects
              *
@@ -1704,17 +1704,17 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
     function Class_clean_module(module, extend) {
         return Object.without.apply(Object, [module].concat(
             Class_module_callback_names.concat(extend ?
-                $w('prototype parent ancestors') : ['constructor']
+                    $w('prototype parent ancestors') : ['constructor']
             )
         ));
     }
 
     function Class_handle_module_callbacks(klass, module, extend) {
         (module[Class_module_callback_names[extend ? 0 : 2]] ||
-            module[Class_module_callback_names[extend ? 1 : 3]] ||
-            function () {
-            }
-            ).call(module, klass);
+        module[Class_module_callback_names[extend ? 1 : 3]] ||
+        function () {
+        }
+        ).call(module, klass);
     }
 
     /**
@@ -1781,7 +1781,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          */
         setOptions: function (opts) {
             var options = this.options = $ext($ext({},
-                Object.clone(Class_findSet(this, 'Options'))), opts
+                    Object.clone(Class_findSet(this, 'Options'))), opts
             ), match, key;
 
             // hooking up the observer options
@@ -1941,7 +1941,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Array optional events list to build shortcuts
          * @return Object extended object
          */
-            Observer_create = Observer.create = function (object, events) {
+        Observer_create = Observer.create = function (object, events) {
             $ext(object, Object.without(Observer.prototype, 'initialize', 'setOptions'), true);
             return Observer_createShortcuts(object, events || Class_findSet(object, 'Events'));
         },
@@ -1953,13 +1953,13 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Array list of event names
          * @return Object extended object
          */
-            Observer_createShortcuts = Observer.createShortcuts = function (object, names) {
+        Observer_createShortcuts = Observer.createShortcuts = function (object, names) {
             (names || []).each(function (name) {
                 var method_name = 'on' + name.replace(/(^|_|:)([a-z])/g,
-                    function (match, pre, chr) {
-                        return chr.toUpperCase();
-                    }
-                );
+                        function (match, pre, chr) {
+                            return chr.toUpperCase();
+                        }
+                    );
 
                 if (!(method_name in object)) {
                     object[method_name] = function () {
@@ -1987,7 +1987,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
                 case "function":
                     ('$listeners' in object ? object.$listeners : (
                         object.$listeners = []
-                        )).push(preprocess({
+                    )).push(preprocess({
                             e: event, f: callback, a: args, r: name || false, t: object
                         }));
                     break;
@@ -2491,10 +2491,10 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @param Object options
          * @return HTMLElement
          */
-            make_element = function (tag, options) {
+        make_element = function (tag, options) {
             return (tag in elements_cache ? elements_cache[tag] : (
                 elements_cache[tag] = document.createElement(tag)
-                )).cloneNode(false);
+            )).cloneNode(false);
         };
 
 //
@@ -2506,8 +2506,8 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
         make_element = function (tag, options) {
             if (options !== undefined && (tag === 'input' || tag === 'button')) {
                 tag = '<' + tag + ' name="' + options.name +
-                    '" type="' + options.type + '"' +
-                    (options.checked ? ' checked' : '') + ' />';
+                '" type="' + options.type + '"' +
+                (options.checked ? ' checked' : '') + ' />';
 
                 delete(options.name);
                 delete(options.type);
@@ -2737,7 +2737,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
         text: function (text) {
             return text === undefined ? (
                 this._.textContent === undefined ? this._.innerText : this._.textContent
-                ) : this.update(this.doc()._.createTextNode(text));
+            ) : this.update(this.doc()._.createTextNode(text));
         },
 
         /**
@@ -3094,9 +3094,9 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
         if (key === 'opacity') {
             return IE_OPACITY ? (
-                (/opacity=(\d+)/i.exec(style.filter || '') ||
-                    ['', '100'])[1].toInt() / 100
-                ) + '' : style[key].replace(',', '.');
+            (/opacity=(\d+)/i.exec(style.filter || '') ||
+            ['', '100'])[1].toInt() / 100
+            ) + '' : style[key].replace(',', '.');
         }
 
         if (key === 'float') {
@@ -3365,7 +3365,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @return Object {x: NNN, y: NNN}
          */
         size: function () {
-            return { x: this._.offsetWidth, y: this._.offsetHeight };
+            return {x: this._.offsetWidth, y: this._.offsetHeight};
         },
 
         /**
@@ -3392,7 +3392,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
          * @return Object {x: NNN, y: NNN}
          */
         scrolls: function () {
-            return { x: this._.scrollLeft, y: this._.scrollTop };
+            return {x: this._.scrollLeft, y: this._.scrollTop};
         },
 
         /**
@@ -3425,7 +3425,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
             var pos = this.position(), size = this.size();
 
             return target.x > pos.x && target.x < (pos.x + size.x) &&
-                target.y > pos.y && target.y < (pos.y + size.y);
+            target.y > pos.y && target.y < (pos.y + size.y);
         },
 
         /**
@@ -3619,7 +3619,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
             (this.$listeners || []).each(function (hash) {
                 if (hash.e === event.type &&
                     hash.f.apply(this, (hash.r ? [] : [event]).concat(hash.a)) === false
-                    ) {
+                ) {
                     event.stop();
                 }
             }, this);
@@ -3663,7 +3663,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
     Element_add_event_shortcuts(
         'click rightclick contextmenu mousedown mouseup ' +
-            'mouseover mouseout mousemove keypress keydown keyup'
+        'mouseover mouseout mousemove keypress keydown keyup'
     );
 
 
@@ -4385,7 +4385,7 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
                     this.on(event, build_delegative_listener(css_rule, list[i], this));
 
                     // adding the css-rule and callback references to the store
-                    $ext(this.$listeners.last(), { dr: css_rule, dc: list[i][0] });
+                    $ext(this.$listeners.last(), {dr: css_rule, dc: list[i][0]});
                 }
             }
 
@@ -4518,20 +4518,20 @@ var RightJS = (function (window, document, Object, Array, String, Function, Numb
 
         return (object.$listeners || []).filter(function (hash) {
             return hash.dr && hash.n === event && (
-                rules_are_empty || (function () {
-                    for (var css_rule in rules) {
-                        if (hash.dr === css_rule) {
-                            for (i = 0, list = rules[css_rule]; i < list.length; i++) {
-                                if (!list[i].length || list[i][0] === hash.dc) {
-                                    return true;
-                                }
+            rules_are_empty || (function () {
+                for (var css_rule in rules) {
+                    if (hash.dr === css_rule) {
+                        for (i = 0, list = rules[css_rule]; i < list.length; i++) {
+                            if (!list[i].length || list[i][0] === hash.dc) {
+                                return true;
                             }
                         }
                     }
+                }
 
-                    return false;
-                })()
-                );
+                return false;
+            })()
+            );
         });
     }
 

@@ -1,3 +1,3 @@
 <?
-include($dataBrowser->getJSONPath());
+include( $dataBrowser->getJSONPath() );
 ?>

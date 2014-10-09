@@ -1,7 +1,7 @@
 import
-"number-format";
+    "number-format";
 import
-"time-format";
+    "time-format";
 
 d3.locale = function (locale) {
     return {

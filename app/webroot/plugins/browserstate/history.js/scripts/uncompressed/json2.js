@@ -177,11 +177,11 @@ if (typeof JSON !== 'object') {
 
             return isFinite(this.valueOf())
                 ? this.getUTCFullYear() + '-' +
-                f(this.getUTCMonth() + 1) + '-' +
-                f(this.getUTCDate()) + 'T' +
-                f(this.getUTCHours()) + ':' +
-                f(this.getUTCMinutes()) + ':' +
-                f(this.getUTCSeconds()) + 'Z'
+            f(this.getUTCMonth() + 1) + '-' +
+            f(this.getUTCDate()) + 'T' +
+            f(this.getUTCHours()) + ':' +
+            f(this.getUTCMinutes()) + ':' +
+            f(this.getUTCSeconds()) + 'Z'
                 : null;
         };
 
@@ -388,7 +388,7 @@ if (typeof JSON !== 'object') {
             rep = replacer;
             if (replacer && typeof replacer !== 'function' &&
                 (typeof replacer !== 'object' ||
-                    typeof replacer.length !== 'number')) {
+                typeof replacer.length !== 'number')) {
                 throw new Error('JSON.stringify');
             }
 
@@ -441,7 +441,7 @@ if (typeof JSON !== 'object') {
             if (cx.test(text)) {
                 text = text.replace(cx, function (a) {
                     return '\\u' +
-                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                    ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
                 });
             }
 
@@ -459,9 +459,9 @@ if (typeof JSON !== 'object') {
 // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
             if (/^[\],:{}\s]*$/
-                .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                    .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 // In the third stage we use the eval function to compile the text into a
 // JavaScript structure. The '{' operator is subject to a syntactic ambiguity

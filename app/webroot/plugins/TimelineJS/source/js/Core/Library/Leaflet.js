@@ -250,8 +250,8 @@ L.Mixin.Events = {
         for (var i = 0, events = this._leaflet_events, len = events[type].length; i < len; i++) {
             if (
                 (events[type][i].action === fn) &&
-                    (!context || (events[type][i].context === context))
-                ) {
+                (!context || (events[type][i].context === context))
+            ) {
                 events[type].splice(i, 1);
                 return this;
             }
@@ -401,8 +401,8 @@ L.Point.prototype = {
 
     toString: function () {
         return 'Point(' +
-            L.Util.formatNum(this.x) + ', ' +
-            L.Util.formatNum(this.y) + ')';
+        L.Util.formatNum(this.x) + ', ' +
+        L.Util.formatNum(this.y) + ')';
     }
 };
 
@@ -452,9 +452,9 @@ L.Bounds = L.Class.extend({
         }
 
         return (min.x >= this.min.x) &&
-            (max.x <= this.max.x) &&
-            (min.y >= this.min.y) &&
-            (max.y <= this.max.y);
+        (max.x <= this.max.x) &&
+        (min.y >= this.min.y) &&
+        (max.y <= this.max.y);
     },
 
     intersects: function (/*Bounds*/ bounds) {
@@ -585,7 +585,7 @@ L.DomUtil = {
 
     hasClass: function (el, name) {
         return (el.className.length > 0) &&
-            new RegExp("(^|\\s)" + name + "(\\s|$)").test(el.className);
+        new RegExp("(^|\\s)" + name + "(\\s|$)").test(el.className);
     },
 
     addClass: function (el, name) {
@@ -595,7 +595,7 @@ L.DomUtil = {
     },
 
     removeClass: function (el, name) {
-        el.className = el.className.replace(/(\S+)\s*/g,function (w, match) {
+        el.className = el.className.replace(/(\S+)\s*/g, function (w, match) {
             if (match === name) {
                 return '';
             }
@@ -626,8 +626,8 @@ L.DomUtil = {
 
     getTranslateString: function (point) {
         return L.DomUtil.TRANSLATE_OPEN +
-            point.x + 'px,' + point.y + 'px' +
-            L.DomUtil.TRANSLATE_CLOSE;
+        point.x + 'px,' + point.y + 'px' +
+        L.DomUtil.TRANSLATE_CLOSE;
     },
 
     getScaleString: function (scale, origin) {
@@ -707,8 +707,8 @@ L.LatLng.prototype = {
 
     toString: function () {
         return 'LatLng(' +
-            L.Util.formatNum(this.lat) + ', ' +
-            L.Util.formatNum(this.lng) + ')';
+        L.Util.formatNum(this.lat) + ', ' +
+        L.Util.formatNum(this.lng) + ')';
     },
 
     // Haversine distance formula, see http://en.wikipedia.org/wiki/Haversine_formula
@@ -792,7 +792,7 @@ L.LatLngBounds = L.Class.extend({
         }
 
         return (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
-            (sw2.lng >= sw.lng) && (ne2.lng <= ne.lng);
+        (sw2.lng >= sw.lng) && (ne2.lng <= ne.lng);
     },
 
     intersects: function (/*LatLngBounds*/ bounds) {
@@ -2544,7 +2544,7 @@ L.Map.include({
         this.closePopup();
         this._popup = popup;
         this.addLayer(popup);
-        this.fire('popupopen', { popup: this._popup });
+        this.fire('popupopen', {popup: this._popup});
 
         return this;
     },
@@ -2552,7 +2552,7 @@ L.Map.include({
     closePopup: function () {
         if (this._popup) {
             this.removeLayer(this._popup);
-            this.fire('popupclose', { popup: this._popup });
+            this.fire('popupclose', {popup: this._popup});
             this._popup = null;
         }
         return this;
@@ -2969,7 +2969,7 @@ L.Path = L.Browser.svg || !L.Browser.vml ? L.Path : L.Path.extend({
     _initPath: function () {
         this._container = L.Path._createElement('shape');
         this._container.className += ' leaflet-vml-shape' +
-            (this.options.clickable ? ' leaflet-clickable' : '');
+        (this.options.clickable ? ' leaflet-clickable' : '');
         this._container.coordsize = '1 1';
 
         this._path = L.Path._createElement('path');
@@ -3744,8 +3744,8 @@ L.Circle = L.Path.extend({
 
         if (L.Browser.svg) {
             return "M" + p.x + "," + (p.y - r) +
-                "A" + r + "," + r + ",0,1,1," +
-                (p.x - 0.1) + "," + (p.y - r) + " z";
+            "A" + r + "," + r + ",0,1,1," +
+            (p.x - 0.1) + "," + (p.y - r) + " z";
         } else {
             p._round();
             r = Math.round(r);
@@ -3759,7 +3759,7 @@ L.Circle = L.Path.extend({
             p = this._point;
 
         return p.x - r > vp.max.x || p.y - r > vp.max.y ||
-            p.x + r < vp.min.x || p.y + r < vp.min.y;
+        p.x + r < vp.min.x || p.y + r < vp.min.y;
     }
 });
 
@@ -4113,9 +4113,9 @@ L.DomEvent = {
 
     getMousePosition: function (e, container) {
         var x = e.pageX ? e.pageX : e.clientX +
-                document.body.scrollLeft + document.documentElement.scrollLeft,
+            document.body.scrollLeft + document.documentElement.scrollLeft,
             y = e.pageY ? e.pageY : e.clientY +
-                document.body.scrollTop + document.documentElement.scrollTop,
+            document.body.scrollTop + document.documentElement.scrollTop,
             pos = new L.Point(x, y);
         return (container ?
             pos.subtract(L.DomUtil.getViewportOffset(container)) : pos);
@@ -5136,7 +5136,7 @@ L.Transition = L.Transition.extend({
     statics: (function () {
         var transition = L.DomUtil.TRANSITION,
             transitionEnd = (transition === 'webkitTransition' || transition === 'OTransition' ?
-                transition + 'End' : 'transitionend');
+            transition + 'End' : 'transitionend');
 
         return {
             NATIVE: !!transition,
@@ -5371,7 +5371,7 @@ L.Map.include(!(L.Transition && L.Transition.implemented()) ? {} : {
             center = new L.LatLng(center.lat, center.lng);
 
             var done = (zoomChanged ?
-                !!this._zoomToIfCenterInView && this._zoomToIfCenterInView(center, zoom, offset) :
+            !!this._zoomToIfCenterInView && this._zoomToIfCenterInView(center, zoom, offset) :
                 this._panByIfClose(offset));
 
             // exit if animated pan or zoom started
@@ -5426,7 +5426,7 @@ L.Map.include(!(L.Transition && L.Transition.implemented()) ? {} : {
         var m = multiplyFactor || 1,
             size = this.getSize();
         return (Math.abs(offset.x) <= size.x * m) &&
-            (Math.abs(offset.y) <= size.y * m);
+        (Math.abs(offset.y) <= size.y * m);
     }
 });
 
@@ -5523,7 +5523,10 @@ L.Map.include(!L.DomUtil.TRANSITION ? {} : {
         this._tileBg = tilePane;
 
         if (!this._tileBg.transition) {
-            this._tileBg.transition = new L.Transition(this._tileBg, {duration: 0.3, easing: 'cubic-bezier(0.25,0.1,0.25,0.75)'});
+            this._tileBg.transition = new L.Transition(this._tileBg, {
+                duration: 0.3,
+                easing: 'cubic-bezier(0.25,0.1,0.25,0.75)'
+            });
             this._tileBg.transition.on('end', this._onZoomTransitionEnd, this);
         }
 

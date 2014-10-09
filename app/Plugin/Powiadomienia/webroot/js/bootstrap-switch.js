@@ -412,7 +412,7 @@
                 if ($form.data('bootstrap-switch')) {
                     return;
                 }
-                return $form.on('reset.bootstrapSwitch',function () {
+                return $form.on('reset.bootstrapSwitch', function () {
                     return window.setTimeout(function () {
                         return $form.find('input').filter(function () {
                             return $(this).data('bootstrap-switch');

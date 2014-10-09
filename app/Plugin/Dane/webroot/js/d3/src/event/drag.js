@@ -1,9 +1,9 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../core/vendor";
+    "../core/vendor";
 import
-"../selection/on";
+    "../selection/on";
 
 var d3_event_dragSelect = "onselectstart" in d3_document ? null : d3_vendorSymbol(d3_documentElement.style, "userSelect"),
     d3_event_dragId = 0;

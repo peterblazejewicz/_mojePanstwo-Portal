@@ -1,9 +1,9 @@
 import
-"day";
+    "day";
 import
-"interval";
+    "interval";
 import
-"time";
+    "time";
 
 d3_time.month = d3_time_interval(function (date) {
     date = d3_time.day(date);

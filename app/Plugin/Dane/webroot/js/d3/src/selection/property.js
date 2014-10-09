@@ -1,5 +1,5 @@
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.property = function (name, value) {
     if (arguments.length < 2) {

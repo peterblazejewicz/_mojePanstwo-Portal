@@ -66,7 +66,7 @@
                         // All other element types are determined by whether or not they're contentEditable
                         this.element.prop("isContentEditable");
 
-            this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
+            this.valueMethod = this.element[isTextarea || isInput ? "val" : "text"];
             this.isNewMenu = true;
 
             this.element
@@ -216,12 +216,12 @@
                     // but we can't detect a mouseup or a click immediately afterward
                     // so we have to track the next mousedown and close the menu if
                     // the user clicks somewhere outside of the autocomplete
-                    var menuElement = this.menu.element[ 0 ];
+                    var menuElement = this.menu.element[0];
                     if (!$(event.target).closest(".ui-menu-item").length) {
                         this._delay(function () {
                             var that = this;
                             this.document.one("mousedown", function (event) {
-                                if (event.target !== that.element[ 0 ] &&
+                                if (event.target !== that.element[0] &&
                                     event.target !== menuElement && !$.contains(menuElement, event.target)) {
                                     that.close();
                                 }
@@ -246,7 +246,7 @@
                     }
 
                     var item = ui.item.data("ui-autocomplete-item");
-                    if (false !== this._trigger("focus", event, { item: item })) {
+                    if (false !== this._trigger("focus", event, {item: item})) {
                         // use value to match what will end up in the input, if it was a key event
                         if (event.originalEvent && /^key/.test(event.originalEvent.type)) {
                             this._value(item.value);
@@ -277,7 +277,7 @@
                         });
                     }
 
-                    if (false !== this._trigger("select", event, { item: item })) {
+                    if (false !== this._trigger("select", event, {item: item})) {
                         this._value(item.value);
                     }
                     // reset the term after the select event
@@ -412,7 +412,7 @@
             this.element.addClass("ui-autocomplete-loading");
             this.cancelSearch = false;
 
-            this.source({ term: value }, this._response());
+            this.source({term: value}, this._response());
         },
 
         _response: function () {
@@ -434,7 +434,7 @@
             if (content) {
                 content = this._normalize(content);
             }
-            this._trigger("response", null, { content: content });
+            this._trigger("response", null, {content: content});
             if (!this.options.disabled && content && content.length && !this.cancelSearch) {
                 this._suggest(content);
                 this._trigger("open");
@@ -460,7 +460,7 @@
 
         _change: function (event) {
             if (this.previous !== this._value()) {
-                this._trigger("change", event, { item: this.selectedItem });
+                this._trigger("change", event, {item: this.selectedItem});
             }
         },
 
@@ -539,7 +539,7 @@
                 this.menu.blur();
                 return;
             }
-            this.menu[ direction ](event);
+            this.menu[direction](event);
         },
 
         widget: function () {
@@ -582,7 +582,7 @@
                 noResults: "No search results.",
                 results: function (amount) {
                     return amount + ( amount > 1 ? " results are" : " result is" ) +
-                        " available, use up and down arrow keys to navigate.";
+                    " available, use up and down arrow keys to navigate.";
                 }
             }
         },

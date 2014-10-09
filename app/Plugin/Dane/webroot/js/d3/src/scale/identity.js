@@ -1,7 +1,7 @@
 import
-"linear";
+    "linear";
 import
-"scale";
+    "scale";
 
 d3.scale.identity = function () {
     return d3_scale_identity([0, 1]);

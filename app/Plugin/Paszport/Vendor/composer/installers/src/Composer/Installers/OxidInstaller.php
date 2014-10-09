@@ -1,9 +1,8 @@
 <?php
 namespace Composer\Installers;
 
-class OxidInstaller extends BaseInstaller
-{
-    protected $locations = array(
-        'module' => 'modules/{$name}/',
-    );
+class OxidInstaller extends BaseInstaller {
+	protected $locations = array(
+		'module' => 'modules/{$name}/',
+	);
 }

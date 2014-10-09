@@ -1,17 +1,17 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../core/array";
+    "../core/array";
 import
-"../core/document";
+    "../core/document";
 import
-"../core/noop";
+    "../core/noop";
 import
-"../event/event";
+    "../event/event";
 import
-"../format/requote";
+    "../format/requote";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.on = function (type, listener, capture) {
     var n = arguments.length;

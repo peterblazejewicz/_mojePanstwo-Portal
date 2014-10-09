@@ -94,9 +94,11 @@ suite.addBatch({
                 assert.equal(a.orient(), "bottom");
             },
             "coerces to a string": function (d3) {
-                var a = d3.svg.axis().orient({toString: function () {
-                    return "left";
-                }});
+                var a = d3.svg.axis().orient({
+                    toString: function () {
+                        return "left";
+                    }
+                });
                 assert.equal(a.orient(), "left");
             },
             "supports top orientation": function (d3) {

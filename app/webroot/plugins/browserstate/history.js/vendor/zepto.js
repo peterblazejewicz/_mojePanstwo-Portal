@@ -39,14 +39,22 @@ var Zepto = (function () {
         document = window.document,
         elementDisplay = {}, classCache = {},
         getComputedStyle = document.defaultView.getComputedStyle,
-        cssNumber = { 'column-count': 1, 'columns': 1, 'font-weight': 1, 'line-height': 1, 'opacity': 1, 'z-index': 1, 'zoom': 1 },
+        cssNumber = {
+            'column-count': 1,
+            'columns': 1,
+            'font-weight': 1,
+            'line-height': 1,
+            'opacity': 1,
+            'z-index': 1,
+            'zoom': 1
+        },
         fragmentRE = /^\s*<(\w+|!)[^>]*>/,
 
     // Used by `$.zepto.init` to wrap elements, text/comment nodes, document,
     // and document fragment node types.
         elementTypes = [1, 3, 8, 9, 11],
 
-        adjacencyOperators = [ 'after', 'prepend', 'before', 'append' ],
+        adjacencyOperators = ['after', 'prepend', 'before', 'append'],
         table = document.createElement('table'),
         tableRow = document.createElement('tr'),
         containers = {
@@ -511,7 +519,7 @@ var Zepto = (function () {
                 (this.length == 0 || this[0].nodeType !== 1 ? undefined :
                     (name == 'value' && this[0].nodeName == 'INPUT') ? this.val() :
                         (!(result = this[0].getAttribute(name)) && name in this[0]) ? this[0][name] : result
-                    ) :
+                ) :
                 this.each(function (idx) {
                     if (this.nodeType !== 1) return
                     if (isObject(name)) for (key in name) this.setAttribute(key, name[key])
@@ -626,7 +634,7 @@ var Zepto = (function () {
             })
             if (value === undefined) return this[0] == window ? window['inner' + Dimension] :
                 this[0] == document ? document.documentElement['offset' + Dimension] :
-                    (offset = this.offset()) && offset[dimension]
+                (offset = this.offset()) && offset[dimension]
             else return this.each(function (idx) {
                 var el = $(this)
                 el.css(dimension, funcArg(this, value, idx, el[dimension]()))
@@ -707,10 +715,10 @@ window.Zepto = Zepto
         if (event.ns) var matcher = matcherFor(event.ns)
         return (handlers[zid(element)] || []).filter(function (handler) {
             return handler
-                && (!event.e || handler.e == event.e)
-                && (!event.ns || matcher.test(handler.ns))
-                && (!fn || zid(handler.fn) === zid(fn))
-                && (!selector || handler.sel == selector)
+            && (!event.e || handler.e == event.e)
+            && (!event.ns || matcher.test(handler.ns))
+            && (!fn || zid(handler.fn) === zid(fn))
+            && (!selector || handler.sel == selector)
         })
     }
 
@@ -757,7 +765,7 @@ window.Zepto = Zepto
         })
     }
 
-    $.event = { add: add, remove: remove }
+    $.event = {add: add, remove: remove}
 
     $.proxy = function (fn, context) {
         if ($.isFunction(fn)) {
@@ -906,8 +914,8 @@ window.Zepto = Zepto
         // shortcut methods for `.bind(event, fn)` for each event type
     ;
     ('focusin focusout load resize scroll unload click dblclick ' +
-        'mousedown mouseup mousemove mouseover mouseout ' +
-        'change select keydown keypress keyup error').split(' ').forEach(function (event) {
+    'mousedown mouseup mousemove mouseover mouseout ' +
+    'change select keydown keypress keyup error').split(' ').forEach(function (event) {
             $.fn[event] = function (callback) {
                 return this.bind(event, callback)
             }
@@ -973,7 +981,7 @@ window.Zepto = Zepto
 ;
 (function ($, undefined) {
     var prefix = '', eventPrefix, endEventName, endAnimationName,
-        vendors = { Webkit: 'webkit', Moz: '', O: 'o', ms: 'MS' },
+        vendors = {Webkit: 'webkit', Moz: '', O: 'o', ms: 'MS'},
         document = window.document, testEl = document.createElement('div'),
         supportedTransforms = /^((translate|rotate|scale)(X|Y|Z|3d)?|matrix(3d)?|perspective|skew(X|Y)?)$/i,
         clearProperties = {}
@@ -1147,7 +1155,7 @@ window.Zepto = Zepto
                 if (callbackName in window) window[callbackName] = empty
                 ajaxComplete('abort', xhr, options)
             },
-            xhr = { abort: abort }, abortTimeout
+            xhr = {abort: abort}, abortTimeout
 
         if (options.error) script.onerror = function () {
             xhr.abort()
@@ -1210,7 +1218,7 @@ window.Zepto = Zepto
         return mime && ( mime == htmlType ? 'html' :
             mime == jsonType ? 'json' :
                 scriptTypeRE.test(mime) ? 'script' :
-                    xmlTypeRE.test(mime) && 'xml' ) || 'text'
+                xmlTypeRE.test(mime) && 'xml' ) || 'text'
     }
 
     function appendQuery(url, query) {
@@ -1231,7 +1239,7 @@ window.Zepto = Zepto
         ajaxStart(settings)
 
         if (!settings.crossDomain) settings.crossDomain = /^([\w-]+:)?\/\/([^\/]+)/.test(settings.url) &&
-            RegExp.$2 != window.location.host
+        RegExp.$2 != window.location.host
 
         var dataType = settings.dataType, hasPlaceholder = /=\?/.test(settings.url)
         if (dataType == 'jsonp' || hasPlaceholder) {
@@ -1243,7 +1251,7 @@ window.Zepto = Zepto
         serializeData(settings)
 
         var mime = settings.accepts[dataType],
-            baseHeaders = { },
+            baseHeaders = {},
             protocol = /^([\w-]+:)\/\//.test(settings.url) ? RegExp.$1 : window.location.protocol,
             xhr = $.ajaxSettings.xhr(), abortTimeout
 
@@ -1303,16 +1311,16 @@ window.Zepto = Zepto
     }
 
     $.get = function (url, success) {
-        return $.ajax({ url: url, success: success })
+        return $.ajax({url: url, success: success})
     }
 
     $.post = function (url, data, success, dataType) {
         if ($.isFunction(data)) dataType = dataType || success, success = data, data = null
-        return $.ajax({ type: 'POST', url: url, data: data, success: success, dataType: dataType })
+        return $.ajax({type: 'POST', url: url, data: data, success: success, dataType: dataType})
     }
 
     $.getJSON = function (url, success) {
-        return $.ajax({ url: url, success: success, dataType: 'json' })
+        return $.ajax({url: url, success: success, dataType: 'json'})
     }
 
     $.fn.load = function (url, success) {
@@ -1419,7 +1427,7 @@ window.Zepto = Zepto
     $(document).ready(function () {
         var now, delta
 
-        $(document.body).bind('touchstart',function (e) {
+        $(document.body).bind('touchstart', function (e) {
             now = Date.now()
             delta = now - (touch.last || now)
             touch.el = $(parentIfText(e.touches[0].target))
@@ -1429,11 +1437,11 @@ window.Zepto = Zepto
             if (delta > 0 && delta <= 250) touch.isDoubleTap = true
             touch.last = now
             longTapTimeout = setTimeout(longTap, longTapDelay)
-        }).bind('touchmove',function (e) {
+        }).bind('touchmove', function (e) {
             cancelLongTap()
             touch.x2 = e.touches[0].pageX
             touch.y2 = e.touches[0].pageY
-        }).bind('touchend',function (e) {
+        }).bind('touchend', function (e) {
             cancelLongTap()
 
             // double tap (tapped twice within 250ms)

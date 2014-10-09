@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                     };
 
                 (rc.predef || []).forEach(function (prop) {
-                    settings.globals[ prop ] = true;
+                    settings.globals[prop] = true;
                 });
                 delete rc.predef;
 

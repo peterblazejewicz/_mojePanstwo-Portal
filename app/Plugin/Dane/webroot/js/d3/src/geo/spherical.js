@@ -1,7 +1,7 @@
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 
 function d3_geo_spherical(cartesian) {
     return [

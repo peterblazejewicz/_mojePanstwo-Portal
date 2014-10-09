@@ -342,7 +342,7 @@ var _mojePanstwoCockpitSlider = {
             }, 1100, function () {
                 jQuery('._mojePanstwoCockpitLogo.firstTime').removeClass('firstTime')
             })
-            jQuery.cookie('_mPFirstTime', 0, { expires: 365, path: '/' });
+            jQuery.cookie('_mPFirstTime', 0, {expires: 365, path: '/'});
         }, 5000);
     }
 })();

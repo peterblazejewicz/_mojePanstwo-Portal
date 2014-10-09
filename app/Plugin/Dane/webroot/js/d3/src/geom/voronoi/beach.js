@@ -1,5 +1,5 @@
 import
-"../../math/abs";
+    "../../math/abs";
 
 function d3_geom_voronoiBeach() {
     d3_geom_voronoiRedBlackNode(this);
@@ -34,8 +34,8 @@ function d3_geom_voronoiRemoveBeach(beach) {
 
     var lArc = previous;
     while (lArc.circle
-        && abs(x - lArc.circle.x) < ε
-        && abs(y - lArc.circle.cy) < ε) {
+    && abs(x - lArc.circle.x) < ε
+    && abs(y - lArc.circle.cy) < ε) {
         previous = lArc.P;
         disappearing.unshift(lArc);
         d3_geom_voronoiDetachBeach(lArc);
@@ -47,8 +47,8 @@ function d3_geom_voronoiRemoveBeach(beach) {
 
     var rArc = next;
     while (rArc.circle
-        && abs(x - rArc.circle.x) < ε
-        && abs(y - rArc.circle.cy) < ε) {
+    && abs(x - rArc.circle.x) < ε
+    && abs(y - rArc.circle.cy) < ε) {
         next = rArc.N;
         disappearing.push(rArc);
         d3_geom_voronoiDetachBeach(rArc);

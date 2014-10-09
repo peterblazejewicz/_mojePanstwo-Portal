@@ -20,7 +20,7 @@ var googleMapKodyPocztowe = {
             that.geocoder = new google.maps.Geocoder();
 
             //Google map center on first "gmina" from list - in most case there will be only one "gmina"
-            this.geocoder.geocode({ 'address': 'Poland, ' + $$('.gminy')[0].readAttribute('_gs')}, function (results, status) {
+            this.geocoder.geocode({'address': 'Poland, ' + $$('.gminy')[0].readAttribute('_gs')}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     that.map.setCenter(results[0].geometry.location);
                     that.map.setZoom(10);
@@ -60,7 +60,7 @@ var googleMapKodyPocztowe = {
                     var gminy = node.up('.gminy');
                     var q = 'Poland, ' + gminy.readAttribute('_gs') + ', ' + node.innerHTML;
 
-                    that.geocoder.geocode({ 'address': q}, function (results, status) {
+                    that.geocoder.geocode({'address': q}, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             $$('#obszary .pnaLi a.s').invoke('removeClassName', 's');
                             this.addClassName('s');
@@ -78,7 +78,7 @@ var googleMapKodyPocztowe = {
                         } else {
                             var q = 'Poland, ' + gminy.readAttribute('_gs');
 
-                            that.geocoder.geocode({ 'address': q}, function (results, status) {
+                            that.geocoder.geocode({'address': q}, function (results, status) {
                                 if (status == google.maps.GeocoderStatus.OK) {
 
                                     $$('#obszary .pnaLi a.s').invoke('removeClassName', 's');
@@ -95,7 +95,7 @@ var googleMapKodyPocztowe = {
                                         position: results[0].geometry.location
                                     });
                                 } else {
-                                    that.geocoder.geocode({ 'address': q}, function (results) {
+                                    that.geocoder.geocode({'address': q}, function (results) {
                                         that.map.setCenter(results[0].geometry.location);
                                         that.map.setZoom(16);
                                     });

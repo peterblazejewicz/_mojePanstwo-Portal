@@ -1,40 +1,40 @@
-<?php $this->Combinator->add_libs('css', $this->Less->css('htmlexDocMain_v1')); ?>
-<?php $this->Combinator->add_libs('css', $this->Less->css('htmlexDoc', array('plugin' => 'Dane'))); ?>
-<?php $this->Combinator->add_libs('js', 'toolbar'); ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'htmlexDocMain_v1' ) ); ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'htmlexDoc', array( 'plugin' => 'Dane' ) ) ); ?>
+<?php $this->Combinator->add_libs( 'js', 'toolbar' ); ?>
 
-<?php echo $this->Html->css($document->getCSSLocation()); ?>
+<?php echo $this->Html->css( $document->getCSSLocation() ); ?>
 
-<?= $this->Element('dataobject/pageBegin') ?>
+<?= $this->Element( 'dataobject/pageBegin' ) ?>
 
-    <div class="block">
-        <div class="block-header">
-            <h2 class="label">Wydatki biura poselskiego w <?= $rocznik['rok'] ?> roku</h2>
-            <a href="/dane/poslowie/<?= $object->getId() ?>/finanse">Wszystkie wydatki &raquo;</a>
-        </div>
-    </div>
+	<div class="block">
+		<div class="block-header">
+			<h2 class="label">Wydatki biura poselskiego w <?= $rocznik['rok'] ?> roku</h2>
+			<a href="/dane/poslowie/<?= $object->getId() ?>/finanse">Wszystkie wydatki &raquo;</a>
+		</div>
+	</div>
 
-    <div class="htmlexDoc" data-packages="<?php echo $document->getPackagesCount(); ?>"
-         data-current-package="<?php echo $documentPackage; ?>"
-         data-pages="<?php echo $document->getPagesCount(); ?>"
-         data-document-id="<?php echo $object->getId(); ?>"
-         data-dataset="<?php echo $dataset['Dataset']['alias']; ?>">
+	<div class="htmlexDoc" data-packages="<?php echo $document->getPackagesCount(); ?>"
+	     data-current-package="<?php echo $documentPackage; ?>"
+	     data-pages="<?php echo $document->getPagesCount(); ?>"
+	     data-document-id="<?php echo $object->getId(); ?>"
+	     data-dataset="<?php echo $dataset['Dataset']['alias']; ?>">
 
-        <?= $this->Element('toolbar'); ?>
+		<?= $this->Element( 'toolbar' ); ?>
 
-        <div class="document container">
-            <div class="row">
-                <div class="content col-md-10">
-                    <div class="canvas">
-                        <?php echo $document->loadHtml($documentPackage) ?>
-                    </div>
-                    <div class="loadMoreDocumentContent <?php if ($document->getPackagesCount() > 1) {
-                        echo 'show';
-                    } else {
-                        echo 'hide';
-                    } ?>"></div>
-                </div>
+		<div class="document container">
+			<div class="row">
+				<div class="content col-md-10">
+					<div class="canvas">
+						<?php echo $document->loadHtml( $documentPackage ) ?>
+					</div>
+					<div class="loadMoreDocumentContent <?php if ( $document->getPackagesCount() > 1 ) {
+						echo 'show';
+					} else {
+						echo 'hide';
+					} ?>"></div>
+				</div>
 
-                <? /* if (!empty($docs) && is_array($docs)) { ?>
+				<? /* if (!empty($docs) && is_array($docs)) { ?>
                     <div class="sidebox col-md-2">
                         <ul class="categories">
                             <? foreach ($docs as $category) { ?>
@@ -55,9 +55,9 @@
                         </ul>
                     </div>
                 <? } */
-                ?>
-            </div>
-        </div>
-    </div>
+				?>
+			</div>
+		</div>
+	</div>
 
-<?= $this->Element('dataobject/pageEnd') ?>
+<?= $this->Element( 'dataobject/pageEnd' ) ?>

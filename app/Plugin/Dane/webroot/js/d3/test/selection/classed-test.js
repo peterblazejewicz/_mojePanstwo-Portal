@@ -125,55 +125,69 @@ suite.addBatch({
             },
             "accepts a name object containing a function returning true or false": function (body) {
                 body.attr("class", null);
-                body.classed({foo: function () {
-                    return true;
-                }});
+                body.classed({
+                    foo: function () {
+                        return true;
+                    }
+                });
                 assert.equal(body.node().className, "foo");
             },
             "accepts a name object containing a mix of functions and non-functions": function (body) {
                 body.attr("class", "foo");
-                body.classed({foo: false, bar: function () {
-                    return true;
-                }});
+                body.classed({
+                    foo: false, bar: function () {
+                        return true;
+                    }
+                });
                 assert.equal(body.node().className, "bar");
             },
             "the value may be truthy or falsey": function (body) {
                 body.attr("class", "foo");
-                body.classed({foo: null, bar: function () {
-                    return 1;
-                }});
+                body.classed({
+                    foo: null, bar: function () {
+                        return 1;
+                    }
+                });
                 assert.equal(body.node().className, "bar");
             },
             "keys in the name object may contain whitespace": function (body) {
                 body.attr("class", null);
-                body.classed({" foo\t": function () {
-                    return true;
-                }});
+                body.classed({
+                    " foo\t": function () {
+                        return true;
+                    }
+                });
                 assert.equal(body.node().className, "foo");
                 body.attr("class", null);
             },
             "keys in the name object may reference multiple classes": function (body) {
                 body.attr("class", null);
-                body.classed({"foo bar": function () {
-                    return true;
-                }});
+                body.classed({
+                    "foo bar": function () {
+                        return true;
+                    }
+                });
                 assert.equal(body.node().className, "foo bar");
                 body.attr("class", null);
             },
             "keys in the name object may contain duplicates": function (body) {
                 body.attr("class", null);
-                body.classed({"foo foo": function () {
-                    return true;
-                }});
+                body.classed({
+                    "foo foo": function () {
+                        return true;
+                    }
+                });
                 assert.equal(body.node().className, "foo");
                 body.attr("class", null);
             },
             "value functions are only evaluated once when used for multiple classes": function (body) {
                 var count = 0;
                 body.attr("class", null);
-                body.classed({"foo bar": function () {
-                    return ++count;
-                }});
+                body.classed({
+                    "foo bar": function () {
+                        return ++count;
+                    }
+                });
                 assert.equal(body.node().className, "foo bar");
                 assert.equal(count, 1);
             },

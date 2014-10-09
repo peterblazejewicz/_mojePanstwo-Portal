@@ -12,15 +12,21 @@ suite.addBatch({
             assert.deepEqual(t.nodes({children: []}).map(layout), [
                 {depth: 0, x: 0.5, y: 0}
             ]);
-            assert.deepEqual(t.nodes({children: [
-                {children: []},
-                {children: [
-                    {}
-                ]},
-                {children: [
-                    {}
-                ]}
-            ]}).map(layout), [
+            assert.deepEqual(t.nodes({
+                children: [
+                    {children: []},
+                    {
+                        children: [
+                            {}
+                        ]
+                    },
+                    {
+                        children: [
+                            {}
+                        ]
+                    }
+                ]
+            }).map(layout), [
                 {depth: 0, x: .5, y: 0},
                 {depth: 1, x: .125, y: 0.5},
                 {depth: 1, x: .375, y: 0.5},

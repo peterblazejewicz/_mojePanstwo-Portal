@@ -1,51 +1,50 @@
 <?php
 
-class PrawoController extends AppController
-{
-    public $components = array(
-        'Session',
-        'RequestHandler'
-    );
-    public $helpers = array('Dane.Dataobject');
-    public $uses = array('Dane.Dataliner');
+class PrawoController extends AppController {
+	public $components = array(
+		'Session',
+		'RequestHandler'
+	);
+	public $helpers = array( 'Dane.Dataobject' );
+	public $uses = array( 'Dane.Dataliner' );
 
-    public function weszly()
-    {
-		
-		$filter_field = 'typ_id';
-	    $default_filters = array( '1' );
-		
+	public function weszly() {
+
+		$filter_field    = 'typ_id';
+		$default_filters = array( '1' );
+
 		$filters = $this->API->Prawo()->getTypes();
-		foreach( $filters as &$filter )
-			if( in_array($filter['id'], $default_filters) )
+		foreach ( $filters as &$filter ) {
+			if ( in_array( $filter['id'], $default_filters ) ) {
 				$filter['selected'] = true;
-		
-		
-        $datalinerParams = array(
-			'requestData' => array(
-	   			'conditions' => array(
-	       			'_source' => 'prawo.weszly',
-	       			'dataset' => 'prawo',
-	   			),
-	   			'order' => 'data_wejscia_w_zycie desc',
-	   		),
-		);
-		
-		$data = $this->Dataliner->index(array(
-			'conditions' => array_merge($datalinerParams['requestData']['conditions'], array(
-				$filter_field => $default_filters,
-			)),
-			'order' => 'data_wejscia_w_zycie desc',
-		));
-				
-		$datalinerParams['initData'] = $data;
-		$datalinerParams['filters'] = $filters;
-		$datalinerParams['filterField'] = $filter_field;
-		
-		$this->set('datalinerParams', $datalinerParams);
+			}
+		}
 
-		
-		
+
+		$datalinerParams = array(
+			'requestData' => array(
+				'conditions' => array(
+					'_source' => 'prawo.weszly',
+					'dataset' => 'prawo',
+				),
+				'order'      => 'data_wejscia_w_zycie desc',
+			),
+		);
+
+		$data = $this->Dataliner->index( array(
+			'conditions' => array_merge( $datalinerParams['requestData']['conditions'], array(
+				$filter_field => $default_filters,
+			) ),
+			'order'      => 'data_wejscia_w_zycie desc',
+		) );
+
+		$datalinerParams['initData']    = $data;
+		$datalinerParams['filters']     = $filters;
+		$datalinerParams['filterField'] = $filter_field;
+
+		$this->set( 'datalinerParams', $datalinerParams );
+
+
 		/*
         // NIEDAWNO WESZŁY
 
@@ -100,49 +99,49 @@ class PrawoController extends AppController
         */
 
 
-    }
-	
-	public function wejda()
-    {
-    
-    
-    }
-    
-    public function slowa_kluczowe()
-    {
-    
-    
-    }
-	
-    public function search()
-    {
-        if (isset($this->request->params['ext']) && ($this->request->params['ext'] == 'json')) {
+	}
 
-            $api = $this->API->Dane();
-            $search = array();
+	public function wejda() {
 
-            $q = @$this->request->query['q'];
-            if ($q) {
-                $api->searchDataset('ustawy', array(
-                    'conditions' => array(
-                        'q' => $q,
-                        'status_id' => '1',
-                    ),
-                    'limit' => 10,
-                ));
-                $objects = $api->getObjects();
 
-                foreach ($objects as $obj)
-                    $search[] = array_merge($obj->getData(), array(
-                        'data_slowna' => dataSlownie($obj->getData('prawo.data_publikacji')),
-                        'hl' => $obj->getHlText(),
-                    ));
-            }
+	}
 
-            $this->set('search', $search);
-            $this->set('_serialize', array('search'));
+	public function slowa_kluczowe() {
 
-        } else $this->redirect('/ustawy');
-    }
+
+	}
+
+	public function search() {
+		if ( isset( $this->request->params['ext'] ) && ( $this->request->params['ext'] == 'json' ) ) {
+
+			$api    = $this->API->Dane();
+			$search = array();
+
+			$q = @$this->request->query['q'];
+			if ( $q ) {
+				$api->searchDataset( 'ustawy', array(
+					'conditions' => array(
+						'q'         => $q,
+						'status_id' => '1',
+					),
+					'limit'      => 10,
+				) );
+				$objects = $api->getObjects();
+
+				foreach ( $objects as $obj ) {
+					$search[] = array_merge( $obj->getData(), array(
+						'data_slowna' => dataSlownie( $obj->getData( 'prawo.data_publikacji' ) ),
+						'hl'          => $obj->getHlText(),
+					) );
+				}
+			}
+
+			$this->set( 'search', $search );
+			$this->set( '_serialize', array( 'search' ) );
+
+		} else {
+			$this->redirect( '/ustawy' );
+		}
+	}
 
 } 

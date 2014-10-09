@@ -1,9 +1,9 @@
 import
-"interval";
+    "interval";
 import
-"time";
+    "time";
 import
-"year";
+    "year";
 
 d3_time.day = d3_time_interval(function (date) {
     var day = new d3_date(2000, 0);

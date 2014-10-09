@@ -1,11 +1,11 @@
 import
-"../core/array";
+    "../core/array";
 import
-"../core/document";
+    "../core/document";
 import
-"../core/subclass";
+    "../core/subclass";
 import
-"../core/vendor";
+    "../core/vendor";
 
 function d3_selection(groups) {
     d3_subclass(groups, d3_selectionPrototype);
@@ -41,56 +41,56 @@ d3.selection = function () {
 var d3_selectionPrototype = d3.selection.prototype = [];
 
 import
-"select";
+    "select";
 import
-"selectAll";
+    "selectAll";
 import
-"attr";
+    "attr";
 import
-"classed";
+    "classed";
 import
-"style";
+    "style";
 import
-"property";
+    "property";
 import
-"text";
+    "text";
 import
-"html";
+    "html";
 import
-"append";
+    "append";
 import
-"insert";
+    "insert";
 import
-"remove";
+    "remove";
 import
-"data";
+    "data";
 import
-"datum";
+    "datum";
 import
-"filter";
+    "filter";
 import
-"order";
+    "order";
 import
-"sort";
+    "sort";
 import
-"on";
+    "on";
 import
-"each";
+    "each";
 import
-"call";
+    "call";
 import
-"empty";
+    "empty";
 import
-"node";
+    "node";
 import
-"size";
+    "size";
 import
-"enter";
+    "enter";
 
 import
-"transition";
+    "transition";
 import
-"interrupt";
+    "interrupt";
 
 // TODO fast singleton implementation?
 d3.select = function (node) {

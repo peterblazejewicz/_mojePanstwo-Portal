@@ -1,5 +1,5 @@
 import
-"centroid";
+    "centroid";
 
 // TODO Unify this code with d3.geom.polygon centroid?
 // TODO Enforce positive area for exterior, negative area for interior?

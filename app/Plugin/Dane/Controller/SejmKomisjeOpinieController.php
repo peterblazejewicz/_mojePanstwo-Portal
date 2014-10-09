@@ -1,8 +1,7 @@
 <?php
 
-App::uses('DocsObjectsController', 'Dane.Controller');
+App::uses( 'DocsObjectsController', 'Dane.Controller' );
 
-class SejmKomisjeOpinieController extends DocsObjectsController
-{
-    public $breadcrumbsMode = 'app';
+class SejmKomisjeOpinieController extends DocsObjectsController {
+	public $breadcrumbsMode = 'app';
 } 

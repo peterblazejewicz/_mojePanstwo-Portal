@@ -19,8 +19,8 @@ module.exports = function (grunt) {
         uiFiles = coreFiles.map(function (file) {
             return "ui/" + file;
         }).concat(expandFiles("ui/*.js").filter(function (file) {
-                return coreFiles.indexOf(file.substring(3)) === -1;
-            })),
+            return coreFiles.indexOf(file.substring(3)) === -1;
+        })),
 
         allI18nFiles = expandFiles("ui/i18n/*.js"),
 
@@ -93,22 +93,22 @@ module.exports = function (grunt) {
 
     function expandFiles(files) {
         return grunt.util._.pluck(grunt.file.expandMapping(files), "src").map(function (values) {
-            return values[ 0 ];
+            return values[0];
         });
     }
 
     uiFiles.concat(allI18nFiles).forEach(function (file) {
-        minify[ file ] = {
+        minify[file] = {
             options: {
                 banner: createBanner()
             },
             files: {}
         };
-        minify[ file ].files[ mapMinFile(file) ] = file;
+        minify[file].files[mapMinFile(file)] = file;
     });
 
     cssFiles.forEach(function (file) {
-        minifyCSS[ file ] = {
+        minifyCSS[file] = {
             options: {
                 banner: createBanner()
             },
@@ -119,7 +119,7 @@ module.exports = function (grunt) {
 
     uiFiles.forEach(function (file) {
         // TODO this doesn't do anything until https://github.com/rwldrn/grunt-compare-size/issues/13
-        compareFiles[ file ] = [ file, mapMinFile(file) ];
+        compareFiles[file] = [file, mapMinFile(file)];
     });
 
 // grunt plugins
@@ -143,11 +143,11 @@ module.exports = function (grunt) {
         // strip folders
         var fileNames = files && files.map(stripDirectory);
         return "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " +
-            "<%= grunt.template.today('isoDate') %>\n" +
-            "<%= pkg.homepage ? '* ' + pkg.homepage + '\\n' : '' %>" +
-            (files ? "* Includes: " + fileNames.join(", ") + "\n" : "") +
-            "* Copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
-            " Licensed <%= _.pluck(pkg.licenses, 'type').join(', ') %> */\n";
+        "<%= grunt.template.today('isoDate') %>\n" +
+        "<%= pkg.homepage ? '* ' + pkg.homepage + '\\n' : '' %>" +
+        (files ? "* Includes: " + fileNames.join(", ") + "\n" : "") +
+        "* Copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
+        " Licensed <%= _.pluck(pkg.licenses, 'type').join(', ') %> */\n";
     }
 
     grunt.initConfig({
@@ -189,7 +189,7 @@ module.exports = function (grunt) {
         cssmin: minifyCSS,
         htmllint: {
             // ignore files that contain invalid html, used only for ajax content testing
-            all: grunt.file.expand([ "demos/**/*.html", "tests/**/*.html" ]).filter(function (file) {
+            all: grunt.file.expand(["demos/**/*.html", "tests/**/*.html"]).filter(function (file) {
                 return !/(?:ajax\/content\d\.html|tabs\/data\/test\.html|tests\/unit\/core\/core\.html)/.test(file);
             })
         },
@@ -228,13 +228,13 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask("default", [ "lint", "test" ]);
-    grunt.registerTask("lint", [ "asciilint", "jshint", "csslint", "htmllint" ]);
-    grunt.registerTask("test", [ "qunit" ]);
-    grunt.registerTask("sizer", [ "concat:ui", "uglify:main", "compare_size:all" ]);
-    grunt.registerTask("sizer_all", [ "concat:ui", "uglify", "compare_size" ]);
+    grunt.registerTask("default", ["lint", "test"]);
+    grunt.registerTask("lint", ["asciilint", "jshint", "csslint", "htmllint"]);
+    grunt.registerTask("test", ["qunit"]);
+    grunt.registerTask("sizer", ["concat:ui", "uglify:main", "compare_size:all"]);
+    grunt.registerTask("sizer_all", ["concat:ui", "uglify", "compare_size"]);
 
 // "copy:dist_units_images" is used by unit tests
-    grunt.registerTask("build", [ "concat", "uglify", "cssmin", "copy:dist_units_images" ]);
+    grunt.registerTask("build", ["concat", "uglify", "cssmin", "copy:dist_units_images"]);
 
 };

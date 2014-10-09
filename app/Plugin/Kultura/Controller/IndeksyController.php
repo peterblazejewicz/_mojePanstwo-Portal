@@ -1,18 +1,16 @@
 <?php
 
-class IndeksyController extends AppController
-{
+class IndeksyController extends AppController {
 
-    public $components = array('RequestHandler');
+	public $components = array( 'RequestHandler' );
 
-    public function view()
-    {
+	public function view() {
 
-        $id = $this->request->params['id'];
+		$id  = $this->request->params['id'];
 		$api = mpapiComponent::getApi()->Kultura();
-		
+
 		$index = $api->getIndex( $id );
-		$this->set('index', $index);
-		
-    }
+		$this->set( 'index', $index );
+
+	}
 } 

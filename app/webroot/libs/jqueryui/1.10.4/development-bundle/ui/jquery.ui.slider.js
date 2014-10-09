@@ -51,10 +51,10 @@
 
             this.element
                 .addClass("ui-slider" +
-                    " ui-slider-" + this.orientation +
-                    " ui-widget" +
-                    " ui-widget-content" +
-                    " ui-corner-all");
+                " ui-slider-" + this.orientation +
+                " ui-widget" +
+                " ui-widget-content" +
+                " ui-corner-all");
 
             this._refresh();
             this._setOption("disabled", this.options.disabled);
@@ -103,9 +103,9 @@
             if (options.range) {
                 if (options.range === true) {
                     if (!options.values) {
-                        options.values = [ this._valueMin(), this._valueMin() ];
+                        options.values = [this._valueMin(), this._valueMin()];
                     } else if (options.values.length && options.values.length !== 2) {
-                        options.values = [ options.values[0], options.values[0] ];
+                        options.values = [options.values[0], options.values[0]];
                     } else if ($.isArray(options.values)) {
                         options.values = options.values.slice(0);
                     }
@@ -118,7 +118,7 @@
                     classes = "ui-slider-range" +
                         // note: this isn't the most fittingly semantic framework class for this element,
                         // but worked best visually with a variety of themes
-                        " ui-widget-header ui-corner-all";
+                    " ui-widget-header ui-corner-all";
                 } else {
                     this.range.removeClass("ui-slider-range-min ui-slider-range-max")
                         // Handle range switching from true to min/max
@@ -129,7 +129,7 @@
                 }
 
                 this.range.addClass(classes +
-                    ( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ));
+                ( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ));
             } else {
                 if (this.range) {
                     this.range.remove();
@@ -154,11 +154,11 @@
 
             this.element
                 .removeClass("ui-slider" +
-                    " ui-slider-horizontal" +
-                    " ui-slider-vertical" +
-                    " ui-widget" +
-                    " ui-widget-content" +
-                    " ui-corner-all");
+                " ui-slider-horizontal" +
+                " ui-slider-vertical" +
+                " ui-widget" +
+                " ui-widget-content" +
+                " ui-corner-all");
 
             this._mouseDestroy();
         },
@@ -178,14 +178,14 @@
             };
             this.elementOffset = this.element.offset();
 
-            position = { x: event.pageX, y: event.pageY };
+            position = {x: event.pageX, y: event.pageY};
             normValue = this._normValueFromMouse(position);
             distance = this._valueMax() - this._valueMin() + 1;
             this.handles.each(function (i) {
                 var thisDistance = Math.abs(normValue - that.values(i));
                 if (( distance > thisDistance ) ||
                     ( distance === thisDistance &&
-                        (i === that._lastChangedValue || that.values(i) === o.min ))) {
+                    (i === that._lastChangedValue || that.values(i) === o.min ))) {
                     distance = thisDistance;
                     closestHandle = $(this);
                     index = i;
@@ -206,13 +206,13 @@
 
             offset = closestHandle.offset();
             mouseOverHandle = !$(event.target).parents().addBack().is(".ui-slider-handle");
-            this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
+            this._clickOffset = mouseOverHandle ? {left: 0, top: 0} : {
                 left: event.pageX - offset.left - ( closestHandle.width() / 2 ),
                 top: event.pageY - offset.top -
-                    ( closestHandle.height() / 2 ) -
-                    ( parseInt(closestHandle.css("borderTopWidth"), 10) || 0 ) -
-                    ( parseInt(closestHandle.css("borderBottomWidth"), 10) || 0) +
-                    ( parseInt(closestHandle.css("marginTop"), 10) || 0)
+                ( closestHandle.height() / 2 ) -
+                ( parseInt(closestHandle.css("borderTopWidth"), 10) || 0 ) -
+                ( parseInt(closestHandle.css("borderBottomWidth"), 10) || 0) +
+                ( parseInt(closestHandle.css("marginTop"), 10) || 0)
             };
 
             if (!this.handles.hasClass("ui-state-hover")) {
@@ -227,7 +227,7 @@
         },
 
         _mouseDrag: function (event) {
-            var position = { x: event.pageX, y: event.pageY },
+            var position = {x: event.pageX, y: event.pageY},
                 normValue = this._normValueFromMouse(position);
 
             this._slide(event, this._handleIndex, normValue);
@@ -287,7 +287,7 @@
 
         _start: function (event, index) {
             var uiHash = {
-                handle: this.handles[ index ],
+                handle: this.handles[index],
                 value: this.value()
             };
             if (this.options.values && this.options.values.length) {
@@ -307,16 +307,16 @@
 
                 if (( this.options.values.length === 2 && this.options.range === true ) &&
                     ( ( index === 0 && newVal > otherVal) || ( index === 1 && newVal < otherVal ) )
-                    ) {
+                ) {
                     newVal = otherVal;
                 }
 
                 if (newVal !== this.values(index)) {
                     newValues = this.values();
-                    newValues[ index ] = newVal;
+                    newValues[index] = newVal;
                     // A slide can be canceled by returning false from the slide callback
                     allowed = this._trigger("slide", event, {
-                        handle: this.handles[ index ],
+                        handle: this.handles[index],
                         value: newVal,
                         values: newValues
                     });
@@ -329,7 +329,7 @@
                 if (newVal !== this.value()) {
                     // A slide can be canceled by returning false from the slide callback
                     allowed = this._trigger("slide", event, {
-                        handle: this.handles[ index ],
+                        handle: this.handles[index],
                         value: newVal
                     });
                     if (allowed !== false) {
@@ -341,7 +341,7 @@
 
         _stop: function (event, index) {
             var uiHash = {
-                handle: this.handles[ index ],
+                handle: this.handles[index],
                 value: this.value()
             };
             if (this.options.values && this.options.values.length) {
@@ -355,7 +355,7 @@
         _change: function (event, index) {
             if (!this._keySliding && !this._mouseSliding) {
                 var uiHash = {
-                    handle: this.handles[ index ],
+                    handle: this.handles[index],
                     value: this.value()
                 };
                 if (this.options.values && this.options.values.length) {
@@ -387,18 +387,18 @@
                 i;
 
             if (arguments.length > 1) {
-                this.options.values[ index ] = this._trimAlignValue(newValue);
+                this.options.values[index] = this._trimAlignValue(newValue);
                 this._refreshValue();
                 this._change(null, index);
                 return;
             }
 
             if (arguments.length) {
-                if ($.isArray(arguments[ 0 ])) {
+                if ($.isArray(arguments[0])) {
                     vals = this.options.values;
-                    newValues = arguments[ 0 ];
+                    newValues = arguments[0];
                     for (i = 0; i < vals.length; i += 1) {
-                        vals[ i ] = this._trimAlignValue(newValues[ i ]);
+                        vals[i] = this._trimAlignValue(newValues[i]);
                         this._change(null, i);
                     }
                     this._refreshValue();
@@ -488,7 +488,7 @@
                 i;
 
             if (arguments.length) {
-                val = this.options.values[ index ];
+                val = this.options.values[index];
                 val = this._trimAlignValue(val);
 
                 return val;
@@ -497,7 +497,7 @@
                 // this copy gets trimmed by min and max and then returned
                 vals = this.options.values.slice();
                 for (i = 0; i < vals.length; i += 1) {
-                    vals[ i ] = this._trimAlignValue(vals[ i ]);
+                    vals[i] = this._trimAlignValue(vals[i]);
                 }
 
                 return vals;
@@ -546,22 +546,28 @@
             if (this.options.values && this.options.values.length) {
                 this.handles.each(function (i) {
                     valPercent = ( that.values(i) - that._valueMin() ) / ( that._valueMax() - that._valueMin() ) * 100;
-                    _set[ that.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-                    $(this).stop(1, 1)[ animate ? "animate" : "css" ](_set, o.animate);
+                    _set[that.orientation === "horizontal" ? "left" : "bottom"] = valPercent + "%";
+                    $(this).stop(1, 1)[animate ? "animate" : "css"](_set, o.animate);
                     if (that.options.range === true) {
                         if (that.orientation === "horizontal") {
                             if (i === 0) {
-                                that.range.stop(1, 1)[ animate ? "animate" : "css" ]({ left: valPercent + "%" }, o.animate);
+                                that.range.stop(1, 1)[animate ? "animate" : "css"]({left: valPercent + "%"}, o.animate);
                             }
                             if (i === 1) {
-                                that.range[ animate ? "animate" : "css" ]({ width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate });
+                                that.range[animate ? "animate" : "css"]({width: ( valPercent - lastValPercent ) + "%"}, {
+                                    queue: false,
+                                    duration: o.animate
+                                });
                             }
                         } else {
                             if (i === 0) {
-                                that.range.stop(1, 1)[ animate ? "animate" : "css" ]({ bottom: ( valPercent ) + "%" }, o.animate);
+                                that.range.stop(1, 1)[animate ? "animate" : "css"]({bottom: ( valPercent ) + "%"}, o.animate);
                             }
                             if (i === 1) {
-                                that.range[ animate ? "animate" : "css" ]({ height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate });
+                                that.range[animate ? "animate" : "css"]({height: ( valPercent - lastValPercent ) + "%"}, {
+                                    queue: false,
+                                    duration: o.animate
+                                });
                             }
                         }
                     }
@@ -572,22 +578,28 @@
                 valueMin = this._valueMin();
                 valueMax = this._valueMax();
                 valPercent = ( valueMax !== valueMin ) ?
-                    ( value - valueMin ) / ( valueMax - valueMin ) * 100 :
+                ( value - valueMin ) / ( valueMax - valueMin ) * 100 :
                     0;
-                _set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-                this.handle.stop(1, 1)[ animate ? "animate" : "css" ](_set, o.animate);
+                _set[this.orientation === "horizontal" ? "left" : "bottom"] = valPercent + "%";
+                this.handle.stop(1, 1)[animate ? "animate" : "css"](_set, o.animate);
 
                 if (oRange === "min" && this.orientation === "horizontal") {
-                    this.range.stop(1, 1)[ animate ? "animate" : "css" ]({ width: valPercent + "%" }, o.animate);
+                    this.range.stop(1, 1)[animate ? "animate" : "css"]({width: valPercent + "%"}, o.animate);
                 }
                 if (oRange === "max" && this.orientation === "horizontal") {
-                    this.range[ animate ? "animate" : "css" ]({ width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate });
+                    this.range[animate ? "animate" : "css"]({width: ( 100 - valPercent ) + "%"}, {
+                        queue: false,
+                        duration: o.animate
+                    });
                 }
                 if (oRange === "min" && this.orientation === "vertical") {
-                    this.range.stop(1, 1)[ animate ? "animate" : "css" ]({ height: valPercent + "%" }, o.animate);
+                    this.range.stop(1, 1)[animate ? "animate" : "css"]({height: valPercent + "%"}, o.animate);
                 }
                 if (oRange === "max" && this.orientation === "vertical") {
-                    this.range[ animate ? "animate" : "css" ]({ height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate });
+                    this.range[animate ? "animate" : "css"]({height: ( 100 - valPercent ) + "%"}, {
+                        queue: false,
+                        duration: o.animate
+                    });
                 }
             }
         },

@@ -1,9 +1,9 @@
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"cartesian";
+    "cartesian";
 
 function d3_geo_resample(project) {
     var δ2 = .5, // precision, px²

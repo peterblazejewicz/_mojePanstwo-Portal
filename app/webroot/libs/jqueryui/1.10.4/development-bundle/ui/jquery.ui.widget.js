@@ -29,9 +29,9 @@
         // proxiedPrototype allows the provided prototype to remain unmodified
         // so that it can be used as a mixin for multiple widgets (#8876)
             proxiedPrototype = {},
-            namespace = name.split(".")[ 0 ];
+            namespace = name.split(".")[0];
 
-        name = name.split(".")[ 1 ];
+        name = name.split(".")[1];
         fullName = namespace + "-" + name;
 
         if (!prototype) {
@@ -40,13 +40,13 @@
         }
 
         // create selector for plugin
-        $.expr[ ":" ][ fullName.toLowerCase() ] = function (elem) {
+        $.expr[":"][fullName.toLowerCase()] = function (elem) {
             return !!$.data(elem, fullName);
         };
 
-        $[ namespace ] = $[ namespace ] || {};
-        existingConstructor = $[ namespace ][ name ];
-        constructor = $[ namespace ][ name ] = function (options, element) {
+        $[namespace] = $[namespace] || {};
+        existingConstructor = $[namespace][name];
+        constructor = $[namespace][name] = function (options, element) {
             // allow instantiation without "new" keyword
             if (!this._createWidget) {
                 return new constructor(options, element);
@@ -76,15 +76,15 @@
         basePrototype.options = $.widget.extend({}, basePrototype.options);
         $.each(prototype, function (prop, value) {
             if (!$.isFunction(value)) {
-                proxiedPrototype[ prop ] = value;
+                proxiedPrototype[prop] = value;
                 return;
             }
-            proxiedPrototype[ prop ] = (function () {
+            proxiedPrototype[prop] = (function () {
                 var _super = function () {
-                        return base.prototype[ prop ].apply(this, arguments);
+                        return base.prototype[prop].apply(this, arguments);
                     },
                     _superApply = function (args) {
-                        return base.prototype[ prop ].apply(this, args);
+                        return base.prototype[prop].apply(this, args);
                     };
                 return function () {
                     var __super = this._super,
@@ -144,18 +144,18 @@
             key,
             value;
         for (; inputIndex < inputLength; inputIndex++) {
-            for (key in input[ inputIndex ]) {
-                value = input[ inputIndex ][ key ];
-                if (input[ inputIndex ].hasOwnProperty(key) && value !== undefined) {
+            for (key in input[inputIndex]) {
+                value = input[inputIndex][key];
+                if (input[inputIndex].hasOwnProperty(key) && value !== undefined) {
                     // Clone objects
                     if ($.isPlainObject(value)) {
-                        target[ key ] = $.isPlainObject(target[ key ]) ?
-                            $.widget.extend({}, target[ key ], value) :
+                        target[key] = $.isPlainObject(target[key]) ?
+                            $.widget.extend({}, target[key], value) :
                             // Don't extend strings, arrays, etc. with objects
                             $.widget.extend({}, value);
                         // Copy everything else by reference
                     } else {
-                        target[ key ] = value;
+                        target[key] = value;
                     }
                 }
             }
@@ -165,14 +165,14 @@
 
     $.widget.bridge = function (name, object) {
         var fullName = object.prototype.widgetFullName || name;
-        $.fn[ name ] = function (options) {
+        $.fn[name] = function (options) {
             var isMethodCall = typeof options === "string",
                 args = slice.call(arguments, 1),
                 returnValue = this;
 
             // allow multiple hashes to be passed on init
             options = !isMethodCall && args.length ?
-                $.widget.extend.apply(null, [ options ].concat(args)) :
+                $.widget.extend.apply(null, [options].concat(args)) :
                 options;
 
             if (isMethodCall) {
@@ -181,12 +181,12 @@
                         instance = $.data(this, fullName);
                     if (!instance) {
                         return $.error("cannot call methods on " + name + " prior to initialization; " +
-                            "attempted to call method '" + options + "'");
+                        "attempted to call method '" + options + "'");
                     }
                     if (!$.isFunction(instance[options]) || options.charAt(0) === "_") {
                         return $.error("no such method '" + options + "' for " + name + " widget instance");
                     }
-                    methodValue = instance[ options ].apply(instance, args);
+                    methodValue = instance[options].apply(instance, args);
                     if (methodValue !== instance && methodValue !== undefined) {
                         returnValue = methodValue && methodValue.jquery ?
                             returnValue.pushStack(methodValue.get()) :
@@ -224,7 +224,7 @@
             create: null
         },
         _createWidget: function (options, element) {
-            element = $(element || this.defaultElement || this)[ 0 ];
+            element = $(element || this.defaultElement || this)[0];
             this.element = $(element);
             this.uuid = uuid++;
             this.eventNamespace = "." + this.widgetName + this.uuid;
@@ -250,7 +250,7 @@
                     // element within the document
                     element.ownerDocument :
                     // element is window or document
-                    element.document || element);
+                element.document || element);
                 this.window = $(this.document[0].defaultView || this.document[0].parentWindow);
             }
 
@@ -280,8 +280,8 @@
                 .unbind(this.eventNamespace)
                 .removeAttr("aria-disabled")
                 .removeClass(
-                    this.widgetFullName + "-disabled " +
-                        "ui-state-disabled");
+                this.widgetFullName + "-disabled " +
+                "ui-state-disabled");
 
             // clean up events and states
             this.bindings.unbind(this.eventNamespace);
@@ -311,21 +311,21 @@
                 parts = key.split(".");
                 key = parts.shift();
                 if (parts.length) {
-                    curOption = options[ key ] = $.widget.extend({}, this.options[ key ]);
+                    curOption = options[key] = $.widget.extend({}, this.options[key]);
                     for (i = 0; i < parts.length - 1; i++) {
-                        curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-                        curOption = curOption[ parts[ i ] ];
+                        curOption[parts[i]] = curOption[parts[i]] || {};
+                        curOption = curOption[parts[i]];
                     }
                     key = parts.pop();
                     if (arguments.length === 1) {
-                        return curOption[ key ] === undefined ? null : curOption[ key ];
+                        return curOption[key] === undefined ? null : curOption[key];
                     }
-                    curOption[ key ] = value;
+                    curOption[key] = value;
                 } else {
                     if (arguments.length === 1) {
-                        return this.options[ key ] === undefined ? null : this.options[ key ];
+                        return this.options[key] === undefined ? null : this.options[key];
                     }
-                    options[ key ] = value;
+                    options[key] = value;
                 }
             }
 
@@ -337,13 +337,13 @@
             var key;
 
             for (key in options) {
-                this._setOption(key, options[ key ]);
+                this._setOption(key, options[key]);
             }
 
             return this;
         },
         _setOption: function (key, value) {
-            this.options[ key ] = value;
+            this.options[key] = value;
 
             if (key === "disabled") {
                 this.widget()
@@ -392,10 +392,10 @@
                     // - disabled class as method for disabling individual parts
                     if (!suppressDisabledCheck &&
                         ( instance.options.disabled === true ||
-                            $(this).hasClass("ui-state-disabled") )) {
+                        $(this).hasClass("ui-state-disabled") )) {
                         return;
                     }
-                    return ( typeof handler === "string" ? instance[ handler ] : handler )
+                    return ( typeof handler === "string" ? instance[handler] : handler )
                         .apply(instance, arguments);
                 }
 
@@ -423,7 +423,7 @@
 
         _delay: function (handler, delay) {
             function handlerProxy() {
-                return ( typeof handler === "string" ? instance[ handler ] : handler )
+                return ( typeof handler === "string" ? instance[handler] : handler )
                     .apply(instance, arguments);
             }
 
@@ -457,63 +457,63 @@
 
         _trigger: function (type, event, data) {
             var prop, orig,
-                callback = this.options[ type ];
+                callback = this.options[type];
 
             data = data || {};
             event = $.Event(event);
             event.type = ( type === this.widgetEventPrefix ?
                 type :
-                this.widgetEventPrefix + type ).toLowerCase();
+            this.widgetEventPrefix + type ).toLowerCase();
             // the original event may come from any element
             // so we need to reset the target on the new event
-            event.target = this.element[ 0 ];
+            event.target = this.element[0];
 
             // copy original event properties over to the new event
             orig = event.originalEvent;
             if (orig) {
                 for (prop in orig) {
                     if (!( prop in event )) {
-                        event[ prop ] = orig[ prop ];
+                        event[prop] = orig[prop];
                     }
                 }
             }
 
             this.element.trigger(event, data);
             return !( $.isFunction(callback) &&
-                callback.apply(this.element[0], [ event ].concat(data)) === false ||
-                event.isDefaultPrevented() );
+            callback.apply(this.element[0], [event].concat(data)) === false ||
+            event.isDefaultPrevented() );
         }
     };
 
-    $.each({ show: "fadeIn", hide: "fadeOut" }, function (method, defaultEffect) {
-        $.Widget.prototype[ "_" + method ] = function (element, options, callback) {
+    $.each({show: "fadeIn", hide: "fadeOut"}, function (method, defaultEffect) {
+        $.Widget.prototype["_" + method] = function (element, options, callback) {
             if (typeof options === "string") {
-                options = { effect: options };
+                options = {effect: options};
             }
             var hasOptions,
                 effectName = !options ?
                     method :
                     options === true || typeof options === "number" ?
                         defaultEffect :
-                        options.effect || defaultEffect;
+                    options.effect || defaultEffect;
             options = options || {};
             if (typeof options === "number") {
-                options = { duration: options };
+                options = {duration: options};
             }
             hasOptions = !$.isEmptyObject(options);
             options.complete = callback;
             if (options.delay) {
                 element.delay(options.delay);
             }
-            if (hasOptions && $.effects && $.effects.effect[ effectName ]) {
-                element[ method ](options);
-            } else if (effectName !== method && element[ effectName ]) {
-                element[ effectName ](options.duration, options.easing, callback);
+            if (hasOptions && $.effects && $.effects.effect[effectName]) {
+                element[method](options);
+            } else if (effectName !== method && element[effectName]) {
+                element[effectName](options.duration, options.easing, callback);
             } else {
                 element.queue(function (next) {
-                    $(this)[ method ]();
+                    $(this)[method]();
                     if (callback) {
-                        callback.call(element[ 0 ]);
+                        callback.call(element[0]);
                     }
                     next();
                 });

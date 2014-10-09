@@ -16,10 +16,10 @@ module.exports = function (suite, mapping) {
                 assert.inDelta([actualPoint, actualLocation], [point, location], 1e-5);
             } catch (e) {
                 e.message = "project [["
-                    + location.map(format).join(", ") + "], [" + actualPoint.map(format).join(", ")
-                    + "]]\n         invert [["
-                    + actualLocation.map(format).join(", ") + "], [" + point.map(format).join(", ")
-                    + "]]";
+                + location.map(format).join(", ") + "], [" + actualPoint.map(format).join(", ")
+                + "]]\n         invert [["
+                + actualLocation.map(format).join(", ") + "], [" + point.map(format).join(", ")
+                + "]]";
                 throw e;
             }
         };

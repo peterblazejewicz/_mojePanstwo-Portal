@@ -128,7 +128,10 @@ var HighchartsAdapter = (function () {
             var head = $$('head')[0]; // Returns an array, so pick the first element.
             if (head) {
                 // Append a new 'script' element, set its type and src attributes, add a 'load' handler that calls the callback
-                head.appendChild(new Element('script', { type: 'text/javascript', src: scriptLocation}).observe('load', callback));
+                head.appendChild(new Element('script', {
+                    type: 'text/javascript',
+                    src: scriptLocation
+                }).observe('load', callback));
             }
         },
 
@@ -141,7 +144,7 @@ var HighchartsAdapter = (function () {
                 MouseEvents = /^(?:click|mouse(?:down|up|over|move|out))$/;
             return (HTMLEvents.test(eventName) || MouseEvents.test(eventName)) ?
                 eventName :
-                'h:' + eventName;
+            'h:' + eventName;
         },
 
         // el needs an event to be attached. el is not necessarily a dom element

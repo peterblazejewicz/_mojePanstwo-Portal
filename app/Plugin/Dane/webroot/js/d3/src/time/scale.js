@@ -1,35 +1,35 @@
 import
-"../arrays/bisect";
+    "../arrays/bisect";
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../core/true";
+    "../core/true";
 import
-"../scale/linear";
+    "../scale/linear";
 import
-"../scale/nice";
+    "../scale/nice";
 import
-"format";
+    "format";
 import
-"day";
+    "day";
 import
-"hour";
+    "hour";
 import
-"minute";
+    "minute";
 import
-"month";
+    "month";
 import
-"second";
+    "second";
 import
-"time";
+    "time";
 import
-"week";
+    "week";
 import
-"year";
+    "year";
 
 function d3_time_scale(linear, methods, format) {
 

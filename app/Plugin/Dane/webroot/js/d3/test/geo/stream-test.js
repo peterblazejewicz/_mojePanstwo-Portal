@@ -17,25 +17,33 @@ suite.addBatch({
         "ignores unknown types": function (stream) {
             stream({type: "Unknown"}, {});
             stream({type: "Feature", geometry: {type: "Unknown"}}, {});
-            stream({type: "FeatureCollection", features: [
-                {type: "Feature", geometry: {type: "Unknown"}}
-            ]}, {});
-            stream({type: "GeometryCollection", geometries: [
-                {type: "Unknown"}
-            ]}, {});
+            stream({
+                type: "FeatureCollection", features: [
+                    {type: "Feature", geometry: {type: "Unknown"}}
+                ]
+            }, {});
+            stream({
+                type: "GeometryCollection", geometries: [
+                    {type: "Unknown"}
+                ]
+            }, {});
         },
         "ignores null geometries": function (stream) {
             stream(null, {});
             stream({type: "Feature", geometry: null}, {});
-            stream({type: "FeatureCollection", features: [
-                {type: "Feature", geometry: null}
-            ]}, {});
+            stream({
+                type: "FeatureCollection", features: [
+                    {type: "Feature", geometry: null}
+                ]
+            }, {});
             stream({type: "GeometryCollection", geometries: [null]}, {});
         },
         "returns void": function (stream) {
-            assert.isUndefined(stream({type: "Point", coordinates: [1, 2]}, {point: function () {
-                return true;
-            }}));
+            assert.isUndefined(stream({type: "Point", coordinates: [1, 2]}, {
+                point: function () {
+                    return true;
+                }
+            }));
         },
         "allows empty multi-geometries": function (stream) {
             stream({type: "MultiPoint", coordinates: []}, {});
@@ -67,10 +75,12 @@ suite.addBatch({
         },
         "MultiPoint ↦ point*": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "MultiPoint", coordinates: [
-                [1, 2, 3],
-                [4, 5, 6]
-            ]}, {
+            stream({
+                type: "MultiPoint", coordinates: [
+                    [1, 2, 3],
+                    [4, 5, 6]
+                ]
+            }, {
                 point: function (x, y, z) {
                     assert.equal(arguments.length, 3);
                     assert.equal(x, ++coordinates);
@@ -83,10 +93,12 @@ suite.addBatch({
         },
         "LineString ↦ lineStart, point{2,}, lineEnd": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "LineString", coordinates: [
-                [1, 2, 3],
-                [4, 5, 6]
-            ]}, {
+            stream({
+                type: "LineString", coordinates: [
+                    [1, 2, 3],
+                    [4, 5, 6]
+                ]
+            }, {
                 lineStart: function () {
                     assert.equal(arguments.length, 0);
                     assert.equal(++calls, 1);
@@ -107,16 +119,18 @@ suite.addBatch({
         },
         "MultiLineString ↦ (lineStart, point{2,}, lineEnd)*": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "MultiLineString", coordinates: [
-                [
-                    [1, 2, 3],
-                    [4, 5, 6]
-                ],
-                [
-                    [7, 8, 9],
-                    [10, 11, 12]
+            stream({
+                type: "MultiLineString", coordinates: [
+                    [
+                        [1, 2, 3],
+                        [4, 5, 6]
+                    ],
+                    [
+                        [7, 8, 9],
+                        [10, 11, 12]
+                    ]
                 ]
-            ]}, {
+            }, {
                 lineStart: function () {
                     assert.equal(arguments.length, 0);
                     assert.isTrue(++calls === 1 || calls === 5);
@@ -137,18 +151,20 @@ suite.addBatch({
         },
         "Polygon ↦ polygonStart, lineStart, point{2,}, lineEnd, polygonEnd": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "Polygon", coordinates: [
-                [
-                    [1, 2, 3],
-                    [4, 5, 6],
-                    [1, 2, 3]
-                ],
-                [
-                    [7, 8, 9],
-                    [10, 11, 12],
-                    [7, 8, 9]
+            stream({
+                type: "Polygon", coordinates: [
+                    [
+                        [1, 2, 3],
+                        [4, 5, 6],
+                        [1, 2, 3]
+                    ],
+                    [
+                        [7, 8, 9],
+                        [10, 11, 12],
+                        [7, 8, 9]
+                    ]
                 ]
-            ]}, {
+            }, {
                 polygonStart: function () {
                     assert.equal(arguments.length, 0);
                     assert.isTrue(++calls === 1);
@@ -177,22 +193,24 @@ suite.addBatch({
         },
         "MultiPolygon ↦ (polygonStart, lineStart, point{2,}, lineEnd, polygonEnd)*": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "MultiPolygon", coordinates: [
-                [
+            stream({
+                type: "MultiPolygon", coordinates: [
                     [
-                        [1, 2, 3],
-                        [4, 5, 6],
-                        [1, 2, 3]
-                    ]
-                ],
-                [
+                        [
+                            [1, 2, 3],
+                            [4, 5, 6],
+                            [1, 2, 3]
+                        ]
+                    ],
                     [
-                        [7, 8, 9],
-                        [10, 11, 12],
-                        [7, 8, 9]
+                        [
+                            [7, 8, 9],
+                            [10, 11, 12],
+                            [7, 8, 9]
+                        ]
                     ]
                 ]
-            ]}, {
+            }, {
                 polygonStart: function () {
                     assert.equal(arguments.length, 0);
                     assert.isTrue(++calls === 1 || calls === 7);
@@ -234,9 +252,11 @@ suite.addBatch({
         },
         "FeatureCollection ↦ .*": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "FeatureCollection", features: [
-                {type: "Feature", geometry: {type: "Point", coordinates: [1, 2, 3]}}
-            ]}, {
+            stream({
+                type: "FeatureCollection", features: [
+                    {type: "Feature", geometry: {type: "Point", coordinates: [1, 2, 3]}}
+                ]
+            }, {
                 point: function (x, y, z) {
                     assert.equal(arguments.length, 3);
                     assert.equal(x, ++coordinates);
@@ -249,9 +269,11 @@ suite.addBatch({
         },
         "GeometryCollection ↦ .*": function (stream) {
             var calls = 0, coordinates = 0;
-            stream({type: "GeometryCollection", geometries: [
-                {type: "Point", coordinates: [1, 2, 3]}
-            ]}, {
+            stream({
+                type: "GeometryCollection", geometries: [
+                    {type: "Point", coordinates: [1, 2, 3]}
+                ]
+            }, {
                 point: function (x, y, z) {
                     assert.equal(arguments.length, 3);
                     assert.equal(x, ++coordinates);

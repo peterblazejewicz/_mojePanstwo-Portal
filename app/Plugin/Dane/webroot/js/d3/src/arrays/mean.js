@@ -1,5 +1,5 @@
 import
-"../math/number";
+    "../math/number";
 
 d3.mean = function (array, f) {
     var n = array.length,

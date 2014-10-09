@@ -1,5 +1,5 @@
 import
-"../color/hcl";
+    "../color/hcl";
 
 d3.interpolateHcl = d3_interpolateHcl;
 

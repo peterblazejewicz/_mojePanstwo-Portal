@@ -13,7 +13,7 @@ var highchartInit = function () {
             charColor = (jQuery(this).parents('.objectRender').hasClass('bg') ? "#FCFCFC" : "#FFFFFF");
 
         for (var i = 0; i < data.length; i++) {
-            var d = data[ i ];
+            var d = data[i];
             series_data.push({
                 name: d['label'],
                 y: Number(d['count']),

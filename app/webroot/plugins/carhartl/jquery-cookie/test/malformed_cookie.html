@@ -6,9 +6,11 @@
     <script src="../jquery.cookie.js"></script>
     <script>
         try {
-            Object.defineProperty(document, "cookie", { get: function () {
-                return "first=one; ; second=two";
-            } });
+            Object.defineProperty(document, "cookie", {
+                get: function () {
+                    return "first=one; ; second=two";
+                }
+            });
             window.testValue = $.cookie("second");
             window.ok = true;
         } catch (er) {

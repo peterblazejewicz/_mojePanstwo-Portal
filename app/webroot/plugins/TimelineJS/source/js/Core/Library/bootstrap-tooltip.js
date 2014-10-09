@@ -32,8 +32,7 @@
     Tooltip.prototype = {
 
         constructor: Tooltip, init: function (type, element, options) {
-            var eventIn
-                , eventOut
+            var eventIn, eventOut
 
             this.type = type
             this.$element = $(element)
@@ -48,7 +47,7 @@
             }
 
             this.options.selector ?
-                (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+                (this._options = $.extend({}, this.options, {trigger: 'manual', selector: ''})) :
                 this.fixTitle()
         }, getOptions: function (options) {
             options = $.extend({}, $.fn[this.type].defaults, options, this.$element.data())
@@ -87,13 +86,7 @@
                 }, self.options.delay.hide)
             }
         }, show: function () {
-            var $tip
-                , inside
-                , pos
-                , actualWidth
-                , actualHeight
-                , placement
-                , tp
+            var $tip, inside, pos, actualWidth, actualHeight, placement, tp
 
             if (this.hasContent() && this.enabled) {
                 $tip = this.tip()
@@ -111,7 +104,7 @@
 
                 $tip
                     .remove()
-                    .css({ top: 0, left: 0, display: 'block' })
+                    .css({top: 0, left: 0, display: 'block'})
                     .appendTo(inside ? this.$element : document.body)
 
                 pos = this.getPosition(inside)
@@ -144,8 +137,7 @@
             $tip.find('.timeline-tooltip-inner').html(this.getTitle())
             $tip.removeClass('fade in top bottom left right')
         }, hide: function () {
-            var that = this
-                , $tip = this.tip()
+            var that = this, $tip = this.tip()
 
             $tip.removeClass('in')
 
@@ -175,12 +167,10 @@
                 width: this.$element[0].offsetWidth, height: this.$element[0].offsetHeight
             })
         }, getTitle: function () {
-            var title
-                , $e = this.$element
-                , o = this.options
+            var title, $e = this.$element, o = this.options
 
             title = $e.attr('data-original-title')
-                || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
+            || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
 
             title = title.toString().replace(/(^\s*|\s*$)/, "")
 
@@ -211,9 +201,7 @@
 
     $.fn.tooltip = function (option) {
         return this.each(function () {
-            var $this = $(this)
-                , data = $this.data('tooltip')
-                , options = typeof option == 'object' && option
+            var $this = $(this), data = $this.data('tooltip'), options = typeof option == 'object' && option
             if (!data) $this.data('tooltip', (data = new Tooltip(this, options)))
             if (typeof option == 'string') data[option]()
         })
@@ -222,7 +210,13 @@
     $.fn.tooltip.Constructor = Tooltip
 
     $.fn.tooltip.defaults = {
-        animation: true, delay: 0, selector: false, placement: 'top', trigger: 'hover', title: '', template: '<div class="timeline-tooltip"><div class="timeline-tooltip-arrow"></div><div class="timeline-tooltip-inner"></div></div>'
+        animation: true,
+        delay: 0,
+        selector: false,
+        placement: 'top',
+        trigger: 'hover',
+        title: '',
+        template: '<div class="timeline-tooltip"><div class="timeline-tooltip-arrow"></div><div class="timeline-tooltip-inner"></div></div>'
     }
 
 }(window.jQuery);

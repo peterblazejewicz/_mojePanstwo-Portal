@@ -1,7 +1,7 @@
 import
-"../core/ns";
+    "../core/ns";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.attr = function (name, value) {
     if (arguments.length < 2) {

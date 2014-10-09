@@ -18,6 +18,7 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '年'};
+        yearSuffix: '年'
+    };
     $.datepicker.setDefaults($.datepicker.regional['zh-HK']);
 });

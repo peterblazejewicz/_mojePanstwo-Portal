@@ -1,19 +1,17 @@
 <?php
 
-App::uses('DataobjectsController', 'Dane.Controller');
+App::uses( 'DataobjectsController', 'Dane.Controller' );
 
-class SaOrzeczeniaController extends DataobjectsController
-{
-    public $menu = array(
-        array(
-            'id' => 'view',
-            'label' => 'LC_DANE_ORZECZENIE',
-        ),
-    );
+class SaOrzeczeniaController extends DataobjectsController {
+	public $menu = array(
+		array(
+			'id'    => 'view',
+			'label' => 'LC_DANE_ORZECZENIE',
+		),
+	);
 
-    public function view()
-    {
-        parent::view();
-        $this->set('html', $this->object->loadLayer('html'));
-    }
+	public function view() {
+		parent::view();
+		$this->set( 'html', $this->object->loadLayer( 'html' ) );
+	}
 } 

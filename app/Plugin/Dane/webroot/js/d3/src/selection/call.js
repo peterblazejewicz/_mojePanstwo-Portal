@@ -1,7 +1,7 @@
 import
-"../core/array";
+    "../core/array";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.call = function (callback) {
     var args = d3_array(arguments);

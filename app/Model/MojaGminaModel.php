@@ -1,16 +1,14 @@
 <?php
 
-class MojaGminaModel extends AppModel
-{
+class MojaGminaModel extends AppModel {
 
-    public $useDbConfig = 'dummy';
-    public $useTable = false;
+	public $useDbConfig = 'dummy';
+	public $useTable = false;
 
-    public function search($q)
-    {
+	public function search( $q ) {
 
-        debug('MojaGminaModel:search');
+		debug( 'MojaGminaModel:search' );
 
-    }
+	}
 
 }

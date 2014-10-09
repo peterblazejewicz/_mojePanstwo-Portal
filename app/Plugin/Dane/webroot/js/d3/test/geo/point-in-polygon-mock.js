@@ -1,7 +1,7 @@
 import
-"../../src/geo/point-in-polygon";
+    "../../src/geo/point-in-polygon";
 import
-"../../src/math/trigonometry";
+    "../../src/math/trigonometry";
 
 d3.geo.pointInPolygon = function (polygon) {
     polygon = polygon.map(function (ring) {

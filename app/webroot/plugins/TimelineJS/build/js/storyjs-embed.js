@@ -127,23 +127,72 @@ function createStoryJS(e, t) {
         o && VMM.bindEvent(global, onHeadline, "HEADLINE")
     }
 
-    var n, r, i, s, o = !1, u = "2.24", a = "1.7.1", f = "", l = {timeout: "", checks: 0, finished: !1, js: !1, css: !1, jquery: !1, has_jquery: !1, language: !1, font: {css: !1, js: !1}}, c = {base: embed_path, css: embed_path + "css/", js: embed_path + "js/", locale: embed_path + "js/locale/", jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js", font: {google: !1, css: embed_path + "css/themes/font/", js: "//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"}}, h = {version: u, debug: !1, type: "timeline", id: "storyjs", embed_id: "timeline-embed", embed: !0, width: "100%", height: "100%", source: "https://docs.google.com/spreadsheet/pub?key=0Agl_Dv6iEbDadFYzRjJPUGktY0NkWXFUWkVIZDNGRHc&output=html", lang: "en", font: "default", css: c.css + "timeline.css?" + u, js: "", api_keys: {google: "", flickr: "", twitter: ""}, gmap_key: ""}, p = [
+    var n, r, i, s, o = !1, u = "2.24", a = "1.7.1", f = "", l = {
+        timeout: "",
+        checks: 0,
+        finished: !1,
+        js: !1,
+        css: !1,
+        jquery: !1,
+        has_jquery: !1,
+        language: !1,
+        font: {css: !1, js: !1}
+    }, c = {
+        base: embed_path,
+        css: embed_path + "css/",
+        js: embed_path + "js/",
+        locale: embed_path + "js/locale/",
+        jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js",
+        font: {
+            google: !1,
+            css: embed_path + "css/themes/font/",
+            js: "//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"
+        }
+    }, h = {
+        version: u,
+        debug: !1,
+        type: "timeline",
+        id: "storyjs",
+        embed_id: "timeline-embed",
+        embed: !0,
+        width: "100%",
+        height: "100%",
+        source: "https://docs.google.com/spreadsheet/pub?key=0Agl_Dv6iEbDadFYzRjJPUGktY0NkWXFUWkVIZDNGRHc&output=html",
+        lang: "en",
+        font: "default",
+        css: c.css + "timeline.css?" + u,
+        js: "",
+        api_keys: {google: "", flickr: "", twitter: ""},
+        gmap_key: ""
+    }, p = [
         {name: "Merriweather-NewsCycle", google: ["News+Cycle:400,700:latin", "Merriweather:400,700,900:latin"]},
         {name: "NewsCycle-Merriweather", google: ["News+Cycle:400,700:latin", "Merriweather:300,400,700:latin"]},
         {name: "PoiretOne-Molengo", google: ["Poiret+One::latin", "Molengo::latin"]},
         {name: "Arvo-PTSans", google: ["Arvo:400,700,400italic:latin", "PT+Sans:400,700,400italic:latin"]},
         {name: "PTSerif-PTSans", google: ["PT+Sans:400,700,400italic:latin", "PT+Serif:400,700,400italic:latin"]},
-        {name: "PT", google: ["PT+Sans+Narrow:400,700:latin", "PT+Sans:400,700,400italic:latin", "PT+Serif:400,700,400italic:latin"]},
+        {
+            name: "PT",
+            google: ["PT+Sans+Narrow:400,700:latin", "PT+Sans:400,700,400italic:latin", "PT+Serif:400,700,400italic:latin"]
+        },
         {name: "DroidSerif-DroidSans", google: ["Droid+Sans:400,700:latin", "Droid+Serif:400,700,400italic:latin"]},
         {name: "Lekton-Molengo", google: ["Lekton:400,700,400italic:latin", "Molengo::latin"]},
         {name: "NixieOne-Ledger", google: ["Nixie+One::latin", "Ledger::latin"]},
         {name: "AbrilFatface-Average", google: ["Average::latin", "Abril+Fatface::latin"]},
-        {name: "PlayfairDisplay-Muli", google: ["Playfair+Display:400,400italic:latin", "Muli:300,400,300italic,400italic:latin"]},
+        {
+            name: "PlayfairDisplay-Muli",
+            google: ["Playfair+Display:400,400italic:latin", "Muli:300,400,300italic,400italic:latin"]
+        },
         {name: "Rancho-Gudea", google: ["Rancho::latin", "Gudea:400,700,400italic:latin"]},
         {name: "Bevan-PotanoSans", google: ["Bevan::latin", "Pontano+Sans::latin"]},
-        {name: "BreeSerif-OpenSans", google: ["Bree+Serif::latin", "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800:latin"]},
+        {
+            name: "BreeSerif-OpenSans",
+            google: ["Bree+Serif::latin", "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800:latin"]
+        },
         {name: "SansitaOne-Kameron", google: ["Sansita+One::latin", "Kameron:400,700:latin"]},
-        {name: "Lora-Istok", google: ["Lora:400,700,400italic,700italic:latin", "Istok+Web:400,700,400italic,700italic:latin"]},
+        {
+            name: "Lora-Istok",
+            google: ["Lora:400,700,400italic,700italic:latin", "Istok+Web:400,700,400italic,700italic:latin"]
+        },
         {name: "Pacifico-Arimo", google: ["Pacifico::latin", "Arimo:400,700,400italic,700italic:latin"]}
     ];
     if (typeof e == "object")for (s in e)Object.prototype.hasOwnProperty.call(e, s) && (h[s] = e[s]);
@@ -235,7 +284,17 @@ LazyLoad = function (e) {
         t || f();
         if (o) {
             o = typeof o == "string" ? [o] : o.concat();
-            if (m || t.async || t.gecko || t.opera)s[i].push({urls: o, callback: l, obj: p, context: d}); else for (y = 0, b = o.length; y < b; ++y)s[i].push({urls: [o[y]], callback: y === b - 1 ? l : null, obj: p, context: d})
+            if (m || t.async || t.gecko || t.opera)s[i].push({
+                urls: o,
+                callback: l,
+                obj: p,
+                context: d
+            }); else for (y = 0, b = o.length; y < b; ++y)s[i].push({
+                urls: [o[y]],
+                callback: y === b - 1 ? l : null,
+                obj: p,
+                context: d
+            })
         }
         if (r[i] || !(E = r[i] = s[i].shift()))return;
         n || (n = e.head || e.getElementsByTagName("head")[0]);
@@ -293,27 +352,31 @@ LazyLoad = function (e) {
     }
 
     var t, n, r = {}, i = 0, s = {css: [], js: []}, o = e.styleSheets;
-    return{css: function (e, t, n, r) {
-        l("css", e, t, n, r)
-    }, js: function (e, t, n, r) {
-        l("js", e, t, n, r)
-    }}
+    return {
+        css: function (e, t, n, r) {
+            l("css", e, t, n, r)
+        }, js: function (e, t, n, r) {
+            l("js", e, t, n, r)
+        }
+    }
 }(this.document);
 LoadLib = function (e) {
     function n(e) {
         var n = 0, r = !1;
         for (n = 0; n < t.length; n++)t[n] == e && (r = !0);
-        if (r)return!0;
+        if (r)return !0;
         t.push(e);
-        return!1
+        return !1
     }
 
     var t = [];
-    return{css: function (e, t, r, i) {
-        n(e) || LazyLoad.css(e, t, r, i)
-    }, js: function (e, t, r, i) {
-        n(e) || LazyLoad.js(e, t, r, i)
-    }}
+    return {
+        css: function (e, t, r, i) {
+            n(e) || LazyLoad.css(e, t, r, i)
+        }, js: function (e, t, r, i) {
+            n(e) || LazyLoad.js(e, t, r, i)
+        }
+    }
 }(this.document);
 var WebFontConfig;
 if (typeof embed_path == "undefined" || typeof embed_path == "undefined")var embed_path = getEmbedScriptPath("storyjs-embed.js").split("js/")[0];

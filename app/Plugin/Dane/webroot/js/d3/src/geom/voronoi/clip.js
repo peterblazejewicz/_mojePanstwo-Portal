@@ -1,7 +1,7 @@
 import
-"../../math/abs";
+    "../../math/abs";
 import
-"../clip-line";
+    "../clip-line";
 
 function d3_geom_voronoiClipEdges(extent) {
     var edges = d3_geom_voronoiEdges,

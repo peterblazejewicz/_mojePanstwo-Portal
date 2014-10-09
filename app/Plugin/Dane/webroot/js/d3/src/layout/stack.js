@@ -1,13 +1,13 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../arrays/permute";
+    "../arrays/permute";
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../core/identity";
+    "../core/identity";
 import
-"layout";
+    "layout";
 
 // data is two-dimensional array of x,y; we populate y0
 d3.layout.stack = function () {

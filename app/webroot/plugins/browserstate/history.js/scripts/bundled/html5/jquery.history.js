@@ -2,16 +2,18 @@
     "use strict";
     var n = e.History = e.History || {}, r = e.jQuery;
     if (typeof n.Adapter != "undefined")throw new Error("History.js Adapter has already been loaded...");
-    n.Adapter = {bind: function (e, t, n) {
-        r(e).bind(t, n)
-    }, trigger: function (e, t, n) {
-        r(e).trigger(t, n)
-    }, extractEventData: function (e, n, r) {
-        var i = n && n.originalEvent && n.originalEvent[e] || r && r[e] || t;
-        return i
-    }, onDomLoad: function (e) {
-        r(e)
-    }}, typeof n.init != "undefined" && n.init()
+    n.Adapter = {
+        bind: function (e, t, n) {
+            r(e).bind(t, n)
+        }, trigger: function (e, t, n) {
+            r(e).trigger(t, n)
+        }, extractEventData: function (e, n, r) {
+            var i = n && n.originalEvent && n.originalEvent[e] || r && r[e] || t;
+            return i
+        }, onDomLoad: function (e) {
+            r(e)
+        }
+    }, typeof n.init != "undefined" && n.init()
 })(window), function (e, t) {
     "use strict";
     var n = e.console || t, r = e.document, i = e.navigator, s = !1, o = e.setTimeout, u = e.clearTimeout, a = e.setInterval, f = e.clearInterval, l = e.JSON, c = e.alert, h = e.History = e.History || {}, p = e.history;
@@ -25,7 +27,7 @@
     h.init = function (e) {
         return typeof h.Adapter == "undefined" ? !1 : (typeof h.initCore != "undefined" && h.initCore(), typeof h.initHtml4 != "undefined" && h.initHtml4(), !0)
     }, h.initCore = function (d) {
-        if (typeof h.initCore.initialized != "undefined")return!1;
+        if (typeof h.initCore.initialized != "undefined")return !1;
         h.initCore.initialized = !0, h.options = h.options || {}, h.options.hashChangeInterval = h.options.hashChangeInterval || 100, h.options.safariPollInterval = h.options.safariPollInterval || 500, h.options.doubleCheckInterval = h.options.doubleCheckInterval || 500, h.options.disableSuid = h.options.disableSuid || !1, h.options.storeInterval = h.options.storeInterval || 1e3, h.options.busyDelay = h.options.busyDelay || 250, h.options.debug = h.options.debug || !1, h.options.initialTitle = h.options.initialTitle || r.title, h.options.html4Mode = h.options.html4Mode || !1, h.options.delayInit = h.options.delayInit || !1, h.intervalList = [], h.clearAllIntervals = function () {
             var e, t = h.intervalList;
             if (typeof t != "undefined" && t !== null) {
@@ -56,9 +58,20 @@
         }, h.isInternetExplorer = function () {
             var e = h.isInternetExplorer.cached = typeof h.isInternetExplorer.cached != "undefined" ? h.isInternetExplorer.cached : Boolean(h.getInternetExplorerMajorVersion());
             return e
-        }, h.options.html4Mode ? h.emulated = {pushState: !0, hashChange: !0} : h.emulated = {pushState: !Boolean(e.history && e.history.pushState && e.history.replaceState && !/ Mobile\/([1-7][a-z]|(8([abcde]|f(1[0-8]))))/i.test(i.userAgent) && !/AppleWebKit\/5([0-2]|3[0-2])/i.test(i.userAgent)), hashChange: Boolean(!("onhashchange"in e || "onhashchange"in r) || h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8)}, h.enabled = !h.emulated.pushState, h.bugs = {setHash: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)), safariPoll: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)), ieDoubleCheck: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8), hashEscape: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 7)}, h.isEmptyObject = function (e) {
-            for (var t in e)if (e.hasOwnProperty(t))return!1;
-            return!0
+        }, h.options.html4Mode ? h.emulated = {
+            pushState: !0,
+            hashChange: !0
+        } : h.emulated = {
+            pushState: !Boolean(e.history && e.history.pushState && e.history.replaceState && !/ Mobile\/([1-7][a-z]|(8([abcde]|f(1[0-8]))))/i.test(i.userAgent) && !/AppleWebKit\/5([0-2]|3[0-2])/i.test(i.userAgent)),
+            hashChange: Boolean(!("onhashchange"in e || "onhashchange"in r) || h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8)
+        }, h.enabled = !h.emulated.pushState, h.bugs = {
+            setHash: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)),
+            safariPoll: Boolean(!h.emulated.pushState && i.vendor === "Apple Computer, Inc." && /AppleWebKit\/5([0-2]|3[0-3])/.test(i.userAgent)),
+            ieDoubleCheck: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 8),
+            hashEscape: Boolean(h.isInternetExplorer() && h.getInternetExplorerMajorVersion() < 7)
+        }, h.isEmptyObject = function (e) {
+            for (var t in e)if (e.hasOwnProperty(t))return !1;
+            return !0
         }, h.cloneObject = function (e) {
             var t, n;
             return e ? (t = l.stringify(e), n = l.parse(t)) : n = {}, n
@@ -75,12 +88,12 @@
         }, h.getPageUrl = function () {
             var e = h.getState(!1, !1), t = (e || {}).url || h.getLocationHref(), n;
             return n = t.replace(/\/+$/, "").replace(/[^\/]+$/, function (e, t, n) {
-                return/\./.test(e) ? e : e + "/"
+                return /\./.test(e) ? e : e + "/"
             }), n
         }, h.getBasePageUrl = function () {
-            var e = h.getLocationHref().replace(/[#\?].*/, "").replace(/[^\/]+$/,function (e, t, n) {
-                return/[^\/]$/.test(e) ? "" : e
-            }).replace(/\/+$/, "") + "/";
+            var e = h.getLocationHref().replace(/[#\?].*/, "").replace(/[^\/]+$/, function (e, t, n) {
+                    return /[^\/]$/.test(e) ? "" : e
+                }).replace(/\/+$/, "") + "/";
             return e
         }, h.getFullUrl = function (e, t) {
             var n = e, r = e.substring(0, 1);
@@ -95,7 +108,7 @@
         }, h.getState = function (e, t) {
             typeof e == "undefined" && (e = !0), typeof t == "undefined" && (t = !0);
             var n = h.getLastSavedState();
-            return!n && t && (n = h.createStateObject()), e && (n = h.cloneObject(n), n.url = n.cleanUrl || n.url), n
+            return !n && t && (n = h.createStateObject()), e && (n = h.cloneObject(n), n.url = n.cleanUrl || n.url), n
         }, h.getIdByState = function (e) {
             var t = h.extractId(e.url), n;
             if (!t) {
@@ -174,7 +187,12 @@
             return t
         }, h.setHash = function (e, t) {
             var n, i;
-            return t !== !1 && h.busy() ? (h.pushQueue({scope: h, callback: h.setHash, args: arguments, queue: t}), !1) : (h.busy(!0), n = h.extractState(e, !0), n && !h.emulated.pushState ? h.pushState(n.data, n.title, n.url, !1) : h.getHash() !== e && (h.bugs.setHash ? (i = h.getPageUrl(), h.pushState(null, null, i + "#" + e, !1)) : r.location.hash = e), h)
+            return t !== !1 && h.busy() ? (h.pushQueue({
+                scope: h,
+                callback: h.setHash,
+                args: arguments,
+                queue: t
+            }), !1) : (h.busy(!0), n = h.extractState(e, !0), n && !h.emulated.pushState ? h.pushState(n.data, n.title, n.url, !1) : h.getHash() !== e && (h.bugs.setHash ? (i = h.getPageUrl(), h.pushState(null, null, i + "#" + e, !1)) : r.location.hash = e), h)
         }, h.escapeHash = function (t) {
             var n = h.normalizeHash(t);
             return n = e.encodeURIComponent(n), h.bugs.hashEscape || (n = n.replace(/\%21/g, "!").replace(/\%26/g, "&").replace(/\%3D/g, "=").replace(/\%3F/g, "?")), n
@@ -226,11 +244,21 @@
             if (!h.isLastSavedState(t))return n = t, n || (n = h.createStateObject()), h.Adapter.trigger(e, "popstate"), h;
             return
         }, h.back = function (e) {
-            return e !== !1 && h.busy() ? (h.pushQueue({scope: h, callback: h.back, args: arguments, queue: e}), !1) : (h.busy(!0), h.doubleCheck(function () {
+            return e !== !1 && h.busy() ? (h.pushQueue({
+                scope: h,
+                callback: h.back,
+                args: arguments,
+                queue: e
+            }), !1) : (h.busy(!0), h.doubleCheck(function () {
                 h.back(!1)
             }), p.go(-1), !0)
         }, h.forward = function (e) {
-            return e !== !1 && h.busy() ? (h.pushQueue({scope: h, callback: h.forward, args: arguments, queue: e}), !1) : (h.busy(!0), h.doubleCheck(function () {
+            return e !== !1 && h.busy() ? (h.pushQueue({
+                scope: h,
+                callback: h.forward,
+                args: arguments,
+                queue: e
+            }), !1) : (h.busy(!0), h.doubleCheck(function () {
                 h.forward(!1)
             }), p.go(1), !0)
         }, h.go = function (e, t) {
@@ -250,13 +278,23 @@
             return h.doubleCheckComplete(), s = h.getHash(), s ? (o = h.extractState(s || h.getLocationHref(), !0), o ? h.replaceState(o.data, o.title, o.url, !1) : (h.Adapter.trigger(e, "anchorchange"), h.busy(!1)), h.expectedStateId = !1, !1) : (r = h.Adapter.extractEventData("state", t, n) || !1, r ? i = h.getStateById(r) : h.expectedStateId ? i = h.getStateById(h.expectedStateId) : i = h.extractState(h.getLocationHref()), i || (i = h.createStateObject(null, null, h.getLocationHref())), h.expectedStateId = !1, h.isLastSavedState(i) ? (h.busy(!1), !1) : (h.storeState(i), h.saveState(i), h.setTitle(i), h.Adapter.trigger(e, "statechange"), h.busy(!1), !0))
         }, h.Adapter.bind(e, "popstate", h.onPopState), h.pushState = function (t, n, r, i) {
             if (h.getHashByUrl(r) && h.emulated.pushState)throw new Error("History.js does not support states with fragement-identifiers (hashes/anchors).");
-            if (i !== !1 && h.busy())return h.pushQueue({scope: h, callback: h.pushState, args: arguments, queue: i}), !1;
+            if (i !== !1 && h.busy())return h.pushQueue({
+                scope: h,
+                callback: h.pushState,
+                args: arguments,
+                queue: i
+            }), !1;
             h.busy(!0);
             var s = h.createStateObject(t, n, r);
             return h.isLastSavedState(s) ? h.busy(!1) : (h.storeState(s), h.expectedStateId = s.id, p.pushState(s.id, s.title, s.url), h.Adapter.trigger(e, "popstate")), !0
         }, h.replaceState = function (t, n, r, i) {
             if (h.getHashByUrl(r) && h.emulated.pushState)throw new Error("History.js does not support states with fragement-identifiers (hashes/anchors).");
-            if (i !== !1 && h.busy())return h.pushQueue({scope: h, callback: h.replaceState, args: arguments, queue: i}), !1;
+            if (i !== !1 && h.busy())return h.pushQueue({
+                scope: h,
+                callback: h.replaceState,
+                args: arguments,
+                queue: i
+            }), !1;
             h.busy(!0);
             var s = h.createStateObject(t, n, r);
             return h.isLastSavedState(s) ? h.busy(!1) : (h.storeState(s), h.expectedStateId = s.id, p.replaceState(s.id, s.title, s.url), h.Adapter.trigger(e, "popstate")), !0

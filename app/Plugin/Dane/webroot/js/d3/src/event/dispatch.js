@@ -1,5 +1,5 @@
 import
-"../arrays/map";
+    "../arrays/map";
 
 d3.dispatch = function () {
     var dispatch = new d3_dispatch,

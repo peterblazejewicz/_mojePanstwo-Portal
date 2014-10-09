@@ -16,7 +16,7 @@
     $.effects.effect.drop = function (o, done) {
 
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "opacity", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "opacity", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             direction = o.direction || "left",
@@ -32,7 +32,7 @@
         el.show();
         $.effects.createWrapper(el);
 
-        distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ](true) / 2;
+        distance = o.distance || el[ref === "top" ? "outerHeight" : "outerWidth"](true) / 2;
 
         if (show) {
             el
@@ -41,10 +41,10 @@
         }
 
         // Animation
-        animation[ ref ] = ( show ?
+        animation[ref] = ( show ?
             ( motion === "pos" ? "+=" : "-=" ) :
             ( motion === "pos" ? "-=" : "+=" ) ) +
-            distance;
+        distance;
 
         // Animate
         el.animate(animation, {

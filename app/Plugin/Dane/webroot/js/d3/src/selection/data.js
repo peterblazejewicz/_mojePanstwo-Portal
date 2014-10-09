@@ -1,7 +1,7 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.data = function (value, key) {
     var i = -1,

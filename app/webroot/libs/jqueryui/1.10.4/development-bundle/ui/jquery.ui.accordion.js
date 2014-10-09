@@ -179,21 +179,21 @@
             switch (event.keyCode) {
                 case keyCode.RIGHT:
                 case keyCode.DOWN:
-                    toFocus = this.headers[ ( currentIndex + 1 ) % length ];
+                    toFocus = this.headers[( currentIndex + 1 ) % length];
                     break;
                 case keyCode.LEFT:
                 case keyCode.UP:
-                    toFocus = this.headers[ ( currentIndex - 1 + length ) % length ];
+                    toFocus = this.headers[( currentIndex - 1 + length ) % length];
                     break;
                 case keyCode.SPACE:
                 case keyCode.ENTER:
                     this._eventHandler(event);
                     break;
                 case keyCode.HOME:
-                    toFocus = this.headers[ 0 ];
+                    toFocus = this.headers[0];
                     break;
                 case keyCode.END:
-                    toFocus = this.headers[ length - 1 ];
+                    toFocus = this.headers[length - 1];
                     break;
             }
 
@@ -223,7 +223,7 @@
             } else if (options.active === false) {
                 this._activate(0);
                 // was active, but active panel is gone
-            } else if (this.active.length && !$.contains(this.element[ 0 ], this.active[ 0 ])) {
+            } else if (this.active.length && !$.contains(this.element[0], this.active[0])) {
                 // all remaining panel are disabled
                 if (this.headers.length === this.headers.find(".ui-state-disabled").length) {
                     options.active = false;
@@ -259,7 +259,7 @@
                 heightStyle = options.heightStyle,
                 parent = this.element.parent(),
                 accordionId = this.accordionId = "ui-accordion-" +
-                    (this.element.attr("id") || ++uid);
+                (this.element.attr("id") || ++uid);
 
             this.active = this._findActive(options.active)
                 .addClass("ui-accordion-header-active ui-state-active ui-corner-top")
@@ -340,7 +340,7 @@
                 this.headers.next()
                     .each(function () {
                         $(this).height(Math.max(0, maxHeight -
-                            $(this).innerHeight() + $(this).height()));
+                        $(this).innerHeight() + $(this).height()));
                     })
                     .css("overflow", "auto");
             } else if (heightStyle === "auto") {
@@ -354,15 +354,15 @@
         },
 
         _activate: function (index) {
-            var active = this._findActive(index)[ 0 ];
+            var active = this._findActive(index)[0];
 
             // trying to activate the already active panel
-            if (active === this.active[ 0 ]) {
+            if (active === this.active[0]) {
                 return;
             }
 
             // trying to collapse, simulate a click on the currently active header
-            active = active || this.active[ 0 ];
+            active = active || this.active[0];
 
             this._eventHandler({
                 target: active,
@@ -381,13 +381,13 @@
             };
             if (event) {
                 $.each(event.split(" "), function (index, eventName) {
-                    events[ eventName ] = "_eventHandler";
+                    events[eventName] = "_eventHandler";
                 });
             }
 
             this._off(this.headers.add(this.headers.next()));
             this._on(this.headers, events);
-            this._on(this.headers.next(), { keydown: "_panelKeyDown" });
+            this._on(this.headers.next(), {keydown: "_panelKeyDown"});
             this._hoverable(this.headers);
             this._focusable(this.headers);
         },
@@ -396,7 +396,7 @@
             var options = this.options,
                 active = this.active,
                 clicked = $(event.currentTarget),
-                clickedIsActive = clicked[ 0 ] === active[ 0 ],
+                clickedIsActive = clicked[0] === active[0],
                 collapsing = clickedIsActive && options.collapsible,
                 toShow = collapsing ? $() : clicked.next(),
                 toHide = active.next(),
@@ -410,10 +410,10 @@
             event.preventDefault();
 
             if (
-            // click on active header, but not collapsible
-                ( clickedIsActive && !options.collapsible ) ||
-                    // allow canceling activation
-                    ( this._trigger("beforeActivate", event, eventData) === false )) {
+                // click on active header, but not collapsible
+            ( clickedIsActive && !options.collapsible ) ||
+                // allow canceling activation
+            ( this._trigger("beforeActivate", event, eventData) === false )) {
                 return;
             }
 

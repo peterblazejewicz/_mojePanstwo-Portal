@@ -1,13 +1,13 @@
 import
-"../arrays/bisect";
+    "../arrays/bisect";
 import
-"../arrays/min";
+    "../arrays/min";
 import
-"../arrays/max";
+    "../arrays/max";
 import
-"../core/functor";
+    "../core/functor";
 import
-"layout";
+    "layout";
 
 d3.layout.histogram = function () {
     var frequency = true,

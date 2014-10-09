@@ -1,7 +1,7 @@
 import
-"../core/document";
+    "../core/document";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.style = function (name, value, priority) {
     var n = arguments.length;

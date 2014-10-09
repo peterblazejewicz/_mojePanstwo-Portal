@@ -1,17 +1,17 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../format/requote";
+    "../format/requote";
 import
-"../math/abs";
+    "../math/abs";
 import
-"../time/day";
+    "../time/day";
 import
-"../time/time";
+    "../time/time";
 import
-"../time/week";
+    "../time/week";
 import
-"../time/interval";
+    "../time/interval";
 
 function d3_locale_timeFormat(locale) {
     var locale_dateTime = locale.dateTime,

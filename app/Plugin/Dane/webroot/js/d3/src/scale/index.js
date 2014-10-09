@@ -1,22 +1,22 @@
 import
-"scale";
+    "scale";
 import
-"linear";
+    "linear";
 import
-"log";
+    "log";
 import
-"pow";
+    "pow";
 import
-"sqrt";
+    "sqrt";
 import
-"ordinal";
+    "ordinal";
 import
-"category";
+    "category";
 import
-"quantile";
+    "quantile";
 import
-"quantize";
+    "quantize";
 import
-"threshold";
+    "threshold";
 import
-"identity";
+    "identity";

@@ -55,7 +55,7 @@
         // We just queued up "anims" animations, we need to put them next in the queue
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         elem.dequeue();
     };

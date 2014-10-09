@@ -17,7 +17,7 @@
 
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "width", "height" ],
+            props = ["position", "top", "bottom", "left", "right", "width", "height"],
             mode = $.effects.setMode(el, o.mode || "show"),
             show = mode === "show",
             direction = o.direction || "left",
@@ -29,7 +29,7 @@
         // Adjust
         $.effects.save(el, props);
         el.show();
-        distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ](true);
+        distance = o.distance || el[ref === "top" ? "outerHeight" : "outerWidth"](true);
 
         $.effects.createWrapper(el).css({
             overflow: "hidden"
@@ -40,10 +40,10 @@
         }
 
         // Animation
-        animation[ ref ] = ( show ?
+        animation[ref] = ( show ?
             ( positiveMotion ? "+=" : "-=") :
             ( positiveMotion ? "-=" : "+=")) +
-            distance;
+        distance;
 
         // Animate
         el.animate(animation, {

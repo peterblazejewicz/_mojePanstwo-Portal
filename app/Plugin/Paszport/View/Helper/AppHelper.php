@@ -20,7 +20,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-App::uses('Helper', 'View');
+App::uses( 'Helper', 'View' );
 
 /**
  * Application helper
@@ -30,6 +30,5 @@ App::uses('Helper', 'View');
  *
  * @package       app.View.Helper
  */
-class AppHelper extends Helper
-{
+class AppHelper extends Helper {
 }

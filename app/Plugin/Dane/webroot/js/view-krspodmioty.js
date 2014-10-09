@@ -30,7 +30,7 @@ function initialize() {
         content: contentString
     });
 
-    geocoder.geocode({ 'address': googleMapAdres}, function (results, status) {
+    geocoder.geocode({'address': googleMapAdres}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             var marker = new google.maps.Marker({
                 map: map,

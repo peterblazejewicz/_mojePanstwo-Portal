@@ -130,7 +130,7 @@ var Class = (function () {
                 value.toString = method.toString.bind(method);
             }
             this.prototype[property] = value;
-    }
+        }
 
         return this;
     }
@@ -168,7 +168,7 @@ var Class = (function () {
                 return NULL_TYPE;
             case (void 0):
                 return UNDEFINED_TYPE;
-    }
+        }
         var type = typeof o;
         switch (type) {
             case 'boolean':
@@ -177,7 +177,7 @@ var Class = (function () {
                 return NUMBER_TYPE;
             case 'string':
                 return STRING_TYPE;
-    }
+        }
         return OBJECT_TYPE;
     }
 
@@ -195,7 +195,7 @@ var Class = (function () {
         } catch (e) {
             if (e instanceof RangeError) return '...';
             throw e;
-    }
+        }
     }
 
     function toJSON(value) {
@@ -204,11 +204,11 @@ var Class = (function () {
 
     function Str(key, holder, stack) {
         var value = holder[key],
-        type = typeof value;
+            type = typeof value;
 
         if (Type(value) === OBJECT_TYPE && typeof value.toJSON === 'function') {
             value = value.toJSON(key);
-    }
+        }
 
         var _class = _toString.call(value);
 
@@ -217,7 +217,7 @@ var Class = (function () {
             case BOOLEAN_CLASS:
             case STRING_CLASS:
                 value = value.valueOf();
-    }
+        }
 
         switch (value) {
             case null:
@@ -226,7 +226,7 @@ var Class = (function () {
                 return 'true';
             case false:
                 return 'false';
-    }
+        }
 
         type = typeof value;
         switch (type) {
@@ -240,7 +240,7 @@ var Class = (function () {
                     if (stack[i] === value) {
                         throw new TypeError();
                     }
-        }
+                }
                 stack.push(value);
 
                 var partial = [];
@@ -259,10 +259,10 @@ var Class = (function () {
                         }
                     }
                     partial = '{' + partial.join(',') + '}';
-        }
+                }
                 stack.pop();
                 return partial;
-    }
+        }
     }
 
     function stringify(object) {
@@ -286,7 +286,7 @@ var Class = (function () {
             if (object.hasOwnProperty(property)) {
                 results.push(property);
             }
-    }
+        }
         return results;
     }
 
@@ -386,7 +386,7 @@ Object.extend(Function.prototype, (function () {
         return function () {
             var a = merge(args, arguments);
             return __method.apply(context, a);
-    }
+        }
     }
 
     function bindAsEventListener(context) {
@@ -394,7 +394,7 @@ Object.extend(Function.prototype, (function () {
         return function (event) {
             var a = update([event || window.event], args);
             return __method.apply(context, a);
-    }
+        }
     }
 
     function curry() {
@@ -403,7 +403,7 @@ Object.extend(Function.prototype, (function () {
         return function () {
             var a = merge(args, arguments);
             return __method.apply(this, a);
-    }
+        }
     }
 
     function delay(timeout) {
@@ -424,7 +424,7 @@ Object.extend(Function.prototype, (function () {
         return function () {
             var a = update([__method.bind(this)], arguments);
             return wrapper.apply(this, a);
-    }
+        }
     }
 
     function methodize() {
@@ -510,7 +510,7 @@ var PeriodicalExecuter = Class.create({
                 this.currentlyExecuting = false;
                 throw e;
             }
-    }
+        }
     }
 });
 Object.extend(String, {
@@ -560,7 +560,7 @@ Object.extend(String.prototype, (function () {
             } else {
                 result += source, source = '';
             }
-    }
+        }
         return result;
     }
 
@@ -708,7 +708,7 @@ Object.extend(String.prototype, (function () {
             json = json.replace(cx, function (a) {
                 return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
             });
-    }
+        }
         try {
             if (!sanitize || json.isJSON()) return eval('(' + json + ')');
         } catch (e) {
@@ -816,7 +816,7 @@ var Template = Class.create({
 });
 Template.Pattern = /(^|.|\r|\n)(#\{(.*?)\})/;
 
-var $break = { };
+var $break = {};
 
 var Enumerable = (function () {
     function each(iterator, context) {
@@ -827,7 +827,7 @@ var Enumerable = (function () {
             });
         } catch (e) {
             if (e != $break) throw e;
-    }
+        }
         return this;
     }
 
@@ -1083,7 +1083,7 @@ Array.from = $A;
     function each(iterator, context) {
         for (var i = 0, length = this.length >>> 0; i < length; i++) {
             if (i in this) iterator.call(context, this[i], i, this);
-    }
+        }
     }
 
     if (!_each) _each = each;
@@ -1181,7 +1181,7 @@ Array.from = $A;
             } else {
                 array.push(item);
             }
-    }
+        }
         return array;
     }
 
@@ -1232,7 +1232,7 @@ var Hash = Class.create(Enumerable, (function () {
             pair.key = key;
             pair.value = value;
             iterator(pair);
-    }
+        }
     }
 
     function set(key, value) {
@@ -1398,7 +1398,7 @@ var ObjectRange = Class.create(Enumerable, (function () {
         while (this.include(value)) {
             iterator(value);
             value = value.succ();
-    }
+        }
     }
 
     function include(value) {
@@ -1417,8 +1417,7 @@ var ObjectRange = Class.create(Enumerable, (function () {
 })());
 
 
-
-var Abstract = { };
+var Abstract = {};
 
 
 var Try = {
@@ -1432,7 +1431,7 @@ var Try = {
                 break;
             } catch (e) {
             }
-    }
+        }
 
         return returnValue;
     }
@@ -1676,7 +1675,7 @@ Ajax.Request = Class.create(Ajax.Base, {
             return eval((this.transport.responseText || '').unfilterJSON());
         } catch (e) {
             this.dispatchException(e);
-    }
+        }
     },
 
     dispatchException: function (exception) {
@@ -1761,7 +1760,7 @@ Ajax.Response = Class.create({
             return this.responseText.evalJSON(options.sanitizeJSON || !this.request.isSameOrigin());
         } catch (e) {
             this.request.dispatchException(e);
-    }
+        }
     }
 });
 
@@ -1794,11 +1793,11 @@ Ajax.Updater = Class.create(Ajax.Request, {
                     var insertion = {};
                     insertion[options.insertion] = responseText;
                     receiver.insert(insertion);
-        }
+                }
                 else options.insertion(receiver, responseText);
             }
             else receiver.update(responseText);
-    }
+        }
     }
 });
 
@@ -1834,7 +1833,7 @@ Ajax.PeriodicalUpdater = Class.create(Ajax.Base, {
             this.decay * this.options.decay : 1);
 
             this.lastText = response.responseText;
-    }
+        }
         this.timer = this.onTimerEvent.bind(this).delay(this.decay * this.frequency);
     },
 
@@ -1868,7 +1867,7 @@ if (Prototype.BrowserFeatures.XPath) {
 
 /*--------------------------------------------------------------------------*/
 
-if (!Node) var Node = { };
+if (!Node) var Node = {};
 
 if (!Node.ELEMENT_NODE) {
     Object.extend(Node, {
@@ -1932,7 +1931,7 @@ if (!Node.ELEMENT_NODE) {
 })(this);
 
 Element.idCounter = 1;
-Element.cache = { };
+Element.cache = {};
 
 Element._purgeElement = function (element) {
     var uid = element._prototypeUID;
@@ -2069,7 +2068,7 @@ Element.Methods = {
                     nodes.each(function (node) {
                         element.appendChild(node)
                     });
-        }
+                }
                 else {
                     element.innerHTML = content.stripScripts();
                 }
@@ -2503,7 +2502,7 @@ Element.Methods = {
         if (parent == document.body) {
             delta[0] -= document.body.offsetLeft;
             delta[1] -= document.body.offsetTop;
-    }
+        }
 
         if (options.setLeft)   element.style.left = (p[0] - delta[0] + options.offsetLeft) + 'px';
         if (options.setTop)    element.style.top = (p[1] - delta[1] + options.offsetTop) + 'px';
@@ -2672,7 +2671,7 @@ else if (Prototype.Browser.IE) {
                                 attribute = attribute.split('}')[0];
                                 return attribute.strip();
                             };
-            }
+                        }
                         else if (value === '') {
                             f = function (element, attribute) {
                                 attribute = element.getAttribute(attribute);
@@ -2692,7 +2691,7 @@ else if (Prototype.Browser.IE) {
                     title: function (element) {
                         return element.title;
                     }
-        }
+                }
             }
         }
     })();
@@ -2749,7 +2748,7 @@ else if (Prototype.Browser.IE) {
             onreset: v._getEv,
             onselect: v._getEv,
             onchange: v._getEv
-    });
+        });
     })(Element._attributeTranslations.read.values);
 
     if (Prototype.BrowserFeatures.ElementExtensions) {
@@ -2859,7 +2858,7 @@ Element._getContentFromAnonymousElement = function (tagName, html, force) {
         div.removeChild(div.firstChild);
         for (var i = t[2]; i--;) {
             div = div.firstChild;
-    }
+        }
     }
     else {
         div.innerHTML = html;
@@ -2906,7 +2905,7 @@ Element.Methods.Simulated = {
     }
 };
 
-Element.Methods.ByTag = { };
+Element.Methods.ByTag = {};
 
 Object.extend(Element, Element.Methods);
 
@@ -2936,7 +2935,7 @@ Element.extend = (function () {
                 el = null;
                 return isBuggy;
             }
-    }
+        }
         return false;
     }
 
@@ -2945,7 +2944,7 @@ Element.extend = (function () {
             var value = methods[property];
             if (Object.isFunction(value) && !(property in element))
                 element[property] = value.methodize();
-    }
+        }
     }
 
     var HTMLOBJECTELEMENT_PROTOTYPE_BUGGY = checkDeficiency('object');
@@ -2960,10 +2959,10 @@ Element.extend = (function () {
                         extendElementWith(element, Element.Methods.Simulated);
                         extendElementWith(element, Element.Methods.ByTag[t.toUpperCase()]);
                     }
-        }
+                }
                 return element;
             }
-    }
+        }
         return Prototype.K;
     }
 
@@ -3045,7 +3044,7 @@ Element.addMethods = function (methods) {
             if (!Object.isFunction(value)) continue;
             if (!onlyIfAbsent || !(property in destination))
                 destination[property] = value.methodize();
-    }
+        }
     }
 
     function findDOMClass(tagName) {
@@ -3109,7 +3108,7 @@ Element.addMethods = function (methods) {
             var klass = findDOMClass(tag);
             if (Object.isUndefined(klass)) continue;
             copy(T[tag], klass.prototype);
-    }
+        }
     }
 
     Object.extend(Element, Element.Methods);
@@ -3252,7 +3251,7 @@ Element.addMethods({
         if (Object.isElement(value)) {
             element = value;
             value = element.getStyle(property);
-    }
+        }
 
         if (value === null) {
             return null;
@@ -3292,7 +3291,7 @@ Element.addMethods({
                     whole = document.viewport.getWidth();
                 } else if (isVertical) {
                     whole = document.viewport.getHeight();
-        }
+                }
             } else {
                 if (isHorizontal) {
                     whole = $(context).measure('width');
@@ -3302,7 +3301,7 @@ Element.addMethods({
             }
 
             return (whole === null) ? 0 : whole * decimal;
-    }
+        }
 
         return 0;
     }
@@ -3310,7 +3309,7 @@ Element.addMethods({
     function toCSSPixels(number) {
         if (Object.isString(number) && number.endsWith('px')) {
             return number;
-    }
+        }
         return number + 'px';
     }
 
@@ -3322,7 +3321,7 @@ Element.addMethods({
                 return false;
             }
             element = $(element.parentNode);
-    }
+        }
         return true;
     }
 
@@ -3709,7 +3708,7 @@ Element.addMethods({
 
         toArray: function () {
             return [this.left, this.top];
-    }
+        }
     });
 
     function getLayout(element, preCompute) {
@@ -3768,7 +3767,7 @@ Element.addMethods({
             if (Element.getStyle(element, 'position') !== 'static') {
                 return isHtml(element) ? $(document.body) : $(element);
             }
-    }
+        }
 
         return $(document.body);
     }
@@ -3783,7 +3782,7 @@ Element.addMethods({
                 valueL += element.offsetLeft || 0;
                 element = element.offsetParent;
             } while (element);
-    }
+        }
         return new Element.Offset(valueL, valueT);
     }
 
@@ -3878,7 +3877,7 @@ Element.addMethods({
         element = $(element);
         if (Element.getStyle(element, 'position') === 'relative') {
             return element;
-    }
+        }
 
         var originalStyles =
             element.retrieve('prototype_absolutize_original_styles');
@@ -4004,13 +4003,13 @@ Prototype.Selector = (function () {
             if (match(elements[i], expression) && index == matchIndex++) {
                 return Element.extend(elements[i]);
             }
-    }
+        }
     }
 
     function extendElements(elements) {
         for (var i = 0, length = elements.length; i < length; i++) {
             Element.extend(elements[i]);
-    }
+        }
         return elements;
     }
 
@@ -5054,7 +5053,7 @@ var Form = {
             accumulator = function (result, key, value) {
                 return result + (result ? '&' : '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
             }
-    }
+        }
 
         return elements.inject(initial, function (result, element) {
             if (!element.disabled && element.name) {
@@ -5251,7 +5250,7 @@ Form.Element.Serializers = (function () {
                 return inputSelector(element, value);
             default:
                 return valueSelector(element, value);
-    }
+        }
     }
 
     function inputSelector(element, value) {
@@ -5277,10 +5276,10 @@ Form.Element.Serializers = (function () {
                 if (currentValue == value) {
                     opt.selected = true;
                     return;
-        }
+                }
             }
             else opt.selected = value.include(currentValue);
-    }
+        }
     }
 
     function selectOne(element) {
@@ -5295,7 +5294,7 @@ Form.Element.Serializers = (function () {
         for (var i = 0, values = []; i < length; i++) {
             var opt = element.options[i];
             if (opt.selected) values.push(optionValue(opt));
-    }
+        }
         return values;
     }
 
@@ -5331,7 +5330,7 @@ Abstract.TimedObserver = Class.create(PeriodicalExecuter, {
             this.lastValue != value : String(this.lastValue) != String(value)) {
             this.callback(this.element, value);
             this.lastValue = value;
-    }
+        }
     }
 });
 
@@ -5384,7 +5383,7 @@ Abstract.EventObserver = Class.create({
                     Event.observe(element, 'change', this.onElementEvent.bind(this));
                     break;
             }
-    }
+        }
     }
 });
 
@@ -5438,7 +5437,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
             isIELegacyEvent = function (event) {
                 return true;
             };
-    }
+        }
     }
 
     var _isButton;
@@ -5463,18 +5462,18 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                 return event.which == 3;
             default:
                 return false;
-    }
+        }
     }
 
     if (window.attachEvent) {
         if (!window.addEventListener) {
             _isButton = _isButtonForLegacyEvents;
-    } else {
+        } else {
             _isButton = function (event, code) {
                 return isIELegacyEvent(event) ? _isButtonForLegacyEvents(event, code) :
                     _isButtonForDOMEvents(event, code);
             }
-    }
+        }
     } else if (Prototype.Browser.WebKit) {
         _isButton = _isButtonForWebKit;
     } else {
@@ -5504,7 +5503,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                 (type === 'click' && currentTarget.tagName.toLowerCase() === 'input'
                 && currentTarget.type === 'radio'))
                 node = currentTarget;
-    }
+        }
 
         if (node.nodeType == Node.TEXT_NODE)
             node = node.parentNode;
@@ -5521,7 +5520,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                 return Element.extend(element);
             }
             element = element.parentNode;
-    }
+        }
     }
 
     function pointer(event) {
@@ -5680,20 +5679,20 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                             catch (e) {
                                 parent = element;
                             }
-            }
+                        }
 
                         if (parent === element) return;
 
                         handler.call(element, event);
                     };
-        }
+                }
             } else {
                 responder = function (event) {
                     Event.extend(event, element);
                     handler.call(element, event);
                 };
             }
-    }
+        }
 
         responder.handler = handler;
         respondersForEvent.push(responder);
@@ -5746,7 +5745,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                 element.addEventListener(actualEventName, responder, false);
             else
                 element.attachEvent("on" + actualEventName, responder);
-    }
+        }
 
         return element;
     }
@@ -5797,7 +5796,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
                 element.removeEventListener(actualEventName, responder, false);
             else
                 element.detachEvent('on' + actualEventName, responder);
-    }
+        }
 
         registry.set(eventName, responders.without(responder));
 
@@ -5820,7 +5819,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
         } else {
             event = document.createEventObject();
             event.eventType = bubble ? 'ondataavailable' : 'onlosecapture';
-    }
+        }
 
         event.eventName = eventName;
         event.memo = memo || {};
@@ -5855,7 +5854,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
         handleEvent: function (event) {
             var element = Event.findElement(event, this.selector);
             if (element) this.callback.call(this.element, event, element);
-    }
+        }
     });
 
     function on(element, eventName, selector, callback) {
@@ -5919,7 +5918,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
         if (document.readyState === 'complete') {
             document.stopObserving('readystatechange', checkReadyState);
             fireContentLoadedEvent();
-    }
+        }
     }
 
     function pollDoScroll() {
@@ -5929,7 +5928,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
         catch (e) {
             timer = pollDoScroll.defer();
             return;
-    }
+        }
         fireContentLoadedEvent();
     }
 
@@ -5950,7 +5949,7 @@ Element.addMethods();
 
 Hash.toQueryString = Object.toQueryString;
 
-var Toggle = { display: Element.toggle };
+var Toggle = {display: Element.toggle};
 
 Element.Methods.childOf = Element.Methods.descendantOf;
 
@@ -5997,7 +5996,7 @@ var Position = {
 
         return (y >= this.offset[1] &&
         y < this.offset[1] + element.offsetHeight &&
-            x >= this.offset[0] &&
+        x >= this.offset[0] &&
         x < this.offset[0] + element.offsetWidth);
     },
 
@@ -6010,7 +6009,7 @@ var Position = {
 
         return (this.ycomp >= this.offset[1] &&
         this.ycomp < this.offset[1] + element.offsetHeight &&
-            this.xcomp >= this.offset[0] &&
+        this.xcomp >= this.offset[0] &&
         this.xcomp < this.offset[0] + element.offsetWidth);
     },
 
@@ -6167,7 +6166,7 @@ Object.extend(Element.ClassNames.prototype, Enumerable);
                 element = elements[i];
                 if (Prototype.Selector.match(element, expression) && index === matchIndex++) {
                     return Element.extend(element);
-        }
+                }
             }
         },
 

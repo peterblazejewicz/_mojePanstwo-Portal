@@ -113,22 +113,22 @@
         // Create element
         var original, baseline, factor,
             el = $(this),
-            props0 = [ "position", "top", "bottom", "left", "right", "width", "height", "overflow", "opacity" ],
+            props0 = ["position", "top", "bottom", "left", "right", "width", "height", "overflow", "opacity"],
 
         // Always restore
-            props1 = [ "position", "top", "bottom", "left", "right", "overflow", "opacity" ],
+            props1 = ["position", "top", "bottom", "left", "right", "overflow", "opacity"],
 
         // Copy for children
-            props2 = [ "width", "height", "overflow" ],
-            cProps = [ "fontSize" ],
-            vProps = [ "borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom" ],
-            hProps = [ "borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight" ],
+            props2 = ["width", "height", "overflow"],
+            cProps = ["fontSize"],
+            vProps = ["borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom"],
+            hProps = ["borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight"],
 
         // Set options
             mode = $.effects.setMode(el, o.mode || "effect"),
             restore = o.restore || mode !== "effect",
             scale = o.scale || "both",
-            origin = o.origin || [ "middle", "center" ],
+            origin = o.origin || ["middle", "center"],
             position = el.css("position"),
             props = restore ? props0 : props1,
             zero = {
@@ -216,8 +216,8 @@
         if (scale === "content" || scale === "both") { // Scale the children
 
             // Add margins/font-size
-            vProps = vProps.concat([ "marginTop", "marginBottom" ]).concat(cProps);
-            hProps = hProps.concat([ "marginLeft", "marginRight" ]);
+            vProps = vProps.concat(["marginTop", "marginBottom"]).concat(cProps);
+            hProps = hProps.concat(["marginLeft", "marginRight"]);
             props2 = props0.concat(vProps).concat(hProps);
 
             el.find("*[width]").each(function () {
@@ -292,7 +292,7 @@
                             left: el.to.left
                         });
                     } else {
-                        $.each([ "top", "left" ], function (idx, pos) {
+                        $.each(["top", "left"], function (idx, pos) {
                             el.css(pos, function (_, str) {
                                 var val = parseInt(str, 10),
                                     toRef = idx ? el.to.left : el.to.top;

@@ -1,15 +1,15 @@
 import
-"../core/functor";
+    "../core/functor";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/true";
+    "../core/true";
 import
-"../geom/point";
+    "../geom/point";
 import
-"svg";
+    "svg";
 import
-"line";
+    "line";
 
 function d3_svg_area(projection) {
     var x0 = d3_geom_pointX,

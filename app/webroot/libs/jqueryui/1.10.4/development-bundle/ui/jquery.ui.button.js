@@ -133,11 +133,11 @@
                     $(this).addClass("ui-state-active");
                     that.buttonElement.attr("aria-pressed", "true");
 
-                    var radio = that.element[ 0 ];
+                    var radio = that.element[0];
                     radioGroup(radio)
                         .not(radio)
                         .map(function () {
-                            return $(this).button("widget")[ 0 ];
+                            return $(this).button("widget")[0];
                         })
                         .removeClass("ui-state-active")
                         .attr("aria-pressed", "false");
@@ -368,7 +368,7 @@
                 .button()
                 .end()
                 .map(function () {
-                    return $(this).button("widget")[ 0 ];
+                    return $(this).button("widget")[0];
                 })
                 .removeClass("ui-corner-all ui-corner-left ui-corner-right")
                 .filter(":first")
@@ -384,7 +384,7 @@
             this.element.removeClass("ui-buttonset");
             this.buttons
                 .map(function () {
-                    return $(this).button("widget")[ 0 ];
+                    return $(this).button("widget")[0];
                 })
                 .removeClass("ui-corner-left ui-corner-right")
                 .end()

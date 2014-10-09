@@ -1,11 +1,11 @@
 import
-"../core/noop";
+    "../core/noop";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 import
-"stream";
+    "stream";
 
 d3.geo.centroid = function (object) {
     d3_geo_centroidW0 = d3_geo_centroidW1 =

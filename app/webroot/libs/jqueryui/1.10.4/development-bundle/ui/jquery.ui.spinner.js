@@ -80,10 +80,10 @@
             var options = {},
                 element = this.element;
 
-            $.each([ "min", "max", "step" ], function (i, option) {
+            $.each(["min", "max", "step"], function (i, option) {
                 var value = element.attr(option);
                 if (value !== undefined && value.length) {
-                    options[ option ] = value;
+                    options[option] = value;
                 }
             });
 
@@ -249,12 +249,12 @@
 
         _buttonHtml: function () {
             return "" +
-                "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
-                "<span class='ui-icon " + this.options.icons.up + "'>&#9650;</span>" +
-                "</a>" +
-                "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
-                "<span class='ui-icon " + this.options.icons.down + "'>&#9660;</span>" +
-                "</a>";
+            "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
+            "<span class='ui-icon " + this.options.icons.up + "'>&#9650;</span>" +
+            "</a>" +
+            "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
+            "<span class='ui-icon " + this.options.icons.down + "'>&#9660;</span>" +
+            "</a>";
         },
 
         _start: function (event) {
@@ -289,7 +289,7 @@
 
             value = this._adjustValue(value + step * this._increment(this.counter));
 
-            if (!this.spinning || this._trigger("spin", event, { value: value }) !== false) {
+            if (!this.spinning || this._trigger("spin", event, {value: value}) !== false) {
                 this._value(value);
                 this.counter++;
             }
@@ -363,7 +363,7 @@
         _setOption: function (key, value) {
             if (key === "culture" || key === "numberFormat") {
                 var prevValue = this._parse(this.element.val());
-                this.options[ key ] = value;
+                this.options[key] = value;
                 this.element.val(this._format(prevValue));
                 return;
             }

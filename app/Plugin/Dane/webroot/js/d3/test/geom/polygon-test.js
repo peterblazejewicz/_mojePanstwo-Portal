@@ -227,15 +227,15 @@ suite.addBatch({
                     d.map(function (y) {
                         return [0, y];
                     }).concat(
-                            d.map(function (x) {
-                                return [x, r];
-                            })).concat(
-                            d.map(function (y) {
-                                return [r, y];
-                            }).reverse()).concat(
-                            d.map(function (x) {
-                                return [x, 0];
-                            }).reverse()));
+                        d.map(function (x) {
+                            return [x, r];
+                        })).concat(
+                        d.map(function (y) {
+                            return [r, y];
+                        }).reverse()).concat(
+                        d.map(function (x) {
+                            return [x, 0];
+                        }).reverse()));
             },
             "has area 1e16 - 5e7": function (p) {
                 assert.equal(p.area(), 1e16 - 5e7);
@@ -254,8 +254,8 @@ function assertPointInDelta(expected, actual, δ, message) {
 function assertPolygonInDelta(expected, actual, δ, message) {
     if (!δ) δ = 0;
     if (expected.length !== actual.length || expected.some(function (e, i) {
-        return !pointInDelta(e, actual[i], δ);
-    })) {
+            return !pointInDelta(e, actual[i], δ);
+        })) {
         assert.fail(JSON.stringify(actual), JSON.stringify(expected), message || "expected {expected}, got {actual}", "===", assertPolygonInDelta);
     }
 }

@@ -89,8 +89,8 @@
             var that = this;
 
             if (key === "disabled") {
-                this[ value ? "_disable" : "_enable" ]();
-                this.options[ key ] = value;
+                this[value ? "_disable" : "_enable"]();
+                this.options[key] = value;
                 // disable element style changes
                 return;
             }
@@ -165,7 +165,7 @@
                     }
                     if (parent.attr("title")) {
                         parent.uniqueId();
-                        that.parents[ this.id ] = {
+                        that.parents[this.id] = {
                             element: this,
                             title: parent.attr("title")
                         };
@@ -281,7 +281,7 @@
                 }, $.fx.interval);
             }
 
-            this._trigger("open", event, { tooltip: tooltip });
+            this._trigger("open", event, {tooltip: tooltip});
 
             events = {
                 keyup: function (event) {
@@ -341,12 +341,12 @@
             if (event && event.type === "mouseleave") {
                 $.each(this.parents, function (id, parent) {
                     $(parent.element).attr("title", parent.title);
-                    delete that.parents[ id ];
+                    delete that.parents[id];
                 });
             }
 
             this.closing = true;
-            this._trigger("close", event, { tooltip: tooltip });
+            this._trigger("close", event, {tooltip: tooltip});
             this.closing = false;
         },
 
@@ -358,12 +358,12 @@
                         role: "tooltip"
                     })
                     .addClass("ui-tooltip ui-widget ui-corner-all ui-widget-content " +
-                        ( this.options.tooltipClass || "" ));
+                    ( this.options.tooltipClass || "" ));
             $("<div>")
                 .addClass("ui-tooltip-content")
                 .appendTo(tooltip);
             tooltip.appendTo(this.document[0].body);
-            this.tooltips[ id ] = element;
+            this.tooltips[id] = element;
             return tooltip;
         },
 
@@ -374,7 +374,7 @@
 
         _removeTooltip: function (tooltip) {
             tooltip.remove();
-            delete this.tooltips[ tooltip.attr("id") ];
+            delete this.tooltips[tooltip.attr("id")];
         },
 
         _destroy: function () {

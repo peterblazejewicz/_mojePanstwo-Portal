@@ -1,11 +1,11 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../core/array";
+    "../core/array";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 
 var d3_ease_default = function () {
     return d3_identity;

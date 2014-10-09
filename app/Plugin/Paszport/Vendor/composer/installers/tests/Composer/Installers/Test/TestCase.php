@@ -18,47 +18,41 @@ use Composer\Package\Package;
 use Composer\Package\Version\VersionParser;
 use Composer\Util\Filesystem;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
-{
-    private static $parser;
+abstract class TestCase extends \PHPUnit_Framework_TestCase {
+	private static $parser;
 
-    protected static function getVersionParser()
-    {
-        if (!self::$parser) {
-            self::$parser = new VersionParser();
-        }
+	protected function getVersionConstraint( $operator, $version ) {
+		return new VersionConstraint(
+			$operator,
+			self::getVersionParser()->normalize( $version )
+		);
+	}
 
-        return self::$parser;
-    }
+	protected static function getVersionParser() {
+		if ( ! self::$parser ) {
+			self::$parser = new VersionParser();
+		}
 
-    protected function getVersionConstraint($operator, $version)
-    {
-        return new VersionConstraint(
-            $operator,
-            self::getVersionParser()->normalize($version)
-        );
-    }
+		return self::$parser;
+	}
 
-    protected function getPackage($name, $version)
-    {
-        $normVersion = self::getVersionParser()->normalize($version);
+	protected function getPackage( $name, $version ) {
+		$normVersion = self::getVersionParser()->normalize( $version );
 
-        return new Package($name, $normVersion, $version);
-    }
+		return new Package( $name, $normVersion, $version );
+	}
 
-    protected function getAliasPackage($package, $version)
-    {
-        $normVersion = self::getVersionParser()->normalize($version);
+	protected function getAliasPackage( $package, $version ) {
+		$normVersion = self::getVersionParser()->normalize( $version );
 
-        return new AliasPackage($package, $normVersion, $version);
-    }
+		return new AliasPackage( $package, $normVersion, $version );
+	}
 
-    protected function ensureDirectoryExistsAndClear($directory)
-    {
-        $fs = new Filesystem();
-        if (is_dir($directory)) {
-            $fs->removeDirectory($directory);
-        }
-        mkdir($directory, 0777, true);
-    }
+	protected function ensureDirectoryExistsAndClear( $directory ) {
+		$fs = new Filesystem();
+		if ( is_dir( $directory ) ) {
+			$fs->removeDirectory( $directory );
+		}
+		mkdir( $directory, 0777, true );
+	}
 }

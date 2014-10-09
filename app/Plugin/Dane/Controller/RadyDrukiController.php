@@ -1,21 +1,19 @@
 <?php
 
-App::uses('DocsObjectsController', 'Dane.Controller');
+App::uses( 'DocsObjectsController', 'Dane.Controller' );
 
-class RadyDrukiController extends DocsObjectsController
-{
+class RadyDrukiController extends DocsObjectsController {
 
-    public $objectOptions = array(
-        'bigTitle' => true,
-    );
+	public $objectOptions = array(
+		'bigTitle' => true,
+	);
 
-    public function view()
-    {
+	public function view() {
 
-        parent::_prepareView();
-        $this->redirect('/dane/gminy/' . $this->object->getData('gminy.id') . '/druki/' . $this->object->getId());
-        die();
+		parent::_prepareView();
+		$this->redirect( '/dane/gminy/' . $this->object->getData( 'gminy.id' ) . '/druki/' . $this->object->getId() );
+		die();
 
-    }
+	}
 
 } 

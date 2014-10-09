@@ -13,9 +13,9 @@
     window.onpopstate = function (event) {
         var message =
                         "onpopstate: " +
-                                "location: " + location.href + ", " +
-                                "data: " + JSON.stringify(event.state) +
-                                "\n\n"
+                        "location: " + location.href + ", " +
+                        "data: " + JSON.stringify(event.state) +
+                        "\n\n"
                 ;
 
         $url.innerHTML = location.href;
@@ -26,9 +26,9 @@
     window.onhashchange = function (event) {
         var message =
                         "onhashchange: " +
-                                "location: " + location.href + ", " +
-                                "hash: " + location.hash +
-                                "\n\n"
+                        "location: " + location.href + ", " +
+                        "hash: " + location.hash +
+                        "\n\n"
                 ;
 
         $url.innerHTML = location.href;

@@ -131,9 +131,9 @@ LazyLoad = (function (doc) {
         };
 
         (env.webkit = /AppleWebKit\//.test(ua))
-            || (env.ie = /MSIE/.test(ua))
-            || (env.opera = /Opera/.test(ua))
-            || (env.gecko = /Gecko\//.test(ua))
+        || (env.ie = /MSIE/.test(ua))
+        || (env.opera = /Opera/.test(ua))
+        || (env.gecko = /Gecko\//.test(ua))
         || (env.unknown = true);
     }
 

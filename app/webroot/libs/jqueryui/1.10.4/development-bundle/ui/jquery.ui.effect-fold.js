@@ -17,7 +17,7 @@
 
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             hide = mode === "hide",
@@ -25,7 +25,7 @@
             percent = /([0-9]+)%/.exec(size),
             horizFirst = !!o.horizFirst,
             widthFirst = show !== horizFirst,
-            ref = widthFirst ? [ "width", "height" ] : [ "height", "width" ],
+            ref = widthFirst ? ["width", "height"] : ["height", "width"],
             duration = o.duration / 2,
             wrapper, distance,
             animation1 = {},
@@ -39,11 +39,11 @@
             overflow: "hidden"
         });
         distance = widthFirst ?
-            [ wrapper.width(), wrapper.height() ] :
-            [ wrapper.height(), wrapper.width() ];
+            [wrapper.width(), wrapper.height()] :
+            [wrapper.height(), wrapper.width()];
 
         if (percent) {
-            size = parseInt(percent[ 1 ], 10) / 100 * distance[ hide ? 0 : 1 ];
+            size = parseInt(percent[1], 10) / 100 * distance[hide ? 0 : 1];
         }
         if (show) {
             wrapper.css(horizFirst ? {
@@ -56,8 +56,8 @@
         }
 
         // Animation
-        animation1[ ref[ 0 ] ] = show ? distance[ 0 ] : size;
-        animation2[ ref[ 1 ] ] = show ? distance[ 1 ] : 0;
+        animation1[ref[0]] = show ? distance[0] : size;
+        animation2[ref[1]] = show ? distance[1] : 0;
 
         // Animate
         wrapper

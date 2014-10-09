@@ -1,5 +1,5 @@
 import
-"../core/document";
+    "../core/document";
 
 try {
     d3_document.createElement("div").style.setProperty("opacity", 0, "");

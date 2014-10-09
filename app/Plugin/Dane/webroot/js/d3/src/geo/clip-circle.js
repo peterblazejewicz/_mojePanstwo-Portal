@@ -1,17 +1,17 @@
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"cartesian";
+    "cartesian";
 import
-"clip";
+    "clip";
 import
-"circle";
+    "circle";
 import
-"spherical";
+    "spherical";
 import
-"point-in-polygon";
+    "point-in-polygon";
 
 // Clip features against a small circle centered at [0°, 0°].
 function d3_geo_clipCircle(radius) {
@@ -163,10 +163,10 @@ function d3_geo_clipCircle(radius) {
 
         // Check that the first point is between a and b.
         if (meridian
-            ? polar
-            ? φ0 + φ1 > 0 ^ q[1] < (abs(q[0] - λ0) < ε ? φ0 : φ1)
-            : φ0 <= q[1] && q[1] <= φ1
-            : δλ > π ^ (λ0 <= q[0] && q[0] <= λ1)) {
+                ? polar
+                ? φ0 + φ1 > 0 ^ q[1] < (abs(q[0] - λ0) < ε ? φ0 : φ1)
+                : φ0 <= q[1] && q[1] <= φ1
+                : δλ > π ^ (λ0 <= q[0] && q[0] <= λ1)) {
             var q1 = d3_geo_cartesianScale(u, (-w + t) / uu);
             d3_geo_cartesianAdd(q1, A);
             return [q, d3_geo_spherical(q1)];

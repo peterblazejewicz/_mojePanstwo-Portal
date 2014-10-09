@@ -1,17 +1,17 @@
 import
-"../color/color";
+    "../color/color";
 import
-"../color/rgb";
+    "../color/rgb";
 import
-"rgb";
+    "rgb";
 import
-"object";
+    "object";
 import
-"array";
+    "array";
 import
-"number";
+    "number";
 import
-"string";
+    "string";
 
 d3.interpolate = d3_interpolate;
 

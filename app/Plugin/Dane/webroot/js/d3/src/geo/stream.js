@@ -1,5 +1,5 @@
 import
-"geo";
+    "geo";
 
 d3.geo.stream = function (object, listener) {
     if (object && d3_geo_streamObjectType.hasOwnProperty(object.type)) {

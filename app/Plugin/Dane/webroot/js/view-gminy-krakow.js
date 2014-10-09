@@ -73,8 +73,8 @@ $(function () {
         // Initiate the chart
         $('#dzielnice_map').highcharts('Map', {
 
-            title : {
-                text : 'GeoJSON in Highmaps'
+            title: {
+                text: 'GeoJSON in Highmaps'
             },
 
             mapNavigation: {
@@ -84,11 +84,10 @@ $(function () {
                 }
             },
 
-            colorAxis: {
-            },
+            colorAxis: {},
 
-            series : [{
-                data : data,
+            series: [{
+                data: data,
                 mapData: geojson,
                 joinBy: ['code_hasc', 'code'],
                 name: 'Random data',

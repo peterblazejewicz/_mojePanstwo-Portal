@@ -1,23 +1,23 @@
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../interpolate/interpolate";
+    "../interpolate/interpolate";
 import
-"../interpolate/round";
+    "../interpolate/round";
 import
-"../interpolate/uninterpolate";
+    "../interpolate/uninterpolate";
 import
-"../format/format";
+    "../format/format";
 import
-"bilinear";
+    "bilinear";
 import
-"nice";
+    "nice";
 import
-"polylinear";
+    "polylinear";
 import
-"scale";
+    "scale";
 
 d3.scale.linear = function () {
     return d3_scale_linear([0, 1], [0, 1], d3_interpolate, false);

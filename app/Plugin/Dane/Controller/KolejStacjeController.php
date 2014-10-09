@@ -1,35 +1,33 @@
 <?php
 
-App::uses('DataobjectsController', 'Dane.Controller');
+App::uses( 'DataobjectsController', 'Dane.Controller' );
 
-class KolejStacjeController extends DataobjectsController
-{
-    public $menu = array(
-        array(
-            'id' => 'view',
-            'label' => 'LC_DANE_LOKALIZACJA_STACJI',
-        ),
-        /*
-        array(
-            'id' => 'linie',
-            'label' => 'LC_DANE_LINIE'
-        )
-        */
-    );
+class KolejStacjeController extends DataobjectsController {
+	public $menu = array(
+		array(
+			'id'    => 'view',
+			'label' => 'LC_DANE_LOKALIZACJA_STACJI',
+		),
+		/*
+		array(
+			'id' => 'linie',
+			'label' => 'LC_DANE_LINIE'
+		)
+		*/
+	);
 
-    public function linie()
-    {
+	public function linie() {
 
-        $this->addInitLayers(array('linie'));
+		$this->addInitLayers( array( 'linie' ) );
 
-        parent::view();
+		parent::view();
 
-        $ids = array();
-        foreach ($this->object->layers['linie'] as $linia) {
-            array_push($ids, $linia['a']['id']);
-        }
-        $this->innerSearch('kolej_linie', array(
-            'object_id' => $ids,
-        ));
-    }
+		$ids = array();
+		foreach ( $this->object->layers['linie'] as $linia ) {
+			array_push( $ids, $linia['a']['id'] );
+		}
+		$this->innerSearch( 'kolej_linie', array(
+			'object_id' => $ids,
+		) );
+	}
 } 

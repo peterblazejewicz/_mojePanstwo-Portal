@@ -1,5 +1,5 @@
 import
-"document";
+    "document";
 
 function d3_vendorSymbol(object, name) {
     if (name in object) return name;

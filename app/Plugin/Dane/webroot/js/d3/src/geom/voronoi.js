@@ -1,11 +1,11 @@
 import
-"../core/functor";
+    "../core/functor";
 import
-"voronoi/";
+    "voronoi/";
 import
-"geom";
+    "geom";
 import
-"point";
+    "point";
 
 d3.geom.voronoi = function (points) {
     var x = d3_geom_pointX,

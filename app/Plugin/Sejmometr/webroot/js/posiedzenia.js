@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
 function prepare_slide(current_slide) {
     var slide_div, slide_content;
 
-    if (( slide_div = jQuery(jQuery('.slider-item-container').children()[ current_slide ]) ) && !(slide_div.hasClass('prepared')) && ( slide_content = slide_div.find('.slide_content') ) && slide_content.length) {
+    if (( slide_div = jQuery(jQuery('.slider-item-container').children()[current_slide]) ) && !(slide_div.hasClass('prepared')) && ( slide_content = slide_div.find('.slide_content') ) && slide_content.length) {
         var h = $('body').height() - $('header').outerHeight() - $('footer').outerHeight(),
             $timelineEmbed = jQuery("#timeline-embed"),
             posiedzenie_id = slide_content.data('posiedzenie_id'),

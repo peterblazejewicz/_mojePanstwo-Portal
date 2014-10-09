@@ -1,11 +1,11 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../interpolate/interpolate";
+    "../interpolate/interpolate";
 import
-"transition";
+    "transition";
 import
-"tween";
+    "tween";
 
 d3_transitionPrototype.style = function (name, value, priority) {
     var n = arguments.length;

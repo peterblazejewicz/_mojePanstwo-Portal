@@ -52,9 +52,11 @@ suite.addBatch({
                 assert.equal(body.node().getAttributeNS("http://www.w3.org/1999/xlink", "href"), "url.png");
             },
             "sets attributes as a map of functions": function (body) {
-                body.data(["orange"]).attr({"xlink:href": function (d, i) {
-                    return d + "-" + i + ".png";
-                }});
+                body.data(["orange"]).attr({
+                    "xlink:href": function (d, i) {
+                        return d + "-" + i + ".png";
+                    }
+                });
                 assert.equal(body.node().getAttributeNS("http://www.w3.org/1999/xlink", "href"), "orange-0.png");
             },
             "gets an attribute value": function (body) {
@@ -95,9 +97,11 @@ suite.addBatch({
             "removes attributes as a map of functions that return null": function (body) {
                 body.node().setAttribute("bgcolor", "white");
                 body.node().setAttributeNS("http://www.w3.org/1999/xlink", "href", "foo.png");
-                body.attr({bgcolor: function () {
-                }, "xlink:href": function () {
-                }});
+                body.attr({
+                    bgcolor: function () {
+                    }, "xlink:href": function () {
+                    }
+                });
                 assert.isNull(body.node().getAttribute("bgcolor"));
                 assert.isNull(body.node().getAttributeNS("http://www.w3.org/1999/xlink", "href"));
             },

@@ -1,5 +1,5 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 
 var ρ = Math.SQRT2,
     ρ2 = 2,

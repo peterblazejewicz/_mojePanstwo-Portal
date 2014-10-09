@@ -1,33 +1,33 @@
 import
-"../core/identity";
+    "../core/identity";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"albers-usa";
+    "albers-usa";
 import
-"area";
+    "area";
 import
-"bounds";
+    "bounds";
 import
-"centroid";
+    "centroid";
 import
-"geo";
+    "geo";
 import
-"path-area";
+    "path-area";
 import
-"path-bounds";
+    "path-bounds";
 import
-"path-buffer";
+    "path-buffer";
 import
-"path-centroid";
+    "path-centroid";
 import
-"path-context";
+    "path-context";
 import
-"projection";
+    "projection";
 import
-"resample";
+    "resample";
 import
-"stream";
+    "stream";
 
 d3.geo.path = function () {
     var pointRadius = 4.5,

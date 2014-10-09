@@ -1,13 +1,13 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../format/formatPrefix";
+    "../format/formatPrefix";
 import
-"../format/precision";
+    "../format/precision";
 import
-"../format/round";
+    "../format/round";
 
 function d3_locale_numberFormat(locale) {
     var locale_decimal = locale.decimal,

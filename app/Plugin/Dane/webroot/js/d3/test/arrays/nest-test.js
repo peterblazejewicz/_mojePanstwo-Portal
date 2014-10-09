@@ -35,13 +35,17 @@ suite.addBatch({
                     {foo: 1, bar: 1}
                 ]);
             assert.deepEqual(entries, [
-                {key: "1", values: [
+                {
+                    key: "1", values: [
                     {foo: 1, bar: 0},
                     {foo: 1, bar: 1}
-                ]},
-                {key: "2", values: [
+                ]
+                },
+                {
+                    key: "2", values: [
                     {foo: 2}
-                ]}
+                ]
+                }
             ]);
         },
         "keys can be sorted using an optional comparator": function (nest) {
@@ -74,14 +78,18 @@ suite.addBatch({
                     {foo: 2}
                 ]);
             assert.deepEqual(entries, [
-                {key: "1", values: [
+                {
+                    key: "1", values: [
                     {foo: 1, bar: 0},
                     {foo: 1, bar: 1},
                     {foo: 1, bar: 2}
-                ]},
-                {key: "2", values: [
+                ]
+                },
+                {
+                    key: "2", values: [
                     {foo: 2}
-                ]}
+                ]
+                }
             ]);
         },
         "values can be aggregated using an optional rollup": function (nest) {
@@ -121,23 +129,35 @@ suite.addBatch({
                     [0, 2]
                 ]);
             assert.deepEqual(entries, [
-                {key: "0", values: [
-                    {key: "1", values: [
+                {
+                    key: "0", values: [
+                    {
+                        key: "1", values: [
                         [0, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [0, 2],
                         [0, 2]
-                    ]}
-                ]},
-                {key: "1", values: [
-                    {key: "1", values: [
+                    ]
+                    }
+                ]
+                },
+                {
+                    key: "1", values: [
+                    {
+                        key: "1", values: [
                         [1, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [1, 2]
-                    ]}
-                ]}
+                    ]
+                    }
+                ]
+                }
             ]);
         },
         "the rollup function only applies to leaf values": function (nest) {
@@ -159,14 +179,18 @@ suite.addBatch({
                     [0, 2]
                 ]);
             assert.deepEqual(entries, [
-                {key: "0", values: [
+                {
+                    key: "0", values: [
                     {key: "1", values: 1},
                     {key: "2", values: 2}
-                ]},
-                {key: "1", values: [
+                ]
+                },
+                {
+                    key: "1", values: [
                     {key: "1", values: 1},
                     {key: "2", values: 1}
-                ]}
+                ]
+                }
             ]);
         },
         "the value comparator only applies to leaf values": function (nest) {
@@ -188,23 +212,35 @@ suite.addBatch({
                     [0, 2, 0]
                 ]);
             assert.deepEqual(entries, [
-                {key: "0", values: [
-                    {key: "1", values: [
+                {
+                    key: "0", values: [
+                    {
+                        key: "1", values: [
                         [0, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [0, 2, 0],
                         [0, 2, 1]
-                    ]}
-                ]},
-                {key: "1", values: [
-                    {key: "1", values: [
+                    ]
+                    }
+                ]
+                },
+                {
+                    key: "1", values: [
+                    {
+                        key: "1", values: [
                         [1, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [1, 2]
-                    ]}
-                ]}
+                    ]
+                    }
+                ]
+                }
             ]);
         },
         "the key comparator only applies to the last-specified key": function (nest) {
@@ -223,23 +259,35 @@ suite.addBatch({
                     [0, 2]
                 ]);
             assert.deepEqual(entries, [
-                {key: "0", values: [
-                    {key: "2", values: [
+                {
+                    key: "0", values: [
+                    {
+                        key: "2", values: [
                         [0, 2],
                         [0, 2]
-                    ]},
-                    {key: "1", values: [
+                    ]
+                    },
+                    {
+                        key: "1", values: [
                         [0, 1]
-                    ]}
-                ]},
-                {key: "1", values: [
-                    {key: "2", values: [
+                    ]
+                    }
+                ]
+                },
+                {
+                    key: "1", values: [
+                    {
+                        key: "2", values: [
                         [1, 2]
-                    ]},
-                    {key: "1", values: [
+                    ]
+                    },
+                    {
+                        key: "1", values: [
                         [1, 1]
-                    ]}
-                ]}
+                    ]
+                    }
+                ]
+                }
             ]);
             var entries = nest()
                 .key(function (d) {
@@ -256,23 +304,35 @@ suite.addBatch({
                     [0, 2]
                 ]);
             assert.deepEqual(entries, [
-                {key: "1", values: [
-                    {key: "1", values: [
+                {
+                    key: "1", values: [
+                    {
+                        key: "1", values: [
                         [1, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [1, 2]
-                    ]}
-                ]},
-                {key: "0", values: [
-                    {key: "1", values: [
+                    ]
+                    }
+                ]
+                },
+                {
+                    key: "0", values: [
+                    {
+                        key: "1", values: [
                         [0, 1]
-                    ]},
-                    {key: "2", values: [
+                    ]
+                    },
+                    {
+                        key: "2", values: [
                         [0, 2],
                         [0, 2]
-                    ]}
-                ]}
+                    ]
+                    }
+                ]
+                }
             ]);
         },
         "if no keys are specified, the input array is returned": function (nest) {
@@ -491,9 +551,11 @@ suite.addBatch({
                 ]
             ]);
             assert.deepEqual(map.get("42").entries(), [
-                {key: "red", value: [
+                {
+                    key: "red", value: [
                     {foo: 42, bar: "red"}
-                ]}
+                ]
+                }
             ]);
         }
     }

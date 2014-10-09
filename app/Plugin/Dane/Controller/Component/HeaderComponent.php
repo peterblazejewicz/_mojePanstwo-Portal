@@ -1,7 +1,6 @@
 <?
 
-class HeaderComponent extends Component
-{
+class HeaderComponent extends Component {
 
 
 }

@@ -355,7 +355,10 @@ test("modify testEnvironment", function () {
     this.options.ingredients.push("carrots");
 });
 test("testEnvironment reset for next test", function () {
-    deepEqual(this.options, {recipe: "soup", ingredients: ["hamster", "onions", "carrots"]}, "Is this a bug or a feature? Could do a deep copy");
+    deepEqual(this.options, {
+        recipe: "soup",
+        ingredients: ["hamster", "onions", "carrots"]
+    }, "Is this a bug or a feature? Could do a deep copy");
 });
 
 
@@ -395,13 +398,13 @@ module("assertions");
 
 test("propEqual", 5, function (assert) {
     var objectCreate = Object.create || function (origin) {
-        function O() {
-        }
+            function O() {
+            }
 
-        O.prototype = origin;
-        var r = new O();
-        return r;
-    };
+            O.prototype = origin;
+            var r = new O();
+            return r;
+        };
 
     function Foo(x, y, z) {
         this.x = x;
@@ -461,12 +464,12 @@ test("propEqual", 5, function (assert) {
     );
 
     assert.propEqual(
-        new Foo(1, '2', new Foo([ 3 ], new Bar(), null)),
+        new Foo(1, '2', new Foo([3], new Bar(), null)),
         {
             x: 1,
             y: '2',
             z: {
-                x: [ 3 ],
+                x: [3],
                 y: {},
                 z: null
             }

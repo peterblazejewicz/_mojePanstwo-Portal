@@ -22,7 +22,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['af']);
 });
 /* Mohamed Cherif BOUCHELAGHEM -- cherifbouchelaghem@yahoo.fr */
@@ -44,7 +45,8 @@ jQuery(function ($) {
         firstDay: 6,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ar-DZ']);
 });
 /* Khaled Alhourani -- me@khaledalhourani.com */
@@ -66,7 +68,8 @@ jQuery(function ($) {
         firstDay: 6,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ar']);
 });
 /* Written by Jamil Najafov (necefov33@gmail.com). */
@@ -88,7 +91,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['az']);
 });
 /* Written by Pavel Selitskas <p.selitskas@gmail.com> */
@@ -110,7 +114,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['be']);
 });
 /* Written by Stoyan Kyosev (http://svest.org). */
@@ -133,7 +138,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['bg']);
 });
 /* Written by Kenan Konjo. */
@@ -155,7 +161,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['bs']);
 });
 /* Writers: (joan.leon@gmail.com). */
@@ -177,7 +184,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ca']);
 });
 /* Written by Tomas Muller (tomas@tomas-muller.net). */
@@ -199,7 +207,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['cs']);
 });
 /* Written by William Griffiths. */
@@ -221,7 +230,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['cy-GB']);
 });
 /* Written by Jan Christensen ( deletestuff@gmail.com). */
@@ -243,7 +253,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['da']);
 });
 /* Written by Milian Wolff (mail@milianw.de). */
@@ -265,7 +276,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['de']);
 });
 /* Written by Alex Cicovic (http://www.alexcicovic.com) */
@@ -287,7 +299,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['el']);
 });
 /* Based on the en-GB initialisation. */
@@ -309,7 +322,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['en-AU']);
 });
 /* Written by Stuart. */
@@ -331,7 +345,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['en-GB']);
 });
 /* Based on the en-GB initialisation. */
@@ -353,7 +368,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['en-NZ']);
 });
 /* Written by Olivier M. (olivierweb@ifrance.com). */
@@ -375,7 +391,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['eo']);
 });
 /* Traducido por Vester (xvester@gmail.com). */
@@ -397,7 +414,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['es']);
 });
 /* Written by Mart Sõmermaa (mrts.pydev at gmail com). */
@@ -419,7 +437,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['et']);
 });
 /* Karrikas-ek itzulia (karrikas@karrikas.com) */
@@ -441,7 +460,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['eu']);
 });
 /* Javad Mowlanezhad -- jmowla@gmail.com */
@@ -499,7 +519,8 @@ jQuery(function ($) {
         firstDay: 6,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['fa']);
 });
 /* Written by Harri Kilpiö (harrikilpio@gmail.com). */
@@ -521,7 +542,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['fi']);
 });
 /* Written by Sverri Mohr Olsen, sverrimo@gmail.com */
@@ -543,7 +565,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['fo']);
 });
 jQuery(function ($) {
@@ -587,7 +610,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['fr-CH']);
 });
 /* Written by Keith Wood (kbwood{at}iinet.com.au),
@@ -611,7 +635,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['fr']);
 });
 /* Translated by Jorge Barreiro <yortx.barry@gmail.com>. */
@@ -633,7 +658,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['gl']);
 });
 /* Written by Amir Hardon (ahardon at gmail dot com). */
@@ -655,7 +681,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['he']);
 });
 /* Written by Michael Dawart. */
@@ -677,7 +704,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['hi']);
 });
 /* Written by Vjekoslav Nesek. */
@@ -699,7 +727,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['hr']);
 });
 /* Written by Istvan Karaszi (jquery@spam.raszi.hu). */
@@ -721,7 +750,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['hu']);
 });
 /* Written by Levon Zakaryan (levon.zakaryan@gmail.com)*/
@@ -743,7 +773,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['hy']);
 });
 /* Written by Deden Fathurahman (dedenf@gmail.com). */
@@ -765,7 +796,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['id']);
 });
 /* Written by Haukur H. Thorsson (haukur@eskill.is). */
@@ -787,7 +819,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['is']);
 });
 /* Written by Antonello Pasella (antonello.pasella@gmail.com). */
@@ -809,7 +842,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['it']);
 });
 /* Written by Kentaro SATO (kentaro@ranvis.com). */
@@ -831,7 +865,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '年'};
+        yearSuffix: '年'
+    };
     $.datepicker.setDefaults($.datepicker.regional['ja']);
 });
 /* Written by Lado Lomidze (lado.lomidze@gmail.com). */
@@ -851,7 +886,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ka']);
 });
 /* Written by Dmitriy Karasyov (dmitriy.karasyov@gmail.com). */
@@ -873,7 +909,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['kk']);
 });
 /* Written by Chandara Om (chandara.teacher@gmail.com). */
@@ -895,7 +932,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['km']);
 });
 /* Written by DaeKwon Kang (ncrash.dk@gmail.com), Edited by Genie. */
@@ -917,7 +955,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '년'};
+        yearSuffix: '년'
+    };
     $.datepicker.setDefaults($.datepicker.regional['ko']);
 });
 /* Written by Sergey Kartashov (ebishkek@yandex.ru). */
@@ -962,7 +1001,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['lb']);
 });
 /* @author Arturas Paleicikas <arturas@avalon.lt> */
@@ -984,7 +1024,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['lt']);
 });
 /* @author Arturas Paleicikas <arturas.paleicikas@metasite.net> */
@@ -1006,7 +1047,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['lv']);
 });
 /* Written by Stojce Slavkovski. */
@@ -1028,7 +1070,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['mk']);
 });
 /* Written by Saji Nediyanchath (saji89@gmail.com). */
@@ -1050,7 +1093,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ml']);
 });
 /* Written by Mohd Nawawi Mohamad Jamili (nawawi@ronggeng.net). */
@@ -1072,7 +1116,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ms']);
 });
 /* Written by Bjørn Johansen (post@bjornjohansen.no). */
@@ -1115,7 +1160,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['nl-BE']);
 });
 /* Written by Mathias Bynens <http://mathiasbynens.be/> */
@@ -1137,7 +1183,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional.nl);
 });
 /* Written by Bjørn Johansen (post@bjornjohansen.no). */
@@ -1202,7 +1249,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['pl']);
 });
 /* Written by Leonildo Costa Silva (leocsilva@gmail.com). */
@@ -1224,7 +1272,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
 });
 jQuery(function ($) {
@@ -1245,7 +1294,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['pt']);
 });
 /* Written by Yvonne Gienal (yvonne.gienal@educa.ch). */
@@ -1265,7 +1315,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['rm']);
 });
 jQuery(function ($) {
@@ -1286,7 +1337,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ro']);
 });
 /* Written by Andrew Stromnov (stromnov@gmail.com). */
@@ -1308,7 +1360,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ru']);
 });
 /* Written by Vojtech Rinik (vojto@hmm.sk). */
@@ -1330,7 +1383,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sk']);
 });
 /* Written by Jaka Jancar (jaka@kubje.org). */
@@ -1353,7 +1407,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sl']);
 });
 /* Written by Flakron Bytyqi (flakron@gmail.com). */
@@ -1375,7 +1430,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sq']);
 });
 /* Written by Dejan Dimić. */
@@ -1397,7 +1453,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sr-SR']);
 });
 /* Written by Dejan Dimić. */
@@ -1419,7 +1476,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sr']);
 });
 /* Written by Anders Ekdahl ( anders@nomadiz.se). */
@@ -1441,7 +1499,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['sv']);
 });
 /* Written by S A Sureshkumar (saskumar@live.com). */
@@ -1463,7 +1522,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ta']);
 });
 /* Written by pipo (pipo@sixhead.com). */
@@ -1485,7 +1545,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['th']);
 });
 /* Written by Abdurahmon Saidov (saidovab@gmail.com). */
@@ -1507,7 +1568,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['tj']);
 });
 /* Written by Izzet Emre Erkan (kara@karalamalar.net). */
@@ -1529,7 +1591,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['tr']);
 });
 /* Written by Maxim Drogobitskiy (maxdao@gmail.com). */
@@ -1552,7 +1615,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['uk']);
 });
 /* Translated by Le Thanh Huy (lthanhhuy@cit.ctu.edu.vn). */
@@ -1574,7 +1638,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['vi']);
 });
 /* Written by Cloudream (cloudream@gmail.com). */
@@ -1596,7 +1661,8 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '年'};
+        yearSuffix: '年'
+    };
     $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 });
 /* Written by SCCY (samuelcychan@gmail.com). */
@@ -1618,7 +1684,8 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '年'};
+        yearSuffix: '年'
+    };
     $.datepicker.setDefaults($.datepicker.regional['zh-HK']);
 });
 /* Written by Ressol (ressol@gmail.com). */
@@ -1640,6 +1707,7 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '年'};
+        yearSuffix: '年'
+    };
     $.datepicker.setDefaults($.datepicker.regional['zh-TW']);
 });

@@ -1,5 +1,5 @@
 import
-"layout";
+    "layout";
 
 // Implements hierarchical edge bundling using Holten's algorithm. For each
 // input link, a path is computed that travels through the tree, up the parent

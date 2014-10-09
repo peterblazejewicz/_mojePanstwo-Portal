@@ -1,13 +1,13 @@
 import
-"../core/ns";
+    "../core/ns";
 import
-"../interpolate/interpolate";
+    "../interpolate/interpolate";
 import
-"../interpolate/transform";
+    "../interpolate/transform";
 import
-"transition";
+    "transition";
 import
-"tween";
+    "tween";
 
 d3_transitionPrototype.attr = function (nameNS, value) {
     if (arguments.length < 2) {
