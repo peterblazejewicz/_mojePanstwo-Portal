@@ -5,9 +5,12 @@ $this->Combinator->add_libs( 'js', 'Dane.timeline' );
 $this->Combinator->add_libs( 'js', 'Dane.dataliner' );
 ?>
 
-
-<div class="dataliner" data-requestdata="<?= htmlspecialchars( json_encode( $requestData ) ) ?>"
-     data-filterfield="<?= $filterField ?>">
+<div class="dataliner" data-requestdata="<? if ( isset( $requestData ) && ! empty( $requestData ) ) {
+	echo htmlspecialchars( json_encode( $requestData ) );
+} ?>"
+     data-filterfield="<? if ( isset( $filterField ) && ! empty( $filterField ) ) {
+	     echo $filterField;
+     } ?>">
 	<? if ( isset( $filters ) && ! empty( $filters ) ) { ?>
 		<div class="filters text-center">
 			<select class="selectpicker">

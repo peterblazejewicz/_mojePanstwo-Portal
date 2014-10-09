@@ -3,7 +3,6 @@ var Dataliner = Class.extend({
         this.div = $(div);
         this.timeline_div = this.div.find('.timeline');
         this.filters_div = this.div.find('.filters');
-        this.endlessLoading = this.div.find('.endlessLoader');
 
         this.requestData = this.div.data('requestdata');
         this.filterField = this.div.data('filterfield');
@@ -11,6 +10,7 @@ var Dataliner = Class.extend({
         this.initData = [];
 
         var lis = this.timeline_div.find('ul li');
+
         for (var i = 0; i < lis.length; i++) {
             var li = jQuery(lis[i]);
             this.initData.push({
@@ -22,10 +22,13 @@ var Dataliner = Class.extend({
         }
 
         this.timeline_div.html('').show();
-        this.filters_div_select = this.filters_div.find('select');
-        if (this.filters_div_select.length) {
-            this.filters_div_select.selectpicker();
-            this.filters_div.slideDown();
+
+        if (this.filters_div) {
+            this.filters_div_select = this.filters_div.find('select');
+            if (this.filters_div_select) {
+                this.filters_div_select.selectpicker();
+                this.filters_div.slideDown();
+            }
         }
 
         this.timeline = new Timeline(this.timeline_div, this.initData);
@@ -37,7 +40,11 @@ var Dataliner = Class.extend({
 
     loadData: function (page) {
         var data = this.requestData;
-        data['conditions'][this.filterField] = this.filters_div_select.val();
+
+        if (this.filters_div_select.val() !== undefined) {
+            data['conditions'][this.filterField] = this.filters_div_select.val();
+        }
+
         data['page'] = page;
 
         $.ajax('/dane/dataliner/index.json', {
