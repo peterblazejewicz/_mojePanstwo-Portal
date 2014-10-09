@@ -20,7 +20,6 @@
 </head>
 <body>
 <h1>script.aculo.us Unit test file</h1>
-
 <p>
     Test of drag &amp; drop functions in dragdrop.js
 </p>
@@ -29,12 +28,9 @@
 <div id="testlog"></div>
 
 <p id="p_test">p_test</p>
-
 <p id="p_test2">p_test2</p>
-
 <p id="p_test3">p_test3</p>
 <img id="img_test" src="icon.png" alt="img_text"/>
-
 <div id="droppable_test">droppable_test</div>
 
 <div id="div_test">div_test</div>
@@ -67,7 +63,7 @@
             with (this) {
                 var d = new Draggable('p_test2');
                 assert(d.options.starteffect, 'There should be a default start effect.');
-                d = new Draggable('p_test3', { endeffect: Prototype.EmptyFunction });
+                d = new Draggable('p_test3', {endeffect: Prototype.EmptyFunction});
                 assert(undefined === d.options.startEffect, 'There should be no default start effect.');
             }
         },
@@ -111,7 +107,8 @@
             with (this) {
                 // Droppable containers should be cached
                 Droppables.add('droppable_test', {
-                    containment: 'droppable_container' });
+                    containment: 'droppable_container'
+                });
                 assertEqual(1, Droppables.drops[0]._containers.length);
                 assertEqual($('droppable_container'), Droppables.drops[0]._containers[0]);
                 assert(Droppables.isContained($('d1'), Droppables.drops[0]));
@@ -120,7 +117,8 @@
                 Droppables.remove('droppable_test');
 
                 Droppables.add('droppable_test', {
-                    containment: ['droppable_container', 'droppable_container_2'] });
+                    containment: ['droppable_container', 'droppable_container_2']
+                });
                 assertEqual(2, Droppables.drops[0]._containers.length);
                 assertEqual($('droppable_container'), Droppables.drops[0]._containers[0]);
                 assertEqual($('droppable_container_2'), Droppables.drops[0]._containers[1]);

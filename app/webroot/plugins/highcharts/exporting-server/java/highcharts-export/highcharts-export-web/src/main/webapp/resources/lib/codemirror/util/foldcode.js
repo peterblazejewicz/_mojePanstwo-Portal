@@ -39,9 +39,9 @@ CodeMirror.tagRangeFinder = function (cm, line, hideEnd) {
                         if (!str.match(/\/\s*\>/)) { // yep, that's the end of empty tag
                             if (hideEnd === true) l++;
                             return l;
-                        }
+            }
                     }
-                }
+        }
                 l++;
             }
             found = true;
@@ -58,7 +58,7 @@ CodeMirror.tagRangeFinder = function (cm, line, hideEnd) {
                 if (!str.match(/\/\s*\>/)) { // finally not empty
                     found = true;
                     // don't continue
-                }
+        }
             }
         }
         if (found) {
@@ -71,12 +71,12 @@ CodeMirror.tagRangeFinder = function (cm, line, hideEnd) {
                 if (-1 != lineText.indexOf("</" + tag + ">", pos)) // yep
                 {
                     found = false;
-                }
+        }
                 // we don't, so we have a candidate...
             }
             else
                 found = false;
-        }
+    }
         if (!found)
             pos++;
     }
@@ -101,10 +101,10 @@ CodeMirror.tagRangeFinder = function (cm, line, hideEnd) {
                         if (hideEnd === true) l++;
                         return l;
                     }
-                }
+        }
             }
             l++;
-        }
+    }
         return;
     }
 };
@@ -139,7 +139,7 @@ CodeMirror.braceRangeFinder = function (cm, line, hideEnd) {
                 }
             }
             ++pos;
-        }
+    }
     }
     if (end == null || end == line + 1) return;
     if (hideEnd === true) end++;
@@ -154,7 +154,7 @@ CodeMirror.indentRangeFinder = function (cm, line) {
         if (!/^\s*$/.test(handle.text)) {
             if (handle.indentation(tabSize) <= myIndent) break;
             last = i;
-        }
+    }
     }
     if (!last) return null;
     return last + 1;
@@ -169,7 +169,7 @@ CodeMirror.newFoldFunction = function (rangeFinder, markText, hideEnd) {
             var start = cm.lineInfo(folded[i].start);
             if (!start) folded.splice(i--, 1);
             else if (start.line == n) return {pos: i, region: folded[i]};
-        }
+    }
     }
 
     function expand(cm, region) {

@@ -35,9 +35,11 @@
 
     $('container_div').appendChild(ul);
 
-    Sortable.create(new_ul_id, { onUpdate: function () {
-        alert(Sortable.serialize('new_id_123'));
-    } });
+    Sortable.create(new_ul_id, {
+        onUpdate: function () {
+            alert(Sortable.serialize('new_id_123'));
+        }
+    });
     // ]]>
 </script>
 
