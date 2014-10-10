@@ -32,7 +32,7 @@ class Dataliner extends AppModel
 				'type' => 'blog_post',
 				'date' => $object->getData('data_wejscia_w_zycie'),
 				'title' => $object->getData('typ_nazwa'),
-				'content' => '<div class="row"><div class="col-md-2 text-center"><img src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>',
+				'content' => '<a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a>',
 			);
 			
 		}
