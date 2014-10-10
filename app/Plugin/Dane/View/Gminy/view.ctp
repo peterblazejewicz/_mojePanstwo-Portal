@@ -1,19 +1,18 @@
-<?php $this->Combinator->add_libs( 'js', 'jquery-tags-cloud-min' ); ?>
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy', array( 'plugin' => 'Dane' ) ) ); ?>
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'dataobjectslider', array( 'plugin' => 'Dane' ) ) ) ?>
 
-<?php if ( $object->getId() == '903' ) {
-	$this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy-krakow', array( 'plugin' => 'Dane' ) ) );
-	$this->Combinator->add_libs( 'js', 'Dane.view-gminy-krakow' );
-} ?>
-
+<?php $this->Combinator->add_libs( 'js', 'jquery-tags-cloud-min' ); ?>
 <?php $this->Combinator->add_libs( 'js', '../plugins/highcharts/js/highcharts' ); ?>
 <?php $this->Combinator->add_libs( 'js', '../plugins/highcharts/locals' ); ?>
 <?php $this->Combinator->add_libs( 'js', 'Dane.view-gminy' ); ?>
-<?
-echo $this->Element( 'dataobject/pageBegin' );
-?>
 
+<?php if ( $object->getId() == '903' ) {
+	$this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy-krakow', array( 'plugin' => 'Dane' ) ) );
+	$this->Combinator->add_libs( 'js', '../plugins/highcharts/plugin/map' ); /*HIGHCHARTS IS LOADED BEFORE SO WE LOAD MAP PLUGIN INSTEAD HIGHMAPS*/
+	$this->Combinator->add_libs( 'js', 'Dane.view-gminy-krakow' );
+} ?>
+
+<? echo $this->Element( 'dataobject/pageBegin' ); ?>
 
 
 <div class="gminy row">
@@ -493,7 +492,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 	</div>
 </div>
 
-<div id="zamowienia_publiczne_zamkniete" class="block">
+<div id="dzielnice" class="block">
 	<div class="block-header">
 		<h2 class="pull-left label">Dzielnice</h2>
 		<a class="btn btn-default btn-sm pull-right"
