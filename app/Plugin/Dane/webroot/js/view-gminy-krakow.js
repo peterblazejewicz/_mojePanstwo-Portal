@@ -77,6 +77,10 @@ $(function () {
                 text: 'GeoJSON in Highmaps'
             },
 
+			credits: {
+				enabled: false	
+			},
+			
             mapNavigation: {
                 enabled: true,
                 buttonOptions: {

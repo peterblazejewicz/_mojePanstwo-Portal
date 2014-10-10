@@ -1,3 +1,6 @@
+<?php $this->Combinator->add_libs( 'js', '../plugins/highcharts/js/highcharts' ); ?>
+<?php $this->Combinator->add_libs( 'js', '../plugins/highcharts/locals' ); ?>
+
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'sections', array( 'plugin' => 'Finanse' ) ) ) ?>
 <?php $this->Combinator->add_libs( 'js', 'Finanse.dzialy.js' ) ?>
 
@@ -119,8 +122,14 @@ $this->Combinator->add_libs( 'js', 'Finanse.dzialy.js' );
 
 									</div>
 								</div>
-
-
+																
+								<div class="histogram_cont">
+									<div class="histogram" data-init="<?= htmlspecialchars(json_encode( $section['buckets'] )) ?>">
+										
+										
+									</div>
+								</div>
+								
 								<div class="gradient_cont">
 									<p class="gradient"></p>
 									<ul class="addons">
@@ -132,7 +141,6 @@ $this->Combinator->add_libs( 'js', 'Finanse.dzialy.js' );
 													class="v"><?= _number( $section['max'] ) ?></span></p></li>
 									</ul>
 								</div>
-
 
 							</div>
 

@@ -53,7 +53,97 @@ jQuery(document).ready(function () {
      localizer.request_position()
      });
      */
+	 
+	 
+	 
+	var sections = jQuery('#sections .section');
+	for( var i=0; i<sections.length; i++ ) {
+		
+		var section = jQuery( sections[i] );
+		
+		var histogram_div = jQuery( section.find('.histogram') );
+		var data = histogram_div.data('init');
+		var charts_data = [];
+		
 
+		console.log('data', data);
+
+		for( var d=0; d<data.length; d++ )
+			if( data[d] )
+				charts_data.push( Number(data[d]['height']) );
+		
+		
+
+		histogram_div.attr('id', 'h'+i);
+		
+		console.log('histogram_div', histogram_div);
+		
+		var chart = new Highcharts.Chart({
+	
+		    chart: {
+		        renderTo: 'h'+i,
+		        type: 'column',
+		        height: 150,
+				backgroundColor: null,
+				spacingTop: 0
+		    },
+			
+			
+			credits: {
+				enabled: false	
+			},
+			
+		    legend: {
+			    enabled: false
+		    },
+		    
+		    title: {
+			    text: ''
+		    },
+		    
+		    xAxis: {
+			    labels: {
+				    enabled: false
+			    },
+			    gridLineWidth: 0,
+			    title: null,
+		    },
+		    
+		    yAxis: {
+			    labels: {
+				    enabled: false
+			    },
+			    gridLineWidth: 0,
+			    title: {
+				    text: 'Liczba gmin', 
+				    style: {
+					    color: '#AAA',
+					    'font-family': '"Helvetica Neue",Helvetica,Arial,sans-serif',
+					    'font-size': '13px',
+					    'font-weight': '300'
+				    }
+			    }
+		    },
+		    
+		    plotOptions: {
+		        column: {
+		            groupPadding: 0,
+		            pointPadding: 0,
+		            borderWidth: 0
+		        }
+		    },
+		
+		    series: [{
+		        data: charts_data
+		    }]
+		
+		});
+
+		
+	}
+	 
+	 
+	 
     $('#teryt_search_input').val('');
 
     var autocomplete = jQuery("#teryt_search_input"),
