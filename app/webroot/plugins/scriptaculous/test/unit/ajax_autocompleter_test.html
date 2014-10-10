@@ -55,7 +55,7 @@ new Test.Unit.Runner({
     testAjaxAutocompleter: function () {
         with (this) {
             var ac = new Ajax.Autocompleter('ac_input', 'ac_update', '_autocomplete_result.html',
-                    { method: 'get' }); //override so we can use a static for the result
+                    {method: 'get'}); //override so we can use a static for the result
             assertInstanceOf(Ajax.Autocompleter, ac);
 
             // box not visible
@@ -138,7 +138,8 @@ new Test.Unit.Runner({
     testAfterUpdateElement: function () {
         with (this) {
             var ac = new Ajax.Autocompleter('ac2_input', 'ac2_update', '_autocomplete_result.html',
-                    { method: 'get',
+                    {
+                        method: 'get',
                         afterUpdateElement: function (element, selectedElement) {
                             element.value = 'afterupdate:' + selectedElement.tagName;
                         }
@@ -162,7 +163,7 @@ new Test.Unit.Runner({
     testTokenizing: function () {
         with (this) {
             var actoken = new Ajax.Autocompleter('actoken_input', 'ac_update', '_autocomplete_result.html',
-                    { tokens: ',', method: 'get' });
+                    {tokens: ',', method: 'get'});
             assertInstanceOf(Ajax.Autocompleter, actoken);
 
             Event.simulateKeys('actoken_input', 'abc');
@@ -199,7 +200,7 @@ new Test.Unit.Runner({
     testAjaxAutocompleterNoLinebreaksInResult: function () {
         with (this) {
             var ac = new Ajax.Autocompleter('ac_input_br', 'ac_update_br', '_autocomplete_result_nobr.html',
-                    { method: 'get' }); //override so we can use a static for the result
+                    {method: 'get'}); //override so we can use a static for the result
             assertInstanceOf(Ajax.Autocompleter, ac);
 
             // box not visible

@@ -1,12 +1,7 @@
 $(document).ready(function () {
     // Navbar scrollTo
     $(".navbar .nav a, [data-scroll='true']").click(function (e) {
-        var $target = $(this)
-            , href = $target.attr("href")
-            , hash = href.substring(href.lastIndexOf('/') + 1)
-            , $destination = $(hash)
-            , offset = $(".navbar").height() || 0
-            , scrollTop = $destination.offset().top - 30;
+        var $target = $(this), href = $target.attr("href"), hash = href.substring(href.lastIndexOf('/') + 1), $destination = $(hash), offset = $(".navbar").height() || 0, scrollTop = $destination.offset().top - 30;
 
         $("body,html").animate({scrollTop: scrollTop}, 350);
 

@@ -124,35 +124,43 @@
         },
         onChange: function (v) {
             $('debug1').innerHTML = 'changed! ' + v
-        }});
-    new Control.Slider('handle2', 'track2', {axis: 'vertical',
+        }
+    });
+    new Control.Slider('handle2', 'track2', {
+        axis: 'vertical',
         onSlide: function (v) {
             $('debug2').innerHTML = 'slide: ' + v
         },
         onChange: function (v) {
             $('debug2').innerHTML = 'changed! ' + v
-        }});
-    new Control.Slider('handle3', 'track3', {values: [2, 4, 6, 8], range: $R(2, 15),
+        }
+    });
+    new Control.Slider('handle3', 'track3', {
+        values: [2, 4, 6, 8], range: $R(2, 15),
         onSlide: function (v) {
             $('debug3').innerHTML = 'slide: ' + v
         },
         onChange: function (v) {
             $('debug3').innerHTML = 'changed! ' + v
-        }});
+        }
+    });
     new Control.Slider(['handle4-1', 'handle4-2', 'handle4-3'], 'track4', {
         onSlide: function (v) {
             $('debug4').innerHTML = 'slide: ' + v.inspect()
         },
         onChange: function (v) {
             $('debug4').innerHTML = 'changed! ' + v.inspect()
-        }});
-    new Control.Slider(['handle5-1', 'handle5-2', 'handle5-3'], 'track5', {values: [0, 0.2, 0.4, 0.6, 0.8],
+        }
+    });
+    new Control.Slider(['handle5-1', 'handle5-2', 'handle5-3'], 'track5', {
+        values: [0, 0.2, 0.4, 0.6, 0.8],
         onSlide: function (v) {
             $('debug5').innerHTML = 'slide: ' + v.inspect()
         },
         onChange: function (v) {
             $('debug5').innerHTML = 'changed! ' + v.inspect()
-        }});
+        }
+    });
     var slider6 = new Control.Slider(['handle6-1', 'handle6-2'], 'track6', {
         sliderValue: [0.3, 0.8],
         restricted: true,
@@ -161,18 +169,22 @@
         },
         onChange: function (v) {
             $('debug6').innerHTML = 'changed! ' + v.inspect()
-        }});
+        }
+    });
     new Control.Slider(['handle7-1', 'handle7-2', 'handle7-3'], 'track7',
-            { spans: ['span7-1', 'span7-2'],
+            {
+                spans: ['span7-1', 'span7-2'],
                 startSpan: 'span7-start',
                 endSpan: 'span7-end',
-                range: $R(0, 300) });
+                range: $R(0, 300)
+            });
     new Control.Slider(
             ['zoom-handle-1', 'zoom-handle-2'], 'zoom-track', {
                 sliderValue: [1, 10], range: $R(1, 10),
                 values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 restricted: true,
-                spans: ['zoom-track-selected'] });
+                spans: ['zoom-track-selected']
+            });
     // ]]>
 </script>
 

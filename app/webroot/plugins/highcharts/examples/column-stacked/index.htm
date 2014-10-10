@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
             $('#container').highcharts({
@@ -36,7 +39,7 @@
                     verticalAlign: 'top',
                     y: 20,
                     floating: true,
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                     borderColor: '#CCC',
                     borderWidth: 1,
                     shadow: false
@@ -44,8 +47,8 @@
                 tooltip: {
                     formatter: function () {
                         return '<b>' + this.x + '</b><br/>' +
-                                this.series.name + ': ' + this.y + '<br/>' +
-                                'Total: ' + this.point.stackTotal;
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
                     }
                 },
                 plotOptions: {
@@ -60,24 +63,18 @@
                         }
                     }
                 },
-                series: [
-                    {
-                        name: 'John',
-                        data: [5, 3, 4, 7, 2]
-                    },
-                    {
-                        name: 'Jane',
-                        data: [2, 2, 3, 2, 1]
-                    },
-                    {
-                        name: 'Joe',
-                        data: [3, 4, 4, 2, 5]
-                    }
-                ]
+                series: [{
+                    name: 'John',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Jane',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Joe',
+                    data: [3, 4, 4, 2, 5]
+                }]
             });
         });
-
-
     </script>
 </head>
 <body>

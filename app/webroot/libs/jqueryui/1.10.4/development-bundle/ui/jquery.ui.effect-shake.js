@@ -16,7 +16,7 @@
     $.effects.effect.shake = function (o, done) {
 
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "effect"),
             direction = o.direction || "left",
             distance = o.distance || 20,
@@ -39,9 +39,9 @@
         $.effects.createWrapper(el);
 
         // Animation
-        animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
-        animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
-        animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
+        animation[ref] = ( positiveMotion ? "-=" : "+=" ) + distance;
+        animation1[ref] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
+        animation2[ref] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
 
         // Animate
         el.animate(animation, speed, o.easing);
@@ -65,7 +65,7 @@
         // inject all the animations we just queued to be first in line (after "inprogress")
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         el.dequeue();
 

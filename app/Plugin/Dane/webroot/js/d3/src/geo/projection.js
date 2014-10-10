@@ -1,27 +1,27 @@
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"clip-antimeridian";
+    "clip-antimeridian";
 import
-"clip-circle";
+    "clip-circle";
 import
-"clip-extent";
+    "clip-extent";
 import
-"compose";
+    "compose";
 import
-"geo";
+    "geo";
 import
-"path";
+    "path";
 import
-"resample";
+    "resample";
 import
-"rotation";
+    "rotation";
 import
-"transform";
+    "transform";
 
 d3.geo.projection = d3_geo_projection;
 d3.geo.projectionMutator = d3_geo_projectionMutator;

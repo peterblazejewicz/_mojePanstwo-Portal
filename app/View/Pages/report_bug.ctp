@@ -1,12 +1,16 @@
-<?php $this->Combinator->add_libs('css', $this->Less->css('report_bug')) ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'report_bug' ) ) ?>
 
 <div id="reportBug" class="container">
-    <div class="row">
-        <div class="content col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <h2><?= __('LC_REPORTBUG_HEADLINE') ?></h2>
-            <?php echo $this->Html->link('<i class="fa fa-github"></i>' . __('LC_REPORTBUG_VIA_GITHUB'), 'https://github.com/epforgpl/_mojePanstwo-Portal/issues?state=open', array('class' => 'btn btn-github btn-lg', 'target' => '_blank', 'escape' => false)); ?>
+	<div class="row">
+		<div class="content col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<h2><?= __( 'LC_REPORTBUG_HEADLINE' ) ?></h2>
+			<?php echo $this->Html->link( '<i class="fa fa-github"></i>' . __( 'LC_REPORTBUG_VIA_GITHUB' ), 'https://github.com/epforgpl/_mojePanstwo-Portal/issues?state=open', array(
+				'class'  => 'btn btn-github btn-lg',
+				'target' => '_blank',
+				'escape' => false
+			) ); ?>
 
-            <? /*
+			<? /*
             <div class="separator col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <span><?= __('LC_REPORTBUG_OR') ?></span></div>
 
@@ -46,7 +50,7 @@
                 </div>
             </div>
             */
-            ?>
-        </div>
-    </div>
+			?>
+		</div>
+	</div>
 </div>

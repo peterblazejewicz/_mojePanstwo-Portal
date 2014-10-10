@@ -30,7 +30,7 @@
                 var graph = $("<div>").addClass("graph").appendTo("#graphs"),
                         text = $("<div>").text(++i + ". " + name).appendTo(graph),
                         wrap = $("<div>").appendTo(graph).css('overflow', 'hidden'),
-                        canvas = $("<canvas>").appendTo(wrap)[ 0 ];
+                        canvas = $("<canvas>").appendTo(wrap)[0];
 
                 canvas.width = width;
                 canvas.height = height;
@@ -81,9 +81,9 @@
                 // animate on click
                 graph.click(function () {
                     wrap
-                            .animate({ height: "hide" }, 2000, name)
+                            .animate({height: "hide"}, 2000, name)
                             .delay(800)
-                            .animate({ height: "show" }, 2000, name);
+                            .animate({height: "show"}, 2000, name);
                 });
 
                 graph.width(width).height(height + text.height() + 10);

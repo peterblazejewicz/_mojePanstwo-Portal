@@ -32,9 +32,11 @@ suite.addBatch({
                 assert.equal(body.node().style.getPropertyValue("opacity"), "0.42");
             },
             "sets properties as a map of functions": function (body) {
-                body.data(["orange"]).style({"background-color": String, opacity: function (d, i) {
-                    return i;
-                }});
+                body.data(["orange"]).style({
+                    "background-color": String, opacity: function (d, i) {
+                        return i;
+                    }
+                });
                 assert.equal(body.node().style.getPropertyValue("background-color"), "orange");
                 assert.equal(body.node().style.getPropertyValue("opacity"), "0");
             },
@@ -47,9 +49,11 @@ suite.addBatch({
                 assert.equal(body.node().style.getPropertyPriority("background-color"), "important");
                 body.style({opacity: .52}, "important");
                 assert.equal(body.node().style.getPropertyPriority("opacity"), "important");
-                body.style({visibility: function () {
-                    return "visible";
-                }}, "important");
+                body.style({
+                    visibility: function () {
+                        return "visible";
+                    }
+                }, "important");
                 assert.equal(body.node().style.getPropertyPriority("visibility"), "important");
             },
             "removes a property as null": function (body) {
@@ -69,8 +73,10 @@ suite.addBatch({
             },
             "removes properties as a map of functions that return null": function (body) {
                 body.node().style.setProperty("background-color", "purple");
-                body.style({"background-color": function () {
-                }});
+                body.style({
+                    "background-color": function () {
+                    }
+                });
                 assert.equal(body.style("background-color"), "");
             },
             "returns the current selection": function (body) {

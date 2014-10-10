@@ -1,14 +1,14 @@
-<?php $this->Combinator->add_libs('css', $this->Less->css('dataobject', array('plugin' => 'Dane'))) ?>
-<?php $this->Combinator->add_libs('css', $this->Less->css('dataobjectslider', array('plugin' => 'Dane'))) ?>
-<?php $this->Combinator->add_libs('css', $this->Less->css('zamowienia', array('plugin' => 'ZamowieniaPubliczne'))) ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'dataobject', array( 'plugin' => 'Dane' ) ) ) ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'dataobjectslider', array( 'plugin' => 'Dane' ) ) ) ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'zamowienia', array( 'plugin' => 'ZamowieniaPubliczne' ) ) ) ?>
 
-<?php $this->Combinator->add_libs('js', '../plugins/highstock/js/highstock'); ?>
-<?php $this->Combinator->add_libs('js', '../plugins/highstock/locals'); ?>
-<?php $this->Combinator->add_libs('js', 'ZamowieniaPubliczne.zamowieniapubliczne') ?>
-<?php $this->Combinator->add_libs('js', 'Dane.dataobjectsslider') ?>
+<?php $this->Combinator->add_libs( 'js', '../plugins/highstock/js/highstock' ); ?>
+<?php $this->Combinator->add_libs( 'js', '../plugins/highstock/locals' ); ?>
+<?php $this->Combinator->add_libs( 'js', 'ZamowieniaPubliczne.zamowieniapubliczne' ) ?>
+<?php $this->Combinator->add_libs( 'js', 'Dane.dataobjectsslider' ) ?>
 
 <div class="container" id="zamowienia">
-	
+
 	<? /*
     <div class="main-alert alert alert-dismissable alert-danger">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -18,66 +18,71 @@
             <b><?= $stats['progress'] ?>%</b> zamowień publicznych, ogłaszanych przez Urząd Zamówień
             Publicznych. Więcej danych i funkcjonalności pojawi się wkrótce.</p>
     </div>
-    */ ?>
+    */
+	?>
 
-    <div class="banner">
-        <p>W ciągu <b>ostatniego miesiąca</b>, Twoje Państwo udzieliło <?= pl_dopelniacz($stats['liczba_zamowien'], 'zamówienie publiczne', 'zamówienia publiczne', 'zamówień publicznych') ?>, na kwotę:</p>
-
-
-        <p class="number"><?= $this->Waluta->slownie($stats['suma_zamowien']) ?></p>
-
-    </div>
-
-    <div>
-
-        <div class="row zam-block">
-						
-            <? $i = 0;
-            foreach ($stats['rodzaje'] as $rodzaj) {
-                $i++; ?>
-                <div class="col-lg-4 column block">
-
-                    <p class="text-center na"><span class="label label-primary"><?= $rodzaj['nazwa'] ?></span></p>
-
-                    <p class="number small text-center"><?= $this->Waluta->slownie($rodzaj['suma_zamowien']) ?></p>
+	<div class="banner">
+		<p>W ciągu <b>ostatniego miesiąca</b>, Twoje Państwo
+			udzieliło <?= pl_dopelniacz( $stats['liczba_zamowien'], 'zamówienie publiczne', 'zamówienia publiczne', 'zamówień publicznych' ) ?>
+			, na kwotę:</p>
 
 
-                </div>
-                <? if ($i > 2) break;
-            } ?>
+		<p class="number"><?= $this->Waluta->slownie( $stats['suma_zamowien'] ) ?></p>
 
-        </div>
+	</div>
 
-        <div class="row zam-block">
+	<div>
 
-            <div class="col-lg-6 column block">
+		<div class="row zam-block">
 
-                <h2 class="label">Najwięcej zamówili:</h2>
+			<? $i = 0;
+			foreach ( $stats['rodzaje'] as $rodzaj ) {
+				$i ++; ?>
+				<div class="col-lg-4 column block">
 
-                <ul>
-                    <? foreach ($stats['zamawiajacy'] as $zamawiajacy) { ?>
-                        <li>
-                            <p class="title"><a
-                                    href="/dane/zamowienia_publiczne/?zamawiajacy_id[]=<?= $zamawiajacy['id'] ?>&status_id=2&data_publikacji=LAST_1M&search=web"
-                                    title="<?= addslashes($zamawiajacy['nazwa']) ?>"><?= $this->Text->truncate($zamawiajacy['nazwa'], 100); ?></a>
-                            </p>
+					<p class="text-center na"><span class="label label-primary"><?= $rodzaj['nazwa'] ?></span></p>
 
-                            <p class="desc"><?= pl_dopelniacz($zamawiajacy['liczba_zamowien'], 'zamówienie', 'zamówienia', 'zamówień') ?>
-                                na kwotę <?= $this->Waluta->slownie($zamawiajacy['suma_zamowien']) ?></p>
-                        </li>
-                    <? } ?>
-                </ul>
-
-            </div>
-
-            <div class="col-lg-6 column block">
-
-                <h2 class="label">Najwięcej zamówień otrzymali:</h2>
+					<p class="number small text-center"><?= $this->Waluta->slownie( $rodzaj['suma_zamowien'] ) ?></p>
 
 
-                <p class="soon">Dostępne wkrótce</p>
+				</div>
+				<? if ( $i > 2 ) {
+					break;
+				}
+			} ?>
 
-                <? /*
+		</div>
+
+		<div class="row zam-block">
+
+			<div class="col-lg-6 column block">
+
+				<h2 class="label">Najwięcej zamówili:</h2>
+
+				<ul>
+					<? foreach ( $stats['zamawiajacy'] as $zamawiajacy ) { ?>
+						<li>
+							<p class="title"><a
+									href="/dane/zamowienia_publiczne/?zamawiajacy_id[]=<?= $zamawiajacy['id'] ?>&status_id=2&data_publikacji=LAST_1M&search=web"
+									title="<?= addslashes( $zamawiajacy['nazwa'] ) ?>"><?= $this->Text->truncate( $zamawiajacy['nazwa'], 100 ); ?></a>
+							</p>
+
+							<p class="desc"><?= pl_dopelniacz( $zamawiajacy['liczba_zamowien'], 'zamówienie', 'zamówienia', 'zamówień' ) ?>
+								na kwotę <?= $this->Waluta->slownie( $zamawiajacy['suma_zamowien'] ) ?></p>
+						</li>
+					<? } ?>
+				</ul>
+
+			</div>
+
+			<div class="col-lg-6 column block">
+
+				<h2 class="label">Najwięcej zamówień otrzymali:</h2>
+
+
+				<p class="soon">Dostępne wkrótce</p>
+
+				<? /*
 				<ul>
 				<? foreach( $rodzaj['zamawiajacy'] as $zamawiajacy ) {?>
 					<li>
@@ -87,29 +92,29 @@
 				<?}?>
 				</ul>	
 				*/
-                ?>
+				?>
 
-            </div>
-
-
-        </div>
-
-    </div>
+			</div>
 
 
+		</div>
+
+	</div>
 
 
-    <? /*
+
+
+	<? /*
     <div class="banner">
         <h1><?php echo __d('zamowienia_publiczne', "LC_ZAMOWIENIA_PUBLICZNE_HEADLINE"); ?></h1>
 
         <p><?php echo __d('zamowienia_publiczne', "LC_ZAMOWIENIA_PUBLICZNE_SUBHEADLINE"); ?></p>
     </div>
 	*/
-    ?>
+	?>
 
 
-    <? /*
+	<? /*
     <div class="dataobjectsSliderRow">
         <div class="row header">
             <div class="col-xs-12 col-sm-6 left">
@@ -158,7 +163,7 @@
         </div>
     </div>
     */
-    ?>
+	?>
 
 
 </div>

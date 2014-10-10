@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v3.0.10 (2014-03-10)
+ * @license Highcharts JS v4.0.4 (2014-09-02)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -104,46 +104,40 @@
                 //x: -10,
                 symbol: 'menu',
                 _titleKey: 'contextButtonTitle',
-                menuItems: [
-                    {
-                        textKey: 'printChart',
-                        onclick: function () {
-                            this.print();
-                        }
-                    },
-                    {
-                        separator: true
-                    },
-                    {
-                        textKey: 'downloadPNG',
-                        onclick: function () {
-                            this.exportChart();
-                        }
-                    },
-                    {
-                        textKey: 'downloadJPEG',
-                        onclick: function () {
-                            this.exportChart({
-                                type: 'image/jpeg'
-                            });
-                        }
-                    },
-                    {
-                        textKey: 'downloadPDF',
-                        onclick: function () {
-                            this.exportChart({
-                                type: 'application/pdf'
-                            });
-                        }
-                    },
-                    {
-                        textKey: 'downloadSVG',
-                        onclick: function () {
-                            this.exportChart({
-                                type: 'image/svg+xml'
-                            });
-                        }
+                menuItems: [{
+                    textKey: 'printChart',
+                    onclick: function () {
+                        this.print();
                     }
+                }, {
+                    separator: true
+                }, {
+                    textKey: 'downloadPNG',
+                    onclick: function () {
+                        this.exportChart();
+                    }
+                }, {
+                    textKey: 'downloadJPEG',
+                    onclick: function () {
+                        this.exportChart({
+                            type: 'image/jpeg'
+                        });
+                    }
+                }, {
+                    textKey: 'downloadPDF',
+                    onclick: function () {
+                        this.exportChart({
+                            type: 'application/pdf'
+                        });
+                    }
+                }, {
+                    textKey: 'downloadSVG',
+                    onclick: function () {
+                        this.exportChart({
+                            type: 'image/svg+xml'
+                        });
+                    }
+                }
                     // Enable this block to add "View SVG" to the dropdown menu
                     /*
                      ,{
@@ -233,13 +227,13 @@
             cssWidth = chart.renderTo.style.width;
             cssHeight = chart.renderTo.style.height;
             sourceWidth = options.exporting.sourceWidth ||
-                options.chart.width ||
-                (/px$/.test(cssWidth) && parseInt(cssWidth, 10)) ||
-                600;
+            options.chart.width ||
+            (/px$/.test(cssWidth) && parseInt(cssWidth, 10)) ||
+            600;
             sourceHeight = options.exporting.sourceHeight ||
-                options.chart.height ||
-                (/px$/.test(cssHeight) && parseInt(cssHeight, 10)) ||
-                400;
+            options.chart.height ||
+            (/px$/.test(cssHeight) && parseInt(cssHeight, 10)) ||
+            400;
 
             // override some options
             extend(options.chart, {
@@ -256,6 +250,7 @@
             each(chart.series, function (serie) {
                 seriesOptions = merge(serie.options, {
                     animation: false, // turn off animation
+                    enableMouseTracking: false,
                     showCheckbox: false,
                     visible: serie.visible
                 });
@@ -300,7 +295,10 @@
                 .replace(/<svg /, '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ')
                 .replace(/ href=/g, ' xlink:href=')
                 .replace(/\n/, ' ')
-                .replace(/<\/svg>.*?$/, '</svg>') // any HTML added to the container after the SVG (#894)
+                // Any HTML added to the container after the SVG (#894)
+                .replace(/<\/svg>.*?$/, '</svg>')
+                // Batik doesn't support rgba fills and strokes (#3095)
+                .replace(/(fill|stroke)="rgba\(([ 0-9]+,[ 0-9]+,[ 0-9]+),([ 0-9\.]+)\)"/g, '$1="rgb($2)" $1-opacity="$3"')
                 /* This fails in IE < 8
                  .replace(/([0-9]+)\.([0-9]+)/g, function(s1, s2, s3) { // round off to save weight
                  return s2 +'.'+ s3[0];
@@ -341,7 +339,7 @@
             var chart = this,
                 chartExportingOptions = chart.options.exporting,
                 svg = chart.getSVG(merge(
-                    { chart: { borderRadius: 0 } },
+                    {chart: {borderRadius: 0}},
                     chartExportingOptions.chartOptions,
                     chartOptions,
                     {
@@ -469,7 +467,7 @@
 
                 // hide on mouse out
                 hide = function () {
-                    css(menu, { display: NONE });
+                    css(menu, {display: NONE});
                     if (button) {
                         button.setState(0);
                     }
@@ -526,7 +524,7 @@
                 chart.exportMenuHeight = menu.offsetHeight;
             }
 
-            menuStyle = { display: 'block' };
+            menuStyle = {display: 'block'};
 
             // if outside right, right align it
             if (x + chart.exportMenuWidth > chartWidth) {
@@ -625,12 +623,12 @@
 
             if (btnOptions.symbol) {
                 symbol = renderer.symbol(
-                        btnOptions.symbol,
-                        btnOptions.symbolX - (symbolSize / 2),
-                        btnOptions.symbolY - (symbolSize / 2),
-                        symbolSize,
-                        symbolSize
-                    )
+                    btnOptions.symbol,
+                    btnOptions.symbolX - (symbolSize / 2),
+                    btnOptions.symbolY - (symbolSize / 2),
+                    symbolSize,
+                    symbolSize
+                )
                     .attr(extend(symbolAttr, {
                         'stroke-width': btnOptions.symbolStrokeWidth || 1,
                         zIndex: 1

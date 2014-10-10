@@ -84,8 +84,8 @@
             }
 
             if (this.length) {
-                var elem = $(this[ 0 ]), position, value;
-                while (elem.length && elem[ 0 ] !== document) {
+                var elem = $(this[0]), position, value;
+                while (elem.length && elem[0] !== document) {
                     // Ignore z-index if position is set to a value where z-index is ignored by the browser
                     // This makes behavior of this function consistent across browsers
                     // WebKit always returns auto if the element is positioned
@@ -140,10 +140,10 @@
         return ( /input|select|textarea|button|object/.test(nodeName) ?
             !element.disabled :
             "a" === nodeName ?
-                element.href || isTabIndexNotNaN :
+            element.href || isTabIndexNotNaN :
                 isTabIndexNotNaN) &&
             // the element and all of its ancestors must be visible
-            visible(element);
+        visible(element);
     }
 
     function visible(element) {
@@ -152,7 +152,7 @@
         }).length;
     }
 
-    $.extend($.expr[ ":" ], {
+    $.extend($.expr[":"], {
         data: $.expr.createPseudo ?
             $.expr.createPseudo(function (dataName) {
                 return function (elem) {
@@ -161,7 +161,7 @@
             }) :
             // support: jQuery <1.8
             function (elem, i, match) {
-                return !!$.data(elem, match[ 3 ]);
+                return !!$.data(elem, match[3]);
             },
 
         focusable: function (element) {
@@ -177,8 +177,8 @@
 
 // support: jQuery <1.8
     if (!$("<a>").outerWidth(1).jquery) {
-        $.each([ "Width", "Height" ], function (i, name) {
-            var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+        $.each(["Width", "Height"], function (i, name) {
+            var side = name === "Width" ? ["Left", "Right"] : ["Top", "Bottom"],
                 type = name.toLowerCase(),
                 orig = {
                     innerWidth: $.fn.innerWidth,
@@ -200,9 +200,9 @@
                 return size;
             }
 
-            $.fn[ "inner" + name ] = function (size) {
+            $.fn["inner" + name] = function (size) {
                 if (size === undefined) {
-                    return orig[ "inner" + name ].call(this);
+                    return orig["inner" + name].call(this);
                 }
 
                 return this.each(function () {
@@ -210,9 +210,9 @@
                 });
             };
 
-            $.fn[ "outer" + name] = function (size, margin) {
+            $.fn["outer" + name] = function (size, margin) {
                 if (typeof size !== "number") {
-                    return orig[ "outer" + name ].call(this, size);
+                    return orig["outer" + name].call(this, size);
                 }
 
                 return this.each(function () {
@@ -226,7 +226,7 @@
     if (!$.fn.addBack) {
         $.fn.addBack = function (selector) {
             return this.add(selector == null ?
-                this.prevObject : this.prevObject.filter(selector)
+                    this.prevObject : this.prevObject.filter(selector)
             );
         };
     }
@@ -252,7 +252,7 @@
     $.fn.extend({
         disableSelection: function () {
             return this.bind(( $.support.selectstart ? "selectstart" : "mousedown" ) +
-                ".ui-disableSelection", function (event) {
+            ".ui-disableSelection", function (event) {
                 event.preventDefault();
             });
         },
@@ -267,22 +267,22 @@
         plugin: {
             add: function (module, option, set) {
                 var i,
-                    proto = $.ui[ module ].prototype;
+                    proto = $.ui[module].prototype;
                 for (i in set) {
-                    proto.plugins[ i ] = proto.plugins[ i ] || [];
-                    proto.plugins[ i ].push([ option, set[ i ] ]);
+                    proto.plugins[i] = proto.plugins[i] || [];
+                    proto.plugins[i].push([option, set[i]]);
                 }
             },
             call: function (instance, name, args) {
                 var i,
-                    set = instance.plugins[ name ];
-                if (!set || !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11) {
+                    set = instance.plugins[name];
+                if (!set || !instance.element[0].parentNode || instance.element[0].parentNode.nodeType === 11) {
                     return;
                 }
 
                 for (i = 0; i < set.length; i++) {
-                    if (instance.options[ set[ i ][ 0 ] ]) {
-                        set[ i ][ 1 ].apply(instance.element, args);
+                    if (instance.options[set[i][0]]) {
+                        set[i][1].apply(instance.element, args);
                     }
                 }
             }
@@ -299,16 +299,16 @@
             var scroll = ( a && a === "left" ) ? "scrollLeft" : "scrollTop",
                 has = false;
 
-            if (el[ scroll ] > 0) {
+            if (el[scroll] > 0) {
                 return true;
             }
 
             // TODO: determine which cases actually cause this to happen
             // if the element doesn't have the scroll set, see if it's possible to
             // set the scroll
-            el[ scroll ] = 1;
-            has = ( el[ scroll ] > 0 );
-            el[ scroll ] = 0;
+            el[scroll] = 1;
+            has = ( el[scroll] > 0 );
+            el[scroll] = 0;
             return has;
         }
     });

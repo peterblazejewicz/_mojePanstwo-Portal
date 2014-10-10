@@ -59,21 +59,27 @@ suite.addBatch({
                 form.on("submit.foo", function () {
                     ++foo;
                 });
-                form.on({"submit.bar": function () {
-                    ++bar;
-                }});
+                form.on({
+                    "submit.bar": function () {
+                        ++bar;
+                    }
+                });
                 form.append("input").attr("type", "submit").node().click();
                 assert.equal(foo, 1);
                 assert.equal(bar, 1);
             },
             "can register listeners as a map": function (body) {
                 var form = body.append("form"), count = 0, fail = 0;
-                form.on({submit: function () {
-                    ++fail;
-                }});
-                form.on({submit: function () {
-                    ++count;
-                }});
+                form.on({
+                    submit: function () {
+                        ++fail;
+                    }
+                });
+                form.on({
+                    submit: function () {
+                        ++count;
+                    }
+                });
                 form.append("input").attr("type", "submit").node().click();
                 assert.equal(count, 1);
                 assert.equal(fail, 0);

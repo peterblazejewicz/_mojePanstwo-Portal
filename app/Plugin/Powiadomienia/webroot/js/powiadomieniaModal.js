@@ -19,24 +19,42 @@ var powiadomieniaModal;
         createModal: function () {
             $('#frazyModalBox').remove();
             powiadomieniaModal.options.modal = $('<div></div>');
-            powiadomieniaModal.options.modal.addClass("modal fade").attr({'id': "frazyModalBox", "tabindex": -1, "role": "dialog", "aria-labelledby": "myModalLabel", "aria-hidden": "true"}).append(
+            powiadomieniaModal.options.modal.addClass("modal fade").attr({
+                'id': "frazyModalBox",
+                "tabindex": -1,
+                "role": "dialog",
+                "aria-labelledby": "myModalLabel",
+                "aria-hidden": "true"
+            }).append(
                 $('<div></div>').addClass('modal-dialog').append(
                     $('<form></form>').append(
                         $('<div></div>').addClass('modal-content').append(
-                                $('<div></div>').addClass('modal-header').append(
-                                        $('<button></button>').addClass('close').attr({'role': 'close', "data-dismiss": "modal", "aria-hidden": "true"}).html('&times;')
-                                    ).append(
-                                        $('<h4></h4>').addClass('modal-title').attr({'id': 'frazyModalTitle', 'data-placeholder': _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER}).text(powiadomieniaModal.options.title)
-                                    ).append(
-                                        $('<div></div>').addClass('edit modal-title hide').append(
-                                            $('<textarea></textarea>').addClass('modal-title form-control').attr({'type': 'text', 'rows': 2, 'name': 'title', 'placeholder': _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER}).text(powiadomieniaModal.options.title)
-                                        )
-                                    )
+                            $('<div></div>').addClass('modal-header').append(
+                                $('<button></button>').addClass('close').attr({
+                                    'role': 'close',
+                                    "data-dismiss": "modal",
+                                    "aria-hidden": "true"
+                                }).html('&times;')
                             ).append(
-                                $('<div></div>').addClass('modal-body').append(
-                                    $('<span></span>').addClass('loading')
+                                $('<h4></h4>').addClass('modal-title').attr({
+                                    'id': 'frazyModalTitle',
+                                    'data-placeholder': _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER
+                                }).text(powiadomieniaModal.options.title)
+                            ).append(
+                                $('<div></div>').addClass('edit modal-title hide').append(
+                                    $('<textarea></textarea>').addClass('modal-title form-control').attr({
+                                        'type': 'text',
+                                        'rows': 2,
+                                        'name': 'title',
+                                        'placeholder': _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER
+                                    }).text(powiadomieniaModal.options.title)
                                 )
                             )
+                        ).append(
+                            $('<div></div>').addClass('modal-body').append(
+                                $('<span></span>').addClass('loading')
+                            )
+                        )
                     )
                 )
             );
@@ -144,10 +162,10 @@ var powiadomieniaModal;
 
                 powiadomieniaModal.options.modal.find('.modal-body').append(
                     $('<div></div>').addClass('keywords').append(
-                            $('<h5></h5>').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_KEYWORDS)
-                        ).append(
-                            $('<hr />')
-                        )
+                        $('<h5></h5>').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_KEYWORDS)
+                    ).append(
+                        $('<hr />')
+                    )
                 );
 
                 powiadomieniaModal.options.modal.find('.modal-body .keywords').append(
@@ -171,12 +189,12 @@ var powiadomieniaModal;
 
                 powiadomieniaModal.options.modal.find('.modal-body').append(
                     $('<div></div>').addClass('datasets').append(
-                            $('<h5></h5>').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS)
-                        ).append(
-                            $('<hr />')
-                        ).append(
-                            $('<div></div>').addClass('datasetsContent')
-                        )
+                        $('<h5></h5>').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS)
+                    ).append(
+                        $('<hr />')
+                    ).append(
+                        $('<div></div>').addClass('datasetsContent')
+                    )
                 )
 
                 if (powiadomieniaModal.options.additionalInfoList && powiadomieniaModal.options.additionalInfoList.status == 'success') {
@@ -185,28 +203,34 @@ var powiadomieniaModal;
                         $.each(appList.list, function (index, app) {
                             powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsContent').append(
                                 $('<div></div>').addClass('switchCheckbox').append(
-                                        $('<input />').attr({'type': 'checkbox', 'name': 'apps[' + app.name + ']'}).data({'size': 'small'}).val(app.id)
-                                    ).append(
-                                        $('<label></label>').text(app.name)
-                                    ).append(
-                                        $('<div></div>').addClass('datasetsList').append(
-                                            jQuery('<div></div>').addClass('head').append(
-                                                    jQuery('<span></span>').addClass('label pull-left').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_LABEL)
-                                                ).append(
-                                                    jQuery('<span></span>').addClass('datasetOptions pull-right').append(
-                                                            jQuery('<button></button>').addClass('markAll btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_ALL)
-                                                        ).append(
-                                                            jQuery('<button></button>').addClass('markNone btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_NONE)
-                                                        )
-                                                )
+                                    $('<input />').attr({
+                                        'type': 'checkbox',
+                                        'name': 'apps[' + app.name + ']'
+                                    }).data({'size': 'small'}).val(app.id)
+                                ).append(
+                                    $('<label></label>').text(app.name)
+                                ).append(
+                                    $('<div></div>').addClass('datasetsList').append(
+                                        jQuery('<div></div>').addClass('head').append(
+                                            jQuery('<span></span>').addClass('label pull-left').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_LABEL)
+                                        ).append(
+                                            jQuery('<span></span>').addClass('datasetOptions pull-right').append(
+                                                jQuery('<button></button>').addClass('markAll btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_ALL)
+                                            ).append(
+                                                jQuery('<button></button>').addClass('markNone btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_NONE)
+                                            )
                                         )
                                     )
+                                )
                             )
                             $.each(app.datasets, function (index, subApp) {
                                 powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsList:last').append(
                                     $('<div></div>').addClass('checkbox disabled').append(
                                         $('<label></label>').text(subApp.name).append(
-                                            $('<input />').attr({'type': 'checkbox', 'name': 'subapps[' + app.name + '][' + subApp.name + ']'}).data({'size': 'small'}).val(subApp.id).prop('disabled', 'disabled')
+                                            $('<input />').attr({
+                                                'type': 'checkbox',
+                                                'name': 'subapps[' + app.name + '][' + subApp.name + ']'
+                                            }).data({'size': 'small'}).val(subApp.id).prop('disabled', 'disabled')
                                         )
                                     )
                                 )
@@ -231,28 +255,36 @@ var powiadomieniaModal;
                         $.each(data.apps, function (index, app) {
                             powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsContent').append(
                                 $('<div></div>').addClass('switchCheckbox').append(
-                                        $('<input />').attr({'type': 'checkbox', 'name': 'apps[' + app.name + ']', 'checked': 'checked'}).data({'size': 'small'}).val(app.id)
-                                    ).append(
-                                        $('<label></label>').text(app.name)
-                                    ).append(
-                                        $('<div></div>').addClass('datasetsList').append(
-                                            jQuery('<div></div>').addClass('head').append(
-                                                    jQuery('<span></span>').addClass('label pull-left').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_LABEL)
-                                                ).append(
-                                                    jQuery('<span></span>').addClass('datasetOptions pull-right').append(
-                                                            jQuery('<button></button>').addClass('markAll btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_ALL)
-                                                        ).append(
-                                                            jQuery('<button></button>').addClass('markNone btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_NONE)
-                                                        )
-                                                )
+                                    $('<input />').attr({
+                                        'type': 'checkbox',
+                                        'name': 'apps[' + app.name + ']',
+                                        'checked': 'checked'
+                                    }).data({'size': 'small'}).val(app.id)
+                                ).append(
+                                    $('<label></label>').text(app.name)
+                                ).append(
+                                    $('<div></div>').addClass('datasetsList').append(
+                                        jQuery('<div></div>').addClass('head').append(
+                                            jQuery('<span></span>').addClass('label pull-left').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_LABEL)
+                                        ).append(
+                                            jQuery('<span></span>').addClass('datasetOptions pull-right').append(
+                                                jQuery('<button></button>').addClass('markAll btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_ALL)
+                                            ).append(
+                                                jQuery('<button></button>').addClass('markNone btn btn-link btn-xs disabled').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DATASETS_LIST_OPTIONS_MARK_NONE)
+                                            )
                                         )
                                     )
+                                )
                             )
                             $.each(app.datasets, function (index, subApp) {
                                 powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsList:last').append(
                                     $('<div></div>').addClass('switchCheckbox checkbox').append(
                                         $('<label></label>').text(subApp.name).append(
-                                            $('<input />').attr({'type': 'checkbox', 'name': 'subapps[' + app.name + '][' + subApp.name + ']', 'checked': 'checked'}).data({'size': 'small'}).val(subApp.id)
+                                            $('<input />').attr({
+                                                'type': 'checkbox',
+                                                'name': 'subapps[' + app.name + '][' + subApp.name + ']',
+                                                'checked': 'checked'
+                                            }).data({'size': 'small'}).val(subApp.id)
                                         )
                                     )
                                 )
@@ -270,16 +302,24 @@ var powiadomieniaModal;
                         $.each(data.apps, function (index, app) {
                             powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsContent').append(
                                 $('<div></div>').addClass('switchCheckbox').append(
-                                        $('<input />').attr({'type': 'checkbox', 'name': app.name, 'checked': 'checked'}).data({'size': 'small'}).val(app.id)
-                                    ).append(
-                                        $('<label></label>').text(app.name)
-                                    )
+                                    $('<input />').attr({
+                                        'type': 'checkbox',
+                                        'name': app.name,
+                                        'checked': 'checked'
+                                    }).data({'size': 'small'}).val(app.id)
+                                ).append(
+                                    $('<label></label>').text(app.name)
+                                )
                             )
                             $.each(app.datasets, function (index, subApp) {
                                 powiadomieniaModal.options.modal.find('.modal-body .datasets .datasetsList:last').append(
                                     $('<div></div>').addClass('switchCheckbox checkbox').append(
                                         $('<label></label>').text(subApp.name).append(
-                                            $('<input />').attr({'type': 'checkbox', 'name': 'subapps[' + app.name + '][' + subApp.name + ']', 'checked': 'checked'}).data({'size': 'small'}).val(subApp.id)
+                                            $('<input />').attr({
+                                                'type': 'checkbox',
+                                                'name': 'subapps[' + app.name + '][' + subApp.name + ']',
+                                                'checked': 'checked'
+                                            }).data({'size': 'small'}).val(subApp.id)
                                         )
                                     )
                                 )
@@ -295,10 +335,10 @@ var powiadomieniaModal;
                 var appSwitch;
                 if ((appSwitch = powiadomieniaModal.options.modal.find('form .datasets .datasetsContent > .switchCheckbox')).length != 0) {
                     appSwitch.append(
-                            jQuery('<a></a>').addClass('slide right').attr({'href': '#showDatasets'})
-                        ).prepend(
-                            jQuery('<a></a>').addClass('slide left').attr({'href': '#showDatasets'})
-                        )
+                        jQuery('<a></a>').addClass('slide right').attr({'href': '#showDatasets'})
+                    ).prepend(
+                        jQuery('<a></a>').addClass('slide left').attr({'href': '#showDatasets'})
+                    )
                     appSwitch.find('> label, >.slide').click(function (e) {
                         var that = $(this),
                             parent = that.parents('.switchCheckbox'),
@@ -314,8 +354,14 @@ var powiadomieniaModal;
                             parent.find('>.bootstrap-switch').stop(true, true).animate({'margin-left': 0}, animSpeed / 2, function () {
                                 parent.removeAttr('style');
                             });
-                            parent.find('a.slide.left').stop(true, true).animate({left: '-50px', 'opacity': 0}, animSpeed / 2)
-                            parent.find('a.slide.right').stop(true, true).animate({right: '1%', 'opacity': 1}, animSpeed / 2)
+                            parent.find('a.slide.left').stop(true, true).animate({
+                                left: '-50px',
+                                'opacity': 0
+                            }, animSpeed / 2)
+                            parent.find('a.slide.right').stop(true, true).animate({
+                                right: '1%',
+                                'opacity': 1
+                            }, animSpeed / 2)
                             subAppList.stop(true, true).animate({right: -width, opacity: 0}, animSpeed, function () {
                                 subAppList.stop(true, true).animate({height: 0}, animSpeed / 2, function () {
                                     subAppList.hide().removeAttr('style');
@@ -335,14 +381,23 @@ var powiadomieniaModal;
                                     })
                                 } else {
                                     parent.find('>.bootstrap-switch').stop(true, true).animate({'margin-left': 40}, animSpeed / 2);
-                                    parent.find('a.slide.left').stop(true, true).animate({left: '1%', 'opacity': 1}, animSpeed / 2)
-                                    parent.find('a.slide.right').stop(true, true).animate({right: '-50px', 'opacity': 0}, animSpeed / 2)
+                                    parent.find('a.slide.left').stop(true, true).animate({
+                                        left: '1%',
+                                        'opacity': 1
+                                    }, animSpeed / 2)
+                                    parent.find('a.slide.right').stop(true, true).animate({
+                                        right: '-50px',
+                                        'opacity': 0
+                                    }, animSpeed / 2)
                                 }
                             })
 
                             var autoHeight = subAppList.css('height', 'auto').outerHeight() + 20;
 
-                            subAppList.css({'right': -width, opacity: 0}).height(0).show().stop(true, true).animate({height: autoHeight}, animSpeed / 2, function () {
+                            subAppList.css({
+                                'right': -width,
+                                opacity: 0
+                            }).height(0).show().stop(true, true).animate({height: autoHeight}, animSpeed / 2, function () {
                                 subAppList.stop(true, true).animate({right: 0, opacity: 1, height: 'auto'}, animSpeed);
                             });
                         }

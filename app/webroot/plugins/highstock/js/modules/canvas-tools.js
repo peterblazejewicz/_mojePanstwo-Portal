@@ -11,7 +11,7 @@
 
  Requires: rgbcolor.js - http://www.phpied.com/rgb-color-parser-in-javascript/
 
- Highstock JS v1.3.10 (2014-03-10)
+ Highstock JS v2.0.4 (2014-09-02)
  CanVGRenderer Extension module
 
  (c) 2011-2012 Torstein Honsi, Erik Olsson
@@ -21,25 +21,168 @@
 function RGBColor(m) {
     this.ok = !1;
     m.charAt(0) == "#" && (m = m.substr(1, 6));
-    var m = m.replace(/ /g, ""), m = m.toLowerCase(), a = {aliceblue: "f0f8ff", antiquewhite: "faebd7", aqua: "00ffff", aquamarine: "7fffd4", azure: "f0ffff", beige: "f5f5dc", bisque: "ffe4c4", black: "000000", blanchedalmond: "ffebcd", blue: "0000ff", blueviolet: "8a2be2", brown: "a52a2a", burlywood: "deb887", cadetblue: "5f9ea0", chartreuse: "7fff00", chocolate: "d2691e", coral: "ff7f50", cornflowerblue: "6495ed", cornsilk: "fff8dc", crimson: "dc143c", cyan: "00ffff", darkblue: "00008b",
-        darkcyan: "008b8b", darkgoldenrod: "b8860b", darkgray: "a9a9a9", darkgreen: "006400", darkkhaki: "bdb76b", darkmagenta: "8b008b", darkolivegreen: "556b2f", darkorange: "ff8c00", darkorchid: "9932cc", darkred: "8b0000", darksalmon: "e9967a", darkseagreen: "8fbc8f", darkslateblue: "483d8b", darkslategray: "2f4f4f", darkturquoise: "00ced1", darkviolet: "9400d3", deeppink: "ff1493", deepskyblue: "00bfff", dimgray: "696969", dodgerblue: "1e90ff", feldspar: "d19275", firebrick: "b22222", floralwhite: "fffaf0", forestgreen: "228b22", fuchsia: "ff00ff",
-        gainsboro: "dcdcdc", ghostwhite: "f8f8ff", gold: "ffd700", goldenrod: "daa520", gray: "808080", green: "008000", greenyellow: "adff2f", honeydew: "f0fff0", hotpink: "ff69b4", indianred: "cd5c5c", indigo: "4b0082", ivory: "fffff0", khaki: "f0e68c", lavender: "e6e6fa", lavenderblush: "fff0f5", lawngreen: "7cfc00", lemonchiffon: "fffacd", lightblue: "add8e6", lightcoral: "f08080", lightcyan: "e0ffff", lightgoldenrodyellow: "fafad2", lightgrey: "d3d3d3", lightgreen: "90ee90", lightpink: "ffb6c1", lightsalmon: "ffa07a", lightseagreen: "20b2aa", lightskyblue: "87cefa",
-        lightslateblue: "8470ff", lightslategray: "778899", lightsteelblue: "b0c4de", lightyellow: "ffffe0", lime: "00ff00", limegreen: "32cd32", linen: "faf0e6", magenta: "ff00ff", maroon: "800000", mediumaquamarine: "66cdaa", mediumblue: "0000cd", mediumorchid: "ba55d3", mediumpurple: "9370d8", mediumseagreen: "3cb371", mediumslateblue: "7b68ee", mediumspringgreen: "00fa9a", mediumturquoise: "48d1cc", mediumvioletred: "c71585", midnightblue: "191970", mintcream: "f5fffa", mistyrose: "ffe4e1", moccasin: "ffe4b5", navajowhite: "ffdead", navy: "000080",
-        oldlace: "fdf5e6", olive: "808000", olivedrab: "6b8e23", orange: "ffa500", orangered: "ff4500", orchid: "da70d6", palegoldenrod: "eee8aa", palegreen: "98fb98", paleturquoise: "afeeee", palevioletred: "d87093", papayawhip: "ffefd5", peachpuff: "ffdab9", peru: "cd853f", pink: "ffc0cb", plum: "dda0dd", powderblue: "b0e0e6", purple: "800080", red: "ff0000", rosybrown: "bc8f8f", royalblue: "4169e1", saddlebrown: "8b4513", salmon: "fa8072", sandybrown: "f4a460", seagreen: "2e8b57", seashell: "fff5ee", sienna: "a0522d", silver: "c0c0c0", skyblue: "87ceeb", slateblue: "6a5acd",
-        slategray: "708090", snow: "fffafa", springgreen: "00ff7f", steelblue: "4682b4", tan: "d2b48c", teal: "008080", thistle: "d8bfd8", tomato: "ff6347", turquoise: "40e0d0", violet: "ee82ee", violetred: "d02090", wheat: "f5deb3", white: "ffffff", whitesmoke: "f5f5f5", yellow: "ffff00", yellowgreen: "9acd32"}, c;
+    var m = m.replace(/ /g, ""), m = m.toLowerCase(), a = {
+        aliceblue: "f0f8ff",
+        antiquewhite: "faebd7",
+        aqua: "00ffff",
+        aquamarine: "7fffd4",
+        azure: "f0ffff",
+        beige: "f5f5dc",
+        bisque: "ffe4c4",
+        black: "000000",
+        blanchedalmond: "ffebcd",
+        blue: "0000ff",
+        blueviolet: "8a2be2",
+        brown: "a52a2a",
+        burlywood: "deb887",
+        cadetblue: "5f9ea0",
+        chartreuse: "7fff00",
+        chocolate: "d2691e",
+        coral: "ff7f50",
+        cornflowerblue: "6495ed",
+        cornsilk: "fff8dc",
+        crimson: "dc143c",
+        cyan: "00ffff",
+        darkblue: "00008b",
+        darkcyan: "008b8b",
+        darkgoldenrod: "b8860b",
+        darkgray: "a9a9a9",
+        darkgreen: "006400",
+        darkkhaki: "bdb76b",
+        darkmagenta: "8b008b",
+        darkolivegreen: "556b2f",
+        darkorange: "ff8c00",
+        darkorchid: "9932cc",
+        darkred: "8b0000",
+        darksalmon: "e9967a",
+        darkseagreen: "8fbc8f",
+        darkslateblue: "483d8b",
+        darkslategray: "2f4f4f",
+        darkturquoise: "00ced1",
+        darkviolet: "9400d3",
+        deeppink: "ff1493",
+        deepskyblue: "00bfff",
+        dimgray: "696969",
+        dodgerblue: "1e90ff",
+        feldspar: "d19275",
+        firebrick: "b22222",
+        floralwhite: "fffaf0",
+        forestgreen: "228b22",
+        fuchsia: "ff00ff",
+        gainsboro: "dcdcdc",
+        ghostwhite: "f8f8ff",
+        gold: "ffd700",
+        goldenrod: "daa520",
+        gray: "808080",
+        green: "008000",
+        greenyellow: "adff2f",
+        honeydew: "f0fff0",
+        hotpink: "ff69b4",
+        indianred: "cd5c5c",
+        indigo: "4b0082",
+        ivory: "fffff0",
+        khaki: "f0e68c",
+        lavender: "e6e6fa",
+        lavenderblush: "fff0f5",
+        lawngreen: "7cfc00",
+        lemonchiffon: "fffacd",
+        lightblue: "add8e6",
+        lightcoral: "f08080",
+        lightcyan: "e0ffff",
+        lightgoldenrodyellow: "fafad2",
+        lightgrey: "d3d3d3",
+        lightgreen: "90ee90",
+        lightpink: "ffb6c1",
+        lightsalmon: "ffa07a",
+        lightseagreen: "20b2aa",
+        lightskyblue: "87cefa",
+        lightslateblue: "8470ff",
+        lightslategray: "778899",
+        lightsteelblue: "b0c4de",
+        lightyellow: "ffffe0",
+        lime: "00ff00",
+        limegreen: "32cd32",
+        linen: "faf0e6",
+        magenta: "ff00ff",
+        maroon: "800000",
+        mediumaquamarine: "66cdaa",
+        mediumblue: "0000cd",
+        mediumorchid: "ba55d3",
+        mediumpurple: "9370d8",
+        mediumseagreen: "3cb371",
+        mediumslateblue: "7b68ee",
+        mediumspringgreen: "00fa9a",
+        mediumturquoise: "48d1cc",
+        mediumvioletred: "c71585",
+        midnightblue: "191970",
+        mintcream: "f5fffa",
+        mistyrose: "ffe4e1",
+        moccasin: "ffe4b5",
+        navajowhite: "ffdead",
+        navy: "000080",
+        oldlace: "fdf5e6",
+        olive: "808000",
+        olivedrab: "6b8e23",
+        orange: "ffa500",
+        orangered: "ff4500",
+        orchid: "da70d6",
+        palegoldenrod: "eee8aa",
+        palegreen: "98fb98",
+        paleturquoise: "afeeee",
+        palevioletred: "d87093",
+        papayawhip: "ffefd5",
+        peachpuff: "ffdab9",
+        peru: "cd853f",
+        pink: "ffc0cb",
+        plum: "dda0dd",
+        powderblue: "b0e0e6",
+        purple: "800080",
+        red: "ff0000",
+        rosybrown: "bc8f8f",
+        royalblue: "4169e1",
+        saddlebrown: "8b4513",
+        salmon: "fa8072",
+        sandybrown: "f4a460",
+        seagreen: "2e8b57",
+        seashell: "fff5ee",
+        sienna: "a0522d",
+        silver: "c0c0c0",
+        skyblue: "87ceeb",
+        slateblue: "6a5acd",
+        slategray: "708090",
+        snow: "fffafa",
+        springgreen: "00ff7f",
+        steelblue: "4682b4",
+        tan: "d2b48c",
+        teal: "008080",
+        thistle: "d8bfd8",
+        tomato: "ff6347",
+        turquoise: "40e0d0",
+        violet: "ee82ee",
+        violetred: "d02090",
+        wheat: "f5deb3",
+        white: "ffffff",
+        whitesmoke: "f5f5f5",
+        yellow: "ffff00",
+        yellowgreen: "9acd32"
+    }, c;
     for (c in a)m == c && (m = a[c]);
-    var d = [
-        {re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/, example: ["rgb(123, 234, 45)", "rgb(255,234,245)"], process: function (b) {
-            return[parseInt(b[1]), parseInt(b[2]), parseInt(b[3])]
-        }},
-        {re: /^(\w{2})(\w{2})(\w{2})$/,
-            example: ["#00ff00", "336699"], process: function (b) {
-            return[parseInt(b[1], 16), parseInt(b[2], 16), parseInt(b[3], 16)]
-        }},
-        {re: /^(\w{1})(\w{1})(\w{1})$/, example: ["#fb0", "f0f"], process: function (b) {
-            return[parseInt(b[1] + b[1], 16), parseInt(b[2] + b[2], 16), parseInt(b[3] + b[3], 16)]
-        }}
-    ];
+    var d = [{
+        re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
+        example: ["rgb(123, 234, 45)", "rgb(255,234,245)"],
+        process: function (b) {
+            return [parseInt(b[1]), parseInt(b[2]), parseInt(b[3])]
+        }
+    }, {
+        re: /^(\w{2})(\w{2})(\w{2})$/,
+        example: ["#00ff00", "336699"], process: function (b) {
+            return [parseInt(b[1], 16), parseInt(b[2], 16), parseInt(b[3], 16)]
+        }
+    }, {
+        re: /^(\w{1})(\w{1})(\w{1})$/, example: ["#fb0", "f0f"], process: function (b) {
+            return [parseInt(b[1] + b[1], 16), parseInt(b[2] + b[2], 16), parseInt(b[3] + b[3], 16)]
+        }
+    }];
     for (c = 0; c < d.length; c++) {
         var b = d[c].process, k = d[c].re.exec(m);
         if (k)channels = b(k), this.r = channels[0], this.g = channels[1], this.b = channels[2], this.ok = !0
@@ -49,14 +192,14 @@ function RGBColor(m) {
         this.g > 255 ? 255 : this.g;
     this.b = this.b < 0 || isNaN(this.b) ? 0 : this.b > 255 ? 255 : this.b;
     this.toRGB = function () {
-        return"rgb(" + this.r + ", " + this.g + ", " + this.b + ")"
+        return "rgb(" + this.r + ", " + this.g + ", " + this.b + ")"
     };
     this.toHex = function () {
         var b = this.r.toString(16), a = this.g.toString(16), d = this.b.toString(16);
         b.length == 1 && (b = "0" + b);
         a.length == 1 && (a = "0" + a);
         d.length == 1 && (d = "0" + d);
-        return"#" + b + a + d
+        return "#" + b + a + d
     };
     this.getHelpXML = function () {
         for (var b = [], k = 0; k < d.length; k++)for (var c = d[k].example, j = 0; j < c.length; j++)b[b.length] = c[j];
@@ -81,7 +224,7 @@ if (!window.console)window.console = {}, window.console.log = function () {
 };
 if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
     for (var a = 0; a < this.length; a++)if (this[a] == m)return a;
-    return-1
+    return -1
 };
 (function () {
     function m() {
@@ -119,8 +262,8 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
         };
         a.init();
         a.ImagesLoaded = function () {
-            for (var c = 0; c < a.Images.length; c++)if (!a.Images[c].loaded)return!1;
-            return!0
+            for (var c = 0; c < a.Images.length; c++)if (!a.Images[c].loaded)return !1;
+            return !0
         };
         a.trim = function (a) {
             return a.replace(/^\s+|\s+$/g, "")
@@ -130,11 +273,11 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
         };
         a.ajax = function (a) {
             var d;
-            return(d = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP")) ?
+            return (d = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP")) ?
                 (d.open("GET", a, !1), d.send(null), d.responseText) : null
         };
         a.parseXml = function (a) {
-            if (window.DOMParser)return(new DOMParser).parseFromString(a, "text/xml"); else {
+            if (window.DOMParser)return (new DOMParser).parseFromString(a, "text/xml"); else {
                 var a = a.replace(/<!DOCTYPE svg[^>]*>/, ""), d = new ActiveXObject("Microsoft.XMLDOM");
                 d.async = "false";
                 d.loadXML(a);
@@ -161,49 +304,59 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                 return this.hasValue() ? this.numValue() : b
             };
             var b = this;
-            this.Color = {addOpacity: function (d) {
-                var c = b.value;
-                if (d != null && d != "") {
-                    var f = new RGBColor(b.value);
-                    f.ok && (c = "rgba(" + f.r + ", " + f.g + ", " + f.b + ", " + d + ")")
+            this.Color = {
+                addOpacity: function (d) {
+                    var c = b.value;
+                    if (d != null && d != "") {
+                        var f = new RGBColor(b.value);
+                        f.ok && (c = "rgba(" + f.r + ", " + f.g + ", " + f.b + ", " + d + ")")
+                    }
+                    return new a.Property(b.name, c)
                 }
-                return new a.Property(b.name, c)
-            }};
-            this.Definition = {getDefinition: function () {
-                var d = b.value.replace(/^(url\()?#([^\)]+)\)?$/, "$2");
-                return a.Definitions[d]
-            }, isUrl: function () {
-                return b.value.indexOf("url(") ==
+            };
+            this.Definition = {
+                getDefinition: function () {
+                    var d = b.value.replace(/^(url\()?#([^\)]+)\)?$/, "$2");
+                    return a.Definitions[d]
+                }, isUrl: function () {
+                    return b.value.indexOf("url(") ==
                     0
-            }, getFillStyle: function (b) {
-                var d = this.getDefinition();
-                return d != null && d.createGradient ? d.createGradient(a.ctx, b) : d != null && d.createPattern ? d.createPattern(a.ctx, b) : null
-            }};
-            this.Length = {DPI: function () {
-                return 96
-            }, EM: function (b) {
-                var d = 12, c = new a.Property("fontSize", a.Font.Parse(a.ctx.font).fontSize);
-                c.hasValue() && (d = c.Length.toPixels(b));
-                return d
-            }, toPixels: function (d) {
-                if (!b.hasValue())return 0;
-                var c = b.value + "";
-                return c.match(/em$/) ? b.numValue() * this.EM(d) : c.match(/ex$/) ? b.numValue() * this.EM(d) / 2 : c.match(/px$/) ?
-                    b.numValue() : c.match(/pt$/) ? b.numValue() * 1.25 : c.match(/pc$/) ? b.numValue() * 15 : c.match(/cm$/) ? b.numValue() * this.DPI(d) / 2.54 : c.match(/mm$/) ? b.numValue() * this.DPI(d) / 25.4 : c.match(/in$/) ? b.numValue() * this.DPI(d) : c.match(/%$/) ? b.numValue() * a.ViewPort.ComputeSize(d) : b.numValue()
-            }};
-            this.Time = {toMilliseconds: function () {
-                if (!b.hasValue())return 0;
-                var a = b.value + "";
-                if (a.match(/s$/))return b.numValue() * 1E3;
-                a.match(/ms$/);
-                return b.numValue()
-            }};
-            this.Angle = {toRadians: function () {
-                if (!b.hasValue())return 0;
-                var a = b.value +
-                    "";
-                return a.match(/deg$/) ? b.numValue() * (Math.PI / 180) : a.match(/grad$/) ? b.numValue() * (Math.PI / 200) : a.match(/rad$/) ? b.numValue() : b.numValue() * (Math.PI / 180)
-            }}
+                }, getFillStyle: function (b) {
+                    var d = this.getDefinition();
+                    return d != null && d.createGradient ? d.createGradient(a.ctx, b) : d != null && d.createPattern ? d.createPattern(a.ctx, b) : null
+                }
+            };
+            this.Length = {
+                DPI: function () {
+                    return 96
+                }, EM: function (b) {
+                    var d = 12, c = new a.Property("fontSize", a.Font.Parse(a.ctx.font).fontSize);
+                    c.hasValue() && (d = c.Length.toPixels(b));
+                    return d
+                }, toPixels: function (d) {
+                    if (!b.hasValue())return 0;
+                    var c = b.value + "";
+                    return c.match(/em$/) ? b.numValue() * this.EM(d) : c.match(/ex$/) ? b.numValue() * this.EM(d) / 2 : c.match(/px$/) ?
+                        b.numValue() : c.match(/pt$/) ? b.numValue() * 1.25 : c.match(/pc$/) ? b.numValue() * 15 : c.match(/cm$/) ? b.numValue() * this.DPI(d) / 2.54 : c.match(/mm$/) ? b.numValue() * this.DPI(d) / 25.4 : c.match(/in$/) ? b.numValue() * this.DPI(d) : c.match(/%$/) ? b.numValue() * a.ViewPort.ComputeSize(d) : b.numValue()
+                }
+            };
+            this.Time = {
+                toMilliseconds: function () {
+                    if (!b.hasValue())return 0;
+                    var a = b.value + "";
+                    if (a.match(/s$/))return b.numValue() * 1E3;
+                    a.match(/ms$/);
+                    return b.numValue()
+                }
+            };
+            this.Angle = {
+                toRadians: function () {
+                    if (!b.hasValue())return 0;
+                    var a = b.value +
+                        "";
+                    return a.match(/deg$/) ? b.numValue() * (Math.PI / 180) : a.match(/grad$/) ? b.numValue() * (Math.PI / 200) : a.match(/rad$/) ? b.numValue() : b.numValue() * (Math.PI / 180)
+                }
+            }
         };
         a.Font = new function () {
             this.Styles = ["normal", "italic", "oblique", "inherit"];
@@ -211,10 +364,17 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.Weights = "normal,bold,bolder,lighter,100,200,300,400,500,600,700,800,900,inherit".split(",");
             this.CreateFont = function (d, b, c, e, f, g) {
                 g = g != null ? this.Parse(g) : this.CreateFont("", "", "", "", "", a.ctx.font);
-                return{fontFamily: f ||
-                    g.fontFamily, fontSize: e || g.fontSize, fontStyle: d || g.fontStyle, fontWeight: c || g.fontWeight, fontVariant: b || g.fontVariant, toString: function () {
-                    return[this.fontStyle, this.fontVariant, this.fontWeight, this.fontSize, this.fontFamily].join(" ")
-                }}
+                return {
+                    fontFamily: f ||
+                    g.fontFamily,
+                    fontSize: e || g.fontSize,
+                    fontStyle: d || g.fontStyle,
+                    fontWeight: c || g.fontWeight,
+                    fontVariant: b || g.fontVariant,
+                    toString: function () {
+                        return [this.fontStyle, this.fontVariant, this.fontWeight, this.fontSize, this.fontFamily].join(" ")
+                    }
+                }
             };
             var c = this;
             this.Parse = function (d) {
@@ -274,7 +434,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             };
             this.height = function () {
                 return this.y2 -
-                    this.y1
+                this.y1
             };
             this.addPoint = function (b, a) {
                 if (b != null) {
@@ -301,7 +461,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.addQuadraticCurve = function (b, a, d, c, k, l) {
                 d = b + 2 / 3 * (d - b);
                 c = a + 2 / 3 * (c -
-                    a);
+                a);
                 this.addBezierCurve(b, a, d, d + 1 / 3 * (k - b), c, c + 1 / 3 * (l - a), k, l)
             };
             this.addBezierCurve = function (b, a, d, c, k, l, o, n) {
@@ -347,7 +507,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                     b.applyTransform([1, 0, 0, 1, this.p.x || 0, this.p.y || 0]);
                     b.applyTransform([Math.cos(a), Math.sin(a), -Math.sin(a), Math.cos(a), 0, 0]);
                     b.applyTransform([1, 0, 0, 1, -this.p.x ||
-                        0, -this.p.y || 0])
+                    0, -this.p.y || 0])
                 }
             };
             this.Type.scale = function (b) {
@@ -616,7 +776,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.base = a.Element.PathElementBase;
             this.base(c);
             this.getPoints = function () {
-                return[new a.Point(this.attribute("x1").Length.toPixels("x"), this.attribute("y1").Length.toPixels("y")), new a.Point(this.attribute("x2").Length.toPixels("x"), this.attribute("y2").Length.toPixels("y"))]
+                return [new a.Point(this.attribute("x1").Length.toPixels("x"), this.attribute("y1").Length.toPixels("y")), new a.Point(this.attribute("x2").Length.toPixels("x"), this.attribute("y2").Length.toPixels("y"))]
             };
             this.path = function (d) {
                 var b = this.getPoints();
@@ -625,10 +785,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             };
             this.getMarkers = function () {
                 var a = this.getPoints(), b = a[0].angleTo(a[1]);
-                return[
-                    [a[0], b],
-                    [a[1], b]
-                ]
+                return [[a[0], b], [a[1], b]]
             }
         };
         a.Element.line.prototype = new a.Element.PathElementBase;
@@ -729,7 +886,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                 };
                 this.addMarker = function (b, a, d) {
                     d != null && this.angles.length > 0 && this.angles[this.angles.length -
-                        1] == null && (this.angles[this.angles.length - 1] = this.points[this.points.length - 1].angleTo(d));
+                    1] == null && (this.angles[this.angles.length - 1] = this.points[this.points.length - 1].angleTo(d));
                     this.addMarkerAngle(b, a == null ? null : a.angleTo(b))
                 };
                 this.addMarkerAngle = function (b, a) {
@@ -802,17 +959,17 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                             o = (o == j ? -1 : 1) * Math.sqrt((Math.pow(h, 2) * Math.pow(l, 2) - Math.pow(h, 2) * Math.pow(n.y, 2) - Math.pow(l, 2) * Math.pow(n.x, 2)) / (Math.pow(h, 2) * Math.pow(n.y, 2) + Math.pow(l, 2) * Math.pow(n.x, 2)));
                             isNaN(o) && (o = 0);
                             var p = new a.Point(o * h * n.y / l, o * -l * n.x / h), g = new a.Point((g.x + e.x) / 2 + Math.cos(f) *
-                                p.x - Math.sin(f) * p.y, (g.y + e.y) / 2 + Math.sin(f) * p.x + Math.cos(f) * p.y), m = function (b, a) {
-                                return(b[0] * a[0] + b[1] * a[1]) / (Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2)) * Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2)))
+                            p.x - Math.sin(f) * p.y, (g.y + e.y) / 2 + Math.sin(f) * p.x + Math.cos(f) * p.y), m = function (b, a) {
+                                return (b[0] * a[0] + b[1] * a[1]) / (Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2)) * Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2)))
                             }, s = function (b, a) {
-                                return(b[0] * a[1] < b[1] * a[0] ? -1 : 1) * Math.acos(m(b, a))
+                                return (b[0] * a[1] < b[1] * a[0] ? -1 : 1) * Math.acos(m(b, a))
                             }, o = s([1, 0], [(n.x - p.x) / h, (n.y - p.y) / l]), q = [(n.x - p.x) / h, (n.y - p.y) / l], p = [(-n.x - p.x) / h, (-n.y - p.y) / l], n = s(q, p);
                             if (m(q, p) <= -1)n = Math.PI;
                             m(q, p) >= 1 && (n = 0);
                             j == 0 && n > 0 && (n -= 2 * Math.PI);
                             j == 1 && n < 0 && (n += 2 * Math.PI);
                             q = new a.Point(g.x - h * Math.cos((o + n) /
-                                2), g.y - l * Math.sin((o + n) / 2));
+                            2), g.y - l * Math.sin((o + n) / 2));
                             b.addMarkerAngle(q, (o + n) / 2 + (j == 0 ? 1 : -1) * Math.PI / 2);
                             b.addMarkerAngle(e, n + (j == 0 ? 1 : -1) * Math.PI / 2);
                             c.addPoint(e.x, e.y);
@@ -858,7 +1015,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.render = function (d, b, c) {
                 d.translate(b.x, b.y);
                 this.attribute("orient").valueOrDefault("auto") ==
-                    "auto" && d.rotate(c);
+                "auto" && d.rotate(c);
                 this.attribute("markerUnits").valueOrDefault("strokeWidth") == "strokeWidth" && d.scale(d.lineWidth, d.lineWidth);
                 d.save();
                 var e = new a.Element.svg;
@@ -933,7 +1090,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.base(c);
             this.getGradient = function (a, b) {
                 var c = b.getBoundingBox(), e = this.gradientUnits == "objectBoundingBox" ? c.x() + c.width() * this.attribute("x1").numValue() : this.attribute("x1").Length.toPixels("x"), f = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("y1").numValue() : this.attribute("y1").Length.toPixels("y"), g = this.gradientUnits == "objectBoundingBox" ?
-                    c.x() + c.width() * this.attribute("x2").numValue() : this.attribute("x2").Length.toPixels("x"), c = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("y2").numValue() : this.attribute("y2").Length.toPixels("y");
+                c.x() + c.width() * this.attribute("x2").numValue() : this.attribute("x2").Length.toPixels("x"), c = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("y2").numValue() : this.attribute("y2").Length.toPixels("y");
                 return a.createLinearGradient(e, f, g, c)
             }
         };
@@ -943,7 +1100,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.base(c);
             this.getGradient = function (a, b) {
                 var c = b.getBoundingBox(), e = this.gradientUnits == "objectBoundingBox" ?
-                    c.x() + c.width() * this.attribute("cx").numValue() : this.attribute("cx").Length.toPixels("x"), f = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("cy").numValue() : this.attribute("cy").Length.toPixels("y"), g = e, j = f;
+                c.x() + c.width() * this.attribute("cx").numValue() : this.attribute("cx").Length.toPixels("x"), f = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("cy").numValue() : this.attribute("cy").Length.toPixels("y"), g = e, j = f;
                 this.attribute("fx").hasValue() && (g = this.gradientUnits == "objectBoundingBox" ? c.x() + c.width() * this.attribute("fx").numValue() : this.attribute("fx").Length.toPixels("x"));
                 this.attribute("fy").hasValue() && (j = this.gradientUnits == "objectBoundingBox" ? c.y() + c.height() * this.attribute("fy").numValue() :
                     this.attribute("fy").Length.toPixels("y"));
@@ -976,7 +1133,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                 null;
             this.removed = !1;
             this.calcValue = function () {
-                return""
+                return ""
             };
             this.update = function (a) {
                 if (this.initialValue == null)this.initialValue = this.getProperty().value;
@@ -984,11 +1141,11 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                 this.duration += a;
                 a = !1;
                 if (this.begin < this.duration)a = this.calcValue(), this.attribute("type").hasValue() &&
-                    (a = this.attribute("type").value + "(" + a + ")"), this.getProperty().value = a, a = !0;
+                (a = this.attribute("type").value + "(" + a + ")"), this.getProperty().value = a, a = !0;
                 return a
             };
             this.progress = function () {
-                return(this.duration - this.begin) / (this.maxDuration - this.begin)
+                return (this.duration - this.begin) / (this.maxDuration - this.begin)
             }
         };
         a.Element.AnimateBase.prototype = new a.Element.ElementBase;
@@ -1009,7 +1166,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                     var a = new RGBColor(this.attribute("from").value), b = new RGBColor(this.attribute("to").value);
                     if (a.ok && b.ok) {
                         var c = a.r + (b.r - a.r) * this.progress(), e = a.g + (b.g - a.g) * this.progress(), a = a.b + (b.b - a.b) * this.progress();
-                        return"rgb(" + parseInt(c, 10) + "," + parseInt(e, 10) + "," + parseInt(a, 10) + ")"
+                        return "rgb(" + parseInt(c, 10) + "," + parseInt(e, 10) + "," + parseInt(a, 10) + ")"
                     }
                     return this.attribute("from").value
                 }
@@ -1129,7 +1286,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                         e == "italic" && c.transform(1, 0, -0.4, 1, 0, 0);
                         c.lineWidth = o;
                         c.scale(1 /
-                            l, -1 / l);
+                        l, -1 / l);
                         c.translate(-this.x, -this.y);
                         this.x += k * (h.horizAdvX || b.horizAdvX) / b.fontFace.unitsPerEm;
                         typeof g[j] != "undefined" && !isNaN(g[j]) && (this.x += g[j])
@@ -1253,7 +1410,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.base = a.Element.ElementBase;
             this.base(c);
             for (var c = c.childNodes[0].nodeValue + (c.childNodes.length > 1 ? c.childNodes[1].nodeValue :
-                ""), c = c.replace(/(\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(^[\s]*\/\/.*)/gm, ""), c = a.compressSpaces(c), c = c.split("}"), d = 0; d < c.length; d++)if (a.trim(c[d]) != "")for (var b = c[d].split("{"), k = b[0].split(","), b = b[1].split(";"), e = 0; e < k.length; e++) {
+                    ""), c = c.replace(/(\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(^[\s]*\/\/.*)/gm, ""), c = a.compressSpaces(c), c = c.split("}"), d = 0; d < c.length; d++)if (a.trim(c[d]) != "")for (var b = c[d].split("{"), k = b[0].split(","), b = b[1].split(";"), e = 0; e < k.length; e++) {
                 var f = a.trim(k[e]);
                 if (f != "") {
                     for (var g = {}, j = 0; j < b.length; j++) {
@@ -1458,7 +1615,7 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
                 if (a.opts != null && a.opts.scaleWidth != null && a.opts.scaleHeight != null) {
                     var f = 1, g = 1;
                     k.attribute("width").hasValue() && (f = k.attribute("width").Length.toPixels("x") /
-                        a.opts.scaleWidth);
+                    a.opts.scaleWidth);
                     k.attribute("height").hasValue() && (g = k.attribute("height").Length.toPixels("y") / a.opts.scaleHeight);
                     k.attribute("width", !0).value = a.opts.scaleWidth;
                     k.attribute("height", !0).value = a.opts.scaleHeight;
@@ -1486,17 +1643,21 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
             this.events = [];
             this.hasEvents = function () {
                 return this.events.length !=
-                    0
+                0
             };
             this.onclick = function (a, d) {
-                this.events.push({type: "onclick", x: a, y: d, run: function (a) {
-                    if (a.onclick)a.onclick()
-                }})
+                this.events.push({
+                    type: "onclick", x: a, y: d, run: function (a) {
+                        if (a.onclick)a.onclick()
+                    }
+                })
             };
             this.onmousemove = function (a, d) {
-                this.events.push({type: "onmousemove", x: a, y: d, run: function (a) {
-                    if (a.onmousemove)a.onmousemove()
-                }})
+                this.events.push({
+                    type: "onmousemove", x: a, y: d, run: function (a) {
+                        if (a.onmousemove)a.onmousemove()
+                    }
+                })
             };
             this.eventElements = [];
             this.checkPath = function (a, d) {
@@ -1538,53 +1699,80 @@ if (!Array.prototype.indexOf)Array.prototype.indexOf = function (m) {
     }
 })();
 if (CanvasRenderingContext2D)CanvasRenderingContext2D.prototype.drawSvg = function (m, a, c, d, b) {
-    canvg(this.canvas, m, {ignoreMouse: !0, ignoreAnimation: !0, ignoreDimensions: !0, ignoreClear: !0, offsetX: a, offsetY: c, scaleWidth: d, scaleHeight: b})
+    canvg(this.canvas, m, {
+        ignoreMouse: !0,
+        ignoreAnimation: !0,
+        ignoreDimensions: !0,
+        ignoreClear: !0,
+        offsetX: a,
+        offsetY: c,
+        scaleWidth: d,
+        scaleHeight: b
+    })
 };
 (function (m) {
     var a = m.css, c = m.CanVGRenderer, d = m.SVGRenderer, b = m.extend, k = m.merge, e = m.addEvent, f = m.createElement, g = m.discardElement;
     b(c.prototype, d.prototype);
-    b(c.prototype, {create: function (a, b, c, d) {
-        this.setContainer(b, c, d);
-        this.configure(a)
-    }, setContainer: function (a, b, c) {
-        var d = a.style, e = a.parentNode, g = d.left, d = d.top, k = a.offsetWidth, m = a.offsetHeight, s = {visibility: "hidden", position: "absolute"};
-        this.init.apply(this, [a, b, c]);
-        this.canvas = f("canvas", {width: k, height: m}, {position: "relative", left: g, top: d}, a);
-        this.ttLine = f("div", null, s, e);
-        this.ttDiv = f("div", null, s, e);
-        this.ttTimer = void 0;
-        this.hiddenSvg = a = f("div", {width: k, height: m}, {visibility: "hidden", left: g, top: d}, e);
-        a.appendChild(this.box)
-    }, configure: function (b) {
-        var c = this, d = b.options.tooltip, f = d.borderWidth, g = c.ttDiv, m = d.style, p = c.ttLine, t = parseInt(m.padding, 10), m = k(m, {padding: t + "px", "background-color": d.backgroundColor, "border-style": "solid", "border-width": f + "px", "border-radius": d.borderRadius + "px"});
-        d.shadow && (m = k(m, {"box-shadow": "1px 1px 3px gray",
-            "-webkit-box-shadow": "1px 1px 3px gray"}));
-        a(g, m);
-        a(p, {"border-left": "1px solid darkgray"});
-        e(b, "tooltipRefresh", function (d) {
-            var e = b.container, f = e.offsetLeft, e = e.offsetTop, k;
-            g.innerHTML = d.text;
-            k = b.tooltip.getPosition(g.offsetWidth, g.offsetHeight, {plotX: d.x, plotY: d.y});
-            a(g, {visibility: "visible", left: k.x + "px", top: k.y + "px", "border-color": d.borderColor});
-            a(p, {visibility: "visible", left: f + d.x + "px", top: e + b.plotTop + "px", height: b.plotHeight + "px"});
-            c.ttTimer !== void 0 && clearTimeout(c.ttTimer);
-            c.ttTimer = setTimeout(function () {
-                a(g,
-                    {visibility: "hidden"});
-                a(p, {visibility: "hidden"})
-            }, 3E3)
-        })
-    }, destroy: function () {
-        g(this.canvas);
-        this.ttTimer !== void 0 && clearTimeout(this.ttTimer);
-        g(this.ttLine);
-        g(this.ttDiv);
-        g(this.hiddenSvg);
-        return d.prototype.destroy.apply(this)
-    }, color: function (a, b, c) {
-        a && a.linearGradient && (a = a.stops[a.stops.length - 1][1]);
-        return d.prototype.color.call(this, a, b, c)
-    }, draw: function () {
-        window.canvg(this.canvas, this.hiddenSvg.innerHTML)
-    }})
+    b(c.prototype, {
+        create: function (a, b, c, d) {
+            this.setContainer(b, c, d);
+            this.configure(a)
+        }, setContainer: function (a, b, c) {
+            var d = a.style, e = a.parentNode, g = d.left, d = d.top, k = a.offsetWidth, m = a.offsetHeight, s = {
+                visibility: "hidden",
+                position: "absolute"
+            };
+            this.init.apply(this, [a, b, c]);
+            this.canvas = f("canvas", {width: k, height: m}, {position: "relative", left: g, top: d}, a);
+            this.ttLine = f("div", null, s, e);
+            this.ttDiv = f("div", null, s, e);
+            this.ttTimer = void 0;
+            this.hiddenSvg = a = f("div", {width: k, height: m}, {visibility: "hidden", left: g, top: d}, e);
+            a.appendChild(this.box)
+        }, configure: function (b) {
+            var c = this, d = b.options.tooltip, f = d.borderWidth, g = c.ttDiv, m = d.style, p = c.ttLine, t = parseInt(m.padding, 10), m = k(m, {
+                padding: t + "px",
+                "background-color": d.backgroundColor,
+                "border-style": "solid",
+                "border-width": f + "px",
+                "border-radius": d.borderRadius + "px"
+            });
+            d.shadow && (m = k(m, {
+                "box-shadow": "1px 1px 3px gray",
+                "-webkit-box-shadow": "1px 1px 3px gray"
+            }));
+            a(g, m);
+            a(p, {"border-left": "1px solid darkgray"});
+            e(b, "tooltipRefresh", function (d) {
+                var e = b.container, f = e.offsetLeft, e = e.offsetTop, k;
+                g.innerHTML = d.text;
+                k = b.tooltip.getPosition(g.offsetWidth, g.offsetHeight, {plotX: d.x, plotY: d.y});
+                a(g, {visibility: "visible", left: k.x + "px", top: k.y + "px", "border-color": d.borderColor});
+                a(p, {
+                    visibility: "visible",
+                    left: f + d.x + "px",
+                    top: e + b.plotTop + "px",
+                    height: b.plotHeight + "px"
+                });
+                c.ttTimer !== void 0 && clearTimeout(c.ttTimer);
+                c.ttTimer = setTimeout(function () {
+                    a(g,
+                        {visibility: "hidden"});
+                    a(p, {visibility: "hidden"})
+                }, 3E3)
+            })
+        }, destroy: function () {
+            g(this.canvas);
+            this.ttTimer !== void 0 && clearTimeout(this.ttTimer);
+            g(this.ttLine);
+            g(this.ttDiv);
+            g(this.hiddenSvg);
+            return d.prototype.destroy.apply(this)
+        }, color: function (a, b, c) {
+            a && a.linearGradient && (a = a.stops[a.stops.length - 1][1]);
+            return d.prototype.color.call(this, a, b, c)
+        }, draw: function () {
+            window.canvg(this.canvas, this.hiddenSvg.innerHTML)
+        }
+    })
 })(Highcharts);

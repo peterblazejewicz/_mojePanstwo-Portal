@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
             $(document).ready(function () {
@@ -14,7 +17,6 @@
                     }
                 });
 
-                var chart;
                 $('#container').highcharts({
                     chart: {
                         type: 'spline',
@@ -44,19 +46,17 @@
                         title: {
                             text: 'Value'
                         },
-                        plotLines: [
-                            {
-                                value: 0,
-                                width: 1,
-                                color: '#808080'
-                            }
-                        ]
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
                     },
                     tooltip: {
                         formatter: function () {
                             return '<b>' + this.series.name + '</b><br/>' +
-                                    Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                                    Highcharts.numberFormat(this.y, 2);
+                            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                            Highcharts.numberFormat(this.y, 2);
                         }
                     },
                     legend: {
@@ -65,28 +65,25 @@
                     exporting: {
                         enabled: false
                     },
-                    series: [
-                        {
-                            name: 'Random data',
-                            data: (function () {
-                                // generate an array of random data
-                                var data = [],
-                                        time = (new Date()).getTime(),
-                                        i;
+                    series: [{
+                        name: 'Random data',
+                        data: (function () {
+                            // generate an array of random data
+                            var data = [],
+                                    time = (new Date()).getTime(),
+                                    i;
 
-                                for (i = -19; i <= 0; i++) {
-                                    data.push({
-                                        x: time + i * 1000,
-                                        y: Math.random()
-                                    });
-                                }
-                                return data;
-                            })()
-                        }
-                    ]
+                            for (i = -19; i <= 0; i += 1) {
+                                data.push({
+                                    x: time + i * 1000,
+                                    y: Math.random()
+                                });
+                            }
+                            return data;
+                        }())
+                    }]
                 });
             });
-
         });
     </script>
 </head>

@@ -34,11 +34,7 @@
 <script>
     new Ajax.InPlaceCollectionEditor(
             'tobeedited2', '_ajax_inplaceeditor_result.html', {
-                collection: [
-                    [0, 'one'],
-                    [1, 'two'],
-                    [2, 'three']
-                ],
+                collection: [[0, 'one'], [1, 'two'], [2, 'three']],
                 ajaxOptions: {method: 'get'} //override so we can use a static for the result
             });
 </script>
@@ -47,11 +43,7 @@
 <script>
     new Ajax.InPlaceCollectionEditor(
             'tobeedited3', '_ajax_inplaceeditor_result.html', {
-                collection: [
-                    [0, 'one'],
-                    [1, 'two'],
-                    [2, 'three']
-                ],
+                collection: [[0, 'one'], [1, 'two'], [2, 'three']],
                 value: 0,
                 ajaxOptions: {method: 'get'} //override so we can use a static for the result
             });

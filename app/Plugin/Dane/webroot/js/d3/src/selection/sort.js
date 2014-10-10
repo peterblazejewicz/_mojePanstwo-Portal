@@ -1,7 +1,7 @@
 import
-"../arrays/ascending";
+    "../arrays/ascending";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.sort = function (comparator) {
     comparator = d3_selection_sortComparator.apply(this, arguments);

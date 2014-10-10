@@ -8,7 +8,7 @@
         onRender: function (date) {
             return date.valueOf() < now.valueOf() ? '' : 'disabled';
         }
-    }).on('changeDate',function (ev) {
+    }).on('changeDate', function (ev) {
         if (ev.viewMode == 'days')
             birthDay.hide();
         var selectDate = ev.date;

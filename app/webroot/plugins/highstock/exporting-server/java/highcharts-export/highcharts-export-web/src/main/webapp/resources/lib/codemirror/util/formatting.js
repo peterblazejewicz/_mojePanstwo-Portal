@@ -85,8 +85,8 @@
                 var mToProcess = lines[i].match(reProcessedPortion);
                 if (mToProcess != null && mToProcess.length > 3) { // The line starts with whitespaces and ends with whitespaces
                     lines[i] = mToProcess[1]
-                        + mToProcess[2].replace(reOpenBrackets, "\n$&").replace(reCloseBrackets, "$1\n$2")
-                        + mToProcess[3];
+                    + mToProcess[2].replace(reOpenBrackets, "\n$&").replace(reCloseBrackets, "$1\n$2")
+                    + mToProcess[3];
                     continue;
                 }
             }
@@ -101,9 +101,7 @@
     function enumerateModesBetween(cm, line, start, end) {
         var outer = cm.getMode(), text = cm.getLine(line);
         if (end == null) end = text.length;
-        if (!outer.innerMode) return [
-            {from: start, to: end, mode: outer}
-        ];
+        if (!outer.innerMode) return [{from: start, to: end, mode: outer}];
         var state = cm.getTokenAt({line: line, ch: start}).state;
         var mode = CodeMirror.innerMode(outer, state).mode;
         var found = [], stream = new CodeMirror.StringStream(text);
@@ -145,9 +143,9 @@
                     // Take string till comment start
                     selText = selText.substr(0, startIndex)
                         // From comment start till comment end
-                        + selText.substring(startIndex + curMode.commentStart.length, endIndex)
+                    + selText.substring(startIndex + curMode.commentStart.length, endIndex)
                         // From comment end till string end
-                        + selText.substr(endIndex + curMode.commentEnd.length);
+                    + selText.substr(endIndex + curMode.commentEnd.length);
                 }
                 cm.replaceRange(selText, from, to);
             }

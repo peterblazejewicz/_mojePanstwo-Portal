@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
 
@@ -25,39 +28,34 @@
                         pane: {
                             startAngle: -150,
                             endAngle: 150,
-                            background: [
-                                {
-                                    backgroundColor: {
-                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                        stops: [
-                                            [0, '#FFF'],
-                                            [1, '#333']
-                                        ]
-                                    },
-                                    borderWidth: 0,
-                                    outerRadius: '109%'
+                            background: [{
+                                backgroundColor: {
+                                    linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1},
+                                    stops: [
+                                        [0, '#FFF'],
+                                        [1, '#333']
+                                    ]
                                 },
-                                {
-                                    backgroundColor: {
-                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                        stops: [
-                                            [0, '#333'],
-                                            [1, '#FFF']
-                                        ]
-                                    },
-                                    borderWidth: 1,
-                                    outerRadius: '107%'
+                                borderWidth: 0,
+                                outerRadius: '109%'
+                            }, {
+                                backgroundColor: {
+                                    linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1},
+                                    stops: [
+                                        [0, '#333'],
+                                        [1, '#FFF']
+                                    ]
                                 },
-                                {
-                                    // default background
-                                },
-                                {
-                                    backgroundColor: '#DDD',
-                                    borderWidth: 0,
-                                    outerRadius: '105%',
-                                    innerRadius: '103%'
-                                }
-                            ]
+                                borderWidth: 1,
+                                outerRadius: '107%'
+                            }, {
+                                // default background
+                            }, {
+                                backgroundColor: '#DDD',
+                                borderWidth: 0,
+                                outerRadius: '105%',
+                                innerRadius: '103%'
+                            }]
                         },
 
                         // the value axis
@@ -83,34 +81,28 @@
                             title: {
                                 text: 'km/h'
                             },
-                            plotBands: [
-                                {
-                                    from: 0,
-                                    to: 120,
-                                    color: '#55BF3B' // green
-                                },
-                                {
-                                    from: 120,
-                                    to: 160,
-                                    color: '#DDDF0D' // yellow
-                                },
-                                {
-                                    from: 160,
-                                    to: 200,
-                                    color: '#DF5353' // red
-                                }
-                            ]
+                            plotBands: [{
+                                from: 0,
+                                to: 120,
+                                color: '#55BF3B' // green
+                            }, {
+                                from: 120,
+                                to: 160,
+                                color: '#DDDF0D' // yellow
+                            }, {
+                                from: 160,
+                                to: 200,
+                                color: '#DF5353' // red
+                            }]
                         },
 
-                        series: [
-                            {
-                                name: 'Speed',
-                                data: [80],
-                                tooltip: {
-                                    valueSuffix: ' km/h'
-                                }
+                        series: [{
+                            name: 'Speed',
+                            data: [80],
+                            tooltip: {
+                                valueSuffix: ' km/h'
                             }
-                        ]
+                        }]
 
                     },
                     // Add some life

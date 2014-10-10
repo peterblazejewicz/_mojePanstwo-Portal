@@ -1,11 +1,11 @@
 import
-"../core/functor";
+    "../core/functor";
 import
-"../core/source";
+    "../core/source";
 import
-"../core/target";
+    "../core/target";
 import
-"svg";
+    "svg";
 
 d3.svg.diagonal = function () {
     var source = d3_source,

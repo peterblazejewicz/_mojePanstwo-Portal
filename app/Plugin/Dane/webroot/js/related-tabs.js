@@ -8,7 +8,10 @@
         relatedTab.find('> a').click(function (e) {
             e.preventDefault();
 
-            History.pushState({'target': 'related', page: "DaneTabs"}, $(document).find("title").html(), objectMenu.find('li.related > a').attr('href'));
+            History.pushState({
+                'target': 'related',
+                page: "DaneTabs"
+            }, $(document).find("title").html(), objectMenu.find('li.related > a').attr('href'));
 
             objectMenu.find('li.active').removeClass('active');
             objectMenu.find('li.related').addClass('active');

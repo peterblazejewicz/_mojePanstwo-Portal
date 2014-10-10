@@ -1,3 +1,5 @@
+// script.aculo.us dragdrop.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
@@ -21,7 +23,7 @@ var Droppables = {
             greedy: true,
             hoverclass: null,
             tree: false
-        }, arguments[1] || { });
+        }, arguments[1] || {});
 
         // cache containers
         if (options.containment) {
@@ -68,15 +70,15 @@ var Droppables = {
 
     isAffected: function (point, element, drop) {
         return (
-            (drop.element != element) &&
-                ((!drop._containers) ||
-                    this.isContained(element, drop)) &&
-                ((!drop.accept) ||
-                    (Element.classNames(element).detect(
-                        function (v) {
-                            return drop.accept.include(v)
-                        }) )) &&
-                Position.within(drop.element, point[0], point[1]) );
+        (drop.element != element) &&
+        ((!drop._containers) ||
+        this.isContained(element, drop)) &&
+        ((!drop.accept) ||
+        (Element.classNames(element).detect(
+            function (v) {
+                return drop.accept.include(v)
+            }) )) &&
+        Position.within(drop.element, point[0], point[1]) );
     },
 
     deactivate: function (drop) {
@@ -241,13 +243,15 @@ var Draggable = Class.create({
             handle: false,
             reverteffect: function (element, top_offset, left_offset) {
                 var dur = Math.sqrt(Math.abs(top_offset ^ 2) + Math.abs(left_offset ^ 2)) * 0.02;
-                new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: dur,
+                new Effect.Move(element, {
+                    x: -left_offset, y: -top_offset, duration: dur,
                     queue: {scope: '_draggable', position: 'end'}
                 });
             },
             endeffect: function (element) {
                 var toOpacity = Object.isNumber(element._opacity) ? element._opacity : 1.0;
-                new Effect.Opacity(element, {duration: 0.2, from: 0.7, to: toOpacity,
+                new Effect.Opacity(element, {
+                    duration: 0.2, from: 0.7, to: toOpacity,
                     queue: {scope: '_draggable', position: 'end'},
                     afterFinish: function () {
                         Draggable._dragging[element] = false
@@ -273,7 +277,7 @@ var Draggable = Class.create({
                 }
             });
 
-        var options = Object.extend(defaults, arguments[1] || { });
+        var options = Object.extend(defaults, arguments[1] || {});
 
         this.element = $(element);
 
@@ -305,7 +309,7 @@ var Draggable = Class.create({
     },
 
     currentDelta: function () {
-        return([
+        return ([
             parseInt(Element.getStyle(this.element, 'left') || '0'),
             parseInt(Element.getStyle(this.element, 'top') || '0')]);
     },
@@ -318,10 +322,10 @@ var Draggable = Class.create({
             var src = Event.element(event);
             if ((tag_name = src.tagName.toUpperCase()) && (
                 tag_name == 'INPUT' ||
-                    tag_name == 'SELECT' ||
-                    tag_name == 'OPTION' ||
-                    tag_name == 'BUTTON' ||
-                    tag_name == 'TEXTAREA')) return;
+                tag_name == 'SELECT' ||
+                tag_name == 'OPTION' ||
+                tag_name == 'BUTTON' ||
+                tag_name == 'TEXTAREA')) return;
 
             var pointer = [Event.pointerX(event), Event.pointerY(event)];
             var pos = this.element.cumulativeOffset();
@@ -387,7 +391,7 @@ var Draggable = Class.create({
             var p;
             if (this.options.scroll == window) {
                 with (this._getWindowScroll(this.options.scroll)) {
-                    p = [ left, top, left + width, top + height ];
+                    p = [left, top, left + width, top + height];
                 }
             } else {
                 p = Position.page(this.options.scroll).toArray();
@@ -585,11 +589,11 @@ var Draggable = Class.create({
                 H = body.offsetHeight;
             }
         }
-        return { top: T, left: L, width: W, height: H };
+        return {top: T, left: L, width: W, height: H};
     }
 });
 
-Draggable._dragging = { };
+Draggable._dragging = {};
 
 /*--------------------------------------------------------------------------*/
 
@@ -614,7 +618,7 @@ var SortableObserver = Class.create({
 var Sortable = {
     SERIALIZE_RULE: /^[^_\-](?:[A-Za-z0-9\-\_]*)[_](.*)$/,
 
-    sortables: { },
+    sortables: {},
 
     _findRootElement: function (element) {
         while (element.tagName.toUpperCase() != "BODY") {
@@ -673,7 +677,7 @@ var Sortable = {
 
             onChange: Prototype.emptyFunction,
             onUpdate: Prototype.emptyFunction
-        }, arguments[1] || { });
+        }, arguments[1] || {});
 
         // clear any old sortable with same element
         this.destroy(element);
@@ -688,7 +692,8 @@ var Sortable = {
             delay: options.delay,
             ghosting: options.ghosting,
             constraint: options.constraint,
-            handle: options.handle };
+            handle: options.handle
+        };
 
         if (options.starteffect)
             options_for_draggable.starteffect = options.starteffect;
@@ -738,7 +743,7 @@ var Sortable = {
             var handle = options.handles ? $(options.handles[i]) :
                 (options.handle ? $(e).select('.' + options.handle)[0] : e);
             options.draggables.push(
-                new Draggable(e, Object.extend(options_for_draggable, { handle: handle })));
+                new Draggable(e, Object.extend(options_for_draggable, {handle: handle})));
             Droppables.add(e, options_for_droppable);
             if (options.tree) e.treeNode = element;
             options.droppables.push(e);
@@ -896,7 +901,7 @@ var Sortable = {
             only: sortableOptions.only,
             name: element.id,
             format: sortableOptions.format
-        }, arguments[1] || { });
+        }, arguments[1] || {});
 
         var root = {
             id: null,
@@ -920,7 +925,7 @@ var Sortable = {
 
     sequence: function (element) {
         element = $(element);
-        var options = Object.extend(this.options(element), arguments[1] || { });
+        var options = Object.extend(this.options(element), arguments[1] || {});
 
         return $(this.findElements(element, options) || []).map(function (item) {
             return item.id.match(options.format) ? item.id.match(options.format)[1] : '';
@@ -929,9 +934,9 @@ var Sortable = {
 
     setSequence: function (element, new_sequence) {
         element = $(element);
-        var options = Object.extend(this.options(element), arguments[2] || { });
+        var options = Object.extend(this.options(element), arguments[2] || {});
 
-        var nodeMap = { };
+        var nodeMap = {};
         this.findElements(element, options).each(function (n) {
             if (n.id.match(options.format))
                 nodeMap[n.id.match(options.format)[1]] = [n, n.parentNode];
@@ -949,14 +954,14 @@ var Sortable = {
 
     serialize: function (element) {
         element = $(element);
-        var options = Object.extend(Sortable.options(element), arguments[1] || { });
+        var options = Object.extend(Sortable.options(element), arguments[1] || {});
         var name = encodeURIComponent(
             (arguments[1] && arguments[1].name) ? arguments[1].name : element.id);
 
         if (options.tree) {
             return Sortable.tree(element, arguments[1]).children.map(function (item) {
                 return [name + Sortable._constructIndex(item) + "[id]=" +
-                    encodeURIComponent(item.id)].concat(item.children.map(arguments.callee));
+                encodeURIComponent(item.id)].concat(item.children.map(arguments.callee));
             }).flatten().join('&');
         } else {
             return Sortable.sequence(element, arguments[1]).map(function (item) {

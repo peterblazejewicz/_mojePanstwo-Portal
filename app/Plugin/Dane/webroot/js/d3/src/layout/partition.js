@@ -1,7 +1,7 @@
 import
-"layout";
+    "layout";
 import
-"hierarchy";
+    "hierarchy";
 
 d3.layout.partition = function () {
     var hierarchy = d3.layout.hierarchy(),

@@ -18,6 +18,7 @@ jQuery(function ($) {
         firstDay: 0,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: '년'};
+        yearSuffix: '년'
+    };
     $.datepicker.setDefaults($.datepicker.regional['ko']);
 });

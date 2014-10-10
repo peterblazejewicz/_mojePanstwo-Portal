@@ -8,7 +8,7 @@
         source: function (request, response) {
             var term = request.term;
             if (term in cache) {
-                response(cache[ term ]);
+                response(cache[term]);
                 return;
             }
             autocompleteBtn.addClass('loading');
@@ -24,7 +24,7 @@
                     results = [
                         {label: _mPHeart.translation.LC_SEARCH_BRAK_WYNIKOW, value: null}
                     ]
-                cache[ term ] = results;
+                cache[term] = results;
                 response(results);
             });
         },

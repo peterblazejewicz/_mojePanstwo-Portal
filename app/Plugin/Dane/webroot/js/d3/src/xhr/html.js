@@ -1,7 +1,7 @@
 import
-"../core/document";
+    "../core/document";
 import
-"xhr";
+    "xhr";
 
 d3.html = function (url, callback) {
     return d3_xhr(url, "text/html", d3_html, callback);

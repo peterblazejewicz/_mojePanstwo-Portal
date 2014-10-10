@@ -1,5 +1,5 @@
 import
-"locale";
+    "locale";
 
 d3.locale.ru_RU = d3.locale({
     decimal: ",",

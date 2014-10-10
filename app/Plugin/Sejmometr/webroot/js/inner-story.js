@@ -137,15 +137,29 @@ jQuery(function ($) {
         });
 
         /*SETTING POSITION OF ANIMATED ELEMENTS*/
-        $near.find('.posel').removeClass('hide outfit').css({left: $medium.find('.scene.sejm').position().left + 600, height: "", bottom: ""});
+        $near.find('.posel').removeClass('hide outfit').css({
+            left: $medium.find('.scene.sejm').position().left + 600,
+            height: "",
+            bottom: ""
+        });
         $near.find('.samochod').removeClass('in').css({left: $medium.find('.scene.sejm').position().left + 850});
-        $near.find('.taxi').removeClass('in').css({left: $medium.find('.scene.tlumaczenia').position().left, opacity: 0});
-        $near.find('.samolot').css({left: $medium.find('.scene.lotnisko').position().left + 215, bottom: "", transform: ""});
+        $near.find('.taxi').removeClass('in').css({
+            left: $medium.find('.scene.tlumaczenia').position().left,
+            opacity: 0
+        });
+        $near.find('.samolot').css({
+            left: $medium.find('.scene.lotnisko').position().left + 215,
+            bottom: "",
+            transform: ""
+        });
 
         /*SEJM POSEL*/
         var sejmPosel = new TimelineMax()
             //.add(TweenMax.fromTo($medium.find('.scene.sejm .stat.zarobki'), 0.5, {opacity: 0}, {opacity: 1}))
-            .add(TweenMax.fromTo($near.find('.posel'), 1.5, { left: $medium.find('.scene.sejm').position().left + 600, opacity: 1}, {left: $near.find('.samochod').position().left + ($near.find('.samochod').width() / 2) - 70}))
+            .add(TweenMax.fromTo($near.find('.posel'), 1.5, {
+                left: $medium.find('.scene.sejm').position().left + 600,
+                opacity: 1
+            }, {left: $near.find('.samochod').position().left + ($near.find('.samochod').width() / 2) - 70}))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 107}))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 127, height: 50}));
 
@@ -164,7 +178,7 @@ jQuery(function ($) {
         /*SAMOCHOD SEJM - BIURO*/
         var sejmSamochod = new TimelineMax()
             .add(TweenMax.fromTo($medium.find('.scene.sejm .stat.przejazd'), 0.5, {opacity: 0}, {opacity: 1}))
-            .add(TweenMax.fromTo($near.find('.samochod'), 1, {left: $medium.find('.scene.sejm').position().left + 850}, { left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1100}));
+            .add(TweenMax.fromTo($near.find('.samochod'), 1, {left: $medium.find('.scene.sejm').position().left + 850}, {left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1100}));
 
         new ScrollScene({
             duration: minScreenWidth / 2
@@ -178,7 +192,13 @@ jQuery(function ($) {
 
         /*POSEL WALK - BIURO + INSIDE*/
         var biuroPosel = new TimelineMax()
-            .add(TweenMax.fromTo($near.find('.posel'), 1.5, {left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1150, opacity: 0}, {left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1020, opacity: 0}))
+            .add(TweenMax.fromTo($near.find('.posel'), 1.5, {
+                left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1150,
+                opacity: 0
+            }, {
+                left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 1020,
+                opacity: 0
+            }))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 107, height: 110, opacity: 1}))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 122}))
             .add(TweenMax.to($near.find('.posel'), 0.5, {left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 700}))
@@ -186,7 +206,7 @@ jQuery(function ($) {
 
         new ScrollScene({
             duration: $medium.find('.scene.biuro').width() * .7
-        }).on("start",function () {
+        }).on("start", function () {
                 $near.find('.posel').removeClass('hide').css({left: $medium.find('.scene.biuro').position().left + $medium.find('.scene.biuro').width() - 920});
                 $near.find('.posel').addClass('outfit');
             }).on("end", function () {
@@ -225,7 +245,10 @@ jQuery(function ($) {
 
         /*POSEL TAXI - WALK + CALL*/
         var poselTaxi = new TimelineMax()
-            .add(TweenMax.fromTo($near.find('.taxi'), 10, {left: $medium.find('.scene.tlumaczenia').position().left, opacity: 0}, { left: $medium.find('.scene.tlumaczenia').position().left, opacity: 1}))
+            .add(TweenMax.fromTo($near.find('.taxi'), 10, {
+                left: $medium.find('.scene.tlumaczenia').position().left,
+                opacity: 0
+            }, {left: $medium.find('.scene.tlumaczenia').position().left, opacity: 1}))
             .add(TweenMax.to($near.find('.taxi'), 6, {left: $medium.find('.scene.dom').position().left + $medium.find('.scene.dom').width() - 300}))
             .add(TweenMax.to($near.find('.posel'), 1.5, {left: $medium.find('.scene.dom').position().left + $medium.find('.scene.dom').width() - 220}))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 107}))
@@ -259,7 +282,11 @@ jQuery(function ($) {
 
         /*POSEL LOTNISKO - WALK*/
         var poselLotnisko = new TimelineMax()
-            .add(TweenMax.fromTo($near.find('.posel'), 0.1, {left: $medium.find('.scene.lotnisko').position().left}, {left: $medium.find('.scene.lotnisko').position().left, bottom: 107, height: 110}))
+            .add(TweenMax.fromTo($near.find('.posel'), 0.1, {left: $medium.find('.scene.lotnisko').position().left}, {
+                left: $medium.find('.scene.lotnisko').position().left,
+                bottom: 107,
+                height: 110
+            }))
             .add(TweenMax.to($near.find('.posel'), 0.1, {bottom: 122}))
             .add(TweenMax.fromTo($medium.find('.scene.lotnisko .stat.loty'), 0.5, {opacity: 0}, {opacity: 1}))
             .add(TweenMax.to($near.find('.posel'), 1, {left: $medium.find('.scene.lotnisko').position().left + 200}))
@@ -282,7 +309,14 @@ jQuery(function ($) {
 
         /*POSEL LOT*/
         var poselLot = new TimelineMax()
-            .add(TweenMax.fromTo($near.find('.samolot'), 5, {left: $medium.find('.scene.lotnisko').position().left + 215, rotation: 0}, {left: $medium.find('.scene.stats').position().left, bottom: "+=" + $window.height() / 2, rotation: -15}));
+            .add(TweenMax.fromTo($near.find('.samolot'), 5, {
+                left: $medium.find('.scene.lotnisko').position().left + 215,
+                rotation: 0
+            }, {
+                left: $medium.find('.scene.stats').position().left,
+                bottom: "+=" + $window.height() / 2,
+                rotation: -15
+            }));
 
         new ScrollScene({
             duration: ($medium.find('.scene.lot').width())

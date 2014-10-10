@@ -1,10 +1,10 @@
 jQuery(document).ready(function () {
-    
+
     $('.objectTagsCloud').cloud({
-	    hwratio: .3,
-	    fog: .4
-	});
-    
+        hwratio: .3,
+        fog: .4
+    });
+
     var menu = $('.objectsPageContent .objectMenu'),
         menuAutoScroll = true,
         headerHeight = $('header').outerHeight(),

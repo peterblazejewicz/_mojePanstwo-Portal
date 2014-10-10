@@ -1,11 +1,11 @@
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 
 d3.geo.graticule = function () {
     var x1, x0, X1, X0,

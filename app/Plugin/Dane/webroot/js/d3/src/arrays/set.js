@@ -1,7 +1,7 @@
 import
-"../core/class";
+    "../core/class";
 import
-"map";
+    "map";
 
 d3.set = function (array) {
     var set = new d3_Set;

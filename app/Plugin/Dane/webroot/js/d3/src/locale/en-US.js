@@ -1,5 +1,5 @@
 import
-"locale";
+    "locale";
 
 var d3_locale_enUS = d3.locale({
     decimal: ".",

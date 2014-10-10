@@ -1,7 +1,7 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 
 // Length returned in radians; multiply by radius for distance.
 d3.geo.distance = function (a, b) {

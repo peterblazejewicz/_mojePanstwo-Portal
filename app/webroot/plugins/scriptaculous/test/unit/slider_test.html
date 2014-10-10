@@ -99,7 +99,10 @@ new Test.Unit.Runner({
     testSliderValues: function () {
         with (this) {
             ['horizontal', 'vertical'].each(function (axis) {
-                var slider = new Control.Slider('handle2-' + axis, 'track2-' + axis, {values: [0.2, 0.4, 0.6, 0.8, 1], axis: axis});
+                var slider = new Control.Slider('handle2-' + axis, 'track2-' + axis, {
+                    values: [0.2, 0.4, 0.6, 0.8, 1],
+                    axis: axis
+                });
                 assertEqual(axis, slider.axis);
                 assertEqual(0.2, slider.value);
 
@@ -169,9 +172,11 @@ new Test.Unit.Runner({
 
     testSliderOnChange: function () {
         with (this) {
-            var slider = new Control.Slider('handle1', 'track1', { onChange: function (v) {
-                globalValue = v;
-            } });
+            var slider = new Control.Slider('handle1', 'track1', {
+                onChange: function (v) {
+                    globalValue = v;
+                }
+            });
             slider.setValue(1);
             assert(1, globalValue);
             assert(1, slider.value);
@@ -190,7 +195,8 @@ new Test.Unit.Runner({
             var slider = new Control.Slider(['handle3-1', 'handle3-2', 'handle3-3'], 'track3', {
                 onChange: function (v, s) {
                     if (!s.event) globalValue = v;
-                } });
+                }
+            });
 
             slider.setValue(0.5, 1);
             assertEqual([0, 0.5, 0].inspect(), globalValue.inspect());
@@ -231,7 +237,10 @@ new Test.Unit.Runner({
 
     testMultipleHandlesValues: function () {
         with (this) {
-            var slider = new Control.Slider(['handle4-1', 'handle4-2', 'handle4-3'], 'track4', {values: [50, 150, 160, 170, 180], range: $R(50, 180)});
+            var slider = new Control.Slider(['handle4-1', 'handle4-2', 'handle4-3'], 'track4', {
+                values: [50, 150, 160, 170, 180],
+                range: $R(50, 180)
+            });
             assertInstanceOf(Control.Slider, slider);
 
             slider.setValue(20, 0);
@@ -282,10 +291,12 @@ new Test.Unit.Runner({
     testMultipleHandlesSpansStartEnd: function () {
         with (this) {
             var slider = new Control.Slider(['handle7-1', 'handle7-2', 'handle7-3'], 'track7',
-                    { spans: ['span7-1', 'span7-2'],
+                    {
+                        spans: ['span7-1', 'span7-2'],
                         startSpan: 'span7-start',
                         endSpan: 'span7-end',
-                        range: $R(0, 200) });
+                        range: $R(0, 200)
+                    });
             assertInstanceOf(Control.Slider, slider);
 
             slider.setValue(20, 0);
@@ -303,10 +314,12 @@ new Test.Unit.Runner({
     testSingleHandleSpansStartEnd: function () {
         with (this) {
             var slider = new Control.Slider('handle7-1', 'track7',
-                    { spans: ['span7-1', 'span7-2'],
+                    {
+                        spans: ['span7-1', 'span7-2'],
                         startSpan: 'span7-start',
                         endSpan: 'span7-end',
-                        range: $R(0, 200) });
+                        range: $R(0, 200)
+                    });
             assertInstanceOf(Control.Slider, slider);
 
             slider.setValue(20, 0);
@@ -322,10 +335,12 @@ new Test.Unit.Runner({
     testMultipleHandlesStyles: function () {
         with (this) {
             var slider = new Control.Slider(['handle7-1', 'handle7-2', 'handle7-3'], 'track7',
-                    { spans: ['span7-1', 'span7-2'],
+                    {
+                        spans: ['span7-1', 'span7-2'],
                         startSpan: 'span7-start',
                         endSpan: 'span7-end',
-                        range: $R(0, 200) });
+                        range: $R(0, 200)
+                    });
             assertInstanceOf(Control.Slider, slider);
             assert(Element.hasClassName('handle7-1', 'selected'));
             assert(!Element.hasClassName('handle7-2', 'selected'));
@@ -392,7 +407,11 @@ new Test.Unit.Runner({
 
     testMultipleHandlesSpansVertical: function () {
         with (this) {
-            var slider = new Control.Slider(['handle6-1', 'handle6-2', 'handle6-3'], 'track6', {axis: 'vertical', spans: ['span6-1', 'span6-2'], range: $R(0, 100)});
+            var slider = new Control.Slider(['handle6-1', 'handle6-2', 'handle6-3'], 'track6', {
+                axis: 'vertical',
+                spans: ['span6-1', 'span6-2'],
+                range: $R(0, 100)
+            });
             assertInstanceOf(Control.Slider, slider);
 
             slider.setValue(20, 0);

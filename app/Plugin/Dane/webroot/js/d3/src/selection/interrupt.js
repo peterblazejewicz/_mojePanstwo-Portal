@@ -1,6 +1,6 @@
 // import "../transition/transition";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.interrupt = function () {
     return this.each(d3_selection_interrupt);

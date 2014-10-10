@@ -1,7 +1,7 @@
 import
-"conic-equal-area";
+    "conic-equal-area";
 import
-"geo";
+    "geo";
 
 // ESRI:102003
 d3.geo.albers = function () {

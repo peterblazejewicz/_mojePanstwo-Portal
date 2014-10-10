@@ -776,8 +776,22 @@ if (typeof VMM.Timeline !== 'undefined' && typeof VMM.Timeline.DataObj == 'undef
 
         /*	TEMPLATE OBJECTS
          ================================================== */
-        data_template_obj: {  "timeline": { "headline": "", "description": "", "asset": { "media": "", "credit": "", "caption": "" }, "date": [], "era": [] } },
-        date_obj: {"startDate": "2012,2,2,11,30", "headline": "", "text": "", "asset": {"media": "http://youtu.be/vjVfu8-Wp6s", "credit": "", "caption": "" }, "tags": "Optional"}
+        data_template_obj: {
+            "timeline": {
+                "headline": "",
+                "description": "",
+                "asset": {"media": "", "credit": "", "caption": ""},
+                "date": [],
+                "era": []
+            }
+        },
+        date_obj: {
+            "startDate": "2012,2,2,11,30",
+            "headline": "",
+            "text": "",
+            "asset": {"media": "http://youtu.be/vjVfu8-Wp6s", "credit": "", "caption": ""},
+            "tags": "Optional"
+        }
 
     };
 

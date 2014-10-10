@@ -1,7 +1,7 @@
 import
-"selection";
+    "selection";
 import
-"enter";
+    "enter";
 
 d3_selection_enterPrototype.select = function (selector) {
     var subgroups = [],

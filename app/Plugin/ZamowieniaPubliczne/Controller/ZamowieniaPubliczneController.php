@@ -1,54 +1,52 @@
 <?php
 
-class ZamowieniaPubliczneController extends AppController
-{
+class ZamowieniaPubliczneController extends AppController {
 
-    public $helpers = array(
-        'Dane.Dataobject',
-        'Dane.DataobjectsSlider',
-        'Waluta',
-    );
+	public $helpers = array(
+		'Dane.Dataobject',
+		'Dane.DataobjectsSlider',
+		'Waluta',
+	);
 
-    public function index()
-    {
+	public function index() {
 
-        $stats = $this->API->ZamowieniaPubliczne()->getStats();
-        $this->set('stats', $stats);
+		$stats = $this->API->ZamowieniaPubliczne()->getStats();
+		$this->set( 'stats', $stats );
 
 
-        /*
-        $api = $this->API->Dane();
+		/*
+		$api = $this->API->Dane();
 
 
-        $api->searchDataset('zamowienia_publiczne', array(
-            'limit' => 20,
-            'conditions' => array(
-                'rodzaj_id' => 2,
-            ),
-        ));
-        $this->set('uslugi', $api->getObjects());
+		$api->searchDataset('zamowienia_publiczne', array(
+			'limit' => 20,
+			'conditions' => array(
+				'rodzaj_id' => 2,
+			),
+		));
+		$this->set('uslugi', $api->getObjects());
 
 
-        $api->searchDataset('zamowienia_publiczne', array(
-            'limit' => 20,
-            'conditions' => array(
-                'rodzaj_id' => 3,
-            ),
-        ));
-        $this->set('dostawy', $api->getObjects());
+		$api->searchDataset('zamowienia_publiczne', array(
+			'limit' => 20,
+			'conditions' => array(
+				'rodzaj_id' => 3,
+			),
+		));
+		$this->set('dostawy', $api->getObjects());
 
 
-        $api->searchDataset('zamowienia_publiczne', array(
-            'limit' => 20,
-            'conditions' => array(
-                'rodzaj_id' => 1,
-            ),
-        ));
-        $this->set('roboty', $api->getObjects());
-        */
+		$api->searchDataset('zamowienia_publiczne', array(
+			'limit' => 20,
+			'conditions' => array(
+				'rodzaj_id' => 1,
+			),
+		));
+		$this->set('roboty', $api->getObjects());
+		*/
 
-        $application = $this->getApplication();
-        $this->set('title_for_layout', $this->Application['name']);
-    }
+		$application = $this->getApplication();
+		$this->set( 'title_for_layout', $this->Application['name'] );
+	}
 
 } 

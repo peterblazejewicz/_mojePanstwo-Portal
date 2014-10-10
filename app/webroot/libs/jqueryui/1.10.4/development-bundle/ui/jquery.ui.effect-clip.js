@@ -16,7 +16,7 @@
     $.effects.effect.clip = function (o, done) {
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             direction = o.direction || "vertical",
@@ -35,7 +35,7 @@
             overflow: "hidden"
         });
         animate = ( el[0].tagName === "IMG" ) ? wrapper : el;
-        distance = animate[ size ]();
+        distance = animate[size]();
 
         // Shift
         if (show) {
@@ -44,8 +44,8 @@
         }
 
         // Create Animation Object:
-        animation[ size ] = show ? distance : 0;
-        animation[ position ] = show ? 0 : distance / 2;
+        animation[size] = show ? distance : 0;
+        animation[position] = show ? 0 : distance / 2;
 
         // Animate
         animate.animate(animation, {

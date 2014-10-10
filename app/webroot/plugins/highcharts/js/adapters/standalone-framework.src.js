@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v3.0.10 (2014-03-10)
+ * @license Highcharts JS v4.0.4 (2014-09-02)
  *
  * Standalone Highcharts Framework
  *
@@ -15,6 +15,7 @@ var HighchartsAdapter = (function () {
         emptyArray = [],
         timers = [],
         timerId,
+        animSetters = {},
         Fx;
 
     Math.easeInOutSine = function (t, b, c, d) {
@@ -87,6 +88,7 @@ var HighchartsAdapter = (function () {
                     } else if (el.attachEvent) {
 
                         wrappedFn = function (e) {
+                            e.target = e.srcElement || window; // #2820
                             fn.call(el, e);
                         };
 
@@ -181,6 +183,7 @@ var HighchartsAdapter = (function () {
 
 
     return {
+
         /**
          * Initialize the adapter. This is run once as Highcharts is first run.
          */
@@ -216,7 +219,7 @@ var HighchartsAdapter = (function () {
                     }
                 };
                 this.adapterRun = function (elem, method) {
-                    var alias = { width: 'clientWidth', height: 'clientHeight' }[method];
+                    var alias = {width: 'clientWidth', height: 'clientHeight'}[method];
 
                     if (alias) {
                         elem.style.zoom = 1;
@@ -291,8 +294,12 @@ var HighchartsAdapter = (function () {
                         elem = this.elem,
                         elemelem = elem.element; // if destroyed, it is null
 
-                    // Animating a path definition on SVGElement
-                    if (paths && elemelem) {
+                    // Animation setter defined from outside
+                    if (animSetters[this.prop]) {
+                        animSetters[this.prop](this);
+
+                        // Animating a path definition on SVGElement
+                    } else if (paths && elemelem) {
                         elem.attr('d', pathAnim.step(paths[0], paths[1], this.now, this.toD));
 
                         // Other animations on SVGElement
@@ -439,7 +446,7 @@ var HighchartsAdapter = (function () {
                     }
 
                     if (!end) {
-                        end = parseFloat(prop[name]);
+                        end = prop[name];
                     }
                     fx.custom(start, end, unit);
                 }
@@ -450,7 +457,14 @@ var HighchartsAdapter = (function () {
          * Internal method to return CSS value for given element and property
          */
         _getStyle: function (el, prop) {
-            return window.getComputedStyle(el).getPropertyValue(prop);
+            return window.getComputedStyle(el, undefined).getPropertyValue(prop);
+        },
+
+        /**
+         * Add an animation setter for a specific property
+         */
+        addAnimSetter: function (prop, fn) {
+            animSetters[prop] = fn;
         },
 
         /**

@@ -2,7 +2,6 @@
         <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
         <%@ page language="java" contentType="text/html; charset=UTF-8"
                  pageEncoding="UTF-8" %>
-
         <!DOCTYPE html>
         <html>
         <head>
@@ -11,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="resources/css/demo.css" />
         <link rel="stylesheet" type="text/css"
         href="resources/lib/codemirror/codemirror.css" />
-        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="resources/lib//jquery-1.11.0.min.js"></script>
         <script src="resources/lib/codemirror/codemirror.js"></script>
         <script src="resources/lib/codemirror/mode/javascript/javascript.js"></script>
         <script src="resources/lib/codemirror/mode/xml/xml.js"></script>
@@ -88,7 +87,7 @@
         <h1>Highcharts Export Server</h1>
         </div>
         <div id="wrap">
-        <form id="exportForm" action="" method="POST">
+        <form id="exportForm" action="./" method="POST">
         <p>Use this page to experiment with the different options.</p>
 
         <input id="options" title="Highcharts config object" type="radio"

@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
 
@@ -98,34 +101,28 @@
                     valueSuffix: '°C'
                 },
 
-                legend: {
-                },
+                legend: {},
 
-                series: [
-                    {
-                        name: 'Temperature',
-                        data: averages,
-                        zIndex: 1,
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        }
-                    },
-                    {
-                        name: 'Range',
-                        data: ranges,
-                        type: 'arearange',
-                        lineWidth: 0,
-                        linkedTo: ':previous',
-                        color: Highcharts.getOptions().colors[0],
-                        fillOpacity: 0.3,
-                        zIndex: 0
+                series: [{
+                    name: 'Temperature',
+                    data: averages,
+                    zIndex: 1,
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 2,
+                        lineColor: Highcharts.getOptions().colors[0]
                     }
-                ]
-
+                }, {
+                    name: 'Range',
+                    data: ranges,
+                    type: 'arearange',
+                    lineWidth: 0,
+                    linkedTo: ':previous',
+                    color: Highcharts.getOptions().colors[0],
+                    fillOpacity: 0.3,
+                    zIndex: 0
+                }]
             });
-
         });
     </script>
 </head>

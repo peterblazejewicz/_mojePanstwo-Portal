@@ -1,3 +1,3 @@
 <div class="line desc">
-    <?= $object->getData('opis'); ?>
+	<?= $object->getData( 'opis' ); ?>
 </div>

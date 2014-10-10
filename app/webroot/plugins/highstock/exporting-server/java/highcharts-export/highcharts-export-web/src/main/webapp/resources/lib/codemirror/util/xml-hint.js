@@ -58,7 +58,7 @@
 
             return {
                 list: hints,
-                from: { line: cursor.line, ch: cursor.ch - typed.length },
+                from: {line: cursor.line, ch: cursor.ch - typed.length},
                 to: cursor
             };
         }

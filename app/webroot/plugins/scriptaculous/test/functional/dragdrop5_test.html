@@ -20,9 +20,11 @@
     ### DROP HERE ###
 </div>
 
-<script type="text/javascript">Droppables.add('cart', {onDrop: function (element, dropon) {
-    alert('w/o hoverclass, should be \'product_id\':' + encodeURIComponent(element.id) + ', dropon should be \'cart\':' + dropon.id)
-}})</script>
+<script type="text/javascript">Droppables.add('cart', {
+    onDrop: function (element, dropon) {
+        alert('w/o hoverclass, should be \'product_id\':' + encodeURIComponent(element.id) + ', dropon should be \'cart\':' + dropon.id)
+    }
+})</script>
 
 <br/>
 
@@ -37,9 +39,12 @@
     ### DROP HERE ###
 </div>
 
-<script type="text/javascript">Droppables.add('carth', {hoverclass: 'hoverclass123', onDrop: function (element, dropon, event) {
-    alert('w/ hoverclass: should be \'product_id\':' + encodeURIComponent(element.id) + ', dropon should be \'carth\':' + dropon.id)
-}})</script>
+<script type="text/javascript">Droppables.add('carth', {
+    hoverclass: 'hoverclass123',
+    onDrop: function (element, dropon, event) {
+        alert('w/ hoverclass: should be \'product_id\':' + encodeURIComponent(element.id) + ', dropon should be \'carth\':' + dropon.id)
+    }
+})</script>
 
 
 </body>

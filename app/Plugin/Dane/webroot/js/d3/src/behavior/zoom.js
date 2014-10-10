@@ -1,21 +1,21 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../event/drag";
+    "../event/drag";
 import
-"../event/event";
+    "../event/event";
 import
-"../event/mouse";
+    "../event/mouse";
 import
-"../event/touches";
+    "../event/touches";
 import
-"../selection/selection";
+    "../selection/selection";
 import
-"../interpolate/zoom";
+    "../interpolate/zoom";
 import
-"behavior";
+    "behavior";
 
 d3.behavior.zoom = function () {
     var view = {x: 0, y: 0, k: 1},

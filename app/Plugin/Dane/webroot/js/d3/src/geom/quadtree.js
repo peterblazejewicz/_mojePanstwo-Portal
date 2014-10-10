@@ -1,11 +1,11 @@
 import
-"../core/functor";
+    "../core/functor";
 import
-"../math/abs";
+    "../math/abs";
 import
-"geom";
+    "geom";
 import
-"point";
+    "point";
 
 d3.geom.quadtree = function (points, x1, y1, x2, y2) {
     var x = d3_geom_pointX,

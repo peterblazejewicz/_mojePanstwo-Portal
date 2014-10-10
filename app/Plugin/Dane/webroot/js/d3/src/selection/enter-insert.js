@@ -1,7 +1,7 @@
 import
-"selection";
+    "selection";
 import
-"enter";
+    "enter";
 
 d3_selection_enterPrototype.insert = function (name, before) {
     if (arguments.length < 2) before = d3_selection_enterInsertBefore(this);

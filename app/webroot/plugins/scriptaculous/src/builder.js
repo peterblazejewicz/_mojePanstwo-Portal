@@ -1,3 +1,5 @@
+// script.aculo.us builder.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
@@ -55,7 +57,7 @@ var Builder = {
                 if (attrs.length) {
                     try { // prevent IE "feature": http://dev.rubyonrails.org/ticket/2707
                         parentElement.innerHTML = "<" + elementName + " " +
-                            attrs + "></" + elementName + ">";
+                        attrs + "></" + elementName + ">";
                     } catch (e) {
                     }
                     element = parentElement.firstChild || null;
@@ -89,7 +91,7 @@ var Builder = {
         var attrs = [];
         for (attribute in attributes)
             attrs.push((attribute in this.ATTR_MAP ? this.ATTR_MAP[attribute] : attribute) +
-                '="' + attributes[attribute].toString().escapeHTML().gsub(/"/, '&quot;') + '"');
+            '="' + attributes[attribute].toString().escapeHTML().gsub(/"/, '&quot;') + '"');
         return attrs.join(" ");
     },
     _children: function (element, children) {
@@ -108,7 +110,7 @@ var Builder = {
             element.appendChild(Builder._text(children));
     },
     _isStringOrNumber: function (param) {
-        return(typeof param == 'string' || typeof param == 'number');
+        return (typeof param == 'string' || typeof param == 'number');
     },
     build: function (html) {
         var element = this.node('div');
@@ -119,11 +121,11 @@ var Builder = {
         if (typeof scope != 'object' && typeof scope != 'function') scope = window; //global scope
 
         var tags = ("A ABBR ACRONYM ADDRESS APPLET AREA B BASE BASEFONT BDO BIG BLOCKQUOTE BODY " +
-            "BR BUTTON CAPTION CENTER CITE CODE COL COLGROUP DD DEL DFN DIR DIV DL DT EM FIELDSET " +
-            "FONT FORM FRAME FRAMESET H1 H2 H3 H4 H5 H6 HEAD HR HTML I IFRAME IMG INPUT INS ISINDEX " +
-            "KBD LABEL LEGEND LI LINK MAP MENU META NOFRAMES NOSCRIPT OBJECT OL OPTGROUP OPTION P " +
-            "PARAM PRE Q S SAMP SCRIPT SELECT SMALL SPAN STRIKE STRONG STYLE SUB SUP TABLE TBODY TD " +
-            "TEXTAREA TFOOT TH THEAD TITLE TR TT U UL VAR").split(/\s+/);
+        "BR BUTTON CAPTION CENTER CITE CODE COL COLGROUP DD DEL DFN DIR DIV DL DT EM FIELDSET " +
+        "FONT FORM FRAME FRAMESET H1 H2 H3 H4 H5 H6 HEAD HR HTML I IFRAME IMG INPUT INS ISINDEX " +
+        "KBD LABEL LEGEND LI LINK MAP MENU META NOFRAMES NOSCRIPT OBJECT OL OPTGROUP OPTION P " +
+        "PARAM PRE Q S SAMP SCRIPT SELECT SMALL SPAN STRIKE STRONG STYLE SUB SUP TABLE TBODY TD " +
+        "TEXTAREA TFOOT TH THEAD TITLE TR TT U UL VAR").split(/\s+/);
 
         tags.each(function (tag) {
             scope[tag] = function () {

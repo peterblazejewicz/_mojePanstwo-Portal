@@ -221,7 +221,10 @@ var PLBrowser = Class.create({
                 var h = new Element('h2').update(span);
                 layer.div.insert(h);
 
-                new Effect.Tween(null, -17, 8, {duration: .4, afterFinish: this.add_level_after_finish.bind(this, layer)}, function (h, p) {
+                new Effect.Tween(null, -17, 8, {
+                    duration: .4,
+                    afterFinish: this.add_level_after_finish.bind(this, layer)
+                }, function (h, p) {
                     span.setStyle({top: p + 'px'});
                 }.bind(this, span));
             } else this.add_level_after_finish(layer);
@@ -245,48 +248,50 @@ var PLBrowser = Class.create({
 
             this.add_level_get_data(layer, map_info);
 
-            new Effect.Tween(null, 0, 540, {duration: .3, afterFinish: function (map_canvas, layer) {
+            new Effect.Tween(null, 0, 540, {
+                duration: .3, afterFinish: function (map_canvas, layer) {
 
-                var myOptions = {
-                    zoom: layer.zoom,
-                    center: new google.maps.LatLng(layer.center[0], layer.center[1]),
-                    panControl: false,
-                    zoomControl: true,
-                    mapTypeControl: false,
-                    scaleControl: false,
-                    streetViewControl: false,
-                    overviewMapControl: false,
-                    zoomControlOptions: {
-                        style: google.maps.ZoomControlStyle.SMALL,
-                        position: google.maps.ControlPosition.RIGHT_TOP
-                    },
-                    mapTypeControlOptions: {
-                        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                        position: google.maps.ControlPosition.LEFT_BOTTOM
-                    },
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    backgroundColor: '#FFFFFF',
-                    minZoom: layer.zoom
-                };
+                    var myOptions = {
+                        zoom: layer.zoom,
+                        center: new google.maps.LatLng(layer.center[0], layer.center[1]),
+                        panControl: false,
+                        zoomControl: true,
+                        mapTypeControl: false,
+                        scaleControl: false,
+                        streetViewControl: false,
+                        overviewMapControl: false,
+                        zoomControlOptions: {
+                            style: google.maps.ZoomControlStyle.SMALL,
+                            position: google.maps.ControlPosition.RIGHT_TOP
+                        },
+                        mapTypeControlOptions: {
+                            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                            position: google.maps.ControlPosition.LEFT_BOTTOM
+                        },
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        backgroundColor: '#FFFFFF',
+                        minZoom: layer.zoom
+                    };
 
-                var map = new google.maps.Map(map_canvas, myOptions);
+                    var map = new google.maps.Map(map_canvas, myOptions);
 
-                var border = new google.maps.Polygon({
-                    paths: [ this.worldSet.worldPaths.workspace[ this.worldSet.worldPaths.levels[layer.l] ], google.maps.geometry.encoding.decodePath(layer.paths[0][0]) ],
-                    fillColor: "#FFFFFF",
-                    fillOpacity: layer.l == 1 ? 1 : .8,
-                    strokeOpacity: .5,
-                    strokeColor: "#444499",
-                    strokeWeight: 1
-                });
+                    var border = new google.maps.Polygon({
+                        paths: [this.worldSet.worldPaths.workspace[this.worldSet.worldPaths.levels[layer.l]], google.maps.geometry.encoding.decodePath(layer.paths[0][0])],
+                        fillColor: "#FFFFFF",
+                        fillOpacity: layer.l == 1 ? 1 : .8,
+                        strokeOpacity: .5,
+                        strokeColor: "#444499",
+                        strokeWeight: 1
+                    });
 
-                border.setMap(map);
+                    border.setMap(map);
 
-                layer.map_loaded = true;
-                layer.map = map;
-                this.add_level_build_polygons(layer);
+                    layer.map_loaded = true;
+                    layer.map = map;
+                    this.add_level_build_polygons(layer);
 
-            }.bind(this, map_canvas, layer)}, function (map_canvas, p) {
+                }.bind(this, map_canvas, layer)
+            }, function (map_canvas, p) {
                 map_canvas.setStyle({height: p + 'px'});
             }.bind(this, map_canvas));
 
@@ -304,13 +309,21 @@ var PLBrowser = Class.create({
                 var firstBlock = new Element('div', {'class': 'mainPart'});
                 firstBlock.insert({
                     top: new Element('form', {'action': '/moja_gmina', 'class': 'gminaSearch'}).insert({
-                        top: new Element('input', {'name': 'q', 'type': 'text', 'placeholder': _mPHeart.translation.LC_MOJA_GMINA_SZUKAJ_GMINY, 'class': 'form-control'}),
+                        top: new Element('input', {
+                            'name': 'q',
+                            'type': 'text',
+                            'placeholder': _mPHeart.translation.LC_MOJA_GMINA_SZUKAJ_GMINY,
+                            'class': 'form-control'
+                        }),
                         bottom: new Element('button', {'type': 'submit', 'class': 'hidden'})
                     })
                 }).insert({
                     bottom: new Element('div', {'class': 'or'}).insert({top: new Element('span', {'class': 'middle'}).update(_mPHeart.translation.LC_MOJA_GMINA_SZUKAJ_GMINY_OR)})
                 }).insert({
-                    bottom: new Element('button', {'class': 'btn btn-success', 'id': 'localizeMe'}).update(_mPHeart.translation.LC_MOJA_GMINA_LOCALIZEME)
+                    bottom: new Element('button', {
+                        'class': 'btn btn-success',
+                        'id': 'localizeMe'
+                    }).update(_mPHeart.translation.LC_MOJA_GMINA_LOCALIZEME)
                 }).insert({
                     bottom: new Element('div', {'class': 'or'}).insert({top: new Element('span', {'class': 'middle'}).update(_mPHeart.translation.LC_MOJA_GMINA_SZUKAJ_GMINY_OR)})
                 });
@@ -377,7 +390,10 @@ var PLBrowser = Class.create({
                                 subItemSubName = Object.keys(items[j][subItemName][0])[1];
                             a = new Element('a', {href: '/dane/gminy/' + items[j][subItemName][0][subItemSubName]}).update(item.nazwa).setStyle({left: '-200px'});
                         } else {
-                            a = new Element('a', {href: '#', onclick: 'return false;'}).update(item.nazwa).setStyle({left: '-200px'}).observe('click', that.on_item_click.bind(that, layer, name, itemName, j));
+                            a = new Element('a', {
+                                href: '#',
+                                onclick: 'return false;'
+                            }).update(item.nazwa).setStyle({left: '-200px'}).observe('click', that.on_item_click.bind(that, layer, name, itemName, j));
                         }
 
                         a.observe('mouseover', that.o_mouseover.bind(this, layer, name, itemName, j, false));
@@ -556,7 +572,7 @@ jQuery(document).ready(function () {
             console.log(request.term);
             var term = request.term;
             if (term in cache) {
-                response(cache[ term ]);
+                response(cache[term]);
                 return;
             }
             jQuery.getJSON("/moja_gmina/search.json?q=" + request.term, function (data, status, xhr) {
@@ -571,7 +587,7 @@ jQuery(document).ready(function () {
                     results = [
                         {label: _mPHeart.translation.LC_MOJA_GMINA_SEARCH_BRAK_WYNIKOW, value: null}
                     ]
-                cache[ term ] = results;
+                cache[term] = results;
                 response(results);
             });
         },

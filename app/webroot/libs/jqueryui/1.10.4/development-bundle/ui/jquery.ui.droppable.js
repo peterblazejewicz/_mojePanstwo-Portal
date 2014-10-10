@@ -55,14 +55,14 @@
             this.proportions = function (/* valueToWrite */) {
                 if (arguments.length) {
                     // Store the droppable's proportions
-                    proportions = arguments[ 0 ];
+                    proportions = arguments[0];
                 } else {
                     // Retrieve or derive the droppable's proportions
                     return proportions ?
                         proportions :
                         proportions = {
-                            width: this.element[ 0 ].offsetWidth,
-                            height: this.element[ 0 ].offsetHeight
+                            width: this.element[0].offsetWidth,
+                            height: this.element[0].offsetHeight
                         };
                 }
             };
@@ -168,10 +168,10 @@
                 var inst = $.data(this, "ui-droppable");
                 if (
                     inst.options.greedy && !inst.options.disabled &&
-                        inst.options.scope === draggable.options.scope &&
-                        inst.accept.call(inst.element[0], (draggable.currentItem || draggable.element)) &&
-                        $.ui.intersect(draggable, $.extend(inst, { offset: inst.element.offset() }), inst.options.tolerance)
-                    ) {
+                    inst.options.scope === draggable.options.scope &&
+                    inst.accept.call(inst.element[0], (draggable.currentItem || draggable.element)) &&
+                    $.ui.intersect(draggable, $.extend(inst, {offset: inst.element.offset()}), inst.options.tolerance)
+                ) {
                     childrenIntersection = true;
                     return false;
                 }
@@ -227,23 +227,23 @@
                 return (l <= x1 && x2 <= r && t <= y1 && y2 <= b);
             case "intersect":
                 return (l < x1 + (draggable.helperProportions.width / 2) && // Right Half
-                    x2 - (draggable.helperProportions.width / 2) < r && // Left Half
-                    t < y1 + (draggable.helperProportions.height / 2) && // Bottom Half
-                    y2 - (draggable.helperProportions.height / 2) < b ); // Top Half
+                x2 - (draggable.helperProportions.width / 2) < r && // Left Half
+                t < y1 + (draggable.helperProportions.height / 2) && // Bottom Half
+                y2 - (draggable.helperProportions.height / 2) < b ); // Top Half
             case "pointer":
                 draggableLeft = ((draggable.positionAbs || draggable.position.absolute).left + (draggable.clickOffset || draggable.offset.click).left);
                 draggableTop = ((draggable.positionAbs || draggable.position.absolute).top + (draggable.clickOffset || draggable.offset.click).top);
                 return isOverAxis(draggableTop, t, droppable.proportions().height) && isOverAxis(draggableLeft, l, droppable.proportions().width);
             case "touch":
                 return (
-                    (y1 >= t && y1 <= b) ||	// Top edge touching
-                        (y2 >= t && y2 <= b) ||	// Bottom edge touching
-                        (y1 < t && y2 > b)		// Surrounded vertically
-                    ) && (
-                    (x1 >= l && x1 <= r) ||	// Left edge touching
-                        (x2 >= l && x2 <= r) ||	// Right edge touching
-                        (x1 < l && x2 > r)		// Surrounded horizontally
-                    );
+                (y1 >= t && y1 <= b) ||	// Top edge touching
+                (y2 >= t && y2 <= b) ||	// Bottom edge touching
+                (y1 < t && y2 > b)		// Surrounded vertically
+                ) && (
+                (x1 >= l && x1 <= r) ||	// Left edge touching
+                (x2 >= l && x2 <= r) ||	// Right edge touching
+                (x1 < l && x2 > r)		// Surrounded horizontally
+                );
             default:
                 return false;
         }
@@ -255,7 +255,7 @@
      */
     $.ui.ddmanager = {
         current: null,
-        droppables: { "default": [] },
+        droppables: {"default": []},
         prepareOffsets: function (t, event) {
 
             var i, j,
@@ -288,8 +288,8 @@
                     m[i]._activate.call(m[i], event);
                 }
 
-                m[ i ].offset = m[ i ].element.offset();
-                m[ i ].proportions({ width: m[ i ].element[ 0 ].offsetWidth, height: m[ i ].element[ 0 ].offsetHeight });
+                m[i].offset = m[i].element.offset();
+                m[i].proportions({width: m[i].element[0].offsetWidth, height: m[i].element[0].offsetHeight});
 
             }
 

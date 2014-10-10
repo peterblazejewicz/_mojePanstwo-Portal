@@ -1,1 +1,1 @@
-<?php $this->Combinator->add_libs('css', $this->Less->css('view-crawlersites', array('plugin' => 'Dane'))) ?>
+<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'view-crawlersites', array( 'plugin' => 'Dane' ) ) ) ?>

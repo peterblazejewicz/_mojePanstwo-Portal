@@ -36,62 +36,61 @@
  * The origin email. See CakeEmail::from() about the valid values
  *
  */
-class EmailConfig
-{
+class EmailConfig {
 
-    public $default = array(
-        'transport' => 'Mail',
-        'from' => 'no-reply@paszport.epf.org.pl',
+	public $default = array(
+		'transport' => 'Mail',
+		'from'      => 'no-reply@paszport.epf.org.pl',
 //		'charset' => 'utf-8',
 //		'headerCharset' => 'utf-8',
-    );
+	);
 
-    public $smtp_paszport = array(
-        'transport' => 'Smtp',
-        'from' => array('adam.ciezkowski@epf.org.pl' => 'Paszport ePaństwa'),
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => 465,
-        'timeout' => 30,
-        'username' => 'adam.ciezkowski@epf.org.pl',
-        'password' => 'Adam!123',
-        'client' => null,
-        'log' => false,
-        'charset' => 'utf-8',
-        'headerCharset' => 'utf-8',
-        'emailFormat' => 'html',
-        'layout' => 'default',
-        'template' => 'reset',
-    );
+	public $smtp_paszport = array(
+		'transport'     => 'Smtp',
+		'from'          => array( 'adam.ciezkowski@epf.org.pl' => 'Paszport ePaństwa' ),
+		'host'          => 'ssl://smtp.gmail.com',
+		'port'          => 465,
+		'timeout'       => 30,
+		'username'      => 'adam.ciezkowski@epf.org.pl',
+		'password'      => 'Adam!123',
+		'client'        => null,
+		'log'           => false,
+		'charset'       => 'utf-8',
+		'headerCharset' => 'utf-8',
+		'emailFormat'   => 'html',
+		'layout'        => 'default',
+		'template'      => 'reset',
+	);
 
-    public $fast = array(
-        'from' => 'you@localhost',
-        'sender' => null,
-        'to' => null,
-        'cc' => null,
-        'bcc' => null,
-        'replyTo' => null,
-        'readReceipt' => null,
-        'returnPath' => null,
-        'messageId' => true,
-        'subject' => null,
-        'message' => null,
-        'headers' => null,
-        'viewRender' => null,
-        'template' => false,
-        'layout' => false,
-        'viewVars' => null,
-        'attachments' => null,
-        'emailFormat' => null,
-        'transport' => 'Smtp',
-        'host' => 'localhost',
-        'port' => 25,
-        'timeout' => 30,
-        'username' => 'user',
-        'password' => 'secret',
-        'client' => null,
-        'log' => true,
-        //'charset' => 'utf-8',
-        //'headerCharset' => 'utf-8',
-    );
+	public $fast = array(
+		'from'        => 'you@localhost',
+		'sender'      => null,
+		'to'          => null,
+		'cc'          => null,
+		'bcc'         => null,
+		'replyTo'     => null,
+		'readReceipt' => null,
+		'returnPath'  => null,
+		'messageId'   => true,
+		'subject'     => null,
+		'message'     => null,
+		'headers'     => null,
+		'viewRender'  => null,
+		'template'    => false,
+		'layout'      => false,
+		'viewVars'    => null,
+		'attachments' => null,
+		'emailFormat' => null,
+		'transport'   => 'Smtp',
+		'host'        => 'localhost',
+		'port'        => 25,
+		'timeout'     => 30,
+		'username'    => 'user',
+		'password'    => 'secret',
+		'client'      => null,
+		'log'         => true,
+		//'charset' => 'utf-8',
+		//'headerCharset' => 'utf-8',
+	);
 
 }

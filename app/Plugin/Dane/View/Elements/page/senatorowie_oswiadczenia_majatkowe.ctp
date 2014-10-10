@@ -1,1 +1,1 @@
-<p class="line signature"><?= $object->getData('senatorowie.nazwa') ?></p>
+<p class="line signature"><?= $object->getData( 'senatorowie.nazwa' ) ?></p>

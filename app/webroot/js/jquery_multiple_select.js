@@ -16,17 +16,19 @@
         $el.parent().hide();
         var elWidth = $el.css("width");
         $el.parent().show();
-        if (elWidth=="0px") {elWidth = $el.outerWidth()+20}
+        if (elWidth == "0px") {
+            elWidth = $el.outerWidth() + 20
+        }
 
         this.$el = $el.hide();
         this.options = options;
-        this.$parent = $('<div' + $.map(['class', 'title'],function (att) {
+        this.$parent = $('<div' + $.map(['class', 'title'], function (att) {
             var attValue = that.$el.attr(att) || '';
             attValue = (att === 'class' ? ('ms-parent' + (attValue ? ' ' : '')) : '') + attValue;
             return attValue ? (' ' + att + '="' + attValue + '"') : '';
         }).join('') + ' />');
         this.$choice = $('<button type="button" class="ms-choice"><span class="placeholder">' +
-            options.placeholder + '</span><div></div></button>');
+        options.placeholder + '</span><div></div></button>');
         this.$drop = $('<div class="ms-drop ' + options.position + '"></div>');
         this.$el.after(this.$parent);
         this.$parent.append(this.$choice);
@@ -141,10 +143,10 @@
                         '<li' + clss + style + '>',
                         '<label' + (disabled ? ' class="disabled"' : '') + '>',
                         '<input type="' + type + '" ' + this.selectItemName + ' value="' + value + '"' +
-                            (selected ? ' checked="checked"' : '') +
-                            (disabled ? ' disabled="disabled"' : '') +
-                            (group ? ' data-group="' + group + '"' : '') +
-                            '/> ',
+                        (selected ? ' checked="checked"' : '') +
+                        (disabled ? ' disabled="disabled"' : '') +
+                        (group ? ' data-group="' + group + '"' : '') +
+                        '/> ',
                         text,
                         '</label>',
                         '</li>'
@@ -159,7 +161,7 @@
                     '<li class="group">',
                     '<label class="optgroup' + (disabled ? ' disabled' : '') + '" data-group="' + _group + '">',
                     (this.options.hideOptgroupCheckboxes ? '' : '<input type="checkbox" ' + this.selectGroupName +
-                        (disabled ? ' disabled="disabled"' : '') + ' /> '),
+                    (disabled ? ' disabled="disabled"' : '') + ' /> '),
                     label,
                     '</label>',
                     '</li>');
@@ -203,22 +205,22 @@
                         break;
                 }
             });
-            this.$searchInput.off('keydown').on('keydown',function (e) {
+            this.$searchInput.off('keydown').on('keydown', function (e) {
                 if (e.keyCode === 9 && e.shiftKey) { // Ensure shift-tab causes lost focus from filter as with clicking away
                     that.close();
                 }
             }).off('keyup').on('keyup', function (e) {
-                    if (that.options.filterAcceptOnEnter &&
-                        (e.which === 13 || e.which == 32) && // enter or space
-                        that.$searchInput.val() // Avoid selecting/deselecting if no choices made
-                        ) {
-                        that.$selectAll.click();
-                        that.close();
-                        that.focus();
-                        return;
-                    }
-                    that.filter();
-                });
+                if (that.options.filterAcceptOnEnter &&
+                    (e.which === 13 || e.which == 32) && // enter or space
+                    that.$searchInput.val() // Avoid selecting/deselecting if no choices made
+                ) {
+                    that.$selectAll.click();
+                    that.close();
+                    that.focus();
+                    return;
+                }
+                that.filter();
+            });
             this.$selectAll.off('click').on('click', function () {
                 var checked = $(this).prop('checked'),
                     $items = that.$selectItems.filter(':visible');
@@ -282,7 +284,7 @@
             if (this.options.container) {
                 var offset = this.$drop.offset();
                 this.$drop.appendTo($(this.options.container));
-                this.$drop.offset({ top: offset.top, left: offset.left });
+                this.$drop.offset({top: offset.top, left: offset.left});
             }
             if (this.options.filter) {
                 this.$searchInput.val('');
@@ -350,9 +352,11 @@
 
         updateSelectAll: function (Init) {
             var $items = this.$selectItems;
-            if (!Init) { $items = $items.filter(':visible'); }
+            if (!Init) {
+                $items = $items.filter(':visible');
+            }
             this.$selectAll.prop('checked', $items.length &&
-                $items.length === $items.filter(':checked').length);
+            $items.length === $items.filter(':checked').length);
             if (this.$selectAll.prop('checked')) {
                 this.options.onCheckAll();
             }
@@ -364,7 +368,7 @@
                 var group = $(val).parent().attr('data-group'),
                     $children = $items.filter('[data-group="' + group + '"]');
                 $(val).prop('checked', $children.length &&
-                    $children.length === $children.filter(':checked').length);
+                $children.length === $children.filter(':checked').length);
             });
         },
 
@@ -414,7 +418,7 @@
                 that.$selectItems.filter('[value="' + value + '"]').prop('checked', true);
             });
             this.$selectAll.prop('checked', this.$selectItems.length ===
-                this.$selectItems.filter(':checked').length);
+            this.$selectItems.filter(':checked').length);
             this.update();
         },
 

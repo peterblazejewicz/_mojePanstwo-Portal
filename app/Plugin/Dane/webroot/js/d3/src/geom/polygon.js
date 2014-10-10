@@ -1,7 +1,7 @@
 import
-"../core/subclass";
+    "../core/subclass";
 import
-"geom";
+    "geom";
 
 d3.geom.polygon = function (coordinates) {
     d3_subclass(coordinates, d3_geom_polygonPrototype);

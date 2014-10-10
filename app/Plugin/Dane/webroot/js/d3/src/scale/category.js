@@ -1,9 +1,9 @@
 import
-"../color/rgb";
+    "../color/rgb";
 import
-"ordinal";
+    "ordinal";
 import
-"scale";
+    "scale";
 
 /*
  * This product includes color specifications and designs developed by Cynthia

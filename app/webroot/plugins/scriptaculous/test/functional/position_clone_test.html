@@ -53,7 +53,7 @@
     function d(el, marker) {
         $('debug').innerHTML =
                 'orig:  ' + Object.inspect(Position.page($(el))) + ', ' +
-                        'clone: ' + Object.inspect(Position.page($(marker)));
+                'clone: ' + Object.inspect(Position.page($(marker)));
     }
     function testA(el) {
         Position.clone(el, 'marker');

@@ -58,7 +58,7 @@
                         event = $.Event("hoverintent");
                         for (prop in orig) {
                             if (!( prop in event )) {
-                                event[ prop ] = orig[ prop ];
+                                event[prop] = orig[prop];
                             }
                         }
                         // Prevent accessing the original event since the new event

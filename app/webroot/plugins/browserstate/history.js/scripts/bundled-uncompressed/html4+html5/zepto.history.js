@@ -177,11 +177,11 @@ if (typeof JSON !== 'object') {
 
             return isFinite(this.valueOf())
                 ? this.getUTCFullYear() + '-' +
-                f(this.getUTCMonth() + 1) + '-' +
-                f(this.getUTCDate()) + 'T' +
-                f(this.getUTCHours()) + ':' +
-                f(this.getUTCMinutes()) + ':' +
-                f(this.getUTCSeconds()) + 'Z'
+            f(this.getUTCMonth() + 1) + '-' +
+            f(this.getUTCDate()) + 'T' +
+            f(this.getUTCHours()) + ':' +
+            f(this.getUTCMinutes()) + ':' +
+            f(this.getUTCSeconds()) + 'Z'
                 : null;
         };
 
@@ -388,7 +388,7 @@ if (typeof JSON !== 'object') {
             rep = replacer;
             if (replacer && typeof replacer !== 'function' &&
                 (typeof replacer !== 'object' ||
-                    typeof replacer.length !== 'number')) {
+                typeof replacer.length !== 'number')) {
                 throw new Error('JSON.stringify');
             }
 
@@ -441,7 +441,7 @@ if (typeof JSON !== 'object') {
             if (cx.test(text)) {
                 text = text.replace(cx, function (a) {
                     return '\\u' +
-                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                    ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
                 });
             }
 
@@ -459,9 +459,9 @@ if (typeof JSON !== 'object') {
 // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
             if (/^[\],:{}\s]*$/
-                .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                    .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 // In the third stage we use the eval function to compile the text into a
 // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
@@ -1550,15 +1550,15 @@ if (typeof JSON !== 'object') {
             History.emulated = {
                 pushState: !Boolean(
                     window.history && window.history.pushState && window.history.replaceState
-                        && !(
-                        (/ Mobile\/([1-7][a-z]|(8([abcde]|f(1[0-8]))))/i).test(navigator.userAgent) /* disable for versions of iOS before version 4.3 (8F190) */
-                            || (/AppleWebKit\/5([0-2]|3[0-2])/i).test(navigator.userAgent) /* disable for the mercury iOS browser, or at least older versions of the webkit engine */
-                        )
+                    && !(
+                    (/ Mobile\/([1-7][a-z]|(8([abcde]|f(1[0-8]))))/i).test(navigator.userAgent) /* disable for versions of iOS before version 4.3 (8F190) */
+                    || (/AppleWebKit\/5([0-2]|3[0-2])/i).test(navigator.userAgent) /* disable for the mercury iOS browser, or at least older versions of the webkit engine */
+                    )
                 ),
                 hashChange: Boolean(
                     !(('onhashchange' in window) || ('onhashchange' in document))
-                        ||
-                        (History.isInternetExplorer() && History.getInternetExplorerMajorVersion() < 8)
+                    ||
+                    (History.isInternetExplorer() && History.getInternetExplorerMajorVersion() < 8)
                 )
             };
         }
@@ -1719,9 +1719,9 @@ if (typeof JSON !== 'object') {
          */
         History.getBasePageUrl = function () {
             // Create
-            var basePageUrl = (History.getLocationHref()).replace(/[#\?].*/, '').replace(/[^\/]+$/,function (part, index, string) {
-                return (/[^\/]$/).test(part) ? '' : part;
-            }).replace(/\/+$/, '') + '/';
+            var basePageUrl = (History.getLocationHref()).replace(/[#\?].*/, '').replace(/[^\/]+$/, function (part, index, string) {
+                    return (/[^\/]$/).test(part) ? '' : part;
+                }).replace(/\/+$/, '') + '/';
 
             // Return
             return basePageUrl;

@@ -1,19 +1,19 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../core/functor";
+    "../core/functor";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/true";
+    "../core/true";
 import
-"../geom/point";
+    "../geom/point";
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"svg";
+    "svg";
 
 function d3_svg_line(projection) {
     var x = d3_geom_pointX,
@@ -193,7 +193,7 @@ function d3_svg_lineHermite(points, tangents) {
 
     if (quad) {
         path += "Q" + (p[0] - t0[0] * 2 / 3) + "," + (p[1] - t0[1] * 2 / 3)
-            + "," + p[0] + "," + p[1];
+        + "," + p[0] + "," + p[1];
         p0 = points[1];
         pi = 2;
     }
@@ -203,20 +203,20 @@ function d3_svg_lineHermite(points, tangents) {
         p = points[pi];
         pi++;
         path += "C" + (p0[0] + t0[0]) + "," + (p0[1] + t0[1])
-            + "," + (p[0] - t[0]) + "," + (p[1] - t[1])
-            + "," + p[0] + "," + p[1];
+        + "," + (p[0] - t[0]) + "," + (p[1] - t[1])
+        + "," + p[0] + "," + p[1];
         for (var i = 2; i < tangents.length; i++, pi++) {
             p = points[pi];
             t = tangents[i];
             path += "S" + (p[0] - t[0]) + "," + (p[1] - t[1])
-                + "," + p[0] + "," + p[1];
+            + "," + p[0] + "," + p[1];
         }
     }
 
     if (quad) {
         var lp = points[pi];
         path += "Q" + (p[0] + t[0] * 2 / 3) + "," + (p[1] + t[1] * 2 / 3)
-            + "," + lp[0] + "," + lp[1];
+        + "," + lp[0] + "," + lp[1];
     }
 
     return path;
@@ -280,7 +280,7 @@ function d3_svg_lineBasisOpen(points) {
         py.push(pi[1]);
     }
     path.push(d3_svg_lineDot4(d3_svg_lineBasisBezier3, px)
-        + "," + d3_svg_lineDot4(d3_svg_lineBasisBezier3, py));
+    + "," + d3_svg_lineDot4(d3_svg_lineBasisBezier3, py));
     --i;
     while (++i < n) {
         pi = points[i];

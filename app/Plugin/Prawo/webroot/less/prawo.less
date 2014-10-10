@@ -66,42 +66,47 @@
                     a {
                         color: #157AB5;
                     }
-                    
+
                     &.active:before {
-						border-bottom: 15px solid #BBB;
-					    border-left: 15px solid transparent;
-					    border-right: 15px solid transparent;
-					    bottom: -13px;
-					    content: " ";
-					    height: 0;
-					    left: 50%;
-					    margin-left: -10px;
-					    position: absolute;
-					    width: 0;
-					}
-					
-					&.active:after {
-						border-bottom: 15px solid #F3F3F3;
-					    border-left: 15px solid transparent;
-					    border-right: 15px solid transparent;
-					    bottom: -15px;
-					    content: " ";
-					    height: 0;
-					    left: 50%;
-					    margin-left: -10px;
-					    position: absolute;
-					    width: 0;
-					}
+                        border-bottom: 15px solid #BBB;
+                        border-left: 15px solid transparent;
+                        border-right: 15px solid transparent;
+                        bottom: -13px;
+                        content: " ";
+                        height: 0;
+                        left: 50%;
+                        margin-left: -10px;
+                        position: absolute;
+                        width: 0;
+                    }
+
+                    &.active:after {
+                        border-bottom: 15px solid #F3F3F3;
+                        border-left: 15px solid transparent;
+                        border-right: 15px solid transparent;
+                        bottom: -15px;
+                        content: " ";
+                        height: 0;
+                        left: 50%;
+                        margin-left: -10px;
+                        position: absolute;
+                        width: 0;
+                    }
                 }
-               
+
             }
 
-            
         }
     }
-    
+
     .dataliner {
-	    margin: 20px;
+        margin: 20px;
+
+        .endlessLoader {
+            height: 40px;
+            width: 100%;
+            display: block;
+        }
     }
 
 }

@@ -1,11 +1,11 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"color";
+    "color";
 import
-"hcl";
+    "hcl";
 import
-"rgb";
+    "rgb";
 
 d3.lab = function (l, a, b) {
     return arguments.length === 1

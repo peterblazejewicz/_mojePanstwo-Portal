@@ -1,26 +1,26 @@
 <?
-echo $this->Combinator->add_libs('css', $this->Less->css('view-gminy', array('plugin' => 'Dane')));
+echo $this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy', array( 'plugin' => 'Dane' ) ) );
 
-echo $this->Element('dataobject/pageBegin', array(
-    'titleTag' => 'p',
-));
+echo $this->Element( 'dataobject/pageBegin', array(
+	'titleTag' => 'p',
+) );
 
-echo $this->Element('Dane.dataobject/subobject', array(
-    'menu' => isset($_submenu) ? $_submenu : false,
-    'object' => $miejscowosc,
-    'objectOptions' => array(
-        'hlFields' => array(),
-        'bigTitle' => true,
-    ),
-));
+echo $this->Element( 'Dane.dataobject/subobject', array(
+	'menu'          => isset( $_submenu ) ? $_submenu : false,
+	'object'        => $miejscowosc,
+	'objectOptions' => array(
+		'hlFields' => array(),
+		'bigTitle' => true,
+	),
+) );
 ?>
 
-<div class="posiedzenie row">
-    <div class="col-lg-3 objectSide">
-        <div class="objectSideInner">
-            <ul class="dataHighlights side">
-				
-            	<? /*       
+	<div class="posiedzenie row">
+		<div class="col-lg-3 objectSide">
+			<div class="objectSideInner">
+				<ul class="dataHighlights side">
+
+					<? /*
 	            <li class="dataHighlight big">
 	                <p class="_label">Liczba punktów porządku dziennego</p>
 	
@@ -32,33 +32,30 @@ echo $this->Element('Dane.dataobject/subobject', array(
 	                    </p>
 	                </div>
 	            </li>
-	            */ ?>
-            
-            </ul>  
-                   
-        </div>
-    </div>
+	            */
+					?>
+
+				</ul>
+
+			</div>
+		</div>
 
 
-    <div class="col-lg-9 objectMain">
-    	
-    	
-    	
-        <div class="object mpanel">
-			
-            <div class="block-group">
-								
-				
-	
+		<div class="col-lg-9 objectMain">
 
-            </div>
-			
-			
-			
-        </div>
 
-    </div>
-    </div>
+			<div class="object mpanel">
+
+				<div class="block-group">
+
+
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
 
 <?
-echo $this->Element('dataobject/pageEnd');
+echo $this->Element( 'dataobject/pageEnd' );

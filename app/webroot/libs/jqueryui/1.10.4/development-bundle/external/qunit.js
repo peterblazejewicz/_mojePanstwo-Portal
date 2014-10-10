@@ -43,7 +43,7 @@
          * @param {String|Error} error
          * @return {String} error message
          */
-            errorString = function (error) {
+        errorString = function (error) {
             var name, message,
                 errorString = error.toString();
             if (errorString.substring(0, 7) === "[object") {
@@ -69,7 +69,7 @@
          * @param {Object} obj
          * @return {Object} New object with only the own properties (recursively).
          */
-            objectValues = function (obj) {
+        objectValues = function (obj) {
             // Grunt 0.3.x uses an older version of jshint that still has jshint/jshint#392.
             /*jshint newcap: false */
             var key, val,
@@ -103,7 +103,7 @@
                 // `a` initialized at top of scope
                 a = document.createElement("a");
                 a.innerHTML = "Rerun";
-                a.href = QUnit.url({ testNumber: this.testNumber });
+                a.href = QUnit.url({testNumber: this.testNumber});
 
                 li = document.createElement("li");
                 li.appendChild(b);
@@ -125,7 +125,7 @@
                     });
                 }
                 config.previousModule = this.module;
-                config.moduleStats = { all: 0, bad: 0 };
+                config.moduleStats = {all: 0, bad: 0};
                 runLoggingCallbacks("moduleStart", QUnit, {
                     name: this.module
                 });
@@ -291,7 +291,7 @@
                         target = target.parentNode;
                     }
                     if (window.location && target.nodeName.toLowerCase() === "strong") {
-                        window.location = QUnit.url({ testNumber: test.testNumber });
+                        window.location = QUnit.url({testNumber: test.testNumber});
                     }
                 });
 
@@ -659,7 +659,7 @@
      * Kept root "raises()" for backwards compatibility.
      * (Note that we don't introduce assert.raises).
      */
-    QUnit.raises = assert[ "throws" ];
+    QUnit.raises = assert["throws"];
 
     /**
      * @deprecated since 1.0.0, replaced with error pushes since 1.3.0
@@ -749,19 +749,19 @@
 // Initialize more QUnit.config and QUnit.urlParams
     (function () {
         var i,
-            location = window.location || { search: "", protocol: "file:" },
+            location = window.location || {search: "", protocol: "file:"},
             params = location.search.slice(1).split("&"),
             length = params.length,
             urlParams = {},
             current;
 
-        if (params[ 0 ]) {
+        if (params[0]) {
             for (i = 0; i < length; i++) {
-                current = params[ i ].split("=");
-                current[ 0 ] = decodeURIComponent(current[ 0 ]);
+                current = params[i].split("=");
+                current[0] = decodeURIComponent(current[0]);
                 // allow just a key to turn on a flag, e.g., test.html?noglobals
-                current[ 1 ] = current[ 1 ] ? decodeURIComponent(current[ 1 ]) : true;
-                urlParams[ current[ 0 ] ] = current[ 1 ];
+                current[1] = current[1] ? decodeURIComponent(current[1]) : true;
+                urlParams[current[0]] = current[1];
             }
         }
 
@@ -789,8 +789,8 @@
         // Initialize the configuration options
         init: function () {
             extend(config, {
-                stats: { all: 0, bad: 0 },
-                moduleStats: { all: 0, bad: 0 },
+                stats: {all: 0, bad: 0},
+                moduleStats: {all: 0, bad: 0},
                 started: +new Date(),
                 updateRate: 1000,
                 blocking: false,
@@ -807,10 +807,10 @@
             if (qunit) {
                 qunit.innerHTML =
                     "<h1 id='qunit-header'>" + escapeText(document.title) + "</h1>" +
-                        "<h2 id='qunit-banner'></h2>" +
-                        "<div id='qunit-testrunner-toolbar'></div>" +
-                        "<h2 id='qunit-userAgent'></h2>" +
-                        "<ol id='qunit-tests'></ol>";
+                    "<h2 id='qunit-banner'></h2>" +
+                    "<div id='qunit-testrunner-toolbar'></div>" +
+                    "<h2 id='qunit-userAgent'></h2>" +
+                    "<ol id='qunit-tests'></ol>";
             }
 
             tests = id("qunit-tests");
@@ -992,10 +992,10 @@
                     continue;
                 }
                 querystring += encodeURIComponent(key) + "=" +
-                    encodeURIComponent(params[ key ]) + "&";
+                encodeURIComponent(params[key]) + "&";
             }
             return window.location.protocol + "//" + window.location.host +
-                window.location.pathname + querystring.slice(0, -1);
+            window.location.pathname + querystring.slice(0, -1);
         },
 
         extend: extend,
@@ -1067,25 +1067,25 @@
                     tooltip: "[no tooltip available]"
                 };
             }
-            config[ val.id ] = QUnit.urlParams[ val.id ];
+            config[val.id] = QUnit.urlParams[val.id];
             urlConfigHtml += "<input id='qunit-urlconfig-" + escapeText(val.id) +
-                "' name='" + escapeText(val.id) +
-                "' type='checkbox'" + ( config[ val.id ] ? " checked='checked'" : "" ) +
-                " title='" + escapeText(val.tooltip) +
-                "'><label for='qunit-urlconfig-" + escapeText(val.id) +
-                "' title='" + escapeText(val.tooltip) + "'>" + val.label + "</label>";
+            "' name='" + escapeText(val.id) +
+            "' type='checkbox'" + ( config[val.id] ? " checked='checked'" : "" ) +
+            " title='" + escapeText(val.tooltip) +
+            "'><label for='qunit-urlconfig-" + escapeText(val.id) +
+            "' title='" + escapeText(val.tooltip) + "'>" + val.label + "</label>";
         }
 
         moduleFilterHtml += "<label for='qunit-modulefilter'>Module: </label><select id='qunit-modulefilter' name='modulefilter'><option value='' " +
-            ( config.module === undefined ? "selected='selected'" : "" ) +
-            ">< All Modules ></option>";
+        ( config.module === undefined ? "selected='selected'" : "" ) +
+        ">< All Modules ></option>";
 
         for (i in config.modules) {
             if (config.modules.hasOwnProperty(i)) {
                 numModules += 1;
                 moduleFilterHtml += "<option value='" + escapeText(encodeURIComponent(i)) + "' " +
-                    ( config.module === i ? "selected='selected'" : "" ) +
-                    ">" + escapeText(i) + "</option>";
+                ( config.module === i ? "selected='selected'" : "" ) +
+                ">" + escapeText(i) + "</option>";
             }
         }
         moduleFilterHtml += "</select>";
@@ -1099,7 +1099,11 @@
         // `banner` initialized at top of scope
         banner = id("qunit-header");
         if (banner) {
-            banner.innerHTML = "<a href='" + QUnit.url({ filter: undefined, module: undefined, testNumber: undefined }) + "'>" + banner.innerHTML + "</a> ";
+            banner.innerHTML = "<a href='" + QUnit.url({
+                filter: undefined,
+                module: undefined,
+                testNumber: undefined
+            }) + "'>" + banner.innerHTML + "</a> ";
         }
 
         // `toolbar` initialized at top of scope
@@ -1154,7 +1158,7 @@
             addEvents(urlConfigCheckboxes, "click", function (event) {
                 var params = {},
                     target = event.target || event.srcElement;
-                params[ target.name ] = target.checked ? true : undefined;
+                params[target.name] = target.checked ? true : undefined;
                 window.location = QUnit.url(params);
             });
             toolbar.appendChild(urlConfigCheckboxesContainer);
@@ -1167,7 +1171,7 @@
                     var selectBox = moduleFilter.getElementsByTagName("select")[0],
                         selectedModule = decodeURIComponent(selectBox.options[selectBox.selectedIndex].value);
 
-                    window.location = QUnit.url({ module: ( selectedModule === "" ) ? undefined : selectedModule });
+                    window.location = QUnit.url({module: ( selectedModule === "" ) ? undefined : selectedModule});
                 });
                 toolbar.appendChild(moduleFilter);
             }
@@ -1210,7 +1214,7 @@
             } else {
                 QUnit.test("global failure", extend(function () {
                     QUnit.pushFailure(error, filePath + ":" + linerNr);
-                }, { validTest: validTest }));
+                }, {validTest: validTest}));
             }
             return false;
         }
@@ -1339,7 +1343,7 @@
 
         if (e.stacktrace) {
             // Opera
-            return e.stacktrace.split("\n")[ offset + 3 ];
+            return e.stacktrace.split("\n")[offset + 3];
         } else if (e.stack) {
             // Firefox, Chrome
             stack = e.stack.split("\n");
@@ -1349,16 +1353,16 @@
             if (fileName) {
                 include = [];
                 for (i = offset; i < stack.length; i++) {
-                    if (stack[ i ].indexOf(fileName) !== -1) {
+                    if (stack[i].indexOf(fileName) !== -1) {
                         break;
                     }
-                    include.push(stack[ i ]);
+                    include.push(stack[i]);
                 }
                 if (include.length) {
                     return include.join("\n");
                 }
             }
-            return stack[ offset ];
+            return stack[offset];
         } else if (e.sourceURL) {
             // Safari, PhantomJS
             // hopefully one day Safari provides actual stacktraces
@@ -1485,12 +1489,12 @@
 
     function extend(a, b) {
         for (var prop in b) {
-            if (b[ prop ] === undefined) {
-                delete a[ prop ];
+            if (b[prop] === undefined) {
+                delete a[prop];
 
                 // Avoid "Member not found" error in IE8 caused by setting window.constructor
             } else if (prop !== "constructor" || a !== window) {
-                a[ prop ] = b[ prop ];
+                a[prop] = b[prop];
             }
         }
 
@@ -1546,7 +1550,7 @@
 
     function id(name) {
         return !!( typeof document !== "undefined" && document && document.getElementById ) &&
-            document.getElementById(name);
+        document.getElementById(name);
     }
 
     function registerLoggingCallback(key) {
@@ -1559,11 +1563,11 @@
     function runLoggingCallbacks(key, scope, args) {
         var i, callbacks;
         if (QUnit.hasOwnProperty(key)) {
-            QUnit[ key ].call(scope, args);
+            QUnit[key].call(scope, args);
         } else {
-            callbacks = config[ key ];
+            callbacks = config[key];
             for (i = 0; i < callbacks.length; i++) {
-                callbacks[ i ].call(scope, args);
+                callbacks[i].call(scope, args);
             }
         }
     }
@@ -1576,10 +1580,10 @@
         function bindCallbacks(o, callbacks, args) {
             var prop = QUnit.objectType(o);
             if (prop) {
-                if (QUnit.objectType(callbacks[ prop ]) === "function") {
-                    return callbacks[ prop ].apply(callbacks, args);
+                if (QUnit.objectType(callbacks[prop]) === "function") {
+                    return callbacks[prop].apply(callbacks, args);
                 } else {
-                    return callbacks[ prop ]; // or undefined
+                    return callbacks[prop]; // or undefined
                 }
             }
         }
@@ -1592,8 +1596,8 @@
             parents = [],
 
             getProto = Object.getPrototypeOf || function (obj) {
-                return obj.__proto__;
-            },
+                    return obj.__proto__;
+                },
             callbacks = (function () {
 
                 // for string, boolean, number and null
@@ -1628,13 +1632,13 @@
                     "regexp": function (b, a) {
                         return QUnit.objectType(b) === "regexp" &&
                             // the regex itself
-                            a.source === b.source &&
+                        a.source === b.source &&
                             // and its modifers
-                            a.global === b.global &&
+                        a.global === b.global &&
                             // (gmi) ...
-                            a.ignoreCase === b.ignoreCase &&
-                            a.multiline === b.multiline &&
-                            a.sticky === b.sticky;
+                        a.ignoreCase === b.ignoreCase &&
+                        a.multiline === b.multiline &&
+                        a.sticky === b.sticky;
                     },
 
                     // - skip when the property is a method of an instance (OOP)
@@ -1744,7 +1748,7 @@
                     QUnit.objectType(a) !== QUnit.objectType(b)) {
                     return false; // don't lose time with error prone cases
                 } else {
-                    return bindCallbacks(a, callbacks, [ b, a ]);
+                    return bindCallbacks(a, callbacks, [b, a]);
                 }
 
                 // apply transition with (1..n) arguments
@@ -1783,7 +1787,7 @@
             if (!arr) {
                 return pre + post;
             }
-            return [ pre, inner + arr, base + post ].join(s);
+            return [pre, inner + arr, base + post].join(s);
         }
 
         function array(arr, stack) {
@@ -1800,9 +1804,9 @@
             jsDump = {
                 // type is used mostly internally, you can fix a (custom)type in advance
                 parse: function (obj, type, stack) {
-                    stack = stack || [ ];
+                    stack = stack || [];
                     var inStack, res,
-                        parser = this.parsers[ type || this.typeOf(obj) ];
+                        parser = this.parsers[type || this.typeOf(obj)];
 
                     type = typeof parser;
                     inStack = inArray(obj, stack);
@@ -1837,11 +1841,11 @@
                     } else if (obj.nodeType) {
                         type = "node";
                     } else if (
-                    // native arrays
-                        toString.call(obj) === "[object Array]" ||
-                            // NodeList objects
-                            ( typeof obj.length === "number" && typeof obj.item !== "undefined" && ( obj.length ? obj.item(0) === obj[0] : ( obj.item(0) === null && typeof obj[0] === "undefined" ) ) )
-                        ) {
+                        // native arrays
+                    toString.call(obj) === "[object Array]" ||
+                        // NodeList objects
+                    ( typeof obj.length === "number" && typeof obj.item !== "undefined" && ( obj.length ? obj.item(0) === obj[0] : ( obj.item(0) === null && typeof obj[0] === "undefined" ) ) )
+                    ) {
                         type = "array";
                     } else if (obj.constructor === Error.prototype.constructor) {
                         type = "error";
@@ -1899,14 +1903,14 @@
                         }
                         ret += "( ";
 
-                        ret = [ ret, QUnit.jsDump.parse(fn, "functionArgs"), "){" ].join("");
+                        ret = [ret, QUnit.jsDump.parse(fn, "functionArgs"), "){"].join("");
                         return join(ret, QUnit.jsDump.parse(fn, "functionCode"), "}");
                     },
                     array: array,
                     nodelist: array,
                     "arguments": array,
                     object: function (map, stack) {
-                        var ret = [ ], keys, key, val, i;
+                        var ret = [], keys, key, val, i;
                         QUnit.jsDump.up();
                         keys = [];
                         for (key in map) {
@@ -1914,8 +1918,8 @@
                         }
                         keys.sort();
                         for (i = 0; i < keys.length; i++) {
-                            key = keys[ i ];
-                            val = map[ key ];
+                            key = keys[i];
+                            val = map[key];
                             ret.push(QUnit.jsDump.parse(key, "key") + ": " + QUnit.jsDump.parse(val, undefined, stack));
                         }
                         QUnit.jsDump.down();
@@ -1994,7 +1998,7 @@
         }
 
         for (var i = 0, length = array.length; i < length; i++) {
-            if (array[ i ] === elem) {
+            if (array[i] === elem) {
                 return i;
             }
         }
@@ -2025,22 +2029,22 @@
 
             for (i = 0; i < n.length; i++) {
                 if (!hasOwn.call(ns, n[i])) {
-                    ns[ n[i] ] = {
+                    ns[n[i]] = {
                         rows: [],
                         o: null
                     };
                 }
-                ns[ n[i] ].rows.push(i);
+                ns[n[i]].rows.push(i);
             }
 
             for (i = 0; i < o.length; i++) {
                 if (!hasOwn.call(os, o[i])) {
-                    os[ o[i] ] = {
+                    os[o[i]] = {
                         rows: [],
                         n: null
                     };
                 }
-                os[ o[i] ].rows.push(i);
+                os[o[i]].rows.push(i);
             }
 
             for (i in ns) {
@@ -2048,42 +2052,42 @@
                     continue;
                 }
                 if (ns[i].rows.length === 1 && hasOwn.call(os, i) && os[i].rows.length === 1) {
-                    n[ ns[i].rows[0] ] = {
-                        text: n[ ns[i].rows[0] ],
+                    n[ns[i].rows[0]] = {
+                        text: n[ns[i].rows[0]],
                         row: os[i].rows[0]
                     };
-                    o[ os[i].rows[0] ] = {
-                        text: o[ os[i].rows[0] ],
+                    o[os[i].rows[0]] = {
+                        text: o[os[i].rows[0]],
                         row: ns[i].rows[0]
                     };
                 }
             }
 
             for (i = 0; i < n.length - 1; i++) {
-                if (n[i].text != null && n[ i + 1 ].text == null && n[i].row + 1 < o.length && o[ n[i].row + 1 ].text == null &&
-                    n[ i + 1 ] == o[ n[i].row + 1 ]) {
+                if (n[i].text != null && n[i + 1].text == null && n[i].row + 1 < o.length && o[n[i].row + 1].text == null &&
+                    n[i + 1] == o[n[i].row + 1]) {
 
-                    n[ i + 1 ] = {
-                        text: n[ i + 1 ],
+                    n[i + 1] = {
+                        text: n[i + 1],
                         row: n[i].row + 1
                     };
-                    o[ n[i].row + 1 ] = {
-                        text: o[ n[i].row + 1 ],
+                    o[n[i].row + 1] = {
+                        text: o[n[i].row + 1],
                         row: i + 1
                     };
                 }
             }
 
             for (i = n.length - 1; i > 0; i--) {
-                if (n[i].text != null && n[ i - 1 ].text == null && n[i].row > 0 && o[ n[i].row - 1 ].text == null &&
-                    n[ i - 1 ] == o[ n[i].row - 1 ]) {
+                if (n[i].text != null && n[i - 1].text == null && n[i].row > 0 && o[n[i].row - 1].text == null &&
+                    n[i - 1] == o[n[i].row - 1]) {
 
-                    n[ i - 1 ] = {
-                        text: n[ i - 1 ],
+                    n[i - 1] = {
+                        text: n[i - 1],
                         row: n[i].row - 1
                     };
-                    o[ n[i].row - 1 ] = {
-                        text: o[ n[i].row - 1 ],
+                    o[n[i].row - 1] = {
+                        text: o[n[i].row - 1],
                         row: i - 1
                     };
                 }
@@ -2106,14 +2110,14 @@
                 nSpace = n.match(/\s+/g);
 
             if (oSpace == null) {
-                oSpace = [ " " ];
+                oSpace = [" "];
             }
             else {
                 oSpace.push(" ");
             }
 
             if (nSpace == null) {
-                nSpace = [ " " ];
+                nSpace = [" "];
             }
             else {
                 nSpace.push(" ");
@@ -2158,5 +2162,5 @@
 
 // get at whatever the global object is, like window in browsers
 }((function () {
-        return this;
-    }.call())));
+    return this;
+}.call())));

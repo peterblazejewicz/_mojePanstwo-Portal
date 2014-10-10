@@ -18,6 +18,7 @@ jQuery(function ($) {
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: true,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['lt']);
 });

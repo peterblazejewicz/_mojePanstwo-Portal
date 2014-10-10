@@ -1,8 +1,7 @@
 <?
 
-App::uses('SolrAppModel', 'Model');
+App::uses( 'SolrAppModel', 'Model' );
 
-class Dataset extends SolrAppModel
-{
+class Dataset extends SolrAppModel {
 
 }

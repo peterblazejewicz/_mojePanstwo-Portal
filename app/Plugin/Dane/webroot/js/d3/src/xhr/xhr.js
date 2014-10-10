@@ -1,13 +1,13 @@
 import
-"../core/array";
+    "../core/array";
 import
-"../core/document";
+    "../core/document";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../event/dispatch";
+    "../event/dispatch";
 
 d3.xhr = d3_xhrType(d3_identity);
 

@@ -1,5 +1,5 @@
 /* ========================================================================
- * bootstrap-switch - v3.0.0
+ * bootstrap-switch - v3.0.2
  * http://www.bootstrap-switch.org
  * ========================================================================
  * Copyright 2012-2013 Mattia Larentis
@@ -84,7 +84,7 @@
 }
 
 .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-container {
-    margin-left: -50%;
+    margin-left: 0%;
 }
 
 .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
@@ -93,7 +93,7 @@
 }
 
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-container {
-    margin-left: 0%;
+    margin-left: -50%;
 }
 
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label {
@@ -101,8 +101,13 @@
     border-top-left-radius: 3px;
 }
 
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-container {
+    margin-left: -25%;
+}
+
 .bootstrap-switch.bootstrap-switch-disabled,
-.bootstrap-switch.bootstrap-switch-readonly {
+.bootstrap-switch.bootstrap-switch-readonly,
+.bootstrap-switch.bootstrap-switch-indeterminate {
     opacity: 0.5;
     filter: alpha(opacity=50);
     cursor: default !important;
@@ -110,10 +115,13 @@
 
 .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-on,
 .bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-on,
 .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-off,
 .bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-off,
 .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-label,
-.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-label {
+.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-label,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-label {
     cursor: default !important;
 }
 
@@ -219,4 +227,9 @@
     opacity: 0;
     filter: alpha(opacity=0);
     z-index: -1;
+}
+
+.bootstrap-switch input[type='radio'].form-control,
+.bootstrap-switch input[type='checkbox'].form-control {
+    height: auto;
 }

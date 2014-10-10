@@ -1,9 +1,9 @@
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"layout";
+    "layout";
 
 d3.layout.chord = function () {
     var chord = {},

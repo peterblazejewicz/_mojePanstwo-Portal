@@ -1,15 +1,13 @@
 <?php
 
-App::uses('DataobjectsController', 'Dane.Controller');
+App::uses( 'DataobjectsController', 'Dane.Controller' );
 
-class ZamowieniaPubliczneWykonawcyController extends DataobjectsController
-{
+class ZamowieniaPubliczneWykonawcyController extends DataobjectsController {
 
-    public function view()
-    {
+	public function view() {
 
-        parent::view();
+		parent::view();
 
-    }
+	}
 
 } 

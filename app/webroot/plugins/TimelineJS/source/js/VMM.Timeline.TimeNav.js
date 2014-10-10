@@ -901,7 +901,12 @@ if (typeof VMM.Timeline != 'undefined' && typeof VMM.Timeline.TimeNav == 'undefi
                 if (is_animated) {
                     VMM.Lib.stop(era.content);
                     VMM.Lib.stop(era.text_content);
-                    VMM.Lib.animate(era.content, config.duration / 2, config.ease, {"top": row_pos, "left": pos.begin, "width": era_length, "height": era_height});
+                    VMM.Lib.animate(era.content, config.duration / 2, config.ease, {
+                        "top": row_pos,
+                        "left": pos.begin,
+                        "width": era_length,
+                        "height": era_height
+                    });
                     VMM.Lib.animate(era.text_content, config.duration / 2, config.ease, {"left": pos.begin});
                 } else {
                     VMM.Lib.stop(era.content);
@@ -1035,7 +1040,10 @@ if (typeof VMM.Timeline != 'undefined' && typeof VMM.Timeline.TimeNav == 'undefi
                 }
 
                 if (_animation.animate) {
-                    VMM.Lib.animate(_interval, config.duration / 2, config.ease, {opacity: _animation.opacity, left: _animation.pos});
+                    VMM.Lib.animate(_interval, config.duration / 2, config.ease, {
+                        opacity: _animation.opacity,
+                        left: _animation.pos
+                    });
                 } else {
                     VMM.Lib.css(_interval, "opacity", _animation.opacity);
                     VMM.Lib.css(_interval, "left", pos);

@@ -55,7 +55,7 @@
     new Draggable('box-grid-array', {snap: [5, 25], revert: true});
     new Draggable('box-grid-procedural', {
         snap: function (x, y) {
-            return[
+            return [
                 x < 100 ? (x > 0 ? x : 0 ) : 100,
                 y < 50 ? (y > 0 ? y : 0) : 50];
         },
@@ -71,7 +71,7 @@
 
             element_dimensions = Element.getDimensions(draggable.element);
             parent_dimensions = Element.getDimensions(draggable.element.parentNode);
-            return[
+            return [
                 constrain(x, 0, parent_dimensions.width - element_dimensions.width),
                 constrain(y, 0, parent_dimensions.height - element_dimensions.height)];
         },

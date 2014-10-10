@@ -1,38 +1,38 @@
 <div class="objectRender col-md-12 <?php echo $object->getDataset() ?>" oid="<?php echo $item['data']['id'] ?>">
-    <div class="row">
+	<div class="row">
 
-        <div class="content col-md-12">
+		<div class="content col-md-12">
 
-            <? echo $this->element('Dane.dataobjectSlider/_content', array(
-                'object' => $object,
-                'options' => $options,
-            )); ?>
+			<? echo $this->element( 'Dane.dataobjectSlider/_content', array(
+				'object'  => $object,
+				'options' => $options,
+			) ); ?>
 
 
-            <ul class="dataHighlights inl">
+			<ul class="dataHighlights inl">
 
-                <? if ($object->getData('zamawiajacy_nazwa')) { ?>
-                    <li class="dataHighlight showLabels">
-                        <p class="_label">Zamawiający:</p>
+				<? if ( $object->getData( 'zamawiajacy_nazwa' ) ) { ?>
+					<li class="dataHighlight showLabels">
+						<p class="_label">Zamawiający:</p>
 
-                        <div>
-                            <p class="_value"><?= $this->Text->truncate($object->getData('zamawiajacy_nazwa'), 40) ?></p>
-                        </div>
-                    </li>
-                <? } ?>
+						<div>
+							<p class="_value"><?= $this->Text->truncate( $object->getData( 'zamawiajacy_nazwa' ), 40 ) ?></p>
+						</div>
+					</li>
+				<? } ?>
 
-                <? if ($object->getData('wartosc_cena')) { ?>
-                    <li class="dataHighlight showLabels">
-                        <p class="_label">Wartość:</p>
+				<? if ( $object->getData( 'wartosc_cena' ) ) { ?>
+					<li class="dataHighlight showLabels">
+						<p class="_label">Wartość:</p>
 
-                        <div>
-                            <p class="_value"><?= number_format_h($object->getData('wartosc_cena')) ?> PLN</p>
-                        </div>
-                    </li>
-                <? } ?>
-            </ul>
+						<div>
+							<p class="_value"><?= number_format_h( $object->getData( 'wartosc_cena' ) ) ?> PLN</p>
+						</div>
+					</li>
+				<? } ?>
+			</ul>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 </div>

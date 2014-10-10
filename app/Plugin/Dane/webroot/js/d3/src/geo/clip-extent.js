@@ -1,17 +1,17 @@
 import
-"../arrays/merge";
+    "../arrays/merge";
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"../geom/clip-line";
+    "../geom/clip-line";
 import
-"geo";
+    "geo";
 import
-"clip";
+    "clip";
 import
-"clip-polygon";
+    "clip-polygon";
 
 var d3_geo_clipExtentMAX = 1e9;
 

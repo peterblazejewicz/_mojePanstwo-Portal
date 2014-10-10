@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
             $('#container').highcharts({
@@ -32,8 +35,8 @@
                 tooltip: {
                     formatter: function () {
                         return '<b>' + this.x + '</b><br/>' +
-                                this.series.name + ': ' + this.y + '<br/>' +
-                                'Total: ' + this.point.stackTotal;
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
                     }
                 },
 
@@ -43,32 +46,25 @@
                     }
                 },
 
-                series: [
-                    {
-                        name: 'John',
-                        data: [5, 3, 4, 7, 2],
-                        stack: 'male'
-                    },
-                    {
-                        name: 'Joe',
-                        data: [3, 4, 4, 2, 5],
-                        stack: 'male'
-                    },
-                    {
-                        name: 'Jane',
-                        data: [2, 5, 6, 2, 1],
-                        stack: 'female'
-                    },
-                    {
-                        name: 'Janet',
-                        data: [3, 0, 4, 4, 3],
-                        stack: 'female'
-                    }
-                ]
+                series: [{
+                    name: 'John',
+                    data: [5, 3, 4, 7, 2],
+                    stack: 'male'
+                }, {
+                    name: 'Joe',
+                    data: [3, 4, 4, 2, 5],
+                    stack: 'male'
+                }, {
+                    name: 'Jane',
+                    data: [2, 5, 6, 2, 1],
+                    stack: 'female'
+                }, {
+                    name: 'Janet',
+                    data: [3, 0, 4, 4, 3],
+                    stack: 'female'
+                }]
             });
         });
-
-
     </script>
 </head>
 <body>

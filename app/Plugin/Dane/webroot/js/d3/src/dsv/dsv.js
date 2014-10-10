@@ -1,7 +1,7 @@
 import
-"../arrays/set";
+    "../arrays/set";
 import
-"../xhr/xhr";
+    "../xhr/xhr";
 
 d3.dsv = function (delimiter, mimeType) {
     var reFormat = new RegExp("[\"" + delimiter + "\n]"),

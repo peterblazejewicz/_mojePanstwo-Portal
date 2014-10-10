@@ -1,8 +1,7 @@
 <?php
 
-App::uses('DocsObjectsController', 'Dane.Controller');
+App::uses( 'DocsObjectsController', 'Dane.Controller' );
 
-class RclEtapyController extends DocsObjectsController
-{
-    public $breadcrumbsMode = 'app';
+class RclEtapyController extends DocsObjectsController {
+	public $breadcrumbsMode = 'app';
 } 

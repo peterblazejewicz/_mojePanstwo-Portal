@@ -1,9 +1,9 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../core/ns";
+    "../core/ns";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.append = function (name) {
     name = d3_selection_creator(name);

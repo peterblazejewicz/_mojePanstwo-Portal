@@ -2725,9 +2725,7 @@
             "fileType": 4096
         }
     },
-    "manualImportLinks": [
-
-    ],
+    "manualImportLinks": [],
     "projectSettings": {
         "hamlNoEscapeInAttributes": 0,
         "kitAutoOutputPathStyle": 0,

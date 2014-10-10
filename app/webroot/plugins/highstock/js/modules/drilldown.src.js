@@ -18,13 +18,15 @@
         each = H.each,
         extend = H.extend,
         format = H.format,
+        pick = H.pick,
         wrap = H.wrap,
         Chart = H.Chart,
         seriesTypes = H.seriesTypes,
         PieSeries = seriesTypes.pie,
         ColumnSeries = seriesTypes.column,
         fireEvent = HighchartsAdapter.fireEvent,
-        inArray = HighchartsAdapter.inArray;
+        inArray = HighchartsAdapter.inArray,
+        dupes = [];
 
     // Utilities
     function tweenColors(startColor, endColor, pos) {
@@ -78,10 +80,10 @@
                 visibility: 'inherit'
             })
             .animate({
-                opacity: 1
+                opacity: pick(this.newOpacity, 1) // newOpacity used in maps
             }, animation || {
-            duration: 250
-        });
+                duration: 250
+            });
     };
 
     Chart.prototype.addSeriesAsDrilldown = function (point, ddOptions) {
@@ -109,10 +111,10 @@
 
         // Record options for all current series
         each(oldSeries.chart.series, function (series) {
-            if (series.xAxis === xAxis && series.yAxis === yAxis) {
+            if (series.xAxis === xAxis) {
                 levelSeries.push(series);
                 levelSeriesOptions.push(series.userOptions);
-                series.levelNumber = series.levelNumber || 0;
+                series.levelNumber = series.levelNumber || levelNumber; // #3182
             }
         });
 
@@ -159,26 +161,33 @@
 
     Chart.prototype.applyDrilldown = function () {
         var drilldownLevels = this.drilldownLevels,
-            levelToRemove = drilldownLevels[drilldownLevels.length - 1].levelNumber;
+            levelToRemove;
 
-        each(this.drilldownLevels, function (level) {
-            if (level.levelNumber === levelToRemove) {
-                each(level.levelSeries, function (series) {
-                    if (series.levelNumber === levelToRemove) { // Not removed, not added as part of a multi-series drilldown
-                        series.remove(false);
-                    }
-                });
-            }
-        });
+        if (drilldownLevels && drilldownLevels.length > 0) { // #3352, async loading
+            levelToRemove = drilldownLevels[drilldownLevels.length - 1].levelNumber;
+            each(this.drilldownLevels, function (level) {
+                if (level.levelNumber === levelToRemove) {
+                    each(level.levelSeries, function (series) {
+                        if (series.levelNumber === levelToRemove) { // Not removed, not added as part of a multi-series drilldown
+                            series.remove(false);
+                        }
+                    });
+                }
+            });
+        }
 
         this.redraw();
         this.showDrillUpButton();
     };
 
     Chart.prototype.getDrilldownBackText = function () {
-        var lastLevel = this.drilldownLevels[this.drilldownLevels.length - 1];
-        lastLevel.series = lastLevel.seriesOptions;
-        return format(this.options.lang.drillUpText, lastLevel);
+        var drilldownLevels = this.drilldownLevels,
+            lastLevel;
+        if (drilldownLevels && drilldownLevels.length > 0) { // #3352, async loading
+            lastLevel = drilldownLevels[drilldownLevels.length - 1];
+            lastLevel.series = lastLevel.seriesOptions;
+            return format(this.options.lang.drillUpText, lastLevel);
+        }
 
     };
 
@@ -224,13 +233,15 @@
             drilldownLevels = chart.drilldownLevels,
             levelNumber = drilldownLevels[drilldownLevels.length - 1].levelNumber,
             i = drilldownLevels.length,
+            chartSeries = chart.series,
+            seriesI = chartSeries.length,
             level,
             oldSeries,
             newSeries,
             oldExtremes,
             addSeries = function (seriesOptions) {
                 var addedSeries;
-                each(chart.series, function (series) {
+                each(chartSeries, function (series) {
                     if (series.userOptions === seriesOptions) {
                         addedSeries = series;
                     }
@@ -251,20 +262,31 @@
             if (level.levelNumber === levelNumber) {
                 drilldownLevels.pop();
 
+                // Get the lower series by reference or id
                 oldSeries = level.lowerSeries;
+                if (!oldSeries.chart) {  // #2786
+                    while (seriesI--) {
+                        if (chartSeries[seriesI].options.id === level.lowerSeriesOptions.id) {
+                            oldSeries = chartSeries[seriesI];
+                            break;
+                        }
+                    }
+                }
+                oldSeries.xData = []; // Overcome problems with minRange (#2898)
 
                 each(level.levelSeriesOptions, addSeries);
 
-                fireEvent(chart, 'drillup', { seriesOptions: level.seriesOptions });
+                fireEvent(chart, 'drillup', {seriesOptions: level.seriesOptions});
 
                 if (newSeries.type === oldSeries.type) {
                     newSeries.drilldownLevel = level;
-                    newSeries.options.animation = true;
+                    newSeries.options.animation = chart.options.drilldown.animation;
 
                     if (oldSeries.animateDrillupFrom) {
                         oldSeries.animateDrillupFrom(level);
                     }
                 }
+                newSeries.levelNumber = levelNumber;
 
                 oldSeries.remove(false);
 
@@ -287,6 +309,8 @@
             })
                 .align();
         }
+
+        dupes.length = []; // #3315
     };
 
 
@@ -370,35 +394,50 @@
      */
     ColumnSeries.prototype.animateDrillupFrom = function (level) {
         var animationOptions = this.chart.options.drilldown.animation,
-            group = this.group;
+            group = this.group,
+            series = this;
+
+        // Cancel mouse events on the series group (#2787)
+        each(series.trackerGroups, function (key) {
+            if (series[key]) { // we don't always have dataLabelsGroup
+                series[key].on('mouseover');
+            }
+        });
+
 
         delete this.group;
         each(this.points, function (point) {
             var graphic = point.graphic,
-                startColor = H.Color(point.color).rgba;
+                startColor = H.Color(point.color).rgba,
+                endColor = H.Color(level.color).rgba,
+                complete = function () {
+                    graphic.destroy();
+                    if (group) {
+                        group = group.destroy();
+                    }
+                };
 
             if (graphic) {
 
                 delete point.graphic;
 
-                /*jslint unparam: true*/
-                graphic.animate(level.shapeArgs, H.merge(animationOptions, {
-
-                    step: function (val, fx) {
-                        if (fx.prop === 'start') {
-                            this.attr({
-                                fill: tweenColors(startColor, H.Color(level.color).rgba, fx.pos)
-                            });
-                        }
-                    },
-                    complete: function () {
-                        graphic.destroy();
-                        if (group) {
-                            group = group.destroy();
-                        }
-                    }
-                }));
-                /*jslint unparam: false*/
+                if (animationOptions) {
+                    /*jslint unparam: true*/
+                    graphic.animate(level.shapeArgs, H.merge(animationOptions, {
+                        step: function (val, fx) {
+                            if (fx.prop === 'start' && startColor.length === 4 && endColor.length === 4) {
+                                this.attr({
+                                    fill: tweenColors(startColor, endColor, fx.pos)
+                                });
+                            }
+                        },
+                        complete: complete
+                    }));
+                    /*jslint unparam: false*/
+                } else {
+                    graphic.attr(level.shapeArgs);
+                    complete();
+                }
             }
         });
     };
@@ -427,16 +466,15 @@
                             .attr(H.merge(animateFrom, {
                                 start: start + i * startAngle,
                                 end: start + (i + 1) * startAngle
-                            }))
-                            .animate(point.shapeArgs, H.merge(animationOptions, {
-                                step: function (val, fx) {
-                                    if (fx.prop === 'start') {
-                                        this.attr({
-                                            fill: tweenColors(startColor, endColor, fx.pos)
-                                        });
-                                    }
+                            }))[animationOptions ? 'animate' : 'attr'](point.shapeArgs, H.merge(animationOptions, {
+                            step: function (val, fx) {
+                                if (fx.prop === 'start' && startColor.length === 4 && endColor.length === 4) {
+                                    this.attr({
+                                        fill: tweenColors(startColor, endColor, fx.pos)
+                                    });
                                 }
-                            }));
+                            }
+                        }));
                         /*jslint unparam: false*/
                     });
                     this.animate = null;
@@ -453,8 +491,9 @@
             seriesOptions;
 
         while (i-- && !seriesOptions) {
-            if (drilldown.series[i].id === this.drilldown) {
+            if (drilldown.series[i].id === this.drilldown && inArray(this.drilldown, dupes) === -1) {
                 seriesOptions = drilldown.series[i];
+                dupes.push(this.drilldown);
             }
         }
 
@@ -483,15 +522,23 @@
 
         if (point.drilldown) {
 
-            // Add the click event to the point label
+            // Add the click event to the point
             H.addEvent(point, 'click', function () {
                 point.doDrilldown();
             });
+            /*wrap(point, 'importEvents', function (proceed) { // wrapping importEvents makes point.click event work
+             if (!this.hasImportedEvents) {
+             proceed.call(this);
+             H.addEvent(this, 'click', function () {
+             this.doDrilldown();
+             });
+             }
+             });*/
 
             // Make axis labels clickable
             if (tickLabel) {
-                if (!tickLabel._basicStyle) {
-                    tickLabel._basicStyle = tickLabel.element.getAttribute('style');
+                if (!tickLabel.basicStyles) {
+                    tickLabel.basicStyles = H.merge(tickLabel.styles);
                 }
                 tickLabel
                     .addClass('highcharts-drilldown-axis-label')
@@ -510,8 +557,9 @@
                 tickLabel.ddPoints.push(point);
 
             }
-        } else if (tickLabel && tickLabel._basicStyle) {
-            tickLabel.element.setAttribute('style', tickLabel._basicStyle);
+        } else if (tickLabel && tickLabel.basicStyles) {
+            tickLabel.styles = {}; // reset for full overwrite of styles
+            tickLabel.css(tickLabel.basicStyles);
         }
 
         return point;
@@ -546,7 +594,7 @@
                         .attr({
                             'class': 'highcharts-drilldown-point'
                         })
-                        .css({ cursor: 'pointer' });
+                        .css({cursor: 'pointer'});
                 }
             });
         };

@@ -61,7 +61,7 @@ jQuery(document).ready(function () {
 
     });
 
-    $('body').scrollspy({ target: '.sideMenu' });
+    $('body').scrollspy({target: '.sideMenu'});
 
     graphPoslankiPoslowie();
 

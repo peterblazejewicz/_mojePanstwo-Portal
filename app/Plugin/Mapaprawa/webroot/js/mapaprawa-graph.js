@@ -99,7 +99,11 @@ var intervalMain;
                         container.attr({'data-document': params.blockId, 'data-totalPage': data.pages});
                     } else {
                         container = jQuery('<div></div>').addClass('additionalInfo addon doc-' + params.s);
-                        container.attr({'data-slide': params.s, 'data-document': params.blockId, 'data-totalPage': data.pages});
+                        container.attr({
+                            'data-slide': params.s,
+                            'data-document': params.blockId,
+                            'data-totalPage': data.pages
+                        });
                         container.insertAfter(parent);
                         container.hide();
                     }
@@ -139,7 +143,10 @@ var intervalMain;
 
                         for (var i = 0; i <= (paginationLeft + paginationRight); i++) {
                             var liNode = jQuery('<li></li>').append(
-                                jQuery('<a></a>').attr({'data-page': params.currentPage - (paginationLeft) + i, 'href': "#"}).text(params.currentPage - (paginationLeft) + i)
+                                jQuery('<a></a>').attr({
+                                    'data-page': params.currentPage - (paginationLeft) + i,
+                                    'href': "#"
+                                }).text(params.currentPage - (paginationLeft) + i)
                             );
                             if ((params.currentPage - (paginationLeft) + i) == params.currentPage)
                                 liNode.find('a').addClass('active');
@@ -217,20 +224,20 @@ var intervalMain;
                                     docViewer = jQuery('<div></div>').attr('id', 'docViewer').append(
                                         jQuery('<div></div>').addClass('container').append(
                                             jQuery('<div></div>').addClass('htmlexDoc').append(
-                                                    jQuery('<div></div>').addClass('headline')
-                                                ).append(
-                                                    jQuery('<div></div>').addClass('descline')
-                                                ).append(
-                                                    jQuery('<div></div>').addClass('documentTitle').append(
-                                                        jQuery('<div></div>').addClass('row documentTitle').append(
-                                                                jQuery('<div></div>').addClass('col-md-2 intro')
-                                                            ).append(
-                                                                jQuery('<div></div>').addClass('col-md-10 content info')
-                                                            )
+                                                jQuery('<div></div>').addClass('headline')
+                                            ).append(
+                                                jQuery('<div></div>').addClass('descline')
+                                            ).append(
+                                                jQuery('<div></div>').addClass('documentTitle').append(
+                                                    jQuery('<div></div>').addClass('row documentTitle').append(
+                                                        jQuery('<div></div>').addClass('col-md-2 intro')
+                                                    ).append(
+                                                        jQuery('<div></div>').addClass('col-md-10 content info')
                                                     )
-                                                ).append(
-                                                    jQuery('<div></div>').addClass('docContent canvas').html(data.html)
                                                 )
+                                            ).append(
+                                                jQuery('<div></div>').addClass('docContent canvas').html(data.html)
+                                            )
                                         )
                                     );
 
@@ -243,7 +250,10 @@ var intervalMain;
                                     docViewer.find('.htmlexDoc').append(jQuery('<a></a>').addClass('close glyphicon glyphicon-remove-sign'));
 
                                     if (data.doc.packages_count > 1)
-                                        docViewer.find('.htmlexDoc').append(jQuery('<div></div>').addClass('loadMoreDocumentContent').data({'currentPackage': 1, 'packages': data.doc.packages_count}));
+                                        docViewer.find('.htmlexDoc').append(jQuery('<div></div>').addClass('loadMoreDocumentContent').data({
+                                            'currentPackage': 1,
+                                            'packages': data.doc.packages_count
+                                        }));
 
                                     mapaPrawa.append(docViewer);
 
@@ -376,26 +386,30 @@ var intervalMain;
                         'data-slide': slideId
                     });
                     docContent.append(
-                            jQuery('<div></div>').addClass('documentInfo').append(
-                                    jQuery('<h3></h3>').html("&nbsp;")
-                                ).append(
-                                    jQuery('<p></p>').html(data.info)
-                                )
-                        ).append(function () {
+                        jQuery('<div></div>').addClass('documentInfo').append(
+                            jQuery('<h3></h3>').html("&nbsp;")
+                        ).append(
+                            jQuery('<p></p>').html(data.info)
+                        )
+                    ).append(function () {
 
                             if (data.list.length) {
 
                                 var documentList = jQuery('<div></div>').addClass('documentList').addClass('documentation');
                                 documentList.append(
-                                        jQuery('<h3></h3>').text(_mPHeart.translation.LC_MAPAPRAWA_DOKUMENTACJA)
-                                    ).append(function () {
+                                    jQuery('<h3></h3>').text(_mPHeart.translation.LC_MAPAPRAWA_DOKUMENTACJA)
+                                ).append(function () {
                                         jQuery(data.list).each(function () {
                                             var docListTitles = this.tytul.replace(/.{48}\S*\s+/g, "$&@").split(/\s+@/),
                                                 docListTitle = docListTitles[0];
                                             if (docListTitles.length > 1) docListTitle += '...';
 
                                             docList.append(jQuery('<li></li>').append(
-                                                jQuery('<a></a>').attr({'href': "#", 'data-number': this.id, 'data-title': this.tytul }).text(docListTitle)
+                                                jQuery('<a></a>').attr({
+                                                    'href': "#",
+                                                    'data-number': this.id,
+                                                    'data-title': this.tytul
+                                                }).text(docListTitle)
                                             ))
                                         });
                                         documentList.append(docList);

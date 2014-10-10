@@ -90,7 +90,7 @@
         //      @src:    list of source files
         //      @dst:    destination file
         //
-        "concat": [ ],
+        "concat": [],
         //
         // minify files using uglifyjs
         // input list of objects specifying inputs and output

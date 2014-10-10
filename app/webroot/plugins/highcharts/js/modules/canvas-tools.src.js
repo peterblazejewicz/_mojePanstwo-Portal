@@ -266,9 +266,9 @@ function RGBColor(color_string) {
                 var example_div = document.createElement('div');
                 example_div.style.cssText =
                     'margin: 3px; '
-                        + 'border: 1px solid black; '
-                        + 'background:' + list_color.toHex() + '; '
-                        + 'color:' + list_color.toHex()
+                    + 'border: 1px solid black; '
+                    + 'background:' + list_color.toHex() + '; '
+                    + 'color:' + list_color.toHex()
                 ;
                 example_div.appendChild(document.createTextNode('test'));
                 var list_item_value = document.createTextNode(
@@ -382,7 +382,7 @@ if (!Array.prototype.indexOf) {
     }
 
     function build() {
-        var svg = { };
+        var svg = {};
 
         svg.FRAMERATE = 30;
         svg.MAX_VIRTUAL_PIXELS = 30000;
@@ -400,7 +400,7 @@ if (!Array.prototype.indexOf) {
                     this.viewPorts = [];
                 }
                 this.SetCurrent = function (width, height) {
-                    this.viewPorts.push({ width: width, height: height });
+                    this.viewPorts.push({width: width, height: height});
                 }
                 this.RemoveCurrent = function () {
                     this.viewPorts.pop();
@@ -632,7 +632,7 @@ if (!Array.prototype.indexOf) {
             this.Parse = function (s) {
                 var f = {};
                 var d = svg.trim(svg.compressSpaces(s || '')).split(' ');
-                var set = { fontSize: false, fontStyle: false, fontWeight: false, fontVariant: false }
+                var set = {fontSize: false, fontStyle: false, fontWeight: false, fontVariant: false}
                 var ff = '';
                 for (var i = 0; i < d.length; i++) {
                     if (!set.fontStyle && that.Styles.indexOf(d[i]) != -1) {
@@ -764,9 +764,9 @@ if (!Array.prototype.indexOf) {
                 for (i = 0; i <= 1; i++) {
                     var f = function (t) {
                         return Math.pow(1 - t, 3) * p0[i]
-                            + 3 * Math.pow(1 - t, 2) * t * p1[i]
-                            + 3 * (1 - t) * Math.pow(t, 2) * p2[i]
-                            + Math.pow(t, 3) * p3[i];
+                        + 3 * Math.pow(1 - t, 2) * t * p1[i]
+                        + 3 * (1 - t) * Math.pow(t, 2) * p2[i]
+                        + Math.pow(t, 3) * p3[i];
                     }
 
                     var b = 6 * p0[i] - 12 * p1[i] + 6 * p2[i];
@@ -1388,10 +1388,7 @@ if (!Array.prototype.indexOf) {
             this.getMarkers = function () {
                 var points = this.getPoints();
                 var a = points[0].angleTo(points[1]);
-                return [
-                    [points[0], a],
-                    [points[1], a]
-                ];
+                return [[points[0], a], [points[1], a]];
             }
         }
         svg.Element.line.prototype = new svg.Element.PathElementBase;
@@ -1684,9 +1681,9 @@ if (!Array.prototype.indexOf) {
                                 }
                                 // cx', cy'
                                 var s = (largeArcFlag == sweepFlag ? -1 : 1) * Math.sqrt(
-                                    ((Math.pow(rx, 2) * Math.pow(ry, 2)) - (Math.pow(rx, 2) * Math.pow(currp.y, 2)) - (Math.pow(ry, 2) * Math.pow(currp.x, 2))) /
+                                        ((Math.pow(rx, 2) * Math.pow(ry, 2)) - (Math.pow(rx, 2) * Math.pow(currp.y, 2)) - (Math.pow(ry, 2) * Math.pow(currp.x, 2))) /
                                         (Math.pow(rx, 2) * Math.pow(currp.y, 2) + Math.pow(ry, 2) * Math.pow(currp.x, 2))
-                                );
+                                    );
                                 if (isNaN(s)) s = 0;
                                 var cpp = new svg.Point(s * rx * currp.y / ry, s * -ry * currp.x / rx);
                                 // cx, cy
@@ -1871,14 +1868,14 @@ if (!Array.prototype.indexOf) {
 
                     var group = new svg.Element.g();
                     group.attributes['transform'] = new svg.Property('transform', this.attribute('gradientTransform').value);
-                    group.children = [ rect ];
+                    group.children = [rect];
 
                     var tempSvg = new svg.Element.svg();
                     tempSvg.attributes['x'] = new svg.Property('x', 0);
                     tempSvg.attributes['y'] = new svg.Property('y', 0);
                     tempSvg.attributes['width'] = new svg.Property('width', rootView.width);
                     tempSvg.attributes['height'] = new svg.Property('height', rootView.height);
-                    tempSvg.children = [ group ];
+                    tempSvg.children = [group];
 
                     var c = document.createElement('canvas');
                     c.width = rootView.width;
@@ -2712,8 +2709,8 @@ if (!Array.prototype.indexOf) {
                                 var a1 = imGet(src, Math.max(x - i, 0), y, width, height, 3) / 255;
                                 var a2 = imGet(src, Math.min(x + i, width - 1), y, width, height, 3) / 255;
                                 sum += mask[i] *
-                                    ((a1 == 0 ? 255 : imGet(src, Math.max(x - i, 0), y, width, height, rgba)) * (a1 == 0 || rgba == 3 ? 1 : a1) +
-                                        (a2 == 0 ? 255 : imGet(src, Math.min(x + i, width - 1), y, width, height, rgba)) * (a2 == 0 || rgba == 3 ? 1 : a2));
+                                ((a1 == 0 ? 255 : imGet(src, Math.max(x - i, 0), y, width, height, rgba)) * (a1 == 0 || rgba == 3 ? 1 : a1) +
+                                (a2 == 0 ? 255 : imGet(src, Math.min(x + i, width - 1), y, width, height, rgba)) * (a2 == 0 || rgba == 3 ? 1 : a2));
                             }
                             imSet(dst, y, x, height, width, rgba, sum);
                         }
@@ -2914,7 +2911,8 @@ if (!Array.prototype.indexOf) {
             }
 
             this.onclick = function (x, y) {
-                this.events.push({ type: 'onclick', x: x, y: y,
+                this.events.push({
+                    type: 'onclick', x: x, y: y,
                     run: function (e) {
                         if (e.onclick) e.onclick();
                     }
@@ -2922,7 +2920,8 @@ if (!Array.prototype.indexOf) {
             }
 
             this.onmousemove = function (x, y) {
-                this.events.push({ type: 'onmousemove', x: x, y: y,
+                this.events.push({
+                    type: 'onmousemove', x: x, y: y,
                     run: function (e) {
                         if (e.onmousemove) e.onmousemove();
                     }
@@ -2982,7 +2981,7 @@ if (CanvasRenderingContext2D) {
     }
 }
 /**
- * @license Highcharts JS v3.0.10 (2014-03-10)
+ * @license Highcharts JS v4.0.4 (2014-09-02)
  * CanVGRenderer Extension module
  *
  * (c) 2011-2012 Torstein Honsi, Erik Olsson
@@ -3027,7 +3026,7 @@ if (CanvasRenderingContext2D) {
                 containerOffsetWidth = container.offsetWidth,
                 containerOffsetHeight = container.offsetHeight,
                 canvas,
-                initialHiddenStyle = { visibility: HIDDEN, position: ABSOLUTE };
+                initialHiddenStyle = {visibility: HIDDEN, position: ABSOLUTE};
 
             this.init.apply(this, [container, chartWidth, chartHeight]);
 
@@ -3107,7 +3106,10 @@ if (CanvasRenderingContext2D) {
                 tooltipDiv.innerHTML = args.text;
 
                 // Compute the best position for the tooltip based on the divs size and container size.
-                position = chart.tooltip.getPosition(tooltipDiv.offsetWidth, tooltipDiv.offsetHeight, {plotX: args.x, plotY: args.y});
+                position = chart.tooltip.getPosition(tooltipDiv.offsetWidth, tooltipDiv.offsetHeight, {
+                    plotX: args.x,
+                    plotY: args.y
+                });
 
                 css(tooltipDiv, {
                     visibility: VISIBLE,
@@ -3132,8 +3134,8 @@ if (CanvasRenderingContext2D) {
 
                 // Start a new timer that hides tooltip and line
                 renderer.ttTimer = setTimeout(function () {
-                    css(tooltipDiv, { visibility: HIDDEN });
-                    css(tooltipLine, { visibility: HIDDEN });
+                    css(tooltipDiv, {visibility: HIDDEN});
+                    css(tooltipLine, {visibility: HIDDEN});
                 }, 3000);
             });
         },

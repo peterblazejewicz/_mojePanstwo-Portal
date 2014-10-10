@@ -1,7 +1,7 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"projection";
+    "projection";
 
 function d3_geo_conic(projectAt) {
     var φ0 = 0,

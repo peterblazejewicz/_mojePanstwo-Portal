@@ -1,5 +1,5 @@
 import
-"../core/identity";
+    "../core/identity";
 
 function d3_scale_nice(domain, nice) {
     var i0 = 0,

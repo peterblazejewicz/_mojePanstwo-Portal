@@ -1,6 +1,6 @@
 (function ($) {
     $('#navbar').css({'width': $('#navbar').width()});
-    $('body').scrollspy({ target: '#navbar' });
+    $('body').scrollspy({target: '#navbar'});
     $('#navbar').affix({
         offset: {
             top: function () {

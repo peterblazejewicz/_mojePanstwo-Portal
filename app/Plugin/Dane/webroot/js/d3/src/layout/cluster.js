@@ -1,11 +1,11 @@
 import
-"../arrays/max";
+    "../arrays/max";
 import
-"layout";
+    "layout";
 import
-"hierarchy";
+    "hierarchy";
 import
-"tree";
+    "tree";
 
 // Implements a hierarchical layout using the cluster (or dendrogram)
 // algorithm.

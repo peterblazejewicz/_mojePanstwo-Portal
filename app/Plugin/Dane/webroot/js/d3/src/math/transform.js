@@ -1,7 +1,7 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../core/ns";
+    "../core/ns";
 
 d3.transform = function (string) {
     var g = d3_document.createElementNS(d3.ns.prefix.svg, "g");
@@ -38,10 +38,10 @@ function d3_transform(m) {
 
 d3_transform.prototype.toString = function () {
     return "translate(" + this.translate
-        + ")rotate(" + this.rotate
-        + ")skewX(" + this.skew
-        + ")scale(" + this.scale
-        + ")";
+    + ")rotate(" + this.rotate
+    + ")skewX(" + this.skew
+    + ")scale(" + this.scale
+    + ")";
 };
 
 function d3_transformDot(a, b) {

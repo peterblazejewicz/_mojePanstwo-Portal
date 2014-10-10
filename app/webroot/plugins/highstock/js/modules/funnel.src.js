@@ -23,6 +23,7 @@
 
 // set default options
     defaultPlotOptions.funnel = merge(defaultPlotOptions.pie, {
+        animation: false,
         center: ['50%', '50%'],
         width: '90%',
         neckWidth: '30%',
@@ -60,7 +61,7 @@
             // Get positions - either an integer or a percentage string must be given
                 getLength = function (length, relativeTo) {
                     return (/%$/).test(length) ?
-                        relativeTo * parseInt(length, 10) / 100 :
+                    relativeTo * parseInt(length, 10) / 100 :
                         parseInt(length, 10);
                 },
 
@@ -74,7 +75,7 @@
                 cumulative = 0, // start at top
                 center = options.center,
                 centerX = getLength(center[0], plotWidth),
-                centerY = getLength(center[0], plotHeight),
+                centerY = getLength(center[1], plotHeight),
                 width = getLength(options.width, plotWidth),
                 tempWidth,
                 getWidthAt,
@@ -99,7 +100,7 @@
             series.getWidthAt = getWidthAt = function (y) {
                 return y > height - neckHeight || height === neckHeight ?
                     neckWidth :
-                    neckWidth + (width - neckWidth) * ((height - neckHeight - y) / (height - neckHeight));
+                neckWidth + (width - neckWidth) * ((height - neckHeight - y) / (height - neckHeight));
             };
             series.getX = function (y, half) {
                 return centerX + (half ? -1 : 1) * ((getWidthAt(reversed ? plotHeight - y : y) / 2) + options.dataLabels.distance);
@@ -184,7 +185,7 @@
 
                 // prepare for using shared dr
                 point.shapeType = 'path';
-                point.shapeArgs = { d: path };
+                point.shapeArgs = {d: path};
 
 
                 // for tooltips and data labels

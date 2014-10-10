@@ -71,16 +71,16 @@
     function startTimeline() {
         // 3x highlight in front
         for (var i = 0; i < 3; i++)
-            new Effect.Highlight('d3', { duration: 1.0, queue: 'front' });
+            new Effect.Highlight('d3', {duration: 1.0, queue: 'front'});
 
         // insert scale at very beginning
-        new Effect.Scale('d1', 75, { scaleContent: true, duration: 1.0, queue: 'front' });
+        new Effect.Scale('d1', 75, {scaleContent: true, duration: 1.0, queue: 'front'});
 
         // parallel implied, delay 0.5 sec
-        new Effect.Highlight('d1', { delay: 0.5 });
+        new Effect.Highlight('d1', {delay: 0.5});
 
         // puff at end
-        new Effect.Puff('d2', { duration: 4.0, queue: 'end' });
+        new Effect.Puff('d2', {duration: 4.0, queue: 'end'});
     }
     // ]]>
 </script>

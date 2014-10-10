@@ -1,9 +1,9 @@
 import
-"format";
+    "format";
 import
-"format-utc";
+    "format-utc";
 import
-"time";
+    "time";
 
 var d3_time_formatIso = d3_time_formatUtc("%Y-%m-%dT%H:%M:%S.%LZ");
 

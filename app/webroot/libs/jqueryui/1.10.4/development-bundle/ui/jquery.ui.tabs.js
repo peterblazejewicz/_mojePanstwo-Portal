@@ -27,8 +27,8 @@
         anchor = anchor.cloneNode(false);
 
         return anchor.hash.length > 1 &&
-            decodeURIComponent(anchor.href.replace(rhash, "")) ===
-                decodeURIComponent(location.href.replace(rhash, ""));
+        decodeURIComponent(anchor.href.replace(rhash, "")) ===
+        decodeURIComponent(location.href.replace(rhash, ""));
     }
 
     $.widget("ui.tabs", {
@@ -321,7 +321,7 @@
                 options.active = false;
                 this.active = $();
                 // was active, but active tab is gone
-            } else if (this.active.length && !$.contains(this.tablist[ 0 ], this.active[ 0 ])) {
+            } else if (this.active.length && !$.contains(this.tablist[0], this.active[0])) {
                 // all remaining tabs are disabled
                 if (this.tabs.length === options.disabled.length) {
                     options.active = false;
@@ -389,7 +389,7 @@
                 });
 
             this.anchors = this.tabs.map(function () {
-                return $("a", this)[ 0 ];
+                return $("a", this)[0];
             })
                 .addClass("ui-tabs-anchor")
                 .attr({
@@ -416,7 +416,7 @@
                     panel = that.element.find(selector);
                     if (!panel.length) {
                         panel = that._createPanel(panelId);
-                        panel.insertAfter(that.panels[ i - 1 ] || that.tablist);
+                        panel.insertAfter(that.panels[i - 1] || that.tablist);
                     }
                     panel.attr("aria-live", "polite");
                 }
@@ -461,7 +461,7 @@
             }
 
             // disable tabs
-            for (var i = 0, li; ( li = this.tabs[ i ] ); i++) {
+            for (var i = 0, li; ( li = this.tabs[i] ); i++) {
                 if (disabled === true || $.inArray(i, disabled) !== -1) {
                     $(li)
                         .addClass("ui-state-disabled")
@@ -484,14 +484,14 @@
             };
             if (event) {
                 $.each(event.split(" "), function (index, eventName) {
-                    events[ eventName ] = "_eventHandler";
+                    events[eventName] = "_eventHandler";
                 });
             }
 
             this._off(this.anchors.add(this.tabs).add(this.panels));
             this._on(this.anchors, events);
-            this._on(this.tabs, { keydown: "_tabKeydown" });
-            this._on(this.panels, { keydown: "_panelKeydown" });
+            this._on(this.tabs, {keydown: "_tabKeydown"});
+            this._on(this.panels, {keydown: "_panelKeydown"});
 
             this._focusable(this.tabs);
             this._hoverable(this.tabs);
@@ -521,7 +521,7 @@
 
                 this.panels.each(function () {
                     $(this).height(Math.max(0, maxHeight -
-                        $(this).innerHeight() + $(this).height()));
+                    $(this).innerHeight() + $(this).height()));
                 })
                     .css("overflow", "auto");
             } else if (heightStyle === "auto") {
@@ -537,7 +537,7 @@
                 active = this.active,
                 anchor = $(event.currentTarget),
                 tab = anchor.closest("li"),
-                clickedIsActive = tab[ 0 ] === active[ 0 ],
+                clickedIsActive = tab[0] === active[0],
                 collapsing = clickedIsActive && options.collapsible,
                 toShow = collapsing ? $() : this._getPanelForTab(tab),
                 toHide = !active.length ? $() : this._getPanelForTab(active),
@@ -551,13 +551,13 @@
             event.preventDefault();
 
             if (tab.hasClass("ui-state-disabled") ||
-                // tab is already loading
+                    // tab is already loading
                 tab.hasClass("ui-tabs-loading") ||
-                // can't switch durning an animation
+                    // can't switch durning an animation
                 this.running ||
-                // click on active header, but not collapsible
+                    // click on active header, but not collapsible
                 ( clickedIsActive && !options.collapsible ) ||
-                // allow canceling activation
+                    // allow canceling activation
                 ( this._trigger("beforeActivate", event, eventData) === false )) {
                 return;
             }
@@ -647,7 +647,7 @@
                 active = this._findActive(index);
 
             // trying to activate the already active panel
-            if (active[ 0 ] === this.active[ 0 ]) {
+            if (active[0] === this.active[0]) {
                 return;
             }
 
@@ -656,7 +656,7 @@
                 active = this.active;
             }
 
-            anchor = active.find(".ui-tabs-anchor")[ 0 ];
+            anchor = active.find(".ui-tabs-anchor")[0];
             this._eventHandler({
                 target: anchor,
                 currentTarget: anchor,
@@ -700,7 +700,7 @@
                 } else {
                     $(this)
                         .removeClass("ui-state-default ui-state-active ui-state-disabled " +
-                            "ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel")
+                        "ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel")
                         .removeAttr("tabIndex")
                         .removeAttr("aria-live")
                         .removeAttr("aria-busy")
@@ -768,9 +768,9 @@
                     return;
                 }
                 if ($.isArray(disabled)) {
-                    disabled = $.merge([ index ], disabled).sort();
+                    disabled = $.merge([index], disabled).sort();
                 } else {
-                    disabled = [ index ];
+                    disabled = [index];
                 }
             }
             this._setupDisabled(disabled);
@@ -788,7 +788,7 @@
                 };
 
             // not remote
-            if (isLocal(anchor[ 0 ])) {
+            if (isLocal(anchor[0])) {
                 return;
             }
 
@@ -835,7 +835,7 @@
                 url: anchor.attr("href"),
                 beforeSend: function (jqXHR, settings) {
                     return that._trigger("beforeLoad", event,
-                        $.extend({ jqXHR: jqXHR, ajaxSettings: settings }, eventData));
+                        $.extend({jqXHR: jqXHR, ajaxSettings: settings}, eventData));
                 }
             };
         },

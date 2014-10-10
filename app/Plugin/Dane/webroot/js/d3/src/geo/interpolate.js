@@ -1,7 +1,7 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 
 d3.geo.interpolate = function (source, target) {
     return d3_geo_interpolate(

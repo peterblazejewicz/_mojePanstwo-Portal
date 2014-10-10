@@ -24,12 +24,12 @@
                 source: function (request, response) {
                     var term = request.term;
                     if (term in cache) {
-                        response(cache[ term ]);
+                        response(cache[term]);
                         return;
                     }
 
                     $.getJSON("search.php", request, function (data, status, xhr) {
-                        cache[ term ] = data;
+                        cache[term] = data;
                         response(data);
                     });
                 }

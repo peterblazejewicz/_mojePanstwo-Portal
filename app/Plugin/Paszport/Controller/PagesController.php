@@ -28,55 +28,50 @@
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends PaszportAppController
-{
+class PagesController extends PaszportAppController {
 
-    /**
-     * Controller name
-     *
-     * @var string
-     */
-    public $name = 'Pages';
+	/**
+	 * Controller name
+	 *
+	 * @var string
+	 */
+	public $name = 'Pages';
 
-    /**
-     * This controller does not use a model
-     *
-     * @var array
-     */
-    public $uses = array();
+	/**
+	 * This controller does not use a model
+	 *
+	 * @var array
+	 */
+	public $uses = array();
 
-    /**
-     * Displays a view
-     *
-     * @param mixed What page to display
-     * @return void
-     */
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-        $this->Auth->allow('regulations', 'privacy');
-    }
+	/**
+	 * Displays a view
+	 *
+	 * @param mixed What page to display
+	 *
+	 * @return void
+	 */
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow( 'regulations', 'privacy' );
+	}
 
-    public function logs()
-    {
-        $this->set('title_for_layout', __d('paszport', 'LC_PASZPORT_LOGS', true));
-    }
+	public function logs() {
+		$this->set( 'title_for_layout', __d( 'paszport', 'LC_PASZPORT_LOGS', true ) );
+	}
 
-    public function home()
-    {
-        if ($this->Auth->loggedIn()) {
-            $this->redirect(array('controller' => 'users', 'action' => 'index'));
-        }
-    }
+	public function home() {
+		if ( $this->Auth->loggedIn() ) {
+			$this->redirect( array( 'controller' => 'users', 'action' => 'index' ) );
+		}
+	}
 
-    public function regulations()
-    {
-        $this->set('title_for_layout', __d('paszport', 'LC_PASZPORT_REGULATIONS', true));
-    }
+	public function regulations() {
+		$this->set( 'title_for_layout', __d( 'paszport', 'LC_PASZPORT_REGULATIONS', true ) );
+	}
 
-    public function privacy()
-    {
-        $this->set('title_for_layout', __d('paszport', 'LC_PASZPORT_PRIVACY_POLICY', true));
-    }
+	public function privacy() {
+		$this->set( 'title_for_layout', __d( 'paszport', 'LC_PASZPORT_PRIVACY_POLICY', true ) );
+	}
 
 }

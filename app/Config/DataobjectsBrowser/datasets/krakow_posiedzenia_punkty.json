@@ -1,6 +1,6 @@
 {
-	"controlls": ["details"],
-	"defaults": {
-		"details": true
-	}
+    "controlls": ["details"],
+    "defaults": {
+        "details": true
+    }
 }

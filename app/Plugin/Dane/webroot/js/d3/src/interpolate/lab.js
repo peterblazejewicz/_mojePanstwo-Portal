@@ -1,5 +1,5 @@
 import
-"../color/lab";
+    "../color/lab";
 
 d3.interpolateLab = d3_interpolateLab;
 

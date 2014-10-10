@@ -153,30 +153,30 @@ jQuery(document).ready(function () {
                             $(this).remove();
                         });
                         ~
-                        /*
-                         gradient_addons.html('');
+                            /*
+                             gradient_addons.html('');
 
-                         var li_min = jQuery('<li/>', {
-                         html: '<p><a href="/dane/gminy/' + '1' + '">Radom</a></p>',
-                         }).appendTo(gradient_addons);
+                             var li_min = jQuery('<li/>', {
+                             html: '<p><a href="/dane/gminy/' + '1' + '">Radom</a></p>',
+                             }).appendTo(gradient_addons);
 
-                         var li_teryt = jQuery('<li/>', {
-                         html: '<p><a href="/dane/gminy/' + '1' + '">Kraków</a></p>',
-                         class: '_teryt'
-                         }).appendTo(gradient_addons);
+                             var li_teryt = jQuery('<li/>', {
+                             html: '<p><a href="/dane/gminy/' + '1' + '">Kraków</a></p>',
+                             class: '_teryt'
+                             }).appendTo(gradient_addons);
 
-                         var li_max = jQuery('<li/>', {
-                         html: '<p><a href="/dane/gminy/' + '1' + '">Wałbrzych</a></p>'
-                         }).appendTo(gradient_addons);
+                             var li_max = jQuery('<li/>', {
+                             html: '<p><a href="/dane/gminy/' + '1' + '">Wałbrzych</a></p>'
+                             }).appendTo(gradient_addons);
 
 
-                         li_min.animate({left: '0%'});
-                         li_teryt.animate({left: '50%'});
-                         li_max.animate({left: '100%'});
+                             li_min.animate({left: '0%'});
+                             li_teryt.animate({left: '50%'});
+                             li_max.animate({left: '100%'});
 
-                         */
+                             */
 
-                        gradient_addons.find('.min .n').text(section['teryt_min_nazwa']);
+                            gradient_addons.find('.min .n').text(section['teryt_min_nazwa']);
                         gradient_addons.find('.min .v').html(number_format_h(section['teryt_min']));
 
                         gradient_addons.find('.max .n').text(section['teryt_max_nazwa']);

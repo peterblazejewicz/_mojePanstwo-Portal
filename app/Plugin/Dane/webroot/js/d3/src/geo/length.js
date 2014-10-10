@@ -1,13 +1,13 @@
 import
-"../core/noop";
+    "../core/noop";
 import
-"../math/abs";
+    "../math/abs";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 import
-"stream";
+    "stream";
 
 d3.geo.length = function (object) {
     d3_geo_lengthSum = 0;

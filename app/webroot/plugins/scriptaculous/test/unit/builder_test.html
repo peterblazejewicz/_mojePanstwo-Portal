@@ -42,7 +42,7 @@ function serializeNode(node) {
             value = value.substr(0, value.length - 1);
         return attr.nodeName + '="' + value + '"'
     }).compact().sort())).join(' ') + '>' + $A(node.childNodes).map(serializeNode).join('') +
-            '</' + tag + '>';
+    '</' + tag + '>';
 }
 
 new Test.Unit.Runner({
@@ -88,68 +88,16 @@ new Test.Unit.Runner({
             assertEqual('myspan', element.id);
             assertEqual('test123', element.innerHTML);
 
-            var element = Builder.node('div', [1, 2, [3], [
-                [
-                    [4],
-                    5
-                ],
-                6
-            ], 7, 8, [
-                [
-                    [
-                        [9]
-                    ]
-                ],
-                0
-            ]]);
+            var element = Builder.node('div', [1, 2, [3], [[[4], 5], 6], 7, 8, [[[[9]]], 0]]);
             assertEqual('1234567890', element.innerHTML);
 
-            var element = Builder.node('div', [1, '2', ['3'], [
-                [
-                    [4],
-                    '5'
-                ],
-                6
-            ], 7, '8', [
-                [
-                    [
-                        ['9']
-                    ]
-                ],
-                0
-            ]]);
+            var element = Builder.node('div', [1, '2', ['3'], [[[4], '5'], 6], 7, '8', [[[['9']]], 0]]);
             assertEqual('1234567890', element.innerHTML);
 
-            var element = Builder.node('div', {id: 'mydiv'}, [1, 2, [3], [
-                [
-                    [4],
-                    5
-                ],
-                6
-            ], 7, 8, [
-                [
-                    [
-                        [9]
-                    ]
-                ],
-                0
-            ]]);
+            var element = Builder.node('div', {id: 'mydiv'}, [1, 2, [3], [[[4], 5], 6], 7, 8, [[[[9]]], 0]]);
             assertEqual('1234567890', element.innerHTML);
 
-            var element = Builder.node('div', {id: 'mydiv'}, [1, '2', ['3'], [
-                [
-                    [4],
-                    '5'
-                ],
-                6
-            ], 7, '8', [
-                [
-                    [
-                        ['9']
-                    ]
-                ],
-                0
-            ]]);
+            var element = Builder.node('div', {id: 'mydiv'}, [1, '2', ['3'], [[[4], '5'], 6], 7, '8', [[[['9']]], 0]]);
             assertEqual('1234567890', element.innerHTML);
             assertEqual(10, element.childNodes.length);
 
@@ -166,9 +114,9 @@ new Test.Unit.Runner({
 
     testBuilderClassAndFor: function () {
         with (this) {
-            var elt = Builder.node('div', { className: 'demoClass' });
+            var elt = Builder.node('div', {className: 'demoClass'});
             assertEqual('demoClass', elt.className);
-            var elt = Builder.node('label', { htmlFor: 'mydiv' });
+            var elt = Builder.node('label', {htmlFor: 'mydiv'});
             assertEqual('mydiv', elt.htmlFor);
         }
     },
@@ -276,7 +224,7 @@ new Test.Unit.Runner({
             // browsers aren't sure about upper and lower case on elements
             assertEqual(
                     '<div id="ghosttrain"><div style="font-weight: bold; font-size: 11px">' +
-                            '<h1>Ghost Train</h1>testtext234<ul><li onclick="alert(\'test\')">click me</li></ul></div></div>',
+                    '<h1>Ghost Train</h1>testtext234<ul><li onclick="alert(\'test\')">click me</li></ul></div></div>',
                     serializeNode($('result').childNodes[0]));
         }
     },
@@ -306,7 +254,7 @@ new Test.Unit.Runner({
 
             assertEqual(
                     '<div id="ghosttrain"><div style="font-weight: bold; font-size: 11px">' +
-                            '<h1>Ghost Train</h1>testtext234<ul><li onclick="alert(\'test\')">click me</li></ul></div></div>',
+                    '<h1>Ghost Train</h1>testtext234<ul><li onclick="alert(\'test\')">click me</li></ul></div></div>',
                     serializeNode($('result').childNodes[0]));
         }
     },
