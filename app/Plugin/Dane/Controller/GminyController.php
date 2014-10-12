@@ -44,7 +44,13 @@ class GminyController extends DataobjectsController
 
     public function _prepareView()
     {
+		
+		if ($this->params->id == 903) {
 
+            $this->addInitLayers(array('dzielnice'));
+
+        }
+		
         if (
             defined('PORTAL_DOMAIN') &&
             defined('PK_DOMAIN') &&
@@ -71,7 +77,6 @@ class GminyController extends DataobjectsController
 		$_layers = array('rada_komitety', 'szef');
 		if( $this->request->params['id']=='903' ) {
 			$_layers[] = 'ostatnie_posiedzenie';
-			$_layers[] = 'dzielnice';
 		}
 		
         $this->addInitLayers( $_layers );
@@ -497,7 +502,100 @@ class GminyController extends DataobjectsController
 
         $this->set('title_for_layout', 'Powiązania radnych gminy  ' . $this->object->getData('nazwa') . ' z organizacjami w Krajowym Rejestrze Sądowym');
     }
+	
+	public function dzielnice()
+	{
+		
+		$this->_prepareView();
+        $this->request->params['action'] = 'dzielnice';
+		
+		if (isset($this->request->params['pass'][0]) && is_numeric($this->request->params['pass'][0])) {
+			
+			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'view';
+            $sub_id = (isset($this->request->params['pass'][2]) && $this->request->params['pass'][2]) ? $this->request->params['pass'][2] : false;
 
+            $dzielnica = $this->API->getObject('dzielnice', $this->request->params['pass'][0], array(
+                // 'layers' => array('najblizszy_dyzur', 'neighbours'),
+            ));
+            // $radny->getLayer('neighbours');
+            // $dyzur = $radny->getLayer('najblizszy_dyzur');
+            // debug( $dzielnica ); die();
+            $title_for_layout = $dzielnica->getTitle();
+			
+			switch ($subaction) {
+                case 'view':
+                {
+
+					$this->dataobjectsBrowserView(array(
+                        'source' => 'dzielnice.radni:' . $dzielnica->getId(),
+                        'dataset' => 'radni_dzielnic',
+                        'noResultsTitle' => 'Brak radnych',
+                        'excludeFilters' => array(
+		                    'dzielnica_id'
+		                ),
+                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+                    ));
+
+                    break;
+
+                    break;
+                }
+            }
+            
+            
+            if ($this->object->getId() == 903) {
+
+                $href_base = '/dane/gminy/' . $this->object->getId() . '/dzielnice/' . $dzielnica->getId();
+
+                $submenu = array(
+                    'items' => array(),
+                );
+
+                $submenu['items'][] = array(
+                    'id' => 'view',
+                    'href' => $href_base,
+                    'label' => 'Radni dzielnicy',
+                );
+                
+                $submenu['items'][] = array(
+                    'id' => 'posiedzenia',
+                    'href' => $href_base . '/posiedzenia',
+                    'label' => 'Posiedzenia rady dzielnicy',
+                );
+                 
+                $submenu['selected'] = $subaction;
+                $this->set('_submenu', $submenu);
+
+            }
+            
+            
+            $this->set('dzielnica', $dzielnica);
+            $this->set('sub_id', $sub_id);
+            $this->set('title_for_layout', $title_for_layout);
+            $this->render('dzielnica-' . $subaction);
+			
+		} else {
+		
+			$params = array(
+                'source' => 'gminy.dzielnice:' . $this->object->getId(),
+                'dataset' => 'dzielnice',
+                'noResultsTitle' => 'Brak dzielnic dla tej gminy',
+                /*
+                'excludeFilters' => array(
+                    'gmina_id', 'gminy.powiat_id', 'gminy.wojewodztwo_id'
+                ),
+                */
+                // 'hlFields' => array('nazwa', 'liczba_glosow'),
+                'limit' => 100,
+            );
+
+            $this->dataobjectsBrowserView($params);
+            $this->set('title_for_layout', 'Dzielnice gminy ' . $this->object->getData('nazwa'));
+		
+		}
+		
+	}
+	
     public function radni()
     {
 
@@ -1140,7 +1238,6 @@ class GminyController extends DataobjectsController
 				),
 			);
             
-            /*
             $dzielnice_items = array();
 			if( $dzielnice = $this->object->getLayer('dzielnice') ) {
 				
@@ -1162,7 +1259,6 @@ class GminyController extends DataobjectsController
 				);
 				
 			}
-			*/
 			
 			
 
