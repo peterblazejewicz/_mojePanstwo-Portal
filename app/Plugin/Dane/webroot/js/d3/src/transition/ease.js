@@ -1,9 +1,9 @@
 import
-"../interpolate/ease";
+    "../interpolate/ease";
 import
-"../selection/each";
+    "../selection/each";
 import
-"transition";
+    "transition";
 
 d3_transitionPrototype.ease = function (value) {
     var id = this.id;

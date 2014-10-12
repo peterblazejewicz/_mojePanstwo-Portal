@@ -33,9 +33,11 @@ suite.addBatch({
                 assert.strictEqual(d3.interpolate("hsl(0,100%,50%)", "hsl(120,100%,25%)")(.4), "#993300");
             },
             "coerces a to a color": function (d3) {
-                assert.strictEqual(d3.interpolate({toString: function () {
-                    return "red";
-                }}, "green")(.4), "#993300");
+                assert.strictEqual(d3.interpolate({
+                    toString: function () {
+                        return "red";
+                    }
+                }, "green")(.4), "#993300");
             }
         },
 
@@ -53,9 +55,11 @@ suite.addBatch({
                 assert.strictEqual(d3.interpolate(d3.hcl("red"), d3.hcl("green"))(.4), "#993300");
             },
             "coerces a to a color": function (d3) {
-                assert.strictEqual(d3.interpolate({toString: function () {
-                    return "red";
-                }}, "green")(.4), "#993300");
+                assert.strictEqual(d3.interpolate({
+                    toString: function () {
+                        return "red";
+                    }
+                }, "green")(.4), "#993300");
             }
         },
 
@@ -77,9 +81,11 @@ suite.addBatch({
                 assert.strictEqual(d3.interpolate(" 10/20 100 20", "50/10 100, 20 ")(.4), "26/16 100, 20 ");
             },
             "coerces a to a string": function (d3) {
-                assert.strictEqual(d3.interpolate({toString: function () {
-                    return "1.";
-                }}, "2.")(.5), "1.5");
+                assert.strictEqual(d3.interpolate({
+                    toString: function () {
+                        return "1.";
+                    }
+                }, "2.")(.5), "1.5");
             }
         },
 

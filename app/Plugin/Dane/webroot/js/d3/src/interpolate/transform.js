@@ -1,7 +1,7 @@
 import
-"../math/transform";
+    "../math/transform";
 import
-"number";
+    "number";
 
 d3.interpolateTransform = d3_interpolateTransform;
 

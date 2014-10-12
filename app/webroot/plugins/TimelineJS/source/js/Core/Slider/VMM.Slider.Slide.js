@@ -34,7 +34,14 @@ if (typeof VMM.Slider != 'undefined') {
             trace(data);
         }
 
-        c = {slide: "", text: "", media: "", media_element: "", layout: "content-container layout", has: { headline: false, text: false, media: false }};
+        c = {
+            slide: "",
+            text: "",
+            media: "",
+            media_element: "",
+            layout: "content-container layout",
+            has: {headline: false, text: false, media: false}
+        };
 
         /* PUBLIC
          ================================================== */

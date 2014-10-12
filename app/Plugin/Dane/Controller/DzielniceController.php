@@ -1,10 +1,9 @@
 <?php
 
-App::uses('DataobjectsController', 'Dane.Controller');
+App::uses( 'DataobjectsController', 'Dane.Controller' );
 
-class DzielniceController extends DataobjectsController
-{
-    public $menu = array();
+class DzielniceController extends DataobjectsController {
+	public $menu = array();
 
     public function view()
     {
@@ -24,4 +23,5 @@ class DzielniceController extends DataobjectsController
             'hlFields' => array('liczba_glosow'),
         ));
     }
+
 } 

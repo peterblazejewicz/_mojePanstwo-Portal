@@ -278,19 +278,19 @@
         'charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'quote', 'replace', 'search',
         'slice', 'split', 'substr', 'substring', 'trim', 'toLowerCase', 'toUpperCase'
     ])('Array', Array, [
-            'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice',
-            'indexOf', 'lastIndexOf', 'filter', 'forEach', 'every', 'map', 'some', 'reduce', 'reduceRight'
-        ])('Number', Number, [
-            'toExponential', 'toFixed', 'toLocaleString', 'toPrecision'
-        ])('Function', Function, [
-            'apply', 'call', 'bind'
-        ])('RegExp', RegExp, [
-            'exec', 'test'
-        ])('Object', Object, [
-            'create', 'defineProperty', 'defineProperties', 'keys',
-            'getPrototypeOf', 'getOwnPropertyDescriptor', 'getOwnPropertyNames',
-            'preventExtensions', 'isExtensible', 'seal', 'isSealed', 'freeze', 'isFrozen'
-        ])('Date', Date, ['now']);
+        'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice',
+        'indexOf', 'lastIndexOf', 'filter', 'forEach', 'every', 'map', 'some', 'reduce', 'reduceRight'
+    ])('Number', Number, [
+        'toExponential', 'toFixed', 'toLocaleString', 'toPrecision'
+    ])('Function', Function, [
+        'apply', 'call', 'bind'
+    ])('RegExp', RegExp, [
+        'exec', 'test'
+    ])('Object', Object, [
+        'create', 'defineProperty', 'defineProperties', 'keys',
+        'getPrototypeOf', 'getOwnPropertyDescriptor', 'getOwnPropertyNames',
+        'preventExtensions', 'isExtensible', 'seal', 'isSealed', 'freeze', 'isFrozen'
+    ])('Date', Date, ['now']);
 
     Object.extend = extend.overloadSetter();
 
@@ -1741,7 +1741,7 @@ Function.implement({
 
     local.isXML = function (document) {
         return (!!document.xmlVersion) || (!!document.xml) || (toString.call(document) == '[object XMLDocument]') ||
-            (document.nodeType == 9 && document.documentElement.nodeName != 'HTML');
+        (document.nodeType == 9 && document.documentElement.nodeName != 'HTML');
     };
 
     local.setDocument = function (document) {
@@ -2079,17 +2079,17 @@ Function.implement({
 
                 if (!this.isHTMLDocument
                     || qsaFailExpCache[expression]
-                    //TODO: only skip when expression is actually mixed case
+                        //TODO: only skip when expression is actually mixed case
                     || this.brokenMixedCaseQSA
                     || (this.brokenCheckedQSA && expression.indexOf(':checked') > -1)
                     || (this.brokenEmptyAttributeQSA && reEmptyAttribute.test(expression))
                     || (!contextIsDocument //Abort when !contextIsDocument and...
-                    //  there are multiple expressions in the selector
-                    //  since we currently only fix non-document rooted QSA for single expression selectors
+                        //  there are multiple expressions in the selector
+                        //  since we currently only fix non-document rooted QSA for single expression selectors
                     && expression.indexOf(',') > -1
                     )
                     || Slick.disableQSA
-                    ) break querySelector;
+                ) break querySelector;
 
                 var _expression = expression, _context = context;
                 if (!contextIsDocument) {
@@ -2829,7 +2829,7 @@ var IFrame = new Type('IFrame', function () {
     var props = params.properties || {}, iframe;
     if (params.iframe) iframe = document.id(params.iframe);
     var onload = props.onload || function () {
-    };
+        };
     delete props.onload;
     props.id = props.name = [props.id, props.name, iframe ? (iframe.id || iframe.name) : 'IFrame_' + String.uniqueID()].pick();
     iframe = new Element(iframe || 'iframe', props);
@@ -3051,9 +3051,11 @@ new Type('Elements', Elements).implement({
 
     });
 
-    var contains = {contains: function (element) {
-        return Slick.contains(this, element);
-    }};
+    var contains = {
+        contains: function (element) {
+            return Slick.contains(this, element);
+        }
+    };
 
     if (!document.contains) Document.implement(contains);
     if (!document.createElement('div').contains) Element.implement(contains);
@@ -3735,9 +3737,11 @@ new Type('Elements', Elements).implement({
     el = null;
 //</ltIE9>
 
-    Element.Properties.styles = {set: function (styles) {
-        this.setStyles(styles);
-    }};
+    Element.Properties.styles = {
+        set: function (styles) {
+            this.setStyles(styles);
+        }
+    };
 
     var hasOpacity = (html.style.opacity != null),
         hasFilter = (html.style.filter != null),
@@ -3858,13 +3862,34 @@ new Type('Elements', Elements).implement({
     });
 
     Element.Styles = {
-        left: '@px', top: '@px', bottom: '@px', right: '@px',
-        width: '@px', height: '@px', maxWidth: '@px', maxHeight: '@px', minWidth: '@px', minHeight: '@px',
-        backgroundColor: 'rgb(@, @, @)', backgroundPosition: '@px @px', color: 'rgb(@, @, @)',
-        fontSize: '@px', letterSpacing: '@px', lineHeight: '@px', clip: 'rect(@px @px @px @px)',
-        margin: '@px @px @px @px', padding: '@px @px @px @px', border: '@px @ rgb(@, @, @) @px @ rgb(@, @, @) @px @ rgb(@, @, @)',
-        borderWidth: '@px @px @px @px', borderStyle: '@ @ @ @', borderColor: 'rgb(@, @, @) rgb(@, @, @) rgb(@, @, @) rgb(@, @, @)',
-        zIndex: '@', 'zoom': '@', fontWeight: '@', textIndent: '@px', opacity: '@'
+        left: '@px',
+        top: '@px',
+        bottom: '@px',
+        right: '@px',
+        width: '@px',
+        height: '@px',
+        maxWidth: '@px',
+        maxHeight: '@px',
+        minWidth: '@px',
+        minHeight: '@px',
+        backgroundColor: 'rgb(@, @, @)',
+        backgroundPosition: '@px @px',
+        color: 'rgb(@, @, @)',
+        fontSize: '@px',
+        letterSpacing: '@px',
+        lineHeight: '@px',
+        clip: 'rect(@px @px @px @px)',
+        margin: '@px @px @px @px',
+        padding: '@px @px @px @px',
+        border: '@px @ rgb(@, @, @) @px @ rgb(@, @, @) @px @ rgb(@, @, @)',
+        borderWidth: '@px @px @px @px',
+        borderStyle: '@ @ @ @',
+        borderColor: 'rgb(@, @, @) rgb(@, @, @) rgb(@, @, @) rgb(@, @, @)',
+        zIndex: '@',
+        'zoom': '@',
+        fontWeight: '@',
+        textIndent: '@px',
+        opacity: '@'
     };
 
 
@@ -3907,9 +3932,11 @@ new Type('Elements', Elements).implement({
 
 (function () {
 
-    Element.Properties.events = {set: function (events) {
-        this.addEvents(events);
-    }};
+    Element.Properties.events = {
+        set: function (events) {
+            this.addEvents(events);
+        }
+    };
 
     [Element, Window, Document].invoke('implement', {
 
@@ -4032,9 +4059,11 @@ new Type('Elements', Elements).implement({
         error: 1, abort: 1, scroll: 1 //misc
     };
 
-    Element.Events = {mousewheel: {
-        base: (Browser.firefox) ? 'DOMMouseScroll' : 'mousewheel'
-    }};
+    Element.Events = {
+        mousewheel: {
+            base: (Browser.firefox) ? 'DOMMouseScroll' : 'mousewheel'
+        }
+    };
 
     if ('onmouseenter' in document.documentElement) {
         Element.NativeEvents.mouseenter = Element.NativeEvents.mouseleave = 2;
@@ -4164,9 +4193,11 @@ new Type('Elements', Elements).implement({
         return {
             base: 'focusin',
             listen: function (self, match, fn, event, target) {
-                var events = {blur: function () {
-                    this.removeEvents(events);
-                }};
+                var events = {
+                    blur: function () {
+                        this.removeEvents(events);
+                    }
+                };
                 events[type] = function (event) {
                     bubbleUp(self, match, fn, event, target);
                 };
@@ -4426,7 +4457,10 @@ new Type('Elements', Elements).implement({
 
             if (relative && (relative = document.id(relative))) {
                 var relativePosition = relative.getPosition();
-                return {x: position.x - relativePosition.x - leftBorder(relative), y: position.y - relativePosition.y - topBorder(relative)};
+                return {
+                    x: position.x - relativePosition.x - leftBorder(relative),
+                    y: position.y - relativePosition.y - topBorder(relative)
+                };
             }
             return position;
         },
@@ -4477,7 +4511,10 @@ new Type('Elements', Elements).implement({
                 min = this.getSize(),
                 body = this.getDocument().body;
 
-            return {x: Math.max(doc.scrollWidth, body.scrollWidth, min.x), y: Math.max(doc.scrollHeight, body.scrollHeight, min.y)};
+            return {
+                x: Math.max(doc.scrollWidth, body.scrollWidth, min.x),
+                y: Math.max(doc.scrollHeight, body.scrollHeight, min.y)
+            };
         },
 
         getPosition: function () {
@@ -5252,18 +5289,19 @@ Fx.Transitions.extend({
 
         Implements: [Chain, Events, Options],
 
-        options: {/*
-         onRequest: function(){},
-         onLoadstart: function(event, xhr){},
-         onProgress: function(event, xhr){},
-         onComplete: function(){},
-         onCancel: function(){},
-         onSuccess: function(responseText, responseXML){},
-         onFailure: function(xhr){},
-         onException: function(headerName, value){},
-         onTimeout: function(){},
-         user: '',
-         password: '',*/
+        options: {
+            /*
+             onRequest: function(){},
+             onLoadstart: function(event, xhr){},
+             onProgress: function(event, xhr){},
+             onComplete: function(){},
+             onCancel: function(){},
+             onSuccess: function(responseText, responseXML){},
+             onFailure: function(xhr){},
+             onException: function(headerName, value){},
+             onTimeout: function(){},
+             user: '',
+             password: '',*/
             url: '',
             data: '',
             headers: {

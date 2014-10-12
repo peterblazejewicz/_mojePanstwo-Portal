@@ -1,11 +1,11 @@
 import
-"../core/true";
+    "../core/true";
 import
-"../scale/linear";
+    "../scale/linear";
 import
-"scale";
+    "scale";
 import
-"format-utc";
+    "format-utc";
 
 var d3_time_scaleUtcMethods = d3_time_scaleLocalMethods.map(function (m) {
     return [m[0].utc, m[1]];

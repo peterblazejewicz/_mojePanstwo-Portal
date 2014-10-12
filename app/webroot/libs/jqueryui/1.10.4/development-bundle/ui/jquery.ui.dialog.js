@@ -184,7 +184,7 @@
                 // support: IE9
                 // IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
                 try {
-                    activeElement = this.document[ 0 ].activeElement;
+                    activeElement = this.document[0].activeElement;
 
                     // Support: IE9, IE10
                     // If the <body> is blurred, IE will switch windows, see #4520
@@ -288,7 +288,7 @@
         _createWrapper: function () {
             this.uiDialog = $("<div>")
                 .addClass("ui-dialog ui-widget ui-widget-content ui-corner-all ui-front " +
-                    this.options.dialogClass)
+                this.options.dialogClass)
                 .hide()
                 .attr({
                     // Setting tabIndex makes the div focusable
@@ -422,10 +422,10 @@
             $.each(buttons, function (name, props) {
                 var click, buttonOptions;
                 props = $.isFunction(props) ?
-                { click: props, text: name } :
+                {click: props, text: name} :
                     props;
                 // Default to a non-submitting button
-                props = $.extend({ type: "button" }, props);
+                props = $.extend({type: "button"}, props);
                 // Change the context for the click callback to be the main element
                 click = props.click;
                 props.click = function () {
@@ -560,7 +560,7 @@
                     resize = true;
                 }
                 if (key in resizableRelatedOptions) {
-                    resizableOptions[ key ] = value;
+                    resizableOptions[key] = value;
                 }
             });
 
@@ -780,26 +780,26 @@
             _position: function () {
                 var position = this.options.position,
                     myAt = [],
-                    offset = [ 0, 0 ],
+                    offset = [0, 0],
                     isVisible;
 
                 if (position) {
                     if (typeof position === "string" || (typeof position === "object" && "0" in position )) {
-                        myAt = position.split ? position.split(" ") : [ position[0], position[1] ];
+                        myAt = position.split ? position.split(" ") : [position[0], position[1]];
                         if (myAt.length === 1) {
                             myAt[1] = myAt[0];
                         }
 
-                        $.each([ "left", "top" ], function (i, offsetPosition) {
-                            if (+myAt[ i ] === myAt[ i ]) {
-                                offset[ i ] = myAt[ i ];
-                                myAt[ i ] = offsetPosition;
+                        $.each(["left", "top"], function (i, offsetPosition) {
+                            if (+myAt[i] === myAt[i]) {
+                                offset[i] = myAt[i];
+                                myAt[i] = offsetPosition;
                             }
                         });
 
                         position = {
                             my: myAt[0] + (offset[0] < 0 ? offset[0] : "+" + offset[0]) + " " +
-                                myAt[1] + (offset[1] < 0 ? offset[1] : "+" + offset[1]),
+                            myAt[1] + (offset[1] < 0 ? offset[1] : "+" + offset[1]),
                             at: myAt.join(" ")
                         };
                     }

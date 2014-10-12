@@ -1,3 +1,5 @@
+// script.aculo.us unittest.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //           (c) 2005-2010 Jon Tirsen (http://www.tirsen.com)
 //           (c) 2005-2010 Michael Schuerig (http://www.schuerig.de/michael/)
@@ -111,10 +113,10 @@ Test.Unit.Logger.prototype = {
     _createLogTable: function () {
         this.log.innerHTML =
             '<div id="logsummary"></div>' +
-                '<table id="logtable">' +
-                '<thead><tr><th>Status</th><th>Test</th><th>Message</th></tr></thead>' +
-                '<tbody id="loglines"></tbody>' +
-                '</table>';
+            '<table id="logtable">' +
+            '<thead><tr><th>Status</th><th>Test</th><th>Message</th></tr></thead>' +
+            '<tbody id="loglines"></tbody>' +
+            '</table>';
         this.logsummary = $('logsummary');
         this.loglines = $('loglines');
     },
@@ -207,7 +209,7 @@ Test.Unit.Runner.prototype = {
     postResults: function () {
         if (this.options.resultsURL) {
             new Ajax.Request(this.options.resultsURL,
-                { method: 'get', parameters: 'result=' + this.getResult(), asynchronous: false });
+                {method: 'get', parameters: 'result=' + this.getResult(), asynchronous: false});
         }
     },
     runTests: function () {
@@ -243,11 +245,11 @@ Test.Unit.Runner.prototype = {
             errors += this.tests[i].errors;
         }
         return (
-            (this.options.context ? this.options.context + ': ' : '') +
-                this.tests.length + " tests, " +
-                assertions + " assertions, " +
-                failures + " failures, " +
-                errors + " errors");
+        (this.options.context ? this.options.context + ': ' : '') +
+        this.tests.length + " tests, " +
+        assertions + " assertions, " +
+        failures + " failures, " +
+        errors + " errors");
     }
 };
 
@@ -261,10 +263,10 @@ Test.Unit.Assertions.prototype = {
     },
     summary: function () {
         return (
-            this.assertions + " assertions, " +
-                this.failures + " failures, " +
-                this.errors + " errors" + "\n" +
-                this.messages.join("\n"));
+        this.assertions + " assertions, " +
+        this.failures + " failures, " +
+        this.errors + " errors" + "\n" +
+        this.messages.join("\n"));
     },
     pass: function () {
         this.assertions++;
@@ -300,7 +302,7 @@ Test.Unit.Assertions.prototype = {
         try {
             (expected == actual) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + Test.Unit.inspect(actual) + '"');
+                '", actual "' + Test.Unit.inspect(actual) + '"');
         }
         catch (e) {
             this.error(e);
@@ -311,7 +313,7 @@ Test.Unit.Assertions.prototype = {
         try {
             (expected == actual.inspect()) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + Test.Unit.inspect(actual) + '"');
+                '", actual "' + Test.Unit.inspect(actual) + '"');
         }
         catch (e) {
             this.error(e);
@@ -321,11 +323,11 @@ Test.Unit.Assertions.prototype = {
         var message = arguments[2] || "assertEnumEqual";
         try {
             $A(expected).length == $A(actual).length &&
-                expected.zip(actual).all(function (pair) {
-                    return pair[0] == pair[1]
-                }) ?
+            expected.zip(actual).all(function (pair) {
+                return pair[0] == pair[1]
+            }) ?
                 this.pass() : this.fail(message + ': expected ' + Test.Unit.inspect(expected) +
-                ', actual ' + Test.Unit.inspect(actual));
+            ', actual ' + Test.Unit.inspect(actual));
         }
         catch (e) {
             this.error(e);
@@ -346,7 +348,7 @@ Test.Unit.Assertions.prototype = {
         try {
             (expected === actual) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + Test.Unit.inspect(actual) + '"');
+                '", actual "' + Test.Unit.inspect(actual) + '"');
         }
         catch (e) {
             this.error(e);
@@ -357,7 +359,7 @@ Test.Unit.Assertions.prototype = {
         try {
             !(expected === actual) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + Test.Unit.inspect(actual) + '"');
+                '", actual "' + Test.Unit.inspect(actual) + '"');
         }
         catch (e) {
             this.error(e);
@@ -397,7 +399,7 @@ Test.Unit.Assertions.prototype = {
         try {
             (actual.constructor == expected) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + (actual.constructor) + '"');
+                '", actual "' + (actual.constructor) + '"');
         }
         catch (e) {
             this.error(e);
@@ -408,7 +410,7 @@ Test.Unit.Assertions.prototype = {
         try {
             (actual.constructor != expected) ? this.pass() :
                 this.fail(message + ': expected "' + Test.Unit.inspect(expected) +
-                    '", actual "' + (actual.constructor) + '"');
+                '", actual "' + (actual.constructor) + '"');
         }
         catch (e) {
             this.error(e);
@@ -493,6 +495,14 @@ Test.Unit.Assertions.prototype = {
     assertElementMatches: function (element, expression) {
         this.assertElementsMatch([element], expression);
     },
+    benchmark: function (operation, iterations) {
+        var startAt = new Date();
+        (iterations || 1).times(operation);
+        var timeTaken = ((new Date()) - startAt);
+        this.info((arguments[2] || 'Operation') + ' finished ' +
+        iterations + ' iterations in ' + (timeTaken / 1000) + 's');
+        return timeTaken;
+    },
     _isVisible: function (element) {
         element = $(element);
         if (!element.parentNode) return true;
@@ -513,7 +523,7 @@ Test.Unit.Assertions.prototype = {
         (iterations || 1).times(operation);
         var timeTaken = ((new Date()) - startAt);
         this.info((arguments[2] || 'Operation') + ' finished ' +
-            iterations + ' iterations in ' + (timeTaken / 1000) + 's');
+        iterations + ' iterations in ' + (timeTaken / 1000) + 's');
         return timeTaken;
     }
 };
@@ -627,5 +637,5 @@ Test.context = function (name, spec, log) {
                 titles[testName] = specName;
         }
     }
-    new Test.Unit.Runner(compiledSpec, { titles: titles, testLog: log || 'testlog', context: name });
+    new Test.Unit.Runner(compiledSpec, {titles: titles, testLog: log || 'testlog', context: name});
 };

@@ -1,11 +1,11 @@
 import
-"../core/identity";
+    "../core/identity";
 import
-"azimuthal";
+    "azimuthal";
 import
-"geo";
+    "geo";
 import
-"projection";
+    "projection";
 
 var d3_geo_azimuthalEquidistant = d3_geo_azimuthal(
     function (cosλcosφ) {

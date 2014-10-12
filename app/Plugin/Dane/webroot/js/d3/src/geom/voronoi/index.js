@@ -1,5 +1,5 @@
 import
-"../../math/trigonometry";
+    "../../math/trigonometry";
 
 var d3_geom_voronoiEdges,
     d3_geom_voronoiCells,
@@ -10,17 +10,17 @@ var d3_geom_voronoiEdges,
     d3_geom_voronoiCirclePool = [];
 
 import
-"beach";
+    "beach";
 import
-"cell";
+    "cell";
 import
-"circle";
+    "circle";
 import
-"clip";
+    "clip";
 import
-"edge";
+    "edge";
 import
-"red-black";
+    "red-black";
 
 function d3_geom_voronoi(sites, bbox) {
     var site = sites.sort(d3_geom_voronoiVertexOrder).pop(),

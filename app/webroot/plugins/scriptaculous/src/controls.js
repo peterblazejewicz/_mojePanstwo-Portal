@@ -1,3 +1,5 @@
+// script.aculo.us controls.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //           (c) 2005-2010 Ivan Krstic (http://blogs.law.harvard.edu/ivan)
 //           (c) 2005-2010 Jon Tirsen (http://www.tirsen.com)
@@ -37,7 +39,7 @@
 if (typeof Effect == 'undefined')
     throw("controls.js requires including script.aculo.us' effects.js library");
 
-var Autocompleter = { };
+var Autocompleter = {};
 Autocompleter.Base = Class.create({
     baseInitialize: function (element, update, options) {
         element = $(element);
@@ -53,27 +55,27 @@ Autocompleter.Base = Class.create({
         if (this.setOptions)
             this.setOptions(options);
         else
-            this.options = options || { };
+            this.options = options || {};
 
         this.options.paramName = this.options.paramName || this.element.name;
         this.options.tokens = this.options.tokens || [];
         this.options.frequency = this.options.frequency || 0.4;
         this.options.minChars = this.options.minChars || 1;
         this.options.onShow = this.options.onShow ||
-            function (element, update) {
-                if (!update.style.position || update.style.position == 'absolute') {
-                    update.style.position = 'absolute';
-                    Position.clone(element, update, {
-                        setHeight: false,
-                        offsetTop: element.offsetHeight
-                    });
-                }
-                Effect.Appear(update, {duration: 0.15});
-            };
+        function (element, update) {
+            if (!update.style.position || update.style.position == 'absolute') {
+                update.style.position = 'absolute';
+                Position.clone(element, update, {
+                    setHeight: false,
+                    offsetTop: element.offsetHeight
+                });
+            }
+            Effect.Appear(update, {duration: 0.15});
+        };
         this.options.onHide = this.options.onHide ||
-            function (element, update) {
-                new Effect.Fade(update, {duration: 0.15})
-            };
+        function (element, update) {
+            new Effect.Fade(update, {duration: 0.15})
+        };
 
         if (typeof(this.options.tokens) == 'string')
             this.options.tokens = new Array(this.options.tokens);
@@ -98,8 +100,8 @@ Autocompleter.Base = Class.create({
             (Element.getStyle(this.update, 'position') == 'absolute')) {
             new Insertion.After(this.update,
                 '<iframe id="' + this.update.id + '_iefix" ' +
-                    'style="display:none;position:absolute;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);" ' +
-                    'src="javascript:false;" frameborder="0" scrolling="no"></iframe>');
+                'style="display:none;position:absolute;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);" ' +
+                'src="javascript:false;" frameborder="0" scrolling="no"></iframe>');
             this.iefix = $(this.update.id + '_iefix');
         }
         if (this.iefix) setTimeout(this.fixIEOverlapping.bind(this), 50);
@@ -428,7 +430,7 @@ Autocompleter.Local = Class.create(Autocompleter.Base, {
                 var count = 0;
 
                 for (var i = 0; i < instance.options.array.length &&
-                    ret.length < instance.options.choices; i++) {
+                ret.length < instance.options.choices; i++) {
 
                     var elem = instance.options.array[i];
                     var foundPos = instance.options.ignoreCase ?
@@ -438,13 +440,13 @@ Autocompleter.Local = Class.create(Autocompleter.Base, {
                     while (foundPos != -1) {
                         if (foundPos == 0 && elem.length != entry.length) {
                             ret.push("<li><strong>" + elem.substr(0, entry.length) + "</strong>" +
-                                elem.substr(entry.length) + "</li>");
+                            elem.substr(entry.length) + "</li>");
                             break;
                         } else if (entry.length >= instance.options.partialChars &&
                             instance.options.partialSearch && foundPos != -1) {
                             if (instance.options.fullSearch || /\s/.test(elem.substr(foundPos - 1, 1))) {
                                 partial.push("<li>" + elem.substr(0, foundPos) + "<strong>" +
-                                    elem.substr(foundPos, entry.length) + "</strong>" + elem.substr(
+                                elem.substr(foundPos, entry.length) + "</strong>" + elem.substr(
                                     foundPos + entry.length) + "</li>");
                                 break;
                             }
@@ -460,7 +462,7 @@ Autocompleter.Local = Class.create(Autocompleter.Base, {
                     ret = ret.concat(partial.slice(0, instance.options.choices - ret.length));
                 return "<ul>" + ret.join('') + "</ul>";
             }
-        }, options || { });
+        }, options || {});
     }
 });
 
@@ -481,9 +483,9 @@ Ajax.InPlaceEditor = Class.create({
         this.url = url;
         this.element = element = $(element);
         this.prepareOptions();
-        this._controls = { };
+        this._controls = {};
         arguments.callee.dealWithDeprecatedOptions(options); // DEPRECATION LAYER!!!
-        Object.extend(this.options, options || { });
+        Object.extend(this.options, options || {});
         if (!this.options.formId && this.element.id) {
             this.options.formId = this.element.id + '-inplaceeditor';
             if ($(this.options.formId))
@@ -627,15 +629,15 @@ Ajax.InPlaceEditor = Class.create({
             params = params.toQueryParams();
         params.editorId = this.element.id;
         if (this.options.htmlResponse) {
-            var options = Object.extend({ evalScripts: true }, this.options.ajaxOptions);
+            var options = Object.extend({evalScripts: true}, this.options.ajaxOptions);
             Object.extend(options, {
                 parameters: params,
                 onComplete: this._boundWrapperHandler,
                 onFailure: this._boundFailureHandler
             });
-            new Ajax.Updater({ success: this.element }, this.url, options);
+            new Ajax.Updater({success: this.element}, this.url, options);
         } else {
-            var options = Object.extend({ method: 'get' }, this.options.ajaxOptions);
+            var options = Object.extend({method: 'get'}, this.options.ajaxOptions);
             Object.extend(options, {
                 parameters: params,
                 onComplete: this._boundWrapperHandler,
@@ -667,7 +669,7 @@ Ajax.InPlaceEditor = Class.create({
     loadExternalText: function () {
         this._form.addClassName(this.options.loadingClassName);
         this._controls.editor.disabled = true;
-        var options = Object.extend({ method: 'get' }, this.options.ajaxOptions);
+        var options = Object.extend({method: 'get'}, this.options.ajaxOptions);
         Object.extend(options, {
             parameters: 'editorId=' + encodeURIComponent(this.element.id),
             onComplete: Prototype.emptyFunction,
@@ -703,7 +705,7 @@ Ajax.InPlaceEditor = Class.create({
         this.showSaving();
     },
     registerListeners: function () {
-        this._listeners = { };
+        this._listeners = {};
         var listener;
         $H(Ajax.InPlaceEditor.Listeners).each(function (pair) {
             listener = this[pair.value].bind(this);
@@ -718,7 +720,7 @@ Ajax.InPlaceEditor = Class.create({
         if (!this._form) return;
         this._form.remove();
         this._form = null;
-        this._controls = { };
+        this._controls = {};
     },
     showSaving: function () {
         this._oldInnerHTML = this.element.innerHTML;
@@ -774,7 +776,7 @@ Ajax.InPlaceCollectionEditor = Class.create(Ajax.InPlaceEditor, {
     loadCollection: function () {
         this._form.addClassName(this.options.loadingClassName);
         this.showLoadingText(this.options.loadingCollectionText);
-        var options = Object.extend({ method: 'get' }, this.options.ajaxOptions);
+        var options = Object.extend({method: 'get'}, this.options.ajaxOptions);
         Object.extend(options, {
             parameters: 'editorId=' + encodeURIComponent(this.element.id),
             onComplete: Prototype.emptyFunction,
@@ -812,7 +814,7 @@ Ajax.InPlaceCollectionEditor = Class.create(Ajax.InPlaceEditor, {
 
     loadExternalText: function () {
         this.showLoadingText(this.options.loadingText);
-        var options = Object.extend({ method: 'get' }, this.options.ajaxOptions);
+        var options = Object.extend({method: 'get'}, this.options.ajaxOptions);
         Object.extend(options, {
             parameters: 'editorId=' + encodeURIComponent(this.element.id),
             onComplete: Prototype.emptyFunction,
@@ -869,7 +871,7 @@ Ajax.InPlaceEditor.prototype.initialize.dealWithDeprecatedOptions = function (op
 
 Object.extend(Ajax.InPlaceEditor, {
     DefaultOptions: {
-        ajaxOptions: { },
+        ajaxOptions: {},
         autoRows: 3,                                // Use when multi-line w/ rows == 1
         cancelControl: 'link',                      // 'link'|'button'|false
         cancelText: 'cancel',
@@ -906,7 +908,8 @@ Object.extend(Ajax.InPlaceEditor, {
             // For backward compatibility, this one is bound to the IPE, and passes
             // the element directly.  It was too often customized, so we don't break it.
             new Effect.Highlight(element, {
-                startcolor: this.options.highlightColor, keepBackgroundImage: true });
+                startcolor: this.options.highlightColor, keepBackgroundImage: true
+            });
         },
         onEnterEditMode: null,
         onEnterHover: function (ipe) {

@@ -1,17 +1,17 @@
 import
-"../core/document";
+    "../core/document";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../event/drag";
+    "../event/drag";
 import
-"../event/event";
+    "../event/event";
 import
-"../event/mouse";
+    "../event/mouse";
 import
-"../event/touches";
+    "../event/touches";
 import
-"behavior";
+    "behavior";
 
 d3.behavior.drag = function () {
     var event = d3_eventDispatch(drag, "drag", "dragstart", "dragend"),

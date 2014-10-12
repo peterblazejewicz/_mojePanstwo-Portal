@@ -5,16 +5,18 @@
     <title>Highstock Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
             $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
 
                 // Create the chart
                 $('#container').highcharts('StockChart', {
-                    chart: {
-                    },
 
                     rangeSelector: {
+                        inputEnabled: $('#container').width() > 480,
                         selected: 1
                     },
 
@@ -28,47 +30,37 @@
                         }
                     },
 
-                    series: [
-                        {
-                            name: 'USD to EUR',
-                            data: data,
-                            id: 'dataseries',
-                            tooltip: {
-                                valueDecimals: 4
-                            }
-                        },
-                        {
-                            type: 'flags',
-                            name: 'Flags on series',
-                            data: [
-                                {
-                                    x: Date.UTC(2011, 1, 14),
-                                    title: 'On series'
-                                },
-                                {
-                                    x: Date.UTC(2011, 3, 28),
-                                    title: 'On series'
-                                }
-                            ],
-                            onSeries: 'dataseries',
-                            shape: 'squarepin'
-                        },
-                        {
-                            type: 'flags',
-                            name: 'Flags on axis',
-                            data: [
-                                {
-                                    x: Date.UTC(2011, 2, 1),
-                                    title: 'On axis'
-                                },
-                                {
-                                    x: Date.UTC(2011, 3, 1),
-                                    title: 'On axis'
-                                }
-                            ],
-                            shape: 'squarepin'
+                    series: [{
+                        name: 'USD to EUR',
+                        data: data,
+                        id: 'dataseries',
+                        tooltip: {
+                            valueDecimals: 4
                         }
-                    ]
+                    }, {
+                        type: 'flags',
+                        name: 'Flags on series',
+                        data: [{
+                            x: Date.UTC(2011, 1, 22),
+                            title: 'On series'
+                        }, {
+                            x: Date.UTC(2011, 3, 28),
+                            title: 'On series'
+                        }],
+                        onSeries: 'dataseries',
+                        shape: 'squarepin'
+                    }, {
+                        type: 'flags',
+                        name: 'Flags on axis',
+                        data: [{
+                            x: Date.UTC(2011, 2, 1),
+                            title: 'On axis'
+                        }, {
+                            x: Date.UTC(2011, 3, 1),
+                            title: 'On axis'
+                        }],
+                        shape: 'squarepin'
+                    }]
                 });
             });
         });
@@ -78,6 +70,7 @@
 <script src="../../js/highstock.js"></script>
 <script src="../../js/modules/exporting.js"></script>
 
-<div id="container" style="height: 500px; min-width: 500px"></div>
+
+<div id="container" style="height: 400px; min-width: 310px"></div>
 </body>
 </html>

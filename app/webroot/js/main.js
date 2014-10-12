@@ -24,7 +24,7 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
 
         actual: function (method, options) {
             // check if the jQuery method exist
-            if (!this[ method ]) {
+            if (!this[method]) {
                 throw '$.actual => The jQuery method "' + method + '" you called does not exist';
             }
 
@@ -81,7 +81,7 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
                     // restore origin style values
                     $hidden.each(function (i) {
                         var $this = $(this);
-                        var _tmp = tmp[ i ];
+                        var _tmp = tmp[i];
 
                         if (_tmp === undefined) {
                             $this.removeAttr('style');
@@ -97,8 +97,8 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
             // it can be 'width', 'height', 'outerWidth', 'innerWidth'... etc
             // configs.includeMargin only works for 'outerWidth' and 'outerHeight'
             var actual = /(outer)/.test(method) ?
-                $target[ method ](configs.includeMargin) :
-                $target[ method ]();
+                $target[method](configs.includeMargin) :
+                $target[method]();
 
             restore();
             // IMPORTANT, this plugin only return the value of the first element
@@ -191,14 +191,14 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
         var cookieAvailable = $.cookie('_mPViewportCookieAvailable');
 
         if (Number(_mPViewportReload) < 5 && cookieAvailable == 'true') {
-            $.cookie('_mPViewport', checkSizeMarker, { expires: 365, path: '/' });
-            $.cookie('_mPViewportReload', _mPViewportReload, { expires: 1, path: '/' });
+            $.cookie('_mPViewport', checkSizeMarker, {expires: 365, path: '/'});
+            $.cookie('_mPViewportReload', _mPViewportReload, {expires: 1, path: '/'});
 
             $('body').append(rescaleOverlay).append(rescaleWindow);
             if (cookieAvailable == 'true')
                 location.reload();
         } else {
-            $.cookie('_mPViewport', 'lg', { expires: 365, path: '/' });
+            $.cookie('_mPViewport', 'lg', {expires: 365, path: '/'});
             $.removeCookie('_mPViewportReload');
             $.removeCookie('_mPViewportCookieAvailable');
         }

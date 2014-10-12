@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v1.3.10 (2014-03-10)
+ * @license Highstock JS v2.0.4 (2014-09-02)
  * Plugin for displaying a message when there is no data visible in chart.
  *
  * (c) 2010-2014 Highsoft AS
@@ -8,7 +8,7 @@
  * License: www.highcharts.com/license
  */
 
-(function (H) { // docs
+(function (H) {
 
     var seriesTypes = H.seriesTypes,
         chartPrototype = H.Chart.prototype,
@@ -28,8 +28,7 @@
             align: 'center',
             verticalAlign: 'middle'
         },
-        attr: {
-        },
+        attr: {},
         style: {
             fontWeight: 'bold',
             fontSize: '12px',

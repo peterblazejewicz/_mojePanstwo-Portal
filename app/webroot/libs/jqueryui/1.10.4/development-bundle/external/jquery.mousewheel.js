@@ -26,7 +26,7 @@
 
     if ($.event.fixHooks) {
         for (var i = toFix.length; i;) {
-            $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
+            $.event.fixHooks[toFix[--i]] = $.event.mouseHooks;
         }
     }
 

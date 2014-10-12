@@ -1,5 +1,5 @@
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.text = function (value) {
     return arguments.length

@@ -26,7 +26,7 @@
                 d.visualEffect(
                         ['fade', 'appear', 'blind_up', 'blind_down', 'puff', 'switch_off', 'drop_out', 'shake',
                             'slide_up', 'slide_down', 'pulsate', 'squish', 'fold', 'grow', 'shrink'][Math.round(Math.random() * 14)],
-                        { duration: 0.5 + Math.random() * 5, delay: Math.random() * 3 });
+                        {duration: 0.5 + Math.random() * 5, delay: Math.random() * 3});
             });
             $('info').update(
                     Effect.Queues.get('global').collect(function (e) {

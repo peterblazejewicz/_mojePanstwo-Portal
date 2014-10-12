@@ -1,9 +1,9 @@
 import
-"albers";
+    "albers";
 import
-"conic-equal-area";
+    "conic-equal-area";
 import
-"geo";
+    "geo";
 
 // A composite projection for the United States, configured by default for
 // 960×500. Also works quite well at 960×600 with scale 1285. The set of
@@ -25,9 +25,11 @@ d3.geo.albersUsa = function () {
         .parallels([8, 18]);
 
     var point,
-        pointStream = {point: function (x, y) {
-            point = [x, y];
-        }},
+        pointStream = {
+            point: function (x, y) {
+                point = [x, y];
+            }
+        },
         lower48Point,
         alaskaPoint,
         hawaiiPoint;
@@ -36,7 +38,7 @@ d3.geo.albersUsa = function () {
         var x = coordinates[0], y = coordinates[1];
         point = null;
         (lower48Point(x, y), point)
-            || (alaskaPoint(x, y), point)
+        || (alaskaPoint(x, y), point)
         || hawaiiPoint(x, y);
         return point;
     }

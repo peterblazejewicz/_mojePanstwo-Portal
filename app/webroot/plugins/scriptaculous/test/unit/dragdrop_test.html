@@ -67,7 +67,7 @@
             with (this) {
                 var d = new Draggable('p_test2');
                 assert(d.options.starteffect, 'There should be a default start effect.');
-                d = new Draggable('p_test3', { endeffect: Prototype.EmptyFunction });
+                d = new Draggable('p_test3', {endeffect: Prototype.EmptyFunction});
                 assert(undefined === d.options.startEffect, 'There should be no default start effect.');
             }
         },
@@ -111,7 +111,8 @@
             with (this) {
                 // Droppable containers should be cached
                 Droppables.add('droppable_test', {
-                    containment: 'droppable_container' });
+                    containment: 'droppable_container'
+                });
                 assertEqual(1, Droppables.drops[0]._containers.length);
                 assertEqual($('droppable_container'), Droppables.drops[0]._containers[0]);
                 assert(Droppables.isContained($('d1'), Droppables.drops[0]));
@@ -120,7 +121,8 @@
                 Droppables.remove('droppable_test');
 
                 Droppables.add('droppable_test', {
-                    containment: ['droppable_container', 'droppable_container_2'] });
+                    containment: ['droppable_container', 'droppable_container_2']
+                });
                 assertEqual(2, Droppables.drops[0]._containers.length);
                 assertEqual($('droppable_container'), Droppables.drops[0]._containers[0]);
                 assertEqual($('droppable_container_2'), Droppables.drops[0]._containers[1]);

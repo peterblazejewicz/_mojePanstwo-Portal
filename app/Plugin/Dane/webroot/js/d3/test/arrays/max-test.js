@@ -20,9 +20,11 @@ suite.addBatch({
             assert.equal(max(["3", "20"]), "3");
         },
         "ignores null, undefined and NaN": function (max) {
-            var o = {valueOf: function () {
-                return NaN;
-            }};
+            var o = {
+                valueOf: function () {
+                    return NaN;
+                }
+            };
             assert.equal(max([NaN, 1, 2, 3, 4, 5]), 5);
             assert.equal(max([o, 1, 2, 3, 4, 5]), 5);
             assert.equal(max([1, 2, 3, 4, 5, NaN]), 5);

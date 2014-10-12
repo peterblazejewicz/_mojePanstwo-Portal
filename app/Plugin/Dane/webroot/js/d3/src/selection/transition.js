@@ -1,6 +1,6 @@
 // import "../transition/transition";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.transition = function () {
     var id = d3_transitionInheritId || ++d3_transitionId,

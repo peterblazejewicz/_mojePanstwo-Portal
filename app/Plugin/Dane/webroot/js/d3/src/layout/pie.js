@@ -1,11 +1,11 @@
 import
-"../arrays/range";
+    "../arrays/range";
 import
-"../arrays/sum";
+    "../arrays/sum";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"layout";
+    "layout";
 
 d3.layout.pie = function () {
     var value = Number,
@@ -27,8 +27,8 @@ d3.layout.pie = function () {
 
         // Compute the angular scale factor: from value to radians.
         var k = ((typeof endAngle === "function"
-            ? endAngle.apply(this, arguments)
-            : endAngle) - a)
+                ? endAngle.apply(this, arguments)
+                : endAngle) - a)
             / d3.sum(values);
 
         // Optionally sort the data.

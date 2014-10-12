@@ -1,7 +1,7 @@
 import
-"../selection/each";
+    "../selection/each";
 import
-"transition";
+    "transition";
 
 d3_transitionPrototype.each = function (type, listener) {
     var id = this.id;

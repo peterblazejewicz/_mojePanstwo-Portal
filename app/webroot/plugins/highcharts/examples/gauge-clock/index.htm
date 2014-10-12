@@ -5,6 +5,9 @@
     <title>Highcharts Example</title>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <style type="text/css">
+        ${demo.css}
+    </style>
     <script type="text/javascript">
         $(function () {
 
@@ -19,13 +22,13 @@
                     minutes: now.getMinutes() * 12 / 60 + now.getSeconds() * 12 / 3600,
                     seconds: now.getSeconds() * 12 / 60
                 };
-            };
+            }
 
             /**
              * Pad numbers
              */
             function pad(number, length) {
-                // Create an array of the remaining length +1 and join it with 0's
+                // Create an array of the remaining length + 1 and join it with 0's
                 return new Array((length || 2) + 1 - String(number).length).join(0) + number;
             }
 
@@ -52,25 +55,22 @@
                         },
 
                         pane: {
-                            background: [
-                                {
-                                    // default background
-                                },
-                                {
-                                    // reflex for supported browsers
-                                    backgroundColor: Highcharts.svg ? {
-                                        radialGradient: {
-                                            cx: 0.5,
-                                            cy: -0.4,
-                                            r: 1.9
-                                        },
-                                        stops: [
-                                            [0.5, 'rgba(255, 255, 255, 0.2)'],
-                                            [0.5, 'rgba(200, 200, 200, 0.2)']
-                                        ]
-                                    } : null
-                                }
-                            ]
+                            background: [{
+                                // default background
+                            }, {
+                                // reflex for supported browsers
+                                backgroundColor: Highcharts.svg ? {
+                                    radialGradient: {
+                                        cx: 0.5,
+                                        cy: -0.4,
+                                        r: 1.9
+                                    },
+                                    stops: [
+                                        [0.5, 'rgba(255, 255, 255, 0.2)'],
+                                        [0.5, 'rgba(200, 200, 200, 0.2)']
+                                    ]
+                                } : null
+                            }]
                         },
 
                         yAxis: {
@@ -112,54 +112,50 @@
                             }
                         },
 
-                        series: [
-                            {
-                                data: [
-                                    {
-                                        id: 'hour',
-                                        y: now.hours,
-                                        dial: {
-                                            radius: '60%',
-                                            baseWidth: 4,
-                                            baseLength: '95%',
-                                            rearLength: 0
-                                        }
-                                    },
-                                    {
-                                        id: 'minute',
-                                        y: now.minutes,
-                                        dial: {
-                                            baseLength: '95%',
-                                            rearLength: 0
-                                        }
-                                    },
-                                    {
-                                        id: 'second',
-                                        y: now.seconds,
-                                        dial: {
-                                            radius: '100%',
-                                            baseWidth: 1,
-                                            rearLength: '20%'
-                                        }
-                                    }
-                                ],
-                                animation: false,
-                                dataLabels: {
-                                    enabled: false
+                        series: [{
+                            data: [{
+                                id: 'hour',
+                                y: now.hours,
+                                dial: {
+                                    radius: '60%',
+                                    baseWidth: 4,
+                                    baseLength: '95%',
+                                    rearLength: 0
                                 }
+                            }, {
+                                id: 'minute',
+                                y: now.minutes,
+                                dial: {
+                                    baseLength: '95%',
+                                    rearLength: 0
+                                }
+                            }, {
+                                id: 'second',
+                                y: now.seconds,
+                                dial: {
+                                    radius: '100%',
+                                    baseWidth: 1,
+                                    rearLength: '20%'
+                                }
+                            }],
+                            animation: false,
+                            dataLabels: {
+                                enabled: false
                             }
-                        ]
+                        }]
                     },
 
                     // Move
                     function (chart) {
                         setInterval(function () {
+
+                            now = getNow();
+
                             var hour = chart.get('hour'),
                                     minute = chart.get('minute'),
                                     second = chart.get('second'),
-                                    now = getNow(),
                             // run animation unless we're wrapping around from 59 to 0
-                                    animation = now.seconds == 0 ?
+                                    animation = now.seconds === 0 ?
                                             false :
                                     {
                                         easing: 'easeOutElastic'
@@ -168,8 +164,8 @@
                             // Cache the tooltip text
                             chart.tooltipText =
                                     pad(Math.floor(now.hours), 2) + ':' +
-                                            pad(Math.floor(now.minutes * 5), 2) + ':' +
-                                            pad(now.seconds * 5, 2);
+                                    pad(Math.floor(now.minutes * 5), 2) + ':' +
+                                    pad(now.seconds * 5, 2);
 
                             hour.update(now.hours, true, animation);
                             minute.update(now.minutes, true, animation);

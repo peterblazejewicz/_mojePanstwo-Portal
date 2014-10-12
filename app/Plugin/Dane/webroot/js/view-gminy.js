@@ -30,7 +30,7 @@ function initialize() {
         content: contentString
     });
 
-    geocoder.geocode({ 'address': googleMapAdres}, function (results, status) {
+    geocoder.geocode({'address': googleMapAdres}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             var marker = new google.maps.Marker({
                 map: map,
@@ -63,12 +63,12 @@ function loadScript() {
 }
 
 $(document).ready(function () {
-    
+
     $('.objectTagsCloud').cloud({
-	    hwratio: .3,
-	    fog: .4
-	});  
-    
+        hwratio: .3,
+        fog: .4
+    });
+
     var banner = $('.profile_baner'),
         menu = $('.objectsPageContent .objectMenu'),
         menuAutoScroll = true,
@@ -136,7 +136,11 @@ $(function () {
     for (var i = 0; i < wyniki_wyborow.length; i++) {
 
         var d = wyniki_wyborow[i];
-        data.push({name: d['nazwa'], y: Number(wyniki_wyborow[i][0]['count']), url: 'radni/?komitet_id[]=' + wyniki_wyborow[i]['pl_gminy_radni']['komitet_id'] + '&q=&search=web'});
+        data.push({
+            name: d['nazwa'],
+            y: Number(wyniki_wyborow[i][0]['count']),
+            url: 'radni/?komitet_id[]=' + wyniki_wyborow[i]['pl_gminy_radni']['komitet_id'] + '&q=&search=web'
+        });
 
     }
 

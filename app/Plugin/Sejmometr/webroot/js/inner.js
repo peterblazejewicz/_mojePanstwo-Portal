@@ -28,7 +28,7 @@ jQuery(function ($) {
             var elem = $(selector),
                 top = elem.css('top') || elem.position().top,
                 left = elem.css('left') || elem.position().left;
-            positions[selector] = { position: 'absolute', top: top, left: left };
+            positions[selector] = {position: 'absolute', top: top, left: left};
         });
     }
 
@@ -46,11 +46,11 @@ jQuery(function ($) {
         sum = 0;
         center = $(window).width() / 2 | 0;
         transformOrigin = center + 'px ' + center * 6 + 'px';
-        $('.sun, .moon').css({ position: 'fixed' }); // TODO: wyrzuciÄ‡ do cssa
-        $('.hero-1').css({ top: 305 }); // TODO: wyrzuciÄ‡ do cssa
-        $('.hero-2').css({ top: $('.hero-2').position().top }); // TODO: wyrzuciÄ‡ do cssa
-        $('.hero-3').css({ top: $('.hero-3').position().top }); // TODO: wyrzuciÄ‡ do cssa
-        $('#container').css({ left: center * 2 });
+        $('.sun, .moon').css({position: 'fixed'}); // TODO: wyrzuciÄ‡ do cssa
+        $('.hero-1').css({top: 305}); // TODO: wyrzuciÄ‡ do cssa
+        $('.hero-2').css({top: $('.hero-2').position().top}); // TODO: wyrzuciÄ‡ do cssa
+        $('.hero-3').css({top: $('.hero-3').position().top}); // TODO: wyrzuciÄ‡ do cssa
+        $('#container').css({left: center * 2});
 
         var maxHeight = 0;
         $('.tooltip').toggleClass('small', $(window).height() < 600);
@@ -61,11 +61,11 @@ jQuery(function ($) {
             }
         });
         if ($(window).height() >= 2 * maxHeight) {
-            $('#story').css({ top: top });
-            $('.tooltip').css({ bottom: '50%' });
+            $('#story').css({top: top});
+            $('.tooltip').css({bottom: '50%'});
         } else {
-            $('#story').css({ top: maxHeight - 325 });
-            $('.tooltip').css({ bottom: $(window).height() - maxHeight });
+            $('#story').css({top: maxHeight - 325});
+            $('.tooltip').css({bottom: $(window).height() - maxHeight});
         }
         $('#story').height(Math.min($(window).height() - $('#story').position().top, 600)); // preventing from appearing vertical scrollbar
         $('.grass').css('top', $('#story').position().top + 350);
@@ -94,8 +94,8 @@ jQuery(function ($) {
         }
 
         function pin(start, length) {
-            controller.pin('#container', length, { offset: start - center, bonus: sum });
-            controller.pin('.cover.intro', length, { offset: start + center, bonus: sum });
+            controller.pin('#container', length, {offset: start - center, bonus: sum});
+            controller.pin('.cover.intro', length, {offset: start + center, bonus: sum});
             sum += length;
             pins.push([start, length]);
         }
@@ -103,12 +103,12 @@ jQuery(function ($) {
         $('.bus.morning').css('left', 880 - 10);
         $('.train').css('left', 3907);
         $('.bus.evening').css('left', 11850 + 50);
-        controller.pin('.bus.morning', 1100 + 10, { offset: -center + $('.bus.morning').width() / 2 | 0, bonus: 0 });
-        controller.pin('.train', 1061, { offset: -center + $('.train').width() / 2 | 0, bonus: 0 });
-        controller.pin('.hero-1', 13900 + 69 - 394 + 90, { offset: -center, bonus: -23 });
-        controller.pin('.hero-2', 13900 + 69 - 5678, { offset: -center - 80, bonus: -22 });
-        controller.pin('.hero-3', 13900 + 69 - 6580, { offset: -center + 70 - 70, bonus: -21 });
-        controller.pin('.bus.evening', 1380 - 90, { offset: -center + $('.bus.evening').width() / 2 | 0, bonus: 0 });
+        controller.pin('.bus.morning', 1100 + 10, {offset: -center + $('.bus.morning').width() / 2 | 0, bonus: 0});
+        controller.pin('.train', 1061, {offset: -center + $('.train').width() / 2 | 0, bonus: 0});
+        controller.pin('.hero-1', 13900 + 69 - 394 + 90, {offset: -center, bonus: -23});
+        controller.pin('.hero-2', 13900 + 69 - 5678, {offset: -center - 80, bonus: -22});
+        controller.pin('.hero-3', 13900 + 69 - 6580, {offset: -center + 70 - 70, bonus: -21});
+        controller.pin('.bus.evening', 1380 - 90, {offset: -center + $('.bus.evening').width() / 2 | 0, bonus: 0});
         $('.bus.morning').css('left', 1800);
         $('.train').css('left', 4870);
         $('.cyclist').css('left', 5600);
@@ -125,65 +125,168 @@ jQuery(function ($) {
         pin(13400 - 60, 500); // autobus nocny przystanek drugi
         pin(13900 + 69, 500); // Å›wiatÅ‚o w oknie
 
-        controller.addTween(400, TweenMax.fromTo($('.hero-1'), 0.1, { x: 0, y: 0, scale: 0.4, opacity: 0 }, { x: 0, y: 0, scale: 0.4, opacity: 1, ease: 'linear' }), 200);
-        controller.addTween(pos(0), TweenMax.to($('.hero-1'), 0.1, { scale: 1, y: 4, ease: 'linear' }), 300);
-        controller.addTween(pos(300), TweenMax.to($('.hero-1'), 0.1, { scale: 1, y: 4, ease: 'linear' }), 300);
-        controller.addTween(pos(650 - 24), TweenMax.to($('.hero-1'), 0.1, { scale: 0.4, y: 0, ease: 'linear' }), 180);
-        controller.addTween(pos(250), TweenMax.fromTo($('.bus.morning'), 0.1, { left: 1800 }, { left: 880 - 10 }), 1750);
-        controller.addTween(pos(801) + 1100, TweenMax.to($('.hero-1'), 0.1, { x: 79 }), 200);
-        controller.addTween(pos(801) + 1300, TweenMax.to($('.hero-1'), 0.1, { opacity: 0 }), 100);
+        controller.addTween(400, TweenMax.fromTo($('.hero-1'), 0.1, {x: 0, y: 0, scale: 0.4, opacity: 0}, {
+            x: 0,
+            y: 0,
+            scale: 0.4,
+            opacity: 1,
+            ease: 'linear'
+        }), 200);
+        controller.addTween(pos(0), TweenMax.to($('.hero-1'), 0.1, {scale: 1, y: 4, ease: 'linear'}), 300);
+        controller.addTween(pos(300), TweenMax.to($('.hero-1'), 0.1, {scale: 1, y: 4, ease: 'linear'}), 300);
+        controller.addTween(pos(650 - 24), TweenMax.to($('.hero-1'), 0.1, {scale: 0.4, y: 0, ease: 'linear'}), 180);
+        controller.addTween(pos(250), TweenMax.fromTo($('.bus.morning'), 0.1, {left: 1800}, {left: 880 - 10}), 1750);
+        controller.addTween(pos(801) + 1100, TweenMax.to($('.hero-1'), 0.1, {x: 79}), 200);
+        controller.addTween(pos(801) + 1300, TweenMax.to($('.hero-1'), 0.1, {opacity: 0}), 100);
 
-        controller.addTween(pos(801 + 1), TweenMax.fromTo($('.car-1'), 0.1, { left: 2100 }, { left: 800, ease: 'linear' }), 2000);
+        controller.addTween(pos(801 + 1), TweenMax.fromTo($('.car-1'), 0.1, {left: 2100}, {
+            left: 800,
+            ease: 'linear'
+        }), 2000);
 
-        controller.addTween(pos(2200) + 200, TweenMax.fromTo($('.hero-1'), 0.1, { x: -35 }, { x: -34, opacity: 1 }), 200);
-        controller.addTween(pos(2200 + 1), TweenMax.to($('.hero-1'), 0.1, { scale: 1, x: 0, y: 50, ease: 'linear' }), 100);
-        controller.addTween(pos(3400), TweenMax.to($('.hero-1'), 0.1, { scale: 0.25, y: 150, ease: 'linear' }), 290);
-        controller.addTween(pos(3400), TweenMax.fromTo($('.work'), 0.1, { className: '+=front' }, { className: '-=front' }));
-        controller.addTween(pos(3677), TweenMax.fromTo($('.watch'), 0.2, { opacity: 0, ease: 'linear' }, { opacity: 1 }));
-        controller.addTween(pos(3677), TweenMax.fromTo($('.watch .hours'), 0.1, { rotation: -90 + 30 * 8, ease: 'linear' }, { rotation: -90 + 30 * 16 }), 2000);
-        controller.addTween(pos(3677), TweenMax.fromTo($('.watch .minutes'), 0.1, { rotation: -90, ease: 'linear' }, { rotation: -90 + 360 * 8 }), 1500);
-        controller.addTween(pos(3677) + 1000, TweenMax.fromTo($('.work'), 0.1, { className: '-=front' }, { className: '+=front' }));
-        controller.addTween(pos(3677), TweenMax.fromTo($('.hero-1'), 0.2, { opacity: 1, ease: 'linear' }, { opacity: 0 }));
-        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.watch'), 0.2, { opacity: 1, ease: 'linear' }, { opacity: 0 }));
-        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.hero-1'), 0.1, { opacity: 0, ease: 'linear' }, { opacity: 1 }), 1);
-        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.hero-1'), 0.1, { scale: 0.45, y: 70, ease: 'linear' }, { scale: 0.4, y: 0 }), 130);
-        controller.addTween(pos(3917), TweenMax.fromTo($('.watch .minutes'), 0.1, { rotation: -90, ease: 'linear' }, { rotation: -85 }), 800);
-        controller.addTween(pos(3917) + 800, TweenMax.to($('.hero-1'), 0.1, { opacity: 0 }), 200);
-        controller.addTween(pos(3917), TweenMax.fromTo($('.train'), 0.1, { left: 4870 }, { left: 3907 }), 800);
-        controller.addTween(pos(3917 + 1), TweenMax.fromTo($('.cyclist'), 0.1, { left: 6800 }, { left: 3270, ease: 'linear' }), 1900);
-        controller.addTween(pos(5261) + 200, TweenMax.fromTo($('.hero-1'), 0.1, { opacity: 0 }, { opacity: 1 }), 200);
-        controller.addTween(pos(5301), TweenMax.to($('.hero-1'), 0.1, { scale: 1, y: 4, ease: 'linear' }), 180);
-        controller.addTween(pos(5600) + 250, TweenMax.fromTo($('.hero-2'), 0.1, { opacity: 0, y: -27, scale: 0.39 }, { opacity: 1, y: -27, scale: 0.4 }), 120);
-        controller.addTween(pos(5600) + 250, TweenMax.fromTo($('.hero-2'), 0.1, { scale: 0.4, y: -27, ease: 'linear' }, { scale: 1, y: 0 }), 300);
-        controller.addTween(pos(6500 - 70) + 250, TweenMax.fromTo($('.hero-3'), 0.1, { opacity: 0, y: -3, scale: 0.39 }, { opacity: 1, y: -3, scale: 0.4 }), 120);
-        controller.addTween(pos(6500 - 70 + 1), TweenMax.fromTo($('.hero-1'), 0.1, { x: 0, easing: 'linear' }, { x: -90 }), 90);
-        controller.addTween(pos(6500 - 70) + 250, TweenMax.fromTo($('.hero-3'), 0.3, { scale: 0.4, y: -3, ease: 'linear' }, { scale: 1, y: 0 }), 300);
-        controller.addTween(pos(0), TweenMax.fromTo($('.elephant-eye'), 0.2, { y: -21 }, { y: -20 }), 1);
+        controller.addTween(pos(2200) + 200, TweenMax.fromTo($('.hero-1'), 0.1, {x: -35}, {x: -34, opacity: 1}), 200);
+        controller.addTween(pos(2200 + 1), TweenMax.to($('.hero-1'), 0.1, {
+            scale: 1,
+            x: 0,
+            y: 50,
+            ease: 'linear'
+        }), 100);
+        controller.addTween(pos(3400), TweenMax.to($('.hero-1'), 0.1, {scale: 0.25, y: 150, ease: 'linear'}), 290);
+        controller.addTween(pos(3400), TweenMax.fromTo($('.work'), 0.1, {className: '+=front'}, {className: '-=front'}));
+        controller.addTween(pos(3677), TweenMax.fromTo($('.watch'), 0.2, {opacity: 0, ease: 'linear'}, {opacity: 1}));
+        controller.addTween(pos(3677), TweenMax.fromTo($('.watch .hours'), 0.1, {
+            rotation: -90 + 30 * 8,
+            ease: 'linear'
+        }, {rotation: -90 + 30 * 16}), 2000);
+        controller.addTween(pos(3677), TweenMax.fromTo($('.watch .minutes'), 0.1, {
+            rotation: -90,
+            ease: 'linear'
+        }, {rotation: -90 + 360 * 8}), 1500);
+        controller.addTween(pos(3677) + 1000, TweenMax.fromTo($('.work'), 0.1, {className: '-=front'}, {className: '+=front'}));
+        controller.addTween(pos(3677), TweenMax.fromTo($('.hero-1'), 0.2, {opacity: 1, ease: 'linear'}, {opacity: 0}));
+        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.watch'), 0.2, {
+            opacity: 1,
+            ease: 'linear'
+        }, {opacity: 0}));
+        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.hero-1'), 0.1, {
+            opacity: 0,
+            ease: 'linear'
+        }, {opacity: 1}), 1);
+        controller.addTween(pos(3677 + 1), TweenMax.fromTo($('.hero-1'), 0.1, {
+            scale: 0.45,
+            y: 70,
+            ease: 'linear'
+        }, {scale: 0.4, y: 0}), 130);
+        controller.addTween(pos(3917), TweenMax.fromTo($('.watch .minutes'), 0.1, {
+            rotation: -90,
+            ease: 'linear'
+        }, {rotation: -85}), 800);
+        controller.addTween(pos(3917) + 800, TweenMax.to($('.hero-1'), 0.1, {opacity: 0}), 200);
+        controller.addTween(pos(3917), TweenMax.fromTo($('.train'), 0.1, {left: 4870}, {left: 3907}), 800);
+        controller.addTween(pos(3917 + 1), TweenMax.fromTo($('.cyclist'), 0.1, {left: 6800}, {
+            left: 3270,
+            ease: 'linear'
+        }), 1900);
+        controller.addTween(pos(5261) + 200, TweenMax.fromTo($('.hero-1'), 0.1, {opacity: 0}, {opacity: 1}), 200);
+        controller.addTween(pos(5301), TweenMax.to($('.hero-1'), 0.1, {scale: 1, y: 4, ease: 'linear'}), 180);
+        controller.addTween(pos(5600) + 250, TweenMax.fromTo($('.hero-2'), 0.1, {
+            opacity: 0,
+            y: -27,
+            scale: 0.39
+        }, {opacity: 1, y: -27, scale: 0.4}), 120);
+        controller.addTween(pos(5600) + 250, TweenMax.fromTo($('.hero-2'), 0.1, {
+            scale: 0.4,
+            y: -27,
+            ease: 'linear'
+        }, {scale: 1, y: 0}), 300);
+        controller.addTween(pos(6500 - 70) + 250, TweenMax.fromTo($('.hero-3'), 0.1, {
+            opacity: 0,
+            y: -3,
+            scale: 0.39
+        }, {opacity: 1, y: -3, scale: 0.4}), 120);
+        controller.addTween(pos(6500 - 70 + 1), TweenMax.fromTo($('.hero-1'), 0.1, {
+            x: 0,
+            easing: 'linear'
+        }, {x: -90}), 90);
+        controller.addTween(pos(6500 - 70) + 250, TweenMax.fromTo($('.hero-3'), 0.3, {
+            scale: 0.4,
+            y: -3,
+            ease: 'linear'
+        }, {scale: 1, y: 0}), 300);
+        controller.addTween(pos(0), TweenMax.fromTo($('.elephant-eye'), 0.2, {y: -21}, {y: -20}), 1);
         controller.addTween(pos(11400) + 500, new TimelineLite()
-            .append(TweenMax.fromTo($('.elephant-eye'), 0.2, { y: -20 }, { y: 0 }))
-            .append(TweenMax.fromTo($('.elephant-eye'), 0.2, { y: 0 }, { y: -20 })));
-        controller.addTween(pos(11700), TweenMax.to($('.hero-1'), 0.1, { scale: 0.4, y: 0, x: -5, ease: 'linear' }), 180);
-        controller.addTween(pos(11700), TweenMax.to($('.hero-2'), 0.1, { scale: 0.4, y: -27, x: 0, ease: 'linear' }), 180);
-        controller.addTween(pos(11700), TweenMax.to($('.hero-3'), 0.1, { scale: 0.4, y: -3, x: 45, ease: 'linear' }), 180);
-        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-1'), 0.1, { opacity: 0 }), 180);
-        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-2'), 0.1, { opacity: 0 }), 180);
-        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-3'), 0.1, { opacity: 0 }), 180);
-        controller.addTween(pos(11900) - 700, TweenMax.fromTo($('.bus.evening'), 0.1, { left: 13200 }, { left: 11850 + 50 }), 1750);
-        controller.addTween(pos(11900 + 1), TweenMax.fromTo($('.car-2'), 0.1, { left: 13340 }, { left: 11900, ease: 'linear' }), 2300);
-        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-1'), 0.1, { opacity: 1 }), 200);
-        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-2'), 0.1, { opacity: 1 }), 200);
-        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-3'), 0.1, { opacity: 1 }), 200);
-        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-1'), 0.1, { scale: 1, x: -90, y: 4, ease: 'linear' }), 180);
-        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-2'), 0.1, { scale: 1, x: 0, y: 0, ease: 'linear' }), 180);
-        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-3'), 0.1, { scale: 1, x: 0, y: 0, ease: 'linear' }), 180);
-        controller.addTween(pos(13900 + 69), TweenMax.to($('.hero-1'), 0.1, { scale: 1, x: 0, y: 0, ease: 'linear' }), 90);
-        controller.addTween(pos(13900 + 69) + 90, TweenMax.to($('.hero-1'), 0.1, { scale: 0.4, x: 0, y: 0, ease: 'linear' }), 180);
-        controller.addTween(pos(13900 + 69) - 70, TweenMax.to($('.hero-2'), 0.1, { scale: 0.4, x: 0, y: -27, ease: 'linear' }), 180);
-        controller.addTween(pos(13900 + 69), TweenMax.to($('.hero-3'), 0.1, { scale: 0.4, x: 0, y: -3, ease: 'linear' }), 180);
-        controller.addTween(pos(13900 + 69) + 180 + 90, TweenMax.to($('.hero-1'), 0.2, { opacity: 0 }));
-        controller.addTween(pos(13900 + 69) + 180 - 70, TweenMax.to($('.hero-2'), 0.2, { opacity: 0 }));
-        controller.addTween(pos(13900 + 69) + 180, TweenMax.to($('.hero-3'), 0.2, { opacity: 0 }));
-        controller.addTween(pos(13900 + 69) + 180 + 90, TweenMax.fromTo($('.window'), 0.2, { opacity: 0 }, { opacity: 1 }));
+            .append(TweenMax.fromTo($('.elephant-eye'), 0.2, {y: -20}, {y: 0}))
+            .append(TweenMax.fromTo($('.elephant-eye'), 0.2, {y: 0}, {y: -20})));
+        controller.addTween(pos(11700), TweenMax.to($('.hero-1'), 0.1, {scale: 0.4, y: 0, x: -5, ease: 'linear'}), 180);
+        controller.addTween(pos(11700), TweenMax.to($('.hero-2'), 0.1, {
+            scale: 0.4,
+            y: -27,
+            x: 0,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(11700), TweenMax.to($('.hero-3'), 0.1, {
+            scale: 0.4,
+            y: -3,
+            x: 45,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-1'), 0.1, {opacity: 0}), 180);
+        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-2'), 0.1, {opacity: 0}), 180);
+        controller.addTween(pos(11900) + 800, TweenMax.to($('.hero-3'), 0.1, {opacity: 0}), 180);
+        controller.addTween(pos(11900) - 700, TweenMax.fromTo($('.bus.evening'), 0.1, {left: 13200}, {left: 11850 + 50}), 1750);
+        controller.addTween(pos(11900 + 1), TweenMax.fromTo($('.car-2'), 0.1, {left: 13340}, {
+            left: 11900,
+            ease: 'linear'
+        }), 2300);
+        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-1'), 0.1, {opacity: 1}), 200);
+        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-2'), 0.1, {opacity: 1}), 200);
+        controller.addTween(pos(13400 - 60) + 200, TweenMax.to($('.hero-3'), 0.1, {opacity: 1}), 200);
+        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-1'), 0.1, {
+            scale: 1,
+            x: -90,
+            y: 4,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-2'), 0.1, {
+            scale: 1,
+            x: 0,
+            y: 0,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13400 - 60 + 1), TweenMax.to($('.hero-3'), 0.1, {
+            scale: 1,
+            x: 0,
+            y: 0,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13900 + 69), TweenMax.to($('.hero-1'), 0.1, {
+            scale: 1,
+            x: 0,
+            y: 0,
+            ease: 'linear'
+        }), 90);
+        controller.addTween(pos(13900 + 69) + 90, TweenMax.to($('.hero-1'), 0.1, {
+            scale: 0.4,
+            x: 0,
+            y: 0,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13900 + 69) - 70, TweenMax.to($('.hero-2'), 0.1, {
+            scale: 0.4,
+            x: 0,
+            y: -27,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13900 + 69), TweenMax.to($('.hero-3'), 0.1, {
+            scale: 0.4,
+            x: 0,
+            y: -3,
+            ease: 'linear'
+        }), 180);
+        controller.addTween(pos(13900 + 69) + 180 + 90, TweenMax.to($('.hero-1'), 0.2, {opacity: 0}));
+        controller.addTween(pos(13900 + 69) + 180 - 70, TweenMax.to($('.hero-2'), 0.2, {opacity: 0}));
+        controller.addTween(pos(13900 + 69) + 180, TweenMax.to($('.hero-3'), 0.2, {opacity: 0}));
+        controller.addTween(pos(13900 + 69) + 180 + 90, TweenMax.fromTo($('.window'), 0.2, {opacity: 0}, {opacity: 1}));
 
         $('.front').removeClass('front');
         $('.back').removeClass('back');
@@ -276,11 +379,19 @@ jQuery(function ($) {
         };
 
         // 10835
-        controller.addTween(pos(11800 * scale), TweenMax.fromTo($('.sky-night'), 1, { autoAlpha: 0 }, { autoAlpha: 1 }), 1700 * scale);
+        controller.addTween(pos(11800 * scale), TweenMax.fromTo($('.sky-night'), 1, {autoAlpha: 0}, {autoAlpha: 1}), 1700 * scale);
 
-        controller.addTween(pos(0), TweenMax.to($('.sun'), 1, { rotation: 22, ease: 'linear', transformOrigin: transformOrigin }), pos(14200 * scale - center));
-        controller.addTween(pos(0), TweenMax.fromTo($('.moon'), 1, { rotation: -19, ease: 'linear', transformOrigin: transformOrigin }, { rotation: 3, ease: 'linear', transformOrigin: transformOrigin }), pos(14200 * scale + center));
-        controller.addTween(pos(11700 * scale) + 800, TweenMax.fromTo($('.lamp-lights'), 0.5, { autoAlpha: 0 }, { autoAlpha: 1 }));
+        controller.addTween(pos(0), TweenMax.to($('.sun'), 1, {
+            rotation: 22,
+            ease: 'linear',
+            transformOrigin: transformOrigin
+        }), pos(14200 * scale - center));
+        controller.addTween(pos(0), TweenMax.fromTo($('.moon'), 1, {
+            rotation: -19,
+            ease: 'linear',
+            transformOrigin: transformOrigin
+        }, {rotation: 3, ease: 'linear', transformOrigin: transformOrigin}), pos(14200 * scale + center));
+        controller.addTween(pos(11700 * scale) + 800, TweenMax.fromTo($('.lamp-lights'), 0.5, {autoAlpha: 0}, {autoAlpha: 1}));
 
         if ($('html').hasClass('lt-ie10')) {
             $('.tooltip').toggleClass('active', true);
@@ -289,8 +400,8 @@ jQuery(function ($) {
                 var elem = $(this),
                     offset = ((elem.attr('data-visible-width') / 2) || 425) | 0,
                     shift = +elem.attr('data-shift') || 0;
-                controller.addTween(pos(elem.position().left - offset) + shift, TweenMax.fromTo(elem, 1, { className: '-=active' }, { className: '+=active' }), 1);
-                controller.addTween(pos(elem.position().left + offset) + shift, TweenMax.fromTo(elem, 1, { className: '+=active' }, { className: '-=active' }), 1);
+                controller.addTween(pos(elem.position().left - offset) + shift, TweenMax.fromTo(elem, 1, {className: '-=active'}, {className: '+=active'}), 1);
+                controller.addTween(pos(elem.position().left + offset) + shift, TweenMax.fromTo(elem, 1, {className: '+=active'}, {className: '-=active'}), 1);
                 elem.removeClass('active');
             });
         }

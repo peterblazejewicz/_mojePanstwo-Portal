@@ -32,9 +32,11 @@ suite.addBatch({
                 assert.equal(body.node().opacity, .41);
             },
             "sets properties as a map of functions": function (body) {
-                body.data(["cyan"]).property({bgcolor: String, opacity: function (d, i) {
-                    return i;
-                }});
+                body.data(["cyan"]).property({
+                    bgcolor: String, opacity: function (d, i) {
+                        return i;
+                    }
+                });
                 assert.equal(body.node().bgcolor, "cyan");
                 assert.equal(body.node().opacity, 0);
             },
@@ -59,8 +61,10 @@ suite.addBatch({
             },
             "removes properties as a map of functions that return null": function (body) {
                 body.node().bgcolor = "red";
-                body.property({bgcolor: function () {
-                }});
+                body.property({
+                    bgcolor: function () {
+                    }
+                });
                 assert.isFalse("bgcolor" in body.node());
             },
             "returns the current selection": function (body) {

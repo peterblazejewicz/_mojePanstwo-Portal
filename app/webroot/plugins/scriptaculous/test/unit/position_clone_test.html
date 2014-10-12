@@ -65,7 +65,10 @@ new Test.Unit.Runner({
     testPositionCloneFromAbsolute: function () {
         with (this) {
             var source = Builder.node('div',
-                    {id: 'source_div', style: 'position:absolute; top:20px; left:120px; width:100px; height:50px;'}, '123');
+                    {
+                        id: 'source_div',
+                        style: 'position:absolute; top:20px; left:120px; width:100px; height:50px;'
+                    }, '123');
             document.body.appendChild(source);
             var expected = Object.inspect([120, 20]);
             assertEqual(expected, Object.inspect(Position.page($('source_div'))));
@@ -107,7 +110,10 @@ new Test.Unit.Runner({
     testPositionCloneFromRelative: function () {
         with (this) {
             var source = Builder.node('div',
-                    {id: 'source_div', style: 'position:relative; top:20px; left:120px; width:100px; height:50px;'}, '123');
+                    {
+                        id: 'source_div',
+                        style: 'position:relative; top:20px; left:120px; width:100px; height:50px;'
+                    }, '123');
             document.body.appendChild(source);
             var expected = Object.inspect(Position.page($('source_div')));
             assertEqual(expected, Object.inspect(Position.page($('source_div'))));
@@ -191,7 +197,10 @@ new Test.Unit.Runner({
     testPositionCloneFromAbsoluteWithHiddenTarget: function () {
         with (this) {
             var source = Builder.node('div',
-                    {id: 'source_div', style: 'position:absolute; top:20px; left:120px; width:100px; height:50px;'}, '123');
+                    {
+                        id: 'source_div',
+                        style: 'position:absolute; top:20px; left:120px; width:100px; height:50px;'
+                    }, '123');
             document.body.appendChild(source);
             var expected = Object.inspect([120, 20]);
             assertEqual(expected, Object.inspect(Position.page($('source_div'))));
@@ -233,7 +242,10 @@ new Test.Unit.Runner({
     testPositionCloneFromRelativeWithHiddenTarget: function () {
         with (this) {
             var source = Builder.node('div',
-                    {id: 'source_div', style: 'position:relative; top:20px; left:120px; width:100px; height:50px;'}, '123');
+                    {
+                        id: 'source_div',
+                        style: 'position:relative; top:20px; left:120px; width:100px; height:50px;'
+                    }, '123');
             document.body.appendChild(source);
             var expected = Object.inspect(Position.page($('source_div')));
             assertEqual(expected, Object.inspect(Position.page($('source_div'))));

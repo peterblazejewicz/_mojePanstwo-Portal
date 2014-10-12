@@ -1,19 +1,19 @@
 import
-"../behavior/drag";
+    "../behavior/drag";
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../event/event";
+    "../event/event";
 import
-"../event/dispatch";
+    "../event/dispatch";
 import
-"../event/timer";
+    "../event/timer";
 import
-"../geom/quadtree";
+    "../geom/quadtree";
 import
-"layout";
+    "layout";
 
 // A rudimentary force layout using Gauss-Seidel.
 d3.layout.force = function () {

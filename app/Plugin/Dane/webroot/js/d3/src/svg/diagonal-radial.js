@@ -1,9 +1,9 @@
 import
-"arc";
+    "arc";
 import
-"diagonal";
+    "diagonal";
 import
-"svg";
+    "svg";
 
 d3.svg.diagonal.radial = function () {
     var diagonal = d3.svg.diagonal(),

@@ -193,23 +193,32 @@ suite.addBatch({
                     .step([45, 45])
                     .precision(3)
                     .lines(), [
-                    {type: "LineString", coordinates: [
+                    {
+                        type: "LineString", coordinates: [
                         [-90, -45],
                         [-90, 45]
-                    ]}, // meridian
-                    {type: "LineString", coordinates: [
+                    ]
+                    }, // meridian
+                    {
+                        type: "LineString", coordinates: [
                         [-45, -45],
                         [-45, 45]
-                    ]}, // meridian
-                    {type: "LineString", coordinates: [
+                    ]
+                    }, // meridian
+                    {
+                        type: "LineString", coordinates: [
                         [0, -45],
                         [0, 45]
-                    ]}, // meridian
-                    {type: "LineString", coordinates: [
+                    ]
+                    }, // meridian
+                    {
+                        type: "LineString", coordinates: [
                         [45, -45],
                         [45, 45]
-                    ]}, // meridian
-                    {type: "LineString", coordinates: [
+                    ]
+                    }, // meridian
+                    {
+                        type: "LineString", coordinates: [
                         [-90, -45],
                         [-87, -45],
                         [-84, -45],
@@ -271,8 +280,10 @@ suite.addBatch({
                         [84, -45],
                         [87, -45],
                         [90, -45]
-                    ]},
-                    {type: "LineString", coordinates: [
+                    ]
+                    },
+                    {
+                        type: "LineString", coordinates: [
                         [-90, 0],
                         [-87, 0],
                         [-84, 0],
@@ -334,7 +345,8 @@ suite.addBatch({
                         [84, 0],
                         [87, 0],
                         [90, 0]
-                    ]}
+                    ]
+                    }
                 ]);
             }
         },

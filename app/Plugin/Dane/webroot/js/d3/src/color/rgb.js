@@ -1,13 +1,13 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"color";
+    "color";
 import
-"hsl";
+    "hsl";
 import
-"lab";
+    "lab";
 import
-"xyz";
+    "xyz";
 
 d3.rgb = function (r, g, b) {
     return arguments.length === 1

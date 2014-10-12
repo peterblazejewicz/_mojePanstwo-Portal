@@ -19,7 +19,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-App::uses('AppController', 'Controller');
+App::uses( 'AppController', 'Controller' );
 
 /**
  * Static content controller
@@ -29,46 +29,45 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends AppController
-{
+class PagesController extends AppController {
 
-    /**
-     * This controller does not use a model
-     *
-     * @var array
-     */
-    public $uses = array();
+	/**
+	 * This controller does not use a model
+	 *
+	 * @var array
+	 */
+	public $uses = array();
 
-    /**
-     * Displays a view
-     *
-     * @param mixed What page to display
-     * @return void
-     * @throws NotFoundException When the view file could not be found
-     *    or MissingViewException in debug mode.
-     */
-    public function display()
-    {
+	/**
+	 * Displays a view
+	 *
+	 * @param mixed What page to display
+	 *
+	 * @return void
+	 * @throws NotFoundException When the view file could not be found
+	 *    or MissingViewException in debug mode.
+	 */
+	public function display() {
 
-        $path = func_get_args();
+		$path = func_get_args();
 
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
+		$count = count( $path );
+		if ( ! $count ) {
+			return $this->redirect( '/' );
+		}
 
-        $page = $subpage = $title_for_layout = null;
+		$page = $subpage = $title_for_layout = null;
 
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $title_for_layout = '_mojePaństwo';
-        $this->set(compact('page', 'subpage', 'title_for_layout'));
-		
-		
+		if ( ! empty( $path[0] ) ) {
+			$page = $path[0];
+		}
+		if ( ! empty( $path[1] ) ) {
+			$subpage = $path[1];
+		}
+		$title_for_layout = '_mojePaństwo';
+		$this->set( compact( 'page', 'subpage', 'title_for_layout' ) );
+
+
 		/*
         if ($page == 'home') {
 
@@ -88,14 +87,14 @@ class PagesController extends AppController
         }
         */
 
-        try {
-            $this->render(implode('/', $path));
-        } catch (MissingViewException $e) {
-            if (Configure::read('debug')) {
-                throw $e;
-            }
-            throw new NotFoundException();
-        }
+		try {
+			$this->render( implode( '/', $path ) );
+		} catch ( MissingViewException $e ) {
+			if ( Configure::read( 'debug' ) ) {
+				throw $e;
+			}
+			throw new NotFoundException();
+		}
 
-    }
+	}
 }

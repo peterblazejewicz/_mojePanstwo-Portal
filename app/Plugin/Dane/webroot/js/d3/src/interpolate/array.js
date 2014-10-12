@@ -1,5 +1,5 @@
 import
-"interpolate";
+    "interpolate";
 
 d3.interpolateArray = d3_interpolateArray;
 

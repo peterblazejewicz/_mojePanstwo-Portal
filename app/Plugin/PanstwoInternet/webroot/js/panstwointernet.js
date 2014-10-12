@@ -18,7 +18,7 @@ $(document).ready(function () {
             if ($(this).parents('ul:first').attr('class') == 'dropdown-menu')
                 $(this).parents('ul:first').parent('li').addClass('active');
             autoscrollBlocker = true;
-            $("html, body").animate({ scrollTop: $($(this).attr('href')).offset().top - $('header').outerHeight() - spisTresci.outerHeight() }, 1000, function () {
+            $("html, body").animate({scrollTop: $($(this).attr('href')).offset().top - $('header').outerHeight() - spisTresci.outerHeight()}, 1000, function () {
                 autoscrollBlocker = false;
             });
         }

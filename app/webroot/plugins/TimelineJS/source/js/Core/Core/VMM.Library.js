@@ -502,7 +502,12 @@ if (typeof VMM != 'undefined') {
             } else {
                 if (typeof( jQuery ) != 'undefined') {
                     if (callback_function != null && callback_function != "") {
-                        jQuery(element).animate(_att, {queue: _que, duration: _duration, easing: _ease, complete: callback_function});
+                        jQuery(element).animate(_att, {
+                            queue: _que,
+                            duration: _duration,
+                            easing: _ease,
+                            complete: callback_function
+                        });
                     } else {
                         jQuery(element).animate(_att, {queue: _que, duration: _duration, easing: _ease});
                     }
@@ -539,7 +544,7 @@ if (typeof( jQuery ) != 'undefined') {
                             xdr = new XDomainRequest();
                             xdr.open(s.type, s.url);
                             xdr.onload = function () {
-                                callback(200, "OK", { text: xdr.responseText }, "Content-Type: " + xdr.contentType);
+                                callback(200, "OK", {text: xdr.responseText}, "Content-Type: " + xdr.contentType);
                             };
                             xdr.onerror = function () {
                                 callback(404, "Not Found");

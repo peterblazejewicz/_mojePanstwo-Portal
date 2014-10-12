@@ -25,12 +25,16 @@ suite.addBatch({
             "uniqueness is based on string coercion": function (ordinal) {
                 var x = ordinal().domain(["foo"]).range([42, 43, 44]);
                 assert.equal(x(new String("foo")), 42);
-                assert.equal(x({toString: function () {
-                    return "foo";
-                }}), 42);
-                assert.equal(x({toString: function () {
-                    return "bar";
-                }}), 43);
+                assert.equal(x({
+                    toString: function () {
+                        return "foo";
+                    }
+                }), 42);
+                assert.equal(x({
+                    toString: function () {
+                        return "bar";
+                    }
+                }), 43);
             },
             "does not coerce domain values to strings": function (ordinal) {
                 var x = ordinal().domain([0, 1]);

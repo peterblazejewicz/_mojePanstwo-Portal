@@ -63,12 +63,14 @@
             add_divs(t2, 'td', 'dropsite');
             var divs = document.getElementsByClassName("dropsite", t2);
             for (var j = 0; j < divs.length; ++j) {
-                Droppables.add(divs[j], {accept: 'draggable',
+                Droppables.add(divs[j], {
+                    accept: 'draggable',
                     hoverclass: 'hoverclass123',
                     onDrop: function (element, dropon, event) {
                         debug("dropped " + element.innerHTML + " on "
-                                + dropon.innerHTML + "\n")
-                    }});
+                        + dropon.innerHTML + "\n")
+                    }
+                });
             }
         };
 

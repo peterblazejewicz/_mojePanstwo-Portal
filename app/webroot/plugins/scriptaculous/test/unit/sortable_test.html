@@ -92,7 +92,7 @@
                 Sortable.create('sortable1', {only: ['a', 'b']});
                 Sortable.create('sortable2', {tag: 'div'});
                 Sortable.create('sortable3');
-                Sortable.create('sortable_specialcreate', { format: /(\d+)/ });
+                Sortable.create('sortable_specialcreate', {format: /(\d+)/});
                 Sortable.create('sortable_specialformat');
                 Sortable.create('sortable_complex');
             }
@@ -217,7 +217,7 @@
                 assertEnumEqual(['3', '2', '1'], Sortable.sequence('sortable1'));
 
                 // non-default format
-                Sortable.setSequence('sortable_specialformat', ['2', '1'], { format: /(\d+)/ });
+                Sortable.setSequence('sortable_specialformat', ['2', '1'], {format: /(\d+)/});
                 assertEnumEqual(['2', '1'], Sortable.sequence('sortable_specialformat'));
 
                 // invalid sequence ids should be ignored

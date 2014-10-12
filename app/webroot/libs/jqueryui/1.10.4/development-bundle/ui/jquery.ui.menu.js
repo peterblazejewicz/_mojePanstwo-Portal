@@ -85,10 +85,10 @@
                         // Open submenu on click
                         if (target.has(".ui-menu").length) {
                             this.expand(event);
-                        } else if (!this.element.is(":focus") && $(this.document[ 0 ].activeElement).closest(".ui-menu").length) {
+                        } else if (!this.element.is(":focus") && $(this.document[0].activeElement).closest(".ui-menu").length) {
 
                             // Redirect focus to the menu
-                            this.element.trigger("focus", [ true ]);
+                            this.element.trigger("focus", [true]);
 
                             // If the active item is on the top level, let it stay active.
                             // Otherwise, blur the active item since it is no longer visible.
@@ -338,7 +338,7 @@
             menus.children(".ui-state-disabled").attr("aria-disabled", "true");
 
             // If the active item has been removed, blur the menu
-            if (this.active && !$.contains(this.element[ 0 ], this.active[ 0 ])) {
+            if (this.active && !$.contains(this.element[0], this.active[0])) {
                 this.blur();
             }
         },
@@ -347,7 +347,7 @@
             return {
                 menu: "menuitem",
                 listbox: "option"
-            }[ this.options.role ];
+            }[this.options.role];
         },
 
         _setOption: function (key, value) {
@@ -394,7 +394,7 @@
             }
             this.activeMenu = item.parent();
 
-            this._trigger("focus", event, { item: item });
+            this._trigger("focus", event, {item: item});
         },
 
         _scrollIntoView: function (item) {
@@ -427,7 +427,7 @@
             this.active.children("a").removeClass("ui-state-focus");
             this.active = null;
 
-            this._trigger("blur", event, { item: this.active });
+            this._trigger("blur", event, {item: this.active});
         },
 
         _startOpening: function (submenu) {
@@ -545,16 +545,16 @@
             if (this.active) {
                 if (direction === "first" || direction === "last") {
                     next = this.active
-                        [ direction === "first" ? "prevAll" : "nextAll" ](".ui-menu-item")
+                        [direction === "first" ? "prevAll" : "nextAll"](".ui-menu-item")
                         .eq(-1);
                 } else {
                     next = this.active
-                        [ direction + "All" ](".ui-menu-item")
+                        [direction + "All"](".ui-menu-item")
                         .eq(0);
                 }
             }
             if (!next || !next.length || !this.active) {
-                next = this.activeMenu.children(".ui-menu-item")[ filter ]();
+                next = this.activeMenu.children(".ui-menu-item")[filter]();
             }
 
             this.focus(event, next);
@@ -581,7 +581,7 @@
                 this.focus(event, item);
             } else {
                 this.focus(event, this.activeMenu.children(".ui-menu-item")
-                    [ !this.active ? "first" : "last" ]());
+                    [!this.active ? "first" : "last"]());
             }
         },
 
@@ -616,7 +616,7 @@
             // TODO: It should never be possible to not have an active item at this
             // point, but the tests don't trigger mouseenter before click.
             this.active = this.active || $(event.target).closest(".ui-menu-item");
-            var ui = { item: this.active };
+            var ui = {item: this.active};
             if (!this.active.has(".ui-menu").length) {
                 this.collapseAll(event, true);
             }

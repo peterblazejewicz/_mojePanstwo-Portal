@@ -1,5 +1,5 @@
 import
-"../core/noop";
+    "../core/noop";
 
 var d3_geo_pathBoundsX0,
     d3_geo_pathBoundsY0,

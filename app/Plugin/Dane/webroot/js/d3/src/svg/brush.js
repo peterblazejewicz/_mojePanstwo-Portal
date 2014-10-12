@@ -1,25 +1,25 @@
 import
-"../core/identity";
+    "../core/identity";
 import
-"../core/document";
+    "../core/document";
 import
-"../core/rebind";
+    "../core/rebind";
 import
-"../event/dispatch";
+    "../event/dispatch";
 import
-"../event/drag";
+    "../event/drag";
 import
-"../event/event";
+    "../event/event";
 import
-"../event/mouse";
+    "../event/mouse";
 import
-"../event/touches";
+    "../event/touches";
 import
-"../scale/scale";
+    "../scale/scale";
 import
-"../selection/selection";
+    "../selection/selection";
 import
-"svg";
+    "svg";
 
 d3.svg.brush = function () {
     var event = d3_eventDispatch(brush, "brushstart", "brush", "brushend"),
@@ -428,7 +428,7 @@ d3.svg.brush = function () {
 
     brush.empty = function () {
         return !!x && xExtent[0] == xExtent[1]
-            || !!y && yExtent[0] == yExtent[1];
+        || !!y && yExtent[0] == yExtent[1];
     };
 
     return d3.rebind(brush, event, "on");

@@ -1,9 +1,9 @@
 import
-"azimuthal";
+    "azimuthal";
 import
-"geo";
+    "geo";
 import
-"projection";
+    "projection";
 
 var d3_geo_orthographic = d3_geo_azimuthal(
     function () {

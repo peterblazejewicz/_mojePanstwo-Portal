@@ -1,9 +1,9 @@
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 import
-"mercator";
+    "mercator";
 
 function d3_geo_transverseMercator(λ, φ) {
     return [Math.log(Math.tan(π / 4 + φ / 2)), -λ];

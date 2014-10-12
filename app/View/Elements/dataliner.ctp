@@ -1,13 +1,16 @@
 <?
-$this->Combinator->add_libs( 'css', 'timeline' );
-$this->Combinator->add_libs( 'css', $this->Less->css( 'dataliner' ) );
-$this->Combinator->add_libs( 'js', 'timeline' );
-$this->Combinator->add_libs( 'js', 'Dane.dataliner.js' );
+$this->Combinator->add_libs( 'css', $this->Less->css( 'timeline', array( 'plugin' => 'Dane' ) ) );
+$this->Combinator->add_libs( 'css', $this->Less->css( 'dataliner', array( 'plugin' => 'Dane' ) ) );
+$this->Combinator->add_libs( 'js', 'Dane.timeline' );
+$this->Combinator->add_libs( 'js', 'Dane.dataliner' );
 ?>
 
-
-<div class="dataliner" data-requestdata="<?= htmlspecialchars( json_encode( $requestData ) ) ?>"
-     data-filterfield="<?= $filterField ?>">
+<div class="dataliner" data-requestdata="<? if ( isset( $requestData ) && ! empty( $requestData ) ) {
+	echo htmlspecialchars( json_encode( $requestData ) );
+} ?>"
+     data-filterfield="<? if ( isset( $filterField ) && ! empty( $filterField ) ) {
+	     echo $filterField;
+     } ?>">
 	<? if ( isset( $filters ) && ! empty( $filters ) ) { ?>
 		<div class="filters text-center">
 			<select class="selectpicker">

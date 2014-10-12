@@ -1,9 +1,9 @@
 import
-"layout";
+    "layout";
 import
-"hierarchy";
+    "hierarchy";
 import
-"tree";
+    "tree";
 
 d3.layout.pack = function () {
     var hierarchy = d3.layout.hierarchy().sort(d3_layout_packSort),

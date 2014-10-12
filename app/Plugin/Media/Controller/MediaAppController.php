@@ -1,12 +1,10 @@
 <?php
 
-class MediaAppController extends AppController
-{
+class MediaAppController extends AppController {
 
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-        $this->API = $this->API->Media();
-    }
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->API = $this->API->Media();
+	}
 
 }

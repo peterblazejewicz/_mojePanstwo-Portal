@@ -18,6 +18,7 @@ jQuery(function ($) {
         firstDay: 6,
         isRTL: true,
         showMonthAfterYear: false,
-        yearSuffix: ''};
+        yearSuffix: ''
+    };
     $.datepicker.setDefaults($.datepicker.regional['ar-DZ']);
 });

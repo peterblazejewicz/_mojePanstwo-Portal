@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highcharts JS v3.0.10 (2014-03-10)
+ * @license Highcharts JS v4.0.4 (2014-09-02)
  *
  * (c) 2009-2014 Torstein Honsi
  *
@@ -30,8 +30,8 @@
         Tick = Highcharts.Tick,
         Point = Highcharts.Point,
         Pointer = Highcharts.Pointer,
-        TrackerMixin = Highcharts.TrackerMixin,
         CenteredSeriesMixin = Highcharts.CenteredSeriesMixin,
+        TrackerMixin = Highcharts.TrackerMixin,
         Series = Highcharts.Series,
         math = Math,
         mathRound = math.round,
@@ -105,13 +105,13 @@
             borderWidth: 1,
             borderColor: 'silver',
             backgroundColor: {
-                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1},
                 stops: [
                     [0, '#FFF'],
                     [1, '#DDD']
                 ]
             },
-            from: Number.MIN_VALUE, // corrected to axis min
+            from: -Number.MAX_VALUE, // corrected to axis min
             innerRadius: 0,
             to: Number.MAX_VALUE, // corrected to axis max
             outerRadius: '105%'
@@ -269,7 +269,7 @@
                 if (this.isCircular) {
 
                     this.transA = (this.endAngleRad - this.startAngleRad) /
-                        ((this.max - this.min) || 1);
+                    ((this.max - this.min) || 1);
 
 
                 } else {
@@ -326,14 +326,9 @@
          * from center
          */
         getPosition: function (value, length) {
-            if (!this.isCircular) {
-                length = this.translate(value);
-                value = this.min;
-            }
-
             return this.postTranslate(
-                this.translate(value),
-                pick(length, this.center[2] / 2) - this.offset
+                this.isCircular ? this.translate(value) : 0, // #2848
+                pick(this.isCircular ? length : this.translate(value), this.center[2] / 2) - this.offset
             );
         },
 
@@ -447,7 +442,12 @@
                 }
                 // Concentric polygons
             } else {
-                xAxis = chart.xAxis[0];
+                // Find the X axis in the same pane
+                each(chart.xAxis, function (a) {
+                    if (a.pane === axis.pane) {
+                        xAxis = a;
+                    }
+                });
                 ret = [];
                 value = axis.translate(value);
                 tickPositions = xAxis.tickPositions;
@@ -478,8 +478,8 @@
 
             return {
                 x: chart.plotLeft + center[0] + (titleOptions.x || 0),
-                y: chart.plotTop + center[1] - ({ high: 0.5, middle: 0.25, low: 0 }[titleOptions.align] *
-                    center[2]) + (titleOptions.y || 0)
+                y: chart.plotTop + center[1] - ({high: 0.5, middle: 0.25, low: 0}[titleOptions.align] *
+                center[2]) + (titleOptions.y || 0)
             };
         }
 
@@ -658,15 +658,21 @@
         marker: null,
         threshold: null,
         tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.low}</b> - <b>{point.high}</b><br/>'
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.low}</b> - <b>{point.high}</b><br/>'
         },
         trackByArea: true,
         dataLabels: {
+            align: null,
             verticalAlign: null,
             xLow: 0,
             xHigh: 0,
             yLow: 0,
             yHigh: 0
+        },
+        states: {
+            hover: {
+                halo: false
+            }
         }
     });
 
@@ -767,7 +773,7 @@
                 if (step === true) {
                     step = 'left';
                 }
-                options.step = { left: 'right', center: 'center', right: 'left' }[step]; // swap for reading in getSegmentPath
+                options.step = {left: 'right', center: 'center', right: 'left'}[step]; // swap for reading in getSegmentPath
             }
             higherPath = baseGetSegmentPath.call(this, highSegment);
             options.step = step;
@@ -794,6 +800,7 @@
                 originalDataLabels = [],
                 seriesProto = Series.prototype,
                 dataLabelOptions = this.options.dataLabels,
+                align = dataLabelOptions.align,
                 point,
                 inverted = this.chart.inverted;
 
@@ -817,7 +824,9 @@
                     // Set the default offset
                     point.below = false;
                     if (inverted) {
-                        dataLabelOptions.align = 'left';
+                        if (!align) {
+                            dataLabelOptions.align = 'left';
+                        }
                         dataLabelOptions.x = dataLabelOptions.xHigh;
                     } else {
                         dataLabelOptions.y = dataLabelOptions.yHigh;
@@ -844,7 +853,9 @@
                     // Set the default offset
                     point.below = true;
                     if (inverted) {
-                        dataLabelOptions.align = 'right';
+                        if (!align) {
+                            dataLabelOptions.align = 'right';
+                        }
                         dataLabelOptions.x = dataLabelOptions.xLow;
                     } else {
                         dataLabelOptions.y = dataLabelOptions.yLow;
@@ -855,13 +866,15 @@
                 }
             }
 
+            dataLabelOptions.align = align;
+
         },
 
         alignDataLabel: function () {
             seriesTypes.column.prototype.alignDataLabel.apply(this, arguments);
         },
 
-        getSymbol: seriesTypes.column.prototype.getSymbol,
+        getSymbol: noop,
 
         drawPoints: noop
     });
@@ -914,6 +927,7 @@
                         height,
                         y;
 
+                    point.tooltipPos = null; // don't inherit from column
                     point.plotHigh = plotHigh = yAxis.translate(point.high, 0, 1, 0, 1);
                     point.plotLow = point.plotY;
 
@@ -930,7 +944,7 @@
                     shapeArgs.y = y;
                 });
             },
-            trackerGroups: ['group', 'dataLabels'],
+            trackerGroups: ['group', 'dataLabelsGroup'],
             drawGraph: noop,
             pointAttrToOptions: colProto.pointAttrToOptions,
             drawPoints: colProto.drawPoints,
@@ -951,6 +965,7 @@
     defaultPlotOptions.gauge = merge(defaultPlotOptions.line, {
         dataLabels: {
             enabled: true,
+            defer: false,
             y: 15,
             borderWidth: 1,
             borderColor: 'silver',
@@ -1010,7 +1025,7 @@
         drawGraph: noop,
         fixedBox: true,
         forceDL: true,
-        trackerGroups: ['group', 'dataLabels'],
+        trackerGroups: ['group', 'dataLabelsGroup'],
 
         /**
          * Calculate paths etc
@@ -1174,7 +1189,11 @@
                 this.chart.redraw();
             }
         },
-        drawTracker: TrackerMixin.drawTrackerPoint
+
+        /**
+         * If the tracking module is loaded, add the point tracker
+         */
+        drawTracker: TrackerMixin && TrackerMixin.drawTrackerPoint
     };
     seriesTypes.gauge = extendClass(seriesTypes.line, GaugeSeries);
 
@@ -1198,12 +1217,12 @@
         //stemWidth: null,
         threshold: null,
         tooltip: {
-            pointFormat: '<span style="color:{series.color};font-weight:bold">{series.name}</span><br/>' +
-                'Maximum: {point.high}<br/>' +
-                'Upper quartile: {point.q3}<br/>' +
-                'Median: {point.median}<br/>' +
-                'Lower quartile: {point.q1}<br/>' +
-                'Minimum: {point.low}<br/>'
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> <b> {series.name}</b><br/>' +
+            'Maximum: {point.high}<br/>' +
+            'Upper quartile: {point.q3}<br/>' +
+            'Median: {point.median}<br/>' +
+            'Lower quartile: {point.q1}<br/>' +
+            'Minimum: {point.low}<br/>'
 
         },
         //whiskerColor: null,
@@ -1342,8 +1361,7 @@
                         'M',
                         crispX, q1Plot,
                         'L',
-                        crispX, lowPlot,
-                        'z'
+                        crispX, lowPlot
                     ];
 
                     // The box
@@ -1402,21 +1420,20 @@
                         medianPlot,
                         'L',
                         right,
-                        medianPlot,
-                        'z'
+                        medianPlot
                     ];
 
                     // Create or update the graphics
                     if (graphic) { // update
 
-                        point.stem.animate({ d: stemPath });
+                        point.stem.animate({d: stemPath});
                         if (whiskerLength) {
-                            point.whiskers.animate({ d: whiskersPath });
+                            point.whiskers.animate({d: whiskersPath});
                         }
                         if (doQuartiles) {
-                            point.box.animate({ d: boxPath });
+                            point.box.animate({d: boxPath});
                         }
-                        point.medianShape.animate({ d: medianPath });
+                        point.medianShape.animate({d: medianPath});
 
                     } else { // create new
                         point.graphic = graphic = renderer.g()
@@ -1461,7 +1478,7 @@
         grouping: false,
         linkedTo: ':previous',
         tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.low}</b> - <b>{point.high}</b><br/>'
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.low}</b> - <b>{point.high}</b><br/>'
         },
         whiskerWidth: null
     });
@@ -1483,7 +1500,7 @@
          */
         getColumnMetrics: function () {
             return (this.linkedParent && this.linkedParent.columnMetrics) ||
-                seriesTypes.column.prototype.getColumnMetrics.call(this);
+            seriesTypes.column.prototype.getColumnMetrics.call(this);
         }
     });
 
@@ -1499,7 +1516,12 @@
         lineWidth: 1,
         lineColor: '#333',
         dashStyle: 'dot',
-        borderColor: '#333'
+        borderColor: '#333',
+        states: {
+            hover: {
+                lineWidthPlus: 0 // #3126
+            }
+        }
     });
 
 
@@ -1530,7 +1552,7 @@
         translate: function () {
             var series = this,
                 options = series.options,
-                axis = series.yAxis,
+                yAxis = series.yAxis,
                 len,
                 i,
                 points,
@@ -1539,14 +1561,15 @@
                 stack,
                 y,
                 previousY,
+                previousIntermediate,
                 stackPoint,
                 threshold = options.threshold,
-                crispCorr = (options.borderWidth % 2) / 2;
+                tooltipY;
 
             // run column series translate
             seriesTypes.column.prototype.translate.apply(this);
 
-            previousY = threshold;
+            previousY = previousIntermediate = threshold;
             points = series.points;
 
             for (i = 0, len = points.length; i < len; i++) {
@@ -1556,7 +1579,7 @@
 
                 // get current stack
                 stack = series.getStack(i);
-                stackPoint = stack.points[series.index];
+                stackPoint = stack.points[series.index + ',' + i];
 
                 // override point value for sums
                 if (isNaN(point.y)) {
@@ -1565,13 +1588,18 @@
 
                 // up points
                 y = mathMax(previousY, previousY + point.y) + stackPoint[0];
-                shapeArgs.y = axis.translate(y, 0, 1);
+                shapeArgs.y = yAxis.translate(y, 0, 1);
 
 
                 // sum points
-                if (point.isSum || point.isIntermediateSum) {
-                    shapeArgs.y = axis.translate(stackPoint[1], 0, 1);
-                    shapeArgs.height = axis.translate(stackPoint[0], 0, 1) - shapeArgs.y;
+                if (point.isSum) {
+                    shapeArgs.y = yAxis.translate(stackPoint[1], 0, 1);
+                    shapeArgs.height = yAxis.translate(stackPoint[0], 0, 1) - shapeArgs.y;
+
+                } else if (point.isIntermediateSum) {
+                    shapeArgs.y = yAxis.translate(stackPoint[1], 0, 1);
+                    shapeArgs.height = yAxis.translate(previousIntermediate, 0, 1) - shapeArgs.y;
+                    previousIntermediate = stackPoint[1];
 
                     // if it's not the sum point, update previous stack end position
                 } else {
@@ -1584,9 +1612,18 @@
                     shapeArgs.height *= -1;
                 }
 
-                point.plotY = shapeArgs.y = mathRound(shapeArgs.y) - crispCorr;
-                shapeArgs.height = mathRound(shapeArgs.height);
+                point.plotY = shapeArgs.y = mathRound(shapeArgs.y) - (series.borderWidth % 2) / 2;
+                shapeArgs.height = mathMax(mathRound(shapeArgs.height), 0.001); // #3151
                 point.yBottom = shapeArgs.y + shapeArgs.height;
+
+                // Correct tooltip placement (#3014)
+                tooltipY = point.plotY + (point.negative ? shapeArgs.height : 0);
+                if (series.chart.inverted) {
+                    point.tooltipPos[0] = yAxis.len - tooltipY;
+                } else {
+                    point.tooltipPos[1] = tooltipY;
+                }
+
             }
         },
 
@@ -1618,7 +1655,6 @@
                     yData[i] = sum;
                 } else if (y === "intermediateSum" || point.isIntermediateSum) {
                     yData[i] = subSum;
-                    subSum = threshold;
                 } else {
                     sum += y;
                     subSum += y;
@@ -1639,11 +1675,10 @@
          */
         toYData: function (pt) {
             if (pt.isSum) {
-                return "sum";
+                return (pt.x === 0 ? null : "sum"); //#3245 Error when first element is Sum or Intermediate Sum
             } else if (pt.isIntermediateSum) {
-                return "intermediateSum";
+                return (pt.x === 0 ? null : "intermediateSum"); //#3245
             }
-
             return pt.y;
         },
 
@@ -1680,7 +1715,7 @@
 
             var data = this.data,
                 length = data.length,
-                lineWidth = this.options.lineWidth + this.options.borderWidth,
+                lineWidth = this.options.lineWidth + this.borderWidth,
                 normalizer = mathRound(lineWidth) % 2 / 2,
                 path = [],
                 M = 'M',
@@ -1745,6 +1780,9 @@
 // 1 - set default options
     defaultPlotOptions.bubble = merge(defaultPlotOptions.scatter, {
         dataLabels: {
+            formatter: function () { // #2945
+                return this.point.z;
+            },
             inside: true,
             style: {
                 color: 'white',
@@ -1762,6 +1800,13 @@
         maxSize: '20%',
         // negativeColor: null,
         // sizeBy: 'area'
+        states: {
+            hover: {
+                halo: {
+                    size: 5
+                }
+            }
+        },
         tooltip: {
             pointFormat: '({point.x}, {point.y}), Size: {point.z}'
         },
@@ -1769,9 +1814,16 @@
         zThreshold: 0
     });
 
+    var BubblePoint = extendClass(Point, {
+        haloPath: function () {
+            return Point.prototype.haloPath.call(this, this.shapeArgs.r + this.series.options.states.hover.halo.size);
+        }
+    });
+
 // 2 - Create the series object
     seriesTypes.bubble = extendClass(seriesTypes.scatter, {
         type: 'bubble',
+        pointClass: BubblePoint,
         pointArrayMap: ['y', 'z'],
         parallelArrays: ['x', 'y', 'z'],
         trackerGroups: ['group', 'dataLabelsGroup'],
@@ -1831,7 +1883,7 @@
             for (i = 0, len = zData.length; i < len; i++) {
                 zRange = zMax - zMin;
                 pos = zRange > 0 ? // relative size, a number between 0 and 1
-                    (zData[i] - zMin) / (zMax - zMin) :
+                (zData[i] - zMin) / (zMax - zMin) :
                     0.5;
                 if (sizeByArea && pos >= 0) {
                     pos = Math.sqrt(pos);
@@ -1924,10 +1976,10 @@
             var radius = pInt(legend.itemStyle.fontSize) / 2;
 
             item.legendSymbol = this.chart.renderer.circle(
-                    radius,
-                    legend.baseline - radius,
-                    radius
-                ).attr({
+                radius,
+                legend.baseline - radius,
+                radius
+            ).attr({
                     zIndex: 3
                 }).add(item.legendGroup);
             item.legendSymbol.isMarker = true;
@@ -1983,7 +2035,7 @@
 
                             length = pInt(length);
                             extremes[prop] = isPercent ?
-                                smallestSize * length / 100 :
+                            smallestSize * length / 100 :
                                 length;
 
                         });
@@ -1992,14 +2044,14 @@
                         // Find the min and max Z
                         zData = series.zData;
                         if (zData.length) { // #1735
-                            zMin = math.min(
+                            zMin = pick(seriesOptions.zMin, math.min(
                                 zMin,
                                 math.max(
                                     arrayMin(zData),
                                     seriesOptions.displayNegative === false ? seriesOptions.zThreshold : -Number.MAX_VALUE
                                 )
-                            );
-                            zMax = math.max(zMax, arrayMax(zData));
+                            ));
+                            zMax = pick(seriesOptions.zMax, math.max(zMax, arrayMax(zData)));
                         }
                     }
                 }
@@ -2313,7 +2365,7 @@
 
                         group.attr(attribs);
                         if (markerGroup) {
-                            markerGroup.attrSetters = group.attrSetters;
+                            //markerGroup.attrSetters = group.attrSetters;
                             markerGroup.attr(attribs);
                         }
 
@@ -2410,7 +2462,10 @@
                                 }
                             )
                         };
-                        this.toXY(point); // provide correct plotX, plotY for tooltip
+                        // Provide correct plotX, plotY for tooltip
+                        this.toXY(point);
+                        point.tooltipPos = [point.plotX, point.plotY];
+                        point.ttBelow = point.plotY > center[1];
                     }
                 }
             });
@@ -2505,7 +2560,7 @@
                         axis: axis,
                         value: axis.translate(
                             isXAxis ?
-                                Math.PI - Math.atan2(x, y) : // angle
+                            Math.PI - Math.atan2(x, y) : // angle
                                 Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)), // distance from center
                             true
                         )

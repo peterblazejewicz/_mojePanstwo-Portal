@@ -1,17 +1,17 @@
 import
-"../core/identity";
+    "../core/identity";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"../scale/linear";
+    "../scale/linear";
 import
-"../scale/scale";
+    "../scale/scale";
 import
-"../selection/selection";
+    "../selection/selection";
 import
-"../transition/transition";
+    "../transition/transition";
 import
-"svg";
+    "svg";
 
 d3.svg.axis = function () {
     var scale = d3.scale.linear(),

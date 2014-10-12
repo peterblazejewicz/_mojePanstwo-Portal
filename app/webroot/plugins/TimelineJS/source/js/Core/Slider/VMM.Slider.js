@@ -312,10 +312,10 @@ if (typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
                 } else if (_pos > _slide_pos + (config.slider_width / 3)) {
                     onPrevClick();
                 } else {
-                    VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos });
+                    VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos});
                 }
             } else {
-                VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos });
+                VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos});
             }
 
             if (typeof b.top == "number") {
@@ -715,7 +715,7 @@ if (typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
                 var scroll_height = 0;
                 try {
                     scroll_height = VMM.Lib.prop(layout, "scrollHeight");
-                    VMM.Lib.animate(layout, _duration, _ease, {scrollTop: scroll_height - VMM.Lib.height(layout) });
+                    VMM.Lib.animate(layout, _duration, _ease, {scrollTop: scroll_height - VMM.Lib.height(layout)});
                 }
                 catch (err) {
                     scroll_height = VMM.Lib.height(layout);

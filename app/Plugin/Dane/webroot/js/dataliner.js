@@ -3,7 +3,6 @@ var Dataliner = Class.extend({
         this.div = $(div);
         this.timeline_div = this.div.find('.timeline');
         this.filters_div = this.div.find('.filters');
-        this.endlessLoading = this.div.find('.endlessLoader');
 
         this.requestData = this.div.data('requestdata');
         this.filterField = this.div.data('filterfield');
@@ -11,6 +10,7 @@ var Dataliner = Class.extend({
         this.initData = [];
 
         var lis = this.timeline_div.find('ul li');
+
         for (var i = 0; i < lis.length; i++) {
             var li = jQuery(lis[i]);
             this.initData.push({
@@ -22,13 +22,13 @@ var Dataliner = Class.extend({
         }
 
         this.timeline_div.html('').show();
-        this.filters_div_select = this.filters_div.find('select');
-        if (this.filters_div_select.length) {
-            this.filters_div_select.selectpicker({
-                style: 'btn-info',
-                size: 4
-            });
-            this.filters_div.slideDown();
+
+        if (this.filters_div) {
+            this.filters_div_select = this.filters_div.find('select');
+            if (this.filters_div_select) {
+                this.filters_div_select.selectpicker();
+                this.filters_div.slideDown();
+            }
         }
 
         this.timeline = new Timeline(this.timeline_div, this.initData);
@@ -40,7 +40,11 @@ var Dataliner = Class.extend({
 
     loadData: function (page) {
         var data = this.requestData;
-        data['conditions'][this.filterField] = this.filters_div_select.val();
+
+        if (this.filters_div_select.val() !== undefined) {
+            data['conditions'][this.filterField] = this.filters_div_select.val();
+        }
+
         data['page'] = page;
 
         $.ajax('/dane/dataliner/index.json', {
@@ -56,12 +60,13 @@ var Dataliner = Class.extend({
                         });
                         this.timeline_div.html('');
                         this.timeline.display();
-
+                        $('.endlessLoader').data('page', 1);
                     } else {
                         this.timeline.appendData(data);
                     }
                 } else {
                     $('.endlessLoader').hide();
+                    intervalRunable = false;
                 }
             }, this, page)
         });
@@ -76,7 +81,7 @@ $(document).ready(function () {
         var dataliner = new Dataliner(elements[i]);
         $(elements[i]).find('.bootstrap-select .dropdown-menu a').click(function (e) {
             e.preventDefault();
-            dataliner.loadData(1);
+            $.proxy(dataliner.loadData(1), this);
         });
         __dataliners.push(dataliner);
         if (jQuery('.endlessLoader').length) {
@@ -84,6 +89,7 @@ $(document).ready(function () {
             if ($endlessLoader.data('page') == undefined) $endlessLoader.data('page', 1);
             intervalMain = setInterval(function () {
                 if (isElementVisibled('.endlessLoader') && intervalRunable) {
+                    intervalRunable = false;
                     $endlessLoader.data('page', $endlessLoader.data('page') + 1);
                     dataliner.loadData($endlessLoader.data('page'));
                 }

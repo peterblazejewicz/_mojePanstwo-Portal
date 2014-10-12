@@ -1,5 +1,5 @@
 import
-"../core/class";
+    "../core/class";
 
 d3.map = function (object) {
     var map = new d3_Map;

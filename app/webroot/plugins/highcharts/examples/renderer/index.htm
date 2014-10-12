@@ -5,11 +5,14 @@
 <title>Highcharts Example</title>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<style type="text/css">
+    ${demo.css}
+</style>
 <script type="text/javascript">
 $(function () {
-    var chart = new Highcharts.Chart({
+    $('#container').highcharts({
         chart: {
-            renderTo: 'container',
+            backgroundColor: 'white',
             events: {
                 load: function () {
 
@@ -127,7 +130,7 @@ $(function () {
 
                     // Arrow from Batik to SaaS client
                     ren.path(['M', 235, 185, 'L', 235, 155, 'C', 235, 130, 235, 130, 215, 130,
-                                'L', 95, 130, 'L', 100, 125, 'M', 95, 130, 'L', 100, 135])
+                        'L', 95, 130, 'L', 100, 125, 'M', 95, 130, 'L', 100, 135])
                             .attr({
                                 'stroke-width': 2,
                                 stroke: colors[3]
@@ -243,7 +246,10 @@ $(function () {
             }
         },
         title: {
-            text: 'Highcharts export server overview'
+            text: 'Highcharts export server overview',
+            style: {
+                color: 'black'
+            }
         }
 
     });

@@ -1,13 +1,13 @@
 import
-"../core/noop";
+    "../core/noop";
 import
-"../math/adder";
+    "../math/adder";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"geo";
+    "geo";
 import
-"stream";
+    "stream";
 
 d3.geo.area = function (object) {
     d3_geo_areaSum = 0;

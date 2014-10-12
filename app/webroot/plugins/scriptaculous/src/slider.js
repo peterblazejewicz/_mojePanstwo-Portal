@@ -1,9 +1,11 @@
+// script.aculo.us slider.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Marty Haught, Thomas Fuchs
 //
 // script.aculo.us is freely distributable under the terms of an MIT-style license.
 // For details, see the script.aculo.us web site: http://script.aculo.us/
 
-if (!Control) var Control = { };
+if (!Control) var Control = {};
 
 // options:
 //  axis: 'vertical', or 'horizontal' (default)
@@ -24,7 +26,7 @@ Control.Slider = Class.create({
         }
 
         this.track = $(track);
-        this.options = options || { };
+        this.options = options || {};
 
         this.axis = this.options.axis || 'horizontal';
         this.increment = this.options.increment || 1;
@@ -81,7 +83,7 @@ Control.Slider = Class.create({
             slider.setValue(parseFloat(
                 (Object.isArray(slider.options.sliderValue) ?
                     slider.options.sliderValue[i] : slider.options.sliderValue) ||
-                    slider.range.start), i);
+                slider.range.start), i);
             h.makePositioned().observe("mousedown", slider.eventMouseDown);
         });
 
@@ -108,8 +110,8 @@ Control.Slider = Class.create({
     },
     getNearestValue: function (value) {
         if (this.allowedValues) {
-            if (value >= this.allowedValues.max()) return(this.allowedValues.max());
-            if (value <= this.allowedValues.min()) return(this.allowedValues.min());
+            if (value >= this.allowedValues.max()) return (this.allowedValues.max());
+            if (value <= this.allowedValues.min()) return (this.allowedValues.min());
 
             var offset = Math.abs(this.allowedValues[0] - value);
             var newValue = this.allowedValues[0];
@@ -156,11 +158,11 @@ Control.Slider = Class.create({
     translateToPx: function (value) {
         return Math.round(
             ((this.trackLength - this.handleLength) / (this.range.end - this.range.start)) *
-                (value - this.range.start)) + "px";
+            (value - this.range.start)) + "px";
     },
     translateToValue: function (offset) {
         return ((offset / (this.trackLength - this.handleLength) *
-            (this.range.end - this.range.start)) + this.range.start);
+        (this.range.end - this.range.start)) + this.range.start);
     },
     getRange: function (range) {
         var v = this.values.sortBy(Prototype.K);
@@ -168,14 +170,14 @@ Control.Slider = Class.create({
         return $R(v[range], v[range + 1]);
     },
     minimumOffset: function () {
-        return(this.isVertical() ? this.alignY : this.alignX);
+        return (this.isVertical() ? this.alignY : this.alignX);
     },
     maximumOffset: function () {
-        return(this.isVertical() ?
-            (this.track.offsetHeight != 0 ? this.track.offsetHeight :
-                this.track.style.height.replace(/px$/, "")) - this.alignY :
-            (this.track.offsetWidth != 0 ? this.track.offsetWidth :
-                this.track.style.width.replace(/px$/, "")) - this.alignX);
+        return (this.isVertical() ?
+        (this.track.offsetHeight != 0 ? this.track.offsetHeight :
+            this.track.style.height.replace(/px$/, "")) - this.alignY :
+        (this.track.offsetWidth != 0 ? this.track.offsetWidth :
+            this.track.style.width.replace(/px$/, "")) - this.alignX);
     },
     isVertical: function () {
         return (this.axis == 'vertical');

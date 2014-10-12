@@ -1,9 +1,9 @@
 import
-"../core/functor";
+    "../core/functor";
 import
-"../math/trigonometry";
+    "../math/trigonometry";
 import
-"svg";
+    "svg";
 
 d3.svg.arc = function () {
     var innerRadius = d3_svg_arcInnerRadius,
@@ -25,26 +25,26 @@ d3.svg.arc = function () {
         return da >= d3_svg_arcMax
             ? (r0
             ? "M0," + r1
-            + "A" + r1 + "," + r1 + " 0 1,1 0," + (-r1)
-            + "A" + r1 + "," + r1 + " 0 1,1 0," + r1
-            + "M0," + r0
-            + "A" + r0 + "," + r0 + " 0 1,0 0," + (-r0)
-            + "A" + r0 + "," + r0 + " 0 1,0 0," + r0
-            + "Z"
+        + "A" + r1 + "," + r1 + " 0 1,1 0," + (-r1)
+        + "A" + r1 + "," + r1 + " 0 1,1 0," + r1
+        + "M0," + r0
+        + "A" + r0 + "," + r0 + " 0 1,0 0," + (-r0)
+        + "A" + r0 + "," + r0 + " 0 1,0 0," + r0
+        + "Z"
             : "M0," + r1
-            + "A" + r1 + "," + r1 + " 0 1,1 0," + (-r1)
-            + "A" + r1 + "," + r1 + " 0 1,1 0," + r1
-            + "Z")
+        + "A" + r1 + "," + r1 + " 0 1,1 0," + (-r1)
+        + "A" + r1 + "," + r1 + " 0 1,1 0," + r1
+        + "Z")
             : (r0
             ? "M" + r1 * c0 + "," + r1 * s0
-            + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1
-            + "L" + r0 * c1 + "," + r0 * s1
-            + "A" + r0 + "," + r0 + " 0 " + df + ",0 " + r0 * c0 + "," + r0 * s0
-            + "Z"
+        + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1
+        + "L" + r0 * c1 + "," + r0 * s1
+        + "A" + r0 + "," + r0 + " 0 " + df + ",0 " + r0 * c0 + "," + r0 * s0
+        + "Z"
             : "M" + r1 * c0 + "," + r1 * s0
-            + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1
-            + "L0,0"
-            + "Z");
+        + "A" + r1 + "," + r1 + " 0 " + df + ",1 " + r1 * c1 + "," + r1 * s1
+        + "L0,0"
+        + "Z");
     }
 
     arc.innerRadius = function (v) {

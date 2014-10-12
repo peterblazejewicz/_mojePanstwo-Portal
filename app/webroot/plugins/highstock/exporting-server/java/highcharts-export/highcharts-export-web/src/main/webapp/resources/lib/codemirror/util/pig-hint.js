@@ -22,8 +22,10 @@
         // If it's not a 'word-style' token, ignore the token.
 
         if (!/^[\w$_]*$/.test(token.string)) {
-            token = tprop = {start: cur.ch, end: cur.ch, string: "", state: token.state,
-                className: token.string == ":" ? "pig-type" : null};
+            token = tprop = {
+                start: cur.ch, end: cur.ch, string: "", state: token.state,
+                className: token.string == ":" ? "pig-type" : null
+            };
         }
 
         if (!context) var context = [];
@@ -36,9 +38,11 @@
             completionList.push(" ");
         }
 
-        return {list: completionList,
+        return {
+            list: completionList,
             from: {line: cur.line, ch: token.start},
-            to: {line: cur.line, ch: token.end}};
+            to: {line: cur.line, ch: token.end}
+        };
     }
 
     CodeMirror.pigHint = function (editor) {
@@ -78,12 +82,12 @@
     var pigBuiltinsU = pigBuiltins.split(" ").join("() ").split(" ");
     var pigBuiltinsL = pigBuiltins.toLowerCase().split(" ").join("() ").split(" ");
     var pigBuiltinsC = ("BagSize BinStorage Bloom BuildBloom ConstantSize CubeDimensions DoubleAbs "
-        + "DoubleAvg DoubleBase DoubleMax DoubleMin DoubleRound DoubleSum FloatAbs FloatAvg FloatMax "
-        + "FloatMin FloatRound FloatSum GenericInvoker IntAbs IntAvg IntMax IntMin IntSum "
-        + "InvokeForDouble InvokeForFloat InvokeForInt InvokeForLong InvokeForString Invoker "
-        + "IsEmpty JsonLoader JsonMetadata JsonStorage LongAbs LongAvg LongMax LongMin LongSum MapSize "
-        + "MonitoredUDF Nondeterministic OutputSchema PigStorage PigStreaming StringConcat StringMax "
-        + "StringMin StringSize TextLoader TupleSize Utf8StorageConverter").split(" ").join("() ").split(" ");
+    + "DoubleAvg DoubleBase DoubleMax DoubleMin DoubleRound DoubleSum FloatAbs FloatAvg FloatMax "
+    + "FloatMin FloatRound FloatSum GenericInvoker IntAbs IntAvg IntMax IntMin IntSum "
+    + "InvokeForDouble InvokeForFloat InvokeForInt InvokeForLong InvokeForString Invoker "
+    + "IsEmpty JsonLoader JsonMetadata JsonStorage LongAbs LongAvg LongMax LongMin LongSum MapSize "
+    + "MonitoredUDF Nondeterministic OutputSchema PigStorage PigStreaming StringConcat StringMax "
+    + "StringMin StringSize TextLoader TupleSize Utf8StorageConverter").split(" ").join("() ").split(" ");
 
     function getCompletions(token, context) {
         var found = [], start = token.string;

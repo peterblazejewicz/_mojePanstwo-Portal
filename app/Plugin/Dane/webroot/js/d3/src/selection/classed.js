@@ -1,9 +1,9 @@
 import
-"../format/collapse";
+    "../format/collapse";
 import
-"../format/requote";
+    "../format/requote";
 import
-"selection";
+    "selection";
 
 d3_selectionPrototype.classed = function (name, value) {
     if (arguments.length < 2) {

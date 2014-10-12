@@ -43,7 +43,8 @@
                 //var d = new LongListItem(li[i]);
                 //li[i].onmousedown = d.onMouseDown.bindAsEventListener(d);
                 var d = new Draggable(li[i],
-                        {revert: true,
+                        {
+                            revert: true,
                             ghosting: false,
                             scroll: "rightContainers"
                         });

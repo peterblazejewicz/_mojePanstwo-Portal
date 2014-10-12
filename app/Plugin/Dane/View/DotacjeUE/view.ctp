@@ -46,25 +46,13 @@
             </div>
         </div>
 
-
-
-
-
-
-
         <?
 
-
-
-
-
         // echo( implode("', '", array_keys( $object->getData() )) );
-
 
         // 'dzialanie_id', 'forma_prawna_id', 'forma_prawna_str', 'id', 'liczba_czesci', 'os_id', 'poddzialanie_id', 'program_id', 'projekt_zakonczony', 'tytul'
 
         // 'gmina_id', 'powiat_id', 'wojewodztwo_id', 'poziom_id'
-
 
         ?>
     </div>

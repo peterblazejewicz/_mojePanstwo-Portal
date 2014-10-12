@@ -1,40 +1,37 @@
 <?php
 
-class PowiadomieniaAppController extends AppController
-{
-    public $helpers = array(
-        'Dane.Dataobject',
-    );
+class PowiadomieniaAppController extends AppController {
+	public $helpers = array(
+		'Dane.Dataobject',
+	);
+	public $pagination = array();
 
-    public function beforeFilter()
-    {
+	public function beforeFilter() {
 
-        if (
-            ($this->request->params['controller'] == 'powiadomienia') &&
-            ($this->request->params['action'] == 'index')
-        ) {
+		if (
+			( $this->request->params['controller'] == 'powiadomienia' ) &&
+			( $this->request->params['action'] == 'index' )
+		) {
 
-            $this->API = $this->API->Powiadomienia();
-            parent::beforeFilter();
+			$this->API = $this->API->Powiadomienia();
+			parent::beforeFilter();
 
-        } else {
+		} else {
 
-            if ($this->Auth->loggedIn()) {
+			if ( $this->Auth->loggedIn() ) {
 
-                $this->API = $this->API->Powiadomienia();
-                parent::beforeFilter();
+				$this->API = $this->API->Powiadomienia();
+				parent::beforeFilter();
 
-            } else {
+			} else {
 
-                $this->API = $this->API->Powiadomienia();
-                parent::beforeFilter();
-                // throw new ForbiddenException('Please login');
+				$this->API = $this->API->Powiadomienia();
+				parent::beforeFilter();
+				// throw new ForbiddenException('Please login');
 
-            }
+			}
 
-        }
-    }
-
-    public $pagination = array();
+		}
+	}
 
 }

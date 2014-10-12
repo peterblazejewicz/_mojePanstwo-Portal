@@ -1,5 +1,5 @@
 import
-"transition";
+    "transition";
 
 d3_transitionPrototype.transition = function () {
     var id0 = this.id,

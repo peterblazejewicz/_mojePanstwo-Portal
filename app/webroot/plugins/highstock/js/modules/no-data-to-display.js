@@ -1,5 +1,5 @@
 /*
- Highstock JS v1.3.10 (2014-03-10)
+ Highstock JS v2.0.4 (2014-09-02)
  Plugin for displaying a message when there is no data visible in chart.
 
  (c) 2010-2014 Highsoft AS
@@ -9,7 +9,7 @@
  */
 (function (c) {
     function f() {
-        return!!this.points.length
+        return !!this.points.length
     }
 
     function g() {
@@ -18,7 +18,11 @@
 
     var d = c.seriesTypes, e = c.Chart.prototype, h = c.getOptions(), i = c.extend;
     i(h.lang, {noData: "No data to display"});
-    h.noData = {position: {x: 0, y: 0, align: "center", verticalAlign: "middle"}, attr: {}, style: {fontWeight: "bold", fontSize: "12px", color: "#60606a"}};
+    h.noData = {
+        position: {x: 0, y: 0, align: "center", verticalAlign: "middle"},
+        attr: {},
+        style: {fontWeight: "bold", fontSize: "12px", color: "#60606a"}
+    };
     if (d.pie)d.pie.prototype.hasData = f;
     if (d.gauge)d.gauge.prototype.hasData = f;
     if (d.waterfall)d.waterfall.prototype.hasData = f;
@@ -34,8 +38,8 @@
         if (this.noDataLabel)this.noDataLabel = this.noDataLabel.destroy()
     };
     e.hasData = function () {
-        for (var a = this.series, b = a.length; b--;)if (a[b].hasData() && !a[b].options.isInternal)return!0;
-        return!1
+        for (var a = this.series, b = a.length; b--;)if (a[b].hasData() && !a[b].options.isInternal)return !0;
+        return !1
     };
     e.callbacks.push(function (a) {
         c.addEvent(a, "load", g);

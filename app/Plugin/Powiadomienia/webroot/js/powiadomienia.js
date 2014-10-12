@@ -140,7 +140,7 @@
         powiadomieniaModal.options.modal.find('form .datasets .datasetsContent > .switchCheckbox > .bootstrap-switch input').map(function () {
             var name = this.name.match(/\[(.*?)\]/);
 
-            parm.group.apps.push({name: name[1], id: this.value, status: this.checked ? true : false, datasets: [] })
+            parm.group.apps.push({name: name[1], id: this.value, status: this.checked ? true : false, datasets: []})
         });
 
         $.each(serialize, function (index, data) {
@@ -186,15 +186,15 @@
             serializePowiadomieniaSaveAlert('apps')
 
         return (
-            (
-                parm.group.PowiadomieniaGroup.title != null
-                    && parm.group.PowiadomieniaGroup.title != ""
-                    && parm.group.PowiadomieniaGroup.title != _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER
-                ) && (
-                parm.group.phrases.length != 0 && !(parm.group.phrases.length == 1 && parm.group.phrases[0] == "")
-                ) &&
-                appStatus
-            )
+        (
+        parm.group.PowiadomieniaGroup.title != null
+        && parm.group.PowiadomieniaGroup.title != ""
+        && parm.group.PowiadomieniaGroup.title != _mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_TITLE_PLACEHOLDER
+        ) && (
+        parm.group.phrases.length != 0 && !(parm.group.phrases.length == 1 && parm.group.phrases[0] == "")
+        ) &&
+        appStatus
+        )
     }
 
     function serializePowiadomieniaSaveAlert(status) {
@@ -233,27 +233,30 @@
                 e.preventDefault();
 
                 modalBottom.addClass('modal-footer').append(
-                        $('<div></div>').addClass('btn-group pull-left show').append(
-                                $('<button></button>').addClass('btn btn-default dropdown-toggle').attr({'data-toggle': 'dropdown', 'type': 'button'}).text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_WIECEJ).append(
-                                    $('<span></span>').addClass("caret")
-                                )
-                            ).append(
-                                $('<ul></ul>').addClass('dropdown-menu').attr('role', 'menu')
-                                    /*.append(
-                                     $('<li></li>').append(
-                                     $('<a></a>').addClass('duplicate').attr('href', '#').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DUPLIKUJ)
-                                     )
-                                     ).append(
-                                     $('<li></li>').addClass('divider')
-                                     )*/.append(
-                                        $('<li></li>').append(
-                                            $('<a></a>').addClass('delete').attr('href', '#').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_USUN)
-                                        )
-                                    )
-                            )
+                    $('<div></div>').addClass('btn-group pull-left show').append(
+                        $('<button></button>').addClass('btn btn-default dropdown-toggle').attr({
+                            'data-toggle': 'dropdown',
+                            'type': 'button'
+                        }).text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_WIECEJ).append(
+                            $('<span></span>').addClass("caret")
+                        )
                     ).append(
-                        $('<button></button>').addClass('btn save btn-primary pull-right').attr({'type': 'button'}).text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_ZAPISZ)
-                    );
+                        $('<ul></ul>').addClass('dropdown-menu').attr('role', 'menu')
+                            /*.append(
+                             $('<li></li>').append(
+                             $('<a></a>').addClass('duplicate').attr('href', '#').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_DUPLIKUJ)
+                             )
+                             ).append(
+                             $('<li></li>').addClass('divider')
+                             )*/.append(
+                            $('<li></li>').append(
+                                $('<a></a>').addClass('delete').attr('href', '#').text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_USUN)
+                            )
+                        )
+                    )
+                ).append(
+                    $('<button></button>').addClass('btn save btn-primary pull-right').attr({'type': 'button'}).text(_mPHeart.translation.LC_POWIADOMIENIA_POWIADOMENIA_MODAL_ZAPISZ)
+                );
 
                 /*DELETE*/
                 modalBottom.find('a.delete').click(function () {

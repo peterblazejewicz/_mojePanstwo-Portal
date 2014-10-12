@@ -25,8 +25,8 @@
 
     function getOffsets(offsets, width, height) {
         return [
-            parseFloat(offsets[ 0 ]) * ( rpercent.test(offsets[ 0 ]) ? width / 100 : 1 ),
-            parseFloat(offsets[ 1 ]) * ( rpercent.test(offsets[ 1 ]) ? height / 100 : 1 )
+            parseFloat(offsets[0]) * ( rpercent.test(offsets[0]) ? width / 100 : 1 ),
+            parseFloat(offsets[1]) * ( rpercent.test(offsets[1]) ? height / 100 : 1 )
         ];
     }
 
@@ -40,21 +40,21 @@
             return {
                 width: elem.width(),
                 height: elem.height(),
-                offset: { top: 0, left: 0 }
+                offset: {top: 0, left: 0}
             };
         }
         if ($.isWindow(raw)) {
             return {
                 width: elem.width(),
                 height: elem.height(),
-                offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
+                offset: {top: elem.scrollTop(), left: elem.scrollLeft()}
             };
         }
         if (raw.preventDefault) {
             return {
                 width: 0,
                 height: 0,
-                offset: { top: raw.pageY, left: raw.pageX }
+                offset: {top: raw.pageY, left: raw.pageX}
             };
         }
         return {
@@ -104,12 +104,12 @@
         getWithinInfo: function (element) {
             var withinElement = $(element || window),
                 isWindow = $.isWindow(withinElement[0]),
-                isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
+                isDocument = !!withinElement[0] && withinElement[0].nodeType === 9;
             return {
                 element: withinElement,
                 isWindow: isWindow,
                 isDocument: isDocument,
-                offset: withinElement.offset() || { left: 0, top: 0 },
+                offset: withinElement.offset() || {left: 0, top: 0},
                 scrollLeft: withinElement.scrollLeft(),
                 scrollTop: withinElement.scrollTop(),
                 width: isWindow ? withinElement.width() : withinElement.outerWidth(),
@@ -146,56 +146,56 @@
 
         // force my and at to have valid horizontal and vertical positions
         // if a value is missing or invalid, it will be converted to center
-        $.each([ "my", "at" ], function () {
-            var pos = ( options[ this ] || "" ).split(" "),
+        $.each(["my", "at"], function () {
+            var pos = ( options[this] || "" ).split(" "),
                 horizontalOffset,
                 verticalOffset;
 
             if (pos.length === 1) {
-                pos = rhorizontal.test(pos[ 0 ]) ?
-                    pos.concat([ "center" ]) :
-                    rvertical.test(pos[ 0 ]) ?
-                        [ "center" ].concat(pos) :
-                        [ "center", "center" ];
+                pos = rhorizontal.test(pos[0]) ?
+                    pos.concat(["center"]) :
+                    rvertical.test(pos[0]) ?
+                        ["center"].concat(pos) :
+                        ["center", "center"];
             }
-            pos[ 0 ] = rhorizontal.test(pos[ 0 ]) ? pos[ 0 ] : "center";
-            pos[ 1 ] = rvertical.test(pos[ 1 ]) ? pos[ 1 ] : "center";
+            pos[0] = rhorizontal.test(pos[0]) ? pos[0] : "center";
+            pos[1] = rvertical.test(pos[1]) ? pos[1] : "center";
 
             // calculate offsets
-            horizontalOffset = roffset.exec(pos[ 0 ]);
-            verticalOffset = roffset.exec(pos[ 1 ]);
-            offsets[ this ] = [
-                horizontalOffset ? horizontalOffset[ 0 ] : 0,
-                verticalOffset ? verticalOffset[ 0 ] : 0
+            horizontalOffset = roffset.exec(pos[0]);
+            verticalOffset = roffset.exec(pos[1]);
+            offsets[this] = [
+                horizontalOffset ? horizontalOffset[0] : 0,
+                verticalOffset ? verticalOffset[0] : 0
             ];
 
             // reduce to just the positions without the offsets
-            options[ this ] = [
-                rposition.exec(pos[ 0 ])[ 0 ],
-                rposition.exec(pos[ 1 ])[ 0 ]
+            options[this] = [
+                rposition.exec(pos[0])[0],
+                rposition.exec(pos[1])[0]
             ];
         });
 
         // normalize collision option
         if (collision.length === 1) {
-            collision[ 1 ] = collision[ 0 ];
+            collision[1] = collision[0];
         }
 
-        if (options.at[ 0 ] === "right") {
+        if (options.at[0] === "right") {
             basePosition.left += targetWidth;
-        } else if (options.at[ 0 ] === "center") {
+        } else if (options.at[0] === "center") {
             basePosition.left += targetWidth / 2;
         }
 
-        if (options.at[ 1 ] === "bottom") {
+        if (options.at[1] === "bottom") {
             basePosition.top += targetHeight;
-        } else if (options.at[ 1 ] === "center") {
+        } else if (options.at[1] === "center") {
             basePosition.top += targetHeight / 2;
         }
 
         atOffset = getOffsets(offsets.at, targetWidth, targetHeight);
-        basePosition.left += atOffset[ 0 ];
-        basePosition.top += atOffset[ 1 ];
+        basePosition.left += atOffset[0];
+        basePosition.top += atOffset[1];
 
         return this.each(function () {
             var collisionPosition, using,
@@ -209,20 +209,20 @@
                 position = $.extend({}, basePosition),
                 myOffset = getOffsets(offsets.my, elem.outerWidth(), elem.outerHeight());
 
-            if (options.my[ 0 ] === "right") {
+            if (options.my[0] === "right") {
                 position.left -= elemWidth;
-            } else if (options.my[ 0 ] === "center") {
+            } else if (options.my[0] === "center") {
                 position.left -= elemWidth / 2;
             }
 
-            if (options.my[ 1 ] === "bottom") {
+            if (options.my[1] === "bottom") {
                 position.top -= elemHeight;
-            } else if (options.my[ 1 ] === "center") {
+            } else if (options.my[1] === "center") {
                 position.top -= elemHeight / 2;
             }
 
-            position.left += myOffset[ 0 ];
-            position.top += myOffset[ 1 ];
+            position.left += myOffset[0];
+            position.top += myOffset[1];
 
             // if the browser doesn't support fractions, then round for consistent results
             if (!$.support.offsetFractions) {
@@ -235,9 +235,9 @@
                 marginTop: marginTop
             };
 
-            $.each([ "left", "top" ], function (i, dir) {
-                if ($.ui.position[ collision[ i ] ]) {
-                    $.ui.position[ collision[ i ] ][ dir ](position, {
+            $.each(["left", "top"], function (i, dir) {
+                if ($.ui.position[collision[i]]) {
+                    $.ui.position[collision[i]][dir](position, {
                         targetWidth: targetWidth,
                         targetHeight: targetHeight,
                         elemWidth: elemWidth,
@@ -245,7 +245,7 @@
                         collisionPosition: collisionPosition,
                         collisionWidth: collisionWidth,
                         collisionHeight: collisionHeight,
-                        offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
+                        offset: [atOffset[0] + myOffset[0], atOffset [1] + myOffset[1]],
                         my: options.my,
                         at: options.at,
                         within: within,
@@ -294,7 +294,7 @@
                 };
             }
 
-            elem.offset($.extend(position, { using: using }));
+            elem.offset($.extend(position, {using: using}));
         });
     };
 
@@ -384,17 +384,17 @@
                     collisionPosLeft = position.left - data.collisionPosition.marginLeft,
                     overLeft = collisionPosLeft - offsetLeft,
                     overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft,
-                    myOffset = data.my[ 0 ] === "left" ?
+                    myOffset = data.my[0] === "left" ?
                         -data.elemWidth :
-                        data.my[ 0 ] === "right" ?
+                        data.my[0] === "right" ?
                             data.elemWidth :
                             0,
-                    atOffset = data.at[ 0 ] === "left" ?
+                    atOffset = data.at[0] === "left" ?
                         data.targetWidth :
-                        data.at[ 0 ] === "right" ?
+                        data.at[0] === "right" ?
                             -data.targetWidth :
                             0,
-                    offset = -2 * data.offset[ 0 ],
+                    offset = -2 * data.offset[0],
                     newOverRight,
                     newOverLeft;
 
@@ -419,18 +419,18 @@
                     collisionPosTop = position.top - data.collisionPosition.marginTop,
                     overTop = collisionPosTop - offsetTop,
                     overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
-                    top = data.my[ 1 ] === "top",
+                    top = data.my[1] === "top",
                     myOffset = top ?
                         -data.elemHeight :
-                        data.my[ 1 ] === "bottom" ?
+                        data.my[1] === "bottom" ?
                             data.elemHeight :
                             0,
-                    atOffset = data.at[ 1 ] === "top" ?
+                    atOffset = data.at[1] === "top" ?
                         data.targetHeight :
-                        data.at[ 1 ] === "bottom" ?
+                        data.at[1] === "bottom" ?
                             -data.targetHeight :
                             0,
-                    offset = -2 * data.offset[ 1 ],
+                    offset = -2 * data.offset[1],
                     newOverTop,
                     newOverBottom;
                 if (overTop < 0) {
@@ -462,7 +462,7 @@
 // fraction support test
     (function () {
         var testElement, testElementParent, testElementStyle, offsetLeft, i,
-            body = document.getElementsByTagName("body")[ 0 ],
+            body = document.getElementsByTagName("body")[0],
             div = document.createElement("div");
 
         //Create a "fake body" for testing based on method used in jQuery.support
@@ -483,7 +483,7 @@
             });
         }
         for (i in testElementStyle) {
-            testElement.style[ i ] = testElementStyle[ i ];
+            testElement.style[i] = testElementStyle[i];
         }
         testElement.appendChild(div);
         testElementParent = body || document.documentElement;

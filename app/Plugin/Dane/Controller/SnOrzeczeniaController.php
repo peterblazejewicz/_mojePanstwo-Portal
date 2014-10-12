@@ -1,8 +1,7 @@
 <?php
 
-App::uses('DocsObjectsController', 'Dane.Controller');
+App::uses( 'DocsObjectsController', 'Dane.Controller' );
 
-class SnOrzeczeniaController extends DocsObjectsController
-{
-    public $menu = array();
+class SnOrzeczeniaController extends DocsObjectsController {
+	public $menu = array();
 } 

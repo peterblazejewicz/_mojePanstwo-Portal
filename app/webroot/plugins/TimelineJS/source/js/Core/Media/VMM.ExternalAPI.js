@@ -76,7 +76,7 @@ if (typeof VMM != 'undefined' && typeof VMM.ExternalAPI == 'undefined') {
             create: function (tweet, callback) {
 
                 var id = tweet.mid.toString(),
-                    error_obj = { twitterid: tweet.mid },
+                    error_obj = {twitterid: tweet.mid},
                     the_url = "//api.twitter.com/1/statuses/show.json?id=" + tweet.mid + "&include_entities=true&callback=?";
                 //twitter_timeout	= setTimeout(VMM.ExternalAPI.twitter.errorTimeOut, VMM.master_config.timers.api, tweet),
                 //callback_timeout= setTimeout(callback, VMM.master_config.timers.api, tweet);
@@ -589,7 +589,7 @@ if (typeof VMM != 'undefined' && typeof VMM.ExternalAPI == 'undefined') {
                         has_location = true;
                     }
 
-                    geocoder.geocode({ 'address': address}, function (results, status) {
+                    geocoder.geocode({'address': address}, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
 
                             marker = new google.maps.Marker({

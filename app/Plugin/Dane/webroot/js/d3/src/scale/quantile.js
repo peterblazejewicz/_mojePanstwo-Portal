@@ -1,11 +1,11 @@
 import
-"../arrays/ascending";
+    "../arrays/ascending";
 import
-"../arrays/bisect";
+    "../arrays/bisect";
 import
-"../arrays/quantile";
+    "../arrays/quantile";
 import
-"scale";
+    "scale";
 
 d3.scale.quantile = function () {
     return d3_scale_quantile([], []);

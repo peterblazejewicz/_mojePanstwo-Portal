@@ -1,7 +1,7 @@
 import
-"../selection/select";
+    "../selection/select";
 import
-"transition";
+    "transition";
 
 d3_transitionPrototype.select = function (selector) {
     var id = this.id,

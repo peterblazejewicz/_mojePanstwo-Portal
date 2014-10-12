@@ -1,7 +1,7 @@
 import
-"geo";
+    "geo";
 import
-"../core/array";
+    "../core/array";
 
 d3.geo.transform = function (methods) {
     return {

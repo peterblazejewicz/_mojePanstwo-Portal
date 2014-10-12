@@ -1,5 +1,3 @@
-dane.css
-frazy.css
-permissions.css
-powiadomienia.css
-tagsInput.css
+!.gitignore
+!empty
+*.css

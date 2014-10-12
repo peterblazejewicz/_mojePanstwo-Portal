@@ -1,10 +1,8 @@
 <?php
 
 
-class ServicesController extends PassportAppController
-{
-    public function index()
-    {
+class ServicesController extends PassportAppController {
+	public function index() {
 //        $this->data = $this->Service->find('all', array(
 //            'contain' => array(
 //                'User' => array(
@@ -21,5 +19,5 @@ class ServicesController extends PassportAppController
 //        ));
 //        $this->set('tokens', $tokens);
 //        $this->set('title_for_layout', __d('paszport','LC_PASZPORT_OUR_SERVICES',true));
-    }
+	}
 }

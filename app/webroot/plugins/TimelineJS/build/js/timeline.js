@@ -49,7 +49,7 @@
         for (var name in prop) {
             // Check if we're overwriting an existing function
             prototype[name] = typeof prop[name] == "function" &&
-                typeof _super[name] == "function" && fnTest.test(prop[name]) ?
+            typeof _super[name] == "function" && fnTest.test(prop[name]) ?
                 (function (name, fn) {
                     return function () {
                         var tmp = this._super;
@@ -370,34 +370,34 @@ var is = {
         return a === undefined;
     },
     nt: function (a) {
-        return(a === null || a === undefined);
+        return (a === null || a === undefined);
     },
     Function: function (a) {
-        return(typeof(a) === "function") ? a.constructor.toString().match(/Function/) !== null : false;
+        return (typeof(a) === "function") ? a.constructor.toString().match(/Function/) !== null : false;
     },
     String: function (a) {
-        return(typeof(a) === "string") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/string/i) !== null : false;
+        return (typeof(a) === "string") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/string/i) !== null : false;
     },
     Array: function (a) {
-        return(typeof(a) === "object") ? a.constructor.toString().match(/array/i) !== null || a.length !== undefined : false;
+        return (typeof(a) === "object") ? a.constructor.toString().match(/array/i) !== null || a.length !== undefined : false;
     },
     Boolean: function (a) {
-        return(typeof(a) === "boolean") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/boolean/i) !== null : false;
+        return (typeof(a) === "boolean") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/boolean/i) !== null : false;
     },
     Date: function (a) {
-        return(typeof(a) === "date") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/date/i) !== null : false;
+        return (typeof(a) === "date") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/date/i) !== null : false;
     },
     HTML: function (a) {
-        return(typeof(a) === "object") ? a.constructor.toString().match(/html/i) !== null : false;
+        return (typeof(a) === "object") ? a.constructor.toString().match(/html/i) !== null : false;
     },
     Number: function (a) {
-        return(typeof(a) === "number") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/Number/) !== null : false;
+        return (typeof(a) === "number") ? true : (typeof(a) === "object") ? a.constructor.toString().match(/Number/) !== null : false;
     },
     Object: function (a) {
-        return(typeof(a) === "object") ? a.constructor.toString().match(/object/i) !== null : false;
+        return (typeof(a) === "object") ? a.constructor.toString().match(/object/i) !== null : false;
     },
     RegExp: function (a) {
-        return(typeof(a) === "function") ? a.constructor.toString().match(/regexp/i) !== null : false;
+        return (typeof(a) === "function") ? a.constructor.toString().match(/regexp/i) !== null : false;
     }
 };
 var type = {
@@ -919,7 +919,12 @@ if (typeof VMM != 'undefined') {
             } else {
                 if (typeof( jQuery ) != 'undefined') {
                     if (callback_function != null && callback_function != "") {
-                        jQuery(element).animate(_att, {queue: _que, duration: _duration, easing: _ease, complete: callback_function});
+                        jQuery(element).animate(_att, {
+                            queue: _que,
+                            duration: _duration,
+                            easing: _ease,
+                            complete: callback_function
+                        });
                     } else {
                         jQuery(element).animate(_att, {queue: _que, duration: _duration, easing: _ease});
                     }
@@ -956,7 +961,7 @@ if (typeof( jQuery ) != 'undefined') {
                             xdr = new XDomainRequest();
                             xdr.open(s.type, s.url);
                             xdr.onload = function () {
-                                callback(200, "OK", { text: xdr.responseText }, "Content-Type: " + xdr.contentType);
+                                callback(200, "OK", {text: xdr.responseText}, "Content-Type: " + xdr.contentType);
                             };
                             xdr.onerror = function () {
                                 callback(404, "Not Found");
@@ -1030,8 +1035,8 @@ if (typeof VMM != 'undefined' && typeof VMM.Browser == 'undefined') {
         init: function () {
             this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
             this.version = this.searchVersion(navigator.userAgent)
-                || this.searchVersion(navigator.appVersion)
-                || "an unknown version";
+            || this.searchVersion(navigator.appVersion)
+            || "an unknown version";
             this.OS = this.searchString(this.dataOS) || "an unknown OS";
             this.device = this.searchDevice(navigator.userAgent);
             this.orientation = this.searchOrientation(window.orientation);
@@ -1087,7 +1092,8 @@ if (typeof VMM != 'undefined' && typeof VMM.Browser == 'undefined') {
                 subString: "Chrome",
                 identity: "Chrome"
             },
-            {    string: navigator.userAgent,
+            {
+                string: navigator.userAgent,
                 subString: "OmniWeb",
                 versionSearch: "OmniWeb/",
                 identity: "OmniWeb"
@@ -2410,9 +2416,9 @@ LazyLoad = (function (doc) {
         };
 
         (env.webkit = /AppleWebKit\//.test(ua))
-            || (env.ie = /MSIE/.test(ua))
-            || (env.opera = /Opera/.test(ua))
-            || (env.gecko = /Gecko\//.test(ua))
+        || (env.ie = /MSIE/.test(ua))
+        || (env.opera = /Opera/.test(ua))
+        || (env.gecko = /Gecko\//.test(ua))
         || (env.unknown = true);
     }
 
@@ -2874,7 +2880,7 @@ if (typeof VMM != 'undefined' && typeof VMM.ExternalAPI == 'undefined') {
             create: function (tweet, callback) {
 
                 var id = tweet.mid.toString(),
-                    error_obj = { twitterid: tweet.mid },
+                    error_obj = {twitterid: tweet.mid},
                     the_url = "//api.twitter.com/1/statuses/show.json?id=" + tweet.mid + "&include_entities=true&callback=?";
                 //twitter_timeout	= setTimeout(VMM.ExternalAPI.twitter.errorTimeOut, VMM.master_config.timers.api, tweet),
                 //callback_timeout= setTimeout(callback, VMM.master_config.timers.api, tweet);
@@ -3387,7 +3393,7 @@ if (typeof VMM != 'undefined' && typeof VMM.ExternalAPI == 'undefined') {
                         has_location = true;
                     }
 
-                    geocoder.geocode({ 'address': address}, function (results, status) {
+                    geocoder.geocode({'address': address}, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
 
                             marker = new google.maps.Marker({
@@ -5416,10 +5422,10 @@ if (typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
                 } else if (_pos > _slide_pos + (config.slider_width / 3)) {
                     onPrevClick();
                 } else {
-                    VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos });
+                    VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos});
                 }
             } else {
-                VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos });
+                VMM.Lib.animate($slider_container, config.duration, config.ease, {"left": _slide_pos});
             }
 
             if (typeof b.top == "number") {
@@ -5819,7 +5825,7 @@ if (typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
                 var scroll_height = 0;
                 try {
                     scroll_height = VMM.Lib.prop(layout, "scrollHeight");
-                    VMM.Lib.animate(layout, _duration, _ease, {scrollTop: scroll_height - VMM.Lib.height(layout) });
+                    VMM.Lib.animate(layout, _duration, _ease, {scrollTop: scroll_height - VMM.Lib.height(layout)});
                 }
                 catch (err) {
                     scroll_height = VMM.Lib.height(layout);
@@ -5969,7 +5975,14 @@ if (typeof VMM.Slider != 'undefined') {
             trace(data);
         }
 
-        c = {slide: "", text: "", media: "", media_element: "", layout: "content-container layout", has: { headline: false, text: false, media: false }};
+        c = {
+            slide: "",
+            text: "",
+            media: "",
+            media_element: "",
+            layout: "content-container layout",
+            has: {headline: false, text: false, media: false}
+        };
 
         /* PUBLIC
          ================================================== */
@@ -6745,8 +6758,7 @@ Utf8.decode = function (strUtf) {
     Tooltip.prototype = {
 
         constructor: Tooltip, init: function (type, element, options) {
-            var eventIn
-                , eventOut
+            var eventIn, eventOut
 
             this.type = type
             this.$element = $(element)
@@ -6761,7 +6773,7 @@ Utf8.decode = function (strUtf) {
             }
 
             this.options.selector ?
-                (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+                (this._options = $.extend({}, this.options, {trigger: 'manual', selector: ''})) :
                 this.fixTitle()
         }, getOptions: function (options) {
             options = $.extend({}, $.fn[this.type].defaults, options, this.$element.data())
@@ -6800,13 +6812,7 @@ Utf8.decode = function (strUtf) {
                 }, self.options.delay.hide)
             }
         }, show: function () {
-            var $tip
-                , inside
-                , pos
-                , actualWidth
-                , actualHeight
-                , placement
-                , tp
+            var $tip, inside, pos, actualWidth, actualHeight, placement, tp
 
             if (this.hasContent() && this.enabled) {
                 $tip = this.tip()
@@ -6824,7 +6830,7 @@ Utf8.decode = function (strUtf) {
 
                 $tip
                     .remove()
-                    .css({ top: 0, left: 0, display: 'block' })
+                    .css({top: 0, left: 0, display: 'block'})
                     .appendTo(inside ? this.$element : document.body)
 
                 pos = this.getPosition(inside)
@@ -6857,8 +6863,7 @@ Utf8.decode = function (strUtf) {
             $tip.find('.timeline-tooltip-inner').html(this.getTitle())
             $tip.removeClass('fade in top bottom left right')
         }, hide: function () {
-            var that = this
-                , $tip = this.tip()
+            var that = this, $tip = this.tip()
 
             $tip.removeClass('in')
 
@@ -6888,12 +6893,10 @@ Utf8.decode = function (strUtf) {
                 width: this.$element[0].offsetWidth, height: this.$element[0].offsetHeight
             })
         }, getTitle: function () {
-            var title
-                , $e = this.$element
-                , o = this.options
+            var title, $e = this.$element, o = this.options
 
             title = $e.attr('data-original-title')
-                || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
+            || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
 
             title = title.toString().replace(/(^\s*|\s*$)/, "")
 
@@ -6924,9 +6927,7 @@ Utf8.decode = function (strUtf) {
 
     $.fn.tooltip = function (option) {
         return this.each(function () {
-            var $this = $(this)
-                , data = $this.data('tooltip')
-                , options = typeof option == 'object' && option
+            var $this = $(this), data = $this.data('tooltip'), options = typeof option == 'object' && option
             if (!data) $this.data('tooltip', (data = new Tooltip(this, options)))
             if (typeof option == 'string') data[option]()
         })
@@ -6935,7 +6936,13 @@ Utf8.decode = function (strUtf) {
     $.fn.tooltip.Constructor = Tooltip
 
     $.fn.tooltip.defaults = {
-        animation: true, delay: 0, selector: false, placement: 'top', trigger: 'hover', title: '', template: '<div class="timeline-tooltip"><div class="timeline-tooltip-arrow"></div><div class="timeline-tooltip-inner"></div></div>'
+        animation: true,
+        delay: 0,
+        selector: false,
+        placement: 'top',
+        trigger: 'hover',
+        title: '',
+        template: '<div class="timeline-tooltip"><div class="timeline-tooltip-arrow"></div><div class="timeline-tooltip-inner"></div></div>'
     }
 
 }(window.jQuery);
@@ -8579,7 +8586,12 @@ if (typeof VMM.Timeline != 'undefined' && typeof VMM.Timeline.TimeNav == 'undefi
                 if (is_animated) {
                     VMM.Lib.stop(era.content);
                     VMM.Lib.stop(era.text_content);
-                    VMM.Lib.animate(era.content, config.duration / 2, config.ease, {"top": row_pos, "left": pos.begin, "width": era_length, "height": era_height});
+                    VMM.Lib.animate(era.content, config.duration / 2, config.ease, {
+                        "top": row_pos,
+                        "left": pos.begin,
+                        "width": era_length,
+                        "height": era_height
+                    });
                     VMM.Lib.animate(era.text_content, config.duration / 2, config.ease, {"left": pos.begin});
                 } else {
                     VMM.Lib.stop(era.content);
@@ -8713,7 +8725,10 @@ if (typeof VMM.Timeline != 'undefined' && typeof VMM.Timeline.TimeNav == 'undefi
                 }
 
                 if (_animation.animate) {
-                    VMM.Lib.animate(_interval, config.duration / 2, config.ease, {opacity: _animation.opacity, left: _animation.pos});
+                    VMM.Lib.animate(_interval, config.duration / 2, config.ease, {
+                        opacity: _animation.opacity,
+                        left: _animation.pos
+                    });
                 } else {
                     VMM.Lib.css(_interval, "opacity", _animation.opacity);
                     VMM.Lib.css(_interval, "left", pos);
@@ -10091,8 +10106,22 @@ if (typeof VMM.Timeline !== 'undefined' && typeof VMM.Timeline.DataObj == 'undef
 
         /*	TEMPLATE OBJECTS
          ================================================== */
-        data_template_obj: {  "timeline": { "headline": "", "description": "", "asset": { "media": "", "credit": "", "caption": "" }, "date": [], "era": [] } },
-        date_obj: {"startDate": "2012,2,2,11,30", "headline": "", "text": "", "asset": {"media": "http://youtu.be/vjVfu8-Wp6s", "credit": "", "caption": "" }, "tags": "Optional"}
+        data_template_obj: {
+            "timeline": {
+                "headline": "",
+                "description": "",
+                "asset": {"media": "", "credit": "", "caption": ""},
+                "date": [],
+                "era": []
+            }
+        },
+        date_obj: {
+            "startDate": "2012,2,2,11,30",
+            "headline": "",
+            "text": "",
+            "asset": {"media": "http://youtu.be/vjVfu8-Wp6s", "credit": "", "caption": ""},
+            "tags": "Optional"
+        }
 
     };
 

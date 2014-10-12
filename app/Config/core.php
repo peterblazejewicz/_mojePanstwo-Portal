@@ -1,6 +1,6 @@
 <?php
 
-include('constants.php');
+include( 'constants.php' );
 
 /**
  * This is core configuration file.
@@ -53,11 +53,11 @@ include('constants.php');
  *
  * @see ErrorHandler for more information on error handling and configuration.
  */
-Configure::write('Error', array(
-    'handler' => 'ErrorHandler::handleError',
-    'level' => E_ALL & ~E_DEPRECATED & ~E_STRICT,
-    'trace' => true
-));
+Configure::write( 'Error', array(
+	'handler' => 'ErrorHandler::handleError',
+	'level'   => E_ALL & ~E_DEPRECATED & ~E_STRICT,
+	'trace'   => true
+) );
 
 /**
  * Configure the Exception handler used for uncaught exceptions. By default,
@@ -79,17 +79,17 @@ Configure::write('Error', array(
  *
  * @see ErrorHandler for more information on exception handling and configuration.
  */
-Configure::write('Exception', array(
-    'handler' => 'ErrorHandler::handleException',
-    'renderer' => 'AppExceptionRenderer',
-    'log' => true,
-    'skipLog' => array('MissingActionException', 'MissingControllerException')
-));
+Configure::write( 'Exception', array(
+	'handler'  => 'ErrorHandler::handleException',
+	'renderer' => 'AppExceptionRenderer',
+	'log'      => true,
+	'skipLog'  => array( 'MissingActionException', 'MissingControllerException' )
+) );
 
 /**
  * Application wide charset encoding
  */
-Configure::write('App.encoding', 'UTF-8');
+Configure::write( 'App.encoding', 'UTF-8' );
 
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
@@ -161,7 +161,7 @@ Configure::write('App.encoding', 'UTF-8');
  * Turn off all caching application-wide.
  *
  */
-Configure::write('Cache.disable', true);
+Configure::write( 'Cache.disable', true );
 
 /**
  * Enable cache checking.
@@ -221,21 +221,21 @@ Configure::write('Cache.disable', true);
  * the cake shell command: cake schema create Sessions
  *
  */
-Configure::write('Session', array(
-    'cookie' => 'MP',
-    'defaults' => 'php',
-    'timeout' => 8640,
-));
+Configure::write( 'Session', array(
+	'cookie'   => 'MP',
+	'defaults' => 'php',
+	'timeout'  => 8640,
+) );
 
 /**
  * A random string used in security hashing methods.
  */
-Configure::write('Security.salt', CAKE_salt);
+Configure::write( 'Security.salt', CAKE_salt );
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-Configure::write('Security.cipherSeed', CAKE_cipherSeed);
+Configure::write( 'Security.cipherSeed', CAKE_cipherSeed );
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -268,14 +268,14 @@ Configure::write('Security.cipherSeed', CAKE_cipherSeed);
  * The class name and database used in CakePHP's
  * access control lists.
  */
-Configure::write('Acl.classname', 'DbAcl');
-Configure::write('Acl.database', 'default');
+Configure::write( 'Acl.classname', 'DbAcl' );
+Configure::write( 'Acl.database', 'default' );
 
 /**
  * Uncomment this line and correct your server timezone to fix
  * any date & time related errors.
  */
-date_default_timezone_set('Europe/Warsaw');
+date_default_timezone_set( 'Europe/Warsaw' );
 
 /**
  *
@@ -353,8 +353,8 @@ $engine = 'File';
 
 // In development mode, caches should expire quickly.
 $duration = '+999 days';
-if (Configure::read('debug') > 0) {
-    $duration = '+10 seconds';
+if ( Configure::read( 'debug' ) > 0 ) {
+	$duration = '+10 seconds';
 }
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
@@ -364,22 +364,22 @@ $prefix = 'myapp_';
  * Configure the cache used for general framework caching. Path information,
  * object listings, and translation cache files are stored with this configuration.
  */
-Cache::config('_cake_core_', array(
-    'engine' => $engine,
-    'prefix' => $prefix . 'cake_core_',
-    'path' => CACHE . 'persistent' . DS,
-    'serialize' => ($engine === 'File'),
-    'duration' => $duration
-));
+Cache::config( '_cake_core_', array(
+	'engine'    => $engine,
+	'prefix'    => $prefix . 'cake_core_',
+	'path'      => CACHE . 'persistent' . DS,
+	'serialize' => ( $engine === 'File' ),
+	'duration'  => $duration
+) );
 
 /**
  * Configure the cache for model and datasource caches. This cache configuration
  * is used to store schema descriptions, and table listings in connections.
  */
-Cache::config('_cake_model_', array(
-    'engine' => $engine,
-    'prefix' => $prefix . 'cake_model_',
-    'path' => CACHE . 'models' . DS,
-    'serialize' => ($engine === 'File'),
-    'duration' => $duration
-));
+Cache::config( '_cake_model_', array(
+	'engine'    => $engine,
+	'prefix'    => $prefix . 'cake_model_',
+	'path'      => CACHE . 'models' . DS,
+	'serialize' => ( $engine === 'File' ),
+	'duration'  => $duration
+) );

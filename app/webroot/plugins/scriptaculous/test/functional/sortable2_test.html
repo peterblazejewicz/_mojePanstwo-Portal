@@ -66,7 +66,8 @@
 
 <script type="text/javascript" language="javascript" charset="utf-8">
     // <![CDATA[
-    Sortable.create('testlist', {ghosting: true, constraint: false, hoverclass: 'over',
+    Sortable.create('testlist', {
+        ghosting: true, constraint: false, hoverclass: 'over',
         onUpdate: function (sortable) {
             alert(Sortable.serialize(sortable))
         },
@@ -94,7 +95,8 @@
 
 <script type="text/javascript" language="javascript" charset="utf-8">
     // <![CDATA[
-    Sortable.create('testlist2', {ghosting: false, constraint: false, hoverclass: 'over',
+    Sortable.create('testlist2', {
+        ghosting: false, constraint: false, hoverclass: 'over',
         onUpdate: function (sortable) {
             alert(Sortable.serialize(sortable))
         },
@@ -123,7 +125,8 @@
 
 <script type="text/javascript" language="javascript" charset="utf-8">
     // <![CDATA[
-    Sortable.create('testlist3', {ghosting: true, constraint: false,
+    Sortable.create('testlist3', {
+        ghosting: true, constraint: false,
         onUpdate: function (sortable) {
             alert(Sortable.serialize(sortable))
         },
@@ -153,7 +156,8 @@
 
 <script type="text/javascript" language="javascript" charset="utf-8">
     // <![CDATA[
-    Sortable.create('testlist4', {overlap: 'horizontal', ghosting: true, constraint: false,
+    Sortable.create('testlist4', {
+        overlap: 'horizontal', ghosting: true, constraint: false,
         onUpdate: function (sortable) {
             alert(Sortable.serialize(sortable))
         },

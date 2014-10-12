@@ -1,163 +1,158 @@
 <?php
 
-class DataobjectsController extends DaneAppController
-{
+class DataobjectsController extends DaneAppController {
 
-    public $helpers = array('Paginator');
-    public $components = array('Paginator', 'RequestHandler');
-    public $object = false;
-    public $objectOptions = array(
-        'hlFields' => false,
-    );
-    public $dataset = false;
-    public $menu = array(
-        array(
-            'id' => 'view',
-            'label' => 'LC_DANE_START',
-        ),
-    );
-    public $menuMode = 'horizontal';
-    public $autoRelated = true;
-    public $mode = false;
+	public $helpers = array( 'Paginator' );
+	public $components = array( 'Paginator', 'RequestHandler' );
+	public $object = false;
+	public $objectOptions = array(
+		'hlFields' => false,
+	);
+	public $dataset = false;
+	public $menu = array(
+		array(
+			'id'    => 'view',
+			'label' => 'LC_DANE_START',
+		),
+	);
+	public $menuMode = 'horizontal';
+	public $autoRelated = true;
+	public $mode = false;
 
-    public $breadcrumbsMode = 'datachannel';
+	public $breadcrumbsMode = 'datachannel';
 
-    public $initLayers = array();
+	public $initLayers = array();
 
-    public function index()
-    {
-        $this->dataobjectsBrowserView(array(
-            'showTitle' => true,
-            'title' => 'Dane publiczne',
-            'titleTag' => 'h1',
-            'allowedParams' => array('q'),
-        ));
-        
-        $this->set('title_for_layout', isset($this->request->query['q']) ? $this->request->query['q'] : 'Szukaj');
-    }
-	
-	public function suggest()
-	{
+	public function index() {
+		$this->dataobjectsBrowserView( array(
+			'showTitle'     => true,
+			'title'         => 'Dane publiczne',
+			'titleTag'      => 'h1',
+			'allowedParams' => array( 'q' ),
+		) );
+
+		$this->set( 'title_for_layout', isset( $this->request->query['q'] ) ? $this->request->query['q'] : 'Szukaj' );
+	}
+
+	public function suggest() {
 
 		$q = (string) @$this->request->query['q'];
-		
-		if( !$q )
-			return false;		
-		
+
+		if ( ! $q ) {
+			return false;
+		}
+
 		$params = array(
 			'q' => $q,
 		);
-		$data = $this->API->Dane()->suggest($params);
-		
+		$data = $this->API->Dane()->suggest( $params );
+
 		$hits = array();
-		
-		foreach( $data as $d )
+
+		foreach ( $data as $d ) {
 			$hits[] = array(
-				'date' => $d->getDate(),
-				'label' => $d->getLayer('label'),
+				'date'  => $d->getDate(),
+				'label' => $d->getLayer( 'label' ),
 				'title' => $d->getTitle(),
 				'dataset' => $d->getDataset(),
-				'id' => $d->getId(),
+				'id'    => $d->getId(),
 			);
-		
-		$this->set('hits', $hits);
-		$this->set('_serialize', array('hits'));
-		
+		}
+
+		$this->set( 'hits', $hits );
+		$this->set( '_serialize', array( 'hits' ) );
+
 	}
 
-    public function view()
-    {
-        $this->_prepareView();
-    }
+	public function view() {
+		$this->_prepareView();
+	}
 
-    public function addInitLayers($layers)
-    {
+	public function _prepareView() {
 
-        if (is_array($layers))
-            $this->initLayers = array_merge($this->initLayers, $layers);
-        else
-            $this->initLayers[] = $layers;
+		try {
 
-    }
+			$this->object = $this->API->getObject( $this->params->controller, $this->params->id, array(
+				'layers'         => $this->initLayers,
+				'dataset'        => true,
+				'flag'           => (boolean) $this->Session->read( 'Auth.User.id' ),
+				'alerts_queries' => true,
+			) );
 
-    public function related()
-    {
-        $this->_prepareView();
+		} catch ( Exception $e ) {
 
-        if (!$this->autoRelated)
-            $this->object->loadRelated();
+			$data = $e->getData();
+			if ( $data && isset( $data['redirect'] ) && $data['redirect'] ) {
 
-        $this->set('showRelated', true);
-        $this->view = '/Dataobjects/related';
-    }
+				$this->redirect( '/dane/' . $data['redirect']['alias'] . '/' . $data['redirect']['object_id'] );
 
-    public function _prepareView()
-    {
+			}
+			throw new NotFoundException( 'Could not find that object' );
 
-        try {
+		}
 
-            $this->object = $this->API->getObject($this->params->controller, $this->params->id, array(
-                'layers' => $this->initLayers,
-                'dataset' => true,
-                'flag' => (boolean)$this->Session->read('Auth.User.id'),
-                'alerts_queries' => true,
-            ));
+		if ( is_object( $this->object ) ) {
 
-        } catch (Exception $e) {
+			$this->dataset = $this->object->getLayer( 'dataset' );
 
-            $data = $e->getData();
-            if ($data && isset($data['redirect']) && $data['redirect']) {
+			$this->set( 'object', $this->object );
+			$this->set( 'objectOptions', $this->objectOptions );
 
-                $this->redirect('/dane/' . $data['redirect']['alias'] . '/' . $data['redirect']['object_id']);
+			$this->set( '_APPLICATION', $this->dataset['App'] );
 
-            }
-            throw new NotFoundException('Could not find that object');
+			$this->addStatusbarCrumb( array(
+				'href' => '/dane/' . $this->object->getDataset(),
+				'text' => $this->dataset['Dataset']['name'],
+			) );
 
-        }
+			$title_for_layout = $this->object->getTitle();
 
-        if (is_object($this->object)) {
+			$this->set( 'menu', $this->menu );
+			$this->set( 'menuMode', $this->menuMode );
+			$this->set( 'title_for_layout', $title_for_layout );
 
-            $this->dataset = $this->object->getLayer('dataset');
+		} else {
 
-            $this->set('object', $this->object);
-            $this->set('objectOptions', $this->objectOptions);
-						
-            $this->set('_APPLICATION', $this->dataset['App']);
+			throw new NotFoundException( 'Could not find that object' );
 
-            $this->addStatusbarCrumb(array(
-                'href' => '/dane/' . $this->object->getDataset(),
-                'text' => $this->dataset['Dataset']['name'],
-            ));
+		}
+	}
 
-            $title_for_layout = $this->object->getTitle();
+	public function addInitLayers( $layers ) {
 
-            $this->set('menu', $this->menu);
-            $this->set('menuMode', $this->menuMode);
-            $this->set('title_for_layout', $title_for_layout);
+		if ( is_array( $layers ) ) {
+			$this->initLayers = array_merge( $this->initLayers, $layers );
+		} else {
+			$this->initLayers[] = $layers;
+		}
 
-        } else {
+	}
 
-            throw new NotFoundException('Could not find that object');
+	public function related() {
+		$this->_prepareView();
 
-        }
-    }
+		if ( ! $this->autoRelated ) {
+			$this->object->loadRelated();
+		}
 
-    public function beforeRender()
-    {
+		$this->set( 'showRelated', true );
+		$this->view = '/Dataobjects/related';
+	}
 
-        parent::beforeRender();
+	public function beforeRender() {
 
-        if (is_object($this->object) && !$this->request->is('ajax') && !$this->mode) {
-            $this->set('_dataset', $this->object->getDataset());
-            $this->set('_object_id', $this->object->getId());
-            $this->set('_data', $this->object->getData());
-            $this->set('_layers', $this->object->layers);
-            $this->set('_serialize', array('_dataset', '_object_id', '_data', '_layers'));
-        }
-    }
+		parent::beforeRender();
 
-    protected function prepareMenu()
-    {
-    }
+		if ( is_object( $this->object ) && ! $this->request->is( 'ajax' ) && ! $this->mode ) {
+			$this->set( '_dataset', $this->object->getDataset() );
+			$this->set( '_object_id', $this->object->getId() );
+			$this->set( '_data', $this->object->getData() );
+			$this->set( '_layers', $this->object->layers );
+			$this->set( '_serialize', array( '_dataset', '_object_id', '_data', '_layers' ) );
+		}
+	}
+
+	protected function prepareMenu() {
+	}
 
 }

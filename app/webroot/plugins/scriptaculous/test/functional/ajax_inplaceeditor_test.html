@@ -104,7 +104,8 @@
 <p id="tobeedited4">Loads text from server</p>
 <script>
     new Ajax.InPlaceEditor($('tobeedited4'), '_ajax_inplaceeditor_result.html',
-            {ajaxOptions: {method: 'get'}, //override so we can use a static for the result and to load the text
+            {
+                ajaxOptions: {method: 'get'}, //override so we can use a static for the result and to load the text
                 loadTextURL: '_ajax_inplaceeditor_text.html'
             });
 </script>

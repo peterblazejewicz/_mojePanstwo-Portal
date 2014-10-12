@@ -1,8 +1,7 @@
 <?php
-App::uses('FacebookInfo', 'Facebook.Lib');
+App::uses( 'FacebookInfo', 'Facebook.Lib' );
 
-class FacebookAppModel extends AppModel
-{
+class FacebookAppModel extends AppModel {
 
 }
 

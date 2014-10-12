@@ -79,8 +79,8 @@
             }
 
             if (this.length) {
-                var elem = $(this[ 0 ]), position, value;
-                while (elem.length && elem[ 0 ] !== document) {
+                var elem = $(this[0]), position, value;
+                while (elem.length && elem[0] !== document) {
                     // Ignore z-index if position is set to a value where z-index is ignored by the browser
                     // This makes behavior of this function consistent across browsers
                     // WebKit always returns auto if the element is positioned
@@ -135,10 +135,10 @@
         return ( /input|select|textarea|button|object/.test(nodeName) ?
             !element.disabled :
             "a" === nodeName ?
-                element.href || isTabIndexNotNaN :
+            element.href || isTabIndexNotNaN :
                 isTabIndexNotNaN) &&
             // the element and all of its ancestors must be visible
-            visible(element);
+        visible(element);
     }
 
     function visible(element) {
@@ -147,7 +147,7 @@
         }).length;
     }
 
-    $.extend($.expr[ ":" ], {
+    $.extend($.expr[":"], {
         data: $.expr.createPseudo ?
             $.expr.createPseudo(function (dataName) {
                 return function (elem) {
@@ -156,7 +156,7 @@
             }) :
             // support: jQuery <1.8
             function (elem, i, match) {
-                return !!$.data(elem, match[ 3 ]);
+                return !!$.data(elem, match[3]);
             },
 
         focusable: function (element) {
@@ -172,8 +172,8 @@
 
 // support: jQuery <1.8
     if (!$("<a>").outerWidth(1).jquery) {
-        $.each([ "Width", "Height" ], function (i, name) {
-            var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+        $.each(["Width", "Height"], function (i, name) {
+            var side = name === "Width" ? ["Left", "Right"] : ["Top", "Bottom"],
                 type = name.toLowerCase(),
                 orig = {
                     innerWidth: $.fn.innerWidth,
@@ -195,9 +195,9 @@
                 return size;
             }
 
-            $.fn[ "inner" + name ] = function (size) {
+            $.fn["inner" + name] = function (size) {
                 if (size === undefined) {
-                    return orig[ "inner" + name ].call(this);
+                    return orig["inner" + name].call(this);
                 }
 
                 return this.each(function () {
@@ -205,9 +205,9 @@
                 });
             };
 
-            $.fn[ "outer" + name] = function (size, margin) {
+            $.fn["outer" + name] = function (size, margin) {
                 if (typeof size !== "number") {
-                    return orig[ "outer" + name ].call(this, size);
+                    return orig["outer" + name].call(this, size);
                 }
 
                 return this.each(function () {
@@ -221,7 +221,7 @@
     if (!$.fn.addBack) {
         $.fn.addBack = function (selector) {
             return this.add(selector == null ?
-                this.prevObject : this.prevObject.filter(selector)
+                    this.prevObject : this.prevObject.filter(selector)
             );
         };
     }
@@ -247,7 +247,7 @@
     $.fn.extend({
         disableSelection: function () {
             return this.bind(( $.support.selectstart ? "selectstart" : "mousedown" ) +
-                ".ui-disableSelection", function (event) {
+            ".ui-disableSelection", function (event) {
                 event.preventDefault();
             });
         },
@@ -262,22 +262,22 @@
         plugin: {
             add: function (module, option, set) {
                 var i,
-                    proto = $.ui[ module ].prototype;
+                    proto = $.ui[module].prototype;
                 for (i in set) {
-                    proto.plugins[ i ] = proto.plugins[ i ] || [];
-                    proto.plugins[ i ].push([ option, set[ i ] ]);
+                    proto.plugins[i] = proto.plugins[i] || [];
+                    proto.plugins[i].push([option, set[i]]);
                 }
             },
             call: function (instance, name, args) {
                 var i,
-                    set = instance.plugins[ name ];
-                if (!set || !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11) {
+                    set = instance.plugins[name];
+                if (!set || !instance.element[0].parentNode || instance.element[0].parentNode.nodeType === 11) {
                     return;
                 }
 
                 for (i = 0; i < set.length; i++) {
-                    if (instance.options[ set[ i ][ 0 ] ]) {
-                        set[ i ][ 1 ].apply(instance.element, args);
+                    if (instance.options[set[i][0]]) {
+                        set[i][1].apply(instance.element, args);
                     }
                 }
             }
@@ -294,16 +294,16 @@
             var scroll = ( a && a === "left" ) ? "scrollLeft" : "scrollTop",
                 has = false;
 
-            if (el[ scroll ] > 0) {
+            if (el[scroll] > 0) {
                 return true;
             }
 
             // TODO: determine which cases actually cause this to happen
             // if the element doesn't have the scroll set, see if it's possible to
             // set the scroll
-            el[ scroll ] = 1;
-            has = ( el[ scroll ] > 0 );
-            el[ scroll ] = 0;
+            el[scroll] = 1;
+            has = ( el[scroll] > 0 );
+            el[scroll] = 0;
             return has;
         }
     });
@@ -330,9 +330,9 @@
         // proxiedPrototype allows the provided prototype to remain unmodified
         // so that it can be used as a mixin for multiple widgets (#8876)
             proxiedPrototype = {},
-            namespace = name.split(".")[ 0 ];
+            namespace = name.split(".")[0];
 
-        name = name.split(".")[ 1 ];
+        name = name.split(".")[1];
         fullName = namespace + "-" + name;
 
         if (!prototype) {
@@ -341,13 +341,13 @@
         }
 
         // create selector for plugin
-        $.expr[ ":" ][ fullName.toLowerCase() ] = function (elem) {
+        $.expr[":"][fullName.toLowerCase()] = function (elem) {
             return !!$.data(elem, fullName);
         };
 
-        $[ namespace ] = $[ namespace ] || {};
-        existingConstructor = $[ namespace ][ name ];
-        constructor = $[ namespace ][ name ] = function (options, element) {
+        $[namespace] = $[namespace] || {};
+        existingConstructor = $[namespace][name];
+        constructor = $[namespace][name] = function (options, element) {
             // allow instantiation without "new" keyword
             if (!this._createWidget) {
                 return new constructor(options, element);
@@ -377,15 +377,15 @@
         basePrototype.options = $.widget.extend({}, basePrototype.options);
         $.each(prototype, function (prop, value) {
             if (!$.isFunction(value)) {
-                proxiedPrototype[ prop ] = value;
+                proxiedPrototype[prop] = value;
                 return;
             }
-            proxiedPrototype[ prop ] = (function () {
+            proxiedPrototype[prop] = (function () {
                 var _super = function () {
-                        return base.prototype[ prop ].apply(this, arguments);
+                        return base.prototype[prop].apply(this, arguments);
                     },
                     _superApply = function (args) {
-                        return base.prototype[ prop ].apply(this, args);
+                        return base.prototype[prop].apply(this, args);
                     };
                 return function () {
                     var __super = this._super,
@@ -445,18 +445,18 @@
             key,
             value;
         for (; inputIndex < inputLength; inputIndex++) {
-            for (key in input[ inputIndex ]) {
-                value = input[ inputIndex ][ key ];
-                if (input[ inputIndex ].hasOwnProperty(key) && value !== undefined) {
+            for (key in input[inputIndex]) {
+                value = input[inputIndex][key];
+                if (input[inputIndex].hasOwnProperty(key) && value !== undefined) {
                     // Clone objects
                     if ($.isPlainObject(value)) {
-                        target[ key ] = $.isPlainObject(target[ key ]) ?
-                            $.widget.extend({}, target[ key ], value) :
+                        target[key] = $.isPlainObject(target[key]) ?
+                            $.widget.extend({}, target[key], value) :
                             // Don't extend strings, arrays, etc. with objects
                             $.widget.extend({}, value);
                         // Copy everything else by reference
                     } else {
-                        target[ key ] = value;
+                        target[key] = value;
                     }
                 }
             }
@@ -466,14 +466,14 @@
 
     $.widget.bridge = function (name, object) {
         var fullName = object.prototype.widgetFullName || name;
-        $.fn[ name ] = function (options) {
+        $.fn[name] = function (options) {
             var isMethodCall = typeof options === "string",
                 args = slice.call(arguments, 1),
                 returnValue = this;
 
             // allow multiple hashes to be passed on init
             options = !isMethodCall && args.length ?
-                $.widget.extend.apply(null, [ options ].concat(args)) :
+                $.widget.extend.apply(null, [options].concat(args)) :
                 options;
 
             if (isMethodCall) {
@@ -482,12 +482,12 @@
                         instance = $.data(this, fullName);
                     if (!instance) {
                         return $.error("cannot call methods on " + name + " prior to initialization; " +
-                            "attempted to call method '" + options + "'");
+                        "attempted to call method '" + options + "'");
                     }
                     if (!$.isFunction(instance[options]) || options.charAt(0) === "_") {
                         return $.error("no such method '" + options + "' for " + name + " widget instance");
                     }
-                    methodValue = instance[ options ].apply(instance, args);
+                    methodValue = instance[options].apply(instance, args);
                     if (methodValue !== instance && methodValue !== undefined) {
                         returnValue = methodValue && methodValue.jquery ?
                             returnValue.pushStack(methodValue.get()) :
@@ -525,7 +525,7 @@
             create: null
         },
         _createWidget: function (options, element) {
-            element = $(element || this.defaultElement || this)[ 0 ];
+            element = $(element || this.defaultElement || this)[0];
             this.element = $(element);
             this.uuid = uuid++;
             this.eventNamespace = "." + this.widgetName + this.uuid;
@@ -551,7 +551,7 @@
                     // element within the document
                     element.ownerDocument :
                     // element is window or document
-                    element.document || element);
+                element.document || element);
                 this.window = $(this.document[0].defaultView || this.document[0].parentWindow);
             }
 
@@ -581,8 +581,8 @@
                 .unbind(this.eventNamespace)
                 .removeAttr("aria-disabled")
                 .removeClass(
-                    this.widgetFullName + "-disabled " +
-                        "ui-state-disabled");
+                this.widgetFullName + "-disabled " +
+                "ui-state-disabled");
 
             // clean up events and states
             this.bindings.unbind(this.eventNamespace);
@@ -612,21 +612,21 @@
                 parts = key.split(".");
                 key = parts.shift();
                 if (parts.length) {
-                    curOption = options[ key ] = $.widget.extend({}, this.options[ key ]);
+                    curOption = options[key] = $.widget.extend({}, this.options[key]);
                     for (i = 0; i < parts.length - 1; i++) {
-                        curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-                        curOption = curOption[ parts[ i ] ];
+                        curOption[parts[i]] = curOption[parts[i]] || {};
+                        curOption = curOption[parts[i]];
                     }
                     key = parts.pop();
                     if (arguments.length === 1) {
-                        return curOption[ key ] === undefined ? null : curOption[ key ];
+                        return curOption[key] === undefined ? null : curOption[key];
                     }
-                    curOption[ key ] = value;
+                    curOption[key] = value;
                 } else {
                     if (arguments.length === 1) {
-                        return this.options[ key ] === undefined ? null : this.options[ key ];
+                        return this.options[key] === undefined ? null : this.options[key];
                     }
-                    options[ key ] = value;
+                    options[key] = value;
                 }
             }
 
@@ -638,13 +638,13 @@
             var key;
 
             for (key in options) {
-                this._setOption(key, options[ key ]);
+                this._setOption(key, options[key]);
             }
 
             return this;
         },
         _setOption: function (key, value) {
-            this.options[ key ] = value;
+            this.options[key] = value;
 
             if (key === "disabled") {
                 this.widget()
@@ -693,10 +693,10 @@
                     // - disabled class as method for disabling individual parts
                     if (!suppressDisabledCheck &&
                         ( instance.options.disabled === true ||
-                            $(this).hasClass("ui-state-disabled") )) {
+                        $(this).hasClass("ui-state-disabled") )) {
                         return;
                     }
-                    return ( typeof handler === "string" ? instance[ handler ] : handler )
+                    return ( typeof handler === "string" ? instance[handler] : handler )
                         .apply(instance, arguments);
                 }
 
@@ -724,7 +724,7 @@
 
         _delay: function (handler, delay) {
             function handlerProxy() {
-                return ( typeof handler === "string" ? instance[ handler ] : handler )
+                return ( typeof handler === "string" ? instance[handler] : handler )
                     .apply(instance, arguments);
             }
 
@@ -758,63 +758,63 @@
 
         _trigger: function (type, event, data) {
             var prop, orig,
-                callback = this.options[ type ];
+                callback = this.options[type];
 
             data = data || {};
             event = $.Event(event);
             event.type = ( type === this.widgetEventPrefix ?
                 type :
-                this.widgetEventPrefix + type ).toLowerCase();
+            this.widgetEventPrefix + type ).toLowerCase();
             // the original event may come from any element
             // so we need to reset the target on the new event
-            event.target = this.element[ 0 ];
+            event.target = this.element[0];
 
             // copy original event properties over to the new event
             orig = event.originalEvent;
             if (orig) {
                 for (prop in orig) {
                     if (!( prop in event )) {
-                        event[ prop ] = orig[ prop ];
+                        event[prop] = orig[prop];
                     }
                 }
             }
 
             this.element.trigger(event, data);
             return !( $.isFunction(callback) &&
-                callback.apply(this.element[0], [ event ].concat(data)) === false ||
-                event.isDefaultPrevented() );
+            callback.apply(this.element[0], [event].concat(data)) === false ||
+            event.isDefaultPrevented() );
         }
     };
 
-    $.each({ show: "fadeIn", hide: "fadeOut" }, function (method, defaultEffect) {
-        $.Widget.prototype[ "_" + method ] = function (element, options, callback) {
+    $.each({show: "fadeIn", hide: "fadeOut"}, function (method, defaultEffect) {
+        $.Widget.prototype["_" + method] = function (element, options, callback) {
             if (typeof options === "string") {
-                options = { effect: options };
+                options = {effect: options};
             }
             var hasOptions,
                 effectName = !options ?
                     method :
                     options === true || typeof options === "number" ?
                         defaultEffect :
-                        options.effect || defaultEffect;
+                    options.effect || defaultEffect;
             options = options || {};
             if (typeof options === "number") {
-                options = { duration: options };
+                options = {duration: options};
             }
             hasOptions = !$.isEmptyObject(options);
             options.complete = callback;
             if (options.delay) {
                 element.delay(options.delay);
             }
-            if (hasOptions && $.effects && $.effects.effect[ effectName ]) {
-                element[ method ](options);
-            } else if (effectName !== method && element[ effectName ]) {
-                element[ effectName ](options.duration, options.easing, callback);
+            if (hasOptions && $.effects && $.effects.effect[effectName]) {
+                element[method](options);
+            } else if (effectName !== method && element[effectName]) {
+                element[effectName](options.duration, options.easing, callback);
             } else {
                 element.queue(function (next) {
-                    $(this)[ method ]();
+                    $(this)[method]();
                     if (callback) {
-                        callback.call(element[ 0 ]);
+                        callback.call(element[0]);
                     }
                     next();
                 });
@@ -966,7 +966,7 @@
                 Math.abs(this._mouseDownEvent.pageX - event.pageX),
                 Math.abs(this._mouseDownEvent.pageY - event.pageY)
             ) >= this.options.distance
-                );
+            );
         },
 
         _mouseDelayMet: function (/* event */) {
@@ -1003,8 +1003,8 @@
 
     function getOffsets(offsets, width, height) {
         return [
-            parseFloat(offsets[ 0 ]) * ( rpercent.test(offsets[ 0 ]) ? width / 100 : 1 ),
-            parseFloat(offsets[ 1 ]) * ( rpercent.test(offsets[ 1 ]) ? height / 100 : 1 )
+            parseFloat(offsets[0]) * ( rpercent.test(offsets[0]) ? width / 100 : 1 ),
+            parseFloat(offsets[1]) * ( rpercent.test(offsets[1]) ? height / 100 : 1 )
         ];
     }
 
@@ -1018,21 +1018,21 @@
             return {
                 width: elem.width(),
                 height: elem.height(),
-                offset: { top: 0, left: 0 }
+                offset: {top: 0, left: 0}
             };
         }
         if ($.isWindow(raw)) {
             return {
                 width: elem.width(),
                 height: elem.height(),
-                offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
+                offset: {top: elem.scrollTop(), left: elem.scrollLeft()}
             };
         }
         if (raw.preventDefault) {
             return {
                 width: 0,
                 height: 0,
-                offset: { top: raw.pageY, left: raw.pageX }
+                offset: {top: raw.pageY, left: raw.pageX}
             };
         }
         return {
@@ -1082,12 +1082,12 @@
         getWithinInfo: function (element) {
             var withinElement = $(element || window),
                 isWindow = $.isWindow(withinElement[0]),
-                isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
+                isDocument = !!withinElement[0] && withinElement[0].nodeType === 9;
             return {
                 element: withinElement,
                 isWindow: isWindow,
                 isDocument: isDocument,
-                offset: withinElement.offset() || { left: 0, top: 0 },
+                offset: withinElement.offset() || {left: 0, top: 0},
                 scrollLeft: withinElement.scrollLeft(),
                 scrollTop: withinElement.scrollTop(),
                 width: isWindow ? withinElement.width() : withinElement.outerWidth(),
@@ -1124,56 +1124,56 @@
 
         // force my and at to have valid horizontal and vertical positions
         // if a value is missing or invalid, it will be converted to center
-        $.each([ "my", "at" ], function () {
-            var pos = ( options[ this ] || "" ).split(" "),
+        $.each(["my", "at"], function () {
+            var pos = ( options[this] || "" ).split(" "),
                 horizontalOffset,
                 verticalOffset;
 
             if (pos.length === 1) {
-                pos = rhorizontal.test(pos[ 0 ]) ?
-                    pos.concat([ "center" ]) :
-                    rvertical.test(pos[ 0 ]) ?
-                        [ "center" ].concat(pos) :
-                        [ "center", "center" ];
+                pos = rhorizontal.test(pos[0]) ?
+                    pos.concat(["center"]) :
+                    rvertical.test(pos[0]) ?
+                        ["center"].concat(pos) :
+                        ["center", "center"];
             }
-            pos[ 0 ] = rhorizontal.test(pos[ 0 ]) ? pos[ 0 ] : "center";
-            pos[ 1 ] = rvertical.test(pos[ 1 ]) ? pos[ 1 ] : "center";
+            pos[0] = rhorizontal.test(pos[0]) ? pos[0] : "center";
+            pos[1] = rvertical.test(pos[1]) ? pos[1] : "center";
 
             // calculate offsets
-            horizontalOffset = roffset.exec(pos[ 0 ]);
-            verticalOffset = roffset.exec(pos[ 1 ]);
-            offsets[ this ] = [
-                horizontalOffset ? horizontalOffset[ 0 ] : 0,
-                verticalOffset ? verticalOffset[ 0 ] : 0
+            horizontalOffset = roffset.exec(pos[0]);
+            verticalOffset = roffset.exec(pos[1]);
+            offsets[this] = [
+                horizontalOffset ? horizontalOffset[0] : 0,
+                verticalOffset ? verticalOffset[0] : 0
             ];
 
             // reduce to just the positions without the offsets
-            options[ this ] = [
-                rposition.exec(pos[ 0 ])[ 0 ],
-                rposition.exec(pos[ 1 ])[ 0 ]
+            options[this] = [
+                rposition.exec(pos[0])[0],
+                rposition.exec(pos[1])[0]
             ];
         });
 
         // normalize collision option
         if (collision.length === 1) {
-            collision[ 1 ] = collision[ 0 ];
+            collision[1] = collision[0];
         }
 
-        if (options.at[ 0 ] === "right") {
+        if (options.at[0] === "right") {
             basePosition.left += targetWidth;
-        } else if (options.at[ 0 ] === "center") {
+        } else if (options.at[0] === "center") {
             basePosition.left += targetWidth / 2;
         }
 
-        if (options.at[ 1 ] === "bottom") {
+        if (options.at[1] === "bottom") {
             basePosition.top += targetHeight;
-        } else if (options.at[ 1 ] === "center") {
+        } else if (options.at[1] === "center") {
             basePosition.top += targetHeight / 2;
         }
 
         atOffset = getOffsets(offsets.at, targetWidth, targetHeight);
-        basePosition.left += atOffset[ 0 ];
-        basePosition.top += atOffset[ 1 ];
+        basePosition.left += atOffset[0];
+        basePosition.top += atOffset[1];
 
         return this.each(function () {
             var collisionPosition, using,
@@ -1187,20 +1187,20 @@
                 position = $.extend({}, basePosition),
                 myOffset = getOffsets(offsets.my, elem.outerWidth(), elem.outerHeight());
 
-            if (options.my[ 0 ] === "right") {
+            if (options.my[0] === "right") {
                 position.left -= elemWidth;
-            } else if (options.my[ 0 ] === "center") {
+            } else if (options.my[0] === "center") {
                 position.left -= elemWidth / 2;
             }
 
-            if (options.my[ 1 ] === "bottom") {
+            if (options.my[1] === "bottom") {
                 position.top -= elemHeight;
-            } else if (options.my[ 1 ] === "center") {
+            } else if (options.my[1] === "center") {
                 position.top -= elemHeight / 2;
             }
 
-            position.left += myOffset[ 0 ];
-            position.top += myOffset[ 1 ];
+            position.left += myOffset[0];
+            position.top += myOffset[1];
 
             // if the browser doesn't support fractions, then round for consistent results
             if (!$.support.offsetFractions) {
@@ -1213,9 +1213,9 @@
                 marginTop: marginTop
             };
 
-            $.each([ "left", "top" ], function (i, dir) {
-                if ($.ui.position[ collision[ i ] ]) {
-                    $.ui.position[ collision[ i ] ][ dir ](position, {
+            $.each(["left", "top"], function (i, dir) {
+                if ($.ui.position[collision[i]]) {
+                    $.ui.position[collision[i]][dir](position, {
                         targetWidth: targetWidth,
                         targetHeight: targetHeight,
                         elemWidth: elemWidth,
@@ -1223,7 +1223,7 @@
                         collisionPosition: collisionPosition,
                         collisionWidth: collisionWidth,
                         collisionHeight: collisionHeight,
-                        offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
+                        offset: [atOffset[0] + myOffset[0], atOffset [1] + myOffset[1]],
                         my: options.my,
                         at: options.at,
                         within: within,
@@ -1272,7 +1272,7 @@
                 };
             }
 
-            elem.offset($.extend(position, { using: using }));
+            elem.offset($.extend(position, {using: using}));
         });
     };
 
@@ -1362,17 +1362,17 @@
                     collisionPosLeft = position.left - data.collisionPosition.marginLeft,
                     overLeft = collisionPosLeft - offsetLeft,
                     overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft,
-                    myOffset = data.my[ 0 ] === "left" ?
+                    myOffset = data.my[0] === "left" ?
                         -data.elemWidth :
-                        data.my[ 0 ] === "right" ?
+                        data.my[0] === "right" ?
                             data.elemWidth :
                             0,
-                    atOffset = data.at[ 0 ] === "left" ?
+                    atOffset = data.at[0] === "left" ?
                         data.targetWidth :
-                        data.at[ 0 ] === "right" ?
+                        data.at[0] === "right" ?
                             -data.targetWidth :
                             0,
-                    offset = -2 * data.offset[ 0 ],
+                    offset = -2 * data.offset[0],
                     newOverRight,
                     newOverLeft;
 
@@ -1397,18 +1397,18 @@
                     collisionPosTop = position.top - data.collisionPosition.marginTop,
                     overTop = collisionPosTop - offsetTop,
                     overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
-                    top = data.my[ 1 ] === "top",
+                    top = data.my[1] === "top",
                     myOffset = top ?
                         -data.elemHeight :
-                        data.my[ 1 ] === "bottom" ?
+                        data.my[1] === "bottom" ?
                             data.elemHeight :
                             0,
-                    atOffset = data.at[ 1 ] === "top" ?
+                    atOffset = data.at[1] === "top" ?
                         data.targetHeight :
-                        data.at[ 1 ] === "bottom" ?
+                        data.at[1] === "bottom" ?
                             -data.targetHeight :
                             0,
-                    offset = -2 * data.offset[ 1 ],
+                    offset = -2 * data.offset[1],
                     newOverTop,
                     newOverBottom;
                 if (overTop < 0) {
@@ -1440,7 +1440,7 @@
 // fraction support test
     (function () {
         var testElement, testElementParent, testElementStyle, offsetLeft, i,
-            body = document.getElementsByTagName("body")[ 0 ],
+            body = document.getElementsByTagName("body")[0],
             div = document.createElement("div");
 
         //Create a "fake body" for testing based on method used in jQuery.support
@@ -1461,7 +1461,7 @@
             });
         }
         for (i in testElementStyle) {
-            testElement.style[ i ] = testElementStyle[ i ];
+            testElement.style[i] = testElementStyle[i];
         }
         testElement.appendChild(div);
         testElementParent = body || document.documentElement;
@@ -1698,7 +1698,7 @@
             }
 
             //if the original element is no longer in the DOM don't bother to continue (see #8269)
-            if (this.options.helper === "original" && !$.contains(this.element[ 0 ].ownerDocument, this.element[ 0 ])) {
+            if (this.options.helper === "original" && !$.contains(this.element[0].ownerDocument, this.element[0])) {
                 return false;
             }
 
@@ -1805,7 +1805,7 @@
             //Ugly IE fix
             if ((this.offsetParent[0] === document.body) ||
                 (this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() === "html" && $.ui.ie)) {
-                po = { top: 0, left: 0 };
+                po = {top: 0, left: 0};
             }
 
             return {
@@ -1824,7 +1824,7 @@
                     left: p.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()
                 };
             } else {
-                return { top: 0, left: 0 };
+                return {top: 0, left: 0};
             }
 
         },
@@ -1881,11 +1881,11 @@
             }
 
             if (o.containment === "parent") {
-                o.containment = this.helper[ 0 ].parentNode;
+                o.containment = this.helper[0].parentNode;
             }
 
             c = $(o.containment);
-            ce = c[ 0 ];
+            ce = c[0];
 
             if (!ce) {
                 return;
@@ -1895,7 +1895,7 @@
 
             this.containment = [
                 ( parseInt(c.css("borderLeftWidth"), 10) || 0 ) + ( parseInt(c.css("paddingLeft"), 10) || 0 ),
-                ( parseInt(c.css("borderTopWidth"), 10) || 0 ) + ( parseInt(c.css("paddingTop"), 10) || 0 ) ,
+                ( parseInt(c.css("borderTopWidth"), 10) || 0 ) + ( parseInt(c.css("paddingTop"), 10) || 0 ),
                 ( over ? Math.max(ce.scrollWidth, ce.offsetWidth) : ce.offsetWidth ) - ( parseInt(c.css("borderRightWidth"), 10) || 0 ) - ( parseInt(c.css("paddingRight"), 10) || 0 ) - this.helperProportions.width - this.margins.left - this.margins.right,
                 ( over ? Math.max(ce.scrollHeight, ce.offsetHeight) : ce.offsetHeight ) - ( parseInt(c.css("borderBottomWidth"), 10) || 0 ) - ( parseInt(c.css("paddingBottom"), 10) || 0 ) - this.helperProportions.height - this.margins.top - this.margins.bottom
             ];
@@ -1909,7 +1909,7 @@
             }
 
             var mod = d === "absolute" ? 1 : -1,
-                scroll = this.cssPosition === "absolute" && !( this.scrollParent[ 0 ] !== document && $.contains(this.scrollParent[ 0 ], this.offsetParent[ 0 ]) ) ? this.offsetParent : this.scrollParent;
+                scroll = this.cssPosition === "absolute" && !( this.scrollParent[0] !== document && $.contains(this.scrollParent[0], this.offsetParent[0]) ) ? this.offsetParent : this.scrollParent;
 
             //Cache the scroll
             if (!this.offset.scroll) {
@@ -1918,17 +1918,17 @@
 
             return {
                 top: (
-                    pos.top +																// The absolute mouse position
-                        this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top * mod -										// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : this.offset.scroll.top ) * mod )
-                    ),
+                pos.top +																// The absolute mouse position
+                this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top * mod -										// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : this.offset.scroll.top ) * mod )
+                ),
                 left: (
-                    pos.left +																// The absolute mouse position
-                        this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : this.offset.scroll.left ) * mod )
-                    )
+                pos.left +																// The absolute mouse position
+                this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : this.offset.scroll.left ) * mod )
+                )
             };
 
         },
@@ -1937,7 +1937,7 @@
 
             var containment, co, top, left,
                 o = this.options,
-                scroll = this.cssPosition === "absolute" && !( this.scrollParent[ 0 ] !== document && $.contains(this.scrollParent[ 0 ], this.offsetParent[ 0 ]) ) ? this.offsetParent : this.scrollParent,
+                scroll = this.cssPosition === "absolute" && !( this.scrollParent[0] !== document && $.contains(this.scrollParent[0], this.offsetParent[0]) ) ? this.offsetParent : this.scrollParent,
                 pageX = event.pageX,
                 pageY = event.pageY;
 
@@ -1957,10 +1957,10 @@
                     if (this.relative_container) {
                         co = this.relative_container.offset();
                         containment = [
-                            this.containment[ 0 ] + co.left,
-                            this.containment[ 1 ] + co.top,
-                            this.containment[ 2 ] + co.left,
-                            this.containment[ 3 ] + co.top
+                            this.containment[0] + co.left,
+                            this.containment[1] + co.top,
+                            this.containment[2] + co.left,
+                            this.containment[3] + co.top
                         ];
                     }
                     else {
@@ -1994,19 +1994,19 @@
 
             return {
                 top: (
-                    pageY -																	// The absolute mouse position
-                        this.offset.click.top -												// Click offset (relative to the element)
-                        this.offset.relative.top -												// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
-                        ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : this.offset.scroll.top )
-                    ),
+                pageY -																	// The absolute mouse position
+                this.offset.click.top -												// Click offset (relative to the element)
+                this.offset.relative.top -												// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
+                ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : this.offset.scroll.top )
+                ),
                 left: (
-                    pageX -																	// The absolute mouse position
-                        this.offset.click.left -												// Click offset (relative to the element)
-                        this.offset.relative.left -												// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
-                        ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : this.offset.scroll.left )
-                    )
+                pageX -																	// The absolute mouse position
+                this.offset.click.left -												// Click offset (relative to the element)
+                this.offset.relative.left -												// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
+                ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : this.offset.scroll.left )
+                )
             };
 
         },
@@ -2049,7 +2049,7 @@
         start: function (event, ui) {
 
             var inst = $(this).data("ui-draggable"), o = inst.options,
-                uiSortable = $.extend({}, ui, { item: inst.element });
+                uiSortable = $.extend({}, ui, {item: inst.element});
             inst.sortables = [];
             $(o.connectToSortable).each(function () {
                 var sortable = $.data(this, "ui-sortable");
@@ -2068,7 +2068,7 @@
 
             //If we are still over the sortable, we fake the stop event of the sortable, but also remove helper
             var inst = $(this).data("ui-draggable"),
-                uiSortable = $.extend({}, ui, { item: inst.element });
+                uiSortable = $.extend({}, ui, {item: inst.element});
 
             $.each(inst.sortables, function () {
                 if (this.instance.isOver) {
@@ -2090,7 +2090,7 @@
 
                     //If the helper has been the original item, restore properties in the sortable
                     if (inst.options.helper === "original") {
-                        this.instance.currentItem.css({ top: "auto", left: "auto" });
+                        this.instance.currentItem.css({top: "auto", left: "auto"});
                     }
 
                 } else {
@@ -2124,7 +2124,7 @@
                         if (this !== thisSortable &&
                             this.instance._intersectsWith(this.instance.containerCache) &&
                             $.contains(thisSortable.instance.element[0], this.instance.element[0])
-                            ) {
+                        ) {
                             innermostIntersecting = false;
                         }
                         return innermostIntersecting;
@@ -2329,9 +2329,9 @@
                 t = inst.snapElements[i].top;
                 b = t + inst.snapElements[i].height;
 
-                if (x2 < l - d || x1 > r + d || y2 < t - d || y1 > b + d || !$.contains(inst.snapElements[ i ].item.ownerDocument, inst.snapElements[ i ].item)) {
+                if (x2 < l - d || x1 > r + d || y2 < t - d || y1 > b + d || !$.contains(inst.snapElements[i].item.ownerDocument, inst.snapElements[i].item)) {
                     if (inst.snapElements[i].snapping) {
-                        (inst.options.snap.release && inst.options.snap.release.call(inst.element, event, $.extend(inst._uiHash(), { snapItem: inst.snapElements[i].item })));
+                        (inst.options.snap.release && inst.options.snap.release.call(inst.element, event, $.extend(inst._uiHash(), {snapItem: inst.snapElements[i].item})));
                     }
                     inst.snapElements[i].snapping = false;
                     continue;
@@ -2343,16 +2343,25 @@
                     ls = Math.abs(l - x2) <= d;
                     rs = Math.abs(r - x1) <= d;
                     if (ts) {
-                        ui.position.top = inst._convertPositionTo("relative", { top: t - inst.helperProportions.height, left: 0 }).top - inst.margins.top;
+                        ui.position.top = inst._convertPositionTo("relative", {
+                            top: t - inst.helperProportions.height,
+                            left: 0
+                        }).top - inst.margins.top;
                     }
                     if (bs) {
-                        ui.position.top = inst._convertPositionTo("relative", { top: b, left: 0 }).top - inst.margins.top;
+                        ui.position.top = inst._convertPositionTo("relative", {top: b, left: 0}).top - inst.margins.top;
                     }
                     if (ls) {
-                        ui.position.left = inst._convertPositionTo("relative", { top: 0, left: l - inst.helperProportions.width }).left - inst.margins.left;
+                        ui.position.left = inst._convertPositionTo("relative", {
+                            top: 0,
+                            left: l - inst.helperProportions.width
+                        }).left - inst.margins.left;
                     }
                     if (rs) {
-                        ui.position.left = inst._convertPositionTo("relative", { top: 0, left: r }).left - inst.margins.left;
+                        ui.position.left = inst._convertPositionTo("relative", {
+                            top: 0,
+                            left: r
+                        }).left - inst.margins.left;
                     }
                 }
 
@@ -2364,21 +2373,30 @@
                     ls = Math.abs(l - x1) <= d;
                     rs = Math.abs(r - x2) <= d;
                     if (ts) {
-                        ui.position.top = inst._convertPositionTo("relative", { top: t, left: 0 }).top - inst.margins.top;
+                        ui.position.top = inst._convertPositionTo("relative", {top: t, left: 0}).top - inst.margins.top;
                     }
                     if (bs) {
-                        ui.position.top = inst._convertPositionTo("relative", { top: b - inst.helperProportions.height, left: 0 }).top - inst.margins.top;
+                        ui.position.top = inst._convertPositionTo("relative", {
+                            top: b - inst.helperProportions.height,
+                            left: 0
+                        }).top - inst.margins.top;
                     }
                     if (ls) {
-                        ui.position.left = inst._convertPositionTo("relative", { top: 0, left: l }).left - inst.margins.left;
+                        ui.position.left = inst._convertPositionTo("relative", {
+                            top: 0,
+                            left: l
+                        }).left - inst.margins.left;
                     }
                     if (rs) {
-                        ui.position.left = inst._convertPositionTo("relative", { top: 0, left: r - inst.helperProportions.width }).left - inst.margins.left;
+                        ui.position.left = inst._convertPositionTo("relative", {
+                            top: 0,
+                            left: r - inst.helperProportions.width
+                        }).left - inst.margins.left;
                     }
                 }
 
                 if (!inst.snapElements[i].snapping && (ts || bs || ls || rs || first)) {
-                    (inst.options.snap.snap && inst.options.snap.snap.call(inst.element, event, $.extend(inst._uiHash(), { snapItem: inst.snapElements[i].item })));
+                    (inst.options.snap.snap && inst.options.snap.snap.call(inst.element, event, $.extend(inst._uiHash(), {snapItem: inst.snapElements[i].item})));
                 }
                 inst.snapElements[i].snapping = (ts || bs || ls || rs || first);
 
@@ -2465,14 +2483,14 @@
             this.proportions = function (/* valueToWrite */) {
                 if (arguments.length) {
                     // Store the droppable's proportions
-                    proportions = arguments[ 0 ];
+                    proportions = arguments[0];
                 } else {
                     // Retrieve or derive the droppable's proportions
                     return proportions ?
                         proportions :
                         proportions = {
-                            width: this.element[ 0 ].offsetWidth,
-                            height: this.element[ 0 ].offsetHeight
+                            width: this.element[0].offsetWidth,
+                            height: this.element[0].offsetHeight
                         };
                 }
             };
@@ -2578,10 +2596,10 @@
                 var inst = $.data(this, "ui-droppable");
                 if (
                     inst.options.greedy && !inst.options.disabled &&
-                        inst.options.scope === draggable.options.scope &&
-                        inst.accept.call(inst.element[0], (draggable.currentItem || draggable.element)) &&
-                        $.ui.intersect(draggable, $.extend(inst, { offset: inst.element.offset() }), inst.options.tolerance)
-                    ) {
+                    inst.options.scope === draggable.options.scope &&
+                    inst.accept.call(inst.element[0], (draggable.currentItem || draggable.element)) &&
+                    $.ui.intersect(draggable, $.extend(inst, {offset: inst.element.offset()}), inst.options.tolerance)
+                ) {
                     childrenIntersection = true;
                     return false;
                 }
@@ -2637,23 +2655,23 @@
                 return (l <= x1 && x2 <= r && t <= y1 && y2 <= b);
             case "intersect":
                 return (l < x1 + (draggable.helperProportions.width / 2) && // Right Half
-                    x2 - (draggable.helperProportions.width / 2) < r && // Left Half
-                    t < y1 + (draggable.helperProportions.height / 2) && // Bottom Half
-                    y2 - (draggable.helperProportions.height / 2) < b ); // Top Half
+                x2 - (draggable.helperProportions.width / 2) < r && // Left Half
+                t < y1 + (draggable.helperProportions.height / 2) && // Bottom Half
+                y2 - (draggable.helperProportions.height / 2) < b ); // Top Half
             case "pointer":
                 draggableLeft = ((draggable.positionAbs || draggable.position.absolute).left + (draggable.clickOffset || draggable.offset.click).left);
                 draggableTop = ((draggable.positionAbs || draggable.position.absolute).top + (draggable.clickOffset || draggable.offset.click).top);
                 return isOverAxis(draggableTop, t, droppable.proportions().height) && isOverAxis(draggableLeft, l, droppable.proportions().width);
             case "touch":
                 return (
-                    (y1 >= t && y1 <= b) ||	// Top edge touching
-                        (y2 >= t && y2 <= b) ||	// Bottom edge touching
-                        (y1 < t && y2 > b)		// Surrounded vertically
-                    ) && (
-                    (x1 >= l && x1 <= r) ||	// Left edge touching
-                        (x2 >= l && x2 <= r) ||	// Right edge touching
-                        (x1 < l && x2 > r)		// Surrounded horizontally
-                    );
+                (y1 >= t && y1 <= b) ||	// Top edge touching
+                (y2 >= t && y2 <= b) ||	// Bottom edge touching
+                (y1 < t && y2 > b)		// Surrounded vertically
+                ) && (
+                (x1 >= l && x1 <= r) ||	// Left edge touching
+                (x2 >= l && x2 <= r) ||	// Right edge touching
+                (x1 < l && x2 > r)		// Surrounded horizontally
+                );
             default:
                 return false;
         }
@@ -2665,7 +2683,7 @@
      */
     $.ui.ddmanager = {
         current: null,
-        droppables: { "default": [] },
+        droppables: {"default": []},
         prepareOffsets: function (t, event) {
 
             var i, j,
@@ -2698,8 +2716,8 @@
                     m[i]._activate.call(m[i], event);
                 }
 
-                m[ i ].offset = m[ i ].element.offset();
-                m[ i ].proportions({ width: m[ i ].element[ 0 ].offsetWidth, height: m[ i ].element[ 0 ].offsetHeight });
+                m[i].offset = m[i].element.offset();
+                m[i].proportions({width: m[i].element[0].offsetWidth, height: m[i].element[0].offsetHeight});
 
             }
 
@@ -2873,25 +2891,43 @@
                 this.elementIsWrapper = true;
 
                 //Move margins to the wrapper
-                this.element.css({ marginLeft: this.originalElement.css("marginLeft"), marginTop: this.originalElement.css("marginTop"), marginRight: this.originalElement.css("marginRight"), marginBottom: this.originalElement.css("marginBottom") });
-                this.originalElement.css({ marginLeft: 0, marginTop: 0, marginRight: 0, marginBottom: 0});
+                this.element.css({
+                    marginLeft: this.originalElement.css("marginLeft"),
+                    marginTop: this.originalElement.css("marginTop"),
+                    marginRight: this.originalElement.css("marginRight"),
+                    marginBottom: this.originalElement.css("marginBottom")
+                });
+                this.originalElement.css({marginLeft: 0, marginTop: 0, marginRight: 0, marginBottom: 0});
 
                 //Prevent Safari textarea resize
                 this.originalResizeStyle = this.originalElement.css("resize");
                 this.originalElement.css("resize", "none");
 
                 //Push the actual element to our proportionallyResize internal array
-                this._proportionallyResizeElements.push(this.originalElement.css({ position: "static", zoom: 1, display: "block" }));
+                this._proportionallyResizeElements.push(this.originalElement.css({
+                    position: "static",
+                    zoom: 1,
+                    display: "block"
+                }));
 
                 // avoid IE jump (hard set the margin)
-                this.originalElement.css({ margin: this.originalElement.css("margin") });
+                this.originalElement.css({margin: this.originalElement.css("margin")});
 
                 // fix handlers offset
                 this._proportionallyResize();
 
             }
 
-            this.handles = o.handles || (!$(".ui-resizable-handle", this.element).length ? "e,s,se" : { n: ".ui-resizable-n", e: ".ui-resizable-e", s: ".ui-resizable-s", w: ".ui-resizable-w", se: ".ui-resizable-se", sw: ".ui-resizable-sw", ne: ".ui-resizable-ne", nw: ".ui-resizable-nw" });
+            this.handles = o.handles || (!$(".ui-resizable-handle", this.element).length ? "e,s,se" : {
+                n: ".ui-resizable-n",
+                e: ".ui-resizable-e",
+                s: ".ui-resizable-s",
+                w: ".ui-resizable-w",
+                se: ".ui-resizable-se",
+                sw: ".ui-resizable-sw",
+                ne: ".ui-resizable-ne",
+                nw: ".ui-resizable-nw"
+            });
             if (this.handles.constructor === String) {
 
                 if (this.handles === "all") {
@@ -2908,7 +2944,7 @@
                     axis = $("<div class='ui-resizable-handle " + hname + "'></div>");
 
                     // Apply zIndex to all handles - see #7960
-                    axis.css({ zIndex: o.zIndex });
+                    axis.css({zIndex: o.zIndex});
 
                     //TODO : What's going on here?
                     if ("se" === handle) {
@@ -2943,10 +2979,10 @@
                         padWrapper = /sw|ne|nw|se|n|s/.test(i) ? axis.outerHeight() : axis.outerWidth();
 
                         //The padding type i have to apply...
-                        padPos = [ "padding",
+                        padPos = ["padding",
                             /ne|nw|n/.test(i) ? "Top" :
                                 /se|sw|s/.test(i) ? "Bottom" :
-                                    /^e$/.test(i) ? "Right" : "Left" ].join("");
+                                    /^e$/.test(i) ? "Right" : "Left"].join("");
 
                         target.css(padPos, padWrapper);
 
@@ -3061,9 +3097,9 @@
 
             // bugfix for http://dev.jquery.com/ticket/1749
             if ((/absolute/).test(el.css("position"))) {
-                el.css({ position: "absolute", top: el.css("top"), left: el.css("left") });
+                el.css({position: "absolute", top: el.css("top"), left: el.css("left")});
             } else if (el.is(".ui-draggable")) {
-                el.css({ position: "absolute", top: iniPos.top, left: iniPos.left });
+                el.css({position: "absolute", top: iniPos.top, left: iniPos.left});
             }
 
             this._renderProxy();
@@ -3078,12 +3114,18 @@
 
             //Store needed variables
             this.offset = this.helper.offset();
-            this.position = { left: curleft, top: curtop };
-            this.size = this._helper ? { width: this.helper.width(), height: this.helper.height() } : { width: el.width(), height: el.height() };
-            this.originalSize = this._helper ? { width: el.outerWidth(), height: el.outerHeight() } : { width: el.width(), height: el.height() };
-            this.originalPosition = { left: curleft, top: curtop };
-            this.sizeDiff = { width: el.outerWidth() - el.width(), height: el.outerHeight() - el.height() };
-            this.originalMousePosition = { left: event.pageX, top: event.pageY };
+            this.position = {left: curleft, top: curtop};
+            this.size = this._helper ? {width: this.helper.width(), height: this.helper.height()} : {
+                width: el.width(),
+                height: el.height()
+            };
+            this.originalSize = this._helper ? {width: el.outerWidth(), height: el.outerHeight()} : {
+                width: el.width(),
+                height: el.height()
+            };
+            this.originalPosition = {left: curleft, top: curtop};
+            this.sizeDiff = {width: el.outerWidth() - el.width(), height: el.outerHeight() - el.height()};
+            this.originalMousePosition = {left: event.pageX, top: event.pageY};
 
             //Aspect Ratio
             this.aspectRatio = (typeof o.aspectRatio === "number") ? o.aspectRatio : ((this.originalSize.width / this.originalSize.height) || 1);
@@ -3170,12 +3212,12 @@
                 soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height;
                 soffsetw = ista ? 0 : that.sizeDiff.width;
 
-                s = { width: (that.helper.width() - soffsetw), height: (that.helper.height() - soffseth) };
+                s = {width: (that.helper.width() - soffsetw), height: (that.helper.height() - soffseth)};
                 left = (parseInt(that.element.css("left"), 10) + (that.position.left - that.originalPosition.left)) || null;
                 top = (parseInt(that.element.css("top"), 10) + (that.position.top - that.originalPosition.top)) || null;
 
                 if (!o.animate) {
-                    this.element.css($.extend(s, { top: top, left: left }));
+                    this.element.css($.extend(s, {top: top, left: left}));
                 }
 
                 that.helper.height(that.size.height);
@@ -3339,7 +3381,7 @@
                     paddings = [prel.css("paddingTop"), prel.css("paddingRight"), prel.css("paddingBottom"), prel.css("paddingLeft")];
 
                     for (j = 0; j < borders.length; j++) {
-                        this.borderDif[ j ] = ( parseInt(borders[ j ], 10) || 0 ) + ( parseInt(paddings[ j ], 10) || 0 );
+                        this.borderDif[j] = ( parseInt(borders[j], 10) || 0 ) + ( parseInt(paddings[j], 10) || 0 );
                     }
                 }
 
@@ -3382,18 +3424,18 @@
 
         _change: {
             e: function (event, dx) {
-                return { width: this.originalSize.width + dx };
+                return {width: this.originalSize.width + dx};
             },
             w: function (event, dx) {
                 var cs = this.originalSize, sp = this.originalPosition;
-                return { left: sp.left + dx, width: cs.width - dx };
+                return {left: sp.left + dx, width: cs.width - dx};
             },
             n: function (event, dx, dy) {
                 var cs = this.originalSize, sp = this.originalPosition;
-                return { top: sp.top + dy, height: cs.height - dy };
+                return {top: sp.top + dy, height: cs.height - dy};
             },
             s: function (event, dx, dy) {
-                return { height: this.originalSize.height + dy };
+                return {height: this.originalSize.height + dy};
             },
             se: function (event, dx, dy) {
                 return $.extend(this._change.s.apply(this, arguments), this._change.e.apply(this, [event, dx, dy]));
@@ -3443,12 +3485,12 @@
                 ista = pr.length && (/textarea/i).test(pr[0].nodeName),
                 soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height,
                 soffsetw = ista ? 0 : that.sizeDiff.width,
-                style = { width: (that.size.width - soffsetw), height: (that.size.height - soffseth) },
+                style = {width: (that.size.width - soffsetw), height: (that.size.height - soffseth)},
                 left = (parseInt(that.element.css("left"), 10) + (that.position.left - that.originalPosition.left)) || null,
                 top = (parseInt(that.element.css("top"), 10) + (that.position.top - that.originalPosition.top)) || null;
 
             that.element.animate(
-                $.extend(style, top && left ? { top: top, left: left } : {}), {
+                $.extend(style, top && left ? {top: top, left: left} : {}), {
                     duration: o.animateDuration,
                     easing: o.animateEasing,
                     step: function () {
@@ -3461,7 +3503,7 @@
                         };
 
                         if (pr && pr.length) {
-                            $(pr[0]).css({ width: data.width, height: data.height });
+                            $(pr[0]).css({width: data.width, height: data.height});
                         }
 
                         // propagating resize, and updating values for each animation step
@@ -3492,8 +3534,8 @@
             that.containerElement = $(ce);
 
             if (/document/.test(oc) || oc === document) {
-                that.containerOffset = { left: 0, top: 0 };
-                that.containerPosition = { left: 0, top: 0 };
+                that.containerOffset = {left: 0, top: 0};
+                that.containerPosition = {left: 0, top: 0};
 
                 that.parentData = {
                     element: $(document), left: 0, top: 0,
@@ -3505,13 +3547,13 @@
             else {
                 element = $(ce);
                 p = [];
-                $([ "Top", "Right", "Left", "Bottom" ]).each(function (i, name) {
+                $(["Top", "Right", "Left", "Bottom"]).each(function (i, name) {
                     p[i] = num(element.css("padding" + name));
                 });
 
                 that.containerOffset = element.offset();
                 that.containerPosition = element.position();
-                that.containerSize = { height: (element.innerHeight() - p[3]), width: (element.innerWidth() - p[1]) };
+                that.containerSize = {height: (element.innerHeight() - p[3]), width: (element.innerWidth() - p[1])};
 
                 co = that.containerOffset;
                 ch = that.containerSize.height;
@@ -3531,7 +3573,7 @@
                 o = that.options,
                 co = that.containerOffset, cp = that.position,
                 pRatio = that._aspectRatio || event.shiftKey,
-                cop = { top: 0, left: 0 }, ce = that.containerElement;
+                cop = {top: 0, left: 0}, ce = that.containerElement;
 
             if (ce[0] !== document && (/static/).test(ce.css("position"))) {
                 cop = co;
@@ -3593,11 +3635,11 @@
                 h = helper.outerHeight() - that.sizeDiff.height;
 
             if (that._helper && !o.animate && (/relative/).test(ce.css("position"))) {
-                $(this).css({ left: ho.left - cop.left - co.left, width: w, height: h });
+                $(this).css({left: ho.left - cop.left - co.left, width: w, height: h});
             }
 
             if (that._helper && !o.animate && (/static/).test(ce.css("position"))) {
-                $(this).css({ left: ho.left - cop.left - co.left, width: w, height: h });
+                $(this).css({left: ho.left - cop.left - co.left, width: w, height: h});
             }
 
         }
@@ -3681,7 +3723,16 @@
 
             that.ghost = that.originalElement.clone();
             that.ghost
-                .css({ opacity: 0.25, display: "block", position: "relative", height: cs.height, width: cs.width, margin: 0, left: 0, top: 0 })
+                .css({
+                    opacity: 0.25,
+                    display: "block",
+                    position: "relative",
+                    height: cs.height,
+                    width: cs.width,
+                    margin: 0,
+                    left: 0,
+                    top: 0
+                })
                 .addClass("ui-resizable-ghost")
                 .addClass(typeof o.ghost === "string" ? o.ghost : "");
 
@@ -3692,7 +3743,7 @@
         resize: function () {
             var that = $(this).data("ui-resizable");
             if (that.ghost) {
-                that.ghost.css({ position: "relative", height: that.size.height, width: that.size.width });
+                that.ghost.css({position: "relative", height: that.size.height, width: that.size.width});
             }
         },
 
@@ -4132,7 +4183,7 @@
 
         _setOption: function (key, value) {
             if (key === "disabled") {
-                this.options[ key ] = value;
+                this.options[key] = value;
 
                 this.widget().toggleClass("ui-sortable-disabled", !!value);
             } else {
@@ -4245,7 +4296,7 @@
             (o.cursorAt && this._adjustOffsetFromHelper(o.cursorAt));
 
             //Cache the former DOM position
-            this.domPosition = { prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0] };
+            this.domPosition = {prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0]};
 
             //If the helper is not the original, hide the original so it's not playing any role during the drag, won't cause anything bad this way
             if (this.helper[0] !== this.currentItem[0]) {
@@ -4301,7 +4352,7 @@
             //Post "activate" events to possible containers
             if (!noActivation) {
                 for (i = this.containers.length - 1; i >= 0; i--) {
-                    this.containers[ i ]._trigger("activate", event, this._uiHash(this));
+                    this.containers[i]._trigger("activate", event, this._uiHash(this));
                 }
             }
 
@@ -4411,7 +4462,7 @@
                 if (itemElement !== this.currentItem[0] &&
                     this.placeholder[intersection === 1 ? "next" : "prev"]()[0] !== itemElement && !$.contains(this.placeholder[0], itemElement) &&
                     (this.options.type === "semi-dynamic" ? !$.contains(this.element[0], itemElement) : true)
-                    ) {
+                ) {
 
                     this.direction = intersection === 1 ? "down" : "up";
 
@@ -4481,7 +4532,7 @@
 
             if (this.dragging) {
 
-                this._mouseUp({ target: null });
+                this._mouseUp({target: null});
 
                 if (this.options.helper === "original") {
                     this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper");
@@ -4582,14 +4633,14 @@
             if (this.options.tolerance === "pointer" ||
                 this.options.forcePointerForContainers ||
                 (this.options.tolerance !== "pointer" && this.helperProportions[this.floating ? "width" : "height"] > item[this.floating ? "width" : "height"])
-                ) {
+            ) {
                 return isOverElement;
             } else {
 
                 return (l < x1 + (this.helperProportions.width / 2) && // Right Half
-                    x2 - (this.helperProportions.width / 2) < r && // Left Half
-                    t < y1 + (this.helperProportions.height / 2) && // Bottom Half
-                    y2 - (this.helperProportions.height / 2) < b ); // Top Half
+                x2 - (this.helperProportions.width / 2) < r && // Left Half
+                t < y1 + (this.helperProportions.height / 2) && // Bottom Half
+                y2 - (this.helperProportions.height / 2) < b ); // Top Half
 
             }
         },
@@ -4667,7 +4718,10 @@
                 }
             }
 
-            queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
+            queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, {
+                options: this.options,
+                item: this.currentItem
+            }) : $(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
 
             function addItems() {
                 items.push(this);
@@ -4704,7 +4758,7 @@
             var i, j, cur, inst, targetData, _queries, item, queriesLength,
                 items = this.items,
                 queries = [
-                    [$.isFunction(this.options.items) ? this.options.items.call(this.element[0], event, { item: this.currentItem }) : $(this.options.items, this.element), this]
+                    [$.isFunction(this.options.items) ? this.options.items.call(this.element[0], event, {item: this.currentItem}) : $(this.options.items, this.element), this]
                 ],
                 connectWith = this._connectWith();
 
@@ -4714,7 +4768,7 @@
                     for (j = cur.length - 1; j >= 0; j--) {
                         inst = $.data(cur[j], this.widgetFullName);
                         if (inst && inst !== this && !inst.options.disabled) {
-                            queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element[0], event, { item: this.currentItem }) : $(inst.options.items, inst.element), inst]);
+                            queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element[0], event, {item: this.currentItem}) : $(inst.options.items, inst.element), inst]);
                             this.containers.push(inst);
                         }
                     }
@@ -4958,7 +5012,13 @@
             }
 
             if (helper[0] === this.currentItem[0]) {
-                this._storedCSS = { width: this.currentItem[0].style.width, height: this.currentItem[0].style.height, position: this.currentItem.css("position"), top: this.currentItem.css("top"), left: this.currentItem.css("left") };
+                this._storedCSS = {
+                    width: this.currentItem[0].style.width,
+                    height: this.currentItem[0].style.height,
+                    position: this.currentItem.css("position"),
+                    top: this.currentItem.css("top"),
+                    left: this.currentItem.css("left")
+                };
             }
 
             if (!helper[0].style.width || o.forceHelperSize) {
@@ -5012,7 +5072,7 @@
             // This needs to be actually done for all browsers, since pageX/pageY includes this information
             // with an ugly IE fix
             if (this.offsetParent[0] === document.body || (this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() === "html" && $.ui.ie)) {
-                po = { top: 0, left: 0 };
+                po = {top: 0, left: 0};
             }
 
             return {
@@ -5031,7 +5091,7 @@
                     left: p.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()
                 };
             } else {
-                return { top: 0, left: 0 };
+                return {top: 0, left: 0};
             }
 
         },
@@ -5092,17 +5152,17 @@
 
             return {
                 top: (
-                    pos.top +																// The absolute mouse position
-                        this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top * mod -											// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ) * mod)
-                    ),
+                pos.top +																// The absolute mouse position
+                this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top * mod -											// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ) * mod)
+                ),
                 left: (
-                    pos.left +																// The absolute mouse position
-                        this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ) * mod)
-                    )
+                pos.left +																// The absolute mouse position
+                this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ) * mod)
+                )
             };
 
         },
@@ -5157,19 +5217,19 @@
 
             return {
                 top: (
-                    pageY -																// The absolute mouse position
-                        this.offset.click.top -													// Click offset (relative to the element)
-                        this.offset.relative.top -											// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ))
-                    ),
+                pageY -																// The absolute mouse position
+                this.offset.click.top -													// Click offset (relative to the element)
+                this.offset.relative.top -											// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ))
+                ),
                 left: (
-                    pageX -																// The absolute mouse position
-                        this.offset.click.left -												// Click offset (relative to the element)
-                        this.offset.relative.left -											// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ))
-                    )
+                pageX -																// The absolute mouse position
+                this.offset.click.left -												// Click offset (relative to the element)
+                this.offset.relative.left -											// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ))
+                )
             };
 
         },
@@ -5261,10 +5321,10 @@
 
             for (i = this.containers.length - 1; i >= 0; i--) {
                 if (!noPropagation) {
-                    delayedTriggers.push(delayEvent("deactivate", this, this.containers[ i ]));
+                    delayedTriggers.push(delayEvent("deactivate", this, this.containers[i]));
                 }
                 if (this.containers[i].containerCache.over) {
-                    delayedTriggers.push(delayEvent("out", this, this.containers[ i ]));
+                    delayedTriggers.push(delayEvent("out", this, this.containers[i]));
                     this.containers[i].containerCache.over = 0;
                 }
             }
@@ -5508,21 +5568,21 @@
             switch (event.keyCode) {
                 case keyCode.RIGHT:
                 case keyCode.DOWN:
-                    toFocus = this.headers[ ( currentIndex + 1 ) % length ];
+                    toFocus = this.headers[( currentIndex + 1 ) % length];
                     break;
                 case keyCode.LEFT:
                 case keyCode.UP:
-                    toFocus = this.headers[ ( currentIndex - 1 + length ) % length ];
+                    toFocus = this.headers[( currentIndex - 1 + length ) % length];
                     break;
                 case keyCode.SPACE:
                 case keyCode.ENTER:
                     this._eventHandler(event);
                     break;
                 case keyCode.HOME:
-                    toFocus = this.headers[ 0 ];
+                    toFocus = this.headers[0];
                     break;
                 case keyCode.END:
-                    toFocus = this.headers[ length - 1 ];
+                    toFocus = this.headers[length - 1];
                     break;
             }
 
@@ -5552,7 +5612,7 @@
             } else if (options.active === false) {
                 this._activate(0);
                 // was active, but active panel is gone
-            } else if (this.active.length && !$.contains(this.element[ 0 ], this.active[ 0 ])) {
+            } else if (this.active.length && !$.contains(this.element[0], this.active[0])) {
                 // all remaining panel are disabled
                 if (this.headers.length === this.headers.find(".ui-state-disabled").length) {
                     options.active = false;
@@ -5588,7 +5648,7 @@
                 heightStyle = options.heightStyle,
                 parent = this.element.parent(),
                 accordionId = this.accordionId = "ui-accordion-" +
-                    (this.element.attr("id") || ++uid);
+                (this.element.attr("id") || ++uid);
 
             this.active = this._findActive(options.active)
                 .addClass("ui-accordion-header-active ui-state-active ui-corner-top")
@@ -5669,7 +5729,7 @@
                 this.headers.next()
                     .each(function () {
                         $(this).height(Math.max(0, maxHeight -
-                            $(this).innerHeight() + $(this).height()));
+                        $(this).innerHeight() + $(this).height()));
                     })
                     .css("overflow", "auto");
             } else if (heightStyle === "auto") {
@@ -5683,15 +5743,15 @@
         },
 
         _activate: function (index) {
-            var active = this._findActive(index)[ 0 ];
+            var active = this._findActive(index)[0];
 
             // trying to activate the already active panel
-            if (active === this.active[ 0 ]) {
+            if (active === this.active[0]) {
                 return;
             }
 
             // trying to collapse, simulate a click on the currently active header
-            active = active || this.active[ 0 ];
+            active = active || this.active[0];
 
             this._eventHandler({
                 target: active,
@@ -5710,13 +5770,13 @@
             };
             if (event) {
                 $.each(event.split(" "), function (index, eventName) {
-                    events[ eventName ] = "_eventHandler";
+                    events[eventName] = "_eventHandler";
                 });
             }
 
             this._off(this.headers.add(this.headers.next()));
             this._on(this.headers, events);
-            this._on(this.headers.next(), { keydown: "_panelKeyDown" });
+            this._on(this.headers.next(), {keydown: "_panelKeyDown"});
             this._hoverable(this.headers);
             this._focusable(this.headers);
         },
@@ -5725,7 +5785,7 @@
             var options = this.options,
                 active = this.active,
                 clicked = $(event.currentTarget),
-                clickedIsActive = clicked[ 0 ] === active[ 0 ],
+                clickedIsActive = clicked[0] === active[0],
                 collapsing = clickedIsActive && options.collapsible,
                 toShow = collapsing ? $() : clicked.next(),
                 toHide = active.next(),
@@ -5739,10 +5799,10 @@
             event.preventDefault();
 
             if (
-            // click on active header, but not collapsible
-                ( clickedIsActive && !options.collapsible ) ||
-                    // allow canceling activation
-                    ( this._trigger("beforeActivate", event, eventData) === false )) {
+                // click on active header, but not collapsible
+            ( clickedIsActive && !options.collapsible ) ||
+                // allow canceling activation
+            ( this._trigger("beforeActivate", event, eventData) === false )) {
                 return;
             }
 
@@ -5949,7 +6009,7 @@
                         // All other element types are determined by whether or not they're contentEditable
                         this.element.prop("isContentEditable");
 
-            this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
+            this.valueMethod = this.element[isTextarea || isInput ? "val" : "text"];
             this.isNewMenu = true;
 
             this.element
@@ -6099,12 +6159,12 @@
                     // but we can't detect a mouseup or a click immediately afterward
                     // so we have to track the next mousedown and close the menu if
                     // the user clicks somewhere outside of the autocomplete
-                    var menuElement = this.menu.element[ 0 ];
+                    var menuElement = this.menu.element[0];
                     if (!$(event.target).closest(".ui-menu-item").length) {
                         this._delay(function () {
                             var that = this;
                             this.document.one("mousedown", function (event) {
-                                if (event.target !== that.element[ 0 ] &&
+                                if (event.target !== that.element[0] &&
                                     event.target !== menuElement && !$.contains(menuElement, event.target)) {
                                     that.close();
                                 }
@@ -6129,7 +6189,7 @@
                     }
 
                     var item = ui.item.data("ui-autocomplete-item");
-                    if (false !== this._trigger("focus", event, { item: item })) {
+                    if (false !== this._trigger("focus", event, {item: item})) {
                         // use value to match what will end up in the input, if it was a key event
                         if (event.originalEvent && /^key/.test(event.originalEvent.type)) {
                             this._value(item.value);
@@ -6160,7 +6220,7 @@
                         });
                     }
 
-                    if (false !== this._trigger("select", event, { item: item })) {
+                    if (false !== this._trigger("select", event, {item: item})) {
                         this._value(item.value);
                     }
                     // reset the term after the select event
@@ -6295,7 +6355,7 @@
             this.element.addClass("ui-autocomplete-loading");
             this.cancelSearch = false;
 
-            this.source({ term: value }, this._response());
+            this.source({term: value}, this._response());
         },
 
         _response: function () {
@@ -6317,7 +6377,7 @@
             if (content) {
                 content = this._normalize(content);
             }
-            this._trigger("response", null, { content: content });
+            this._trigger("response", null, {content: content});
             if (!this.options.disabled && content && content.length && !this.cancelSearch) {
                 this._suggest(content);
                 this._trigger("open");
@@ -6343,7 +6403,7 @@
 
         _change: function (event) {
             if (this.previous !== this._value()) {
-                this._trigger("change", event, { item: this.selectedItem });
+                this._trigger("change", event, {item: this.selectedItem});
             }
         },
 
@@ -6422,7 +6482,7 @@
                 this.menu.blur();
                 return;
             }
-            this.menu[ direction ](event);
+            this.menu[direction](event);
         },
 
         widget: function () {
@@ -6465,7 +6525,7 @@
                 noResults: "No search results.",
                 results: function (amount) {
                     return amount + ( amount > 1 ? " results are" : " result is" ) +
-                        " available, use up and down arrow keys to navigate.";
+                    " available, use up and down arrow keys to navigate.";
                 }
             }
         },
@@ -6607,11 +6667,11 @@
                     $(this).addClass("ui-state-active");
                     that.buttonElement.attr("aria-pressed", "true");
 
-                    var radio = that.element[ 0 ];
+                    var radio = that.element[0];
                     radioGroup(radio)
                         .not(radio)
                         .map(function () {
-                            return $(this).button("widget")[ 0 ];
+                            return $(this).button("widget")[0];
                         })
                         .removeClass("ui-state-active")
                         .attr("aria-pressed", "false");
@@ -6842,7 +6902,7 @@
                 .button()
                 .end()
                 .map(function () {
-                    return $(this).button("widget")[ 0 ];
+                    return $(this).button("widget")[0];
                 })
                 .removeClass("ui-corner-all ui-corner-left ui-corner-right")
                 .filter(":first")
@@ -6858,7 +6918,7 @@
             this.element.removeClass("ui-buttonset");
             this.buttons
                 .map(function () {
-                    return $(this).button("widget")[ 0 ];
+                    return $(this).button("widget")[0];
                 })
                 .removeClass("ui-corner-left ui-corner-right")
                 .end()
@@ -6869,7 +6929,7 @@
 }(jQuery) );
 (function ($, undefined) {
 
-    $.extend($.ui, { datepicker: { version: "1.10.4" } });
+    $.extend($.ui, {datepicker: {version: "1.10.4"}});
 
     var PROP_NAME = "datepicker",
         instActive;
@@ -7012,12 +7072,14 @@
         /* Create a new instance object. */
         _newInst: function (target, inline) {
             var id = target[0].id.replace(/([^A-Za-z0-9_\-])/g, "\\\\$1"); // escape jQuery meta chars
-            return {id: id, input: target, // associated target
+            return {
+                id: id, input: target, // associated target
                 selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
                 drawMonth: 0, drawYear: 0, // month being drawn
                 inline: inline, // is datepicker inline or not
                 dpDiv: (!inline ? this.dpDiv : // presentation div
-                    bindHover($("<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>")))};
+                    bindHover($("<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>")))
+            };
         },
 
         /* Attach the date picker to an input field. */
@@ -7068,10 +7130,10 @@
                 buttonImage = this._get(inst, "buttonImage");
                 inst.trigger = $(this._get(inst, "buttonImageOnly") ?
                     $("<img/>").addClass(this._triggerClass).
-                        attr({ src: buttonImage, alt: buttonText, title: buttonText }) :
+                        attr({src: buttonImage, alt: buttonText, title: buttonText}) :
                     $("<button type='button'></button>").addClass(this._triggerClass).
                         html(!buttonImage ? buttonText : $("<img/>").attr(
-                            { src: buttonImage, alt: buttonText, title: buttonText })));
+                            {src: buttonImage, alt: buttonText, title: buttonText})));
                 input[isRTL ? "before" : "after"](inst.trigger);
                 inst.trigger.click(function () {
                     if ($.datepicker._datepickerShowing && $.datepicker._lastInput === input[0]) {
@@ -7153,7 +7215,7 @@
                 this.uuid += 1;
                 id = "dp" + this.uuid;
                 this._dialogInput = $("<input type='text' id='" + id +
-                    "' style='position: absolute; top: -100px; width: 0px;'/>");
+                "' style='position: absolute; top: -100px; width: 0px;'/>");
                 this._dialogInput.keydown(this._doKeyDown);
                 $("body").append(this._dialogInput);
                 inst = this._dialogInst = this._newInst(this._dialogInput, false);
@@ -7422,7 +7484,7 @@
                         break; // hide on tab out
                     case 13:
                         sel = $("td." + $.datepicker._dayOverClass + ":not(." +
-                            $.datepicker._currentClass + ")", inst.dpDiv);
+                        $.datepicker._currentClass + ")", inst.dpDiv);
                         if (sel[0]) {
                             $.datepicker._selectDay(event.target, inst.selectedMonth, inst.selectedYear, sel[0]);
                         }
@@ -7612,9 +7674,11 @@
             // fix width for dynamic number of date pickers
             // and adjust position before showing
             offset = $.datepicker._checkOffset(inst, offset, isFixed);
-            inst.dpDiv.css({position: ($.datepicker._inDialog && $.blockUI ?
-                "static" : (isFixed ? "fixed" : "absolute")), display: "none",
-                left: offset.left + "px", top: offset.top + "px"});
+            inst.dpDiv.css({
+                position: ($.datepicker._inDialog && $.blockUI ?
+                    "static" : (isFixed ? "fixed" : "absolute")), display: "none",
+                left: offset.left + "px", top: offset.top + "px"
+            });
 
             if (!inst.inline) {
                 showAnim = $.datepicker._get(inst, "showAnim");
@@ -7622,7 +7686,7 @@
                 inst.dpDiv.zIndex($(input).zIndex() + 1);
                 $.datepicker._datepickerShowing = true;
 
-                if ($.effects && $.effects.effect[ showAnim ]) {
+                if ($.effects && $.effects.effect[showAnim]) {
                     inst.dpDiv.show(showAnim, $.datepicker._get(inst, "showOptions"), duration);
                 } else {
                     inst.dpDiv[showAnim || "show"](showAnim ? duration : null);
@@ -7654,9 +7718,9 @@
                 inst.dpDiv.addClass("ui-datepicker-multi-" + cols).css("width", (width * cols) + "em");
             }
             inst.dpDiv[(numMonths[0] !== 1 || numMonths[1] !== 1 ? "add" : "remove") +
-                "Class"]("ui-datepicker-multi");
+            "Class"]("ui-datepicker-multi");
             inst.dpDiv[(this._get(inst, "isRTL") ? "add" : "remove") +
-                "Class"]("ui-datepicker-rtl");
+            "Class"]("ui-datepicker-rtl");
 
             if (inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput(inst)) {
                 inst.input.focus();
@@ -7737,7 +7801,7 @@
                 };
 
                 // DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
-                if ($.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] )) {
+                if ($.effects && ( $.effects.effect[showAnim] || $.effects[showAnim] )) {
                     inst.dpDiv.hide(showAnim, $.datepicker._get(inst, "showOptions"), duration, postProcess);
                 } else {
                     inst.dpDiv[(showAnim === "slideDown" ? "slideUp" :
@@ -7756,7 +7820,7 @@
 
                 this._lastInput = null;
                 if (this._inDialog) {
-                    this._dialogInput.css({ position: "absolute", left: "0", top: "-100px" });
+                    this._dialogInput.css({position: "absolute", left: "0", top: "-100px"});
                     if ($.blockUI) {
                         $.unblockUI();
                         $("body").append(this.dpDiv);
@@ -7957,7 +8021,7 @@
                 iValue = 0,
                 shortYearCutoffTemp = (settings ? settings.shortYearCutoff : null) || this._defaults.shortYearCutoff,
                 shortYearCutoff = (typeof shortYearCutoffTemp !== "string" ? shortYearCutoffTemp :
-                    new Date().getFullYear() % 100 + parseInt(shortYearCutoffTemp, 10)),
+                new Date().getFullYear() % 100 + parseInt(shortYearCutoffTemp, 10)),
                 dayNamesShort = (settings ? settings.dayNamesShort : null) || this._defaults.dayNamesShort,
                 dayNames = (settings ? settings.dayNames : null) || this._defaults.dayNames,
                 monthNamesShort = (settings ? settings.monthNamesShort : null) || this._defaults.monthNamesShort,
@@ -7992,7 +8056,7 @@
             // Extract a name from the string value and convert to an index
                 getName = function (match, shortNames, longNames) {
                     var index = -1,
-                        names = $.map(lookAhead(match) ? longNames : shortNames,function (v, k) {
+                        names = $.map(lookAhead(match) ? longNames : shortNames, function (v, k) {
                             return [
                                 [k, v]
                             ];
@@ -8085,7 +8149,7 @@
                 year = new Date().getFullYear();
             } else if (year < 100) {
                 year += new Date().getFullYear() - new Date().getFullYear() % 100 +
-                    (year <= shortYearCutoff ? 0 : -100);
+                (year <= shortYearCutoff ? 0 : -100);
             }
 
             if (doy > -1) {
@@ -8123,7 +8187,7 @@
         W3C: "yy-mm-dd", // ISO 8601
 
         _ticksTo1970: (((1970 - 1) * 365 + Math.floor(1970 / 4) - Math.floor(1970 / 100) +
-            Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000),
+        Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000),
 
         /* Format a date object into a string value.
          * The format can be combinations of the following:
@@ -8216,7 +8280,7 @@
                                 break;
                             case "y":
                                 output += (lookAhead("y") ? date.getFullYear() :
-                                    (date.getYear() % 100 < 10 ? "0" : "") + date.getYear() % 100);
+                                (date.getYear() % 100 < 10 ? "0" : "") + date.getYear() % 100);
                                 break;
                             case "@":
                                 output += date.getTime();
@@ -8342,7 +8406,7 @@
                     }
 
                     var date = (offset.toLowerCase().match(/^c/) ?
-                            $.datepicker._getDate(inst) : null) || new Date(),
+                                $.datepicker._getDate(inst) : null) || new Date(),
                         year = date.getFullYear(),
                         month = date.getMonth(),
                         day = date.getDate(),
@@ -8517,8 +8581,8 @@
                 this._getFormatConfig(inst)));
 
             prev = (this._canAdjustMonth(inst, -1, drawYear, drawMonth) ?
-                "<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
-                    " title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>" :
+            "<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
+            " title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>" :
                 (hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-state-disabled' title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>"));
 
             nextText = this._get(inst, "nextText");
@@ -8527,8 +8591,8 @@
                 this._getFormatConfig(inst)));
 
             next = (this._canAdjustMonth(inst, +1, drawYear, drawMonth) ?
-                "<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
-                    " title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>" :
+            "<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
+            " title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>" :
                 (hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-state-disabled' title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>"));
 
             currentText = this._get(inst, "currentText");
@@ -8537,11 +8601,11 @@
                 this.formatDate(currentText, gotoDate, this._getFormatConfig(inst)));
 
             controls = (!inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
-                this._get(inst, "closeText") + "</button>" : "");
+            this._get(inst, "closeText") + "</button>" : "");
 
             buttonPanel = (showButtonPanel) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + (isRTL ? controls : "") +
-                (this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
-                    ">" + currentText + "</button>" : "") + (isRTL ? "" : controls) + "</div>" : "";
+            (this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
+            ">" + currentText + "</button>" : "") + (isRTL ? "" : controls) + "</div>" : "";
 
             firstDay = parseInt(this._get(inst, "firstDay"), 10);
             firstDay = (isNaN(firstDay) ? 0 : firstDay);
@@ -8585,17 +8649,17 @@
                         calender += "'>";
                     }
                     calender += "<div class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
-                        (/all|left/.test(cornerClass) && row === 0 ? (isRTL ? next : prev) : "") +
-                        (/all|right/.test(cornerClass) && row === 0 ? (isRTL ? prev : next) : "") +
-                        this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
-                            row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
-                        "</div><table class='ui-datepicker-calendar'><thead>" +
-                        "<tr>";
+                    (/all|left/.test(cornerClass) && row === 0 ? (isRTL ? next : prev) : "") +
+                    (/all|right/.test(cornerClass) && row === 0 ? (isRTL ? prev : next) : "") +
+                    this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
+                        row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
+                    "</div><table class='ui-datepicker-calendar'><thead>" +
+                    "<tr>";
                     thead = (showWeek ? "<th class='ui-datepicker-week-col'>" + this._get(inst, "weekHeader") + "</th>" : "");
                     for (dow = 0; dow < 7; dow++) { // days of the week
                         day = (dow + firstDay) % 7;
                         thead += "<th" + ((dow + firstDay + 6) % 7 >= 5 ? " class='ui-datepicker-week-end'" : "") + ">" +
-                            "<span title='" + dayNames[day] + "'>" + dayNamesMin[day] + "</span></th>";
+                        "<span title='" + dayNames[day] + "'>" + dayNamesMin[day] + "</span></th>";
                     }
                     calender += thead + "</tr></thead><tbody>";
                     daysInMonth = this._getDaysInMonth(drawYear, drawMonth);
@@ -8610,32 +8674,32 @@
                     for (dRow = 0; dRow < numRows; dRow++) { // create date picker rows
                         calender += "<tr>";
                         tbody = (!showWeek ? "" : "<td class='ui-datepicker-week-col'>" +
-                            this._get(inst, "calculateWeek")(printDate) + "</td>");
+                        this._get(inst, "calculateWeek")(printDate) + "</td>");
                         for (dow = 0; dow < 7; dow++) { // create date picker days
                             daySettings = (beforeShowDay ?
                                 beforeShowDay.apply((inst.input ? inst.input[0] : null), [printDate]) : [true, ""]);
                             otherMonth = (printDate.getMonth() !== drawMonth);
                             unselectable = (otherMonth && !selectOtherMonths) || !daySettings[0] ||
-                                (minDate && printDate < minDate) || (maxDate && printDate > maxDate);
+                            (minDate && printDate < minDate) || (maxDate && printDate > maxDate);
                             tbody += "<td class='" +
-                                ((dow + firstDay + 6) % 7 >= 5 ? " ui-datepicker-week-end" : "") + // highlight weekends
-                                (otherMonth ? " ui-datepicker-other-month" : "") + // highlight days from other months
-                                ((printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent) || // user pressed key
-                                    (defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime()) ?
-                                    // or defaultDate is current printedDate and defaultDate is selectedDate
-                                    " " + this._dayOverClass : "") + // highlight selected day
-                                (unselectable ? " " + this._unselectableClass + " ui-state-disabled" : "") +  // highlight unselectable days
-                                (otherMonth && !showOtherMonths ? "" : " " + daySettings[1] + // highlight custom dates
-                                    (printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "") + // highlight selected day
-                                    (printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "")) + "'" + // highlight today (if different)
-                                ((!otherMonth || showOtherMonths) && daySettings[2] ? " title='" + daySettings[2].replace(/'/g, "&#39;") + "'" : "") + // cell title
-                                (unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'") + ">" + // actions
-                                (otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
-                                    (unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
-                                        (printDate.getTime() === today.getTime() ? " ui-state-highlight" : "") +
-                                        (printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
-                                        (otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
-                                        "' href='#'>" + printDate.getDate() + "</a>")) + "</td>"; // display selectable date
+                            ((dow + firstDay + 6) % 7 >= 5 ? " ui-datepicker-week-end" : "") + // highlight weekends
+                            (otherMonth ? " ui-datepicker-other-month" : "") + // highlight days from other months
+                            ((printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent) || // user pressed key
+                            (defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime()) ?
+                                // or defaultDate is current printedDate and defaultDate is selectedDate
+                            " " + this._dayOverClass : "") + // highlight selected day
+                            (unselectable ? " " + this._unselectableClass + " ui-state-disabled" : "") +  // highlight unselectable days
+                            (otherMonth && !showOtherMonths ? "" : " " + daySettings[1] + // highlight custom dates
+                            (printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "") + // highlight selected day
+                            (printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "")) + "'" + // highlight today (if different)
+                            ((!otherMonth || showOtherMonths) && daySettings[2] ? " title='" + daySettings[2].replace(/'/g, "&#39;") + "'" : "") + // cell title
+                            (unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'") + ">" + // actions
+                            (otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
+                                (unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
+                                (printDate.getTime() === today.getTime() ? " ui-state-highlight" : "") +
+                                (printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
+                                (otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
+                                "' href='#'>" + printDate.getDate() + "</a>")) + "</td>"; // display selectable date
                             printDate.setDate(printDate.getDate() + 1);
                             printDate = this._daylightSavingAdjust(printDate);
                         }
@@ -8647,7 +8711,7 @@
                         drawYear++;
                     }
                     calender += "</tbody></table>" + (isMultiMonth ? "</div>" +
-                        ((numMonths[0] > 0 && col === numMonths[1] - 1) ? "<div class='ui-datepicker-row-break'></div>" : "") : "");
+                    ((numMonths[0] > 0 && col === numMonths[1] - 1) ? "<div class='ui-datepicker-row-break'></div>" : "") : "");
                     group += calender;
                 }
                 html += group;
@@ -8677,8 +8741,8 @@
                 for (month = 0; month < 12; month++) {
                     if ((!inMinYear || month >= minDate.getMonth()) && (!inMaxYear || month <= maxDate.getMonth())) {
                         monthHtml += "<option value='" + month + "'" +
-                            (month === drawMonth ? " selected='selected'" : "") +
-                            ">" + monthNamesShort[month] + "</option>";
+                        (month === drawMonth ? " selected='selected'" : "") +
+                        ">" + monthNamesShort[month] + "</option>";
                     }
                 }
                 monthHtml += "</select>";
@@ -8710,8 +8774,8 @@
                     inst.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>";
                     for (; year <= endYear; year++) {
                         inst.yearshtml += "<option value='" + year + "'" +
-                            (year === drawYear ? " selected='selected'" : "") +
-                            ">" + year + "</option>";
+                        (year === drawYear ? " selected='selected'" : "") +
+                        ">" + year + "</option>";
                     }
                     inst.yearshtml += "</select>";
 
@@ -8815,19 +8879,21 @@
             }
 
             return ((!minDate || date.getTime() >= minDate.getTime()) &&
-                (!maxDate || date.getTime() <= maxDate.getTime()) &&
-                (!minYear || date.getFullYear() >= minYear) &&
-                (!maxYear || date.getFullYear() <= maxYear));
+            (!maxDate || date.getTime() <= maxDate.getTime()) &&
+            (!minYear || date.getFullYear() >= minYear) &&
+            (!maxYear || date.getFullYear() <= maxYear));
         },
 
         /* Provide the configuration settings for formatting/parsing. */
         _getFormatConfig: function (inst) {
             var shortYearCutoff = this._get(inst, "shortYearCutoff");
             shortYearCutoff = (typeof shortYearCutoff !== "string" ? shortYearCutoff :
-                new Date().getFullYear() % 100 + parseInt(shortYearCutoff, 10));
-            return {shortYearCutoff: shortYearCutoff,
+            new Date().getFullYear() % 100 + parseInt(shortYearCutoff, 10));
+            return {
+                shortYearCutoff: shortYearCutoff,
                 dayNamesShort: this._get(inst, "dayNamesShort"), dayNames: this._get(inst, "dayNames"),
-                monthNamesShort: this._get(inst, "monthNamesShort"), monthNames: this._get(inst, "monthNames")};
+                monthNamesShort: this._get(inst, "monthNamesShort"), monthNames: this._get(inst, "monthNames")
+            };
         },
 
         /* Format the given date for display. */
@@ -9097,7 +9163,7 @@
                 // support: IE9
                 // IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
                 try {
-                    activeElement = this.document[ 0 ].activeElement;
+                    activeElement = this.document[0].activeElement;
 
                     // Support: IE9, IE10
                     // If the <body> is blurred, IE will switch windows, see #4520
@@ -9201,7 +9267,7 @@
         _createWrapper: function () {
             this.uiDialog = $("<div>")
                 .addClass("ui-dialog ui-widget ui-widget-content ui-corner-all ui-front " +
-                    this.options.dialogClass)
+                this.options.dialogClass)
                 .hide()
                 .attr({
                     // Setting tabIndex makes the div focusable
@@ -9335,10 +9401,10 @@
             $.each(buttons, function (name, props) {
                 var click, buttonOptions;
                 props = $.isFunction(props) ?
-                { click: props, text: name } :
+                {click: props, text: name} :
                     props;
                 // Default to a non-submitting button
-                props = $.extend({ type: "button" }, props);
+                props = $.extend({type: "button"}, props);
                 // Change the context for the click callback to be the main element
                 click = props.click;
                 props.click = function () {
@@ -9473,7 +9539,7 @@
                     resize = true;
                 }
                 if (key in resizableRelatedOptions) {
-                    resizableOptions[ key ] = value;
+                    resizableOptions[key] = value;
                 }
             });
 
@@ -9693,26 +9759,26 @@
             _position: function () {
                 var position = this.options.position,
                     myAt = [],
-                    offset = [ 0, 0 ],
+                    offset = [0, 0],
                     isVisible;
 
                 if (position) {
                     if (typeof position === "string" || (typeof position === "object" && "0" in position )) {
-                        myAt = position.split ? position.split(" ") : [ position[0], position[1] ];
+                        myAt = position.split ? position.split(" ") : [position[0], position[1]];
                         if (myAt.length === 1) {
                             myAt[1] = myAt[0];
                         }
 
-                        $.each([ "left", "top" ], function (i, offsetPosition) {
-                            if (+myAt[ i ] === myAt[ i ]) {
-                                offset[ i ] = myAt[ i ];
-                                myAt[ i ] = offsetPosition;
+                        $.each(["left", "top"], function (i, offsetPosition) {
+                            if (+myAt[i] === myAt[i]) {
+                                offset[i] = myAt[i];
+                                myAt[i] = offsetPosition;
                             }
                         });
 
                         position = {
                             my: myAt[0] + (offset[0] < 0 ? offset[0] : "+" + offset[0]) + " " +
-                                myAt[1] + (offset[1] < 0 ? offset[1] : "+" + offset[1]),
+                            myAt[1] + (offset[1] < 0 ? offset[1] : "+" + offset[1]),
                             at: myAt.join(" ")
                         };
                     }
@@ -9808,10 +9874,10 @@
                         // Open submenu on click
                         if (target.has(".ui-menu").length) {
                             this.expand(event);
-                        } else if (!this.element.is(":focus") && $(this.document[ 0 ].activeElement).closest(".ui-menu").length) {
+                        } else if (!this.element.is(":focus") && $(this.document[0].activeElement).closest(".ui-menu").length) {
 
                             // Redirect focus to the menu
-                            this.element.trigger("focus", [ true ]);
+                            this.element.trigger("focus", [true]);
 
                             // If the active item is on the top level, let it stay active.
                             // Otherwise, blur the active item since it is no longer visible.
@@ -10061,7 +10127,7 @@
             menus.children(".ui-state-disabled").attr("aria-disabled", "true");
 
             // If the active item has been removed, blur the menu
-            if (this.active && !$.contains(this.element[ 0 ], this.active[ 0 ])) {
+            if (this.active && !$.contains(this.element[0], this.active[0])) {
                 this.blur();
             }
         },
@@ -10070,7 +10136,7 @@
             return {
                 menu: "menuitem",
                 listbox: "option"
-            }[ this.options.role ];
+            }[this.options.role];
         },
 
         _setOption: function (key, value) {
@@ -10117,7 +10183,7 @@
             }
             this.activeMenu = item.parent();
 
-            this._trigger("focus", event, { item: item });
+            this._trigger("focus", event, {item: item});
         },
 
         _scrollIntoView: function (item) {
@@ -10150,7 +10216,7 @@
             this.active.children("a").removeClass("ui-state-focus");
             this.active = null;
 
-            this._trigger("blur", event, { item: this.active });
+            this._trigger("blur", event, {item: this.active});
         },
 
         _startOpening: function (submenu) {
@@ -10268,16 +10334,16 @@
             if (this.active) {
                 if (direction === "first" || direction === "last") {
                     next = this.active
-                        [ direction === "first" ? "prevAll" : "nextAll" ](".ui-menu-item")
+                        [direction === "first" ? "prevAll" : "nextAll"](".ui-menu-item")
                         .eq(-1);
                 } else {
                     next = this.active
-                        [ direction + "All" ](".ui-menu-item")
+                        [direction + "All"](".ui-menu-item")
                         .eq(0);
                 }
             }
             if (!next || !next.length || !this.active) {
-                next = this.activeMenu.children(".ui-menu-item")[ filter ]();
+                next = this.activeMenu.children(".ui-menu-item")[filter]();
             }
 
             this.focus(event, next);
@@ -10304,7 +10370,7 @@
                 this.focus(event, item);
             } else {
                 this.focus(event, this.activeMenu.children(".ui-menu-item")
-                    [ !this.active ? "first" : "last" ]());
+                    [!this.active ? "first" : "last"]());
             }
         },
 
@@ -10339,7 +10405,7 @@
             // TODO: It should never be possible to not have an active item at this
             // point, but the tests don't trigger mouseenter before click.
             this.active = this.active || $(event.target).closest(".ui-menu-item");
-            var ui = { item: this.active };
+            var ui = {item: this.active};
             if (!this.active.has(".ui-menu").length) {
                 this.collapseAll(event, true);
             }
@@ -10517,10 +10583,10 @@
 
             this.element
                 .addClass("ui-slider" +
-                    " ui-slider-" + this.orientation +
-                    " ui-widget" +
-                    " ui-widget-content" +
-                    " ui-corner-all");
+                " ui-slider-" + this.orientation +
+                " ui-widget" +
+                " ui-widget-content" +
+                " ui-corner-all");
 
             this._refresh();
             this._setOption("disabled", this.options.disabled);
@@ -10569,9 +10635,9 @@
             if (options.range) {
                 if (options.range === true) {
                     if (!options.values) {
-                        options.values = [ this._valueMin(), this._valueMin() ];
+                        options.values = [this._valueMin(), this._valueMin()];
                     } else if (options.values.length && options.values.length !== 2) {
-                        options.values = [ options.values[0], options.values[0] ];
+                        options.values = [options.values[0], options.values[0]];
                     } else if ($.isArray(options.values)) {
                         options.values = options.values.slice(0);
                     }
@@ -10584,7 +10650,7 @@
                     classes = "ui-slider-range" +
                         // note: this isn't the most fittingly semantic framework class for this element,
                         // but worked best visually with a variety of themes
-                        " ui-widget-header ui-corner-all";
+                    " ui-widget-header ui-corner-all";
                 } else {
                     this.range.removeClass("ui-slider-range-min ui-slider-range-max")
                         // Handle range switching from true to min/max
@@ -10595,7 +10661,7 @@
                 }
 
                 this.range.addClass(classes +
-                    ( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ));
+                ( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ));
             } else {
                 if (this.range) {
                     this.range.remove();
@@ -10620,11 +10686,11 @@
 
             this.element
                 .removeClass("ui-slider" +
-                    " ui-slider-horizontal" +
-                    " ui-slider-vertical" +
-                    " ui-widget" +
-                    " ui-widget-content" +
-                    " ui-corner-all");
+                " ui-slider-horizontal" +
+                " ui-slider-vertical" +
+                " ui-widget" +
+                " ui-widget-content" +
+                " ui-corner-all");
 
             this._mouseDestroy();
         },
@@ -10644,14 +10710,14 @@
             };
             this.elementOffset = this.element.offset();
 
-            position = { x: event.pageX, y: event.pageY };
+            position = {x: event.pageX, y: event.pageY};
             normValue = this._normValueFromMouse(position);
             distance = this._valueMax() - this._valueMin() + 1;
             this.handles.each(function (i) {
                 var thisDistance = Math.abs(normValue - that.values(i));
                 if (( distance > thisDistance ) ||
                     ( distance === thisDistance &&
-                        (i === that._lastChangedValue || that.values(i) === o.min ))) {
+                    (i === that._lastChangedValue || that.values(i) === o.min ))) {
                     distance = thisDistance;
                     closestHandle = $(this);
                     index = i;
@@ -10672,13 +10738,13 @@
 
             offset = closestHandle.offset();
             mouseOverHandle = !$(event.target).parents().addBack().is(".ui-slider-handle");
-            this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
+            this._clickOffset = mouseOverHandle ? {left: 0, top: 0} : {
                 left: event.pageX - offset.left - ( closestHandle.width() / 2 ),
                 top: event.pageY - offset.top -
-                    ( closestHandle.height() / 2 ) -
-                    ( parseInt(closestHandle.css("borderTopWidth"), 10) || 0 ) -
-                    ( parseInt(closestHandle.css("borderBottomWidth"), 10) || 0) +
-                    ( parseInt(closestHandle.css("marginTop"), 10) || 0)
+                ( closestHandle.height() / 2 ) -
+                ( parseInt(closestHandle.css("borderTopWidth"), 10) || 0 ) -
+                ( parseInt(closestHandle.css("borderBottomWidth"), 10) || 0) +
+                ( parseInt(closestHandle.css("marginTop"), 10) || 0)
             };
 
             if (!this.handles.hasClass("ui-state-hover")) {
@@ -10693,7 +10759,7 @@
         },
 
         _mouseDrag: function (event) {
-            var position = { x: event.pageX, y: event.pageY },
+            var position = {x: event.pageX, y: event.pageY},
                 normValue = this._normValueFromMouse(position);
 
             this._slide(event, this._handleIndex, normValue);
@@ -10753,7 +10819,7 @@
 
         _start: function (event, index) {
             var uiHash = {
-                handle: this.handles[ index ],
+                handle: this.handles[index],
                 value: this.value()
             };
             if (this.options.values && this.options.values.length) {
@@ -10773,16 +10839,16 @@
 
                 if (( this.options.values.length === 2 && this.options.range === true ) &&
                     ( ( index === 0 && newVal > otherVal) || ( index === 1 && newVal < otherVal ) )
-                    ) {
+                ) {
                     newVal = otherVal;
                 }
 
                 if (newVal !== this.values(index)) {
                     newValues = this.values();
-                    newValues[ index ] = newVal;
+                    newValues[index] = newVal;
                     // A slide can be canceled by returning false from the slide callback
                     allowed = this._trigger("slide", event, {
-                        handle: this.handles[ index ],
+                        handle: this.handles[index],
                         value: newVal,
                         values: newValues
                     });
@@ -10795,7 +10861,7 @@
                 if (newVal !== this.value()) {
                     // A slide can be canceled by returning false from the slide callback
                     allowed = this._trigger("slide", event, {
-                        handle: this.handles[ index ],
+                        handle: this.handles[index],
                         value: newVal
                     });
                     if (allowed !== false) {
@@ -10807,7 +10873,7 @@
 
         _stop: function (event, index) {
             var uiHash = {
-                handle: this.handles[ index ],
+                handle: this.handles[index],
                 value: this.value()
             };
             if (this.options.values && this.options.values.length) {
@@ -10821,7 +10887,7 @@
         _change: function (event, index) {
             if (!this._keySliding && !this._mouseSliding) {
                 var uiHash = {
-                    handle: this.handles[ index ],
+                    handle: this.handles[index],
                     value: this.value()
                 };
                 if (this.options.values && this.options.values.length) {
@@ -10853,18 +10919,18 @@
                 i;
 
             if (arguments.length > 1) {
-                this.options.values[ index ] = this._trimAlignValue(newValue);
+                this.options.values[index] = this._trimAlignValue(newValue);
                 this._refreshValue();
                 this._change(null, index);
                 return;
             }
 
             if (arguments.length) {
-                if ($.isArray(arguments[ 0 ])) {
+                if ($.isArray(arguments[0])) {
                     vals = this.options.values;
-                    newValues = arguments[ 0 ];
+                    newValues = arguments[0];
                     for (i = 0; i < vals.length; i += 1) {
-                        vals[ i ] = this._trimAlignValue(newValues[ i ]);
+                        vals[i] = this._trimAlignValue(newValues[i]);
                         this._change(null, i);
                     }
                     this._refreshValue();
@@ -10954,7 +11020,7 @@
                 i;
 
             if (arguments.length) {
-                val = this.options.values[ index ];
+                val = this.options.values[index];
                 val = this._trimAlignValue(val);
 
                 return val;
@@ -10963,7 +11029,7 @@
                 // this copy gets trimmed by min and max and then returned
                 vals = this.options.values.slice();
                 for (i = 0; i < vals.length; i += 1) {
-                    vals[ i ] = this._trimAlignValue(vals[ i ]);
+                    vals[i] = this._trimAlignValue(vals[i]);
                 }
 
                 return vals;
@@ -11012,22 +11078,28 @@
             if (this.options.values && this.options.values.length) {
                 this.handles.each(function (i) {
                     valPercent = ( that.values(i) - that._valueMin() ) / ( that._valueMax() - that._valueMin() ) * 100;
-                    _set[ that.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-                    $(this).stop(1, 1)[ animate ? "animate" : "css" ](_set, o.animate);
+                    _set[that.orientation === "horizontal" ? "left" : "bottom"] = valPercent + "%";
+                    $(this).stop(1, 1)[animate ? "animate" : "css"](_set, o.animate);
                     if (that.options.range === true) {
                         if (that.orientation === "horizontal") {
                             if (i === 0) {
-                                that.range.stop(1, 1)[ animate ? "animate" : "css" ]({ left: valPercent + "%" }, o.animate);
+                                that.range.stop(1, 1)[animate ? "animate" : "css"]({left: valPercent + "%"}, o.animate);
                             }
                             if (i === 1) {
-                                that.range[ animate ? "animate" : "css" ]({ width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate });
+                                that.range[animate ? "animate" : "css"]({width: ( valPercent - lastValPercent ) + "%"}, {
+                                    queue: false,
+                                    duration: o.animate
+                                });
                             }
                         } else {
                             if (i === 0) {
-                                that.range.stop(1, 1)[ animate ? "animate" : "css" ]({ bottom: ( valPercent ) + "%" }, o.animate);
+                                that.range.stop(1, 1)[animate ? "animate" : "css"]({bottom: ( valPercent ) + "%"}, o.animate);
                             }
                             if (i === 1) {
-                                that.range[ animate ? "animate" : "css" ]({ height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate });
+                                that.range[animate ? "animate" : "css"]({height: ( valPercent - lastValPercent ) + "%"}, {
+                                    queue: false,
+                                    duration: o.animate
+                                });
                             }
                         }
                     }
@@ -11038,22 +11110,28 @@
                 valueMin = this._valueMin();
                 valueMax = this._valueMax();
                 valPercent = ( valueMax !== valueMin ) ?
-                    ( value - valueMin ) / ( valueMax - valueMin ) * 100 :
+                ( value - valueMin ) / ( valueMax - valueMin ) * 100 :
                     0;
-                _set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-                this.handle.stop(1, 1)[ animate ? "animate" : "css" ](_set, o.animate);
+                _set[this.orientation === "horizontal" ? "left" : "bottom"] = valPercent + "%";
+                this.handle.stop(1, 1)[animate ? "animate" : "css"](_set, o.animate);
 
                 if (oRange === "min" && this.orientation === "horizontal") {
-                    this.range.stop(1, 1)[ animate ? "animate" : "css" ]({ width: valPercent + "%" }, o.animate);
+                    this.range.stop(1, 1)[animate ? "animate" : "css"]({width: valPercent + "%"}, o.animate);
                 }
                 if (oRange === "max" && this.orientation === "horizontal") {
-                    this.range[ animate ? "animate" : "css" ]({ width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate });
+                    this.range[animate ? "animate" : "css"]({width: ( 100 - valPercent ) + "%"}, {
+                        queue: false,
+                        duration: o.animate
+                    });
                 }
                 if (oRange === "min" && this.orientation === "vertical") {
-                    this.range.stop(1, 1)[ animate ? "animate" : "css" ]({ height: valPercent + "%" }, o.animate);
+                    this.range.stop(1, 1)[animate ? "animate" : "css"]({height: valPercent + "%"}, o.animate);
                 }
                 if (oRange === "max" && this.orientation === "vertical") {
-                    this.range[ animate ? "animate" : "css" ]({ height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate });
+                    this.range[animate ? "animate" : "css"]({height: ( 100 - valPercent ) + "%"}, {
+                        queue: false,
+                        duration: o.animate
+                    });
                 }
             }
         },
@@ -11207,10 +11285,10 @@
             var options = {},
                 element = this.element;
 
-            $.each([ "min", "max", "step" ], function (i, option) {
+            $.each(["min", "max", "step"], function (i, option) {
                 var value = element.attr(option);
                 if (value !== undefined && value.length) {
-                    options[ option ] = value;
+                    options[option] = value;
                 }
             });
 
@@ -11376,12 +11454,12 @@
 
         _buttonHtml: function () {
             return "" +
-                "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
-                "<span class='ui-icon " + this.options.icons.up + "'>&#9650;</span>" +
-                "</a>" +
-                "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
-                "<span class='ui-icon " + this.options.icons.down + "'>&#9660;</span>" +
-                "</a>";
+            "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
+            "<span class='ui-icon " + this.options.icons.up + "'>&#9650;</span>" +
+            "</a>" +
+            "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
+            "<span class='ui-icon " + this.options.icons.down + "'>&#9660;</span>" +
+            "</a>";
         },
 
         _start: function (event) {
@@ -11416,7 +11494,7 @@
 
             value = this._adjustValue(value + step * this._increment(this.counter));
 
-            if (!this.spinning || this._trigger("spin", event, { value: value }) !== false) {
+            if (!this.spinning || this._trigger("spin", event, {value: value}) !== false) {
                 this._value(value);
                 this.counter++;
             }
@@ -11490,7 +11568,7 @@
         _setOption: function (key, value) {
             if (key === "culture" || key === "numberFormat") {
                 var prevValue = this._parse(this.element.val());
-                this.options[ key ] = value;
+                this.options[key] = value;
                 this.element.val(this._format(prevValue));
                 return;
             }
@@ -11637,8 +11715,8 @@
         anchor = anchor.cloneNode(false);
 
         return anchor.hash.length > 1 &&
-            decodeURIComponent(anchor.href.replace(rhash, "")) ===
-                decodeURIComponent(location.href.replace(rhash, ""));
+        decodeURIComponent(anchor.href.replace(rhash, "")) ===
+        decodeURIComponent(location.href.replace(rhash, ""));
     }
 
     $.widget("ui.tabs", {
@@ -11931,7 +12009,7 @@
                 options.active = false;
                 this.active = $();
                 // was active, but active tab is gone
-            } else if (this.active.length && !$.contains(this.tablist[ 0 ], this.active[ 0 ])) {
+            } else if (this.active.length && !$.contains(this.tablist[0], this.active[0])) {
                 // all remaining tabs are disabled
                 if (this.tabs.length === options.disabled.length) {
                     options.active = false;
@@ -11999,7 +12077,7 @@
                 });
 
             this.anchors = this.tabs.map(function () {
-                return $("a", this)[ 0 ];
+                return $("a", this)[0];
             })
                 .addClass("ui-tabs-anchor")
                 .attr({
@@ -12026,7 +12104,7 @@
                     panel = that.element.find(selector);
                     if (!panel.length) {
                         panel = that._createPanel(panelId);
-                        panel.insertAfter(that.panels[ i - 1 ] || that.tablist);
+                        panel.insertAfter(that.panels[i - 1] || that.tablist);
                     }
                     panel.attr("aria-live", "polite");
                 }
@@ -12071,7 +12149,7 @@
             }
 
             // disable tabs
-            for (var i = 0, li; ( li = this.tabs[ i ] ); i++) {
+            for (var i = 0, li; ( li = this.tabs[i] ); i++) {
                 if (disabled === true || $.inArray(i, disabled) !== -1) {
                     $(li)
                         .addClass("ui-state-disabled")
@@ -12094,14 +12172,14 @@
             };
             if (event) {
                 $.each(event.split(" "), function (index, eventName) {
-                    events[ eventName ] = "_eventHandler";
+                    events[eventName] = "_eventHandler";
                 });
             }
 
             this._off(this.anchors.add(this.tabs).add(this.panels));
             this._on(this.anchors, events);
-            this._on(this.tabs, { keydown: "_tabKeydown" });
-            this._on(this.panels, { keydown: "_panelKeydown" });
+            this._on(this.tabs, {keydown: "_tabKeydown"});
+            this._on(this.panels, {keydown: "_panelKeydown"});
 
             this._focusable(this.tabs);
             this._hoverable(this.tabs);
@@ -12131,7 +12209,7 @@
 
                 this.panels.each(function () {
                     $(this).height(Math.max(0, maxHeight -
-                        $(this).innerHeight() + $(this).height()));
+                    $(this).innerHeight() + $(this).height()));
                 })
                     .css("overflow", "auto");
             } else if (heightStyle === "auto") {
@@ -12147,7 +12225,7 @@
                 active = this.active,
                 anchor = $(event.currentTarget),
                 tab = anchor.closest("li"),
-                clickedIsActive = tab[ 0 ] === active[ 0 ],
+                clickedIsActive = tab[0] === active[0],
                 collapsing = clickedIsActive && options.collapsible,
                 toShow = collapsing ? $() : this._getPanelForTab(tab),
                 toHide = !active.length ? $() : this._getPanelForTab(active),
@@ -12161,13 +12239,13 @@
             event.preventDefault();
 
             if (tab.hasClass("ui-state-disabled") ||
-                // tab is already loading
+                    // tab is already loading
                 tab.hasClass("ui-tabs-loading") ||
-                // can't switch durning an animation
+                    // can't switch durning an animation
                 this.running ||
-                // click on active header, but not collapsible
+                    // click on active header, but not collapsible
                 ( clickedIsActive && !options.collapsible ) ||
-                // allow canceling activation
+                    // allow canceling activation
                 ( this._trigger("beforeActivate", event, eventData) === false )) {
                 return;
             }
@@ -12257,7 +12335,7 @@
                 active = this._findActive(index);
 
             // trying to activate the already active panel
-            if (active[ 0 ] === this.active[ 0 ]) {
+            if (active[0] === this.active[0]) {
                 return;
             }
 
@@ -12266,7 +12344,7 @@
                 active = this.active;
             }
 
-            anchor = active.find(".ui-tabs-anchor")[ 0 ];
+            anchor = active.find(".ui-tabs-anchor")[0];
             this._eventHandler({
                 target: anchor,
                 currentTarget: anchor,
@@ -12310,7 +12388,7 @@
                 } else {
                     $(this)
                         .removeClass("ui-state-default ui-state-active ui-state-disabled " +
-                            "ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel")
+                        "ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel")
                         .removeAttr("tabIndex")
                         .removeAttr("aria-live")
                         .removeAttr("aria-busy")
@@ -12378,9 +12456,9 @@
                     return;
                 }
                 if ($.isArray(disabled)) {
-                    disabled = $.merge([ index ], disabled).sort();
+                    disabled = $.merge([index], disabled).sort();
                 } else {
-                    disabled = [ index ];
+                    disabled = [index];
                 }
             }
             this._setupDisabled(disabled);
@@ -12398,7 +12476,7 @@
                 };
 
             // not remote
-            if (isLocal(anchor[ 0 ])) {
+            if (isLocal(anchor[0])) {
                 return;
             }
 
@@ -12445,7 +12523,7 @@
                 url: anchor.attr("href"),
                 beforeSend: function (jqXHR, settings) {
                     return that._trigger("beforeLoad", event,
-                        $.extend({ jqXHR: jqXHR, ajaxSettings: settings }, eventData));
+                        $.extend({jqXHR: jqXHR, ajaxSettings: settings}, eventData));
                 }
             };
         },
@@ -12533,8 +12611,8 @@
             var that = this;
 
             if (key === "disabled") {
-                this[ value ? "_disable" : "_enable" ]();
-                this.options[ key ] = value;
+                this[value ? "_disable" : "_enable"]();
+                this.options[key] = value;
                 // disable element style changes
                 return;
             }
@@ -12609,7 +12687,7 @@
                     }
                     if (parent.attr("title")) {
                         parent.uniqueId();
-                        that.parents[ this.id ] = {
+                        that.parents[this.id] = {
                             element: this,
                             title: parent.attr("title")
                         };
@@ -12725,7 +12803,7 @@
                 }, $.fx.interval);
             }
 
-            this._trigger("open", event, { tooltip: tooltip });
+            this._trigger("open", event, {tooltip: tooltip});
 
             events = {
                 keyup: function (event) {
@@ -12785,12 +12863,12 @@
             if (event && event.type === "mouseleave") {
                 $.each(this.parents, function (id, parent) {
                     $(parent.element).attr("title", parent.title);
-                    delete that.parents[ id ];
+                    delete that.parents[id];
                 });
             }
 
             this.closing = true;
-            this._trigger("close", event, { tooltip: tooltip });
+            this._trigger("close", event, {tooltip: tooltip});
             this.closing = false;
         },
 
@@ -12802,12 +12880,12 @@
                         role: "tooltip"
                     })
                     .addClass("ui-tooltip ui-widget ui-corner-all ui-widget-content " +
-                        ( this.options.tooltipClass || "" ));
+                    ( this.options.tooltipClass || "" ));
             $("<div>")
                 .addClass("ui-tooltip-content")
                 .appendTo(tooltip);
             tooltip.appendTo(this.document[0].body);
-            this.tooltips[ id ] = element;
+            this.tooltips[id] = element;
             return tooltip;
         },
 
@@ -12818,7 +12896,7 @@
 
         _removeTooltip: function (tooltip) {
             tooltip.remove();
-            delete this.tooltips[ tooltip.attr("id") ];
+            delete this.tooltips[tooltip.attr("id")];
         },
 
         _destroy: function () {
@@ -12875,10 +12953,10 @@
                     re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ],
-                            execResult[ 2 ],
-                            execResult[ 3 ],
-                            execResult[ 4 ]
+                            execResult[1],
+                            execResult[2],
+                            execResult[3],
+                            execResult[4]
                         ];
                     }
                 },
@@ -12886,10 +12964,10 @@
                     re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ] * 2.55,
-                            execResult[ 2 ] * 2.55,
-                            execResult[ 3 ] * 2.55,
-                            execResult[ 4 ]
+                            execResult[1] * 2.55,
+                            execResult[2] * 2.55,
+                            execResult[3] * 2.55,
+                            execResult[4]
                         ];
                     }
                 },
@@ -12898,9 +12976,9 @@
                     re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
                     parse: function (execResult) {
                         return [
-                            parseInt(execResult[ 1 ], 16),
-                            parseInt(execResult[ 2 ], 16),
-                            parseInt(execResult[ 3 ], 16)
+                            parseInt(execResult[1], 16),
+                            parseInt(execResult[2], 16),
+                            parseInt(execResult[3], 16)
                         ];
                     }
                 },
@@ -12909,9 +12987,9 @@
                     re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
                     parse: function (execResult) {
                         return [
-                            parseInt(execResult[ 1 ] + execResult[ 1 ], 16),
-                            parseInt(execResult[ 2 ] + execResult[ 2 ], 16),
-                            parseInt(execResult[ 3 ] + execResult[ 3 ], 16)
+                            parseInt(execResult[1] + execResult[1], 16),
+                            parseInt(execResult[2] + execResult[2], 16),
+                            parseInt(execResult[3] + execResult[3], 16)
                         ];
                     }
                 },
@@ -12920,10 +12998,10 @@
                     space: "hsla",
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ],
-                            execResult[ 2 ] / 100,
-                            execResult[ 3 ] / 100,
-                            execResult[ 4 ]
+                            execResult[1],
+                            execResult[2] / 100,
+                            execResult[3] / 100,
+                            execResult[4]
                         ];
                     }
                 }
@@ -12984,7 +13062,7 @@
             support = color.support = {},
 
         // element for support tests
-            supportElem = jQuery("<p>")[ 0 ],
+            supportElem = jQuery("<p>")[0],
 
         // colors = jQuery.Color.names
             colors,
@@ -13008,7 +13086,7 @@
         });
 
         function clamp(value, prop, allowEmpty) {
-            var type = propTypes[ prop.type ] || {};
+            var type = propTypes[prop.type] || {};
 
             if (value == null) {
                 return (allowEmpty || !prop.def) ? null : prop.def;
@@ -13046,11 +13124,11 @@
                     spaceName = parser.space || "rgba";
 
                 if (values) {
-                    parsed = inst[ spaceName ](values);
+                    parsed = inst[spaceName](values);
 
                     // if this was an rgba parse the assignment might happen twice
                     // oh well....
-                    inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
+                    inst[spaces[spaceName].cache] = parsed[spaces[spaceName].cache];
                     rgba = inst._rgba = parsed._rgba;
 
                     // exit each( stringParsers ) here because we matched
@@ -13070,13 +13148,13 @@
             }
 
             // named colors
-            return colors[ string ];
+            return colors[string];
         }
 
         color.fn = jQuery.extend(color.prototype, {
             parse: function (red, green, blue, alpha) {
                 if (red === undefined) {
-                    this._rgba = [ null, null, null, null ];
+                    this._rgba = [null, null, null, null];
                     return this;
                 }
                 if (red.jquery || red.nodeType) {
@@ -13090,7 +13168,7 @@
 
                 // more than 1 argument specified - assume ( red, green, blue, alpha )
                 if (green !== undefined) {
-                    red = [ red, green, blue, alpha ];
+                    red = [red, green, blue, alpha];
                     type = "array";
                 }
 
@@ -13100,7 +13178,7 @@
 
                 if (type === "array") {
                     each(spaces.rgba.props, function (key, prop) {
-                        rgba[ prop.idx ] = clamp(red[ prop.idx ], prop);
+                        rgba[prop.idx] = clamp(red[prop.idx], prop);
                     });
                     return this;
                 }
@@ -13108,8 +13186,8 @@
                 if (type === "object") {
                     if (red instanceof color) {
                         each(spaces, function (spaceName, space) {
-                            if (red[ space.cache ]) {
-                                inst[ space.cache ] = red[ space.cache ].slice();
+                            if (red[space.cache]) {
+                                inst[space.cache] = red[space.cache].slice();
                             }
                         });
                     } else {
@@ -13118,27 +13196,27 @@
                             each(space.props, function (key, prop) {
 
                                 // if the cache doesn't exist, and we know how to convert
-                                if (!inst[ cache ] && space.to) {
+                                if (!inst[cache] && space.to) {
 
                                     // if the value was null, we don't need to copy it
                                     // if the key was alpha, we don't need to copy it either
-                                    if (key === "alpha" || red[ key ] == null) {
+                                    if (key === "alpha" || red[key] == null) {
                                         return;
                                     }
-                                    inst[ cache ] = space.to(inst._rgba);
+                                    inst[cache] = space.to(inst._rgba);
                                 }
 
                                 // this is the only case where we allow nulls for ALL properties.
                                 // call clamp with alwaysAllowEmpty
-                                inst[ cache ][ prop.idx ] = clamp(red[ key ], prop, true);
+                                inst[cache][prop.idx] = clamp(red[key], prop, true);
                             });
 
                             // everything defined but alpha?
-                            if (inst[ cache ] && jQuery.inArray(null, inst[ cache ].slice(0, 3)) < 0) {
+                            if (inst[cache] && jQuery.inArray(null, inst[cache].slice(0, 3)) < 0) {
                                 // use the default of 1
-                                inst[ cache ][ 3 ] = 1;
+                                inst[cache][3] = 1;
                                 if (space.from) {
-                                    inst._rgba = space.from(inst[ cache ]);
+                                    inst._rgba = space.from(inst[cache]);
                                 }
                             }
                         });
@@ -13153,12 +13231,12 @@
 
                 each(spaces, function (_, space) {
                     var localCache,
-                        isCache = is[ space.cache ];
+                        isCache = is[space.cache];
                     if (isCache) {
-                        localCache = inst[ space.cache ] || space.to && space.to(inst._rgba) || [];
+                        localCache = inst[space.cache] || space.to && space.to(inst._rgba) || [];
                         each(space.props, function (_, prop) {
-                            if (isCache[ prop.idx ] != null) {
-                                same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
+                            if (isCache[prop.idx] != null) {
+                                same = ( isCache[prop.idx] === localCache[prop.idx] );
                                 return same;
                             }
                         });
@@ -13171,7 +13249,7 @@
                 var used = [],
                     inst = this;
                 each(spaces, function (spaceName, space) {
-                    if (inst[ space.cache ]) {
+                    if (inst[space.cache]) {
                         used.push(spaceName);
                     }
                 });
@@ -13180,17 +13258,17 @@
             transition: function (other, distance) {
                 var end = color(other),
                     spaceName = end._space(),
-                    space = spaces[ spaceName ],
+                    space = spaces[spaceName],
                     startColor = this.alpha() === 0 ? color("transparent") : this,
-                    start = startColor[ space.cache ] || space.to(startColor._rgba),
+                    start = startColor[space.cache] || space.to(startColor._rgba),
                     result = start.slice();
 
-                end = end[ space.cache ];
+                end = end[space.cache];
                 each(space.props, function (key, prop) {
                     var index = prop.idx,
-                        startValue = start[ index ],
-                        endValue = end[ index ],
-                        type = propTypes[ prop.type ] || {};
+                        startValue = start[index],
+                        endValue = end[index],
+                        type = propTypes[prop.type] || {};
 
                     // if null, don't override start value
                     if (endValue === null) {
@@ -13198,7 +13276,7 @@
                     }
                     // if null - use end
                     if (startValue === null) {
-                        result[ index ] = endValue;
+                        result[index] = endValue;
                     } else {
                         if (type.mod) {
                             if (endValue - startValue > type.mod / 2) {
@@ -13207,14 +13285,14 @@
                                 startValue -= type.mod;
                             }
                         }
-                        result[ index ] = clamp(( endValue - startValue ) * distance + startValue, prop);
+                        result[index] = clamp(( endValue - startValue ) * distance + startValue, prop);
                     }
                 });
-                return this[ spaceName ](result);
+                return this[spaceName](result);
             },
             blend: function (opaque) {
                 // if we are already opaque - return ourself
-                if (this._rgba[ 3 ] === 1) {
+                if (this._rgba[3] === 1) {
                     return this;
                 }
 
@@ -13223,7 +13301,7 @@
                     blend = color(opaque)._rgba;
 
                 return color(jQuery.map(rgb, function (v, i) {
-                    return ( 1 - a ) * blend[ i ] + a * v;
+                    return ( 1 - a ) * blend[i] + a * v;
                 }));
             },
             toRgbaString: function () {
@@ -13232,7 +13310,7 @@
                         return v == null ? ( i > 2 ? 1 : 0 ) : v;
                     });
 
-                if (rgba[ 3 ] === 1) {
+                if (rgba[3] === 1) {
                     rgba.pop();
                     prefix = "rgb(";
                 }
@@ -13253,7 +13331,7 @@
                         return v;
                     });
 
-                if (hsla[ 3 ] === 1) {
+                if (hsla[3] === 1) {
                     hsla.pop();
                     prefix = "hsl(";
                 }
@@ -13267,7 +13345,7 @@
                     rgba.push(~~( alpha * 255 ));
                 }
 
-                return "#" + jQuery.map(rgba,function (v) {
+                return "#" + jQuery.map(rgba, function (v) {
 
                     // default to 0 when nulls exist
                     v = ( v || 0 ).toString(16);
@@ -13275,7 +13353,7 @@
                 }).join("");
             },
             toString: function () {
-                return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
+                return this._rgba[3] === 0 ? "transparent" : this.toRgbaString();
             }
         });
         color.fn.parse.prototype = color.fn;
@@ -13298,13 +13376,13 @@
         }
 
         spaces.hsla.to = function (rgba) {
-            if (rgba[ 0 ] == null || rgba[ 1 ] == null || rgba[ 2 ] == null) {
-                return [ null, null, null, rgba[ 3 ] ];
+            if (rgba[0] == null || rgba[1] == null || rgba[2] == null) {
+                return [null, null, null, rgba[3]];
             }
-            var r = rgba[ 0 ] / 255,
-                g = rgba[ 1 ] / 255,
-                b = rgba[ 2 ] / 255,
-                a = rgba[ 3 ],
+            var r = rgba[0] / 255,
+                g = rgba[1] / 255,
+                b = rgba[2] / 255,
+                a = rgba[3],
                 max = Math.max(r, g, b),
                 min = Math.min(r, g, b),
                 diff = max - min,
@@ -13331,17 +13409,17 @@
             } else {
                 s = diff / ( 2 - add );
             }
-            return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
+            return [Math.round(h) % 360, s, l, a == null ? 1 : a];
         };
 
         spaces.hsla.from = function (hsla) {
-            if (hsla[ 0 ] == null || hsla[ 1 ] == null || hsla[ 2 ] == null) {
-                return [ null, null, null, hsla[ 3 ] ];
+            if (hsla[0] == null || hsla[1] == null || hsla[2] == null) {
+                return [null, null, null, hsla[3]];
             }
-            var h = hsla[ 0 ] / 360,
-                s = hsla[ 1 ],
-                l = hsla[ 2 ],
-                a = hsla[ 3 ],
+            var h = hsla[0] / 360,
+                s = hsla[1],
+                l = hsla[2],
+                a = hsla[3],
                 q = l <= 0.5 ? l * ( 1 + s ) : l + s - l * s,
                 p = 2 * l - q;
 
@@ -13361,32 +13439,32 @@
                 from = space.from;
 
             // makes rgba() and hsla()
-            color.fn[ spaceName ] = function (value) {
+            color.fn[spaceName] = function (value) {
 
                 // generate a cache for this space if it doesn't exist
-                if (to && !this[ cache ]) {
-                    this[ cache ] = to(this._rgba);
+                if (to && !this[cache]) {
+                    this[cache] = to(this._rgba);
                 }
                 if (value === undefined) {
-                    return this[ cache ].slice();
+                    return this[cache].slice();
                 }
 
                 var ret,
                     type = jQuery.type(value),
                     arr = ( type === "array" || type === "object" ) ? value : arguments,
-                    local = this[ cache ].slice();
+                    local = this[cache].slice();
 
                 each(props, function (key, prop) {
-                    var val = arr[ type === "object" ? key : prop.idx ];
+                    var val = arr[type === "object" ? key : prop.idx];
                     if (val == null) {
-                        val = local[ prop.idx ];
+                        val = local[prop.idx];
                     }
-                    local[ prop.idx ] = clamp(val, prop);
+                    local[prop.idx] = clamp(val, prop);
                 });
 
                 if (from) {
                     ret = color(from(local));
-                    ret[ cache ] = local;
+                    ret[cache] = local;
                     return ret;
                 } else {
                     return color(local);
@@ -13396,14 +13474,14 @@
             // makes red() green() blue() alpha() hue() saturation() lightness()
             each(props, function (key, prop) {
                 // alpha is included in more than one space
-                if (color.fn[ key ]) {
+                if (color.fn[key]) {
                     return;
                 }
-                color.fn[ key ] = function (value) {
+                color.fn[key] = function (value) {
                     var vtype = jQuery.type(value),
                         fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
-                        local = this[ fn ](),
-                        cur = local[ prop.idx ],
+                        local = this[fn](),
+                        cur = local[prop.idx],
                         match;
 
                     if (vtype === "undefined") {
@@ -13420,11 +13498,11 @@
                     if (vtype === "string") {
                         match = rplusequals.exec(value);
                         if (match) {
-                            value = cur + parseFloat(match[ 2 ]) * ( match[ 1 ] === "+" ? 1 : -1 );
+                            value = cur + parseFloat(match[2]) * ( match[1] === "+" ? 1 : -1 );
                         }
                     }
-                    local[ prop.idx ] = value;
-                    return this[ fn ](local);
+                    local[prop.idx] = value;
+                    return this[fn](local);
                 };
             });
         });
@@ -13434,18 +13512,18 @@
         color.hook = function (hook) {
             var hooks = hook.split(" ");
             each(hooks, function (i, hook) {
-                jQuery.cssHooks[ hook ] = {
+                jQuery.cssHooks[hook] = {
                     set: function (elem, value) {
                         var parsed, curElem,
                             backgroundColor = "";
 
                         if (value !== "transparent" && ( jQuery.type(value) !== "string" || ( parsed = stringParse(value) ) )) {
                             value = color(parsed || value);
-                            if (!support.rgba && value._rgba[ 3 ] !== 1) {
+                            if (!support.rgba && value._rgba[3] !== 1) {
                                 curElem = hook === "backgroundColor" ? elem.parentNode : elem;
                                 while (
-                                    (backgroundColor === "" || backgroundColor === "transparent") &&
-                                        curElem && curElem.style
+                                (backgroundColor === "" || backgroundColor === "transparent") &&
+                                curElem && curElem.style
                                     ) {
                                     try {
                                         backgroundColor = jQuery.css(curElem, "backgroundColor");
@@ -13462,19 +13540,19 @@
                             value = value.toRgbaString();
                         }
                         try {
-                            elem.style[ hook ] = value;
+                            elem.style[hook] = value;
                         } catch (e) {
                             // wrapped to prevent IE from throwing errors on "invalid" values like 'auto' or 'inherit'
                         }
                     }
                 };
-                jQuery.fx.step[ hook ] = function (fx) {
+                jQuery.fx.step[hook] = function (fx) {
                     if (!fx.colorInit) {
                         fx.start = color(fx.elem, hook);
                         fx.end = color(fx.end);
                         fx.colorInit = true;
                     }
-                    jQuery.cssHooks[ hook ].set(fx.elem, fx.start.transition(fx.end, fx.pos));
+                    jQuery.cssHooks[hook].set(fx.elem, fx.start.transition(fx.end, fx.pos));
                 };
             });
 
@@ -13486,8 +13564,8 @@
             expand: function (value) {
                 var expanded = {};
 
-                each([ "Top", "Right", "Bottom", "Left" ], function (i, part) {
-                    expanded[ "border" + part + "Color" ] = value;
+                each(["Top", "Right", "Bottom", "Left"], function (i, part) {
+                    expanded["border" + part + "Color"] = value;
                 });
                 return expanded;
             }
@@ -13516,7 +13594,7 @@
             yellow: "#ffff00",
 
             // 4.2.3. "transparent" color keyword
-            transparent: [ null, null, null, 0 ],
+            transparent: [null, null, null, 0],
 
             _default: "#ffffff"
         };
@@ -13529,7 +13607,7 @@
     /******************************************************************************/
     (function () {
 
-        var classAnimationActions = [ "add", "remove", "toggle" ],
+        var classAnimationActions = ["add", "remove", "toggle"],
             shorthandStyles = {
                 border: 1,
                 borderBottom: 1,
@@ -13542,8 +13620,8 @@
                 padding: 1
             };
 
-        $.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function (_, prop) {
-            $.fx.step[ prop ] = function (fx) {
+        $.each(["borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle"], function (_, prop) {
+            $.fx.step[prop] = function (fx) {
                 if (fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr) {
                     jQuery.style(fx.elem, prop, fx.end);
                     fx.setAttr = true;
@@ -13558,19 +13636,19 @@
                     elem.currentStyle,
                 styles = {};
 
-            if (style && style.length && style[ 0 ] && style[ style[ 0 ] ]) {
+            if (style && style.length && style[0] && style[style[0]]) {
                 len = style.length;
                 while (len--) {
-                    key = style[ len ];
-                    if (typeof style[ key ] === "string") {
-                        styles[ $.camelCase(key) ] = style[ key ];
+                    key = style[len];
+                    if (typeof style[key] === "string") {
+                        styles[$.camelCase(key)] = style[key];
                     }
                 }
                 // support: Opera, IE <9
             } else {
                 for (key in style) {
-                    if (typeof style[ key ] === "string") {
-                        styles[ key ] = style[ key ];
+                    if (typeof style[key] === "string") {
+                        styles[key] = style[key];
                     }
                 }
             }
@@ -13584,11 +13662,11 @@
                 name, value;
 
             for (name in newStyle) {
-                value = newStyle[ name ];
-                if (oldStyle[ name ] !== value) {
-                    if (!shorthandStyles[ name ]) {
-                        if ($.fx.step[ name ] || !isNaN(parseFloat(value))) {
-                            diff[ name ] = value;
+                value = newStyle[name];
+                if (oldStyle[name] !== value) {
+                    if (!shorthandStyles[name]) {
+                        if ($.fx.step[name] || !isNaN(parseFloat(value))) {
+                            diff[name] = value;
                         }
                     }
                 }
@@ -13601,7 +13679,7 @@
         if (!$.fn.addBack) {
             $.fn.addBack = function (selector) {
                 return this.add(selector == null ?
-                    this.prevObject : this.prevObject.filter(selector)
+                        this.prevObject : this.prevObject.filter(selector)
                 );
             };
         }
@@ -13627,8 +13705,8 @@
                 // apply class change
                 applyClassChange = function () {
                     $.each(classAnimationActions, function (i, action) {
-                        if (value[ action ]) {
-                            animated[ action + "Class" ](value[ action ]);
+                        if (value[action]) {
+                            animated[action + "Class"](value[action]);
                         }
                     });
                 };
@@ -13636,7 +13714,7 @@
 
                 // map all animated objects again - calculate new styles and diff
                 allAnimations = allAnimations.map(function () {
-                    this.end = getElementStyles(this.el[ 0 ]);
+                    this.end = getElementStyles(this.el[0]);
                     this.diff = styleDifference(this.start, this.end);
                     return this;
                 });
@@ -13676,7 +13754,7 @@
 
                     // this is guarnteed to be there if you use jQuery.speed()
                     // it also handles dequeuing the next anim...
-                    o.complete.call(animated[ 0 ]);
+                    o.complete.call(animated[0]);
                 });
             });
         };
@@ -13686,7 +13764,7 @@
                 return function (classNames, speed, easing, callback) {
                     return speed ?
                         $.effects.animateClass.call(this,
-                            { add: classNames }, speed, easing, callback) :
+                            {add: classNames}, speed, easing, callback) :
                         orig.apply(this, arguments);
                 };
             })($.fn.addClass),
@@ -13695,7 +13773,7 @@
                 return function (classNames, speed, easing, callback) {
                     return arguments.length > 1 ?
                         $.effects.animateClass.call(this,
-                            { remove: classNames }, speed, easing, callback) :
+                            {remove: classNames}, speed, easing, callback) :
                         orig.apply(this, arguments);
                 };
             })($.fn.removeClass),
@@ -13708,13 +13786,13 @@
                             return orig.apply(this, arguments);
                         } else {
                             return $.effects.animateClass.call(this,
-                                (force ? { add: classNames } : { remove: classNames }),
+                                (force ? {add: classNames} : {remove: classNames}),
                                 speed, easing, callback);
                         }
                     } else {
                         // without force parameter
                         return $.effects.animateClass.call(this,
-                            { toggle: classNames }, force, speed, easing);
+                            {toggle: classNames}, force, speed, easing);
                     }
                 };
             })($.fn.toggleClass),
@@ -13741,8 +13819,8 @@
             // Saves a set of properties in a data storage
             save: function (element, set) {
                 for (var i = 0; i < set.length; i++) {
-                    if (set[ i ] !== null) {
-                        element.data(dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ]);
+                    if (set[i] !== null) {
+                        element.data(dataSpace + set[i], element[0].style[set[i]]);
                     }
                 }
             },
@@ -13751,8 +13829,8 @@
             restore: function (element, set) {
                 var val, i;
                 for (i = 0; i < set.length; i++) {
-                    if (set[ i ] !== null) {
-                        val = element.data(dataSpace + set[ i ]);
+                    if (set[i] !== null) {
+                        val = element.data(dataSpace + set[i]);
                         // support: jQuery 1.6.2
                         // http://bugs.jquery.com/ticket/9917
                         // jQuery 1.6.2 incorrectly returns undefined for any falsy value.
@@ -13761,7 +13839,7 @@
                         if (val === undefined) {
                             val = "";
                         }
-                        element.css(set[ i ], val);
+                        element.css(set[i], val);
                     }
                 }
             },
@@ -13777,7 +13855,7 @@
             // this should be a little more flexible in the future to handle a string & hash
             getBaseline: function (origin, original) {
                 var y, x;
-                switch (origin[ 0 ]) {
+                switch (origin[0]) {
                     case "top":
                         y = 0;
                         break;
@@ -13788,9 +13866,9 @@
                         y = 1;
                         break;
                     default:
-                        y = origin[ 0 ] / original.height;
+                        y = origin[0] / original.height;
                 }
-                switch (origin[ 1 ]) {
+                switch (origin[1]) {
                     case "left":
                         x = 0;
                         break;
@@ -13801,7 +13879,7 @@
                         x = 1;
                         break;
                     default:
-                        x = origin[ 1 ] / original.width;
+                        x = origin[1] / original.width;
                 }
                 return {
                     x: x,
@@ -13851,7 +13929,7 @@
                 element.wrap(wrapper);
 
                 // Fixes #7595 - Elements lose focus when wrapped.
-                if (element[ 0 ] === active || $.contains(element[ 0 ], active)) {
+                if (element[0] === active || $.contains(element[0], active)) {
                     $(active).focus();
                 }
 
@@ -13859,17 +13937,17 @@
 
                 // transfer positioning properties to the wrapper
                 if (element.css("position") === "static") {
-                    wrapper.css({ position: "relative" });
-                    element.css({ position: "relative" });
+                    wrapper.css({position: "relative"});
+                    element.css({position: "relative"});
                 } else {
                     $.extend(props, {
                         position: element.css("position"),
                         zIndex: element.css("z-index")
                     });
-                    $.each([ "top", "left", "bottom", "right" ], function (i, pos) {
-                        props[ pos ] = element.css(pos);
-                        if (isNaN(parseInt(props[ pos ], 10))) {
-                            props[ pos ] = "auto";
+                    $.each(["top", "left", "bottom", "right"], function (i, pos) {
+                        props[pos] = element.css(pos);
+                        if (isNaN(parseInt(props[pos], 10))) {
+                            props[pos] = "auto";
                         }
                     });
                     element.css({
@@ -13892,7 +13970,7 @@
                     element.parent().replaceWith(element);
 
                     // Fixes #7595 - Elements lose focus when wrapped.
-                    if (element[ 0 ] === active || $.contains(element[ 0 ], active)) {
+                    if (element[0] === active || $.contains(element[0], active)) {
                         $(active).focus();
                     }
                 }
@@ -13905,8 +13983,8 @@
                 value = value || {};
                 $.each(list, function (i, x) {
                     var unit = element.cssUnit(x);
-                    if (unit[ 0 ] > 0) {
-                        value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
+                    if (unit[0] > 0) {
+                        value[x] = unit[0] * factor + unit[1];
                     }
                 });
                 return value;
@@ -13923,7 +14001,7 @@
             }
 
             // convert to an object
-            effect = { effect: effect };
+            effect = {effect: effect};
 
             // catch (effect, null, ...)
             if (options == null) {
@@ -13938,7 +14016,7 @@
             }
 
             // catch (effect, speed, ?)
-            if (typeof options === "number" || $.fx.speeds[ options ]) {
+            if (typeof options === "number" || $.fx.speeds[options]) {
                 callback = speed;
                 speed = options;
                 options = {};
@@ -13958,7 +14036,7 @@
             speed = speed || options.duration;
             effect.duration = $.fx.off ? 0 :
                 typeof speed === "number" ? speed :
-                    speed in $.fx.speeds ? $.fx.speeds[ speed ] :
+                    speed in $.fx.speeds ? $.fx.speeds[speed] :
                         $.fx.speeds._default;
 
             effect.complete = callback || options.complete;
@@ -13968,12 +14046,12 @@
 
         function standardAnimationOption(option) {
             // Valid standard speeds (nothing, number, named speed)
-            if (!option || typeof option === "number" || $.fx.speeds[ option ]) {
+            if (!option || typeof option === "number" || $.fx.speeds[option]) {
                 return true;
             }
 
             // Invalid strings - treat as "normal" speed
-            if (typeof option === "string" && !$.effects.effect[ option ]) {
+            if (typeof option === "string" && !$.effects.effect[option]) {
                 return true;
             }
 
@@ -13996,12 +14074,12 @@
                 var args = _normalizeArguments.apply(this, arguments),
                     mode = args.mode,
                     queue = args.queue,
-                    effectMethod = $.effects.effect[ args.effect ];
+                    effectMethod = $.effects.effect[args.effect];
 
                 if ($.fx.off || !effectMethod) {
                     // delegate to the original method (e.g., .show()) if possible
                     if (mode) {
-                        return this[ mode ](args.duration, args.complete);
+                        return this[mode](args.duration, args.complete);
                     } else {
                         return this.each(function () {
                             if (args.complete) {
@@ -14028,7 +14106,7 @@
                     // If the element already has the correct final state, delegate to
                     // the core methods so the internal tracking of "olddisplay" works.
                     if (elem.is(":hidden") ? mode === "hide" : mode === "show") {
-                        elem[ mode ]();
+                        elem[mode]();
                         done();
                     } else {
                         effectMethod.call(elem[0], args, done);
@@ -14079,9 +14157,9 @@
                 var style = this.css(key),
                     val = [];
 
-                $.each([ "em", "px", "%", "pt" ], function (i, unit) {
+                $.each(["em", "px", "%", "pt"], function (i, unit) {
                     if (style.indexOf(unit) > 0) {
-                        val = [ parseFloat(style), unit ];
+                        val = [parseFloat(style), unit];
                     }
                 });
                 return val;
@@ -14100,8 +14178,8 @@
 
         var baseEasings = {};
 
-        $.each([ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function (i, name) {
-            baseEasings[ name ] = function (p) {
+        $.each(["Quad", "Cubic", "Quart", "Quint", "Expo"], function (i, name) {
+            baseEasings[name] = function (p) {
                 return Math.pow(p, i + 2);
             };
         });
@@ -14115,7 +14193,7 @@
             },
             Elastic: function (p) {
                 return p === 0 || p === 1 ? p :
-                    -Math.pow(2, 8 * (p - 1)) * Math.sin(( (p - 1) * 80 - 7.5 ) * Math.PI / 15);
+                -Math.pow(2, 8 * (p - 1)) * Math.sin(( (p - 1) * 80 - 7.5 ) * Math.PI / 15);
             },
             Back: function (p) {
                 return p * p * ( 3 * p - 2 );
@@ -14131,14 +14209,14 @@
         });
 
         $.each(baseEasings, function (name, easeIn) {
-            $.easing[ "easeIn" + name ] = easeIn;
-            $.easing[ "easeOut" + name ] = function (p) {
+            $.easing["easeIn" + name] = easeIn;
+            $.easing["easeOut" + name] = function (p) {
                 return 1 - easeIn(1 - p);
             };
-            $.easing[ "easeInOut" + name ] = function (p) {
+            $.easing["easeInOut" + name] = function (p) {
                 return p < 0.5 ?
-                    easeIn(p * 2) / 2 :
-                    1 - easeIn(p * -2 + 2) / 2;
+                easeIn(p * 2) / 2 :
+                1 - easeIn(p * -2 + 2) / 2;
             };
         });
 
@@ -14153,7 +14231,7 @@
     $.effects.effect.blind = function (o, done) {
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             direction = o.direction || "up",
             vertical = rvertical.test(direction),
@@ -14175,17 +14253,17 @@
             overflow: "hidden"
         });
 
-        distance = wrapper[ ref ]();
+        distance = wrapper[ref]();
         margin = parseFloat(wrapper.css(ref2)) || 0;
 
-        animation[ ref ] = show ? distance : 0;
+        animation[ref] = show ? distance : 0;
         if (!motion) {
             el
                 .css(vertical ? "bottom" : "right", 0)
                 .css(vertical ? "top" : "left", "auto")
-                .css({ position: "absolute" });
+                .css({position: "absolute"});
 
-            animation[ ref2 ] = show ? margin : distance + margin;
+            animation[ref2] = show ? margin : distance + margin;
         }
 
         // start at 0 if we are showing
@@ -14218,7 +14296,7 @@
 
     $.effects.effect.bounce = function (o, done) {
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
 
         // defaults:
             mode = $.effects.setMode(el, o.mode || "effect"),
@@ -14255,12 +14333,12 @@
 
         // default distance for the BIGGEST bounce is the outer Distance / 3
         if (!distance) {
-            distance = el[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
+            distance = el[ref === "top" ? "outerHeight" : "outerWidth"]() / 3;
         }
 
         if (show) {
-            downAnim = { opacity: 1 };
-            downAnim[ ref ] = 0;
+            downAnim = {opacity: 1};
+            downAnim[ref] = 0;
 
             // if we are showing, force opacity 0 and set the initial position
             // then do the "first" animation
@@ -14275,11 +14353,11 @@
         }
 
         downAnim = {};
-        downAnim[ ref ] = 0;
+        downAnim[ref] = 0;
         // Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
         for (i = 0; i < times; i++) {
             upAnim = {};
-            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+            upAnim[ref] = ( motion ? "-=" : "+=" ) + distance;
 
             el.animate(upAnim, speed, easing)
                 .animate(downAnim, speed, easing);
@@ -14289,8 +14367,8 @@
 
         // Last Bounce when Hiding
         if (hide) {
-            upAnim = { opacity: 0 };
-            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+            upAnim = {opacity: 0};
+            upAnim[ref] = ( motion ? "-=" : "+=" ) + distance;
 
             el.animate(upAnim, speed, easing);
         }
@@ -14307,7 +14385,7 @@
         // inject all the animations we just queued to be first in line (after "inprogress")
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         el.dequeue();
 
@@ -14319,7 +14397,7 @@
     $.effects.effect.clip = function (o, done) {
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             direction = o.direction || "vertical",
@@ -14338,7 +14416,7 @@
             overflow: "hidden"
         });
         animate = ( el[0].tagName === "IMG" ) ? wrapper : el;
-        distance = animate[ size ]();
+        distance = animate[size]();
 
         // Shift
         if (show) {
@@ -14347,8 +14425,8 @@
         }
 
         // Create Animation Object:
-        animation[ size ] = show ? distance : 0;
-        animation[ position ] = show ? 0 : distance / 2;
+        animation[size] = show ? distance : 0;
+        animation[position] = show ? 0 : distance / 2;
 
         // Animate
         animate.animate(animation, {
@@ -14373,7 +14451,7 @@
     $.effects.effect.drop = function (o, done) {
 
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "opacity", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "opacity", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             direction = o.direction || "left",
@@ -14389,7 +14467,7 @@
         el.show();
         $.effects.createWrapper(el);
 
-        distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ](true) / 2;
+        distance = o.distance || el[ref === "top" ? "outerHeight" : "outerWidth"](true) / 2;
 
         if (show) {
             el
@@ -14398,10 +14476,10 @@
         }
 
         // Animation
-        animation[ ref ] = ( show ?
+        animation[ref] = ( show ?
             ( motion === "pos" ? "+=" : "-=" ) :
             ( motion === "pos" ? "-=" : "+=" ) ) +
-            distance;
+        distance;
 
         // Animate
         el.animate(animation, {
@@ -14527,7 +14605,7 @@
 
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             show = mode === "show",
             hide = mode === "hide",
@@ -14535,7 +14613,7 @@
             percent = /([0-9]+)%/.exec(size),
             horizFirst = !!o.horizFirst,
             widthFirst = show !== horizFirst,
-            ref = widthFirst ? [ "width", "height" ] : [ "height", "width" ],
+            ref = widthFirst ? ["width", "height"] : ["height", "width"],
             duration = o.duration / 2,
             wrapper, distance,
             animation1 = {},
@@ -14549,11 +14627,11 @@
             overflow: "hidden"
         });
         distance = widthFirst ?
-            [ wrapper.width(), wrapper.height() ] :
-            [ wrapper.height(), wrapper.width() ];
+            [wrapper.width(), wrapper.height()] :
+            [wrapper.height(), wrapper.width()];
 
         if (percent) {
-            size = parseInt(percent[ 1 ], 10) / 100 * distance[ hide ? 0 : 1 ];
+            size = parseInt(percent[1], 10) / 100 * distance[hide ? 0 : 1];
         }
         if (show) {
             wrapper.css(horizFirst ? {
@@ -14566,8 +14644,8 @@
         }
 
         // Animation
-        animation1[ ref[ 0 ] ] = show ? distance[ 0 ] : size;
-        animation2[ ref[ 1 ] ] = show ? distance[ 1 ] : 0;
+        animation1[ref[0]] = show ? distance[0] : size;
+        animation2[ref[1]] = show ? distance[1] : 0;
 
         // Animate
         wrapper
@@ -14588,7 +14666,7 @@
 
     $.effects.effect.highlight = function (o, done) {
         var elem = $(this),
-            props = [ "backgroundImage", "backgroundColor", "opacity" ],
+            props = ["backgroundImage", "backgroundColor", "opacity"],
             mode = $.effects.setMode(elem, o.mode || "show"),
             animation = {
                 backgroundColor: elem.css("backgroundColor")
@@ -14665,7 +14743,7 @@
         // We just queued up "anims" animations, we need to put them next in the queue
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         elem.dequeue();
     };
@@ -14773,22 +14851,22 @@
         // Create element
         var original, baseline, factor,
             el = $(this),
-            props0 = [ "position", "top", "bottom", "left", "right", "width", "height", "overflow", "opacity" ],
+            props0 = ["position", "top", "bottom", "left", "right", "width", "height", "overflow", "opacity"],
 
         // Always restore
-            props1 = [ "position", "top", "bottom", "left", "right", "overflow", "opacity" ],
+            props1 = ["position", "top", "bottom", "left", "right", "overflow", "opacity"],
 
         // Copy for children
-            props2 = [ "width", "height", "overflow" ],
-            cProps = [ "fontSize" ],
-            vProps = [ "borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom" ],
-            hProps = [ "borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight" ],
+            props2 = ["width", "height", "overflow"],
+            cProps = ["fontSize"],
+            vProps = ["borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom"],
+            hProps = ["borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight"],
 
         // Set options
             mode = $.effects.setMode(el, o.mode || "effect"),
             restore = o.restore || mode !== "effect",
             scale = o.scale || "both",
-            origin = o.origin || [ "middle", "center" ],
+            origin = o.origin || ["middle", "center"],
             position = el.css("position"),
             props = restore ? props0 : props1,
             zero = {
@@ -14876,8 +14954,8 @@
         if (scale === "content" || scale === "both") { // Scale the children
 
             // Add margins/font-size
-            vProps = vProps.concat([ "marginTop", "marginBottom" ]).concat(cProps);
-            hProps = hProps.concat([ "marginLeft", "marginRight" ]);
+            vProps = vProps.concat(["marginTop", "marginBottom"]).concat(cProps);
+            hProps = hProps.concat(["marginLeft", "marginRight"]);
             props2 = props0.concat(vProps).concat(hProps);
 
             el.find("*[width]").each(function () {
@@ -14952,7 +15030,7 @@
                             left: el.to.left
                         });
                     } else {
-                        $.each([ "top", "left" ], function (idx, pos) {
+                        $.each(["top", "left"], function (idx, pos) {
                             el.css(pos, function (_, str) {
                                 var val = parseInt(str, 10),
                                     toRef = idx ? el.to.left : el.to.top;
@@ -14981,7 +15059,7 @@
     $.effects.effect.shake = function (o, done) {
 
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "effect"),
             direction = o.direction || "left",
             distance = o.distance || 20,
@@ -15004,9 +15082,9 @@
         $.effects.createWrapper(el);
 
         // Animation
-        animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
-        animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
-        animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
+        animation[ref] = ( positiveMotion ? "-=" : "+=" ) + distance;
+        animation1[ref] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
+        animation2[ref] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
 
         // Animate
         el.animate(animation, speed, o.easing);
@@ -15030,7 +15108,7 @@
         // inject all the animations we just queued to be first in line (after "inprogress")
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         el.dequeue();
 
@@ -15043,7 +15121,7 @@
 
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "width", "height" ],
+            props = ["position", "top", "bottom", "left", "right", "width", "height"],
             mode = $.effects.setMode(el, o.mode || "show"),
             show = mode === "show",
             direction = o.direction || "left",
@@ -15055,7 +15133,7 @@
         // Adjust
         $.effects.save(el, props);
         el.show();
-        distance = o.distance || el[ ref === "top" ? "outerHeight" : "outerWidth" ](true);
+        distance = o.distance || el[ref === "top" ? "outerHeight" : "outerWidth"](true);
 
         $.effects.createWrapper(el).css({
             overflow: "hidden"
@@ -15066,10 +15144,10 @@
         }
 
         // Animation
-        animation[ ref ] = ( show ?
+        animation[ref] = ( show ?
             ( positiveMotion ? "+=" : "-=") :
             ( positiveMotion ? "-=" : "+=")) +
-            distance;
+        distance;
 
         // Animate
         el.animate(animation, {

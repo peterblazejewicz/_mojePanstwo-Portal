@@ -1,9 +1,9 @@
 import
-"../math/number";
+    "../math/number";
 import
-"ascending";
+    "ascending";
 import
-"quantile";
+    "quantile";
 
 d3.median = function (array, f) {
     if (arguments.length > 1) array = array.map(f);

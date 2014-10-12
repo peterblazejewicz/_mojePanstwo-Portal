@@ -1,11 +1,11 @@
 import
-"day";
+    "day";
 import
-"interval";
+    "interval";
 import
-"time";
+    "time";
 import
-"year";
+    "year";
 
 ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"].forEach(function (day, i) {
     i = 7 - i;

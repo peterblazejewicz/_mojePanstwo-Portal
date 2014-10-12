@@ -38,10 +38,10 @@
                     re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ],
-                            execResult[ 2 ],
-                            execResult[ 3 ],
-                            execResult[ 4 ]
+                            execResult[1],
+                            execResult[2],
+                            execResult[3],
+                            execResult[4]
                         ];
                     }
                 },
@@ -49,10 +49,10 @@
                     re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ] * 2.55,
-                            execResult[ 2 ] * 2.55,
-                            execResult[ 3 ] * 2.55,
-                            execResult[ 4 ]
+                            execResult[1] * 2.55,
+                            execResult[2] * 2.55,
+                            execResult[3] * 2.55,
+                            execResult[4]
                         ];
                     }
                 },
@@ -61,9 +61,9 @@
                     re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
                     parse: function (execResult) {
                         return [
-                            parseInt(execResult[ 1 ], 16),
-                            parseInt(execResult[ 2 ], 16),
-                            parseInt(execResult[ 3 ], 16)
+                            parseInt(execResult[1], 16),
+                            parseInt(execResult[2], 16),
+                            parseInt(execResult[3], 16)
                         ];
                     }
                 },
@@ -72,9 +72,9 @@
                     re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
                     parse: function (execResult) {
                         return [
-                            parseInt(execResult[ 1 ] + execResult[ 1 ], 16),
-                            parseInt(execResult[ 2 ] + execResult[ 2 ], 16),
-                            parseInt(execResult[ 3 ] + execResult[ 3 ], 16)
+                            parseInt(execResult[1] + execResult[1], 16),
+                            parseInt(execResult[2] + execResult[2], 16),
+                            parseInt(execResult[3] + execResult[3], 16)
                         ];
                     }
                 },
@@ -83,10 +83,10 @@
                     space: "hsla",
                     parse: function (execResult) {
                         return [
-                            execResult[ 1 ],
-                            execResult[ 2 ] / 100,
-                            execResult[ 3 ] / 100,
-                            execResult[ 4 ]
+                            execResult[1],
+                            execResult[2] / 100,
+                            execResult[3] / 100,
+                            execResult[4]
                         ];
                     }
                 }
@@ -147,7 +147,7 @@
             support = color.support = {},
 
         // element for support tests
-            supportElem = jQuery("<p>")[ 0 ],
+            supportElem = jQuery("<p>")[0],
 
         // colors = jQuery.Color.names
             colors,
@@ -171,7 +171,7 @@
         });
 
         function clamp(value, prop, allowEmpty) {
-            var type = propTypes[ prop.type ] || {};
+            var type = propTypes[prop.type] || {};
 
             if (value == null) {
                 return (allowEmpty || !prop.def) ? null : prop.def;
@@ -209,11 +209,11 @@
                     spaceName = parser.space || "rgba";
 
                 if (values) {
-                    parsed = inst[ spaceName ](values);
+                    parsed = inst[spaceName](values);
 
                     // if this was an rgba parse the assignment might happen twice
                     // oh well....
-                    inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
+                    inst[spaces[spaceName].cache] = parsed[spaces[spaceName].cache];
                     rgba = inst._rgba = parsed._rgba;
 
                     // exit each( stringParsers ) here because we matched
@@ -233,13 +233,13 @@
             }
 
             // named colors
-            return colors[ string ];
+            return colors[string];
         }
 
         color.fn = jQuery.extend(color.prototype, {
             parse: function (red, green, blue, alpha) {
                 if (red === undefined) {
-                    this._rgba = [ null, null, null, null ];
+                    this._rgba = [null, null, null, null];
                     return this;
                 }
                 if (red.jquery || red.nodeType) {
@@ -253,7 +253,7 @@
 
                 // more than 1 argument specified - assume ( red, green, blue, alpha )
                 if (green !== undefined) {
-                    red = [ red, green, blue, alpha ];
+                    red = [red, green, blue, alpha];
                     type = "array";
                 }
 
@@ -263,7 +263,7 @@
 
                 if (type === "array") {
                     each(spaces.rgba.props, function (key, prop) {
-                        rgba[ prop.idx ] = clamp(red[ prop.idx ], prop);
+                        rgba[prop.idx] = clamp(red[prop.idx], prop);
                     });
                     return this;
                 }
@@ -271,8 +271,8 @@
                 if (type === "object") {
                     if (red instanceof color) {
                         each(spaces, function (spaceName, space) {
-                            if (red[ space.cache ]) {
-                                inst[ space.cache ] = red[ space.cache ].slice();
+                            if (red[space.cache]) {
+                                inst[space.cache] = red[space.cache].slice();
                             }
                         });
                     } else {
@@ -281,27 +281,27 @@
                             each(space.props, function (key, prop) {
 
                                 // if the cache doesn't exist, and we know how to convert
-                                if (!inst[ cache ] && space.to) {
+                                if (!inst[cache] && space.to) {
 
                                     // if the value was null, we don't need to copy it
                                     // if the key was alpha, we don't need to copy it either
-                                    if (key === "alpha" || red[ key ] == null) {
+                                    if (key === "alpha" || red[key] == null) {
                                         return;
                                     }
-                                    inst[ cache ] = space.to(inst._rgba);
+                                    inst[cache] = space.to(inst._rgba);
                                 }
 
                                 // this is the only case where we allow nulls for ALL properties.
                                 // call clamp with alwaysAllowEmpty
-                                inst[ cache ][ prop.idx ] = clamp(red[ key ], prop, true);
+                                inst[cache][prop.idx] = clamp(red[key], prop, true);
                             });
 
                             // everything defined but alpha?
-                            if (inst[ cache ] && jQuery.inArray(null, inst[ cache ].slice(0, 3)) < 0) {
+                            if (inst[cache] && jQuery.inArray(null, inst[cache].slice(0, 3)) < 0) {
                                 // use the default of 1
-                                inst[ cache ][ 3 ] = 1;
+                                inst[cache][3] = 1;
                                 if (space.from) {
-                                    inst._rgba = space.from(inst[ cache ]);
+                                    inst._rgba = space.from(inst[cache]);
                                 }
                             }
                         });
@@ -316,12 +316,12 @@
 
                 each(spaces, function (_, space) {
                     var localCache,
-                        isCache = is[ space.cache ];
+                        isCache = is[space.cache];
                     if (isCache) {
-                        localCache = inst[ space.cache ] || space.to && space.to(inst._rgba) || [];
+                        localCache = inst[space.cache] || space.to && space.to(inst._rgba) || [];
                         each(space.props, function (_, prop) {
-                            if (isCache[ prop.idx ] != null) {
-                                same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
+                            if (isCache[prop.idx] != null) {
+                                same = ( isCache[prop.idx] === localCache[prop.idx] );
                                 return same;
                             }
                         });
@@ -334,7 +334,7 @@
                 var used = [],
                     inst = this;
                 each(spaces, function (spaceName, space) {
-                    if (inst[ space.cache ]) {
+                    if (inst[space.cache]) {
                         used.push(spaceName);
                     }
                 });
@@ -343,17 +343,17 @@
             transition: function (other, distance) {
                 var end = color(other),
                     spaceName = end._space(),
-                    space = spaces[ spaceName ],
+                    space = spaces[spaceName],
                     startColor = this.alpha() === 0 ? color("transparent") : this,
-                    start = startColor[ space.cache ] || space.to(startColor._rgba),
+                    start = startColor[space.cache] || space.to(startColor._rgba),
                     result = start.slice();
 
-                end = end[ space.cache ];
+                end = end[space.cache];
                 each(space.props, function (key, prop) {
                     var index = prop.idx,
-                        startValue = start[ index ],
-                        endValue = end[ index ],
-                        type = propTypes[ prop.type ] || {};
+                        startValue = start[index],
+                        endValue = end[index],
+                        type = propTypes[prop.type] || {};
 
                     // if null, don't override start value
                     if (endValue === null) {
@@ -361,7 +361,7 @@
                     }
                     // if null - use end
                     if (startValue === null) {
-                        result[ index ] = endValue;
+                        result[index] = endValue;
                     } else {
                         if (type.mod) {
                             if (endValue - startValue > type.mod / 2) {
@@ -370,14 +370,14 @@
                                 startValue -= type.mod;
                             }
                         }
-                        result[ index ] = clamp(( endValue - startValue ) * distance + startValue, prop);
+                        result[index] = clamp(( endValue - startValue ) * distance + startValue, prop);
                     }
                 });
-                return this[ spaceName ](result);
+                return this[spaceName](result);
             },
             blend: function (opaque) {
                 // if we are already opaque - return ourself
-                if (this._rgba[ 3 ] === 1) {
+                if (this._rgba[3] === 1) {
                     return this;
                 }
 
@@ -386,7 +386,7 @@
                     blend = color(opaque)._rgba;
 
                 return color(jQuery.map(rgb, function (v, i) {
-                    return ( 1 - a ) * blend[ i ] + a * v;
+                    return ( 1 - a ) * blend[i] + a * v;
                 }));
             },
             toRgbaString: function () {
@@ -395,7 +395,7 @@
                         return v == null ? ( i > 2 ? 1 : 0 ) : v;
                     });
 
-                if (rgba[ 3 ] === 1) {
+                if (rgba[3] === 1) {
                     rgba.pop();
                     prefix = "rgb(";
                 }
@@ -416,7 +416,7 @@
                         return v;
                     });
 
-                if (hsla[ 3 ] === 1) {
+                if (hsla[3] === 1) {
                     hsla.pop();
                     prefix = "hsl(";
                 }
@@ -430,7 +430,7 @@
                     rgba.push(~~( alpha * 255 ));
                 }
 
-                return "#" + jQuery.map(rgba,function (v) {
+                return "#" + jQuery.map(rgba, function (v) {
 
                     // default to 0 when nulls exist
                     v = ( v || 0 ).toString(16);
@@ -438,7 +438,7 @@
                 }).join("");
             },
             toString: function () {
-                return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
+                return this._rgba[3] === 0 ? "transparent" : this.toRgbaString();
             }
         });
         color.fn.parse.prototype = color.fn;
@@ -461,13 +461,13 @@
         }
 
         spaces.hsla.to = function (rgba) {
-            if (rgba[ 0 ] == null || rgba[ 1 ] == null || rgba[ 2 ] == null) {
-                return [ null, null, null, rgba[ 3 ] ];
+            if (rgba[0] == null || rgba[1] == null || rgba[2] == null) {
+                return [null, null, null, rgba[3]];
             }
-            var r = rgba[ 0 ] / 255,
-                g = rgba[ 1 ] / 255,
-                b = rgba[ 2 ] / 255,
-                a = rgba[ 3 ],
+            var r = rgba[0] / 255,
+                g = rgba[1] / 255,
+                b = rgba[2] / 255,
+                a = rgba[3],
                 max = Math.max(r, g, b),
                 min = Math.min(r, g, b),
                 diff = max - min,
@@ -494,17 +494,17 @@
             } else {
                 s = diff / ( 2 - add );
             }
-            return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
+            return [Math.round(h) % 360, s, l, a == null ? 1 : a];
         };
 
         spaces.hsla.from = function (hsla) {
-            if (hsla[ 0 ] == null || hsla[ 1 ] == null || hsla[ 2 ] == null) {
-                return [ null, null, null, hsla[ 3 ] ];
+            if (hsla[0] == null || hsla[1] == null || hsla[2] == null) {
+                return [null, null, null, hsla[3]];
             }
-            var h = hsla[ 0 ] / 360,
-                s = hsla[ 1 ],
-                l = hsla[ 2 ],
-                a = hsla[ 3 ],
+            var h = hsla[0] / 360,
+                s = hsla[1],
+                l = hsla[2],
+                a = hsla[3],
                 q = l <= 0.5 ? l * ( 1 + s ) : l + s - l * s,
                 p = 2 * l - q;
 
@@ -524,32 +524,32 @@
                 from = space.from;
 
             // makes rgba() and hsla()
-            color.fn[ spaceName ] = function (value) {
+            color.fn[spaceName] = function (value) {
 
                 // generate a cache for this space if it doesn't exist
-                if (to && !this[ cache ]) {
-                    this[ cache ] = to(this._rgba);
+                if (to && !this[cache]) {
+                    this[cache] = to(this._rgba);
                 }
                 if (value === undefined) {
-                    return this[ cache ].slice();
+                    return this[cache].slice();
                 }
 
                 var ret,
                     type = jQuery.type(value),
                     arr = ( type === "array" || type === "object" ) ? value : arguments,
-                    local = this[ cache ].slice();
+                    local = this[cache].slice();
 
                 each(props, function (key, prop) {
-                    var val = arr[ type === "object" ? key : prop.idx ];
+                    var val = arr[type === "object" ? key : prop.idx];
                     if (val == null) {
-                        val = local[ prop.idx ];
+                        val = local[prop.idx];
                     }
-                    local[ prop.idx ] = clamp(val, prop);
+                    local[prop.idx] = clamp(val, prop);
                 });
 
                 if (from) {
                     ret = color(from(local));
-                    ret[ cache ] = local;
+                    ret[cache] = local;
                     return ret;
                 } else {
                     return color(local);
@@ -559,14 +559,14 @@
             // makes red() green() blue() alpha() hue() saturation() lightness()
             each(props, function (key, prop) {
                 // alpha is included in more than one space
-                if (color.fn[ key ]) {
+                if (color.fn[key]) {
                     return;
                 }
-                color.fn[ key ] = function (value) {
+                color.fn[key] = function (value) {
                     var vtype = jQuery.type(value),
                         fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
-                        local = this[ fn ](),
-                        cur = local[ prop.idx ],
+                        local = this[fn](),
+                        cur = local[prop.idx],
                         match;
 
                     if (vtype === "undefined") {
@@ -583,11 +583,11 @@
                     if (vtype === "string") {
                         match = rplusequals.exec(value);
                         if (match) {
-                            value = cur + parseFloat(match[ 2 ]) * ( match[ 1 ] === "+" ? 1 : -1 );
+                            value = cur + parseFloat(match[2]) * ( match[1] === "+" ? 1 : -1 );
                         }
                     }
-                    local[ prop.idx ] = value;
-                    return this[ fn ](local);
+                    local[prop.idx] = value;
+                    return this[fn](local);
                 };
             });
         });
@@ -597,18 +597,18 @@
         color.hook = function (hook) {
             var hooks = hook.split(" ");
             each(hooks, function (i, hook) {
-                jQuery.cssHooks[ hook ] = {
+                jQuery.cssHooks[hook] = {
                     set: function (elem, value) {
                         var parsed, curElem,
                             backgroundColor = "";
 
                         if (value !== "transparent" && ( jQuery.type(value) !== "string" || ( parsed = stringParse(value) ) )) {
                             value = color(parsed || value);
-                            if (!support.rgba && value._rgba[ 3 ] !== 1) {
+                            if (!support.rgba && value._rgba[3] !== 1) {
                                 curElem = hook === "backgroundColor" ? elem.parentNode : elem;
                                 while (
-                                    (backgroundColor === "" || backgroundColor === "transparent") &&
-                                        curElem && curElem.style
+                                (backgroundColor === "" || backgroundColor === "transparent") &&
+                                curElem && curElem.style
                                     ) {
                                     try {
                                         backgroundColor = jQuery.css(curElem, "backgroundColor");
@@ -625,19 +625,19 @@
                             value = value.toRgbaString();
                         }
                         try {
-                            elem.style[ hook ] = value;
+                            elem.style[hook] = value;
                         } catch (e) {
                             // wrapped to prevent IE from throwing errors on "invalid" values like 'auto' or 'inherit'
                         }
                     }
                 };
-                jQuery.fx.step[ hook ] = function (fx) {
+                jQuery.fx.step[hook] = function (fx) {
                     if (!fx.colorInit) {
                         fx.start = color(fx.elem, hook);
                         fx.end = color(fx.end);
                         fx.colorInit = true;
                     }
-                    jQuery.cssHooks[ hook ].set(fx.elem, fx.start.transition(fx.end, fx.pos));
+                    jQuery.cssHooks[hook].set(fx.elem, fx.start.transition(fx.end, fx.pos));
                 };
             });
 
@@ -649,8 +649,8 @@
             expand: function (value) {
                 var expanded = {};
 
-                each([ "Top", "Right", "Bottom", "Left" ], function (i, part) {
-                    expanded[ "border" + part + "Color" ] = value;
+                each(["Top", "Right", "Bottom", "Left"], function (i, part) {
+                    expanded["border" + part + "Color"] = value;
                 });
                 return expanded;
             }
@@ -679,7 +679,7 @@
             yellow: "#ffff00",
 
             // 4.2.3. "transparent" color keyword
-            transparent: [ null, null, null, 0 ],
+            transparent: [null, null, null, 0],
 
             _default: "#ffffff"
         };
@@ -692,7 +692,7 @@
     /******************************************************************************/
     (function () {
 
-        var classAnimationActions = [ "add", "remove", "toggle" ],
+        var classAnimationActions = ["add", "remove", "toggle"],
             shorthandStyles = {
                 border: 1,
                 borderBottom: 1,
@@ -705,8 +705,8 @@
                 padding: 1
             };
 
-        $.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function (_, prop) {
-            $.fx.step[ prop ] = function (fx) {
+        $.each(["borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle"], function (_, prop) {
+            $.fx.step[prop] = function (fx) {
                 if (fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr) {
                     jQuery.style(fx.elem, prop, fx.end);
                     fx.setAttr = true;
@@ -721,19 +721,19 @@
                     elem.currentStyle,
                 styles = {};
 
-            if (style && style.length && style[ 0 ] && style[ style[ 0 ] ]) {
+            if (style && style.length && style[0] && style[style[0]]) {
                 len = style.length;
                 while (len--) {
-                    key = style[ len ];
-                    if (typeof style[ key ] === "string") {
-                        styles[ $.camelCase(key) ] = style[ key ];
+                    key = style[len];
+                    if (typeof style[key] === "string") {
+                        styles[$.camelCase(key)] = style[key];
                     }
                 }
                 // support: Opera, IE <9
             } else {
                 for (key in style) {
-                    if (typeof style[ key ] === "string") {
-                        styles[ key ] = style[ key ];
+                    if (typeof style[key] === "string") {
+                        styles[key] = style[key];
                     }
                 }
             }
@@ -747,11 +747,11 @@
                 name, value;
 
             for (name in newStyle) {
-                value = newStyle[ name ];
-                if (oldStyle[ name ] !== value) {
-                    if (!shorthandStyles[ name ]) {
-                        if ($.fx.step[ name ] || !isNaN(parseFloat(value))) {
-                            diff[ name ] = value;
+                value = newStyle[name];
+                if (oldStyle[name] !== value) {
+                    if (!shorthandStyles[name]) {
+                        if ($.fx.step[name] || !isNaN(parseFloat(value))) {
+                            diff[name] = value;
                         }
                     }
                 }
@@ -764,7 +764,7 @@
         if (!$.fn.addBack) {
             $.fn.addBack = function (selector) {
                 return this.add(selector == null ?
-                    this.prevObject : this.prevObject.filter(selector)
+                        this.prevObject : this.prevObject.filter(selector)
                 );
             };
         }
@@ -790,8 +790,8 @@
                 // apply class change
                 applyClassChange = function () {
                     $.each(classAnimationActions, function (i, action) {
-                        if (value[ action ]) {
-                            animated[ action + "Class" ](value[ action ]);
+                        if (value[action]) {
+                            animated[action + "Class"](value[action]);
                         }
                     });
                 };
@@ -799,7 +799,7 @@
 
                 // map all animated objects again - calculate new styles and diff
                 allAnimations = allAnimations.map(function () {
-                    this.end = getElementStyles(this.el[ 0 ]);
+                    this.end = getElementStyles(this.el[0]);
                     this.diff = styleDifference(this.start, this.end);
                     return this;
                 });
@@ -839,7 +839,7 @@
 
                     // this is guarnteed to be there if you use jQuery.speed()
                     // it also handles dequeuing the next anim...
-                    o.complete.call(animated[ 0 ]);
+                    o.complete.call(animated[0]);
                 });
             });
         };
@@ -849,7 +849,7 @@
                 return function (classNames, speed, easing, callback) {
                     return speed ?
                         $.effects.animateClass.call(this,
-                            { add: classNames }, speed, easing, callback) :
+                            {add: classNames}, speed, easing, callback) :
                         orig.apply(this, arguments);
                 };
             })($.fn.addClass),
@@ -858,7 +858,7 @@
                 return function (classNames, speed, easing, callback) {
                     return arguments.length > 1 ?
                         $.effects.animateClass.call(this,
-                            { remove: classNames }, speed, easing, callback) :
+                            {remove: classNames}, speed, easing, callback) :
                         orig.apply(this, arguments);
                 };
             })($.fn.removeClass),
@@ -871,13 +871,13 @@
                             return orig.apply(this, arguments);
                         } else {
                             return $.effects.animateClass.call(this,
-                                (force ? { add: classNames } : { remove: classNames }),
+                                (force ? {add: classNames} : {remove: classNames}),
                                 speed, easing, callback);
                         }
                     } else {
                         // without force parameter
                         return $.effects.animateClass.call(this,
-                            { toggle: classNames }, force, speed, easing);
+                            {toggle: classNames}, force, speed, easing);
                     }
                 };
             })($.fn.toggleClass),
@@ -904,8 +904,8 @@
             // Saves a set of properties in a data storage
             save: function (element, set) {
                 for (var i = 0; i < set.length; i++) {
-                    if (set[ i ] !== null) {
-                        element.data(dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ]);
+                    if (set[i] !== null) {
+                        element.data(dataSpace + set[i], element[0].style[set[i]]);
                     }
                 }
             },
@@ -914,8 +914,8 @@
             restore: function (element, set) {
                 var val, i;
                 for (i = 0; i < set.length; i++) {
-                    if (set[ i ] !== null) {
-                        val = element.data(dataSpace + set[ i ]);
+                    if (set[i] !== null) {
+                        val = element.data(dataSpace + set[i]);
                         // support: jQuery 1.6.2
                         // http://bugs.jquery.com/ticket/9917
                         // jQuery 1.6.2 incorrectly returns undefined for any falsy value.
@@ -924,7 +924,7 @@
                         if (val === undefined) {
                             val = "";
                         }
-                        element.css(set[ i ], val);
+                        element.css(set[i], val);
                     }
                 }
             },
@@ -940,7 +940,7 @@
             // this should be a little more flexible in the future to handle a string & hash
             getBaseline: function (origin, original) {
                 var y, x;
-                switch (origin[ 0 ]) {
+                switch (origin[0]) {
                     case "top":
                         y = 0;
                         break;
@@ -951,9 +951,9 @@
                         y = 1;
                         break;
                     default:
-                        y = origin[ 0 ] / original.height;
+                        y = origin[0] / original.height;
                 }
-                switch (origin[ 1 ]) {
+                switch (origin[1]) {
                     case "left":
                         x = 0;
                         break;
@@ -964,7 +964,7 @@
                         x = 1;
                         break;
                     default:
-                        x = origin[ 1 ] / original.width;
+                        x = origin[1] / original.width;
                 }
                 return {
                     x: x,
@@ -1014,7 +1014,7 @@
                 element.wrap(wrapper);
 
                 // Fixes #7595 - Elements lose focus when wrapped.
-                if (element[ 0 ] === active || $.contains(element[ 0 ], active)) {
+                if (element[0] === active || $.contains(element[0], active)) {
                     $(active).focus();
                 }
 
@@ -1022,17 +1022,17 @@
 
                 // transfer positioning properties to the wrapper
                 if (element.css("position") === "static") {
-                    wrapper.css({ position: "relative" });
-                    element.css({ position: "relative" });
+                    wrapper.css({position: "relative"});
+                    element.css({position: "relative"});
                 } else {
                     $.extend(props, {
                         position: element.css("position"),
                         zIndex: element.css("z-index")
                     });
-                    $.each([ "top", "left", "bottom", "right" ], function (i, pos) {
-                        props[ pos ] = element.css(pos);
-                        if (isNaN(parseInt(props[ pos ], 10))) {
-                            props[ pos ] = "auto";
+                    $.each(["top", "left", "bottom", "right"], function (i, pos) {
+                        props[pos] = element.css(pos);
+                        if (isNaN(parseInt(props[pos], 10))) {
+                            props[pos] = "auto";
                         }
                     });
                     element.css({
@@ -1055,7 +1055,7 @@
                     element.parent().replaceWith(element);
 
                     // Fixes #7595 - Elements lose focus when wrapped.
-                    if (element[ 0 ] === active || $.contains(element[ 0 ], active)) {
+                    if (element[0] === active || $.contains(element[0], active)) {
                         $(active).focus();
                     }
                 }
@@ -1068,8 +1068,8 @@
                 value = value || {};
                 $.each(list, function (i, x) {
                     var unit = element.cssUnit(x);
-                    if (unit[ 0 ] > 0) {
-                        value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
+                    if (unit[0] > 0) {
+                        value[x] = unit[0] * factor + unit[1];
                     }
                 });
                 return value;
@@ -1086,7 +1086,7 @@
             }
 
             // convert to an object
-            effect = { effect: effect };
+            effect = {effect: effect};
 
             // catch (effect, null, ...)
             if (options == null) {
@@ -1101,7 +1101,7 @@
             }
 
             // catch (effect, speed, ?)
-            if (typeof options === "number" || $.fx.speeds[ options ]) {
+            if (typeof options === "number" || $.fx.speeds[options]) {
                 callback = speed;
                 speed = options;
                 options = {};
@@ -1121,7 +1121,7 @@
             speed = speed || options.duration;
             effect.duration = $.fx.off ? 0 :
                 typeof speed === "number" ? speed :
-                    speed in $.fx.speeds ? $.fx.speeds[ speed ] :
+                    speed in $.fx.speeds ? $.fx.speeds[speed] :
                         $.fx.speeds._default;
 
             effect.complete = callback || options.complete;
@@ -1131,12 +1131,12 @@
 
         function standardAnimationOption(option) {
             // Valid standard speeds (nothing, number, named speed)
-            if (!option || typeof option === "number" || $.fx.speeds[ option ]) {
+            if (!option || typeof option === "number" || $.fx.speeds[option]) {
                 return true;
             }
 
             // Invalid strings - treat as "normal" speed
-            if (typeof option === "string" && !$.effects.effect[ option ]) {
+            if (typeof option === "string" && !$.effects.effect[option]) {
                 return true;
             }
 
@@ -1159,12 +1159,12 @@
                 var args = _normalizeArguments.apply(this, arguments),
                     mode = args.mode,
                     queue = args.queue,
-                    effectMethod = $.effects.effect[ args.effect ];
+                    effectMethod = $.effects.effect[args.effect];
 
                 if ($.fx.off || !effectMethod) {
                     // delegate to the original method (e.g., .show()) if possible
                     if (mode) {
-                        return this[ mode ](args.duration, args.complete);
+                        return this[mode](args.duration, args.complete);
                     } else {
                         return this.each(function () {
                             if (args.complete) {
@@ -1191,7 +1191,7 @@
                     // If the element already has the correct final state, delegate to
                     // the core methods so the internal tracking of "olddisplay" works.
                     if (elem.is(":hidden") ? mode === "hide" : mode === "show") {
-                        elem[ mode ]();
+                        elem[mode]();
                         done();
                     } else {
                         effectMethod.call(elem[0], args, done);
@@ -1242,9 +1242,9 @@
                 var style = this.css(key),
                     val = [];
 
-                $.each([ "em", "px", "%", "pt" ], function (i, unit) {
+                $.each(["em", "px", "%", "pt"], function (i, unit) {
                     if (style.indexOf(unit) > 0) {
-                        val = [ parseFloat(style), unit ];
+                        val = [parseFloat(style), unit];
                     }
                 });
                 return val;
@@ -1263,8 +1263,8 @@
 
         var baseEasings = {};
 
-        $.each([ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function (i, name) {
-            baseEasings[ name ] = function (p) {
+        $.each(["Quad", "Cubic", "Quart", "Quint", "Expo"], function (i, name) {
+            baseEasings[name] = function (p) {
                 return Math.pow(p, i + 2);
             };
         });
@@ -1278,7 +1278,7 @@
             },
             Elastic: function (p) {
                 return p === 0 || p === 1 ? p :
-                    -Math.pow(2, 8 * (p - 1)) * Math.sin(( (p - 1) * 80 - 7.5 ) * Math.PI / 15);
+                -Math.pow(2, 8 * (p - 1)) * Math.sin(( (p - 1) * 80 - 7.5 ) * Math.PI / 15);
             },
             Back: function (p) {
                 return p * p * ( 3 * p - 2 );
@@ -1294,14 +1294,14 @@
         });
 
         $.each(baseEasings, function (name, easeIn) {
-            $.easing[ "easeIn" + name ] = easeIn;
-            $.easing[ "easeOut" + name ] = function (p) {
+            $.easing["easeIn" + name] = easeIn;
+            $.easing["easeOut" + name] = function (p) {
                 return 1 - easeIn(1 - p);
             };
-            $.easing[ "easeInOut" + name ] = function (p) {
+            $.easing["easeInOut" + name] = function (p) {
                 return p < 0.5 ?
-                    easeIn(p * 2) / 2 :
-                    1 - easeIn(p * -2 + 2) / 2;
+                easeIn(p * 2) / 2 :
+                1 - easeIn(p * -2 + 2) / 2;
             };
         });
 

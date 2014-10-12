@@ -32,9 +32,11 @@
                         start = match && match.index;
                 }
                 if (match)
-                    return {from: {line: pos.line, ch: start},
+                    return {
+                        from: {line: pos.line, ch: start},
                         to: {line: pos.line, ch: start + match[0].length},
-                        match: match};
+                        match: match
+                    };
             };
         } else { // String query
             if (caseFold) query = query.toLowerCase();
@@ -49,16 +51,18 @@
                 this.matches = function (reverse, pos) {
                     var line = fold(cm.getLine(pos.line)), len = query.length, match;
                     if (reverse ? (pos.ch >= len && (match = line.lastIndexOf(query, pos.ch - len)) != -1)
-                        : (match = line.indexOf(query, pos.ch)) != -1)
-                        return {from: {line: pos.line, ch: match},
-                            to: {line: pos.line, ch: match + len}};
+                            : (match = line.indexOf(query, pos.ch)) != -1)
+                        return {
+                            from: {line: pos.line, ch: match},
+                            to: {line: pos.line, ch: match + len}
+                        };
                 };
             else
                 this.matches = function (reverse, pos) {
                     var ln = pos.line, idx = (reverse ? target.length - 1 : 0), match = target[idx], line = fold(cm.getLine(ln));
                     var offsetA = (reverse ? line.indexOf(match) + match.length : line.lastIndexOf(match));
                     if (reverse ? offsetA >= pos.ch || offsetA != match.length
-                        : offsetA <= pos.ch || offsetA != line.length - match.length)
+                            : offsetA <= pos.ch || offsetA != line.length - match.length)
                         return;
                     for (; ;) {
                         if (reverse ? !ln : ln == cm.lineCount() - 1) return;

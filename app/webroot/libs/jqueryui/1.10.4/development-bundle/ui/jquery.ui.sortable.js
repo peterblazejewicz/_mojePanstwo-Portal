@@ -102,7 +102,7 @@
 
         _setOption: function (key, value) {
             if (key === "disabled") {
-                this.options[ key ] = value;
+                this.options[key] = value;
 
                 this.widget().toggleClass("ui-sortable-disabled", !!value);
             } else {
@@ -215,7 +215,7 @@
             (o.cursorAt && this._adjustOffsetFromHelper(o.cursorAt));
 
             //Cache the former DOM position
-            this.domPosition = { prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0] };
+            this.domPosition = {prev: this.currentItem.prev()[0], parent: this.currentItem.parent()[0]};
 
             //If the helper is not the original, hide the original so it's not playing any role during the drag, won't cause anything bad this way
             if (this.helper[0] !== this.currentItem[0]) {
@@ -271,7 +271,7 @@
             //Post "activate" events to possible containers
             if (!noActivation) {
                 for (i = this.containers.length - 1; i >= 0; i--) {
-                    this.containers[ i ]._trigger("activate", event, this._uiHash(this));
+                    this.containers[i]._trigger("activate", event, this._uiHash(this));
                 }
             }
 
@@ -381,7 +381,7 @@
                 if (itemElement !== this.currentItem[0] &&
                     this.placeholder[intersection === 1 ? "next" : "prev"]()[0] !== itemElement && !$.contains(this.placeholder[0], itemElement) &&
                     (this.options.type === "semi-dynamic" ? !$.contains(this.element[0], itemElement) : true)
-                    ) {
+                ) {
 
                     this.direction = intersection === 1 ? "down" : "up";
 
@@ -451,7 +451,7 @@
 
             if (this.dragging) {
 
-                this._mouseUp({ target: null });
+                this._mouseUp({target: null});
 
                 if (this.options.helper === "original") {
                     this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper");
@@ -552,14 +552,14 @@
             if (this.options.tolerance === "pointer" ||
                 this.options.forcePointerForContainers ||
                 (this.options.tolerance !== "pointer" && this.helperProportions[this.floating ? "width" : "height"] > item[this.floating ? "width" : "height"])
-                ) {
+            ) {
                 return isOverElement;
             } else {
 
                 return (l < x1 + (this.helperProportions.width / 2) && // Right Half
-                    x2 - (this.helperProportions.width / 2) < r && // Left Half
-                    t < y1 + (this.helperProportions.height / 2) && // Bottom Half
-                    y2 - (this.helperProportions.height / 2) < b ); // Top Half
+                x2 - (this.helperProportions.width / 2) < r && // Left Half
+                t < y1 + (this.helperProportions.height / 2) && // Bottom Half
+                y2 - (this.helperProportions.height / 2) < b ); // Top Half
 
             }
         },
@@ -637,7 +637,10 @@
                 }
             }
 
-            queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
+            queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, {
+                options: this.options,
+                item: this.currentItem
+            }) : $(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
 
             function addItems() {
                 items.push(this);
@@ -674,7 +677,7 @@
             var i, j, cur, inst, targetData, _queries, item, queriesLength,
                 items = this.items,
                 queries = [
-                    [$.isFunction(this.options.items) ? this.options.items.call(this.element[0], event, { item: this.currentItem }) : $(this.options.items, this.element), this]
+                    [$.isFunction(this.options.items) ? this.options.items.call(this.element[0], event, {item: this.currentItem}) : $(this.options.items, this.element), this]
                 ],
                 connectWith = this._connectWith();
 
@@ -684,7 +687,7 @@
                     for (j = cur.length - 1; j >= 0; j--) {
                         inst = $.data(cur[j], this.widgetFullName);
                         if (inst && inst !== this && !inst.options.disabled) {
-                            queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element[0], event, { item: this.currentItem }) : $(inst.options.items, inst.element), inst]);
+                            queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element[0], event, {item: this.currentItem}) : $(inst.options.items, inst.element), inst]);
                             this.containers.push(inst);
                         }
                     }
@@ -928,7 +931,13 @@
             }
 
             if (helper[0] === this.currentItem[0]) {
-                this._storedCSS = { width: this.currentItem[0].style.width, height: this.currentItem[0].style.height, position: this.currentItem.css("position"), top: this.currentItem.css("top"), left: this.currentItem.css("left") };
+                this._storedCSS = {
+                    width: this.currentItem[0].style.width,
+                    height: this.currentItem[0].style.height,
+                    position: this.currentItem.css("position"),
+                    top: this.currentItem.css("top"),
+                    left: this.currentItem.css("left")
+                };
             }
 
             if (!helper[0].style.width || o.forceHelperSize) {
@@ -982,7 +991,7 @@
             // This needs to be actually done for all browsers, since pageX/pageY includes this information
             // with an ugly IE fix
             if (this.offsetParent[0] === document.body || (this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() === "html" && $.ui.ie)) {
-                po = { top: 0, left: 0 };
+                po = {top: 0, left: 0};
             }
 
             return {
@@ -1001,7 +1010,7 @@
                     left: p.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()
                 };
             } else {
-                return { top: 0, left: 0 };
+                return {top: 0, left: 0};
             }
 
         },
@@ -1062,17 +1071,17 @@
 
             return {
                 top: (
-                    pos.top +																// The absolute mouse position
-                        this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top * mod -											// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ) * mod)
-                    ),
+                pos.top +																// The absolute mouse position
+                this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top * mod -											// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ) * mod)
+                ),
                 left: (
-                    pos.left +																// The absolute mouse position
-                        this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ) * mod)
-                    )
+                pos.left +																// The absolute mouse position
+                this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left * mod -										// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ) * mod)
+                )
             };
 
         },
@@ -1127,19 +1136,19 @@
 
             return {
                 top: (
-                    pageY -																// The absolute mouse position
-                        this.offset.click.top -													// Click offset (relative to the element)
-                        this.offset.relative.top -											// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ))
-                    ),
+                pageY -																// The absolute mouse position
+                this.offset.click.top -													// Click offset (relative to the element)
+                this.offset.relative.top -											// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollTop() : ( scrollIsRootNode ? 0 : scroll.scrollTop() ) ))
+                ),
                 left: (
-                    pageX -																// The absolute mouse position
-                        this.offset.click.left -												// Click offset (relative to the element)
-                        this.offset.relative.left -											// Only for relative positioned nodes: Relative offset from element to offset parent
-                        this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
-                        ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ))
-                    )
+                pageX -																// The absolute mouse position
+                this.offset.click.left -												// Click offset (relative to the element)
+                this.offset.relative.left -											// Only for relative positioned nodes: Relative offset from element to offset parent
+                this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
+                ( ( this.cssPosition === "fixed" ? -this.scrollParent.scrollLeft() : scrollIsRootNode ? 0 : scroll.scrollLeft() ))
+                )
             };
 
         },
@@ -1231,10 +1240,10 @@
 
             for (i = this.containers.length - 1; i >= 0; i--) {
                 if (!noPropagation) {
-                    delayedTriggers.push(delayEvent("deactivate", this, this.containers[ i ]));
+                    delayedTriggers.push(delayEvent("deactivate", this, this.containers[i]));
                 }
                 if (this.containers[i].containerCache.over) {
-                    delayedTriggers.push(delayEvent("out", this, this.containers[ i ]));
+                    delayedTriggers.push(delayEvent("out", this, this.containers[i]));
                     this.containers[i].containerCache.over = 0;
                 }
             }

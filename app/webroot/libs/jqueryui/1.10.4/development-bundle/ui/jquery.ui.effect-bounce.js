@@ -15,7 +15,7 @@
 
     $.effects.effect.bounce = function (o, done) {
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
 
         // defaults:
             mode = $.effects.setMode(el, o.mode || "effect"),
@@ -52,12 +52,12 @@
 
         // default distance for the BIGGEST bounce is the outer Distance / 3
         if (!distance) {
-            distance = el[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
+            distance = el[ref === "top" ? "outerHeight" : "outerWidth"]() / 3;
         }
 
         if (show) {
-            downAnim = { opacity: 1 };
-            downAnim[ ref ] = 0;
+            downAnim = {opacity: 1};
+            downAnim[ref] = 0;
 
             // if we are showing, force opacity 0 and set the initial position
             // then do the "first" animation
@@ -72,11 +72,11 @@
         }
 
         downAnim = {};
-        downAnim[ ref ] = 0;
+        downAnim[ref] = 0;
         // Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
         for (i = 0; i < times; i++) {
             upAnim = {};
-            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+            upAnim[ref] = ( motion ? "-=" : "+=" ) + distance;
 
             el.animate(upAnim, speed, easing)
                 .animate(downAnim, speed, easing);
@@ -86,8 +86,8 @@
 
         // Last Bounce when Hiding
         if (hide) {
-            upAnim = { opacity: 0 };
-            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+            upAnim = {opacity: 0};
+            upAnim[ref] = ( motion ? "-=" : "+=" ) + distance;
 
             el.animate(upAnim, speed, easing);
         }
@@ -104,7 +104,7 @@
         // inject all the animations we just queued to be first in line (after "inprogress")
         if (queuelen > 1) {
             queue.splice.apply(queue,
-                [ 1, 0 ].concat(queue.splice(queuelen, anims + 1)));
+                [1, 0].concat(queue.splice(queuelen, anims + 1)));
         }
         el.dequeue();
 

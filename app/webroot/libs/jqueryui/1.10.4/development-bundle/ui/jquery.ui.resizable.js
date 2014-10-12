@@ -87,25 +87,43 @@
                 this.elementIsWrapper = true;
 
                 //Move margins to the wrapper
-                this.element.css({ marginLeft: this.originalElement.css("marginLeft"), marginTop: this.originalElement.css("marginTop"), marginRight: this.originalElement.css("marginRight"), marginBottom: this.originalElement.css("marginBottom") });
-                this.originalElement.css({ marginLeft: 0, marginTop: 0, marginRight: 0, marginBottom: 0});
+                this.element.css({
+                    marginLeft: this.originalElement.css("marginLeft"),
+                    marginTop: this.originalElement.css("marginTop"),
+                    marginRight: this.originalElement.css("marginRight"),
+                    marginBottom: this.originalElement.css("marginBottom")
+                });
+                this.originalElement.css({marginLeft: 0, marginTop: 0, marginRight: 0, marginBottom: 0});
 
                 //Prevent Safari textarea resize
                 this.originalResizeStyle = this.originalElement.css("resize");
                 this.originalElement.css("resize", "none");
 
                 //Push the actual element to our proportionallyResize internal array
-                this._proportionallyResizeElements.push(this.originalElement.css({ position: "static", zoom: 1, display: "block" }));
+                this._proportionallyResizeElements.push(this.originalElement.css({
+                    position: "static",
+                    zoom: 1,
+                    display: "block"
+                }));
 
                 // avoid IE jump (hard set the margin)
-                this.originalElement.css({ margin: this.originalElement.css("margin") });
+                this.originalElement.css({margin: this.originalElement.css("margin")});
 
                 // fix handlers offset
                 this._proportionallyResize();
 
             }
 
-            this.handles = o.handles || (!$(".ui-resizable-handle", this.element).length ? "e,s,se" : { n: ".ui-resizable-n", e: ".ui-resizable-e", s: ".ui-resizable-s", w: ".ui-resizable-w", se: ".ui-resizable-se", sw: ".ui-resizable-sw", ne: ".ui-resizable-ne", nw: ".ui-resizable-nw" });
+            this.handles = o.handles || (!$(".ui-resizable-handle", this.element).length ? "e,s,se" : {
+                n: ".ui-resizable-n",
+                e: ".ui-resizable-e",
+                s: ".ui-resizable-s",
+                w: ".ui-resizable-w",
+                se: ".ui-resizable-se",
+                sw: ".ui-resizable-sw",
+                ne: ".ui-resizable-ne",
+                nw: ".ui-resizable-nw"
+            });
             if (this.handles.constructor === String) {
 
                 if (this.handles === "all") {
@@ -122,7 +140,7 @@
                     axis = $("<div class='ui-resizable-handle " + hname + "'></div>");
 
                     // Apply zIndex to all handles - see #7960
-                    axis.css({ zIndex: o.zIndex });
+                    axis.css({zIndex: o.zIndex});
 
                     //TODO : What's going on here?
                     if ("se" === handle) {
@@ -157,10 +175,10 @@
                         padWrapper = /sw|ne|nw|se|n|s/.test(i) ? axis.outerHeight() : axis.outerWidth();
 
                         //The padding type i have to apply...
-                        padPos = [ "padding",
+                        padPos = ["padding",
                             /ne|nw|n/.test(i) ? "Top" :
                                 /se|sw|s/.test(i) ? "Bottom" :
-                                    /^e$/.test(i) ? "Right" : "Left" ].join("");
+                                    /^e$/.test(i) ? "Right" : "Left"].join("");
 
                         target.css(padPos, padWrapper);
 
@@ -275,9 +293,9 @@
 
             // bugfix for http://dev.jquery.com/ticket/1749
             if ((/absolute/).test(el.css("position"))) {
-                el.css({ position: "absolute", top: el.css("top"), left: el.css("left") });
+                el.css({position: "absolute", top: el.css("top"), left: el.css("left")});
             } else if (el.is(".ui-draggable")) {
-                el.css({ position: "absolute", top: iniPos.top, left: iniPos.left });
+                el.css({position: "absolute", top: iniPos.top, left: iniPos.left});
             }
 
             this._renderProxy();
@@ -292,12 +310,18 @@
 
             //Store needed variables
             this.offset = this.helper.offset();
-            this.position = { left: curleft, top: curtop };
-            this.size = this._helper ? { width: this.helper.width(), height: this.helper.height() } : { width: el.width(), height: el.height() };
-            this.originalSize = this._helper ? { width: el.outerWidth(), height: el.outerHeight() } : { width: el.width(), height: el.height() };
-            this.originalPosition = { left: curleft, top: curtop };
-            this.sizeDiff = { width: el.outerWidth() - el.width(), height: el.outerHeight() - el.height() };
-            this.originalMousePosition = { left: event.pageX, top: event.pageY };
+            this.position = {left: curleft, top: curtop};
+            this.size = this._helper ? {width: this.helper.width(), height: this.helper.height()} : {
+                width: el.width(),
+                height: el.height()
+            };
+            this.originalSize = this._helper ? {width: el.outerWidth(), height: el.outerHeight()} : {
+                width: el.width(),
+                height: el.height()
+            };
+            this.originalPosition = {left: curleft, top: curtop};
+            this.sizeDiff = {width: el.outerWidth() - el.width(), height: el.outerHeight() - el.height()};
+            this.originalMousePosition = {left: event.pageX, top: event.pageY};
 
             //Aspect Ratio
             this.aspectRatio = (typeof o.aspectRatio === "number") ? o.aspectRatio : ((this.originalSize.width / this.originalSize.height) || 1);
@@ -384,12 +408,12 @@
                 soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height;
                 soffsetw = ista ? 0 : that.sizeDiff.width;
 
-                s = { width: (that.helper.width() - soffsetw), height: (that.helper.height() - soffseth) };
+                s = {width: (that.helper.width() - soffsetw), height: (that.helper.height() - soffseth)};
                 left = (parseInt(that.element.css("left"), 10) + (that.position.left - that.originalPosition.left)) || null;
                 top = (parseInt(that.element.css("top"), 10) + (that.position.top - that.originalPosition.top)) || null;
 
                 if (!o.animate) {
-                    this.element.css($.extend(s, { top: top, left: left }));
+                    this.element.css($.extend(s, {top: top, left: left}));
                 }
 
                 that.helper.height(that.size.height);
@@ -553,7 +577,7 @@
                     paddings = [prel.css("paddingTop"), prel.css("paddingRight"), prel.css("paddingBottom"), prel.css("paddingLeft")];
 
                     for (j = 0; j < borders.length; j++) {
-                        this.borderDif[ j ] = ( parseInt(borders[ j ], 10) || 0 ) + ( parseInt(paddings[ j ], 10) || 0 );
+                        this.borderDif[j] = ( parseInt(borders[j], 10) || 0 ) + ( parseInt(paddings[j], 10) || 0 );
                     }
                 }
 
@@ -596,18 +620,18 @@
 
         _change: {
             e: function (event, dx) {
-                return { width: this.originalSize.width + dx };
+                return {width: this.originalSize.width + dx};
             },
             w: function (event, dx) {
                 var cs = this.originalSize, sp = this.originalPosition;
-                return { left: sp.left + dx, width: cs.width - dx };
+                return {left: sp.left + dx, width: cs.width - dx};
             },
             n: function (event, dx, dy) {
                 var cs = this.originalSize, sp = this.originalPosition;
-                return { top: sp.top + dy, height: cs.height - dy };
+                return {top: sp.top + dy, height: cs.height - dy};
             },
             s: function (event, dx, dy) {
-                return { height: this.originalSize.height + dy };
+                return {height: this.originalSize.height + dy};
             },
             se: function (event, dx, dy) {
                 return $.extend(this._change.s.apply(this, arguments), this._change.e.apply(this, [event, dx, dy]));
@@ -657,12 +681,12 @@
                 ista = pr.length && (/textarea/i).test(pr[0].nodeName),
                 soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height,
                 soffsetw = ista ? 0 : that.sizeDiff.width,
-                style = { width: (that.size.width - soffsetw), height: (that.size.height - soffseth) },
+                style = {width: (that.size.width - soffsetw), height: (that.size.height - soffseth)},
                 left = (parseInt(that.element.css("left"), 10) + (that.position.left - that.originalPosition.left)) || null,
                 top = (parseInt(that.element.css("top"), 10) + (that.position.top - that.originalPosition.top)) || null;
 
             that.element.animate(
-                $.extend(style, top && left ? { top: top, left: left } : {}), {
+                $.extend(style, top && left ? {top: top, left: left} : {}), {
                     duration: o.animateDuration,
                     easing: o.animateEasing,
                     step: function () {
@@ -675,7 +699,7 @@
                         };
 
                         if (pr && pr.length) {
-                            $(pr[0]).css({ width: data.width, height: data.height });
+                            $(pr[0]).css({width: data.width, height: data.height});
                         }
 
                         // propagating resize, and updating values for each animation step
@@ -706,8 +730,8 @@
             that.containerElement = $(ce);
 
             if (/document/.test(oc) || oc === document) {
-                that.containerOffset = { left: 0, top: 0 };
-                that.containerPosition = { left: 0, top: 0 };
+                that.containerOffset = {left: 0, top: 0};
+                that.containerPosition = {left: 0, top: 0};
 
                 that.parentData = {
                     element: $(document), left: 0, top: 0,
@@ -719,13 +743,13 @@
             else {
                 element = $(ce);
                 p = [];
-                $([ "Top", "Right", "Left", "Bottom" ]).each(function (i, name) {
+                $(["Top", "Right", "Left", "Bottom"]).each(function (i, name) {
                     p[i] = num(element.css("padding" + name));
                 });
 
                 that.containerOffset = element.offset();
                 that.containerPosition = element.position();
-                that.containerSize = { height: (element.innerHeight() - p[3]), width: (element.innerWidth() - p[1]) };
+                that.containerSize = {height: (element.innerHeight() - p[3]), width: (element.innerWidth() - p[1])};
 
                 co = that.containerOffset;
                 ch = that.containerSize.height;
@@ -745,7 +769,7 @@
                 o = that.options,
                 co = that.containerOffset, cp = that.position,
                 pRatio = that._aspectRatio || event.shiftKey,
-                cop = { top: 0, left: 0 }, ce = that.containerElement;
+                cop = {top: 0, left: 0}, ce = that.containerElement;
 
             if (ce[0] !== document && (/static/).test(ce.css("position"))) {
                 cop = co;
@@ -807,11 +831,11 @@
                 h = helper.outerHeight() - that.sizeDiff.height;
 
             if (that._helper && !o.animate && (/relative/).test(ce.css("position"))) {
-                $(this).css({ left: ho.left - cop.left - co.left, width: w, height: h });
+                $(this).css({left: ho.left - cop.left - co.left, width: w, height: h});
             }
 
             if (that._helper && !o.animate && (/static/).test(ce.css("position"))) {
-                $(this).css({ left: ho.left - cop.left - co.left, width: w, height: h });
+                $(this).css({left: ho.left - cop.left - co.left, width: w, height: h});
             }
 
         }
@@ -895,7 +919,16 @@
 
             that.ghost = that.originalElement.clone();
             that.ghost
-                .css({ opacity: 0.25, display: "block", position: "relative", height: cs.height, width: cs.width, margin: 0, left: 0, top: 0 })
+                .css({
+                    opacity: 0.25,
+                    display: "block",
+                    position: "relative",
+                    height: cs.height,
+                    width: cs.width,
+                    margin: 0,
+                    left: 0,
+                    top: 0
+                })
                 .addClass("ui-resizable-ghost")
                 .addClass(typeof o.ghost === "string" ? o.ghost : "");
 
@@ -906,7 +939,7 @@
         resize: function () {
             var that = $(this).data("ui-resizable");
             if (that.ghost) {
-                that.ghost.css({ position: "relative", height: that.size.height, width: that.size.width });
+                that.ghost.css({position: "relative", height: that.size.height, width: that.size.width});
             }
         },
 

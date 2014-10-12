@@ -25,9 +25,11 @@ suite.addBatch({
             var h = hierarchy(),
                 nodes = h.children(function () {
                     return null;
-                }).nodes({children: [
-                    {}
-                ]});
+                }).nodes({
+                    children: [
+                        {}
+                    ]
+                });
             assert.equal(nodes[0].value, 0);
             assert.isUndefined(nodes[0].children);
         }

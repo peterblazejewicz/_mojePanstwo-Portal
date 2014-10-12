@@ -5,7 +5,6 @@
  *
  * Join class, for easy managment
  */
-class ServiceUser extends PaszportAppModel
-{
-    public $useTable = 'services_users';
+class ServiceUser extends PaszportAppModel {
+	public $useTable = 'services_users';
 }

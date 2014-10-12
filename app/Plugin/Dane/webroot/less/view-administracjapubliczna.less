@@ -3,7 +3,7 @@ h1 {
 }
 
 .objectPageHeaderContainer {
-	background-color: #e9e9e9;
+    background-color: #e9e9e9;
 }
 
 .objectsPage .objectsPageWindow {
@@ -33,17 +33,17 @@ h1 {
                 margin: 6px 0 5px 14px;
             }
         }
-		
-		.opis {
-			ul {
-				list-style: disc;
-				margin-left: 20px;
-				li {
-					list-style: disc;
-				}
-			}
-		}
-		
+
+        .opis {
+            ul {
+                list-style: disc;
+                margin-left: 20px;
+                li {
+                    list-style: disc;
+                }
+            }
+        }
+
         .indicators {
             margin-top: 20px;
             overflow: auto;
@@ -118,264 +118,265 @@ h1 {
     }
 }
 
-
-
 #budzet {
-	
 
-	
-	a {
-		color: #333;
-		
-		&:hover {
-			color: #157ab5;
-		}
-	}
-	
-	.budzet {
-	
-		font-size: 12px;
-		padding: 0 10px 20px;
+    a {
+        color: #333;
 
-		.row {
-			
-			padding: 5px 10px;
-			
-			&:hover {
-				background-color: #F6F6F6;
-			}
-						
-			.col {
-				
-				float: left;
-				width: 10%;
-				text-align: center;
-				
-				-webkit-transition-duration: .5s; /* Safari */
-			    transition-duration: .5s;
-				
-				&.nazwa {
-					width: 50%;
-				}
-				
-				&.plan {
-					width: 50%;
-					color: green;
-				}
-				
-				&.ztego {
-					width: 0;
-					height: 0;
-					overflow: hidden;
-				}
-				
-			}
-			
-			&.row-header {
-				
-				margin-bottom: -10px;
-								
-				&:hover {
-					background-color: inherit;
-				}
-				
-				.plan {
-					color: #333;
-				}
-				
-			}
-			
-			&.row-main {
-				
-				background-color: #F6F6F6;
-				border-top: 1px solid #DDD;
-				font-size: 18px;
-				margin-top: 20px;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				
-				.nazwa {
-					text-align: left;
-				}
-				
-				
-				
-			}
-			
-			&.row-sub {
-				
-				.nazwa {
-					padding-left: 25px;
-					text-align: left;
-				}
-				
-			}
-			
-		}
-		
-		.ztego {
-			
-			color: #999;
-			
-			.col {
-				
-				float: left;
-				width: 14.2857%;
-				
-			}
-		}
-		
-		
-		&.full {
-			
-			.row {
-				
-				.col {
-					
-					&.nazwa {
-					width: 30%;
-					}
-					
-					&.plan {
-						width: 10%;
-					}
-					
-					&.ztego {
-						width: 60%;
-						height: inherit;
-						overflow: hidden;
-					}
-					
-				}
-				
-			}
-			
-		}
-		
-		
-	}
-	
+        &:hover {
+            color: #157ab5;
+        }
+    }
+
+    .budzet {
+
+        font-size: 12px;
+        padding: 0 10px 20px;
+
+        .row {
+
+            padding: 5px 10px;
+
+            &:hover {
+                background-color: #F6F6F6;
+            }
+
+            .col {
+
+                float: left;
+                width: 10%;
+                text-align: center;
+
+                -webkit-transition-duration: .5s; /* Safari */
+                transition-duration: .5s;
+
+                &.nazwa {
+                    width: 50%;
+                }
+
+                &.plan {
+                    width: 50%;
+                    color: green;
+                }
+
+                &.ztego {
+                    width: 0;
+                    height: 0;
+                    overflow: hidden;
+                }
+
+            }
+
+            &.row-header {
+
+                margin-bottom: -10px;
+
+                &:hover {
+                    background-color: inherit;
+                }
+
+                .plan {
+                    color: #333;
+                }
+
+            }
+
+            &.row-main {
+
+                background-color: #F6F6F6;
+                border-top: 1px solid #DDD;
+                font-size: 18px;
+                margin-top: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .nazwa {
+                    text-align: left;
+                }
+
+            }
+
+            &.row-sub {
+
+                .nazwa {
+                    padding-left: 25px;
+                    text-align: left;
+                }
+
+            }
+
+        }
+
+        .ztego {
+
+            color: #999;
+
+            .col {
+
+                float: left;
+                width: 14.2857%;
+
+            }
+        }
+
+        &.full {
+
+            .row {
+
+                .col {
+
+                    &.nazwa {
+                        width: 30%;
+                    }
+
+                    &.plan {
+                        width: 10%;
+                    }
+
+                    &.ztego {
+                        width: 60%;
+                        height: inherit;
+                        overflow: hidden;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
 }
 
-
-
 .tree {
-    min-height:50px;
-    padding:0;
+    min-height: 50px;
+    padding: 0;
     margin: 0;
     font-size: 12px;
 }
+
 .tree > ul {
-	padding-left: 0;
+    padding-left: 0;
 }
+
 .tree li {
-    list-style-type:none;
-    margin:0;
-    padding:10px 5px 0 5px;
-    position:relative
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 5px 0 5px;
+    position: relative
 }
 
 .tree li::before, .tree li::after {
-    content:'';
-    left:-20px;
-    position:absolute;
-    right:auto
+    content: '';
+    left: -20px;
+    position: absolute;
+    right: auto
 }
+
 .tree li::before {
-    border-left:1px solid #999;
-    bottom:50px;
-    height:100%;
-    top:0;
-    width:1px
+    border-left: 1px solid #999;
+    bottom: 50px;
+    height: 100%;
+    top: 0;
+    width: 1px
 }
+
 .tree li::after {
-    border-top:1px solid #999;
-    height:20px;
-    top:15px;
-    width:25px
+    border-top: 1px solid #999;
+    height: 20px;
+    top: 15px;
+    width: 25px
 }
+
 .tree li.title:after {
-	top: 21px;
-	width: 21px;
+    top: 21px;
+    width: 21px;
 }
+
 .tree li {
-	margin-top: 0px;
+    margin-top: 0px;
     padding-top: 3px;
 }
 
 .tree li.title {
-	font-size: 24px;
+    font-size: 24px;
 }
+
 .tree li.title.alone {
-	padding: 12px 0 0;
+    padding: 12px 0 0;
 }
+
 .tree li span {
-    display:inline-block;
-    padding:3px 8px;
-    text-decoration:none
+    display: inline-block;
+    padding: 3px 8px;
+    text-decoration: none
 }
-.tree li.parent_li>span {
-    cursor:pointer
+
+.tree li.parent_li > span {
+    cursor: pointer
 }
-.tree>ul>li::before, .tree>ul>li::after {
-    border:0
+
+.tree > ul > li::before, .tree > ul > li::after {
+    border: 0
 }
+
 .tree li:last-child::before {
-    height:15px;
+    height: 15px;
     top: 0;
 }
+
 .tree li.title:last-child:before {
-	height:22px;
-}
-.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
-    background:#eee;
-    border:1px solid #94a0b4;
-    color:#000
+    height: 22px;
 }
 
-
-
+.tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
+    background: #eee;
+    border: 1px solid #94a0b4;
+    color: #000
+}
 
 .block .tree {
-    min-height:50px;
-    padding:0;
+    min-height: 50px;
+    padding: 0;
     margin: 0;
     font-size: 12px;
 }
 
-.block .tree  ul {
-	padding-left: 35px;
-}
-.block .tree > ul {
-	padding-left: 0;
-}
-.block .tree ul.first {
-	padding-top: 5px;
-}
-.block .tree li {
-    list-style-type:none;
-    margin:0;
-    padding:10px 5px 0 5px;
-    position:relative;
-    
-    h3 {
-	    color: inherit;
-	    font-weight: 400;
-	    font-size: 15px;
-	    margin-top: -12px;
-	    margin-left: 4px;
-	    padding: 9px;
-	    margin-bottom: 0;
-    }
+.block .tree ul {
+    padding-left: 35px;
 }
 
+.block .tree > ul {
+    padding-left: 0;
+}
+
+.block .tree ul.first {
+    padding-top: 5px;
+}
+
+.block .tree li {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 5px 0 5px;
+    position: relative;
+
+    h3 {
+        color: inherit;
+        font-weight: 400;
+        font-size: 15px;
+        margin-top: -12px;
+        margin-left: 4px;
+        padding: 9px;
+        margin-bottom: 0;
+    }
+}
 
 .budget_number {
     font-size: 30px;
     font-weight: 300;
     margin: 5px 0 15px;
     color: #2E8F3E;
-    
 
     &.small {
 

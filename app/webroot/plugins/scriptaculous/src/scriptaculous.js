@@ -1,3 +1,5 @@
+// script.aculo.us scriptaculous.js v1.9.0, Thu Dec 23 16:54:48 -0500 2010
+
 // Copyright (c) 2005-2010 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -47,9 +49,9 @@ var Scriptaculous = {
             (typeof Element == 'undefined') ||
             (typeof Element.Methods == 'undefined') ||
             (convertVersionString(Prototype.Version) <
-                convertVersionString(Scriptaculous.REQUIRED_PROTOTYPE)))
+            convertVersionString(Scriptaculous.REQUIRED_PROTOTYPE)))
             throw("script.aculo.us requires the Prototype JavaScript framework >= " +
-                Scriptaculous.REQUIRED_PROTOTYPE);
+            Scriptaculous.REQUIRED_PROTOTYPE);
 
         var js = /scriptaculous\.js(\?.*)?$/;
         $$('script[src]').findAll(function (s) {

@@ -21,7 +21,10 @@ $(document).ready(function () {
                 lastChoose = false;
                 items.removeClass('focus-control');
                 items.find('.block.focus').removeClass('focus');
-                $administracja.find('.infoBlock').addClass('old').css({'height': 0, 'border-width': 0}).stop(true, true).animate({'margin-top': 0}, 500, function () {
+                $administracja.find('.infoBlock').addClass('old').css({
+                    'height': 0,
+                    'border-width': 0
+                }).stop(true, true).animate({'margin-top': 0}, 500, function () {
                     $administracja.find('.infoBlock.old').remove()
                 });
 
@@ -51,19 +54,22 @@ $(document).ready(function () {
             }
 
             var infoBlock = $('<div></div>').addClass('infoBlock current active').css('height', 0).append(
-                    $('<div></div>').addClass('arrow')
-                ).append(
-                    $('<div></div>').addClass('content').append(
-                        $('<div></div>').addClass('container')
-                    )
-                );
+                $('<div></div>').addClass('arrow')
+            ).append(
+                $('<div></div>').addClass('content').append(
+                    $('<div></div>').addClass('container')
+                )
+            );
 
             if ($administracja.find('.infoBlock').length !== 0) {
                 if ($administracja.find('.infoBlock').data('marker')[0] === slideMark[0]) {
                     infoBlock = $administracja.find('.infoBlock');
                     infoBlock.addClass('current active');
                 } else {
-                    $administracja.find('.infoBlock').addClass('old').removeClass('active').css({'height': 0, 'border-width': 0}).stop(true, true).animate({'margin-top': 0}, 500, function () {
+                    $administracja.find('.infoBlock').addClass('old').removeClass('active').css({
+                        'height': 0,
+                        'border-width': 0
+                    }).stop(true, true).animate({'margin-top': 0}, 500, function () {
                         $administracja.find('.infoBlock.old').remove()
                     });
                     slideMark.after(infoBlock);
@@ -71,30 +77,28 @@ $(document).ready(function () {
             } else {
                 slideMark.after(infoBlock);
             }
-			
+
             infoBlock.data('marker', slideMark).find('.container').empty().append(function () {
-                var slug = $(this)
-                    , title = $.trim(data.title)
-                    , info = data.info
+                var slug = $(this), title = $.trim(data.title), info = data.info
                     ;
-				
-								
+
+
                 var leftCol = $('<div></div>').addClass('leftSide col-xs-12 col-md-8');
                 var rightCol = $('<div></div>').addClass('rightSide col-xs-12 col-md-4');
-                                
-                leftCol.append( that.find('.text').html() );
-                rightCol.append( '<a href="' + that.attr('href') + '" class="btn btn-md btn-primary">Dowiedz się więcej &raquo;</a>' );
-				
-				/*
-                leftCol.find('.left').append(
-                    $('<a></a>').addClass('btn btn-primary').attr({href: that.attr('href'), target: '_self'}).text(_mPHeart.translation.LC_ADMINISTRACJA_INFO_WIECEJ)
-                );
-                */
+
+                leftCol.append(that.find('.text').html());
+                rightCol.append('<a href="' + that.attr('href') + '" class="btn btn-md btn-primary">Dowiedz się więcej &raquo;</a>');
+
+                /*
+                 leftCol.find('.left').append(
+                 $('<a></a>').addClass('btn btn-primary').attr({href: that.attr('href'), target: '_self'}).text(_mPHeart.translation.LC_ADMINISTRACJA_INFO_WIECEJ)
+                 );
+                 */
 
                 slug.append(leftCol).append(rightCol);
             });
-			
-			
+
+
             if (infoBlock.position().left != 0) {
                 infoBlock.css({'margin-left': -infoBlock.position().left, width: $(window).width()})
             }

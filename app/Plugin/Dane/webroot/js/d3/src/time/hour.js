@@ -1,7 +1,7 @@
 import
-"interval";
+    "interval";
 import
-"time";
+    "time";
 
 d3_time.hour = d3_time_interval(function (date) {
     var timezone = date.getTimezoneOffset() / 60;

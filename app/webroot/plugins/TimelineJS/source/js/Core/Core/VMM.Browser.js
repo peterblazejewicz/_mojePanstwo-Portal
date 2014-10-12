@@ -6,8 +6,8 @@ if (typeof VMM != 'undefined' && typeof VMM.Browser == 'undefined') {
         init: function () {
             this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
             this.version = this.searchVersion(navigator.userAgent)
-                || this.searchVersion(navigator.appVersion)
-                || "an unknown version";
+            || this.searchVersion(navigator.appVersion)
+            || "an unknown version";
             this.OS = this.searchString(this.dataOS) || "an unknown OS";
             this.device = this.searchDevice(navigator.userAgent);
             this.orientation = this.searchOrientation(window.orientation);
@@ -63,7 +63,8 @@ if (typeof VMM != 'undefined' && typeof VMM.Browser == 'undefined') {
                 subString: "Chrome",
                 identity: "Chrome"
             },
-            {    string: navigator.userAgent,
+            {
+                string: navigator.userAgent,
                 subString: "OmniWeb",
                 versionSearch: "OmniWeb/",
                 identity: "OmniWeb"

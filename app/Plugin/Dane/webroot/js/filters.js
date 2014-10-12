@@ -3,22 +3,20 @@
 var filtersController = function () {
     var filters = jQuery('#filters'),
         limit = 5;
-	
-	
-	// FIX HEIGHTS
-	
-	var dataFilters = jQuery('.objectsPageContent .dataBrowser .dataFilters');
-	var innerContainer = jQuery('.objectsPageContent .dataBrowser .dataObjects .innerContainer');
-	
-	if( dataFilters.length && innerContainer.length ) {
-				
-		innerContainer.css('min-height', dataFilters.height() - 103 + 'px');
-		
-	}
-	
-	
-	
-		
+
+
+    // FIX HEIGHTS
+
+    var dataFilters = jQuery('.objectsPageContent .dataBrowser .dataFilters');
+    var innerContainer = jQuery('.objectsPageContent .dataBrowser .dataObjects .innerContainer');
+
+    if (dataFilters.length && innerContainer.length) {
+
+        innerContainer.css('min-height', dataFilters.height() - 103 + 'px');
+
+    }
+
+
     /*RUN ONLY WHEN FILTER EXIST*/
     if (filters.length) {
         var showMoreFilters = jQuery('.showMoreFilters');
@@ -26,9 +24,7 @@ var filtersController = function () {
         if (showMoreFilters.length > 0)
             showMoreFilters.remove();
 
-		
-		
-		
+
         filters.find('.filter').each(function () {
             var filter;
 
@@ -67,41 +63,41 @@ var filtersController = function () {
                 'role': "dialog",
                 'aria-hidden': "true"
             }).append(
-                    jQuery('<div></div>').addClass('modal-dialog').append(
-                        jQuery('<div></div>').addClass('modal-content').append(
-                                jQuery('<div></div>').addClass('modal-header').append(
-                                        jQuery('<button></button>').addClass('close').attr({
-                                            'type': 'button',
-                                            'data-dismiss': 'modal',
-                                            'aria-hidden': 'true'
-                                        }).html('&times;')
-                                    ).append(
-                                        jQuery('<h4></h4>')
-                                    )
-                            ).append(
-                                jQuery('<div></div>').addClass('modal-body filter')
-                            ).append(
-                                jQuery('<div></div>').addClass('modal-footer').append(
-                                        jQuery('<div></div>').addClass('form-group filterModalSearch').css({
-                                            'width': '75%',
-                                            'float': 'left'
-                                        }).append(
-                                                jQuery('<input />').addClass('form-control').attr({
-                                                    'type': 'text',
-                                                    'placeholder': _mPHeart.translation.LC_DANE_SEARCH,
-                                                    'autocomplete': 'off'
-                                                })
-                                            )
-                                    ).append(
-                                        jQuery('<button></button>').addClass('btn btn-primary').attr('type', 'submit').css({
-                                            'width': '20%',
-                                            'min-width': '60px',
-                                            'float': 'right'
-                                        }).text(_mPHeart.translation.LC_DANE_FILTER)
-                                    )
+                jQuery('<div></div>').addClass('modal-dialog').append(
+                    jQuery('<div></div>').addClass('modal-content').append(
+                        jQuery('<div></div>').addClass('modal-header').append(
+                            jQuery('<button></button>').addClass('close').attr({
+                                'type': 'button',
+                                'data-dismiss': 'modal',
+                                'aria-hidden': 'true'
+                            }).html('&times;')
+                        ).append(
+                            jQuery('<h4></h4>')
+                        )
+                    ).append(
+                        jQuery('<div></div>').addClass('modal-body filter')
+                    ).append(
+                        jQuery('<div></div>').addClass('modal-footer').append(
+                            jQuery('<div></div>').addClass('form-group filterModalSearch').css({
+                                'width': '75%',
+                                'float': 'left'
+                            }).append(
+                                jQuery('<input />').addClass('form-control').attr({
+                                    'type': 'text',
+                                    'placeholder': _mPHeart.translation.LC_DANE_SEARCH,
+                                    'autocomplete': 'off'
+                                })
                             )
+                        ).append(
+                            jQuery('<button></button>').addClass('btn btn-primary').attr('type', 'submit').css({
+                                'width': '20%',
+                                'min-width': '60px',
+                                'float': 'right'
+                            }).text(_mPHeart.translation.LC_DANE_FILTER)
+                        )
                     )
                 )
+            )
         );
 
         filters.find('#filtersHiddenModal .filterModalSearch input').keyup(function () {

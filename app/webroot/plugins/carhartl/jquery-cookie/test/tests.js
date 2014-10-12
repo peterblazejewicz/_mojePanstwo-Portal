@@ -64,8 +64,8 @@ test('json = true', function () {
 
     if ('JSON' in window) {
         $.cookie.json = true;
-        $.cookie('c', { foo: 'bar' });
-        deepEqual($.cookie('c'), { foo: 'bar' }, 'should parse JSON');
+        $.cookie('c', {foo: 'bar'});
+        deepEqual($.cookie('c'), {foo: 'bar'}, 'should parse JSON');
     } else {
         ok(true);
     }
@@ -136,7 +136,7 @@ asyncTest('malformed cookie value in IE (#88, #117)', function () {
 test('Call to read all when there are cookies', function () {
     $.cookie('c', 'v');
     $.cookie('foo', 'bar');
-    deepEqual($.cookie(), { c: 'v', foo: 'bar' }, 'returns object containing all cookies');
+    deepEqual($.cookie(), {c: 'v', foo: 'bar'}, 'returns object containing all cookies');
 });
 
 test('Call to read all when there are no cookies at all', function () {
@@ -145,15 +145,15 @@ test('Call to read all when there are no cookies at all', function () {
 
 test('Call to read all with json: true', function () {
     $.cookie.json = true;
-    $.cookie('c', { foo: 'bar' });
-    deepEqual($.cookie(), { c: { foo: 'bar' } }, 'returns JSON parsed cookies');
+    $.cookie('c', {foo: 'bar'});
+    deepEqual($.cookie(), {c: {foo: 'bar'}}, 'returns JSON parsed cookies');
 });
 
 test('Call to read all with a badly encoded cookie', function () {
     expect(1);
     document.cookie = 'bad=foo%';
     document.cookie = 'good=foo';
-    deepEqual($.cookie(), { good: 'foo' }, 'returns object containing all decodable cookies');
+    deepEqual($.cookie(), {good: 'foo'}, 'returns object containing all decodable cookies');
     // Delete manually here because it requires raw === true...
     $.cookie.raw = true;
     $.removeCookie('bad');
@@ -190,7 +190,7 @@ test('expires option as days from now', function () {
     expect(1);
     var sevenDaysFromNow = new Date();
     sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
-    strictEqual($.cookie('c', 'v', { expires: 7 }), 'c=v; expires=' + sevenDaysFromNow.toUTCString(),
+    strictEqual($.cookie('c', 'v', {expires: 7}), 'c=v; expires=' + sevenDaysFromNow.toUTCString(),
         'should write the cookie string with expires');
 });
 
@@ -198,7 +198,7 @@ test('expires option as fraction of a day', function () {
     expect(1);
 
     var now = new Date().getTime();
-    var expires = Date.parse($.cookie('c', 'v', { expires: 0.5 }).replace(/.+expires=/, ''));
+    var expires = Date.parse($.cookie('c', 'v', {expires: 0.5}).replace(/.+expires=/, ''));
 
     // When we were using Date.setDate() fractions have been ignored
     // and expires resulted in the current date. Allow 1000 milliseconds
@@ -210,7 +210,7 @@ test('expires option as Date instance', function () {
     expect(1);
     var sevenDaysFromNow = new Date();
     sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
-    strictEqual($.cookie('c', 'v', { expires: sevenDaysFromNow }), 'c=v; expires=' + sevenDaysFromNow.toUTCString(),
+    strictEqual($.cookie('c', 'v', {expires: sevenDaysFromNow}), 'c=v; expires=' + sevenDaysFromNow.toUTCString(),
         'should write the cookie string with expires');
 });
 
@@ -223,7 +223,7 @@ test('defaults', function () {
     expect(2);
     $.cookie.defaults.path = '/foo';
     ok($.cookie('c', 'v').match(/path=\/foo/), 'should use options from defaults');
-    ok($.cookie('c', 'v', { path: '/bar' }).match(/path=\/bar/), 'options argument has precedence');
+    ok($.cookie('c', 'v', {path: '/bar'}).match(/path=\/bar/), 'options argument has precedence');
 });
 
 test('raw = true', function () {
@@ -239,8 +239,8 @@ test('json = true', function () {
     $.cookie.json = true;
 
     if ('JSON' in window) {
-        $.cookie('c', { foo: 'bar' });
-        strictEqual(document.cookie, 'c=' + encodeURIComponent(JSON.stringify({ foo: 'bar' })), 'should stringify JSON');
+        $.cookie('c', {foo: 'bar'});
+        strictEqual(document.cookie, 'c=' + encodeURIComponent(JSON.stringify({foo: 'bar'})), 'should stringify JSON');
     } else {
         ok(true);
     }
@@ -286,7 +286,7 @@ test('when cookie does not exist', function () {
 
 test('with options', function () {
     expect(1);
-    var options = { path: '/' };
+    var options = {path: '/'};
     $.cookie('c', 'v', options);
     $.removeCookie('c', options);
     strictEqual(document.cookie, '', 'should delete the cookie');
@@ -294,10 +294,10 @@ test('with options', function () {
 
 test('passing options reference', function () {
     expect(1);
-    var options = { path: '/' };
+    var options = {path: '/'};
     $.cookie('c', 'v', options);
     $.removeCookie('c', options);
-    deepEqual(options, { path: '/' }, "won't alter options object");
+    deepEqual(options, {path: '/'}, "won't alter options object");
 });
 
 test('[] used in name', function () {

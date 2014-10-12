@@ -1,9 +1,9 @@
 import
-"precision";
+    "precision";
 import
-"round";
+    "round";
 import
-"../math/abs";
+    "../math/abs";
 
 var d3_formatPrefixes = ["y", "z", "a", "f", "p", "n", "µ", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"].map(d3_formatPrefix);
 

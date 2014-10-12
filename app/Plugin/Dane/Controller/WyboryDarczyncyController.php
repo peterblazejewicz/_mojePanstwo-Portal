@@ -1,13 +1,11 @@
 <?php
 
-App::uses('DataobjectsController', 'Dane.Controller');
+App::uses( 'DataobjectsController', 'Dane.Controller' );
 
-class WyboryDarczyncyController extends DataobjectsController
-{
-    public $menu = array();
+class WyboryDarczyncyController extends DataobjectsController {
+	public $menu = array();
 
-    public function view()
-    {
-        parent::view();
-    }
+	public function view() {
+		parent::view();
+	}
 } 

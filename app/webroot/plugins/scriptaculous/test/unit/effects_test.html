@@ -76,7 +76,7 @@ var COMBINED_EFFECTS =
             'SlideUp', 'SlideDown', 'Pulsate', 'Squish', 'Fold', 'Grow', 'Shrink'];
 
 var COMBINED_RJS_EFFECTS = $w('fade appear blind_up blind_down puff switch_off ' +
-        'drop_out shake slide_up slide_down pulsate squish fold grow shrink');
+'drop_out shake slide_up slide_down pulsate squish fold grow shrink');
 
 var tmp, tmp2;
 
@@ -121,7 +121,8 @@ new Test.Unit.Runner({
     testCallbacks: function () {
         with (this) {
             tmp = tmp2 = 0;
-            var e1 = new Effect.Opacity('sandbox', {from: 1.0, to: 0.5, duration: 0.5,
+            var e1 = new Effect.Opacity('sandbox', {
+                from: 1.0, to: 0.5, duration: 0.5,
                 beforeStart: function () {
                     tmp++
                 },
@@ -169,9 +170,11 @@ new Test.Unit.Runner({
     testEvent: function () {
         with (this) {
             tmp = 0;
-            new Effect.Event({ afterFinish: function () {
-                tmp++
-            }, position: 'end'});
+            new Effect.Event({
+                afterFinish: function () {
+                    tmp++
+                }, position: 'end'
+            });
             wait(100, function () {
                 assertEqual(1, tmp);
             });
@@ -193,13 +196,13 @@ new Test.Unit.Runner({
                     assertEqual(0.25, $('sandbox').getStyle('opacity'));
 
                     var transitions = [
-                        { transition: Effect.Transitions.linear, expected: 1 },
-                        { transition: Effect.Transitions.sinoidal, expected: 1 },
-                        { transition: Effect.Transitions.reverse, expected: 0 },
-                        { transition: Effect.Transitions.flicker, expected: 1 },
-                        { transition: Effect.Transitions.wobble, expected: 1 },
-                        { transition: Effect.Transitions.pulse, expected: 1 },
-                        { transition: Effect.Transitions.none, expected: 0 }
+                        {transition: Effect.Transitions.linear, expected: 1},
+                        {transition: Effect.Transitions.sinoidal, expected: 1},
+                        {transition: Effect.Transitions.reverse, expected: 0},
+                        {transition: Effect.Transitions.flicker, expected: 1},
+                        {transition: Effect.Transitions.wobble, expected: 1},
+                        {transition: Effect.Transitions.pulse, expected: 1},
+                        {transition: Effect.Transitions.none, expected: 0}
                     ];
 
                     transitions.each(function (t) {
@@ -282,9 +285,9 @@ new Test.Unit.Runner({
 
     testScopedEffectsQueue: function () {
         with (this) {
-            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope'} });
-            var e2 = new Effect.Appear('sandbox', {queue: {scope: 'myscope'} });
-            var e3 = new Effect.Highlight('sandbox', {queue: {scope: 'secondscope'} });
+            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope'}});
+            var e2 = new Effect.Appear('sandbox', {queue: {scope: 'myscope'}});
+            var e3 = new Effect.Highlight('sandbox', {queue: {scope: 'secondscope'}});
             var e4 = new Effect.Appear('sandbox');
 
             assertEqual(2, Effect.Queues.get('myscope').effects.length);
@@ -318,9 +321,9 @@ new Test.Unit.Runner({
             assertNull(Effect.Queues.get('global').interval);
 
             // should be in e3 and e4 together and then e1,e2 order
-            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope'} });
-            var e2 = new Effect.Appear('sandbox', {queue: {position: 'end', scope: 'myscope'} });
-            var e3 = new Effect.Fade('sandbox', {queue: {position: 'front', scope: 'myscope'} });
+            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope'}});
+            var e2 = new Effect.Appear('sandbox', {queue: {position: 'end', scope: 'myscope'}});
+            var e3 = new Effect.Fade('sandbox', {queue: {position: 'front', scope: 'myscope'}});
             var e4 = new Effect.Appear('sandbox');
             assert(e2.startOn > e1.startOn);
             assert(e3.startOn < e1.startOn);
@@ -339,9 +342,9 @@ new Test.Unit.Runner({
             assertEqual(0, Effect.Queues.get('global').effects.length);
 
             // should only allow the first two effects and ignore the third
-            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope', limit: 2} });
-            var e2 = new Effect.Appear('sandbox', {queue: {position: 'end', scope: 'myscope', limit: 2} });
-            var e3 = new Effect.Fade('sandbox', {queue: {position: 'front', scope: 'myscope', limit: 2} });
+            var e1 = new Effect.Highlight('sandbox', {queue: {scope: 'myscope', limit: 2}});
+            var e2 = new Effect.Appear('sandbox', {queue: {position: 'end', scope: 'myscope', limit: 2}});
+            var e3 = new Effect.Fade('sandbox', {queue: {position: 'front', scope: 'myscope', limit: 2}});
 
             assertEqual(2, Effect.Queues.get('myscope').effects.length);
         }
@@ -387,7 +390,7 @@ new Test.Unit.Runner({
             assert(new Effect.Parallel([], {}));
             assert(new Effect.Parallel([
                 new Effect.Event({sync: true})
-            ], { duration: 2}));
+            ], {duration: 2}));
         }
     },
 
@@ -486,8 +489,8 @@ new Test.Unit.Runner({
             assertEqual('idle', testeffect.state);
             wait(1000, function () {
                 info('Rendered ' + testeffect.frames + ' frames in .5 seconds ' +
-                        '(~' + (testeffect.frames / 0.5) + 'fps of a possible 60fps, ' +
-                        'note that this can exceed 60fps because of additional last frame rendering)');
+                '(~' + (testeffect.frames / 0.5) + 'fps of a possible 60fps, ' +
+                'note that this can exceed 60fps because of additional last frame rendering)');
                 assertEqual('0.5', $('sandbox').innerHTML);
                 assertEqual(0.5, testeffect.position);
                 assertEqual('finished', testeffect.state);
@@ -502,9 +505,11 @@ new Test.Unit.Runner({
             benchmark(function () {
                 e.render(0.5);
             }, 1000, 'Without events');
-            var e = new Effect.Opacity('sandbox', {sync: true, afterUpdate: function () {
-                return
-            }});
+            var e = new Effect.Opacity('sandbox', {
+                sync: true, afterUpdate: function () {
+                    return
+                }
+            });
             benchmark(function () {
                 e.render(0.5);
             }, 1000, 'With afterUpdate event');
@@ -548,8 +553,8 @@ new Test.Unit.Runner({
     testTransformBySelector: function () {
         with (this) {
             new Effect.Transform([
-                { 'ul.error-list li': 'font-size:20px;text-indent:40pt' }
-            ], { duration: 0.5 }).play();
+                {'ul.error-list li': 'font-size:20px;text-indent:40pt'}
+            ], {duration: 0.5}).play();
 
             wait(700, function () {
                 var idx = 0;
@@ -570,8 +575,8 @@ new Test.Unit.Runner({
             // Render the effect at half-way through, font-size should be
             // exactly half-way between original and target
             new Effect.Transform([
-                { 'rotfl': 'font-size:20px;text-indent:40pt;background-color:#888' }
-            ], { sync: true }).play().render(0.5);
+                {'rotfl': 'font-size:20px;text-indent:40pt;background-color:#888'}
+            ], {sync: true}).play().render(0.5);
 
             wait(1100, function () {
                 // should be 30px = 40px + (20px-40px)/2
@@ -583,11 +588,13 @@ new Test.Unit.Runner({
     testTransformMultiple: function () {
         with (this) {
             var transformation = new Effect.Transform([
-                { 'div.morphing': 'font-size:20px;padding-left:40em;opacity:0.5' },
-                { 'blah': 'width:480px;border-width:10px;border-right-width:20px;' +
-                        'margin:20px;margin-bottom:-20px;font-size:30px;' +
-                        'background:#954' }
-            ], { duration: 0.5 });
+                {'div.morphing': 'font-size:20px;padding-left:40em;opacity:0.5'},
+                {
+                    'blah': 'width:480px;border-width:10px;border-right-width:20px;' +
+                    'margin:20px;margin-bottom:-20px;font-size:30px;' +
+                    'background:#954'
+                }
+            ], {duration: 0.5});
 
             var generatedEffect = transformation.play();
 
@@ -635,8 +642,8 @@ new Test.Unit.Runner({
                         assertEqual('30px', $('blah').getStyle('font-size'));
 
                         new Effect.Transform([
-                            { 'blah': 'color: #80d980; background: #208020' }
-                        ], { duration: 1.1 }).play();
+                            {'blah': 'color: #80d980; background: #208020'}
+                        ], {duration: 1.1}).play();
                         wait(1500, function () {
                             assertEqual('#80d980', $('blah').getStyle('color').parseColor());
                             assertEqual('#208020', $('blah').getStyle('background-color').parseColor());

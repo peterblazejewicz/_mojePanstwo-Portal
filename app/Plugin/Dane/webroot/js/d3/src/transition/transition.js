@@ -1,17 +1,17 @@
 import
-"../arrays/map";
+    "../arrays/map";
 import
-"../core/subclass";
+    "../core/subclass";
 import
-"../core/true";
+    "../core/true";
 import
-"../event/dispatch";
+    "../event/dispatch";
 import
-"../event/timer";
+    "../event/timer";
 import
-"../interpolate/ease";
+    "../interpolate/ease";
 import
-"../selection/selection";
+    "../selection/selection";
 
 function d3_transition(groups, id) {
     d3_subclass(groups, d3_transitionPrototype);
@@ -40,31 +40,31 @@ d3.transition = function (selection) {
 d3.transition.prototype = d3_transitionPrototype;
 
 import
-"select";
+    "select";
 import
-"selectAll";
+    "selectAll";
 import
-"filter";
+    "filter";
 import
-"attr";
+    "attr";
 import
-"style";
+    "style";
 import
-"text";
+    "text";
 import
-"remove";
+    "remove";
 import
-"ease";
+    "ease";
 import
-"delay";
+    "delay";
 import
-"duration";
+    "duration";
 import
-"each";
+    "each";
 import
-"subtransition";
+    "subtransition";
 import
-"tween";
+    "tween";
 
 function d3_transitionNode(node, i, id, inherit) {
     var lock = node.__transition__ || (node.__transition__ = {active: 0, count: 0}),

@@ -19,7 +19,7 @@
     $.effects.effect.blind = function (o, done) {
         // Create element
         var el = $(this),
-            props = [ "position", "top", "bottom", "left", "right", "height", "width" ],
+            props = ["position", "top", "bottom", "left", "right", "height", "width"],
             mode = $.effects.setMode(el, o.mode || "hide"),
             direction = o.direction || "up",
             vertical = rvertical.test(direction),
@@ -41,17 +41,17 @@
             overflow: "hidden"
         });
 
-        distance = wrapper[ ref ]();
+        distance = wrapper[ref]();
         margin = parseFloat(wrapper.css(ref2)) || 0;
 
-        animation[ ref ] = show ? distance : 0;
+        animation[ref] = show ? distance : 0;
         if (!motion) {
             el
                 .css(vertical ? "bottom" : "right", 0)
                 .css(vertical ? "top" : "left", "auto")
-                .css({ position: "absolute" });
+                .css({position: "absolute"});
 
-            animation[ ref2 ] = show ? margin : distance + margin;
+            animation[ref2] = show ? margin : distance + margin;
         }
 
         // start at 0 if we are showing
