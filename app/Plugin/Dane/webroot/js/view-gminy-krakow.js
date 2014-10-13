@@ -3,108 +3,106 @@ $(function () {
     // Prepare random data
     var data = [
         {
-            "code": "DE.SH",
+            "code": "I",
             "value": 728
         },
         {
-            "code": "DE.BE",
+            "code": "II",
             "value": 710
         },
         {
-            "code": "DE.MV",
+            "code": "III",
             "value": 963
         },
         {
-            "code": "DE.HB",
+            "code": "IV",
             "value": 541
         },
         {
-            "code": "DE.HH",
+            "code": "V",
             "value": 622
         },
         {
-            "code": "DE.RP",
+            "code": "VI",
             "value": 866
         },
         {
-            "code": "DE.SL",
+            "code": "VII",
             "value": 398
         },
         {
-            "code": "DE.BY",
+            "code": "VIII",
             "value": 785
         },
         {
-            "code": "DE.SN",
+            "code": "IX",
             "value": 223
         },
         {
-            "code": "DE.ST",
+            "code": "X",
             "value": 605
         },
         {
-            "code": "DE.",
+            "code": "XI",
             "value": 361
         },
         {
-            "code": "DE.NW",
+            "code": "XII",
             "value": 237
         },
         {
-            "code": "DE.BW",
+            "code": "XIII",
             "value": 157
-        },
-        {
-            "code": "DE.HE",
-            "value": 134
-        },
-        {
-            "code": "DE.NI",
-            "value": 136
-        },
-        {
-            "code": "DE.TH",
-            "value": 704
         }
     ];
 
-    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=germany.geo.json&callback=?', function (geojson) {
 
-        // Initiate the chart
-        $('#dzielnice_map').highcharts('Map', {
 
-            title: {
-                text: 'GeoJSON in Highmaps'
-            },
+	$.ajax({
+	  dataType: "json",
+	  url: '/files/krakow-dzielnice.geo.json',
+	  // url: 'http://www.highcharts.com/samples/data/jsonp.php?filename=germany.geo.json&callback=?',
+	  jsonp: true, 
+	  jsonpCallback: "mapStart",
+	  success: function(geojson){
+		  
+		    $('#dzielnice_map').highcharts('Map', {
 
-			credits: {
-				enabled: false	
-			},
-			
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
+	            title: {
+	                text: false
+	            },
+	
+				credits: {
+					enabled: false	
+				},
+				
+	            mapNavigation: {
+	                enabled: true,
+	                buttonOptions: {
+	                    verticalAlign: 'top'
+	                }
+	            },
+	
+	            colorAxis: {},
+	
+	            series: [{
+	                data: data,
+	                mapData: geojson,
+	                joinBy: ['Name', 'code'],
+	                name: false,
+	                states: {
+	                    hover: {
+	                        color: '#BADA55'
+	                    }
+	                },
+	                dataLabels: {
+	                    enabled: true,
+	                    format: '{point.properties.Description}'
+	                }
+	            }]
+	        });
+		  
+	  }
+	});
 
-            colorAxis: {},
-
-            series: [{
-                data: data,
-                mapData: geojson,
-                joinBy: ['code_hasc', 'code'],
-                name: 'Random data',
-                states: {
-                    hover: {
-                        color: '#BADA55'
-                    }
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.properties.postal}'
-                }
-            }]
-        });
-    });
 });
