@@ -1,6 +1,4 @@
 $(function () {
-
-    // Prepare random data
     var data = [
         {
             "code": "I",
@@ -56,53 +54,42 @@ $(function () {
         }
     ];
 
+    $.getJSON('/files/krakow-dzielnice.geo.json', function (jsonData) {
+        console.log(jsonData);
 
+        $('#dzielnice_map').highcharts('Map', {
+            title: {
+                text: false
+            },
 
-	$.ajax({
-	  dataType: "json",
-	  url: '/files/krakow-dzielnice.geo.json',
-	  // url: 'http://www.highcharts.com/samples/data/jsonp.php?filename=germany.geo.json&callback=?',
-	  jsonp: true, 
-	  jsonpCallback: "mapStart",
-	  success: function(geojson){
-		  
-		    $('#dzielnice_map').highcharts('Map', {
+            credits: {
+                enabled: false
+            },
 
-	            title: {
-	                text: false
-	            },
-	
-				credits: {
-					enabled: false	
-				},
-				
-	            mapNavigation: {
-	                enabled: true,
-	                buttonOptions: {
-	                    verticalAlign: 'top'
-	                }
-	            },
-	
-	            colorAxis: {},
-	
-	            series: [{
-	                data: data,
-	                mapData: geojson,
-	                joinBy: ['Name', 'code'],
-	                name: false,
-	                states: {
-	                    hover: {
-	                        color: '#BADA55'
-	                    }
-	                },
-	                dataLabels: {
-	                    enabled: true,
-	                    format: '{point.properties.Description}'
-	                }
-	            }]
-	        });
-		  
-	  }
-	});
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'top'
+                }
+            },
 
+            colorAxis: {},
+
+            series: [{
+                data: data,
+                mapData: jsonData,
+                joinBy: ['Name', 'code'],
+                name: false,
+                states: {
+                    hover: {
+                        color: '#BADA55'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.properties.Description}'
+                }
+            }]
+        });
+    });
 });
