@@ -1,95 +1,28 @@
-$(function () {
-    var data = [
-        {
-            "code": "I",
-            "value": 728
-        },
-        {
-            "code": "II",
-            "value": 710
-        },
-        {
-            "code": "III",
-            "value": 963
-        },
-        {
-            "code": "IV",
-            "value": 541
-        },
-        {
-            "code": "V",
-            "value": 622
-        },
-        {
-            "code": "VI",
-            "value": 866
-        },
-        {
-            "code": "VII",
-            "value": 398
-        },
-        {
-            "code": "VIII",
-            "value": 785
-        },
-        {
-            "code": "IX",
-            "value": 223
-        },
-        {
-            "code": "X",
-            "value": 605
-        },
-        {
-            "code": "XI",
-            "value": 361
-        },
-        {
-            "code": "XII",
-            "value": 237
-        },
-        {
-            "code": "XIII",
-            "value": 157
-        }
-    ];
+var map;
 
-    $.getJSON('/files/krakow-dzielnice.geo.json', function (jsonData) {
-        console.log(jsonData);
+function initialize() {
+    var mapOptions = {
+        zoom: 10
+    };
+    map = new google.maps.Map(document.getElementById('dzielnice_map'), mapOptions);
 
-        $('#dzielnice_map').highcharts('Map', {
-            title: {
-                text: false
-            },
+    var kmlUrl = 'http://mojepanstwo.pl/files/dzielnice_administracyjne.kml';
+    /*FILE HAVE TO BE SEEN BY GOOGLE! */
+    var kmlOptions = {
+        suppressInfoWindows: true,
+        preserveViewport: false,
+        map: map
+    };
 
-            credits: {
-                enabled: false
-            },
+    var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
 
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'top'
-                }
-            },
+    console.log(kmlLayer);
 
-            colorAxis: {},
-
-            series: [{
-                data: data,
-                mapData: jsonData,
-                joinBy: ['Name', 'code'],
-                name: false,
-                states: {
-                    hover: {
-                        color: '#BADA55'
-                    }
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.properties.Description}'
-                }
-            }]
-        });
+    google.maps.event.addListener(kmlLayer, 'click', function (kmlEvent) {
+        var text = kmlEvent.featureData;
+        console.log(text);
     });
-});
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
