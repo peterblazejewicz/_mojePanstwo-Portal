@@ -1,52 +1,82 @@
 <?php
 
-App::uses( 'DataobjectsController', 'Dane.Controller' );
+App::uses('DataobjectsController', 'Dane.Controller');
 
-class GminyController extends DataobjectsController {
+class GminyController extends DataobjectsController
+{
 
-	public $breadcrumbsMode = 'app';
+    public $breadcrumbsMode = 'app';
 
-	/*
-	 array(
-			'label' => 'LC_DANE_START',
-			'id' => 'view',
-		),
-		array(
-			'label' => 'LC_DANE_RADNI_GMINY',
-			'id' => 'radni',
-		),
-		array(
-			'label' => 'LC_DANE_WSKAZNIKI',
-			'id' => 'wskazniki',
-		),
-		array(
-			'label' => 'LC_DANE_ZAMOWIENIA_PUBLICZNE',
-			'id' => 'zamowienia_publiczne',
-		),
-		array(
-			'label' => 'LC_DANE_MAPA',
-			'id' => 'map',
-		),
-	*/
+    /*
+     array(
+            'label' => 'LC_DANE_START',
+            'id' => 'view',
+        ),
+        array(
+            'label' => 'LC_DANE_RADNI_GMINY',
+            'id' => 'radni',
+        ),
+        array(
+            'label' => 'LC_DANE_WSKAZNIKI',
+            'id' => 'wskazniki',
+        ),
+        array(
+            'label' => 'LC_DANE_ZAMOWIENIA_PUBLICZNE',
+            'id' => 'zamowienia_publiczne',
+        ),
+        array(
+            'label' => 'LC_DANE_MAPA',
+            'id' => 'map',
+        ),
+    */
 
-	public $menu = array();
+    public $menu = array();
 
-	public $helpers = array(
-		'Number' => array(
-			'className' => 'Dane.NumberPlus',
-		),
-	);
+    public $helpers = array(
+        'Number' => array(
+            'className' => 'Dane.NumberPlus',
+        ),
+    );
 
-	public $objectOptions = array(
-		'bigTitle' => true,
-	);
+    public $objectOptions = array(
+        'bigTitle' => true,
+    );
 
-	public function view() {
+    public function _prepareView()
+    {
+		
+		if ($this->params->id == 903) {
 
-		$_layers = array( 'rada_komitety', 'szef' );
-		if ( $this->request->params['id'] == '903' ) {
+            $this->addInitLayers(array('dzielnice'));
+
+        }
+		
+        if (
+            defined('PORTAL_DOMAIN') &&
+            defined('PK_DOMAIN') &&
+            ($pieces = parse_url(Router::url($this->here, true))) &&
+            ($pieces['host'] == PK_DOMAIN)
+        ) {
+
+            if ($this->params->id != 903) {
+
+                $this->redirect('http://' . PORTAL_DOMAIN . $_SERVER['REQUEST_URI']);
+                die();
+
+            }
+
+        }
+
+        return parent::_prepareView();
+
+    }
+
+    public function view()
+    {
+		
+		$_layers = array('rada_komitety', 'szef');
+		if( $this->request->params['id']=='903' ) {
 			$_layers[] = 'ostatnie_posiedzenie';
-			$_layers[] = 'dzielnice';
 		}
 
 		$this->addInitLayers( $_layers );
@@ -223,27 +253,7 @@ class GminyController extends DataobjectsController {
 
 	}
 
-	public function _prepareView() {
 
-		if (
-			defined( 'PORTAL_DOMAIN' ) &&
-			defined( 'PK_DOMAIN' ) &&
-			( $pieces = parse_url( Router::url( $this->here, true ) ) ) &&
-			( $pieces['host'] == PK_DOMAIN )
-		) {
-
-			if ( $this->params->id != 903 ) {
-
-				$this->redirect( 'http://' . PORTAL_DOMAIN . $_SERVER['REQUEST_URI'] );
-				die();
-
-			}
-
-		}
-
-		return parent::_prepareView();
-
-	}
 
 	public function interpelacje() {
 
@@ -467,8 +477,102 @@ class GminyController extends DataobjectsController {
 			) );
 
 			$this->set( 'title_for_layout', 'Materiały na posiedzenia rady gminy ' . $this->object->getData( 'nazwa' ) );
-
+			
 		}
+
+    }
+	
+	public function dzielnice()
+	{
+		
+		$this->_prepareView();
+        $this->request->params['action'] = 'dzielnice';
+		
+		if (isset($this->request->params['pass'][0]) && is_numeric($this->request->params['pass'][0])) {
+			
+			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'view';
+            $sub_id = (isset($this->request->params['pass'][2]) && $this->request->params['pass'][2]) ? $this->request->params['pass'][2] : false;
+
+            $dzielnica = $this->API->getObject('dzielnice', $this->request->params['pass'][0], array(
+                // 'layers' => array('najblizszy_dyzur', 'neighbours'),
+            ));
+            // $radny->getLayer('neighbours');
+            // $dyzur = $radny->getLayer('najblizszy_dyzur');
+            // debug( $dzielnica ); die();
+            $title_for_layout = $dzielnica->getTitle();
+			
+			switch ($subaction) {
+                case 'view':
+                {
+
+					$this->dataobjectsBrowserView(array(
+                        'source' => 'dzielnice.radni:' . $dzielnica->getId(),
+                        'dataset' => 'radni_dzielnic',
+                        'noResultsTitle' => 'Brak radnych',
+                        'excludeFilters' => array(
+		                    'dzielnica_id'
+		                ),
+                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+                    ));
+
+                    break;
+
+                    break;
+                }
+            }
+            
+            
+            if ($this->object->getId() == 903) {
+
+                $href_base = '/dane/gminy/' . $this->object->getId() . '/dzielnice/' . $dzielnica->getId();
+
+                $submenu = array(
+                    'items' => array(),
+                );
+
+                $submenu['items'][] = array(
+                    'id' => 'view',
+                    'href' => $href_base,
+                    'label' => 'Radni dzielnicy',
+                );
+                
+                $submenu['items'][] = array(
+                    'id' => 'posiedzenia',
+                    'href' => $href_base . '/posiedzenia',
+                    'label' => 'Posiedzenia rady dzielnicy',
+                );
+                 
+                $submenu['selected'] = $subaction;
+                $this->set('_submenu', $submenu);
+
+            }
+            
+            
+            $this->set('dzielnica', $dzielnica);
+            $this->set('sub_id', $sub_id);
+            $this->set('title_for_layout', $title_for_layout);
+            $this->render('dzielnica-' . $subaction);
+			
+		} else {
+		
+			$params = array(
+                'source' => 'gminy.dzielnice:' . $this->object->getId(),
+                'dataset' => 'dzielnice',
+                'noResultsTitle' => 'Brak dzielnic dla tej gminy',
+                /*
+                'excludeFilters' => array(
+                    'gmina_id', 'gminy.powiat_id', 'gminy.wojewodztwo_id'
+                ),
+                */
+                // 'hlFields' => array('nazwa', 'liczba_glosow'),
+                'limit' => 100,
+            );
+
+            $this->dataobjectsBrowserView($params);
+            $this->set('title_for_layout', 'Dzielnice gminy ' . $this->object->getData('nazwa'));
+		
+		}
+		
 	}
 	
 	
@@ -502,6 +606,7 @@ class GminyController extends DataobjectsController {
 
 		}
 	}
+
 
 
 	public function radni_powiazania() {
@@ -1236,7 +1341,7 @@ class GminyController extends DataobjectsController {
 				),
 			);
 
-			/*
+
 			$dzielnice_items = array();
 			if( $dzielnice = $this->object->getLayer('dzielnice') ) {
 				
@@ -1258,7 +1363,7 @@ class GminyController extends DataobjectsController {
 				);
 				
 			}
-			*/
+
 
 
 		} else {
