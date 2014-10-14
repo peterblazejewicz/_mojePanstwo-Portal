@@ -118,7 +118,46 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 							</div>
 						</div>
 					<? } ?>
+					
+					<? if ( $komisje = $radny->getLayer('komisje') ) { ?>
+						<div id="interpelacje" class="block">
 
+							<div class="block-header">
+								<h2 class="label">Komisje Rady Miasta</h2>
+							</div>
+
+
+							<div class="content sklad">
+								<ul class="list-group list-dataobjects">
+					
+								<? foreach( $komisje as $komisja ) {?>
+								
+									<div class="objectRender readed">
+						
+										<div class="row">
+											<div class="data col-md-12">
+												<div class="row">
+										
+													<div class="content">				
+														<p class="title">
+															<a title="Komisja Budżetowa" href="/dane/gminy/903/komisje/<?= $komisja['id'] ?>"><?= $komisja['nazwa'] ?></a> 
+															<span class="label label-<?= $komisja['label'] ?>"><?= $komisja['stanowisko'] ?></span>
+														</p>
+						
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								<? } ?>
+								
+								</ul>
+							</div>
+							
+						</div>
+					<? } ?>
+					
 					<? if ( $d = $radny->getLayer( 'najblizszy_dyzur' ) ) { ?>
 						<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 						<? $this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy-dyzury', array( 'plugin' => 'Dane' ) ) ); ?>

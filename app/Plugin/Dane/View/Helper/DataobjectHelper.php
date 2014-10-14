@@ -127,10 +127,12 @@ class DataobjectHelper extends AppHelper {
 	}
 
 	public function highlights( $fields = false, $fieldsPush = false, $options = array() ) {
-
+		
+		
 		$output = '';
 		$fields = $this->object->getHiglightedFields( $fields, $fieldsPush );
-
+		
+		
 		$fields_count = count( $fields );
 		if ( $fields_count ) {
 
