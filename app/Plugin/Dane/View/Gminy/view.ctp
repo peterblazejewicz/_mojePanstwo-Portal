@@ -493,7 +493,7 @@
 </div>
 
 <div id="dzielnice" class="block">
-	<div class="block-header*">
+	<div class="block-header">
 		<h2 class="pull-left label">Dzielnice</h2>
 		<a class="btn btn-default btn-sm pull-right"
 		   href="<?= Router::url( array( 'action' => 'dzielnice', 'id' => $object->getId() ) ) ?>">Zobacz
