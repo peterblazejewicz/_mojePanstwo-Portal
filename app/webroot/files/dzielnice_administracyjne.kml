@@ -11,10 +11,10 @@
 	<name>I</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -29,10 +29,10 @@
 	<name>II</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -47,10 +47,10 @@
 	<name>III</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -65,10 +65,10 @@
 	<name>IV</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -83,10 +83,10 @@
 	<name>V</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -101,10 +101,10 @@
 	<name>VI</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -119,10 +119,10 @@
 	<name>VII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -137,10 +137,10 @@
 	<name>VIII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -155,10 +155,10 @@
 	<name>IX</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -173,10 +173,10 @@
 	<name>X</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -191,10 +191,10 @@
 	<name>XI</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -209,10 +209,10 @@
 	<name>XII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -227,10 +227,10 @@
 	<name>XIII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -245,10 +245,10 @@
 	<name>XIV</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -263,10 +263,10 @@
 	<name>XV</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -281,10 +281,10 @@
 	<name>XVI</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -299,10 +299,10 @@
 	<name>XVIII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
@@ -317,10 +317,10 @@
 	<name>XVII</name>
       <Style>
           <LineStyle>
-              <color>ff0000ff</color>
+              <color>ffaa0000</color>
           </LineStyle>
           <PolyStyle>
-              <color>1f0000ff</color>
+              <color>1faa0000</color>
               <fill>1</fill>
               <outline>1</outline>
           </PolyStyle>
