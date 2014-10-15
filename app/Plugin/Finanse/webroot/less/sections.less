@@ -149,10 +149,8 @@ h1 {
             list-style: none;
             border-top: 1px solid #DDD;
             padding: 20px 0;
-            padding: 20px 0;
 
             .row-header {
-
                 font-weight: 300;
 
                 .name {
@@ -176,18 +174,33 @@ h1 {
                 font-weight: 400;
             }
 
-            .histogram_cont {
-            	padding: 0 43px;
-                margin-top: 60px;
+            .title, .histogram_cont, .gradient_cont {
+                float: left;
+                width: 100%;
             }
-            
-            .gradient_cont {
 
+            .histogram_cont {
+                padding: 0 43px;
+                height: 170px;
+
+                .histogram {
+                    display: block;
+                    width: 100%;
+                    height: 170px;
+
+                    .highcharts-container {
+                        display: block;
+                        float: left;
+                        height: 170px;
+                    }
+                }
+            }
+
+            .gradient_cont {
                 padding: 0 86px;
                 min-height: 45px;
-                margin-top: 35px;
                 position: relative;
-            	top: -50px;
+                top: -45px;
 
                 .gradient {
                     background: #2746f7; /* Old browsers */
@@ -198,7 +211,9 @@ h1 {
                     background: -ms-linear-gradient(left, blue 0%, red 100%); /* IE10+ */
                     background: linear-gradient(to right, blue 0%, red 100%); /* W3C */
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2746f7', endColorstr='#cc1c1c', GradientType=1); /* IE6-9 */
+                    width: 100%;
                     height: 5px;
+                    display: block;
                     margin: 10px 0 0;
                     border-radius: 4px;
                     -webkit-border-radius: 4px;
@@ -211,6 +226,7 @@ h1 {
                     padding: 0;
                     list-style: none;
                     position: relative;
+
                     li {
                         margin: 0;
                         padding: 0;
@@ -230,18 +246,24 @@ h1 {
                         transition-duration: .5s;
                         transition-timing-function: ease-out;
 
+                        &.min {
+                            left: 0%;
+                        }
+                        &.max {
+                            left: 100%;
+                        }
+
                         &._teryt {
                             font-weight: bold;
                             z-index: 1;
+                            top: 0;
+                            margin-top: 2px;
 
                             &:before {
                                 background-color: #333;
                                 border: 3px solid #fff;
-                                top: -17px;
+                                top: -15px;
                             }
-
-                            top: 0;
-
                         }
 
                         &:before {
@@ -257,16 +279,12 @@ h1 {
                             width: 16px;
                         }
 
-                        p {
-
-                            border: medium none;
-                            border-radius: 5px;
-                            display: inline;
+                        span {
+                            width: 100%;
                             font-size: 14px;
                             margin: 0;
                             padding: 1px 5px;
-                            background-color: #FFF;
-
+                            display: block;
                         }
                     }
                 }

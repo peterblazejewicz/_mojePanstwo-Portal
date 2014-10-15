@@ -1,7 +1,5 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
-
-    number = (number + '')
-        .replace(/[^0-9+\-Ee.]/g, '');
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
@@ -45,99 +43,84 @@ function number_format_h(n) {
     return number_format(n, 0, '.', ' ');
 }
 
-
 jQuery(document).ready(function () {
+    var sections = jQuery('#sections .section');
+    for (var i = 0; i < sections.length; i++) {
+        var section = jQuery(sections[i]),
+            histogram_div = jQuery(section.find('.histogram')),
+            data = histogram_div.data('init'),
+            charts_data = [],
+            chart;
 
-    /*
-     jQuery('#localizeMe').click(function () {
-     localizer.request_position()
-     });
-     */
-	 
-	 
-	 
-	var sections = jQuery('#sections .section');
-	for( var i=0; i<sections.length; i++ ) {
-		
-		var section = jQuery( sections[i] );
-		
-		var histogram_div = jQuery( section.find('.histogram') );
-		var data = histogram_div.data('init');
-		var charts_data = [];
+        for (var d = 0; d < data.length; d++)
+            if (data[d])
+                charts_data.push(Number(data[d]['height']));
 
-		for( var d=0; d<data.length; d++ )
-			if( data[d] )
-				charts_data.push( Number(data[d]['height']) );
-		
-		
 
-		histogram_div.attr('id', 'h'+i);
+        histogram_div.attr('id', 'h' + i);
 
-		var chart = new Highcharts.Chart({
-		    chart: {
-		        renderTo: 'h'+i,
-		        type: 'column',
-		        height: 150,
-				backgroundColor: null,
-				spacingTop: 0
-		    },
-			
-			
-			credits: {
-				enabled: false	
-			},
-			
-		    legend: {
-			    enabled: false
-		    },
-		    
-		    title: {
-			    text: ''
-		    },
-		    
-		    xAxis: {
-			    labels: {
-				    enabled: false
-			    },
-			    gridLineWidth: 0,
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'h' + i,
+                type: 'column',
+                height: 150,
+                backgroundColor: null,
+                spacingTop: 0
+            },
+
+
+            credits: {
+                enabled: false
+            },
+
+            legend: {
+                enabled: false
+            },
+
+            title: {
+                text: ''
+            },
+
+            xAxis: {
+                labels: {
+                    enabled: false
+                },
+                gridLineWidth: 0,
                 title: null
-		    },
-		    
-		    yAxis: {
-			    labels: {
-				    enabled: false
-			    },
-			    gridLineWidth: 0,
-			    title: {
-				    text: 'Liczba gmin', 
-				    style: {
-					    color: '#AAA',
-					    'font-family': '"Helvetica Neue",Helvetica,Arial,sans-serif',
-					    'font-size': '13px',
-					    'font-weight': '300'
-				    }
-			    }
-		    },
-		    
-		    plotOptions: {
-		        column: {
-		            groupPadding: 0,
-		            pointPadding: 0,
-		            borderWidth: 0
-		        }
-		    },
-		
-		    series: [{
-		        data: charts_data
-		    }]
-		
-		});
+            },
 
-		
-	}
-	 
-	 
-	 
+            yAxis: {
+                labels: {
+                    enabled: false
+                },
+                gridLineWidth: 0,
+                title: {
+                    text: 'Liczba gmin',
+                    style: {
+                        color: '#AAA',
+                        'font-family': '"Helvetica Neue",Helvetica,Arial,sans-serif',
+                        'font-size': '13px',
+                        'font-weight': '300'
+                    }
+                }
+            },
+
+            plotOptions: {
+                column: {
+                    groupPadding: 0,
+                    pointPadding: 0,
+                    borderWidth: 0
+                }
+            },
+
+            series: [{
+                data: charts_data
+            }]
+
+        });
+    }
+
+
     $('#teryt_search_input').val('');
 
     var autocomplete = jQuery("#teryt_search_input"),
@@ -236,31 +219,7 @@ jQuery(document).ready(function () {
                         gradient_addons.find('._teryt').fadeOut(function () {
                             $(this).remove();
                         });
-                        ~
-                            /*
-                             gradient_addons.html('');
-
-                             var li_min = jQuery('<li/>', {
-                             html: '<p><a href="/dane/gminy/' + '1' + '">Radom</a></p>',
-                             }).appendTo(gradient_addons);
-
-                             var li_teryt = jQuery('<li/>', {
-                             html: '<p><a href="/dane/gminy/' + '1' + '">Kraków</a></p>',
-                             class: '_teryt'
-                             }).appendTo(gradient_addons);
-
-                             var li_max = jQuery('<li/>', {
-                             html: '<p><a href="/dane/gminy/' + '1' + '">Wałbrzych</a></p>'
-                             }).appendTo(gradient_addons);
-
-
-                             li_min.animate({left: '0%'});
-                             li_teryt.animate({left: '50%'});
-                             li_max.animate({left: '100%'});
-
-                             */
-
-                            gradient_addons.find('.min .n').text(section['teryt_min_nazwa']);
+                        gradient_addons.find('.min .n').text(section['teryt_min_nazwa']);
                         gradient_addons.find('.min .v').html(number_format_h(section['teryt_min']));
 
                         gradient_addons.find('.max .n').text(section['teryt_max_nazwa']);
@@ -273,15 +232,11 @@ jQuery(document).ready(function () {
 
 
                         li_teryt.css('opacity', 0).animate({left: v, opacity: 1});
-
-
                     }
 
                 });
-
             }
             return false;
         }
     });
-
 });
