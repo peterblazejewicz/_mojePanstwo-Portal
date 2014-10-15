@@ -46,8 +46,9 @@ echo $this->Element( 'dataobject/pageBegin' );
 							<p class="_value"><?= $this->Czas->dataSlownie( $object->getData( 'data_wejscia_w_zycie' ) ); ?></p>
 						</li>
 					<? } ?>
-
-					<? if ( $tags = $object->getLayer( 'tags' ) ) {
+					
+					
+					<? /* if ( $tags = $object->getLayer( 'tags' ) ) {
 						$t = 0; ?>
 
 						<li class="dataHighlight topborder">
@@ -64,7 +65,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 							</ul>
 						</li>
 
-					<? } ?>
+					<? } */ ?>
 
 					<? if ( $object->getData( 'sygnatura' ) ) { ?>
 						<li class="dataHighlight topborder">
@@ -105,8 +106,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 		<div class="col-lg-9 objectMain">
 			<div class="object">
-
-
+				
 				<? if ( ( $files = $object->getLayer( 'files' ) ) && ( $file = array_shift( $files ) ) ) { ?>
 
 					<a href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>" class="banner">
@@ -115,7 +115,45 @@ echo $this->Element( 'dataobject/pageBegin' );
 								<img src="http://docs.sejmometr.pl/thumb/5/<?= $file['dokument_id'] ?>.png"/>
 							</div>
 							<div class="col-md-6 cont text_cont">
-								<p>Przeczytaj tekst aktualnie obowiązujący</p>
+								<p>Przeczytaj tekst <?
+									
+									
+									
+									$typ_id = $object->getData('typ_id');
+									
+									if( $typ_id=='1' )
+										echo "ustawy";
+									elseif( $typ_id=='2' )
+										echo "uchwały";
+									elseif( $typ_id=='3' )
+										echo "rozporządzenia";
+									elseif( $typ_id=='4' )
+										echo "obwieszczenia";
+									elseif( $typ_id=='5' )
+										echo "wyroku";
+									elseif( $typ_id=='6' )
+										echo "umowy";
+									elseif( $typ_id=='7' )
+										echo "oświadczenia";
+									elseif( $typ_id=='8' )
+										echo "wypowiedzenia";
+									elseif( $typ_id=='9' )
+										echo "postanowienia";
+									elseif( $typ_id=='10' )
+										echo "protokołu";
+									elseif( $typ_id=='11' )
+										echo "porozumienia";
+									elseif( $typ_id=='12' )
+										echo "poprawek";
+									elseif( $typ_id=='13' )
+										echo "dekretu";
+									elseif( $typ_id=='14' )
+										echo "zarządzenia";
+									elseif( $typ_id=='16' )
+										echo "komunikatu";
+									else
+										echo "aktu prawnego";
+								?></p>
 							</div>
 							<div class="col-md-1 cont arrow_cont">
 								<span class="glyphicon glyphicon-arrow-right"></span>
@@ -131,8 +169,24 @@ echo $this->Element( 'dataobject/pageBegin' );
 					<? } ?>
 				<? } ?>
 
-
-
+				
+				<? if( isset($projekt) ) {?>
+					
+					<div class="block">
+						<div class="block-header">
+							<h2 class="label">Prace w Sejmie</h2>
+						</div>
+						<div class="content mpanel">
+							<? echo $this->Dataobject->render( $projekt, 'default', array(
+								'hlFields' => array('autorzy_html')
+							) ); ?>
+						</div>
+					</div>
+					
+				<? } ?>
+				
+				
+				<? /*
 				<div class="block">
 					<div class="block-header">
 						<h2 class="label">Powiązane akty prawne</h2>
@@ -144,7 +198,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 						) ); ?>
 					</div>
 				</div>
-
+				*/ ?>
 
 
 				<? /*
