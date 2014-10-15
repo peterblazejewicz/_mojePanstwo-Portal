@@ -4,7 +4,7 @@ App::uses( 'DataobjectsController', 'Dane.Controller' );
 
 class PrawoController extends DataobjectsController {
 
-	public $initLayers = array( 'docs', 'tags', 'counters', 'files' );
+	public $initLayers = array( 'docs', 'counters', 'files' );
 	public $helpers = array( 'Document' );
 
 	public $uses = array( 'Dane.Dataliner' );
@@ -12,13 +12,23 @@ class PrawoController extends DataobjectsController {
 	public $objectOptions = array(
 		// 'hlFields' => array('isap_status_str', 'sygnatura', 'data_wydania', 'data_publikacji', 'data_wejscia_w_zycie'),
 		'hlFields' => array(),
+		'routes' => array(
+			'description' => false,
+		),
 	);
 
 
 	public function view( $package = 1 ) {
 
 		$this->_prepareView();
-
+		
+		if( $projekt_id = $this->object->getData('projekt_id') ) {
+			
+			$projekt = $this->API->getObject( 'prawo_projekty', $projekt_id );
+			$this->set('projekt', $projekt);
+			
+		}
+		
 		$datalinerParams = array(
 			'requestData' => array(
 				'conditions' => array(
@@ -93,7 +103,7 @@ class PrawoController extends DataobjectsController {
 
 	}
 
-	public function tekst_pierwotny() {
+	public function tekst() {
 
 		$this->_prepareView();
 
@@ -101,7 +111,7 @@ class PrawoController extends DataobjectsController {
 
 		if ( $files = $this->object->getLayer( 'files' ) ) {
 			foreach ( $files as $file ) {
-				if ( $file['slug'] == 'tekst_pierwotny' ) {
+				if ( $file['slug'] == 'tekst' ) {
 					$dokument_id = $file['dokument_id'];
 					break;
 				}
