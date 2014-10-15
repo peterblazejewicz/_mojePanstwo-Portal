@@ -8,8 +8,7 @@
 
 <?php if ( $object->getId() == '903' ) {
 	$this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy-krakow', array( 'plugin' => 'Dane' ) ) );
-	$this->Combinator->add_libs( 'js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDjrJxBx4dRSGns45xJTE0f2ZIfR1Uovzo' );
-	//$this->Combinator->add_libs( 'js', '../plugins/highcharts/plugin/map' ); /*HIGHCHARTS IS LOADED BEFORE SO WE LOAD MAP PLUGIN INSTEAD HIGHMAPS*/
+	$this->Combinator->add_libs( 'js', 'https://maps.googleapis.com/maps/api/js?v=3.exp' );
 	$this->Combinator->add_libs( 'js', 'Dane.view-gminy-krakow' );
 } ?>
 

@@ -7,7 +7,6 @@ function initialize() {
     map = new google.maps.Map(document.getElementById('dzielnice_map'), mapOptions);
 
     var kmlUrl = 'http://mojepanstwo.pl/files/dzielnice_administracyjne.kml';
-    /*FILE HAVE TO BE SEEN BY GOOGLE! */
     var kmlOptions = {
         suppressInfoWindows: true,
         preserveViewport: false,
@@ -15,7 +14,6 @@ function initialize() {
     };
 
     var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
-
     console.log(kmlLayer);
 
     google.maps.event.addListener(kmlLayer, 'click', function (kmlEvent) {
