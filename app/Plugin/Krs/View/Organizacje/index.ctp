@@ -44,7 +44,8 @@
 				</div>
 
 				<ol class="carousel-indicators<?php if ( count( $groups ) < 2 ) {
-					echo ' hidden'} ?>">
+					echo ' hidden';
+				} ?>">
 					<?php for ( $i = 0; $i < count( $groups ); $i ++ ) { ?>
 						<li data-target="#groupsAndResults"
 						    data-slide-to="<?= $i ?>"<? if ( $i == 0 ) { ?> class="active"<? } ?>>
@@ -53,12 +54,14 @@
 				</ol>
 
 				<a class="left carousel-control<?php if ( count( $groups ) < 2 ) {
-					echo ' hidden'} ?>" href="#groupsAndResults"
+					echo ' hidden';
+				} ?>" href="#groupsAndResults"
 				   data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left"></span>
 				</a>
 				<a class="right carousel-control<?php if ( count( $groups ) < 2 ) {
-					echo ' hidden'} ?>"
+					echo ' hidden';
+				} ?>"
 				   href="#groupsAndResults" data-slide="next">
 					<span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
