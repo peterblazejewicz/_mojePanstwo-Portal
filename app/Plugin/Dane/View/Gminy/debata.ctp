@@ -106,7 +106,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 							<?php foreach ( $wystapienia as $id => $wystapienie ) { ?>
 								<li>
 									<a data-video-position="<?php echo $wystapienie['video_start']; ?>"
-									   href="#<?php echo $id; ?>">
+									   href="#<?php echo $wystapienie['id']; ?>">
 										<span><?php echo ( date( 'H', $wystapienie['video_start'] ) - 1 ) . date( ':i:s', $wystapienie['video_start'] ); ?></span> <?php echo $wystapienie['mowca_str']; ?>
 									</a>
 								</li>

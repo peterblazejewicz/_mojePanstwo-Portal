@@ -64,9 +64,6 @@ jQuery(document).ready(function () {
 		var histogram_div = jQuery( section.find('.histogram') );
 		var data = histogram_div.data('init');
 		var charts_data = [];
-		
-
-		console.log('data', data);
 
 		for( var d=0; d<data.length; d++ )
 			if( data[d] )
@@ -75,11 +72,8 @@ jQuery(document).ready(function () {
 		
 
 		histogram_div.attr('id', 'h'+i);
-		
-		console.log('histogram_div', histogram_div);
-		
+
 		var chart = new Highcharts.Chart({
-	
 		    chart: {
 		        renderTo: 'h'+i,
 		        type: 'column',
@@ -106,7 +100,7 @@ jQuery(document).ready(function () {
 				    enabled: false
 			    },
 			    gridLineWidth: 0,
-			    title: null,
+                title: null
 		    },
 		    
 		    yAxis: {

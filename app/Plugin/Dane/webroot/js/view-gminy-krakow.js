@@ -1,108 +1,28 @@
-$(function () {
+var map;
 
-    // Prepare random data
-    var data = [
-        {
-            "code": "I",
-            "value": 728
-        },
-        {
-            "code": "II",
-            "value": 710
-        },
-        {
-            "code": "III",
-            "value": 963
-        },
-        {
-            "code": "IV",
-            "value": 541
-        },
-        {
-            "code": "V",
-            "value": 622
-        },
-        {
-            "code": "VI",
-            "value": 866
-        },
-        {
-            "code": "VII",
-            "value": 398
-        },
-        {
-            "code": "VIII",
-            "value": 785
-        },
-        {
-            "code": "IX",
-            "value": 223
-        },
-        {
-            "code": "X",
-            "value": 605
-        },
-        {
-            "code": "XI",
-            "value": 361
-        },
-        {
-            "code": "XII",
-            "value": 237
-        },
-        {
-            "code": "XIII",
-            "value": 157
-        }
-    ];
+function initialize() {
+    var mapOptions = {
+        zoom: 10
+    };
+    map = new google.maps.Map(document.getElementById('dzielnice_map'), mapOptions);
 
+    var kmlUrl = 'http://mojepanstwo.pl/files/dzielnice_administracyjne.kml';
+    /*FILE HAVE TO BE SEEN BY GOOGLE! */
+    var kmlOptions = {
+        suppressInfoWindows: true,
+        preserveViewport: false,
+        map: map
+    };
 
+    var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
 
-	$.ajax({
-	  dataType: "json",
-	  url: '/files/krakow-dzielnice.geo.json',
-	  // url: 'http://www.highcharts.com/samples/data/jsonp.php?filename=germany.geo.json&callback=?',
-	  jsonp: true, 
-	  jsonpCallback: "mapStart",
-	  success: function(geojson){
-		  
-		    $('#dzielnice_map').highcharts('Map', {
+    console.log(kmlLayer);
 
-	            title: {
-	                text: false
-	            },
-	
-				credits: {
-					enabled: false	
-				},
-				
-	            mapNavigation: {
-	                enabled: true,
-	                buttonOptions: {
-	                    verticalAlign: 'top'
-	                }
-	            },
-	
-	            colorAxis: {},
-	
-	            series: [{
-	                data: data,
-	                mapData: geojson,
-	                joinBy: ['Name', 'code'],
-	                name: false,
-	                states: {
-	                    hover: {
-	                        color: '#BADA55'
-	                    }
-	                },
-	                dataLabels: {
-	                    enabled: true,
-	                    format: '{point.properties.Description}'
-	                }
-	            }]
-	        });
-		  
-	  }
-	});
+    google.maps.event.addListener(kmlLayer, 'click', function (kmlEvent) {
+        var text = kmlEvent.featureData;
+        console.log(text);
+    });
 
-});
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);

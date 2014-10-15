@@ -536,11 +536,13 @@ class GminyController extends DataobjectsController
                     'label' => 'Radni dzielnicy',
                 );
                 
+                /*
                 $submenu['items'][] = array(
                     'id' => 'posiedzenia',
                     'href' => $href_base . '/posiedzenia',
                     'label' => 'Posiedzenia rady dzielnicy',
                 );
+                */
                  
                 $submenu['selected'] = $subaction;
                 $this->set('_submenu', $submenu);
@@ -575,6 +577,39 @@ class GminyController extends DataobjectsController
 		
 	}
 	
+	
+	public function komisje_posiedzenia() {
+		$this->_prepareView();
+		$this->request->params['action'] = 'komisje_posiedzenia';
+
+		if ( isset( $this->request->params['pass'][0] ) && is_numeric( $this->request->params['pass'][0] ) ) {
+
+			$posiedzenie = $this->API->getObject( 'krakow_komisje_posiedzenia', $this->request->params['pass'][0], array(
+				'layers' => 'neighbours',
+			) );
+			$document = $this->API->document( $posiedzenie->getData( 'dokument_id' ) );
+			$this->set( 'komisja_posiedzenie', $posiedzenie );
+			$this->set( 'document', $document );
+			$this->set( 'documentPackage', 1 );
+			$this->set( 'title_for_layout', $posiedzenie->getTitle() );
+
+			$this->render( 'komisja_posiedzenie' );
+
+		} else {
+
+			$this->dataobjectsBrowserView( array(
+				'dataset'        => 'krakow_komisje_posiedzenia',
+				'title'          => 'Posiedzenia komisji',
+				'noResultsTitle' => 'Brak danych',
+				// 'hl_fields' => array('krakow_komisje.nazwa'),
+			) );
+
+			$this->set( 'title_for_layout', 'Posiedzenia komisji Rady Miasta ' . $this->object->getData( 'nazwa' ) );
+
+		}
+	}
+
+
 
 	public function radni_powiazania() {
 
@@ -597,7 +632,7 @@ class GminyController extends DataobjectsController
 			$sub_id    = ( isset( $this->request->params['pass'][2] ) && $this->request->params['pass'][2] ) ? $this->request->params['pass'][2] : false;
 
 			$radny = $this->API->getObject( 'radni_gmin', $this->request->params['pass'][0], array(
-				'layers' => array( 'najblizszy_dyzur', 'neighbours' ),
+				'layers' => array( 'najblizszy_dyzur', 'komisje', 'neighbours' ),
 			) );
 			$radny->getLayer( 'neighbours' );
 			$dyzur = $radny->getLayer( 'najblizszy_dyzur' );
@@ -609,7 +644,6 @@ class GminyController extends DataobjectsController
 
 					$radny->loadLayer( 'details' );
 
-					/*
                     if ($radny->getData('liczba_wystapien')) {
                         $this->API->searchDataset('rady_gmin_wystapienia', array(
                             'limit' => 8,
@@ -619,7 +653,6 @@ class GminyController extends DataobjectsController
                         ));
                         $this->set('wystapienia', $this->API->getObjects());
                     }
-                    */
 
 					if ( $radny->getData( 'liczba_interpelacji' ) ) {
 						$this->API->searchDataset( 'rady_gmin_interpelacje', array(
@@ -647,7 +680,11 @@ class GminyController extends DataobjectsController
 						'source'         => 'radni_gmin.wystapienia:' . $radny->getId(),
 						'dataset'        => 'rady_gmin_wystapienia',
 						'noResultsTitle' => 'Brak wystąpień',
-						// 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+						'hlFields' => array(),
+						'routes' => array(
+							'shortTitle' => 'krakow_posiedzenia_punkty.tytul',
+							'title' => 'krakow_posiedzenia_punkty.tytul',
+						),
 					) );
 
 					break;
@@ -728,7 +765,6 @@ class GminyController extends DataobjectsController
 					);
 				}
 
-				/*
                 if ($radny->getData('liczba_wystapien'))
                     $submenu['items'][] = array(
                         'id' => 'wystapienia',
@@ -736,7 +772,6 @@ class GminyController extends DataobjectsController
                         'label' => 'Wystąpienia',
                         'count' => $radny->getData('liczba_wystapien'),
                     );
-                */
 
 				$submenu['items'][] = array(
 					'id'    => 'glosowania',
@@ -794,6 +829,92 @@ class GminyController extends DataobjectsController
 
 			$this->dataobjectsBrowserView( $params );
 			$this->set( 'title_for_layout', 'Radni gminy ' . $this->object->getData( 'nazwa' ) );
+
+		}
+	}
+	
+	public function komisje() {
+
+		$this->_prepareView();
+		$this->request->params['action'] = 'komisje';
+
+		if ( isset( $this->request->params['pass'][0] ) && is_numeric( $this->request->params['pass'][0] ) ) {
+
+			$subaction = ( isset( $this->request->params['pass'][1] ) && $this->request->params['pass'][1] ) ? $this->request->params['pass'][1] : 'view';
+			$sub_id    = ( isset( $this->request->params['pass'][2] ) && $this->request->params['pass'][2] ) ? $this->request->params['pass'][2] : false;
+
+			$komisja = $this->API->getObject( 'krakow_komisje', $this->request->params['pass'][0], array(
+				'layers' => array( 'sklad' ),
+			) );
+			// debug( $dyzur ); die();
+			$title_for_layout = $komisja->getTitle();
+
+			switch ( $subaction ) {
+				case 'view': {
+
+
+
+
+					break;
+				}
+				case 'posiedzenia': {
+
+					$this->dataobjectsBrowserView( array(
+						'source'         => 'krakow_komisje.posiedzenia:' . $komisja->getId(),
+						'dataset'        => 'krakow_komisje_posiedzenia',
+						'noResultsTitle' => 'Brak posiedzeń',
+						'hlFields' => array(),
+					) );
+
+					break;
+				}
+				
+			}
+
+
+			if ( $this->object->getId() == 903 ) {
+
+				$href_base = '/dane/gminy/' . $this->object->getId() . '/komisje/' . $komisja->getId();
+
+				$submenu = array(
+					'items' => array(),
+				);
+
+				$submenu['items'][] = array(
+					'id'    => 'view',
+					'href'  => $href_base,
+					'label' => 'Skład',
+				);
+				
+				$submenu['items'][] = array(
+					'id'    => 'posiedzenia',
+					'href'  => $href_base . '/posiedzenia',
+					'label' => 'Posiedzenia',
+				);
+
+				
+
+				$submenu['selected'] = $subaction;
+				$this->set( '_submenu', $submenu );
+
+			}
+
+			$this->set( 'komisja', $komisja );
+			$this->set( 'sub_id', $sub_id );
+			$this->set( 'title_for_layout', $title_for_layout );
+			$this->render( 'komisja-' . $subaction );
+
+		} else {
+
+			$params = array(
+				'dataset'        => 'krakow_komisje',
+				'noResultsTitle' => 'Brak komisji dla tej gminy',
+				'title' => 'Komisje Rady Miasta',
+				'limit'          => 100,
+			);
+
+			$this->dataobjectsBrowserView( $params );
+			$this->set( 'title_for_layout', 'Komisje Rady Miasta ' . $this->object->getData( 'nazwa' ) );
 
 		}
 	}
@@ -1152,6 +1273,7 @@ class GminyController extends DataobjectsController
 							'label'     => 'Posiedzenia rady miasta',
 							'href'      => $href_base . '/posiedzenia',
 						),
+						
 						array(
 							'id'    => 'punkty',
 							'label' => 'Punkty porządku dziennego na posiedzeniach',
@@ -1166,11 +1288,23 @@ class GminyController extends DataobjectsController
 						*/
 						array(
 							'topborder' => true,
+							'id'        => 'komisje',
+							'label'     => 'Komisje',
+							'href'      => $href_base . '/komisje',
+						),
+						array(
+							'id'        => 'komisje_posiedzenia',
+							'label'     => 'Posiedzenia komisji',
+							'href'      => $href_base . '/komisje_posiedzenia',
+						),
+						array(
+							'topborder' => true,
 							'id'        => 'interpelacje',
 							'label'     => 'Interpelacje radnych',
 							'href'      => $href_base . '/interpelacje',
 						),
 						array(
+							'topborder' => true,
 							'id'    => 'druki',
 							'label' => 'Druki na posiedzenia rady miasta',
 							'href'  => $href_base . '/druki',
@@ -1179,7 +1313,7 @@ class GminyController extends DataobjectsController
 							'id'    => 'rada_uchwaly',
 							'label' => 'Uchwały rady miasta',
 							'href'  => $href_base . '/rada_uchwaly',
-						),
+						)
 					),
 				),
 			);
@@ -1213,6 +1347,18 @@ class GminyController extends DataobjectsController
 			$dzielnice_items = array();
 			if( $dzielnice = $this->object->getLayer('dzielnice') ) {
 				
+				$dzielnice_items[] = array(
+					'id' => 'dzielnice',
+					'label' => 'Lista dzielnic',
+					'href' => $href_base . '/dzielnice'
+				);
+				
+				$dzielnice_items[] = array(
+					'id' => 'radni_dzielnic',
+					'label' => 'Radni dzielnic',
+					'href' => $href_base . '/radni_dzielnic'
+				);
+				
 				foreach( $dzielnice as $dzielnica )
 					$dzielnice_items[] = array(
 						'id' => $dzielnica['id'],
@@ -1220,7 +1366,7 @@ class GminyController extends DataobjectsController
 						'href' => $href_base . '/dzielnice/' . $dzielnica['id'],
 					);
 				
-				// $dzielnice_items[1]['topborder'] = true;
+				$dzielnice_items[2]['topborder'] = true;
 				
 				$menu['items'][] = array(
 					'id' => 'dzielnice',
