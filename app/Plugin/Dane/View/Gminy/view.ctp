@@ -8,7 +8,7 @@
 
 <?php if ( $object->getId() == '903' ) {
 	$this->Combinator->add_libs( 'css', $this->Less->css( 'view-gminy-krakow', array( 'plugin' => 'Dane' ) ) );
-	$this->Combinator->add_libs( 'js', 'https://maps.googleapis.com/maps/api/js?v=3.exp' );
+	echo $this->Html->script( '//maps.googleapis.com/maps/api/js?v=3.exp', array( 'block' => 'scriptBlock' ) );
 	$this->Combinator->add_libs( 'js', 'Dane.view-gminy-krakow' );
 } ?>
 
