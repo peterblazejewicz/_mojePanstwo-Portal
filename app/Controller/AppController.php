@@ -238,6 +238,10 @@ class AppController extends Controller {
 				( $this->request->params['controller'] == 'krs_podmioty' )
 				) {
 
+				} elseif (
+				( $this->request->params['controller'] == 'radni_dzielnic' )
+				) {
+				
 				} else {
 
 					$this->redirect( 'http://' . PORTAL_DOMAIN . $_SERVER['REQUEST_URI'] );
