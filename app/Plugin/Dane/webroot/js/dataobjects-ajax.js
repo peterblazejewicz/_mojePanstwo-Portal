@@ -7,7 +7,7 @@ var DataObjectesAjax = {
         this.setLanguage();
         this.HistoryMagic();
         this.sniffForClick();
-        //this.sniffForWordChange();
+        this.sniffForWordChange();
         this.sorting();
         this.pageChange();
         this.submitChanger();
@@ -124,12 +124,12 @@ var DataObjectesAjax = {
 
         if ((innerSearch = $('#innerSearch')).length) {
             innerSearch.focus();
-            innerSearch.keyup(function (e) {
+            /*innerSearch.keyup(function (e) {
                 if (innerSearch.val() != innerSearch.data('last') && (e.which != "13")) {
                     innerSearch.data('last', innerSearch.val());
                     setTimeout(DataObjectesAjax.objectsReload, 1000);
                 }
-            })
+             })*/
         }
     },
     submitChanger: function () {
@@ -474,7 +474,7 @@ var DataObjectesAjax = {
                         /*RELOAD ASSIGNED FUNCTIONS*/
                         DataObjectesAjax.sniffForClick();
                         DataObjectesAjax.pageChange();
-                        //DataObjectesAjax.sniffForWordChange();
+                        DataObjectesAjax.sniffForWordChange();
                         DataObjectesAjax.submitChanger();
                         DataObjectesAjax.datepickerForInputs();
                         DataObjectesAjax.removeHiddenInput();
