@@ -7,7 +7,7 @@ var DataObjectesAjax = {
         this.setLanguage();
         this.HistoryMagic();
         this.sniffForClick();
-        this.sniffForWordChange();
+        //this.sniffForWordChange();
         this.sorting();
         this.pageChange();
         this.submitChanger();
@@ -474,7 +474,7 @@ var DataObjectesAjax = {
                         /*RELOAD ASSIGNED FUNCTIONS*/
                         DataObjectesAjax.sniffForClick();
                         DataObjectesAjax.pageChange();
-                        DataObjectesAjax.sniffForWordChange();
+                        //DataObjectesAjax.sniffForWordChange();
                         DataObjectesAjax.submitChanger();
                         DataObjectesAjax.datepickerForInputs();
                         DataObjectesAjax.removeHiddenInput();
