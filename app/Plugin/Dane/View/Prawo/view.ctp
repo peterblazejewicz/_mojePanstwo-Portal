@@ -107,7 +107,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 		<div class="col-lg-9 objectMain">
 			<div class="object">
 				
-				<? if ( ( $files = $object->getLayer( 'files' ) ) && ( $file = array_shift( $files ) ) ) { ?>
+				<? if ( ( $files = $object->getLayer( 'files' ) ) && ($filesCount = count($files)) && ( $file = array_shift( $files ) ) ) { ?>
 
 					<a href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>" class="banner">
 						<div class="row">
@@ -115,7 +115,18 @@ echo $this->Element( 'dataobject/pageBegin' );
 								<img src="http://docs.sejmometr.pl/thumb/5/<?= $file['dokument_id'] ?>.png"/>
 							</div>
 							<div class="col-md-6 cont text_cont">
-								<p>Przeczytaj tekst <?
+								
+								<? if( $filesCount>1 ) {?>
+
+								<p>Przeczytaj aktualny tekst 
+								
+								<? } else {?>
+								
+								<p>Przeczytaj tekst 
+								
+								<? } ?>
+								
+								<?
 									
 									
 									
@@ -154,6 +165,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 									else
 										echo "aktu prawnego";
 								?></p>
+																
 							</div>
 							<div class="col-md-1 cont arrow_cont">
 								<span class="glyphicon glyphicon-arrow-right"></span>
@@ -161,10 +173,18 @@ echo $this->Element( 'dataobject/pageBegin' );
 						</div>
 					</a>
 
-					<? if ( $file = array_shift( $files ) ) { ?>
+					<? 
+						if ( $file = array_shift( $files ) ) { 
+						
+						if( $filesCount>1 ) {
+							$title = 'Tekst pierwotny';
+						} else {
+							$title = $file['title'];
+						}
+					?>
 						<div class="banner_addon_cont">
 							<a class="banner_addon"
-							   href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>"><?= $file['title'] ?> &raquo;</a>
+							   href="/dane/prawo/<?= $object->getId() ?>/<?= $file['slug'] ?>"><?= $title ?> &raquo;</a>
 						</div>
 					<? } ?>
 				<? } ?>

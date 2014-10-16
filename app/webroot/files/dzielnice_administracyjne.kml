@@ -9,7 +9,16 @@
 </Schema>
   <Placemark>
 	<name>I</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">I</SimpleData>
 		<SimpleData name="ID1">1</SimpleData>
@@ -18,7 +27,16 @@
   </Placemark>
   <Placemark>
 	<name>II</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">II</SimpleData>
 		<SimpleData name="ID1">2</SimpleData>
@@ -27,7 +45,16 @@
   </Placemark>
   <Placemark>
 	<name>III</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">III</SimpleData>
 		<SimpleData name="ID1">3</SimpleData>
@@ -36,7 +63,16 @@
   </Placemark>
   <Placemark>
 	<name>IV</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">IV</SimpleData>
 		<SimpleData name="ID1">4</SimpleData>
@@ -45,7 +81,16 @@
   </Placemark>
   <Placemark>
 	<name>V</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">V</SimpleData>
 		<SimpleData name="ID1">5</SimpleData>
@@ -54,7 +99,16 @@
   </Placemark>
   <Placemark>
 	<name>VI</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">VI</SimpleData>
 		<SimpleData name="ID1">6</SimpleData>
@@ -63,7 +117,16 @@
   </Placemark>
   <Placemark>
 	<name>VII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">VII</SimpleData>
 		<SimpleData name="ID1">7</SimpleData>
@@ -72,7 +135,16 @@
   </Placemark>
   <Placemark>
 	<name>VIII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">VIII</SimpleData>
 		<SimpleData name="ID1">8</SimpleData>
@@ -81,7 +153,16 @@
   </Placemark>
   <Placemark>
 	<name>IX</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">IX</SimpleData>
 		<SimpleData name="ID1">9</SimpleData>
@@ -90,7 +171,16 @@
   </Placemark>
   <Placemark>
 	<name>X</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">X</SimpleData>
 		<SimpleData name="ID1">10</SimpleData>
@@ -99,7 +189,16 @@
   </Placemark>
   <Placemark>
 	<name>XI</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XI</SimpleData>
 		<SimpleData name="ID1">11</SimpleData>
@@ -108,7 +207,16 @@
   </Placemark>
   <Placemark>
 	<name>XII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XII</SimpleData>
 		<SimpleData name="ID1">12</SimpleData>
@@ -117,7 +225,16 @@
   </Placemark>
   <Placemark>
 	<name>XIII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XIII</SimpleData>
 		<SimpleData name="ID1">13</SimpleData>
@@ -126,7 +243,16 @@
   </Placemark>
   <Placemark>
 	<name>XIV</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XIV</SimpleData>
 		<SimpleData name="ID1">14</SimpleData>
@@ -135,7 +261,16 @@
   </Placemark>
   <Placemark>
 	<name>XV</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XV</SimpleData>
 		<SimpleData name="ID1">15</SimpleData>
@@ -144,7 +279,16 @@
   </Placemark>
   <Placemark>
 	<name>XVI</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XVI</SimpleData>
 		<SimpleData name="ID1">16</SimpleData>
@@ -153,7 +297,16 @@
   </Placemark>
   <Placemark>
 	<name>XVIII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XVIII</SimpleData>
 		<SimpleData name="ID1">17</SimpleData>
@@ -162,7 +315,16 @@
   </Placemark>
   <Placemark>
 	<name>XVII</name>
-  <Style><LineStyle><color>ff0000ff</color></LineStyle>  <PolyStyle><color>01ffffff</color> <outline>0</outline></PolyStyle></Style>
+      <Style>
+          <LineStyle>
+              <color>ffaa0000</color>
+          </LineStyle>
+          <PolyStyle>
+              <color>1faa0000</color>
+              <fill>1</fill>
+              <outline>1</outline>
+          </PolyStyle>
+      </Style>
 	<ExtendedData><SchemaData schemaUrl="#dzielnice_administracyjne">
 		<SimpleData name="NR_DZIELNI">XVII</SimpleData>
 		<SimpleData name="ID1">18</SimpleData>

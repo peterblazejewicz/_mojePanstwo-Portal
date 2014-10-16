@@ -87,68 +87,47 @@ $this->Combinator->add_libs( 'js', 'Finanse.dzialy.js' );
 </div>
 
 <div class="container">
-
 	<div class="mpanel" id="sections">
-
 		<ul id="sections">
-
 			<? foreach ( $data['sections'] as $section ) { ?>
-
 				<li class="section" data-id="<?= $section['id'] ?>">
-
 					<div class="row">
 						<div class="col-md-2 text-right icon">
 							<img src="/finanse/img/sections/<?= $section['id'] ?>.svg"/>
 						</div>
-
 						<div class="col-md-10">
-
 							<div class="row row-header">
-								<div class="col-md-12">
-
+								<div class="title col-md-12">
 									<div class="col-md-10">
-
 										<h3 class="name"><?= $section['nazwa'] ?></h3>
-
-										<? /*
-									<p class="desc_switcher"><a class="switcher" data-target="<?= $section['dzial.id'] ?>" href="#" onclick="return false;">Więcej &raquo;</a></p>
-									<p id="switcher<?= $section['dzial.id'] ?>" class="desc" style="display: none;"><?= $section['dzial.opis'] ?></p>
-									*/
-										?>
-
 									</div>
 									<div class="col-md-2 text-center">
 										<p class="value"><?= number_format_h( $section['sum_section'] ) ?></p>
-
 									</div>
 								</div>
-																
 								<div class="histogram_cont">
-									<div class="histogram" data-init="<?= htmlspecialchars(json_encode( $section['buckets'] )) ?>">
-										
-										
+									<div class="histogram"
+									     data-init="<?= htmlspecialchars( json_encode( $section['buckets'] ) ) ?>">
 									</div>
 								</div>
-								
 								<div class="gradient_cont">
-									<p class="gradient"></p>
+									<span class="gradient"></span>
 									<ul class="addons">
-										<li class="min" style="left: 0;"><p><span
-													class="n"><?= $section['min_nazwa'] ?></span><br/><span
-													class="v"><?= _number( $section['min'] ) ?></span></p></li>
-										<li class="max" style="left: 100%;"><p><span
-													class="n"><?= $section['max_nazwa'] ?></span><br/><span
-													class="v"><?= _number( $section['max'] ) ?></span></p></li>
+										<li class="min">
+											<span class="n"><?= $section['min_nazwa'] ?></span>
+											<span class="v"><?= _number( $section['min'] ) ?></span>
+										</li>
+										<li class="max">
+											<span class="n"><?= $section['max_nazwa'] ?></span>
+											<span class="v"><?= _number( $section['max'] ) ?></span>
+										</li>
 									</ul>
 								</div>
-
 							</div>
-
-
+						</div>
+					</div>
 				</li>
-
 			<? } ?>
 		</ul>
-
 	</div>
 </div>
