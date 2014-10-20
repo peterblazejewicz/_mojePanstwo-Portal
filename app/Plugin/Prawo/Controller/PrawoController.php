@@ -8,6 +8,29 @@ class PrawoController extends AppController {
 	public $helpers = array( 'Dane.Dataobject' );
 	public $uses = array( 'Dane.Dataliner' );
 
+	
+	public function start() {
+		
+		$data = $this->API->Prawo()->getData();
+				
+		$this->set('keywords', $data['keywords']);
+		$this->set('popular', $data['popular']);
+		
+		$API = $this->API->Dane();
+		$data = $API->searchDataset( 'prawo', array(
+			'order' => 'data_wejscia_w_zycie desc',
+			'limit' => 5,
+			'conditions' => array(
+				'data_wejscia_w_zycie' => '[* TO NOW]',
+				'typ_id' => '1',
+			),
+		) );
+		$this->set('ustawy', $API->getObjects());
+		
+		
+		
+	}
+	
 	public function weszly() {
 
 		$filter_field    = 'typ_id';

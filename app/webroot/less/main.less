@@ -191,7 +191,20 @@ body > pre:first-child {
 
 .block {
     padding: 30px 30px 0;
-
+	
+	ul.keywords {
+		overflow: auto;
+		padding: 10px;
+		li {
+			float: left;
+			padding: 4px 3px;
+			.label {
+				font-size: 13px;
+				font-weight: 400;
+			}
+		}
+	}
+	
     &.nosidepadding {
         padding-left: 0;
         padding-right: 0;

@@ -4,7 +4,7 @@ App::uses( 'DataobjectsController', 'Dane.Controller' );
 
 class PrawoController extends DataobjectsController {
 
-	public $initLayers = array( 'docs', 'counters', 'files' );
+	public $initLayers = array( 'docs', 'counters', 'files', 'tags' );
 	public $helpers = array( 'Document' );
 
 	public $uses = array( 'Dane.Dataliner' );
@@ -17,7 +17,12 @@ class PrawoController extends DataobjectsController {
 		),
 	);
 
-
+	public function hasla() {
+		
+		$this->_prepareView();
+	
+	}
+	
 	public function view( $package = 1 ) {
 
 		$this->_prepareView();
@@ -29,6 +34,22 @@ class PrawoController extends DataobjectsController {
 			
 		}
 		
+		$dokument_id = false;
+
+		if ( $files = $this->object->getLayer( 'files' ) ) {
+			foreach ( $files as $file ) {
+				if ( $file['slug'] == 'tekst_aktualny' ) {
+					$dokument_id = $file['dokument_id'];
+					break;
+				}
+			}
+		}
+		
+		// debug( $dokument_id ); die();
+		$this->set( 'document', $this->API->document( $files[0]['dokument_id'] ) );
+		
+		
+		/*
 		$datalinerParams = array(
 			'requestData' => array(
 				'conditions' => array(
@@ -42,7 +63,8 @@ class PrawoController extends DataobjectsController {
 		) );
 
 		$datalinerParams['initData'] = $data;
-
+		*/
+		
 		/*
 		'type' => 'blog_post',
 						                'date' => $object->getDate(),
@@ -50,7 +72,7 @@ class PrawoController extends DataobjectsController {
 										'content' => '<div class="row"><div class="col-md-2"><img style="max-width: 56px;" src="' . $object->getThumbnailUrl(3) . '" /></div><div class="col-md-10"><a href="/dane/prawo/' . $object->getId() . '">' . $object->getTitle() . '</a></div></div>'
 		*/
 
-		$this->set( 'datalinerParams', $datalinerParams );
+		// $this->set( 'datalinerParams', $datalinerParams );
 
 
 		// $this->set('document', $this->API->document( $this->object->getData('dokument_id') ));
@@ -215,7 +237,7 @@ class PrawoController extends DataobjectsController {
 				array(
 					'id'    => '',
 					'href'  => $href_base,
-					'label' => 'Metryka',
+					'label' => 'Treść',
 				),
 			)
 		);
@@ -253,17 +275,15 @@ class PrawoController extends DataobjectsController {
 				);
 
 			}
+			
+			if ( $this->object->getLayer( 'tags' ) ) {
 
-			if ( $files = $this->object->getLayer( 'files' ) ) {
-				foreach ( $files as $file ) {
+				$menu['items'][] = array(
+					'id'    => 'hasla',
+					'href'  => $href_base . '/hasla',
+					'label' => 'Hasła',
+				);
 
-					$menu['items'][] = array(
-						'id'    => $file['slug'],
-						'href'  => $href_base . '/' . $file['slug'],
-						'label' => $file['title'],
-					);
-
-				}
 			}
 
 		}

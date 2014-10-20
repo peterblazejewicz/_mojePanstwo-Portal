@@ -8,7 +8,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 
 	<div class="prawo row">
-		<div class="col-lg-2 objectSide">
+		<div class="col-lg-3 objectSide">
 			<div class="objectSideInner">
 				<ul class="dataHighlights side">
 
@@ -109,13 +109,13 @@ echo $this->Element( 'dataobject/pageBegin' );
 		</div>
 
 
-		<div class="col-lg-10 objectMain">
+		<div class="col-lg-9 objectMain">
 			
 			<div class="object">
 								
 				<? if( $keywords = $object->getLayer('tags') ) { ?>
 	
-					<div style="display: none;" class="block nobottomborder">
+					<div class="block nobottomborder">
 						<div class="block-header">
 							<h2 class="label">Hasła</h2>
 						</div>
@@ -129,26 +129,9 @@ echo $this->Element( 'dataobject/pageBegin' );
 					</div>
 				
 				<? } ?>
-								
-				<? if( isset($projekt) ) {?>
-					
-					<div class="block proces">
-						<div class="block-header">
-							<h2 class="label">Zobacz prace w Sejmie nad tą ustawą</h2>
-						</div>
-						<div class="content">
-							<? echo $this->Dataobject->render( $projekt, 'default', array(
-								'hlFields' => array('autorzy_html')
-							) ); ?>
-						</div>
-					</div>
-					
-				<? } ?>					
 				
 			</div>
-			
-			<?= $this->Document->place( $document ) ?>
-			
+						
 		</div>
 	</div>
 

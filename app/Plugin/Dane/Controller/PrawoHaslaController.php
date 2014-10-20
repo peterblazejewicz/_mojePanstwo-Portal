@@ -8,9 +8,11 @@ class PrawoHaslaController extends DataobjectsController {
 		'hlFields' => array(),
 	);
 	
-	public function view() {
+	public function akty_prawne() {
 		
 		parent::_prepareView();
+		
+		
 		$this->dataobjectsBrowserView( array(
 			'source'  => 'prawo.haslo:' . $this->object->getId(),
 			'dataset' => 'prawo',
@@ -23,6 +25,13 @@ class PrawoHaslaController extends DataobjectsController {
 
 		// $this->set('title_for_layout', __d('dane', 'LC_DANE_GMINY_W_WOJEWODZTWIE') . ' ' . $this->object->getData('nazwa'));
 
+	}
+	
+	public function view() {
+		
+		$this->addInitLayers(array('akty'));
+		parent::_prepareView();
+		
 	}
 
 	public function beforeRender() {
@@ -41,7 +50,7 @@ class PrawoHaslaController extends DataobjectsController {
 		);
 
 		$menu['selected'] = ( $this->request->params['action'] == 'view' ) ? '' : $this->request->params['action'];
-		$this->set( '_menu', $menu );
+		// $this->set( '_menu', $menu );
 
 	}
 } 

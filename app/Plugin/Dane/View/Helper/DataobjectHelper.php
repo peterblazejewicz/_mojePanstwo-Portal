@@ -15,7 +15,7 @@ class DataobjectHelper extends AppHelper {
 	}
 
 
-	public function getDate( $field_pattern = 'data', $add_hour = false ) {
+	public function getDate( $field = null, $add_hour = false ) {
 
 
 		if ( $this->object->getDate() ) {
