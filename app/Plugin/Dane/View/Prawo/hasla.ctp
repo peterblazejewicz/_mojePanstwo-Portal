@@ -111,7 +111,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 		<div class="col-lg-9 objectMain">
 			
-			<div class="object">
+			<div class="object mpanel">
 								
 				<? if( $keywords = $object->getLayer('tags') ) { ?>
 	
