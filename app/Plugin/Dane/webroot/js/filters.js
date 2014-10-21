@@ -155,6 +155,18 @@ var filtersController = function () {
                 }
             }
         })
+
+        filters.find('.changeable > .label_cont').click(function () {
+            var $that = $(this).parent('.filter');
+
+            if ($that.hasClass('inactive')) {
+                $that.find(">div:not('.label_cont'), > ul, > span").show();
+                $that.removeClass('inactive');
+            } else {
+                $that.find(">div:not('.label_cont'), > ul, > span").hide();
+                $that.addClass('inactive');
+            }
+        });
     }
 };
 
