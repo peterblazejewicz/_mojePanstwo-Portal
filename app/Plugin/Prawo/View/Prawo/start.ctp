@@ -8,7 +8,7 @@
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
 			<? echo $this->Element( 'suggester', array(
-				'preset'             => 'prawo',
+				'app'             => 'prawo',
 				'displayDatasetName' => false,
 				'placeholder'        => 'Szukaj w prawie...',
 				'action'             => '/prawo',

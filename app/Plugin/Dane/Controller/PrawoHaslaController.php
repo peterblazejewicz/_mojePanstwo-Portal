@@ -16,6 +16,7 @@ class PrawoHaslaController extends DataobjectsController {
 		$this->dataobjectsBrowserView( array(
 			'source'  => 'prawo.haslo:' . $this->object->getId(),
 			'dataset' => 'prawo',
+			'order' => '_weight desc',
 			/*
 			'excludeFilters' => array(
 				'wojewodztwo_id',

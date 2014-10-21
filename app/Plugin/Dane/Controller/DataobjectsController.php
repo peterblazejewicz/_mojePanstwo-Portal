@@ -37,6 +37,7 @@ class DataobjectsController extends DaneAppController {
 	public function suggest() {
 
 		$q = (string) @$this->request->query['q'];
+		$app = (string) @$this->request->query['app'];
 
 		if ( ! $q ) {
 			return false;
@@ -45,6 +46,10 @@ class DataobjectsController extends DaneAppController {
 		$params = array(
 			'q' => $q,
 		);
+		
+		if( $app )
+			$params['app'] = $app;
+		
 		$data = $this->API->Dane()->suggest( $params );
 
 		$hits = array();

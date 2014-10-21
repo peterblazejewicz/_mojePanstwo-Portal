@@ -5,8 +5,8 @@
 	<div class="input-group main_input">
 		<input name="q" value="" type="text" autocomplete="off" class="datasearch form-control input-lg"
 		       placeholder="<?= $placeholder ?>"
-			<?php if ( isset( $preset ) ) {
-				echo 'data-preset="' . $preset . '"';
+			<?php if ( isset( $app ) ) {
+				echo 'data-app="' . $app . '"';
 			} ?>
 			/>
         <span class="input-group-btn">

@@ -6,7 +6,7 @@
             var suggesterInput = $(block).find('input.form-control'),
                 suggesterBtn = $(block).find('.input-group-btn .btn'),
                 suggesterData = {
-                    'preset': suggesterInput.data('preset')
+                    'app': suggesterInput.data('app')
                 },
                 suggesterCache = {};
 
@@ -23,8 +23,8 @@
                     } else {
                         suggesterBtn.addClass('loading');
                         var parm = "q=" + request.term;
-                        if (suggesterData.preset)
-                            parm += "&preset=" + suggesterData.preset;
+                        if (suggesterData.app)
+                            parm += "&app=" + suggesterData.app;
                         $.getJSON("/dane/suggest.json?" + parm, function (data) {
 
                             var results = $.map(data.hits, function (item) {
