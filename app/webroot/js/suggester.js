@@ -93,7 +93,7 @@
                         suggesterInput.val(ui.item.title);
                     return false;
                 }
-            });
+            }).autocomplete("widget").addClass("autocompleteSuggester");
 
             suggesterInput.data("ui-autocomplete")._renderItem = function (ul, item) {
                 if (item.type == 'item') {

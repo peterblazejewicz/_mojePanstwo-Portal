@@ -238,5 +238,5 @@ jQuery(document).ready(function () {
             }
             return false;
         }
-    });
+    }).autocomplete("widget").addClass("autocompleteFinanseDzialy");
 });

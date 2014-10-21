@@ -603,7 +603,7 @@ jQuery(document).ready(function () {
             }
             return false;
         }
-    });
+    }).autocomplete("widget").addClass("autocompleteMojaGmina");
 
     /*autocomplete.parents('form').on('submit', function (e) {
      e.preventDefault();

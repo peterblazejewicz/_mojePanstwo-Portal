@@ -273,6 +273,20 @@ blockquote {
             }
 
             .filter {
+                @titleColor: lighten(#2e8f3e, 10%);
+
+                &.inactive {
+                    > div, > ul, > span {
+                        display: none;
+                    }
+                    > .label_cont {
+                        display: block;
+
+                        label, label a, label, label .glyphicon {
+                            color: rgba(red(@titleColor), green(@titleColor), blue(@titleColor), .5);
+                        }
+                    }
+                }
 
                 &:hover {
                     .options {
@@ -303,11 +317,12 @@ blockquote {
 
                 > .label_cont {
                     overflow: auto;
+                    cursor: pointer;
 
                     label, a {
 
                         span {
-                            color: lighten(#2e8f3e, 10%);
+                            color: @titleColor;
                             font-size: 13px;
                             margin-right: 2px;
                             position: relative;

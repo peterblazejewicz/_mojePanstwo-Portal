@@ -40,7 +40,7 @@
             }
             return false;
         }
-    });
+    }).autocomplete("widget").addClass("autocompleteKodyPocztowe");
 
     autocomplete.parents('form').on('submit', function (e) {
         e.preventDefault();

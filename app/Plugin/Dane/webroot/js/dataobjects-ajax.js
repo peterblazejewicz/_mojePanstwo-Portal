@@ -125,10 +125,10 @@ var DataObjectesAjax = {
         if ((innerSearch = $('#innerSearch')).length) {
             innerSearch.focus();
             /*innerSearch.keyup(function (e) {
-                if (innerSearch.val() != innerSearch.data('last') && (e.which != "13")) {
-                    innerSearch.data('last', innerSearch.val());
-                    setTimeout(DataObjectesAjax.objectsReload, 1000);
-                }
+             if (innerSearch.val() != innerSearch.data('last') && (e.which != "13")) {
+             innerSearch.data('last', innerSearch.val());
+             setTimeout(DataObjectesAjax.objectsReload, 1000);
+             }
              })*/
         }
     },
@@ -272,7 +272,7 @@ var DataObjectesAjax = {
 
 
         var innerSearch;
-        if (innerSearch = jQuery('#innerSearch')) {
+        if ((innerSearch = jQuery('#innerSearch')).length) {
             innerSearch.keypress(function (e) {
                 if (e.which == 13) {
                     e.preventDefault();
@@ -335,6 +335,12 @@ var DataObjectesAjax = {
     sortingReload: function () {
         var formSerialize = jQuery('#DatasetViewForm').serializeArray(),
             sortSerialize = ( (jQuery(".DatasetSort").data("sort") != undefined) ? '&order=' + jQuery(".DatasetSort").data("sort") : '');
+        var innerSearch;
+        if ((innerSearch = jQuery('#innerSearch')).length) {
+            innerSearch = jQuery('#innerSearch').val();
+            if (innerSearch.length)
+                innerSearch = '&q=' + innerSearch;
+        }
 
         formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
 
@@ -342,33 +348,45 @@ var DataObjectesAjax = {
             formSerialize += '&' + sortSerialize;
 
         History.pushState({
-            filters: formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
+            filters: formSerialize + innerSearch + '&search=web',
             reloadForm: 'sorting',
             page: "Dane"
-        }, jQuery(document).find("title").html(), "?" + formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + formSerialize + innerSearch + '&search=web');
     },
     /*GATHER FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     objectsReload: function () {
         var formSerialize = jQuery('#DatasetViewForm').serializeArray();
+        var innerSearch;
+        if ((innerSearch = jQuery('#innerSearch')).length) {
+            innerSearch = jQuery('#innerSearch').val();
+            if (innerSearch.length)
+                innerSearch = '&q=' + innerSearch;
+        }
 
         formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
 
         History.pushState({
-            filters: formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
+            filters: formSerialize + innerSearch + '&search=web',
             reloadForm: 'object',
             page: "Dane",
             focusInput: $('.dataBrowser input[type="text"]:focus').attr('id')
-        }, jQuery(document).find("title").html(), "?" + formSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + formSerialize + innerSearch + '&search=web');
     },
     /*GATHER SORT AND FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     pageReload: function (target) {
         var paginationSerialize = jQuery(target).attr('href').split("?").pop();
+        var innerSearch;
+        if ((innerSearch = jQuery('#innerSearch')).length) {
+            innerSearch = jQuery('#innerSearch').val();
+            if (innerSearch.length)
+                innerSearch = '&q=' + innerSearch;
+        }
 
         History.pushState({
-            filters: paginationSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web',
+            filters: paginationSerialize + innerSearch + '&search=web',
             reloadForm: 'page',
             page: "Dane"
-        }, jQuery(document).find("title").html(), "?" + paginationSerialize + '&q=' + jQuery('#innerSearch').val() + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + paginationSerialize + innerSearch + '&search=web');
     },
     /*AJAX REQUEST AND RELOAD FILTER/RESULT CONTENT*/
     ajaxReload: function (formActualFilters, focusInput) {
