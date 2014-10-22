@@ -26,9 +26,17 @@ class PrawoController extends AppController {
 				'typ_id' => '1',
 			),
 		) );
-		$this->set('ustawy', $API->getObjects());
+		$this->set('ustawy_przeszlosc', $API->getObjects());
 		
-		
+		$data = $API->searchDataset( 'prawo', array(
+			'order' => 'data_wejscia_w_zycie asc',
+			'limit' => 5,
+			'conditions' => array(
+				'data_wejscia_w_zycie' => '[NOW TO *]',
+				'typ_id' => '1',
+			),
+		) );
+		$this->set('ustawy_przyszlosc', $API->getObjects());
 		
 	}
 	

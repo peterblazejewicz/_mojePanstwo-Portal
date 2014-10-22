@@ -3,7 +3,7 @@
 
 <div class="appHeader">
 	<div class="container innerContent">
-		<h1>Przeglądaj <strong>prawo</strong> obowiązujące w Polsce</h1>
+		<h1>Przeglądaj prawo obowiązujące w Polsce</h1>
 
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
@@ -31,7 +31,7 @@
 			
 				<div class="block">
 					<div class="block-header">
-						<h2 class="label">Najnowsze prawo według <strong>haseł</strong></h2>
+						<h2 class="label">Najnowsze prawo według tematów</h2>
 					</div>
 					<div class="content">
 						
@@ -41,19 +41,23 @@
 						<? } ?>
 						</ul>
 						
+						<div class="btn_cont">
+							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie tematy &raquo;</a>
+						</div>
+						
 					</div>
 				</div>
 				
 				<div class="block acts">
 					<div class="block-header">
-						<h2 class="label"><strong>Ustawy</strong>, które ostatnio weszły w życie</h2>
+						<h2 class="label">Ustawy, które ostatnio weszły w życie</h2>
 					</div>
 					<div class="content">
 						
 						<ul class="acts">
 						<? 
 							$last_date = false;
-							foreach( $ustawy as $act ) {
+							foreach( $ustawy_przeszlosc as $act ) {
 								
 								$show_date = ($last_date===false) || ($last_date != $act->getData('data_wejscia_w_zycie'));
 								$this->Dataobject->setObject($act);
@@ -72,6 +76,46 @@
 							} 
 						?>
 						</ul>
+						
+						<div class="btn_cont">
+							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="block acts">
+					<div class="block-header">
+						<h2 class="label">Ustawy, które wejdą w życie w przyszłości</h2>
+					</div>
+					<div class="content">
+						
+						<ul class="acts">
+						<? 
+							$last_date = false;
+							foreach( $ustawy_przyszlosc as $act ) {
+								
+								$show_date = ($last_date===false) || ($last_date != $act->getData('data_wejscia_w_zycie'));
+								$this->Dataobject->setObject($act);
+						?>
+							<li class="row">
+								<div class="col-md-2">
+									<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getData('data_wejscia_w_zycie') ) ?></p><? } ?>
+								</div>
+								<div class="col-md-10">
+									<p class="title"><a href="/dane/prawo/<?= $act->getId() ?>"><?= $act->getData('typ_nazwa') ?> <?= $act->getShortTitle() ?></a></p>
+									<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
+								</div>
+							</li>
+						<? 
+								$last_date = $act->getData('data_wejscia_w_zycie');
+							} 
+						?>
+						</ul>
+						
+						<div class="btn_cont">
+							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
+						</div>
 						
 					</div>
 				</div>
@@ -104,7 +148,7 @@
 				
 				<div class="block">
 					<div class="block-header">
-						<h2 class="label">Baza <strong>aktów prawnych</strong></h2>
+						<h2 class="label">Baza aktów prawnych</h2>
 					</div>
 					<div class="content">
 						
