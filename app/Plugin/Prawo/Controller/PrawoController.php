@@ -12,9 +12,10 @@ class PrawoController extends AppController {
 	public function start() {
 		
 		$data = $this->API->Prawo()->getData();
-				
+					
 		$this->set('keywords', $data['keywords']);
 		$this->set('popular', $data['popular']);
+		$this->set('types', $data['types']);
 		
 		$API = $this->API->Dane();
 		$data = $API->searchDataset( 'prawo', array(

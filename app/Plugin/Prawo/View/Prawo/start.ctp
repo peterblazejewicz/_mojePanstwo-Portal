@@ -31,7 +31,7 @@
 			
 				<div class="block">
 					<div class="block-header">
-						<h2 class="label">Przeglądaj według <strong>haseł</strong></h2>
+						<h2 class="label">Najnowsze prawo według <strong>haseł</strong></h2>
 					</div>
 					<div class="content">
 						
@@ -89,13 +89,35 @@
 				
 				<div class="block">
 					<div class="block-header">
-						<h2 class="label">Popularne</h2>
+						<h2 class="label">Ważne</h2>
 					</div>
 					<div class="content">
 						
 						<ul class="popular">
 						<? foreach( $popular as $act ) { ?>
 							<li><a href="/dane/prawo/<?= $act['id'] ?>"><?= $act['nazwa'] ?></a></li>
+						<? } ?>
+						</ul>
+						
+					</div>
+				</div>
+				
+				<div class="block">
+					<div class="block-header">
+						<h2 class="label">Baza <strong>aktów prawnych</strong></h2>
+					</div>
+					<div class="content">
+						
+						
+						<ul class="types">
+						<? 
+							foreach( $types as $type ) { 
+								$href = '/dane/prawo?typ_id[]=' . $type['id'];
+						?>
+							<li class="row">
+								<p class="title pull-left"><a href="<?= $href ?>"><?= $type['nazwa'] ?></a> <span class="badge counter"><?= _number($type['count']) ?></span></p>
+								<p class="pending pull-right"><span class="label label-warning"><?= pl_dopelniacz($type['pending_count'], 'oczekujący', 'oczekujące', 'oczekujących') ?></span></p>
+							</li>
 						<? } ?>
 						</ul>
 						
