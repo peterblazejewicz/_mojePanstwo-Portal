@@ -78,7 +78,7 @@
 						</ul>
 						
 						<div class="btn_cont">
-							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
+							<a href="/dane/prawo/?!weszly=1&typ_id[]=1&search=web&order=data_wejscia_w_zycie desc" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
 						</div>
 						
 					</div>
@@ -114,7 +114,7 @@
 						</ul>
 						
 						<div class="btn_cont">
-							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
+							<a href="/dane/prawo/?!wejda=1&typ_id[]=1&search=web&order=data_wejscia_w_zycie asc" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
 						</div>
 						
 					</div>
@@ -160,7 +160,7 @@
 						?>
 							<li class="row">
 								<p class="title pull-left"><a href="<?= $href ?>"><?= $type['nazwa'] ?></a> <span class="badge counter"><?= _number($type['count']) ?></span></p>
-								<p class="pending pull-right"><span class="label label-warning"><?= pl_dopelniacz($type['pending_count'], 'oczekujący', 'oczekujące', 'oczekujących') ?></span></p>
+								<? if( $type['count'] ) { ?><p class="pending pull-right"><a href="/dane/prawo/?!wejda=1&typ_id[]=<?= $type['id'] ?>&search=web&order=data_wejscia_w_zycie asc" class="label label-warning"><?= pl_dopelniacz($type['pending_count'], 'oczekujący', 'oczekujące', 'oczekujących') ?></a></p><? } ?>
 							</li>
 						<? } ?>
 						</ul>
