@@ -96,6 +96,9 @@ var DataObjectesAjax = {
                         jQuery('#' + jQuery(event.target).attr('for')).prop("checked", false)
                     }, 0);
                 }
+            } else if (jQuery(event.target).attr('for').substr(0, 9) == 'switcher_') {
+                parent.parents('.options').find('input:checked').prop("checked", false);
+                parent.find('input').prop("checked", false);
             }
 
             /*HISTORY.JS CHANGE STATUS*/
