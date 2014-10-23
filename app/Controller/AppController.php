@@ -85,6 +85,15 @@ class AppController extends Controller {
 			'folder_id' => '13'
 		),
 		array(
+			'id'     => '9',
+			'slug'   => 'prawo',
+			'name'   => 'Prawo',
+			'plugin' => 'prawo',
+			'type'   => 'app',
+			'home'   => '1',
+			'folder_id' => '13'
+		),
+		array(
 			'id'     => '12',
 			'slug'   => 'media',
 			'name'   => 'Media',
@@ -98,15 +107,6 @@ class AppController extends Controller {
 			'slug'   => 'sejmometr',
 			'name'   => 'Sejmometr',
 			'plugin' => 'sejmometr',
-			'type'   => 'app',
-			'home'   => '1',
-			'folder_id' => '13'
-		),
-		array(
-			'id'     => '9',
-			'slug'   => 'ustawy',
-			'name'   => 'Ustawy',
-			'plugin' => 'ustawy',
 			'type'   => 'app',
 			'home'   => '1',
 			'folder_id' => '13'
