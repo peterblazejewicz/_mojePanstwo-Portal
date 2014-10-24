@@ -35,10 +35,9 @@ var DataObjectesAjax = {
         History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
 
-            if (State.data.page == "Dane") {
+            if (State.data.page == "Dane")
                 DataObjectesAjax.ajaxReload(State.data.filters, State.data.focusInput);
-            }
-        });
+        })
     },
     /*CREATING ADDITIONAL BUTTON TO RUN SEARCH WITHOUT LOOKING PHRASE (Q)*/
     buttonSearchWithoutPhrase: function () {
@@ -97,8 +96,15 @@ var DataObjectesAjax = {
                     }, 0);
                 }
             } else if (jQuery(event.target).attr('for').substr(0, 9) == 'switcher_') {
-                parent.parents('.options').find('input:checked').prop("checked", false);
-                parent.find('input').prop("checked", false);
+                if (parent.find('input').is(':checked')) {
+                    setTimeout(function () {
+                        parent.removeClass('active');
+                        parent.find('input').prop("checked", false);
+                    }, 0);
+                } else {
+                    parent.parents('.options').find('input').prop("checked", false);
+                    parent.parents('.options .active').removeClass('active');
+                }
             }
 
             /*HISTORY.JS CHANGE STATUS*/
@@ -337,39 +343,55 @@ var DataObjectesAjax = {
     /*CLICKING ARROW SEND AJAX + CHANGE ARROW DIRECTION*/
     sortingReload: function () {
         var formSerialize = jQuery('#DatasetViewForm').serializeArray(),
-            sortSerialize = ( (jQuery(".DatasetSort").data("sort") != undefined) ? '&order=' + jQuery(".DatasetSort").data("sort") : '');
-        var innerSearch;
+            sortSerialize = ( (jQuery(".DatasetSort").data("sort") != undefined) ? '&order=' + jQuery(".DatasetSort").data("sort") : ''),
+            innerSearch,
+            filters;
+
+        formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
+
         if ((innerSearch = jQuery('#innerSearch')).length) {
             innerSearch = jQuery('#innerSearch').val();
             if (innerSearch.length)
                 innerSearch = '&q=' + innerSearch;
         }
 
-        formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
-
         if (sortSerialize)
             formSerialize += '&' + sortSerialize;
 
+        filters = formSerialize + innerSearch + '&search=web';
+
+        while (filters.charAt(0) == '&') {
+            filters = filters.substr(1);
+        }
+
         History.pushState({
-            filters: formSerialize + innerSearch + '&search=web',
+            filters: filters,
             reloadForm: 'sorting',
             page: "Dane"
         }, jQuery(document).find("title").html(), "?" + formSerialize + innerSearch + '&search=web');
     },
     /*GATHER FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     objectsReload: function () {
-        var formSerialize = jQuery('#DatasetViewForm').serializeArray();
-        var innerSearch;
+        var formSerialize = jQuery('#DatasetViewForm').serializeArray(),
+            innerSearch,
+            filters;
+
+        formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
+
         if ((innerSearch = jQuery('#innerSearch')).length) {
             innerSearch = jQuery('#innerSearch').val();
             if (innerSearch.length)
                 innerSearch = '&q=' + innerSearch;
         }
 
-        formSerialize = DataObjectesAjax.reorganizationSerialize(formSerialize);
+        filters = formSerialize + innerSearch + '&search=web';
+
+        while (filters.charAt(0) == '&') {
+            filters = filters.substr(1);
+        }
 
         History.pushState({
-            filters: formSerialize + innerSearch + '&search=web',
+            filters: filters,
             reloadForm: 'object',
             page: "Dane",
             focusInput: $('.dataBrowser input[type="text"]:focus').attr('id')
@@ -377,16 +399,24 @@ var DataObjectesAjax = {
     },
     /*GATHER SORT AND FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     pageReload: function (target) {
-        var paginationSerialize = jQuery(target).attr('href').split("?").pop();
-        var innerSearch;
+        var paginationSerialize = jQuery(target).attr('href').split("?").pop(),
+            innerSearch,
+            filters;
+
         if ((innerSearch = jQuery('#innerSearch')).length) {
             innerSearch = jQuery('#innerSearch').val();
             if (innerSearch.length)
                 innerSearch = '&q=' + innerSearch;
         }
 
+        filters = paginationSerialize + innerSearch + '&search=web';
+
+        while (filters.charAt(0) == '&') {
+            filters = filters.substr(1);
+        }
+
         History.pushState({
-            filters: paginationSerialize + innerSearch + '&search=web',
+            filters: filters,
             reloadForm: 'page',
             page: "Dane"
         }, jQuery(document).find("title").html(), "?" + paginationSerialize + innerSearch + '&search=web');
