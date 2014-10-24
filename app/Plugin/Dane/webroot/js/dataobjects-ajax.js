@@ -368,7 +368,7 @@ var DataObjectesAjax = {
             filters: filters,
             reloadForm: 'sorting',
             page: "Dane"
-        }, jQuery(document).find("title").html(), "?" + formSerialize + innerSearch + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + filters);
     },
     /*GATHER FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     objectsReload: function () {
@@ -395,7 +395,7 @@ var DataObjectesAjax = {
             reloadForm: 'object',
             page: "Dane",
             focusInput: $('.dataBrowser input[type="text"]:focus').attr('id')
-        }, jQuery(document).find("title").html(), "?" + formSerialize + innerSearch + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + filters);
     },
     /*GATHER SORT AND FILTER OPTION AND SEND RELOAD AJAX REQUEST*/
     pageReload: function (target) {
@@ -419,7 +419,7 @@ var DataObjectesAjax = {
             filters: filters,
             reloadForm: 'page',
             page: "Dane"
-        }, jQuery(document).find("title").html(), "?" + paginationSerialize + innerSearch + '&search=web');
+        }, jQuery(document).find("title").html(), "?" + filters);
     },
     /*AJAX REQUEST AND RELOAD FILTER/RESULT CONTENT*/
     ajaxReload: function (formActualFilters, focusInput) {
