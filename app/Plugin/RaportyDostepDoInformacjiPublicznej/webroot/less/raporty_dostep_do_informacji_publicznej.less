@@ -1,3 +1,4 @@
+/*CUSTOM FONTS*/
 @font-face {
     font-family: 'analiza_informacje_publiczne';
     src: url('../font/analiza_informacje_publiczne.eot');
@@ -6,6 +7,7 @@
     font-style: normal;
 }
 
+/*VARIABLE*/
 .customFont(@font, @fontSize, @fontWeight: 400) {
     font-family: @font, Arial, sans-serif;
     font-weight: @fontWeight;
@@ -57,6 +59,11 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     content: @content;
+}
+
+/*FIRST SETUP*/
+.cookieLaw {
+    display: none;
 }
 
 /*PAGE SETUP*/

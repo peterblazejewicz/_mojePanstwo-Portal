@@ -2,326 +2,334 @@ body {
     background-color: #000000;
 }
 
-.gabinety-polityczne {
-    background: url(../img/background.jpg) no-repeat center 110px fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale')";
+.cookieLaw {
+    display: none;
+}
 
-    &:before, &:after {
-        content: " ";
-        display: table;
-        clear: both;
-    }
+#_wrapper #_main {
+    padding-bottom: 40px;
 
-    .slider {
-        @blue: #009de0;
-        @white: #ffffff;
+    .gabinety-polityczne {
+        background: url(../img/background.jpg) no-repeat center 40px fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale');
+        -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/background.jpg', sizingMethod='scale')";
 
-        display: inline-block;
-        min-height: 1075px;
-        padding: 0 0 40px 0;
+        &:before, &:after {
+            content: " ";
+            display: table;
+            clear: both;
+        }
 
-        .inner {
-            @border: 5px solid @blue;
+        .slider {
+            @blue: #009de0;
+            @white: #ffffff;
 
-            float: left;
-            min-height: 1px;
-            padding-bottom: 20px;
-            position: relative;
+            display: inline-block;
+            min-height: 1075px;
+            padding: 0 0 40px 0;
 
-            .title {
-                border-top: @border;
-                border-bottom: @border;
-                margin-bottom: 30px;
-                padding: 30px 0 40px;
-                width: auto;
-                display: inline-block;
+            .inner {
+                @border: 5px solid @blue;
 
-                > small {
-                    color: @blue;
-                    font-size: 24px;
-                    font-weight: bold;
-                }
+                float: left;
+                min-height: 1px;
+                padding-bottom: 20px;
+                position: relative;
 
-                > h2 {
-                    color: @white;
-                    margin: 0;
-                    font-size: 100px;
-                    font-weight: bold;
-                    line-height: 80px;
-                    white-space: nowrap;
-                }
-            }
-
-            .subtitle {
-                margin-bottom: 20px;
-
-                > h3 {
-                    color: @white;
-                    padding: 10px 0;
-                    font-size: 24px;
-                    font-weight: bold;
-                    float: left;
+                .title {
+                    border-top: @border;
                     border-bottom: @border;
-                }
-            }
+                    margin-bottom: 30px;
+                    padding: 30px 0 40px;
+                    width: auto;
+                    display: inline-block;
 
-            .content {
-                font-size: 18px;
-                color: @white;
-                padding: 0;
-                float: left;
-
-                > p, > ul {
-                    padding-bottom: 10px;
-                }
-            }
-        }
-
-        &.intro .inner {
-            margin-top: 6%;
-
-            .content {
-                margin-bottom: 150px;
-            }
-        }
-
-        &.przegladaj {
-            .sorting {
-                display: block;
-                float: left;
-                width: 100%;
-
-                .btn {
-                    color: #FFFFFF;
-                }
-            }
-
-            .ministerstwa {
-                .slide {
-                    position: relative;
-                    float: left;
-                    width: 100%;
-                    display: block;
-
-                    .options {
-                        position: absolute;
-                        right: 15px;
-                        top: 10px;
-
-                        .opt {
-                            display: inline-block;
-                            text-align: right;
-                            width: 100%;
-                        }
+                    > small {
+                        color: @blue;
+                        font-size: 24px;
+                        font-weight: bold;
                     }
 
-                    .head {
+                    > h2 {
                         color: @white;
-                        font-size: 36px;
+                        margin: 0;
+                        font-size: 100px;
+                        font-weight: bold;
+                        line-height: 80px;
+                        white-space: nowrap;
+                    }
+                }
+
+                .subtitle {
+                    margin-bottom: 20px;
+
+                    > h3 {
+                        color: @white;
+                        padding: 10px 0;
+                        font-size: 24px;
                         font-weight: bold;
                         float: left;
-                        width: 100%;
-                        cursor: pointer;
-                        background-color: rgba(100, 100, 100, .5);
-                        padding: 15px 135px 15px 30px;
-                        margin: 0;
-                        outline: 0;
-                        border-top: 1px solid #000000;
-
-                        &:before {
-                            content: '►';
-                            font-size: 16px;
-                            left: 8px;
-                            position: absolute;
-                            top: 30px;
-                        }
-
-                        &.open:before {
-                            content: '▼';
-                        }
+                        border-bottom: @border;
                     }
+                }
 
-                    .brak {
-                        color: @white;
-                        display: block;
-                        font-size: 24px;
-                        padding-top: 30px;
-                        text-align: center;
-                        width: 100%;
+                .content {
+                    font-size: 18px;
+                    color: @white;
+                    padding: 0;
+                    float: left;
+
+                    > p, > ul {
+                        padding-bottom: 10px;
                     }
+                }
+            }
 
-                    .list {
+            &.intro .inner {
+                margin-top: 6%;
+
+                .content {
+                    margin-bottom: 150px;
+                }
+            }
+
+            &.przegladaj {
+                .sorting {
+                    display: block;
+                    float: left;
+                    width: 100%;
+
+                    .btn {
+                        color: #FFFFFF;
+                    }
+                }
+
+                .ministerstwa {
+                    .slide {
+                        position: relative;
                         float: left;
                         width: 100%;
-                        padding-bottom: 20px;
-                        background-color: rgba(0, 0, 0, .4);
+                        display: block;
 
-                        .point {
-                            @paddingTop: 10px;
-                            @paddingSide: 15px;
-                            @paddingBottom: 40px;
+                        .options {
+                            position: absolute;
+                            right: 15px;
+                            top: 10px;
 
-                            width: 30.4%;
-                            margin: 0.5% 1.5% 2.5%;
-                            position: relative;
+                            .opt {
+                                display: inline-block;
+                                text-align: right;
+                                width: 100%;
+                            }
+                        }
+
+                        .head {
+                            color: @white;
+                            font-size: 36px;
+                            font-weight: bold;
                             float: left;
+                            width: 100%;
+                            cursor: pointer;
+                            background-color: rgba(100, 100, 100, .5);
+                            padding: 15px 135px 15px 30px;
+                            margin: 0;
+                            outline: 0;
+                            border-top: 1px solid #000000;
 
-                            &:nth-child(3n-2) {
-                                margin-left: 1.3%;
+                            &:before {
+                                content: '►';
+                                font-size: 16px;
+                                left: 8px;
+                                position: absolute;
+                                top: 30px;
                             }
 
-                            .flipbox {
-                                background: #006599;
-                                display: block;
-                                width: 100%;
-                                height: 100%;
+                            &.open:before {
+                                content: '▼';
+                            }
+                        }
+
+                        .brak {
+                            color: @white;
+                            display: block;
+                            font-size: 24px;
+                            padding-top: 30px;
+                            text-align: center;
+                            width: 100%;
+                        }
+
+                        .list {
+                            float: left;
+                            width: 100%;
+                            padding-bottom: 20px;
+                            background-color: rgba(0, 0, 0, .4);
+
+                            .point {
+                                @paddingTop: 10px;
+                                @paddingSide: 15px;
+                                @paddingBottom: 40px;
+
+                                width: 30.4%;
+                                margin: 0.5% 1.5% 2.5%;
                                 position: relative;
-                                margin-top: 10px;
+                                float: left;
 
-                                > div, > button, > h4 {
-                                    padding-left: @paddingSide;
-                                    padding-right: @paddingSide;
+                                &:nth-child(3n-2) {
+                                    margin-left: 1.3%;
                                 }
 
-                                > h4 {
-                                    padding-top: @paddingTop;
-                                    margin-bottom: 8px;
-                                    line-height: 1em;
-                                }
+                                .flipbox {
+                                    background: #006599;
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                    position: relative;
+                                    margin-top: 10px;
 
-                                > div.info {
-                                    padding-bottom: @paddingBottom;
-
-                                    > p {
-                                        font-weight: normal;
-                                        line-height: 1.1em;
-                                        margin-bottom: 8px;
+                                    > div, > button, > h4 {
+                                        padding-left: @paddingSide;
+                                        padding-right: @paddingSide;
                                     }
-                                }
 
-                                &.flipped {
-                                    .reverted {
-                                        padding: 15px;
-                                        height: 100%;
+                                    > h4 {
+                                        padding-top: @paddingTop;
+                                        margin-bottom: 8px;
+                                        line-height: 1em;
+                                    }
 
-                                        .infoLabel {
-                                            font-size: 12px;
-                                            font-weight: 300;
-                                            line-height: 12px;
-                                            padding-bottom: 10px;
+                                    > div.info {
+                                        padding-bottom: @paddingBottom;
+
+                                        > p {
+                                            font-weight: normal;
+                                            line-height: 1.1em;
+                                            margin-bottom: 8px;
                                         }
+                                    }
 
-                                        .infoList {
-                                            height: 65%;
-                                            overflow-y: auto;
-                                            padding-right: 10px;
+                                    &.flipped {
+                                        .reverted {
+                                            padding: 15px;
+                                            height: 100%;
 
-                                            > p {
-                                                color: @white;
-                                                font-size: 13px;
-                                                line-height: 1.1em;
-                                                padding-left: 10px;
-                                                margin-bottom: 6px;
+                                            .infoLabel {
+                                                font-size: 12px;
+                                                font-weight: 300;
+                                                line-height: 12px;
+                                                padding-bottom: 10px;
+                                            }
 
-                                                &:before {
-                                                    content: '-';
-                                                    padding-right: 5px;
-                                                    margin-left: -10px;
+                                            .infoList {
+                                                height: 65%;
+                                                overflow-y: auto;
+                                                padding-right: 10px;
+
+                                                > p {
+                                                    color: @white;
+                                                    font-size: 13px;
+                                                    line-height: 1.1em;
+                                                    padding-left: 10px;
+                                                    margin-bottom: 6px;
+
+                                                    &:before {
+                                                        content: '-';
+                                                        padding-right: 5px;
+                                                        margin-left: -10px;
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                            }
 
-                            h4 {
-                                color: @white;
-                                font-size: 34px;
-                                font-weight: bold;
-                                margin-bottom: 30px;
-                            }
-                            .info {
-                                float: left;
-                                color: @white;
-                                font-size: 16px;
-                                font-weight: bold;
-                                padding-bottom: 40px;
-                            }
-
-                            .btn {
-                                position: absolute;
-                                bottom: @paddingSide - 5;
-
-                                &.doswiadczenie {
-                                    right: @paddingSide - 5;
+                                h4 {
+                                    color: @white;
+                                    font-size: 34px;
+                                    font-weight: bold;
+                                    margin-bottom: 30px;
                                 }
-                                &.krs {
-                                    left: @paddingSide - 5;
+                                .info {
+                                    float: left;
+                                    color: @white;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    padding-bottom: 40px;
                                 }
-                            }
 
-                            .reverse {
-                                display: none;
+                                .btn {
+                                    position: absolute;
+                                    bottom: @paddingSide - 5;
+
+                                    &.doswiadczenie {
+                                        right: @paddingSide - 5;
+                                    }
+                                    &.krs {
+                                        left: @paddingSide - 5;
+                                    }
+                                }
+
+                                .reverse {
+                                    display: none;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        &.publikowanie {
-            .inner {
-                background-color: rgba(0, 0, 0, .6);
+            &.publikowanie {
+                .inner {
+                    background-color: rgba(0, 0, 0, .6);
 
-                .table {
-                    tr {
-                        border-top: 1px solid #ddd;
+                    .table {
+                        tr {
+                            border-top: 1px solid #ddd;
 
-                        td {
-                            border-top-width: 0;
+                            td {
+                                border-top-width: 0;
+                            }
                         }
                     }
-                }
 
-                .iconList {
-                    position: relative;
-                    display: block;
-                    height: 40px;
-
-                    .icon {
-                        text-decoration: none;
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
+                    .iconList {
+                        position: relative;
                         display: block;
-                        top: 50%;
-                        margin-top: -12px;
+                        height: 40px;
 
-                        > img {
-                            width: 80%;
-                        }
+                        .icon {
+                            text-decoration: none;
+                            width: 20px;
+                            height: 20px;
+                            position: absolute;
+                            display: block;
+                            top: 50%;
+                            margin-top: -12px;
 
-                        &.www {
-                            left: 60px;
-                        }
-                        &.doc {
-                            left: 100px;
-                        }
-                        &.pdf {
-                            &.hand {
-                                left: 140px;
+                            > img {
+                                width: 80%;
                             }
-                            &.machine {
-                                left: 180px;
-                            }
-                        }
 
-                        .tooltip {
-                            width: 120px;
+                            &.www {
+                                left: 60px;
+                            }
+                            &.doc {
+                                left: 100px;
+                            }
+                            &.pdf {
+                                &.hand {
+                                    left: 140px;
+                                }
+                                &.machine {
+                                    left: 180px;
+                                }
+                            }
+
+                            .tooltip {
+                                width: 120px;
+                            }
                         }
                     }
                 }

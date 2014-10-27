@@ -8,7 +8,7 @@ foreach ($ministerstwa as $id => $m) {
 
 <?php
 $this->Combinator->add_libs('css', $this->Less->css('raporty_gabinety_polityczne', array('plugin' => 'RaportyGabinetyPolityczne')));
-$this->Combinator->add_libs('js', 'RaportyGabinetyPolityczne.raporty_gabinety_polityczne.js');
+$this->Combinator->add_libs('js', array('RaportyGabinetyPolityczne.jquery.flippy.js', 'RaportyGabinetyPolityczne.raporty_gabinety_polityczne.js'));
 ?>
 <div class="gabinety-polityczne">
 <div class="col-md-12 slider intro">

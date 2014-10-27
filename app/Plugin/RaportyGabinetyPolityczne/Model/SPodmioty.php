@@ -1,11 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
-
 /**
  * SPodmioty Model
  *
- * @property PlRaportyGabinetyPolityczneOsoby $PlRaportyGabinetyPolityczneOsoby
- * @property PlRaportyGabinetyPolityczneSrc $PlRaportyGabinetyPolityczneSrc
+ * @property PlGabinetyPolityczneOsoby $PlGabinetyPolityczneOsoby
+ * @property PlGabinetyPolityczneSrc $PlGabinetyPolityczneSrc
  */
 class SPodmioty extends AppModel
 {
@@ -40,7 +39,7 @@ class SPodmioty extends AppModel
      * @var array
      */
     public $hasMany = array(
-        'GabinetyPolityczneOsoby' => array(
+        'RaportyGabinetyPolityczne.GabinetyPolityczneOsoby' => array(
             'className' => 'GabinetyPolityczneOsoby',
             'foreignKey' => 's_podmioty_id',
             'dependent' => false,
@@ -56,7 +55,7 @@ class SPodmioty extends AppModel
     );
 
     public $hasOne = array(
-        'GabinetyPolityczneSrc' => array(
+        'RaportyGabinetyPolityczne.GabinetyPolityczneSrc' => array(
             'className' => 'GabinetyPolityczneSrc',
             'foreignKey' => 's_podmioty_id'
         )
