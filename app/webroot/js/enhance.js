@@ -80,11 +80,11 @@ function globalAlert(status, text) {
     }
 }
 /*FUNCTION CUT TITLE TO SHORTER FORM WITH OPTION OF EXPANDING IT*/
-trimTitle = function () {
-    jQuery('.trimTitle').each(function () {
+autoTrimTitle = function () {
+    jQuery('.autoTrimTitle').each(function () {
         var that = jQuery(this),
             body = jQuery.trim(that.text()),
-            title = (that.attr('title') != undefined && that.attr('title') != '') ? that.attr('title') : ((that.data('trimtitle') != undefined && that.data('trimtitle') != '') ? that.data('trimtitle') : false),
+            title = (that.attr('title') != undefined && that.attr('title') != '') ? that.attr('title') : ((that.data('autoTrimTitle') != undefined && that.data('autoTrimTitle') != '') ? that.data('autoTrimTitle') : false),
             trimLength = ((that.data('trimlength') != undefined) ? that.data('trimlength') : 150);
 
         if (title != false && trimLength != undefined) {
@@ -96,19 +96,19 @@ trimTitle = function () {
                 if (splitLocation != -1) {
                     splitLocation = body.indexOf(' ', trimLength);
                     shortTitle = body.substring(0, splitLocation);
-                    that.data('trimtitle', title);
+                    that.data('autoTrimTitle', title);
 
                     if (hyperlink == true) { /*TARGET IS HYPERLINK*/
-                        that.find('a').html(shortTitle).after('<span class="trimTitleTrigger">...</span>');
+                        that.find('a').html(shortTitle).after('<span class="autoTrimTitleTrigger">...</span>');
 
-                        that.find('.trimTitleTrigger').click(function () {                      //             ^oo1^
-                            that.find('a').html(that.data('trimtitle'));                        //            ++o1^+o111111+^
-                            jQuery('.trimTitleTrigger').remove();                               //           1+^^^ oo^1NNNooo+^+^
+                        that.find('.autoTrimTitleTrigger').click(function () {                  //             ^oo1^
+                            that.find('a').html(that.data('autoTrimTitle'));                    //            ++o1^+o111111+^
+                            jQuery('.autoTrimTitleTrigger').remove();                           //           1+^^^ oo^1NNNooo+^+^
                         });                                                                     //           o^^^^^^01+100+^o0110o+
                     } else { /*TARGET IS NORMAL TEXT */                                         //           ooo^^^^100oooo1o000NMM1
-                        that.html(shortTitle + '<span class="trimTitleTrigger">...</span>');    //           11^^^^^+00000000000NMMMN1
+                        that.html(shortTitle + '<span class="autoTrimTitleTrigger">...</span>');//           11^^^^^+00000000000NMMMN1
                         that.click(function () {                                                //           ^1+^^^^^^100000MM0NMN0NMMM01^
-                            that.html(jQuery(this).data('trimtitle'));                          //            oMo^^^^^ +11+1o0MMNNMMN00NMMM0^
+                            that.html(jQuery(this).data('autoTrimTitle'));                      //            oMo^^^^^ +11+1o0MMNNMMN00NMMM0^
                         });                                                                     //             1Mo+^^+^^^^^^^^+0M00MMMMMMNNNM0
                     }                                                                           //             oMMN1+^^^^^^+1oNMMNNMMMMMMMMNNM+
                 }                                                                               //             ^MN^ ^^^^^^^^^100NNM0NMMMMMMMMNM1
@@ -149,71 +149,3 @@ stickyGo = function (dom, direction) {                                          
         jQuery(dom).removeClass('stick');
     }
 };
-
-/* Simple JavaScript Inheritance
- * By John Resig http://ejohn.org/
- * MIT Licensed.
- */
-// Inspired by base2 and Prototype
-(function () {
-    var initializing = false, fnTest = /xyz/.test(function () {
-        xyz;
-    }) ? /\b_super\b/ : /.*/;
-
-    // The base Class implementation (does nothing)
-    this.Class = function () {
-    };
-
-    // Create a new Class that inherits from this class
-    Class.extend = function (prop) {
-        var _super = this.prototype;
-
-        // Instantiate a base class (but only create the instance,
-        // don't run the init constructor)
-        initializing = true;
-        var prototype = new this();
-        initializing = false;
-
-        // Copy the properties over onto the new prototype
-        for (var name in prop) {
-            // Check if we're overwriting an existing function
-            prototype[name] = typeof prop[name] == "function" &&
-            typeof _super[name] == "function" && fnTest.test(prop[name]) ?
-                (function (name, fn) {
-                    return function () {
-                        var tmp = this._super;
-
-                        // Add a new ._super() method that is the same method
-                        // but on the super-class
-                        this._super = _super[name];
-
-                        // The method only need to be bound temporarily, so we
-                        // remove it when we're done executing
-                        var ret = fn.apply(this, arguments);
-                        this._super = tmp;
-
-                        return ret;
-                    };
-                })(name, prop[name]) :
-                prop[name];
-        }
-
-        // The dummy class constructor
-        function Class() {
-            // All construction is actually done in the init method
-            if (!initializing && this.init)
-                this.init.apply(this, arguments);
-        }
-
-        // Populate our constructed prototype object
-        Class.prototype = prototype;
-
-        // Enforce the constructor to be what we expect
-        Class.prototype.constructor = Class;
-
-        // And make this class extendable
-        Class.extend = arguments.callee;
-
-        return Class;
-    };
-})();
