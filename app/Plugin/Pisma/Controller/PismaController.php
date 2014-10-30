@@ -4,7 +4,8 @@ class PismaController extends AppController {
 
 	public $helpers = array( 'Form' );
 	public $uses = array( 'Pisma.Document' );
-
+	
+	/*
 	public function beforeFilter() {
 		parent::beforeFilter();
 
@@ -19,8 +20,11 @@ class PismaController extends AppController {
 		) );
 		$this->api = $this->API->Pisma();
 	}
+	*/
 
 	public function home() {
+		
+		/*
 		$this->set( 'login_redirect_url', $this->Auth->redirectUrl() );
 		// TODO
 
@@ -28,6 +32,35 @@ class PismaController extends AppController {
 		if ( ! empty( $user ) ) {
 			$this->set( 'pisma', $this->api->documents_index() );
 		}
+		*/
+	
+	}
+	
+	public function my() {
+		
+	}
+	
+	public function editor() {
+	
+		$API = $this->API->Pisma();
+		
+		// $forms = $API->getForms();
+		
+		$forms = array(
+			array(
+				'id' => '1',
+				'tytul' => 'Wniosek o udostępnienie informacji publicznej',
+				'opis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur aliquam arcu, non placerat justo placerat sed. Cras lacinia enim sit amet risus tincidunt, eget auctor ligula venenatis. Sed porttitor urna in egestas vestibulum. Nulla a dictum magna, id laoreet tellus.',
+			),
+			array(
+				'id' => '2',
+				'tytul' => 'Wniosek o wyznaczenie terminu egzaminu powtórkowego',
+				'opis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur aliquam arcu, non placerat justo placerat sed. Cras lacinia enim sit amet risus tincidunt, eget auctor ligula venenatis. Sed porttitor urna in egestas vestibulum. Nulla a dictum magna, id laoreet tellus.',
+			),
+		);
+		
+		$this->set('forms', $forms);
+		
 	}
 
 	/**
