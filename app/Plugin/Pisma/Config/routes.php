@@ -8,16 +8,22 @@ Router::connect( "$pisma_prefix", array(
 	'action'     => 'home',
 	'[method]'   => 'GET'
 ) );
-Router::connect( "$pisma_prefix/new", array(
+Router::connect( "$pisma_prefix/moje", array(
+	'plugin'     => 'Pisma',
+	'controller' => 'Pisma',
+	'action'     => 'my',
+	'[method]'   => 'GET'
+) );
+Router::connect( "$pisma_prefix/nowe", array(
 	'plugin'     => 'Pisma',
 	'controller' => 'Pisma',
 	'action'     => 'add',
 	'[method]'   => 'POST'
 ) );
-Router::connect( "$pisma_prefix/new", array(
+Router::connect( "$pisma_prefix/nowe", array(
 	'plugin'     => 'Pisma',
 	'controller' => 'Pisma',
-	'action'     => 'create',
+	'action'     => 'editor',
 	'[method]'   => 'GET'
 ) );
 Router::connect( "$pisma_prefix/:id", array(
@@ -25,6 +31,7 @@ Router::connect( "$pisma_prefix/:id", array(
 	'controller' => 'Pisma',
 	'action'     => 'edit'
 ), array( 'id' => '[0-9]+', 'pass' => array( 'id' ) ) );
+
 Router::connect( "$pisma_prefix/:id/delete", array(
 	'plugin'     => 'Pisma',
 	'controller' => 'Pisma',

@@ -11,7 +11,7 @@ var PISMA = Class.extend({
 		    
 		    enableAllSteps: true,
 		    enableKeyNavigation: false,
-		    enablePagination: false,
+		    enablePagination: true,
 		    suppressPaginationOnFocus: false,
 		    enableCancelButton: false,
 		    enableFinishButton: false,
