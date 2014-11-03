@@ -1,5 +1,4 @@
 /*global googleMapAdres: true, connectionGraphObject*/
-
 function initialize() {
     //SETTING DEFAULT CENTER TO GOOGLE MAP AT POLAND//
     var polandLatlng = new google.maps.LatLng(51.919438, 19.145136),
@@ -7,9 +6,22 @@ function initialize() {
             zoom: 15,
             center: polandLatlng
         },
-        map = new google.maps.Map(document.getElementById('googleMap'), mapOptions),
+        panoramaOptions = {
+            position: polandLatlng,
+            pov: {
+                heading: 34,
+                pitch: 10
+            }
+        };
+
+    //var streetmap = new google.maps.Map(document.getElementById('streetView'), mapOptions);
+    //panorama = new google.maps.StreetViewPanorama(document.getElementById('streetView'), panoramaOptions),
+
+    var map = new google.maps.Map(document.getElementById('googleMap'), mapOptions),
         geocoder = new google.maps.Geocoder(),
         contentString = document.createElement("div");
+
+    //streetmap.setStreetView(panorama);
     contentString.innerHTML = googleMapAdres + '<a href="https://maps.google.com/maps?daddr=' + googleMapAdres.replace(/ /g, '+') + '&t=m" target="_blank" class="btn btn-info">Dojazd</a>';
     contentString.id = "googleMapsContent";
     contentString.style.width = "360px";
@@ -26,7 +38,7 @@ function initialize() {
     var element = document.getElementById("googleMapsContent");
     element.parentNode.removeChild(element);
 
-    infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
 
@@ -77,8 +89,18 @@ jQuery(document).ready(function () {
             /*ASYNCHRONIZE ACTION FOR GOOGLE MAP*/
             window.onload = loadScript();
 
-            banner.find('.bg .btn').click(function () {
-                banner.find('.bg').fadeOut()
+            banner.find('.bg .googleMap').click(function () {
+                banner.find('#googleMap').show();
+                banner.find('#streetMap').hide();
+                banner.find('.bg').fadeOut();
+            });
+            banner.find('.bg .streetView').click(function () {
+                banner.find('#googleMap').hide();
+                banner.find('#streetMap').show();
+                banner.find('.bg').fadeOut();
+            });
+            banner.find('.bg .closeMap').click(function () {
+                banner.find('.bg').fadeIn();
             });
         }
 

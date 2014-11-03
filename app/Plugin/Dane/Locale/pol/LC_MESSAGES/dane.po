@@ -457,6 +457,9 @@ msgstr "Sygnatura akt"
 msgid "LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE"
 msgstr "Otwórz mapę"
 
+msgid "LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET"
+msgstr "Otwórz streetview"
+
 msgid "LC_DANE_VIEW_KRSPODMIOTY_DATA_URODZENIA"
 msgstr "Data urodzenia"
 
