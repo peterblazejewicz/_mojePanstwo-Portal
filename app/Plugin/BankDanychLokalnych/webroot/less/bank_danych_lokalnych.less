@@ -1,0 +1,36 @@
+.minHeight {
+    min-height: 100vh;
+}
+
+.minHeightPadding {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+#_wrapper #_main {
+    padding: 0;
+    margin: 0;
+
+    #bankDanychLokalny {
+        .minHeight();
+        display: block;
+
+        .leftSide {
+            .minHeight();
+
+            .tree {
+                .minHeightPadding();
+                list-style: none;
+            }
+        }
+        .rightSide {
+            .minHeight();
+            background-color: #000000;
+
+            #mapa {
+                .minHeightPadding();
+                min-height: 100%;
+            }
+        }
+    }
+}

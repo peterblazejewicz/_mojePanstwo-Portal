@@ -178,19 +178,18 @@ body > pre:first-child {
     }
 }
 
-.block-group {
-    .block {
-        border-bottom: 1px solid #DDD;
-    }
-
-}
-
-.row.bottomborder {
-    border-bottom: 1px solid #DDD;
+.nav > li > a {
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .block {
-    padding: 30px 30px 0;
+    padding: 0;
+    margin: 1px 0;
+    background-color: #FFF;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
 	
 	ul.keywords {
 		overflow: auto;
@@ -221,12 +220,25 @@ body > pre:first-child {
     .block-header {
         display: inline-block;
         width: 100%;
-        min-height: 45px;
-        margin-top: -10px;
+        min-height: 35px;
+        background-color: #FAFAFA;
+        padding: 10px 15px;
 
         .btn {
             margin-top: 7px;
         }
+    }
+    
+    > .content {
+	    padding: 20px 30px 30px;
+	    
+	    &.textBlock {
+	        padding: 20px 30px 30px;
+	
+	        br {
+	            margin-bottom: 15px;
+	        }
+	    }
     }
 
     &.bg {
@@ -245,9 +257,10 @@ body > pre:first-child {
 
     h2 {
         font-family: Lato;
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 400;
         margin-top: 5px;
+        text-transform: uppercase;
 
         &.underline {
             border-bottom: 1px solid #DDD;
@@ -256,9 +269,8 @@ body > pre:first-child {
 
         &.label {
             color: #444;
-            background-color: #FAFAFA;
-            font-weight: 300;
-            font-size: 20px;
+            font-weight: 400;
+            font-size: 18px;
             margin-left: -10px;
             white-space: normal !important;
             line-height: 24px;
@@ -303,13 +315,7 @@ body > pre:first-child {
         color: #777;
     }
 
-    .textBlock {
-        padding: 0 20px 20px;
-
-        br {
-            margin-bottom: 15px;
-        }
-    }
+    
 
     ul {
         list-style: none;
@@ -339,7 +345,12 @@ body > pre:first-child {
     .list-group-item-heading {
         .wiek {
             font-size: 12px;
-            color: #666;
+            color: #999;
+            font-weight: 300;
+            
+            strong {
+	            font-weight: 400;
+            }
         }
     }
 }
@@ -377,9 +388,11 @@ body > pre:first-child {
         overflow: auto;
 
         ._label {
-            font-size: 11px;
+            font-size: 10px;
             margin: 0 0 3px;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: Lato;
+            text-transform: uppercase;
             color: #555;
         }
 

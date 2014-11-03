@@ -1,6 +1,6 @@
 <? if ( isset( $menu ) && isset( $menu['items'] ) ) { ?>
 
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs row">
 		<?
 		foreach ( $menu['items'] as $m ) {
 
