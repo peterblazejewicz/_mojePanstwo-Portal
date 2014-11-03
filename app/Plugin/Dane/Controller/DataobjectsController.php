@@ -82,6 +82,7 @@ class DataobjectsController extends DaneAppController {
 				'dataset'        => true,
 				'flag'           => (boolean) $this->Session->read( 'Auth.User.id' ),
 				'alerts_queries' => true,
+				'slug' => isset($this->params->slug) ? $this->params->slug : false,
 			) );
 
 		} catch ( Exception $e ) {

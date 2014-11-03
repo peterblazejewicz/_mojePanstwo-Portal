@@ -204,7 +204,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 		</div>
 	</div>
 
-	<div class="object mpanel">
+	<div class="object">
 
 	<div class="block-group">
 

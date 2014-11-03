@@ -24,7 +24,7 @@ $this->Dataobject->setObject( $object );
 } else {
 	echo " readed";
 } ?>"
-     oid="<?php echo $item['data']['id'] ?>" gid="<?php echo $gid ?>">
+     oid="<?php echo $object->getId() ?>" gid="<?php echo $object->getGlobalId() ?>">
 	<div class="row">
 		<? if ( $this->Dataobject->getDate() ) { ?>
 			<div class="formatDate col-md-1 dimmed">

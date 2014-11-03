@@ -12,6 +12,7 @@ Router::connect( '/dane/kanal/:alias', array(
 	'action'     => 'view'
 ) );
 
+Router::connect( '/dane/:controller/:id,:slug', array( 'plugin' => 'Dane', 'action' => 'view' ), array( 'id' => '[0-9]+' ) );
 Router::connect( '/dane/:controller/:id', array( 'plugin' => 'Dane', 'action' => 'view' ), array( 'id' => '[0-9]+' ) );
 
 Router::connect( '/dane/bdl_wskazniki/:id/:dim_id', array(

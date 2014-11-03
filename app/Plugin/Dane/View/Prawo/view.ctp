@@ -113,23 +113,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 			
 			<div class="object">
 								
-				<? if( $keywords = $object->getLayer('tags') ) { ?>
-	
-					<div style="display: none;" class="block nobottomborder">
-						<div class="block-header">
-							<h2 class="label">Hasła</h2>
-						</div>
-						<div class="content">
-							<ul class="keywords">
-							<? foreach( $keywords as $keyword ) { ?>
-								<li><a class="label label-primary" href="/dane/prawo_hasla/<?= $keyword['id'] ?>"><?= $keyword['q'] ?></a></li>
-							<? } ?>
-							</ul>
-						</div>
-					</div>
 				
-				<? } ?>
-								
 				<? if( isset($projekt) ) {?>
 					
 					<div class="block proces">

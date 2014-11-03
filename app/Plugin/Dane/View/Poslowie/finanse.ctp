@@ -39,7 +39,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 
 		<div class="col-lg-9 objectMain">
-			<div class="object mpanel">
+			<div class="object">
 
 				<div class="block-group">
 
