@@ -197,7 +197,7 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 
 
 	<div class="col-lg-9 objectMain">
-	<div class="object mpanel">
+	<div class="object">
 
 
 	<? if ( $object->getData( 'wykreslony' ) ) { ?>
@@ -248,29 +248,6 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 
 	<div class="block-group">
 
-		<? if ( $zamowienia ) { ?>
-			<div id="zamowienia" class="block">
-				<div class="block-header">
-					<h2 class="label pull-left">Realizowane zamówienia publiczne</h2>
-					<a class="btn btn-default btn-sm pull-right"
-					   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz wszystkie</a>
-				</div>
-
-				<div class="content">
-					<div class="dataobjectsSliderRow row">
-						<div>
-							<?php echo $this->dataobjectsSlider->render( $zamowienia, array(
-								'perGroup'  => 3,
-								'rowNumber' => 1,
-								'labelMode' => 'none',
-								'dfFields'  => array( 'data' ),
-							) ) ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		<? } ?>
-
 		<? if ( $object->getData( 'cel_dzialania' ) ) { ?>
 			<div class="dzialanie block">
 
@@ -293,7 +270,7 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 		<? } ?>
 
 		<div class="organy block">
-			<div class="row">
+			<div>
 				<?
 
 				$organy_count = count( $organy );
@@ -311,8 +288,8 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 
 				?>
 				<? foreach ($organy as $organ) { ?>
-				<div class="col-lg-<?= $column_width ?>">
-					<div class="block small nobottomborder">
+				<div class="col-lg-<?= $column_width ?> nopadding">
+					<div class="small nobottomborder">
 						<div class="block-header"><h2 class="label" id="<?= $organ['idTag'] ?>"
 						                              class="normalizeText"><?= $organ['title'] ?></h2></div>
 						<? /* if (isset($organ['label']) && $organ['label']) { ?>
@@ -346,8 +323,28 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 											<? } ?>
 										</h4>
 
-										<? if ( isset( $osoba['funkcja'] ) && $osoba['funkcja'] ) { ?>
-											<p class="list-group-item-text normalizeText">
+										<? 
+											if ( isset( $osoba['funkcja'] ) && $osoba['funkcja'] ) { 
+																								
+												if( $organ['idTag']=='reprezentacja' ) {
+												
+													$useLabel = true;
+													$class = 'warning';
+													foreach( array('prezes', 'prezydent', 'przewodnicząc') as $phr ) {
+														if( stripos($osoba['funkcja'], ltrim($phr))===0 ) {
+															$class = 'danger';
+															break;
+														}
+													}
+												
+												} else {
+													
+													$useLabel = false;
+													
+												}
+											
+										?>
+											<p class="list-group-item-text <? if($useLabel){?> label label-<?= $class ?><?}?>">
 												<?= $osoba['funkcja'] ?>
 											</p>
 										<? } ?>
@@ -366,7 +363,8 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 			<? } ?>
 			<? } ?>
 		</div>
-	</div>
+		
+			</div>
 
 
 	<? if ($wspolnicy = $object->getLayer( 'wspolnicy' )) { ?>
@@ -425,7 +423,30 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 
 		<div id="connectionGraph" class="loading" data-id="<?php echo $object->getId() ?>"></div>
 	</div>
+	
+	
+	<? if ( $zamowienia ) { ?>
+		<div id="zamowienia" class="block">
+			<div class="block-header">
+				<h2 class="label pull-left">Realizowane zamówienia publiczne</h2>
+				<a class="btn btn-default btn-sm pull-right"
+				   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz wszystkie</a>
+			</div>
 
+			<div class="content">
+				<div class="dataobjectsSliderRow row">
+					<div>
+						<?php echo $this->dataobjectsSlider->render( $zamowienia, array(
+							'perGroup'  => 3,
+							'rowNumber' => 1,
+							'labelMode' => 'none',
+							'dfFields'  => array( 'data' ),
+						) ) ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<? } ?>
 
 
 	<? if ( $dzialalnosci ) { ?>

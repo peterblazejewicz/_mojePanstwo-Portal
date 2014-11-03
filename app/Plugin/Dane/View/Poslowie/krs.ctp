@@ -11,7 +11,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 
 		<div class="col-lg-10 col-lg-offset-1 objectMain">
-			<div class="object mpanel">
+			<div class="object">
 
 				<?=
 				$this->Element( 'Dane.objects/krs_osoby/organizacje', array(

@@ -1,6 +1,6 @@
 <div class="shoutIt hide">
-	<button class="btn btn-primary shoutItButton"
-	        type="button"><?php echo __d( 'dane', 'LC_DANE_NAGLOSNIJ' ); ?></button>
+	<button class="btn btn-default btn-sm shoutItButton"
+	        type="button"><span class="glyphicon glyphicon-share"></span> <?php echo __d( 'dane', 'LC_DANE_NAGLOSNIJ' ); ?></button>
 
 	<div class="shoutItContent">
 		<div class="facebookBox">
