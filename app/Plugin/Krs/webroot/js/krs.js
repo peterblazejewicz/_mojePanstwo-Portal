@@ -2,8 +2,6 @@
 (function ($) {
     var searchInput = $('.appHeader .searchInput'),
         groupsAndResults = $('#groupsAndResults'),
-    //poslowieBlock = $('.poslowie .blockInfo'),
-    //poslowieAdditional = $('.poslowieDetails'),
         lastSearch = null,
         krsTime = null,
         krsCache = {},
@@ -121,23 +119,4 @@
     groupsAndResults.on('slid.bs.carousel', function () {
         groupsAndResults.find('.carousel-inner').css('height', groupsAndResults.find('.carousel-inner .item.active').outerHeight());
     });
-
-    /*poslowieBlock.find('.link > a').click(function (e) {
-     e.preventDefault();
-
-     poslowieBlock.removeClass('active');
-     $(this).parents('.blockInfo').addClass('active');
-
-     if (poslowieAdditional.is(':hidden'))
-     poslowieAdditional.stop(true, true).slideDown();
-
-     poslowieAdditional.find('.container').animate({
-     opacity: 0
-     }, animSpeed, function () {
-     //@TODO: change content
-     poslowieAdditional.find('.container').animate({
-     opacity: 1
-     }, animSpeed);
-     })
-     })*/
 }(jQuery));
