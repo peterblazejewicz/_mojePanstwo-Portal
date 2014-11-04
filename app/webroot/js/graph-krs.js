@@ -547,7 +547,12 @@ var d3Data;
                 dataContent.append($('<button></button>').addClass('btn btn-xs pull-right').text('x'));
                 dataContent.append($('<table></table>').addClass('table table-striped'));
 
-                var linkEl = $('<a></a>').attr('target', '_self').text(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_LINK);
+                var linkEl = $('<a></a>').attr({
+                    'href': '#',
+                    'target': '_self'
+                }).text(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_LINK);
+
+                console.log(node, node.data);
 
                 $.each(node.data, function (label, value) {
                     if (label == 'mp_id') {
@@ -592,10 +597,18 @@ var d3Data;
                         else
                             return;
                         tr.append($('<td></td>').text(label));
-                        tr.append($('<td></td>').text(value));
+                        tr.append($('<td></td>').text((value) ? value : ' - '));
                         dataContent.find('table').append(tr);
                     }
                 });
+
+                if (linkEl.attr('href') == "#") {
+                    if (node.label == "podmiot") {
+                        linkEl.attr('href', '/dane/krs_podmioty/' + node.id.replace(/\D/g, ''));
+                    } else if (node.label == "osoba") {
+                        linkEl.attr('href', '/dane/krs_osoby/' + node.id.replace(/\D/g, ''));
+                    }
+                }
 
                 var link = $('<tr></tr>').append(
                     $('<td colspan="2"></td>').append(linkEl)
