@@ -84,6 +84,21 @@ class DataobjectsController extends DaneAppController {
 				'alerts_queries' => true,
 				'slug' => isset($this->params->slug) ? $this->params->slug : false,
 			) );
+			
+			if( 
+				$this->object->getSlug() && 
+				(
+					!isset( $this->params->slug ) || 
+					( $this->params->slug != $this->object->getSlug() )
+				) && 
+				preg_match('/^\/dane\/(.*?)\/([0-9]+)(.*?)$/i', $_SERVER['REQUEST_URI'], $match) 
+			) {				
+				
+				$url = '/dane/' . $match[1] . '/' . $match[2] . ',' . $this->object->getSlug() . $match[3];
+				$this->redirect($url);
+				die();
+				
+			}			
 
 		} catch ( Exception $e ) {
 

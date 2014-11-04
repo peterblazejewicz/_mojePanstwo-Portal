@@ -29,7 +29,8 @@ class KrsPodmiotyController extends DataobjectsController {
 			'prokurenci',
 			'nadzor',
 			'komitetZalozycielski',
-			'dzialalnosci'
+			'dzialalnosci',
+			'udzialy',
 		) );
 
 		if ( $this->Session->read( 'KRS.odpis' ) == $this->params->id ) {

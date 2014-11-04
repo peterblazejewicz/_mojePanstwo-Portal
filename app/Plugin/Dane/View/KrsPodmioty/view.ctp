@@ -370,7 +370,7 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 	<? if ($wspolnicy = $object->getLayer( 'wspolnicy' )) { ?>
 
 	<div class="wspolnicy block">
-		<div class="block-header"><h2 class="label">Wspólnicy</h2></div>
+		<div class="block-header"><h2 class="label">Struktura właścicielska</h2></div>
 
 		<div id="wspolnicy_graph">
 			<div class="list-group less-borders wspolnicy">
