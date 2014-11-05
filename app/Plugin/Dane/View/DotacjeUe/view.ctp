@@ -5,12 +5,9 @@
     <div class="object">
 
         <div class="block">
+            <h2 class="underline">Beneficjent</h2>
 
-            <div class="block-header">
-                <h2 class="label">Beneficjent</h2>
-            </div>
-
-            <div class="content nopadding">
+            <div class="content">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
                     'beneficjent_nazwa', 'forma_prawna_str'
@@ -21,13 +18,10 @@
             </div>
         </div>
 
-        <div class="block">
+        <div class="block bg">
+            <h2 class="underline">Finanse</h2>
 
-            <div class="block-header">
-                <h2 class="label">Finanse</h2>
-            </div>
-
-            <div class="content nopadding">
+            <div class="content">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
                     'wartosc_ogolem', 'wartosc_wydatki_kwalifikowane', 'wartosc_dofinansowanie', 'wartosc_dofinansowanie_ue',
@@ -39,12 +33,9 @@
         </div>
 
         <div class="block">
+            <h2 class="underline">Daty</h2>
 
-            <div class="block-header">
-                <h2 class="label">Daty</h2>
-            </div>
-
-            <div class="content nopadding">
+            <div class="content">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
                     'data_podpisania', 'data_utworzenia_ksi', 'data_rozpoczecia', 'data_zakonczenia',
