@@ -208,23 +208,7 @@ echo $this->Element( 'dataobject/pageBegin' );
 
 	<div class="block-group">
 
-	<? if ( isset( $terms ) && ! empty( $terms ) ) { ?>
-		<div class="block">
-			<div class="block-header">
-				<h2 class="label">Charakterystyczne słowa w wystąpieniach</h2>
-			</div>
-
-			<ul class="objectTagsCloud row">
-				<?
-				foreach ( $terms as $term ) {
-					$href = '/dane/poslowie/' . $object->getId() . '/wystapienia?q=' . addslashes( $term['key'] );
-					?>
-					<li style="font-size: <?= $term['size'] ?>px;"><a href="<?= $href ?>"><?= $term['key'] ?></a></li>
-				<? } ?>
-			</ul>
-
-		</div>
-	<? } ?>
+	
 
 	<? if ( $projekty_za ) { ?>
 		<div id="projekty_za" class="block">
@@ -318,7 +302,25 @@ echo $this->Element( 'dataobject/pageBegin' );
 		</div>
 	<? } ?>
 
+	
+	<? if ( isset( $terms ) && ! empty( $terms ) ) { ?>
+		<div class="block">
+			<div class="block-header">
+				<h2 class="label">Charakterystyczne słowa w wystąpieniach</h2>
+			</div>
 
+			<ul class="objectTagsCloud row">
+				<?
+				foreach ( $terms as $term ) {
+					$href = '/dane/poslowie/' . $object->getId() . '/wystapienia?q=' . addslashes( $term['key'] );
+					?>
+					<li style="font-size: <?= $term['size'] ?>px;"><a href="<?= $href ?>"><?= $term['key'] ?></a></li>
+				<? } ?>
+			</ul>
+
+		</div>
+	<? } ?>
+	
 
 	<? /*
 	            	<? if ($wystapienia) { ?>
