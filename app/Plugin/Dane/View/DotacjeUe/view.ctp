@@ -5,11 +5,11 @@
     <div class="object">
 
         <div class="block">
-            
+
             <div class="block-header">
-	            <h2 class="label">Beneficjent</h2>
+                <h2 class="label">Beneficjent</h2>
             </div>
-			
+
             <div class="content nopadding">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
@@ -22,11 +22,11 @@
         </div>
 
         <div class="block">
-	        
-	        <div class="block-header">
-	            <h2 class="label">Finanse</h2>
-	        </div>
-			
+
+            <div class="block-header">
+                <h2 class="label">Finanse</h2>
+            </div>
+
             <div class="content nopadding">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
@@ -39,11 +39,11 @@
         </div>
 
         <div class="block">
-            
+
             <div class="block-header">
-	            <h2 class="label">Daty</h2>
+                <h2 class="label">Daty</h2>
             </div>
-			
+
             <div class="content nopadding">
                 <?
                 echo $this->Dataobject->hlTableForObject($object, array(
