@@ -70,7 +70,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 	</div>
 
 	<div class="col-lg-9 objectMain">
-		<div class="object mpanel" style="margin-bottom: 20px;">
+		<div class="object" style="margin-bottom: 20px;">
 
 			<div class="block-group">
 
