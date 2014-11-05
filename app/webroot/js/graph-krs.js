@@ -1,11 +1,14 @@
 var d3Data;
 (function ($) {
-    var connectionGraph = jQuery('#connectionGraph');
+    var connectionGraph = jQuery('#connectionGraph'),
+        powiazania = jQuery('.powiazania');
 
     if (connectionGraph.length > 0) {
         var margin = {top: -5, right: -5, bottom: -5, left: -5},
             width = connectionGraph.outerWidth() + 60 - margin.left - margin.right,
-            height = connectionGraph.outerHeight() - margin.top - margin.bottom;
+            height = connectionGraph.outerHeight() - margin.top - margin.bottom,
+            dataContentWidth = ((width / 2) > 550 ? 550 : (width / 2));
+
         d3Data = {
             'color': {
                 'mainFill': '#278DCD',
@@ -394,7 +397,7 @@ var d3Data;
 
                 if (pan.hasClass('on')) {
                     pan.removeClass('on glyphicon-resize-small').addClass('glyphicon-resize-full');
-                    connectionGraph.removeClass('fullscreen');
+                    powiazania.removeClass('fullscreen');
 
                     transStart = (trans.indexOf('translate(')) + 10;
                     transEnd = trans.indexOf(',', transStart);
@@ -404,8 +407,7 @@ var d3Data;
 
                 } else {
                     pan.addClass('on glyphicon-resize-small').removeClass('glyphicon-resize-full');
-                    connectionGraph.addClass('fullscreen');
-
+                    powiazania.addClass('fullscreen');
 
                     if (trans) {
                         transStart = (trans.indexOf('translate(')) + 10;
@@ -426,7 +428,10 @@ var d3Data;
             });
 
             d3.select("#panControlCenter").on('click', function () {
-                d3Data.zoom.translate([0, 0]).scale(1);
+                if (powiazania.hasClass('fullscreen'))
+                    d3Data.zoom.translate([Math.floor(width / 4), 0]).scale(1);
+                else
+                    d3Data.zoom.translate([0, 0]).scale(1);
                 d3Data.zoom.event(d3Data.innerContainer.transition().duration(0));
             });
 
@@ -543,7 +548,7 @@ var d3Data;
 
                 connectionGraph.find('.dataContent').remove();
 
-                var dataContent = $('<div></div>').addClass('dataContent').css('width', width / 2);
+                var dataContent = $('<div></div>').addClass('dataContent').css('width', dataContentWidth);
                 dataContent.append($('<button></button>').addClass('btn btn-xs pull-right').text('x'));
                 dataContent.append($('<table></table>').addClass('table table-striped'));
 
@@ -631,9 +636,11 @@ var d3Data;
             }
 
             function panIcon() {
-                if (connectionGraph.find('.panControl').length == 0) {
-                    connectionGraph.append(
-                        $('<div></div>').addClass('panControl btn-group-vertical').append(
+                var powiazaniaHeader = powiazania.find('.block-header');
+
+                if (powiazaniaHeader.find('.panControl').length == 0) {
+                    powiazaniaHeader.append(
+                        $('<div></div>').addClass('panControl btn-group').append(
                             $('<div></div>').attr('id', 'panControlFullscreen').addClass('btn btn-default glyphicon glyphicon-resize-full')
                         ).append(
                             $('<div></div>').attr('id', 'panControlCenter').addClass('btn btn-default glyphicon glyphicon-home')
