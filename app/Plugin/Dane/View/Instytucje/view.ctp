@@ -223,34 +223,43 @@ echo $this->Element( 'dataobject/pageRelated', array(
 
 
 			<div class="col-lg-9 objectMain">
-				<div class="object mpanel">
-
-					<?
-					$adres = $object->getData( 'adres_str' );
-					$re    = "/^([0-9][0-9][-][0-9][0-9][0-9])/";
-
-					if ( preg_match( $re, $adres, $matches ) ) {
-						$adres_map = substr( $adres, 7 );
-					} else {
-						$adres_map = $adres;
-					}
-					?>
-					<div class="profile_baner" data-adres="<?= urlencode( $adres ) ?>">
-						<div class="bg">
-							<img
-								src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode( $adres_map ) ?>&markers=<?= urlencode( $adres_map ) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
-
-							<div class="content">
-								<p><?= $object->getData( 'adres_str' ) ?></p>
-								<button
-									class="btn btn-info"><?= __d( 'dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE' ) ?></button>
+				<div class="object">
+					
+					
+					<div class="block">
+						<div class="block-header">
+							<h2 class="label">Adres</h2>
+						</div>
+					
+						
+						<?
+						$adres = $object->getData( 'adres_str' );
+						$re    = "/^([0-9][0-9][-][0-9][0-9][0-9])/";
+	
+						if ( preg_match( $re, $adres, $matches ) ) {
+							$adres_map = substr( $adres, 7 );
+						} else {
+							$adres_map = $adres;
+						}
+						?>
+						<div class="profile_baner" data-adres="<?= urlencode( $adres ) ?>">
+							<div class="bg">
+								<img
+									src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode( $adres_map ) ?>&markers=<?= urlencode( $adres_map ) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
+	
+								<div class="content">
+									<p><?= $object->getData( 'adres_str' ) ?></p>
+									<button
+										class="btn btn-info"><?= __d( 'dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE' ) ?></button>
+								</div>
+							</div>
+							<div id="googleMap">
+								<script>
+									var googleMapAdres = '<?= $adres ?>';
+								</script>
 							</div>
 						</div>
-						<div id="googleMap">
-							<script>
-								var googleMapAdres = '<?= $adres ?>';
-							</script>
-						</div>
+							
 					</div>
 
 
@@ -259,6 +268,9 @@ echo $this->Element( 'dataobject/pageRelated', array(
 
 						<? if ( isset( $info['opis_html'] ) && $info['opis_html'] ) { ?>
 							<div class="block">
+								<div class="block-header">
+									<h2 class="label">Informacje</h2>
+								</div>
 								<div class="content opis">
 									<?= $info['opis_html'] ?>
 								</div>
@@ -274,10 +286,14 @@ echo $this->Element( 'dataobject/pageRelated', array(
 							<div class="block">
 								<div class="block-header">
 
+									<h2 class="label">Podległe instytucje</h2>
+
+								</div>
+								<div class="content nopadding">
+									
 									<div class="tree">
 										<ul>
 											<li>
-												<h2 class="label">Podległe instytucje</h2>
 												<?
 												echo $this->Element( 'Dane.objects/instytucje/list', array(
 													'items' => $items,
@@ -286,12 +302,9 @@ echo $this->Element( 'dataobject/pageRelated', array(
 												?>
 											</li>
 										</ul>
-
-
 									</div>
-
+									
 								</div>
-
 							</div>
 						<? } ?>
 
@@ -304,18 +317,21 @@ echo $this->Element( 'dataobject/pageRelated', array(
 		<? } else { ?>
 
 			<div class="col-md-9 col-md-offset-1">
-				<div class="mpanel">
+				<div class="">
 
 					<div class="block-group">
 
-
 						<? if ( isset( $info['opis_html'] ) && $info['opis_html'] ) { ?>
 							<div class="block">
+								<div class="block-header">
+									<h2 class="label">Informacje</h2>
+								</div>
 								<div class="content opis">
 									<?= $info['opis_html'] ?>
 								</div>
 							</div>
 						<? } ?>
+
 
 						<? if (
 							( $tree = $object->getLayer( 'tree' ) ) &&
@@ -325,10 +341,14 @@ echo $this->Element( 'dataobject/pageRelated', array(
 							<div class="block">
 								<div class="block-header">
 
+									<h2 class="label">Podległe instytucje</h2>
+
+								</div>
+								<div class="content nopadding">
+									
 									<div class="tree">
 										<ul>
 											<li>
-												<h2 class="label">Podległe instytucje</h2>
 												<?
 												echo $this->Element( 'Dane.objects/instytucje/list', array(
 													'items' => $items,
@@ -338,7 +358,7 @@ echo $this->Element( 'dataobject/pageRelated', array(
 											</li>
 										</ul>
 									</div>
-
+									
 								</div>
 							</div>
 						<? } ?>

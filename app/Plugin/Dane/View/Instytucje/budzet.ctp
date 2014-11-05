@@ -6,13 +6,13 @@ if ( $budzet = $object->getLayer( 'budzet' ) ) {
 	?>
 
 
-	<div id="budzet" class="block mpanel">
+	<div id="budzet" class="block">
 
 		<div class="text-center">
 			<p>W wydatkach budżetu państwa na rok 2014, <strong><?= $object->getTitle() ?></strong> ma zarezerwowane:
 			</p>
 
-			<p class="budget_number"><?= $this->Waluta->slownie( $object->getData( 'budzet_plan' ) * 1000 ) ?></p>
+			<p class="budget_number"><?= $this->Waluta->slownie( $object->getData( 'budzet_plan' ) * 1000 ) ?> <span>PLN</span></p>
 		</div>
 
 		<? if ( isset( $budzet['wydatki_dzialy'] ) && $budzet['wydatki_dzialy'] ) { ?>

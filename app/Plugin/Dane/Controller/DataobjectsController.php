@@ -76,25 +76,32 @@ class DataobjectsController extends DaneAppController {
 	public function _prepareView() {
 
 		try {
-
+									
+			$slug = isset($this->params->slug) ? $this->params->slug : false;
+						
 			$this->object = $this->API->getObject( $this->params->controller, $this->params->id, array(
 				'layers'         => $this->initLayers,
 				'dataset'        => true,
 				'flag'           => (boolean) $this->Session->read( 'Auth.User.id' ),
 				'alerts_queries' => true,
-				'slug' => isset($this->params->slug) ? $this->params->slug : false,
+				'slug' => $slug,
 			) );
+			
+			// debug( $slug ); debug( $this->object->getSlug() ); die();
+			
+			$regexp = '/^\/dane\/(.*?)\/([0-9]+)';
+			if( $slug )
+				$regexp .= '\,' . preg_quote($slug);
+			$regexp .= '(.*?)$/i';
 			
 			if( 
 				$this->object->getSlug() && 
-				(
-					!isset( $this->params->slug ) || 
-					( $this->params->slug != $this->object->getSlug() )
-				) && 
-				preg_match('/^\/dane\/(.*?)\/([0-9]+)(.*?)$/i', $_SERVER['REQUEST_URI'], $match) 
+				( $slug != $this->object->getSlug() ) && 
+				preg_match($regexp, $_SERVER['REQUEST_URI'], $match) 
 			) {				
 				
-				$url = '/dane/' . $match[1] . '/' . $match[2] . ',' . $this->object->getSlug() . $match[3];
+				$url = '/dane/' . $match[1] . '/' . $match[2] . ',' . $this->object->getSlug() . $match[3];				
+				// debug( $url ); die();
 				$this->redirect($url);
 				die();
 				

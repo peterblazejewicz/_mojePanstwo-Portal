@@ -379,7 +379,7 @@ class KrsPodmiotyController extends DataobjectsController {
 		$counters = $this->object->getLayers( 'counters' );
 
 		// PREPARE MENU
-		$href_base = '/dane/krs_podmioty/' . $this->request->params['id'];
+		$href_base = $this->object->getUrl();
 
 		$menu = array(
 			'items' => array(

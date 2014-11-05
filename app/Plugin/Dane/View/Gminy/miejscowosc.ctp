@@ -44,7 +44,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 		<div class="col-lg-9 objectMain">
 
 
-			<div class="object mpanel">
+			<div class="object">
 
 				<div class="block-group">
 

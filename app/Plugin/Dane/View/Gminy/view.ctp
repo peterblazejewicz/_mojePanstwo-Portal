@@ -121,7 +121,7 @@
 	</div>
 <? } ?>
 
-<div class="object mpanel">
+<div class="object">
 
 <div class="block-group">
 
@@ -171,11 +171,13 @@
 
 <?php } ?>
 
+<?php if ( $object->getId() == '903' ) { ?>
 <div class="special banner">
 	<a title="Zobacz umowy podpisywane przez Komitet Konkursowy Kraków 2022" href="/dane/krs_podmioty/481129/umowy">
 		<img src="/Dane/img/krakow_special_banner.png" width="885" height="85"/>
 	</a>
 </div>
+<? } ?>
 
 <div class="row bottomborder">
 	<div class="col-md-4">
@@ -492,6 +494,8 @@
 	</div>
 </div>
 
+
+<? if( $object->getId()=='903' ) {?>
 <div id="dzielnice" class="block">
 	<div class="block-header">
 		<h2 class="pull-left label">Dzielnice</h2>
@@ -504,7 +508,7 @@
 		<div id="dzielnice_map"></div>
 	</div>
 </div>
-
+<? } ?>
 
 <? /*
 		        <div id="dotacje_unijne" class="block">

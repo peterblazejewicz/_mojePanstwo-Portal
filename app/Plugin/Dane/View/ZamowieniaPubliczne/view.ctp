@@ -146,7 +146,7 @@
 
 <div class="col-lg-9 objectMain">
 
-<div class="object mpanel">
+<div class="object">
 
 
 <div class="block-group">
@@ -155,7 +155,7 @@
 <? if ( $object->getData( 'tryb_id' ) == 6 ) { ?>
 	<div class="block">
 		<div class="block-header">
-			<h2 class="pull-left label">Warunki licytacji elektronicznej</h2>
+			<h2 class="label">Warunki licytacji elektronicznej</h2>
 		</div>
 		<div class="content">
 			<div class="textBlock">
@@ -192,7 +192,7 @@ if ( ! $liczba_czesci ) {
 
 	<div class="block">
 		<div class="block-header">
-			<h2 class="pull-left label">Przedmiot zamówienia</h2>
+			<h2 class="label">Przedmiot zamówienia</h2>
 		</div>
 		<div class="content">
 			<div class="textBlock"><?php echo( nl2br( $details['przedmiot'] ) ); ?></div>
@@ -210,7 +210,7 @@ if ( ! empty( $czesci ) ) {
 
 			<div class="block">
 				<div class="block-header">
-					<h2 class="pull-left label">Przedmiot zamówienia</h2>
+					<h2 class="label">Przedmiot zamówienia</h2>
 				</div>
 				<div class="content">
 					<div class="textBlock"><?php echo( nl2br( $details['przedmiot'] ) ); ?></div>
@@ -222,7 +222,7 @@ if ( ! empty( $czesci ) ) {
 
 				<? if ( $liczba_czesci > 1 ) { ?>
 					<div class="block-header">
-						<h2 class="pull-left label">Część #<?= $czesc['numer'] ?> - <?= $czesc['nazwa'] ?></h2>
+						<h2 class="label">Część #<?= $czesc['numer'] ?> - <?= $czesc['nazwa'] ?></h2>
 					</div>
 				<? } ?>
 
@@ -362,7 +362,7 @@ if ( ! empty( $czesci ) ) {
 			<? if ( $liczba_czesci <= 1 ) { ?>
 				<div class="block">
 					<div class="block-header">
-						<h2 class="pull-left label">Przedmiot zamówienia</h2>
+						<h2 class="label">Przedmiot zamówienia</h2>
 					</div>
 					<div class="content">
 						<div class="textBlock"><?php echo( nl2br( $details['przedmiot'] ) ); ?></div>
@@ -386,7 +386,7 @@ if ( ! empty( $czesci ) ) {
 
 	<div class="block">
 		<div class="block-header">
-			<h2 class="pull-left label">Składanie ofert</h2>
+			<h2 class="label">Składanie ofert</h2>
 		</div>
 
 		<div class="content">
@@ -406,7 +406,7 @@ if ( ! empty( $czesci ) ) {
 <? if ( @$details['siwz_www'] || @$details['siwz_adres'] ) { ?>
 	<div class="block">
 		<div class="block-header">
-			<h2 class="pull-left label">Specyfikacja Istotnych Warunków Zamówienia</h2>
+			<h2 class="label">Specyfikacja Istotnych Warunków Zamówienia</h2>
 		</div>
 
 		<div class="content">
@@ -424,7 +424,7 @@ if ( ! empty( $czesci ) ) {
 <? if ( $liczba_czesci > 1 ) { ?>
 	<div class="block">
 		<div class="block-header">
-			<h2 class="pull-left label">Przedmiot zamówienia</h2>
+			<h2 class="label">Przedmiot zamówienia</h2>
 		</div>
 		<div class="content">
 			<div class="textBlock"><?php echo( nl2br( $details['przedmiot'] ) ); ?></div>
@@ -442,7 +442,7 @@ foreach ( $text_details as $key => $value ) {
 
 		<div class="block">
 			<div class="block-header">
-				<h2 class="pull-left label"><?php echo __d( 'dane', __( 'LC_DANE_VIEW_ZAMOWIENIAPUBLICZNE_' . $key ) ); ?></h2>
+				<h2 class="label"><?php echo __d( 'dane', __( 'LC_DANE_VIEW_ZAMOWIENIAPUBLICZNE_' . $key ) ); ?></h2>
 			</div>
 
 			<div class="content">

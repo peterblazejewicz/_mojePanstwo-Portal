@@ -206,36 +206,44 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
             Prezentowane dane dotyczą chwili, w której podmiot był wykreślany z KRS.
         </div>
     <? } ?>
-
-    <?
-    $adres = $object->getData( 'adres_ulica' );
-    $adres .= ' ' . $object->getData( 'adres_numer' );
-    $adres .= ', ' . $object->getData( 'adres_miejscowosc' );
-    $adres .= ', Polska';
-    ?>
-
-    <div class="profile_baner" data-adres="<?= urlencode( $adres ) ?>">
-        <div class="bg">
-            <img
-                src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode( $adres ) ?>&markers=<?= urlencode( $adres ) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
-
-            <div class="content">
-                <p>
-                    ul. <?= $object->getData( 'adres_ulica' ) ?> <?= $object->getData( 'adres_numer' ) ?><? if ( $object->getData( 'adres_lokal' ) ) { ?>/<?= $object->getData( 'adres_lokal' ) ?><? } ?></p>
-                <? if ( $object->getData( 'adres_poczta' ) != $object->getData( 'adres_miejscowosc' ) ) { ?>
-                    <p><?= $object->getData( 'adres_miejscowosc' ) ?></p><? } ?>
-                <p><?= $object->getData( 'adres_kod_pocztowy' ) ?> <?= $object->getData( 'adres_poczta' ) ?></p>
-
-                <p><?= $object->getData( 'adres_kraj' ) ?></p>
-                <button class="btn btn-info"><?= __d( 'dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE' ) ?></button>
-            </div>
-        </div>
-        <div id="googleMap">
-            <script>
-                var googleMapAdres = '<?= $adres ?>';
-            </script>
-        </div>
-    </div>
+	
+	
+	<div class="block">
+		
+		<div class="block-header">
+			<h2 class="label">Adres</h2>
+		</div>
+	
+	    <?
+	    $adres = $object->getData( 'adres_ulica' );
+	    $adres .= ' ' . $object->getData( 'adres_numer' );
+	    $adres .= ', ' . $object->getData( 'adres_miejscowosc' );
+	    $adres .= ', Polska';
+	    ?>
+	
+	    <div class="profile_baner" data-adres="<?= urlencode( $adres ) ?>">
+	        <div class="bg">
+	            <img
+	                src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode( $adres ) ?>&markers=<?= urlencode( $adres ) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
+	
+	            <div class="content">
+	                <p>
+	                    ul. <?= $object->getData( 'adres_ulica' ) ?> <?= $object->getData( 'adres_numer' ) ?><? if ( $object->getData( 'adres_lokal' ) ) { ?>/<?= $object->getData( 'adres_lokal' ) ?><? } ?></p>
+	                <? if ( $object->getData( 'adres_poczta' ) != $object->getData( 'adres_miejscowosc' ) ) { ?>
+	                    <p><?= $object->getData( 'adres_miejscowosc' ) ?></p><? } ?>
+	                <p><?= $object->getData( 'adres_kod_pocztowy' ) ?> <?= $object->getData( 'adres_poczta' ) ?></p>
+	
+	                <p><?= $object->getData( 'adres_kraj' ) ?></p>
+	                <button class="btn btn-info"><?= __d( 'dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE' ) ?></button>
+	            </div>
+	        </div>
+	        <div id="googleMap">
+	            <script>
+	                var googleMapAdres = '<?= $adres ?>';
+	            </script>
+	        </div>
+	    </div>
+	</div>
 
     <?php if ( $object->getId() == '481129' ) { ?>
         <div class="special banner">
@@ -368,7 +376,7 @@ $this->Combinator->add_libs( 'js', 'graph-krs' );
 
 
 	<? if ($wspolnicy = $object->getLayer( 'wspolnicy' )) { ?>
-
+	
 	<div class="wspolnicy block">
 		<div class="block-header"><h2 class="label">Struktura właścicielska</h2></div>
 
