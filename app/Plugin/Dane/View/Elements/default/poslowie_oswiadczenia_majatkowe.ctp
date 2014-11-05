@@ -1,4 +1,3 @@
-<div class="row block">
 
 	<div class="avatar col-md-10">
 		<div class="col-md-1">
@@ -15,5 +14,3 @@
 			<p>(<?php echo $item['data']['sejm_kluby.skrot']; ?>)</p>
 		</div>
 	</div>
-
-</div>

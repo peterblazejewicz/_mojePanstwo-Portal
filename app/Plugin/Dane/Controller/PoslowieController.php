@@ -533,7 +533,7 @@ class PoslowieController extends DataobjectsController {
 		// debug( $this->object->getData() ); die();
 
 		// PREPARE MENU
-		$href_base = '/dane/poslowie/' . $this->request->params['id'];
+		$href_base = '/dane/poslowie/' . $this->request->params['id'] . ',' . $this->object->getSlug();
 
 		$menu = array(
 			'items' => array(
