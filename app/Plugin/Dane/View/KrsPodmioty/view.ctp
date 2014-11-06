@@ -215,8 +215,9 @@ $this->Combinator->add_libs('js', 'graph-krs');
 
             <div class="mapsOptions pull-right">
                 <button
-                    class="googleMap btn btn-sm btn-info"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE') ?></button>
-                <!--<button class="streetView btn btn-sm btn-info"><? /*= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET') */ ?></button>-->
+                    class="googleMap btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE') ?></button>
+                <button
+                    class="streetView btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET') ?></button>
             </div>
         </div>
 

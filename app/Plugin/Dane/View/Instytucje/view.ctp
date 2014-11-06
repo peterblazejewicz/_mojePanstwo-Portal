@@ -161,7 +161,8 @@ echo $this->Element( 'dataobject/pageRelated', array(
 
 						<? if ( $object->getData( 'budzet_plan' ) * 1000 ) { ?>
 							<li class="dataHighlight big">
-								<p class="_label">Budżet roczny</p>
+                                <p class="_label" data-toggle="tooltip" data-placement="bottom"
+                                   title="Budżet roczny organizacji, finansowany z budżetu państwa">Budżet roczny</p>
 
 								<div>
 									<p class="_value pull-left"><?= number_format_h( $object->getData( 'budzet_plan' ) * 1000 ) ?>

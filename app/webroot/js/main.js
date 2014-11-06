@@ -284,4 +284,10 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
             FBApiInit = true;
         };
     }
+
+    /*INITIALIZE BOOTSTRAP TOOLTIP*/
+    $('[data-toggle="tooltip"]').each(function () {
+        var that = $(this);
+        that.addClass('tooltipIcon').append($('<i></i>').addClass('glyphicon glyphicon-info-sign').data(that.data()).attr('title', that.attr('title')).tooltip());
+    });
 })(jQuery);

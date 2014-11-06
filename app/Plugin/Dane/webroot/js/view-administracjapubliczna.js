@@ -63,25 +63,23 @@ function loadScript() {
 }
 
 jQuery(document).ready(function () {
-        var banner = jQuery('.profile_baner'),
-            menu = jQuery('.objectsPageContent .objectMenu'),
-            menuAutoScroll = true,
-            headerHeight = jQuery('header').outerHeight(),
-            connectionGraph = jQuery('#connectionGraph'),
-            dataHighlightsOptions = jQuery('.dataHighlightsOptions'),
-            $showHideSide = $('.showHideSide'),
-            $objectSideInner = $('.objectSideInner');
+    var banner = jQuery('.profile_baner'),
+        menu = jQuery('.objectsPageContent .objectMenu'),
+        menuAutoScroll = true,
+        headerHeight = jQuery('header').outerHeight(),
+        connectionGraph = jQuery('#connectionGraph'),
+        dataHighlightsOptions = jQuery('.dataHighlightsOptions'),
+        $showHideSide = $('.showHideSide'),
+        $objectSideInner = $('.objectSideInner');
 
-        if (banner.length > 0) {
-            banner.find('.bg img').css('width', banner.width() + 'px');
+    if (banner.length > 0) {
+        banner.find('.bg img').css('width', banner.width() + 'px');
 
-            /*ASYNCHRONIZE ACTION FOR GOOGLE MAP*/
-            window.onload = loadScript();
+        /*ASYNCHRONIZE ACTION FOR GOOGLE MAP*/
+        window.onload = loadScript();
 
-            banner.find('.bg .btn').click(function () {
-                banner.find('.bg').fadeOut()
-            });
-        }
+        banner.find('.bg .btn').click(function () {
+            banner.find('.bg').fadeOut()
+        });
     }
-)
-;
+});

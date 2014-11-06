@@ -91,18 +91,18 @@ trimTitle = function () {
             if (body.length > trimLength + 20) {
                 var splitLocation = body.indexOf(' ', trimLength),
                     shortTitle = false,
-                    hyperlink = (that.children().length > 0);
+                    hyperlink = (that.closest('a').length);
 
                 if (splitLocation != -1) {
                     splitLocation = body.indexOf(' ', trimLength);
                     shortTitle = body.substring(0, splitLocation);
                     that.data('trimtitle', title);
 
-                    if (hyperlink == true) { /*TARGET IS HYPERLINK*/
-                        that.find('a').html(shortTitle).after('<span class="trimTitleTrigger">...</span>');
+                    if (hyperlink) { /*TARGET IS HYPERLINK*/
+                        that.closest('a').html(shortTitle).after('<span class="trimTitleTrigger hyper">...</span>');
 
-                        that.find('.trimTitleTrigger').click(function () {                      //             ^oo1^
-                            that.find('a').html(that.data('trimtitle'));                        //            ++o1^+o111111+^
+                        that.parent().find('.trimTitleTrigger').click(function () {             //             ^oo1^
+                            that.closest('a').html(that.data('trimtitle'));                     //            ++o1^+o111111+^
                             jQuery('.trimTitleTrigger').remove();                               //           1+^^^ oo^1NNNooo+^+^
                         });                                                                     //           o^^^^^^01+100+^o0110o+
                     } else { /*TARGET IS NORMAL TEXT */                                         //           ooo^^^^100oooo1o000NMM1
