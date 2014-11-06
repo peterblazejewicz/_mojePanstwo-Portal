@@ -10,6 +10,14 @@ h1 {
     padding-top: 5px;
 
     .administracjaPubliczna {
+        .mapsOptions {
+            .btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+        }
         .banner {
             background-color: #DDD;
             width: 265px;
@@ -57,6 +65,13 @@ h1 {
             width: @bannerWidth;
             position: relative;
             overflow: hidden;
+            -webkit-transition: height 0.8s;
+            -moz-transition: height 0.8s;
+            transition: height 0.8s;
+
+            &.big {
+                height: 2*@bannerHeight;
+            }
 
             .bg {
                 width: @bannerWidth;
@@ -94,19 +109,26 @@ h1 {
                     }
 
                     .btn {
-                        margin-top: 1em;
+                        display: block;
+                        margin-top: 5px;
+
+                        &:first-of-type {
+                            margin-top: 1em;
+                        }
                     }
                 }
             }
 
-            #googleMap {
+            .googleView, #googleMap, #streetView {
                 position: absolute;
                 top: 0;
                 left: 0;
                 z-index: 1;
                 width: @bannerWidth;
-                height: @bannerHeight;
+                height: 2*@bannerHeight;
+            }
 
+            .googleView {
                 #googleMapsContent .btn {
                     display: block;
                     margin: 5px auto 0;

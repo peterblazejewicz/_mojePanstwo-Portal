@@ -68,7 +68,7 @@ function initialize() {
 
     function showPanoData(panoData, status) {
         if (status != google.maps.StreetViewStatus.OK) {
-            $('#streetView').html(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_NO_STREETVIEW_PICTURE_AVAILABLE).attr('style', 'text-align:center;font-weight:bold').show();
+            $('#streetView').html(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_NO_STREETVIEW_PICTURE_AVAILABLE).attr('style', 'text-align:center;font-weight:bold,position: relative; top: 50%; margin-top: -10px').show();
             return;
         }
 
@@ -131,7 +131,7 @@ jQuery(document).ready(function () {
             menuAutoScroll = true,
             headerHeight = jQuery('header').outerHeight(),
             dataHighlightsOptions = jQuery('.dataHighlightsOptions'),
-            $showHideSide = $('.showHideSide'),
+            $shłowHideSide = $('.showHideSide'),
             $objectSideInner = $('.objectSideInner');
 
         if (banner.length > 0) {
@@ -140,31 +140,33 @@ jQuery(document).ready(function () {
             /*ASYNCHRONIZE ACTION FOR GOOGLE MAP*/
             window.onload = loadScript();
 
-            mapsOptions.find('.googleMap').click(function () {
-                mapsOptions.find('.active').removeClass('active');
+            mapsOptions.find('button').click(function () {
+                var that = $(this);
 
-                banner.addClass('big');
-                banner.find('#googleMap').show();
-                banner.find('#streetView').hide();
-                banner.find('.bg').fadeOut();
+                if (that.hasClass('active')) {
+                    mapsOptions.find('.active').removeClass('active');
 
-                $(this).addClass('active');
-            });
-            mapsOptions.find('.streetView').click(function () {
-                mapsOptions.find('.active').removeClass('active');
+                    banner.removeClass('big');
+                    banner.find('.bg').fadeIn();
+                } else if (that.hasClass('googleMap')) {
+                    mapsOptions.find('.active').removeClass('active');
 
-                banner.addClass('big');
-                banner.find('#googleMap').hide();
-                banner.find('#streetView').show();
-                banner.find('.bg').fadeOut();
+                    banner.addClass('big');
+                    banner.find('#googleMap').show();
+                    banner.find('#streetView').hide();
+                    banner.find('.bg').fadeOut();
 
-                $(this).addClass('active');
-            });
-            banner.find('.googleView .closeMap').click(function () {
-                mapsOptions.find('.active').removeClass('active');
+                    $(this).addClass('active');
+                } else if (that.hasClass('streetView')) {
+                    mapsOptions.find('.active').removeClass('active');
 
-                banner.removeClass('big');
-                banner.find('.bg').fadeIn();
+                    banner.addClass('big');
+                    banner.find('#googleMap').hide();
+                    banner.find('#streetView').show();
+                    banner.find('.bg').fadeOut();
+
+                    $(this).addClass('active');
+                }
             });
         }
 
