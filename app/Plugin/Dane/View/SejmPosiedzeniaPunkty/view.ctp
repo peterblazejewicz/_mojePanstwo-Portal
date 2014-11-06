@@ -44,7 +44,7 @@
 																
 												<div class="content">
 																					
-													<p class="title"><a href="<?= $debata->getUrl() ?>">Część #<?= $debata->getData('punkt_i') ?></a></p>
+													<p class="title"><a href="/dane/sejm_posiedzenia_punkty/<?= $object->getId() ?>,<?= $object->getSlug() ?>/debaty/<?= $debata->getId() ?>">Część #<?= $debata->getData('punkt_i') ?></a></p>
 																																	
 												</div>
 								

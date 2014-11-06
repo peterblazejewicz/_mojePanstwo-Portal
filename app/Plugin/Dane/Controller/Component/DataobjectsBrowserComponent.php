@@ -24,6 +24,8 @@ class DataobjectsBrowserComponent extends Component {
 	public $dataset = false;
 	public $datachannel = false;
 	public $dataset_dictionary = array();
+	public $renderFile = false;
+	public $class = false;
 
 	public $excludeFilters = array();
 
@@ -87,9 +89,13 @@ class DataobjectsBrowserComponent extends Component {
 		if ( isset( $settings['routes'] ) ) {
 			$this->routes = $settings['routes'];
 		}
+		
+		if ( isset( $settings['class'] ) ) {
+			$this->class = $settings['class'];
+		}
 
-		if ( isset( $settings['routes'] ) ) {
-			$this->routes = $settings['routes'];
+		if ( isset( $settings['renderFile'] ) ) {
+			$this->renderFile = $settings['renderFile'];
 		}
 
 		if ( isset( $settings['limit'] ) ) {
@@ -502,6 +508,8 @@ class DataobjectsBrowserComponent extends Component {
 				array(
 					'dataBrowser' => $this,
 					'defaults' => $config['defaults'],
+					'renderFile' => $this->renderFile,
+					'class' => $this->class,
 				)
 			) );
 
@@ -529,10 +537,12 @@ class DataobjectsBrowserComponent extends Component {
 			if ( file_exists( $path ) ) {
 				$controller->set( 'originalViewPath', $path );
 			}
-
+			
 			$controller->set( array_merge(
-				compact( 'conditions', 'objects', 'pagination', 'orders', 'filters', 'didyoumean', 'total', 'facets', 'page', 'title_for_layout', 'switchers', 'q' ),
+				compact('conditions', 'objects', 'pagination', 'orders', 'filters', 'didyoumean', 'total', 'facets', 'page', 'title_for_layout', 'switchers', 'q'),
 				array(
+					'renderFile' => $this->renderFile,
+					'class' => $this->class,
 					'dataBrowser' => $this,
 				)
 			) );

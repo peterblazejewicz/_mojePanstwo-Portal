@@ -2,7 +2,7 @@
 $emptyFilters = empty( $filters ) && empty( $switchers );
 ?>
 
-<div class="container dataBrowser _dataset_<?= $page['tag'] ?><? if ( $emptyFilters ) { ?> emptyFilters<? } ?>">
+<div class="container dataBrowser _dataset_<?= $page['tag'] ?><? if ( $emptyFilters ) { ?> emptyFilters<? } ?><? if ( isset($class) ) { echo " " . $class; } ?>">
 
 	<? /* if ($page['noResultsTitle'] && !$pagination['total']) { ?>
 
@@ -42,6 +42,7 @@ $emptyFilters = empty( $filters ) && empty( $switchers );
 					'objects'  => $objects,
 					'page'     => $page,
 					'defaults' => $config['defaults'],
+					'renderFile' => $renderFile,
 				) ); ?>
 			</div>
 

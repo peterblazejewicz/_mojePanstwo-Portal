@@ -25,6 +25,7 @@ echo $this->Element( 'Dane.DataobjectsBrowser/view', array(
 	'filters'    => $filters,
 	'switchers'  => $switchers,
 	'facets'     => $facets,
+	'renderFile' => $renderFile,
 ) );
 
 if ( $__mode == 'object' ) {
