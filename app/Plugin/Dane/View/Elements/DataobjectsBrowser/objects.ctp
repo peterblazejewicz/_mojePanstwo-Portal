@@ -7,8 +7,8 @@ if ( isset( $objects ) ) {
 		<ul class="list-group list-dataobjects">
 			<?
 			foreach ( $objects as $object ) {
-
-				echo $this->Dataobject->render( $object['Dataobject'], 'default', array(
+								
+				echo $this->Dataobject->render( $object['Dataobject'], (isset($renderFile) && $renderFile) ? $renderFile : 'default', array(
 					'hlFields'     => $dataBrowser->hlFields,
 					'hlFieldsPush' => $dataBrowser->hlFieldsPush,
 					'routes'       => $dataBrowser->routes,

@@ -6,7 +6,6 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 	public $uses = array( 'Dane.Dataobject' );
 	public $helpers = array( 'Dane.Dataobject' );
 	public $menu = array();
-	public $autoRelated = false;
 	public $breadcrumbsMode = 'app';
 
 	public $objectOptions = array(
@@ -15,23 +14,72 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 			'description' => false,
 		),
 	);
+	
+	public $initLayers = array('related');
+	
+	public function debaty() {
 
-	public function view() {
+		$this->_prepareView();
+		$this->request->params['action'] = 'debaty';
 
-		parent::view();
-		$this->object->loadRelated();
-		// $debaty = $this->object->getRelatedGroup( 'debaty' );
-		
-		/*
-		if ( $debaty && isset( $debaty['objects'] ) && ! empty( $debaty['objects'] ) ) {
+		if ( isset( $this->request->params['pass'][0] ) && is_numeric( $this->request->params['pass'][0] ) ) {
+			
+			
+			$subaction = ( isset( $this->request->params['pass'][1] ) && $this->request->params['pass'][1] ) ? $this->request->params['pass'][1] : 'view';
+			$sub_id    = ( isset( $this->request->params['pass'][2] ) && $this->request->params['pass'][2] ) ? $this->request->params['pass'][2] : false;
 
-			$debata = $debaty['objects'][0];
-			$this->redirect( '/dane/sejm_debaty/' . $debata->getId() );
+			$debata = $this->API->getObject('sejm_debaty', $this->request->params['pass'][0], array(// 'layers' => 'neighbours',
+			));
+			$this->set( 'debata', $debata );
+			
+			switch ( $subaction ) {
+				
+				case "view": {
+										
+					$this->dataobjectsBrowserView( array(
+						'source'         => 'sejm_debaty.wystapienia:' . $debata->getId(),
+						'dataset'        => 'sejm_wystapienia',
+						'noResultsTitle' => 'Brak wystąpień',
+						'title' => 'Część #' . $debata->getData('punkt_i'),
+						'order' => '_ord asc',
+						'renderFile' => 'sejm_debaty-wystapienie',
+						'class' => 'debata-wystapienia',
+						'limit' => 100,
+					) );
+					
+					// $this->set( 'title_for_layout', $miejscowosc->getTitle() . ' w gminie ' . $this->object->getTitle() );
+					$this->render( 'debata' );
+					break;
+					
+				}
+				
+				case "wystapienia": {
+					
+					if( $sub_id ) {
+						
+						$wystapienie = $this->API->getObject('sejm_wystapienia', $sub_id, array('layers' => 'html'));
+						$this->set( 'wystapienie', $wystapienie );
+						
+						$this->render( 'wystapienie' );
+						
+					} else {
+						
+						$this->redirect( $debata->getUrl() );
+						die();
+						
+					}
+					
+				}
+				
+			}
+						
+
+		} else {
+
+			$this->redirect( $this->object->getUrl() );
+			die();
 
 		}
-		*/
-
-		return false;
 
 	}
 	
@@ -65,6 +113,7 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 				$debaty[] = array(
 					'id' => $obj->getId(),
 					'label' => 'Część #' . $obj->getData('punkt_i'),
+					'href' => '/dane/sejm_posiedzenia_punkty/' . $this->object->getId() . ',' . $this->object->getSlug() . '/debaty/' . $obj->getId(),
 				);
 			
 			$menu['items'][] = array(
