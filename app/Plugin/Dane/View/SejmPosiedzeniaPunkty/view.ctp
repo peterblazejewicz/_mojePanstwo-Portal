@@ -3,37 +3,88 @@
 
 <?php echo $this->Element( 'dataobject/pageBegin' ); ?>
 	<div class="object">
-
-
-		<div class="block spacing">
-
-			<h2>Debaty w tym punkcie</h2>
-
-			<div class="content">
-				<div class="dataobjectsSliderRow debaty row">
-					<div>
-						<?php echo $this->dataobjectsSlider->render( $debaty, array(
-							'perGroup'  => 4,
-							'rowNumber' => 1,
-							'labelMode' => 'none',
-							'file'      => 'sejm_debaty-punkty',
-							'dfFields'  => array( 'liczba_wystapien', 'liczba_glosowan' ),
-						) ) ?>
+		
+		<div class="col-md-6 nopadding">
+		
+			<? if( $object->getData( 'opis' ) ) {?>
+				
+				<div class="block">
+					<div class="block-header">
+						<h2 class="label">Wynik obrad:</h2>
+					</div>
+					<div class="content textBlock">
+						<?= $object->getData( 'opis' ); ?>
 					</div>
 				</div>
-			</div>
-
+	
+			<? } ?>
+			
+			<? if( ($debaty = $object->getRelatedGroup('debaty')) && ($debaty = $debaty['objects']) ) {?>
+			
+				<div class="block">
+					<div class="block-header">
+						<h2 class="label">Debaty:</h2>
+					</div>
+					<div class="content nopadding">
+						<ul class="block-list">
+						<? foreach( $debaty as $debata ) {?>
+							<li>
+								
+								<? $this->Dataobject->setObject($debata); ?>
+								
+								<div class="objectRender">
+									<div class="row">
+										
+										<div class="formatDate col-md-2 dimmed">
+											<?php echo( $this->Dataobject->getDate() ); ?>
+										</div>
+										
+										<div class="data col-md-10">
+											<div class="row">
+																
+												<div class="content">
+																					
+													<p class="title"><a href="<?= $debata->getUrl() ?>">Część #<?= $debata->getData('punkt_i') ?></a></p>
+																																	
+												</div>
+								
+											</div>
+										</div>
+										
+									</div>
+								</div>
+								
+							</li>
+						<? } ?>
+						</ul>
+					</div>
+				</div>
+			
+			<? } ?>
+		
 		</div>
-
-		<div class="wynik">
-			<div class="alert alert-info">
-				<h4><?= $object->getData( 'opis' ); ?></h4>
-			</div>
+		<div class="col-md-6 nopadding">
+		
+			<? if( ($druki = $object->getRelatedGroup('druki')) && ($druki = $druki['objects']) ) {?>
+			
+				<div class="block">
+					<div class="block-header">
+						<h2 class="label">Powiązane druki sejmowe:</h2>
+					</div>
+					<div class="content nopadding">
+						<ul class="block-list">
+						<? foreach( $druki as $druk ) {?>
+							<li>
+								<? echo $this->Dataobject->render($druk, 'default-nothumb'); ?>
+							</li>
+						<? } ?>
+						</ul>
+					</div>
+				</div>
+			
+			<? } ?>
+		
 		</div>
-
-
-		<?= $this->element( 'dataobject/pageRelated' ); ?>
-
 
 	</div>
 <?php echo $this->Element( 'dataobject/pageEnd' ); ?>
