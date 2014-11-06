@@ -68,6 +68,17 @@ a {
     }
 }
 
+.tooltipIcon {
+    .glyphicon.glyphicon-info-sign {
+        margin-left: 4px
+    }
+}
+
+.tooltip {
+    font-size: 10px;
+    padding: 5px;
+}
+
 .form-control, textarea.form-control, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     border-width: 1px !important;
 }
@@ -409,14 +420,13 @@ body > pre:first-child {
 }
 
 .dataHighlights {
-
     margin-top: 10px;
     padding: 0 20px;
 
     .dataHighlight {
-
         padding: 5px;
-        overflow: auto;
+        display: inline-block;
+        width: 100%;
 
         ._label {
             font-size: 10px;
