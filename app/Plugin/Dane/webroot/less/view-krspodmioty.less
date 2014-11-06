@@ -89,6 +89,13 @@ ul.chart-blocks {
             width: @bannerWidth;
             position: relative;
             overflow: hidden;
+            -webkit-transition: height 0.8s;
+            -moz-transition: height 0.8s;
+            transition: height 0.8s;
+
+            &.big {
+                height: 2*@bannerHeight;
+            }
 
             .bg {
                 width: @bannerWidth;
@@ -142,19 +149,21 @@ ul.chart-blocks {
                 left: 0;
                 z-index: 1;
                 width: @bannerWidth;
-                height: @bannerHeight;
+                height: 2*@bannerHeight;
             }
+
             .googleView {
                 .closeMap {
-                    color: #999999;
-                    display: block;
+
+                    position: absolute;
+                    right: 6px;
+                    top: 6px;
+                    z-index: 2;
+                    width: 20px;
                     height: 20px;
                     padding: 2px;
-                    position: absolute;
-                    right: 0;
-                    top: 3px;
-                    width: 20px;
-                    z-index: 2;
+                    display: block;
+                    color: #999999;
 
                     &:before {
                         text-align: center;

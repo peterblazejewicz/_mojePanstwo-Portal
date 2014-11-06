@@ -455,10 +455,10 @@ msgid "LC_DANE_VIEW_KRSPODMIOTY_SYGNATURA"
 msgstr "Sygnatura akt"
 
 msgid "LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE"
-msgstr "Otwórz mapę"
+msgstr "Mapa Google"
 
 msgid "LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET"
-msgstr "Otwórz streetview"
+msgstr "Street View"
 
 msgid "LC_DANE_VIEW_KRSPODMIOTY_DATA_URODZENIA"
 msgstr "Data urodzenia"
@@ -483,6 +483,9 @@ msgstr "Kapitał zakładowy"
 
 msgid "LC_DANE_VIEW_KRSPODMIOTY_LINK"
 msgstr "Przejdź do elementu"
+
+msgid "LC_DANE_VIEW_KRSPODMIOTY_NO_STREETVIEW_PICTURE_AVAILABLE"
+msgstr "Brak dostępnego zdjęcia Street View"
 
 msgid "LC_DANE_GMINA_DO_KTOREJ_ZOSTAL_WYBRANY_RADNY"
 msgstr "Gmina, do której rady został wybrany radny"
@@ -1094,11 +1097,3 @@ msgstr "Podstawa prawna prowadzenia postępowania"
 
 msgid "LC_DANE_VIEW_ZAMOWIENIAPUBLICZNE_zamowienie_uzasadnienie"
 msgstr "Uzasadnienie wyboru trybu prowadzenia postępowania"
-
-
-
-
-
-
-
-
