@@ -153,10 +153,11 @@ class GminyController extends DataobjectsController
 		) );
 
 		$data = $this->API->getFacets();
+				
 		$ngos = array();
 
 		foreach ( $data as $d ) {
-			if ( $d['field'] == 'forma_prawna_id' ) {
+			if ( $d['field'] == 'krs_podmioty.forma_prawna_id' ) {
 				$ngos = $d['params']['options'];
 				break;
 			}
