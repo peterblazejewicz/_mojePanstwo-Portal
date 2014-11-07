@@ -197,6 +197,10 @@ body > pre:first-child {
     }
 }
 
+.overflow-auto{
+	overflow: auto;
+}
+
 .nav > li > a {
     font-size: 12px;
     line-height: 18px;
@@ -277,12 +281,14 @@ body > pre:first-child {
     > .content {
         padding: 20px 30px 30px;
 
-        &.textBlock {
-            padding: 20px 30px 30px;
+        
+    }
+    
+    .textBlock {
+        padding: 20px 30px 30px;
 
-            br {
-                margin-bottom: 15px;
-            }
+        br {
+            margin-bottom: 15px;
         }
     }
 
@@ -426,7 +432,6 @@ body > pre:first-child {
     .dataHighlight {
         padding: 5px;
         display: inline-block;
-        width: 100%;
 
         ._label {
             font-size: 10px;

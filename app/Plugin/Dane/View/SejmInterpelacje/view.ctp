@@ -6,6 +6,8 @@
 
 <?= $this->Element( 'dataobject/pageBegin' ); ?>
 
+<div class="object">
+
 <?php if ( empty( $teksty ) && $wydarzenie['dokument_id'] ) { ?>
 	<?php echo $this->Html->css( $document->getCSSLocation() ); ?>
 
@@ -77,23 +79,27 @@
 		</div>
 	</div>
 <?php } else { ?>
-	<div class="htmlexDoc">
+	<div class="htmlexDoc nominheight">
 		<div class="document">
 			<div class="content col-md-9">
 				<?php foreach ( $teksty as $t ) { ?>
-					<div class="block mpanel">
-						<?
-						if ( $wydarzenie['typ_id'] == 1 || $wydarzenie['typ_id'] == 3 ) {
-							?>
-							<h2>
-								<small>Do:</small> <?php echo $t['funkcja_nazwa']; ?></h2>
-						<? } elseif ( $wydarzenie['typ_id'] == 2 || $wydarzenie['typ_id'] == 4 ) { ?>
-							<h2>
-								<small>Od:</small> <?php echo $wydarzenie['autor_str']; ?></h2>
-						<? } ?>
-						<div class="html">
+					<div class="block">
+
+						<div class="block-header">
+							<? if ( $wydarzenie['typ_id'] == 1 || $wydarzenie['typ_id'] == 3 ) {
+								?>
+								<h2 class="label">
+									<small>Do:</small> <?php echo $t['funkcja_nazwa']; ?></h2>
+							<? } elseif ( $wydarzenie['typ_id'] == 2 || $wydarzenie['typ_id'] == 4 ) { ?>
+								<h2 class="label">
+									<small>Od:</small> <?php echo $wydarzenie['autor_str']; ?></h2>
+							<? } ?>
+						</div>
+						
+						<div class="content textBlock">
 							<?php echo $t['html']; ?>
 						</div>
+						
 					</div>
 				<?php } ?>
 			</div>
@@ -136,5 +142,6 @@
 	</div>
 <?php } ?>
 
+</div>
 
 <?= $this->Element( 'dataobject/pageEnd' ); ?>

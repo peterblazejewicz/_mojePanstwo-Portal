@@ -2,9 +2,12 @@
 	<div class="object block-group">
 
 		<div class="block">
-			<h2 class="label">Wynik w wyborach</h2>
-
-			<div class="content">
+			
+			<div class="block-header">
+				<h2 class="label">Wynik w wyborach</h2>
+			</div>
+			
+			<div class="content nopadding">
 				<?php echo $this->Dataobject->hlTableForObject( $object, array(
 					'okreg_numer',
 					'liczba_glosow',
@@ -16,7 +19,7 @@
 				) ); ?>
 			</div>
 
-			<div class="content">
+			<div class="content nopadding">
 				<?php echo $this->Dataobject->hlTableForObject( $object, array(
 					'okreg_ulice',
 				), array(
@@ -31,9 +34,12 @@
 
 		<? if ( $object->getData( 'dyzur' ) || $object->getData( 'tel' ) || $object->getData( 'email' ) || $object->getData( 'www' ) ) { ?>
 			<div class="block">
-				<h2 class="label">Kontakt</h2>
-
-				<div class="content">
+				
+				<div class="block-header">
+					<h2 class="label">Kontakt</h2>
+				</div>
+				
+				<div class="content nopadding">
 					<?php echo $this->Dataobject->hlTableForObject( $object, array(
 						'dyzur',
 						'tel',
@@ -50,9 +56,12 @@
 
 
 		<div class="block">
-			<h2 class="label">Aktywność</h2>
-
-			<div class="content">
+			
+			<div class="block-header">
+				<h2 class="label">Aktywność</h2>
+			</div>
+			
+			<div class="content nopadding">
 				<?php echo $this->Dataobject->hlTableForObject( $object, array(
 					'kadencja',
 					'funkcja',
@@ -69,9 +78,12 @@
 		</div>
 
 		<div class="block">
-			<h2 class="label">Doświadczenie</h2>
-
-			<div class="content">
+			
+			<div class="block-header">
+				<h2 class="label">Doświadczenie</h2>
+			</div>
+				
+			<div class="content nopadding">
 				<?php echo $this->Dataobject->hlTableForObject( $object, array(
 					'wyksztalcenie',
 					'zawod',
