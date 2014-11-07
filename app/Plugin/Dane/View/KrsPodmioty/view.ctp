@@ -207,52 +207,51 @@ $this->Combinator->add_libs('js', 'graph-krs');
         </div>
     <? } ?>
 
+    <?
+    $adres = $object->getData('adres_ulica');
+    $adres .= ' ' . $object->getData('adres_numer');
+    $adres .= ', ' . $object->getData('adres_miejscowosc');
+    $adres .= ', Polska';
+    ?>
 
-    <div class="block">
+    <?php if (!empty($object->getData('adres_ulica')) || !empty($object->getData('adres_numer')) || !empty($object->getData('adres_miejscowosc'))) { ?>
+        <div class="block">
+            <div class="block-header">
+                <h2 class="label">Adres</h2>
 
-        <div class="block-header">
-            <h2 class="label">Adres</h2>
-
-            <div class="mapsOptions pull-right">
-                <button
-                    class="googleMap btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE') ?></button>
-                <button
-                    class="streetView btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET') ?></button>
-            </div>
-        </div>
-
-        <?
-        $adres = $object->getData('adres_ulica');
-        $adres .= ' ' . $object->getData('adres_numer');
-        $adres .= ', ' . $object->getData('adres_miejscowosc');
-        $adres .= ', Polska';
-        ?>
-
-        <div class="profile_baner" data-adres="<?= urlencode($adres) ?>">
-            <div class="bg">
-                <img
-                    src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($adres) ?>&markers=<?= urlencode($adres) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
-
-                <div class="content">
-                    <p>
-                        ul. <?= $object->getData('adres_ulica') ?> <?= $object->getData('adres_numer') ?><? if ($object->getData('adres_lokal')) { ?>/<?= $object->getData('adres_lokal') ?><? } ?></p>
-                    <? if ($object->getData('adres_poczta') != $object->getData('adres_miejscowosc')) { ?>
-                        <p><?= $object->getData('adres_miejscowosc') ?></p><? } ?>
-                    <p><?= $object->getData('adres_kod_pocztowy') ?> <?= $object->getData('adres_poczta') ?></p>
-
-                    <p><?= $object->getData('adres_kraj') ?></p>
+                <div class="mapsOptions pull-right">
+                    <button
+                        class="googleMap btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE') ?></button>
+                    <button
+                        class="streetView btn btn-sm btn-default"><?= __d('dane', 'LC_DANE_VIEW_KRSPODMIOTY_OTWORZ_MAPE_STREET') ?></button>
                 </div>
             </div>
-            <div class="googleView">
-                <script>
-                    var googleMapAdres = '<?= $adres ?>';
-                </script>
-                <button class="closeMap btn btn-default glyphicon glyphicon-remove"></button>
-                <div id="googleMap"></div>
-                <div id="streetView"></div>
+
+            <div class="profile_baner" data-adres="<?= urlencode($adres) ?>">
+                <div class="bg">
+                    <img
+                        src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($adres) ?>&markers=<?= urlencode($adres) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
+
+                    <div class="content">
+                        <p>
+                            ul. <?= $object->getData('adres_ulica') ?> <?= $object->getData('adres_numer') ?><? if ($object->getData('adres_lokal')) { ?>/<?= $object->getData('adres_lokal') ?><? } ?></p>
+                        <? if ($object->getData('adres_poczta') != $object->getData('adres_miejscowosc')) { ?>
+                            <p><?= $object->getData('adres_miejscowosc') ?></p><? } ?>
+                        <p><?= $object->getData('adres_kod_pocztowy') ?> <?= $object->getData('adres_poczta') ?></p>
+
+                        <p><?= $object->getData('adres_kraj') ?></p>
+                    </div>
+                </div>
+                <div class="googleView">
+                    <script>
+                        var googleMapAdres = '<?= $adres ?>';
+                    </script>
+                    <div id="googleMap"></div>
+                    <div id="streetView"></div>
+                </div>
             </div>
         </div>
-    </div>
+    <?php } ?>
 
     <?php if ($object->getId() == '481129') { ?>
         <div class="special banner">

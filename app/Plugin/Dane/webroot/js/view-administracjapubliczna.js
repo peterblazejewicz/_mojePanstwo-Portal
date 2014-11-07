@@ -1,4 +1,5 @@
 /*global googleMapAdres: true, connectionGraphObject*/
+var googleMap, panorama, addLatLng;
 
 function initialize() {
     //SETTING DEFAULT CENTER TO GOOGLE MAP AT POLAND//
@@ -7,9 +8,11 @@ function initialize() {
             zoom: 15,
             center: polandLatlng
         },
-        map = new google.maps.Map(document.getElementById('googleMap'), mapOptions),
         geocoder = new google.maps.Geocoder(),
         contentString = document.createElement("div");
+
+    googleMap = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+
     contentString.innerHTML = googleMapAdres + '<a href="https://maps.google.com/maps?daddr=' + googleMapAdres.replace(/ /g, '+') + '&t=m" target="_blank" class="btn btn-info">Dojazd</a>';
     contentString.id = "googleMapsContent";
     contentString.style.width = "360px";
@@ -26,32 +29,91 @@ function initialize() {
     var element = document.getElementById("googleMapsContent");
     element.parentNode.removeChild(element);
 
-    infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
 
     geocoder.geocode({'address': googleMapAdres}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
+            var gps = results[0].geometry.location,
+                marker = new google.maps.Marker({
+                    map: googleMap,
+                    position: gps
+                });
+
+            createStreetview(gps.lat(), gps.lng());
 
             //CENTER ON MARKER
-            map.setCenter(results[0].geometry.location);
+            googleMap.setCenter(results[0].geometry.location);
 
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
+                infowindow.open(googleMap, marker);
             });
 
             //NEED TO WAIT A LITTLE UNTIL MAP IDLE AND CAN CENTER ON AUTO OPEN INFOWINDOW//
-            google.maps.event.addListenerOnce(map, 'idle', function () {
+            google.maps.event.addListenerOnce(googleMap, 'idle', function () {
                 setTimeout(function () {
                     google.maps.event.trigger(marker, 'click');
                 }, 2000);
             });
         }
     });
+
+    function createStreetview(lat, lng) {
+        panorama = new google.maps.StreetViewPanorama(document.getElementById("streetView"));
+        addLatLng = new google.maps.LatLng(lat, lng);
+        var service = new google.maps.StreetViewService();
+        service.getPanoramaByLocation(addLatLng, 50, showPanoData);
+    }
+
+    function showPanoData(panoData, status) {
+        if (status != google.maps.StreetViewStatus.OK) {
+            $('#streetView').html(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_NO_STREETVIEW_PICTURE_AVAILABLE).attr('style', 'text-align:center;font-weight:bold,position: relative; top: 50%; margin-top: -10px').show();
+            return;
+        }
+
+        var angle = computeAngle(addLatLng, panoData.location.latLng);
+
+        var panoOptions = {
+            position: addLatLng,
+            addressControl: false,
+            linksControl: false,
+            panControl: false,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            pov: {
+                heading: angle,
+                pitch: 10,
+                zoom: 1
+            },
+            enableCloseButton: false,
+            visible: true
+        };
+
+        panorama.setOptions(panoOptions);
+    }
+
+    function computeAngle(endLatLng, startLatLng) {
+        var DEGREE_PER_RADIAN = 57.2957795;
+        var RADIAN_PER_DEGREE = 0.017453;
+
+        var dlat = endLatLng.lat() - startLatLng.lat();
+        var dlng = endLatLng.lng() - startLatLng.lng();
+        // We multiply dlng with cos(endLat), since the two points are very closeby,
+        // so we assume their cos values are approximately equal.
+        var yaw = Math.atan2(dlng * Math.cos(endLatLng.lat() * RADIAN_PER_DEGREE), dlat) * DEGREE_PER_RADIAN;
+        return wrapAngle(yaw);
+    }
+
+    function wrapAngle(angle) {
+        if (angle >= 360) {
+            angle -= 360;
+        } else if (angle < 0) {
+            angle += 360;
+        }
+        return angle;
+    }
 }
 
 //ASYNC INIT GOOGLE MAP JS//
@@ -64,13 +126,9 @@ function loadScript() {
 
 jQuery(document).ready(function () {
     var banner = jQuery('.profile_baner'),
-        menu = jQuery('.objectsPageContent .objectMenu'),
-        menuAutoScroll = true,
-        headerHeight = jQuery('header').outerHeight(),
+        mapsOptions = $('.mapsOptions '),
         connectionGraph = jQuery('#connectionGraph'),
-        dataHighlightsOptions = jQuery('.dataHighlightsOptions'),
-        $showHideSide = $('.showHideSide'),
-        $objectSideInner = $('.objectSideInner');
+        dataHighlightsOptions = jQuery('.dataHighlightsOptions');
 
     if (banner.length > 0) {
         banner.find('.bg img').css('width', banner.width() + 'px');
@@ -78,8 +136,33 @@ jQuery(document).ready(function () {
         /*ASYNCHRONIZE ACTION FOR GOOGLE MAP*/
         window.onload = loadScript();
 
-        banner.find('.bg .btn').click(function () {
-            banner.find('.bg').fadeOut()
+        mapsOptions.find('button').click(function () {
+            var that = $(this);
+
+            if (that.hasClass('active')) {
+                mapsOptions.find('.active').removeClass('active');
+
+                banner.removeClass('big');
+                banner.find('.bg').fadeIn();
+            } else if (that.hasClass('googleMap')) {
+                mapsOptions.find('.active').removeClass('active');
+
+                banner.addClass('big');
+                banner.find('#googleMap').show();
+                banner.find('#streetView').hide();
+                banner.find('.bg').fadeOut();
+
+                $(this).addClass('active');
+            } else if (that.hasClass('streetView')) {
+                mapsOptions.find('.active').removeClass('active');
+
+                banner.addClass('big');
+                banner.find('#googleMap').hide();
+                banner.find('#streetView').show();
+                banner.find('.bg').fadeOut();
+
+                $(this).addClass('active');
+            }
         });
     }
 });

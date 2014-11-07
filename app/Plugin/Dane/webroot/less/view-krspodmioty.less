@@ -153,23 +153,6 @@ ul.chart-blocks {
             }
 
             .googleView {
-                .closeMap {
-
-                    position: absolute;
-                    right: 6px;
-                    top: 6px;
-                    z-index: 2;
-                    width: 20px;
-                    height: 20px;
-                    padding: 2px;
-                    display: block;
-                    color: #999999;
-
-                    &:before {
-                        text-align: center;
-                    }
-                }
-
                 #googleMapsContent .btn {
                     display: block;
                     margin: 5px auto 0;
@@ -193,6 +176,11 @@ ul.chart-blocks {
             }
             .list-group-item {
                 border-top-color: #F3F3F3;
+
+                &.row {
+                    border-width: 0;
+                    background: none;
+                }
             }
             .list-group-item:hover {
                 background-color: inherit;
