@@ -179,57 +179,59 @@
 </div>
 <? } ?>
 
-<div class="row bottomborder">
-	<div class="col-md-4">
 
-		<div id="rada" class="block nobottomborder">
-			<div class="block-header">
-				<h2 class="label">Urząd gminy</h2>
-			</div>
-
-			<div class="content">
-				<?
-				$adres = $object->getData( 'adres' );
-				$adres = preg_replace( '/([0-9]{2})\-([0-9]{3})/i', "<br/>$1-$2", $adres );
-				?>
-
-				<p><?= $adres ?></p>
-
-				<? if ( $szef = $object->getLayer( 'szef' ) ) { ?>
-					<div id="szef" class="dataHighlights">
-						<div class="dataHighlight big">
-							<p class="_label"><?= $szef['stanowisko'] ?>:</p>
-
-							<p class="_value"><?= $szef['nazwa'] ?></p>
+<div class="block">
+	<div class="row bottomborder">
+		<div class="col-md-4 nopadding">
+	
+			<div id="rada" class="nobottomborder">
+				<div class="block-header">
+					<h2 class="label">Urząd gminy</h2>
+				</div>
+	
+				<div class="content">
+					<?
+					$adres = $object->getData( 'adres' );
+					$adres = preg_replace( '/([0-9]{2})\-([0-9]{3})/i', "<br/>$1-$2", $adres );
+					?>
+	
+					<p><?= $adres ?></p>
+	
+					<? if ( $szef = $object->getLayer( 'szef' ) ) { ?>
+						<div id="szef" class="dataHighlights">
+							<div class="dataHighlight big">
+								<p class="_label"><?= $szef['stanowisko'] ?>:</p>
+	
+								<p class="_value"><?= $szef['nazwa'] ?></p>
+							</div>
 						</div>
-					</div>
-				<? } ?>
+					<? } ?>
+				</div>
+	
 			</div>
-
+	
 		</div>
-
-	</div>
-	<div class="col-md-8">
-		<div id="rada" class="block nobottomborder">
-			<div class="block-header">
-				<h2 class="pull-left label"><?php echo __d( 'dane', 'LC_GMINY_WYNIKI_WYBOROW' ); ?></h2>
-				<a class="btn btn-default btn-sm pull-right"
-				   href="<?= Router::url( array( 'action' => 'radni', 'id' => $object->getId() ) ) ?>">Zobacz
-					wszystkich radnych</a>
+		<div class="col-md-8 nopadding">
+			<div id="rada" class="nobottomborder">
+				<div class="block-header">
+					<h2 class="pull-left label"><?php echo __d( 'dane', 'LC_GMINY_WYNIKI_WYBOROW' ); ?></h2>
+					<a class="btn btn-default btn-sm pull-right"
+					   href="<?= Router::url( array( 'action' => 'radni', 'id' => $object->getId() ) ) ?>">Zobacz
+						wszystkich radnych</a>
+				</div>
+	
+				<script type="text/javascript">
+					var wyniki_wyborow = <?= json_encode($object->getLayer('rada_komitety')); ?>;
+				</script>
+				<div id="komitety_chart">
+	
+				</div>
+	
+	
 			</div>
-
-			<script type="text/javascript">
-				var wyniki_wyborow = <?= json_encode($object->getLayer('rada_komitety')); ?>;
-			</script>
-			<div id="komitety_chart">
-
-			</div>
-
-
 		</div>
 	</div>
 </div>
-
 
 <div class="row bottomborder">
 	<div class="col-md-6">
