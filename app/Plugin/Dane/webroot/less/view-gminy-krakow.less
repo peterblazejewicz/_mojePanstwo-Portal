@@ -40,26 +40,30 @@
 }
 
 .special.banner {
-    width: 100%;
-    float: left;
     display: block;
-    height: 85px;
+    margin: 0 3px -3px;
+    padding: 0;
+    overflow: hidden;
 
     a {
         float: left;
         display: block;
         height: 85px;
+
+        img {
+            float: left;
+        }
     }
 }
 
 .sklad {
-	padding: 0 20px;
-	margin-top: 10px;
-	
-	.label {
-		margin-left: 10px;
-		font-size: 12px;
-	}
+    padding: 0 20px;
+    margin-top: 10px;
+
+    .label {
+        margin-left: 10px;
+        font-size: 12px;
+    }
 }
 
 #dzielnice_map {
@@ -67,4 +71,10 @@
     margin: 0;
     padding: 0;
     width: 100%;
+}
+
+#dzielnice, #dzielnice > .block-header, #dzielnice > .content {
+    float: left;
+    width: 100%;
+    display: block;
 }
