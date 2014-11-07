@@ -314,7 +314,11 @@ class DataobjectsBrowserComponent extends Component {
 			if ( $dataset ) {
 
 				$this->dataset = $dataset;
-
+				
+				foreach( $this->excludeFilters as &$ef ) 
+					if( strpos($ef, '.')===false )
+						$ef = $this->tag . '.' . $ef;
+						
 
 				if ( ! $this->title ) {
 					$this->title = $dataset['Dataset']['name'];

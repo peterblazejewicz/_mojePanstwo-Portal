@@ -71,6 +71,40 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 					
 				}
 				
+				case "glosowania": {
+					
+					if( $sub_id ) {
+						
+						$this->request->params['action'] = 'glosowania';
+						
+						$glosowanie = $this->API->getObject('sejm_glosowania', $sub_id, array('layers' => 'wynikiKlubowe'));
+						$this->set( 'glosowanie', $glosowanie );
+						
+						$this->dataobjectsBrowserView( array(
+							'source'         => 'sejm_glosowania.glosy:' . $glosowanie->getId(),
+							'dataset'        => 'poslowie_glosy',
+							'noResultsTitle' => 'Brak wyników',
+							'title' => 'Wyniki indywidualne',
+							'order' => '_title asc',
+							'renderFile' => 'glosowania-glosy',
+							'class' => 'glosowania-glosy',
+							'limit' => 100,
+							'excludeFilters' => array(
+			                    'sejm_glosowania.typ_id'
+			                ),
+						) );
+						
+						$this->render( 'glosowanie' );
+						
+					} else {
+						
+						$this->redirect( $debata->getUrl() );
+						die();
+						
+					}
+					
+				}
+				
 			}
 						
 
@@ -80,6 +114,23 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 			die();
 
 		}
+
+	}
+	
+	public function glosowania() {
+
+		$this->_prepareView();
+		$this->request->params['action'] = 'glosowania';
+
+		$this->dataobjectsBrowserView( array(
+			'source'         => 'sejm_posiedzenia_punkty.glosowania:' . $this->object->getId(),
+			'dataset'        => 'sejm_glosowania',
+			'noResultsTitle' => 'Brak głosowań',
+			'order' => 'numer asc',
+			'renderFile' => 'sejm_debaty-glosowanie',
+			'class' => 'debata-glosowania',
+			'limit' => 100
+		) );
 
 	}
 	
@@ -122,6 +173,18 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 				'dropdown' => array(
 					'items' => $debaty,
 				),
+				'count' => count( $debaty ),
+			);
+			
+		}
+		
+		if( $count = $this->object->getData('liczba_glosowan') ) {
+			
+			$menu['items'][] = array(
+				'id'       => 'glosowania',
+				'label'    => 'Głosowania',
+				'count' => $count,
+				'href'  => $href_base . '/glosowania',
 			);
 			
 		}

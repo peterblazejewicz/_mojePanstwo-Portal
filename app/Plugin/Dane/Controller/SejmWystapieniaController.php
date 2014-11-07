@@ -7,8 +7,11 @@ class SejmWystapieniaController extends DataobjectsController {
 	public $breadcrumbsMode = 'app';
 
 	public function view() {
+
 		parent::view();
-		$html = $this->object->loadLayer( 'html' );
-		$this->set( 'html', $html );
+		
+		$this->redirect( $this->object->getUrl() );
+		die();
+		
 	}
 } 

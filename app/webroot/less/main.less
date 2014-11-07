@@ -89,6 +89,10 @@ a {
     margin: 0 !important;
 }
 
+.padding {
+	padding: 15px;
+}
+
 .loading {
     background: url(../img/loader/loading-small.png) center center no-repeat;
     min-height: 30px;
@@ -198,12 +202,17 @@ body > pre:first-child {
     }
 }
 
+.overflow-auto{
+	overflow: auto;
+}
+
 .nav > li > a {
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;
     font-family: "Lato", Arial, sans-serif;
     text-transform: uppercase;
+    color: #258ac5;
 }
 
 .block {
@@ -273,16 +282,22 @@ body > pre:first-child {
             transform: translate(0px, -50%);
         }
     }
-
+	
     > .content {
         padding: 20px 30px 30px;
 
-        &.textBlock {
-            padding: 20px 30px 30px;
+        
+    }
+    
+    .padding {
+	    padding: 15px 20px;
+    }
+    
+    .textBlock {
+        padding: 20px 30px 30px;
 
-            br {
-                margin-bottom: 15px;
-            }
+        br {
+            margin-bottom: 15px;
         }
     }
 
@@ -425,8 +440,8 @@ body > pre:first-child {
 
     .dataHighlight {
         padding: 5px;
+        margin: 5px;
         display: inline-block;
-        width: 100%;
 
         ._label {
             font-size: 10px;
@@ -690,6 +705,10 @@ blockquote p {
 
 .overflow-auto {
     overflow: auto;
+}
+
+.overflow-hidden {
+    overflow: hidden;
 }
 
 /* FONTS */
