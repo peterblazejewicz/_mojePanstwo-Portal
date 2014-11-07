@@ -112,7 +112,11 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 
 					<? if ( $details ) { ?>
 						<div id="info" class="block">
-
+							
+							<div class="block-header">
+								<h2 class="label">Życiorys</h2>
+							</div>
+							
 							<div class="content">
 								<?= stripslashes( $opis ) ?>
 							</div>
@@ -123,11 +127,11 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 						<div id="interpelacje" class="block">
 
 							<div class="block-header">
-								<h2 class="label">Komisje Rady Miasta</h2>
+								<h2 class="label">Komisje Rady Miasta, w których zasiada radny</h2>
 							</div>
 
 
-							<div class="content sklad">
+							<div class="content sklad padding">
 								<ul class="list-group list-dataobjects">
 					
 								<? foreach( $komisje as $komisja ) {?>
@@ -255,7 +259,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 						<div id="interpelacje" class="block">
 
 							<div class="block-header">
-								<h2 class="label pull-left">Interpelacje</h2>
+								<h2 class="label pull-left">Interpelacje złożone przez radnego</h2>
 								<a class="btn btn-default btn-sm pull-right"
 								   href="/dane/gminy/<?= $object->getId() ?>/radni/<?= $radny->getId() ?>/interpelacje">Zobacz
 									wszystkie</a>

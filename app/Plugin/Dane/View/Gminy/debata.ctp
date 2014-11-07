@@ -101,7 +101,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 						<h2 class="label"><?php echo __d( 'dane', 'LC_RADYGMINDEBATY_WYSTAPIENIA' ); ?></h2>
 					</div>
 
-					<div class="content">
+					<div class="content nopadding">
 						<ul class="nav nav-pills nav-stacked">
 							<?php foreach ( $wystapienia as $id => $wystapienie ) { ?>
 								<li>
@@ -240,7 +240,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 
 
 	<div class="col-lg-9 objectMain">
-		<div class="object mpanel">
+		<div class="object">
 
 
 			<div class="block-group">
@@ -252,7 +252,7 @@ echo $this->Element( 'Dane.dataobject/subobject', array(
 							<h2 class="label"><? if ( $debata->getData( 'glosowanie_id' ) ) { ?>Przedmiot głosowania<? } else { ?>Przedmiot obrad<? } ?></h2>
 						</div>
 
-						<div class="content">
+						<div class="content padding">
 
 							<div class="objectRender">
 								<div class="row">

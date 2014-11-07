@@ -14,7 +14,7 @@ $powiazania = $object->getLayer( 'radni_powiazania' );
 ?>
 
 	<div class="col-md-10 col-md-offset-1">
-		<div id="powiazania" class="object mpanel">
+		<div id="powiazania" class="object">
 
 			<? if ( $powiazania ) { ?>
 
@@ -28,14 +28,14 @@ $powiazania = $object->getLayer( 'radni_powiazania' );
 						<div class="block">
 
 							<div class="block-header">
-								<h2 class="label"><a
+								<h2 class="label pull-left"><a
 										href="/dane/gminy/<?= $object->getId() ?>/radni/<?= $p['radny']['id'] ?>"><?= $p['radny']['nazwa'] ?></a>
 								</h2>
 
-								<p class="desc"><?= $p['radny']['komitet'] ?></p>
+								<p class="desc pull-right"><?= $p['radny']['komitet'] ?></p>
 							</div>
 
-							<div class="content row">
+							<div class="content row padding">
 
 								<div class="col-md-2">
 

@@ -25,7 +25,7 @@ $dyzury_data = $radny->getLayer( 'dyzury' );
 
 	<script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 	<div class="col-md-10 col-md-offset-1">
-		<div id="dyzury" class="object mpanel">
+		<div id="dyzury" class="object">
 
 			<div class="block-group">
 
@@ -87,9 +87,6 @@ $dyzury_data = $radny->getLayer( 'dyzury' );
 				<? if ( $dyzury = $dyzury_data['past'] ) { ?>
 					<div id="past" class="block">
 
-						<div class="block-header">
-							<h2 class="label">Archiwum</h2>
-						</div>
 
 						<div id="archive" class="content" style="display: none;">
 							<ul>
@@ -113,9 +110,10 @@ $dyzury_data = $radny->getLayer( 'dyzury' );
 								<? } ?>
 							</ul>
 						</div>
-
+						
+						<br/>
 						<div id="archive_btn_div" class="text-center">
-							<button class="btn btn-default" id="archive_btn">Pokaż &darr;</button>
+							<button class="btn btn-default" id="archive_btn">Pokaż archiwum &darr;</button>
 						</div>
 
 					</div>
