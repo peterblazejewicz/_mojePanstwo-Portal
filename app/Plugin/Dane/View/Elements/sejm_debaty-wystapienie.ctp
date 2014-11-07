@@ -13,7 +13,8 @@
 	<div class="row<? if( in_array($stanowisko_id, array(3, 4, 130)) ) {?> porzadek<?} else {?> wystapienie<?}?>">
 	
 		<div class="sw_avatar">
-			<p><? if($mowca_href) {?><a href="<?=$mowca_href?>"><?}?><img src="<?= $object->getThumbnailUrl(1) ?>" /><? if($mowca_href){?></a><?}?></p>				
+            <p><? if ($mowca_href) { ?><a href="<?= $mowca_href ?>"><? } ?><img
+                        src="<?= $object->getThumbnailUrl(1) ?>"/><? if ($mowca_href){ ?></a><? } ?></p>
 		</div><div class="sw_content">
 			
 			<?
