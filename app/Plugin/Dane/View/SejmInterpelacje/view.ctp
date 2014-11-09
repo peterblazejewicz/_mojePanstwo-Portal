@@ -14,8 +14,7 @@
 	<div class="htmlexDoc sejmInterpelacje" data-packages="<?php echo $document->getPackagesCount(); ?>"
 	     data-current-package="<?php echo $documentPackage; ?>"
 	     data-pages="<?php echo $document->getPagesCount(); ?>"
-	     data-document-id="<?php echo $document->getId(); ?>"
-	     data-dataset="<?php echo $dataset['Dataset']['alias']; ?>">
+	     data-document-id="<?php echo $document->getId(); ?>">
 
 		<?=
 		$this->Element( 'toolbar', array(

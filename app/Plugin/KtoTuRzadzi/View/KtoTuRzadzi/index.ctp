@@ -4,15 +4,27 @@ $this->Combinator->add_libs( 'css', $this->Less->css( 'administracja', array( 'p
 $this->Combinator->add_libs( 'js', 'KtoTuRzadzi.administracja.js' );
 ?>
 
-<div id="administracja">
-	<div class="appHeader">
-		<div class="container innerContent">
-			<h1>Władze centralne</h1>
+<div class="app-header">
+	<div class="container">
+		<h1>Kto Tu Rządzi?</h1>
+				
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-			<p class="desc">Kilknij kartę instytucji poniżej, aby dowiedzieć się więcej.</p>
+			<? echo $this->Element( 'suggester', array(
+				'app'             => 'kto_tu_rzadzi',
+				'placeholder'        => 'Szukaj instytucji publicznej...',
+			) ); ?>
+
+			<? echo $this->Element( 'Prawo.menu', array(
+				'selected' => 'start'
+			) ); ?>
+
 		</div>
 	</div>
+</div>
 
+
+<div id="administracja">
 	<div class="container">
 		<? if ( $items = $data['files'] ) {
 			;

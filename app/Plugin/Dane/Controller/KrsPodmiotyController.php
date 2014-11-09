@@ -84,6 +84,26 @@ class KrsPodmiotyController extends DataobjectsController {
 		$this->set( 'indicators', $indicators );
 
 
+		
+		$historia = $this->API->searchDataset('msig_zmiany', array(
+			'limit'      => 6,
+			'conditions' => array(
+				'pozycja_id' => $this->object->getId(),
+			),
+			'order' => array(
+				'_date desc',
+				'wpis_id asc',
+				'nr_dz asc',
+				'nr_rub asc',
+				'nr_sub asc',
+				'nr_prub_sub asc',
+				'_ord desc',
+			),
+		));
+		$this->set( 'historia', $this->API->getObjects() );
+		
+		
+		
 		$zamowienia = $this->API->search( array(
 			'limit'      => 9,
 			'conditions' => array(

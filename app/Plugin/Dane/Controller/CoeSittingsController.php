@@ -9,7 +9,7 @@ class CoeSittingsController extends DataobjectsController {
 		'buttons' => array( 'shoutIt' ),
 	);
 
-	public $initLayers = array( 'text' );
+	public $initLayers = array('text');
 
 	public function view() {
 

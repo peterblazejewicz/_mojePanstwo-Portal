@@ -318,3 +318,59 @@ ul.chart-blocks {
         top: 50px;
     }
 }
+
+.historia {
+	li:first-child {
+		.date {
+			margin-top: 0;
+		}
+	}
+	.date {
+		margin-bottom: 5px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #DDD;
+		text-align: center;
+		font-weight: 600;
+		font-family: "Lato";
+		margin-top: 30px;
+		font-size: 13px;
+	}
+	.desc {
+		font-size: 11px;
+		color: #999;
+		visibility: hidden;
+	}
+	.status {
+		display: inline-block;
+	    font-size: 10px;
+	    font-weight: 500;
+	    padding: 4px;
+	    text-align: center;
+	    text-transform: uppercase;
+	    width: 80px;
+	    font-family: "Lato";
+	}
+	.location {
+		margin-top: 8px;
+		margin-bottom: 8px;
+		.title {
+			font-size: 10px;
+		    font-weight: 500;
+		    text-transform: uppercase;
+		}
+		&:hover {
+			.desc {
+				visibility: visible;
+			}
+		}
+	}
+	.sublocation {
+		margin-top: 8px;
+		margin-bottom: 8px;
+		&:hover {
+			.desc {
+				visibility: visible;
+			}
+		}
+	}
+}

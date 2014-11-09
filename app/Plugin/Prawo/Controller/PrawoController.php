@@ -38,6 +38,15 @@ class PrawoController extends AppController {
 		) );
 		$this->set('ustawy_przyszlosc', $API->getObjects());
 		
+		$data = $API->searchDataset( 'prawo_projekty', array(
+			'order' => '_date desc',
+			'limit' => 5,
+			'conditions' => array(
+				'typ_id' => '1',
+			),
+		) );
+		$this->set('projekty', $API->getObjects());
+		
 	}
 	
 	public function weszly() {

@@ -1,7 +1,7 @@
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'suggester' ) ) ?>
 <?php $this->Combinator->add_libs( 'js', 'suggester.js' ) ?>
 
-<form class="suggesterBlock" action="<?= $action ?>">
+<form class="suggesterBlock" action="/dane/szukaj<?if( isset($app) ){?>?app=<?= $app ?><?}?>">
 	<div class="input-group main_input">
 		<input name="q" value="" type="text" autocomplete="off" class="datasearch form-control input-lg"
 		       placeholder="<?= $placeholder ?>"

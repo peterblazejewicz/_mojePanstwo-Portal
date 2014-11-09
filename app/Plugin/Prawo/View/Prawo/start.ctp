@@ -1,8 +1,8 @@
 <?php $this->Combinator->add_libs( 'css', $this->Less->css( 'prawo', array( 'plugin' => 'Prawo' ) ) ) ?>
 <?php $this->Combinator->add_libs( 'js', 'Prawo.prawo.js' ) ?>
 
-<div class="appHeader">
-	<div class="container innerContent">
+<div class="app-header">
+	<div class="container">
 		<h1>Przeglądaj prawo obowiązujące w Polsce</h1>
 
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -29,30 +29,12 @@
 	
 			<div class="block-group">
 			
-				<div class="block">
-					<div class="block-header">
-						<h2 class="label">Najnowsze prawo według tematów</h2>
-					</div>
-					<div class="content">
-						
-						<ul class="keywords">
-						<? foreach( $keywords as $keyword ) { ?>
-							<li><a class="label label-primary" href="/dane/prawo_hasla/<?= $keyword['id'] ?>"><?= $keyword['q'] ?></a></li>
-						<? } ?>
-						</ul>
-						
-						<div class="btn_cont">
-							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie tematy &raquo;</a>
-						</div>
-						
-					</div>
-				</div>
 				
 				<div class="block acts">
 					<div class="block-header">
 						<h2 class="label">Ustawy, które ostatnio weszły w życie</h2>
 					</div>
-					<div class="content">
+					<div class="content nopadding">
 						
 						<ul class="acts">
 						<? 
@@ -63,12 +45,14 @@
 								$this->Dataobject->setObject($act);
 						?>
 							<li class="row">
-								<div class="col-md-2">
-									<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getData('data_wejscia_w_zycie') ) ?></p><? } ?>
-								</div>
-								<div class="col-md-10">
-									<p class="title"><a href="/dane/prawo/<?= $act->getId() ?>"><?= $act->getData('typ_nazwa') ?> <?= $act->getShortTitle() ?></a></p>
-									<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
+								<div class="row-inner">
+									<div class="col-md-2">
+										<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getData('data_wejscia_w_zycie') ) ?></p><? } ?>
+									</div>
+									<div class="col-md-10">
+										<p class="title"><a href="<?= $act->getUrl() ?>"><?= $act->getData('typ_nazwa') ?> <?= $act->getShortTitle() ?></a></p>
+										<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
+									</div>
 								</div>
 							</li>
 						<? 
@@ -88,7 +72,7 @@
 					<div class="block-header">
 						<h2 class="label">Ustawy, które wejdą w życie w przyszłości</h2>
 					</div>
-					<div class="content">
+					<div class="content nopadding">
 						
 						<ul class="acts">
 						<? 
@@ -99,13 +83,17 @@
 								$this->Dataobject->setObject($act);
 						?>
 							<li class="row">
-								<div class="col-md-2">
-									<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getData('data_wejscia_w_zycie') ) ?></p><? } ?>
+								
+								<div class="row-inner">
+									<div class="col-md-2">
+										<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getData('data_wejscia_w_zycie') ) ?></p><? } ?>
+									</div>
+									<div class="col-md-10">
+										<p class="title"><a href="<?= $act->getUrl() ?>"><?= $act->getData('typ_nazwa') ?> <?= $act->getShortTitle() ?></a></p>
+										<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
+									</div>
 								</div>
-								<div class="col-md-10">
-									<p class="title"><a href="/dane/prawo/<?= $act->getId() ?>"><?= $act->getData('typ_nazwa') ?> <?= $act->getShortTitle() ?></a></p>
-									<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
-								</div>
+								
 							</li>
 						<? 
 								$last_date = $act->getData('data_wejscia_w_zycie');
@@ -115,6 +103,46 @@
 						
 						<div class="btn_cont">
 							<a href="/dane/prawo/?!wejda=1&typ_id[]=1&search=web&order=data_wejscia_w_zycie asc" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="block acts">
+					<div class="block-header">
+						<h2 class="label">Najnowsze projekty ustaw</h2>
+					</div>
+					<div class="content nopadding">
+						
+						<ul class="acts">
+						<? 
+							$last_date = false;
+							foreach( $projekty as $act ) {
+								
+								$show_date = ($last_date===false) || ($last_date != $act->getDate());
+								$this->Dataobject->setObject($act);
+						?>
+							<li class="row">
+								
+								<div class="row-inner">
+									<div class="col-md-2">
+										<? if( $show_date ) {?><p class="date"><?= $this->Czas->dataSlownie( $act->getDate() ) ?></p><? } ?>
+									</div>
+									<div class="col-md-10">
+										<p class="title"><a href="<?= $act->getUrl() ?>"><?= $act->getShortTitle() ?></a></p>
+										<? if( $opis = $act->getData('opis') ) {?><div class="desc"><?= $opis ?></div><? } ?>
+									</div>
+								</div>
+								
+							</li>
+						<? 
+								$last_date = $act->getDate();
+							} 
+						?>
+						</ul>
+						
+						<div class="btn_cont">
+							<a href="/dane/prawo_projekty" class="btn btn-sm btn-default">Wszystkie &raquo;</a>
 						</div>
 						
 					</div>
@@ -131,11 +159,11 @@
 				
 				
 				
-				<div class="block">
+				<div class="block nobg">
 					<div class="block-header">
 						<h2 class="label">Ważne</h2>
 					</div>
-					<div class="content">
+					<div class="content nopadding">
 						
 						<ul class="popular">
 						<? foreach( $popular as $act ) { ?>
@@ -146,11 +174,11 @@
 					</div>
 				</div>
 				
-				<div class="block">
+				<div class="block nobg">
 					<div class="block-header">
 						<h2 class="label">Baza aktów prawnych</h2>
 					</div>
-					<div class="content">
+					<div class="content nopadding">
 						
 						
 						<ul class="types">
@@ -164,6 +192,29 @@
 							</li>
 						<? } ?>
 						</ul>
+						
+						<div class="btn_cont">
+							<a href="/dane/prawo" class="btn btn-sm btn-default">Wszystkie akty &raquo;</a>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="block nobg">
+					<div class="block-header">
+						<h2 class="label">Najnowsze prawo według tematów</h2>
+					</div>
+					<div class="content nopadding">
+						
+						<ul class="keywords">
+						<? foreach( $keywords as $keyword ) { ?>
+							<li><a class="label label-primary" href="/dane/prawo_hasla/<?= $keyword['id'] ?>"><?= $keyword['q'] ?></a></li>
+						<? } ?>
+						</ul>
+						
+						<div class="btn_cont">
+							<a href="/dane/prawo_hasla" class="btn btn-sm btn-default">Wszystkie tematy &raquo;</a>
+						</div>
 						
 					</div>
 				</div>

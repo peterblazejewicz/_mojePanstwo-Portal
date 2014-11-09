@@ -23,8 +23,7 @@
 
 	<div class="banner">
 		<p>W ciągu <b>ostatniego miesiąca</b>, Twoje Państwo
-			udzieliło <?= pl_dopelniacz( $stats['liczba_zamowien'], 'zamówienie publiczne', 'zamówienia publiczne', 'zamówień publicznych' ) ?>
-			, na kwotę:</p>
+			udzieliło <?= pl_dopelniacz( $stats['liczba_zamowien'], 'zamówienie publiczne', 'zamówienia publiczne', 'zamówień publicznych' ) ?>, na kwotę:</p>
 
 
 		<p class="number"><?= $this->Waluta->slownie( $stats['suma_zamowien'] ) ?></p>
@@ -33,12 +32,12 @@
 
 	<div>
 
-		<div class="row zam-block">
+		<div class="row block zam-block">
 
 			<? $i = 0;
 			foreach ( $stats['rodzaje'] as $rodzaj ) {
 				$i ++; ?>
-				<div class="col-lg-4 column block">
+				<div class="col-lg-4 column">
 
 					<p class="text-center na"><span class="label label-primary"><?= $rodzaj['nazwa'] ?></span></p>
 
@@ -53,12 +52,14 @@
 
 		</div>
 
-		<div class="row zam-block">
+		<div class="row block zam-block">
 
-			<div class="col-lg-6 column block">
-
-				<h2 class="label">Najwięcej zamówili:</h2>
-
+			<div class="col-lg-6 column">
+				
+				<div class="block-header">
+					<h2 class="label">Najwięcej zamówili:</h2>
+				</div>
+				
 				<ul>
 					<? foreach ( $stats['zamawiajacy'] as $zamawiajacy ) { ?>
 						<li>
@@ -75,10 +76,11 @@
 
 			</div>
 
-			<div class="col-lg-6 column block">
-
-				<h2 class="label">Najwięcej zamówień otrzymali:</h2>
-
+			<div class="col-lg-6 column">
+				
+				<div class="block-header">
+					<h2 class="label">Najwięcej zamówień otrzymali:</h2>
+				</div>
 
 				<p class="soon">Dostępne wkrótce</p>
 

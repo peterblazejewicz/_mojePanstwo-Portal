@@ -6,6 +6,10 @@ Router::connect( '/dane', array( 'plugin' => 'Dane', 'controller' => 'datasets',
 Router::connect( '/dane/szukaj', array( 'plugin' => 'Dane', 'controller' => 'dataobjects', 'action' => 'index' ) );
 Router::connect( '/dane/suggest', array( 'plugin' => 'Dane', 'controller' => 'dataobjects', 'action' => 'suggest' ) );
 
+
+Router::redirect( '/dane/ustawy', '/dane/prawo' );
+
+
 Router::connect( '/dane/kanal/:alias', array(
 	'plugin'     => 'Dane',
 	'controller' => 'datachannels',

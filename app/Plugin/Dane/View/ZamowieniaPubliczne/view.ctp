@@ -11,7 +11,7 @@
 
 
 		<ul class="dataHighlights side">
-			<li class="dataHighlight">
+			<li class="dataHighlight -block">
 				<?
 				if ( $object->getData( 'status_id' ) == '0' ) {
 					?>
@@ -115,7 +115,7 @@
 
 
 
-			<li class="dataHighlight topborder">
+			<li class="dataHighlight topborder -block">
 				<p class="_label">Źródło</p>
 
 				<p class="_value" id="sources"></p>
@@ -227,7 +227,7 @@ if ( ! empty( $czesci ) ) {
 				<? } ?>
 
 
-				<div class="content">
+				<div class="content nopadding">
 					<div class="textBlock">
 
 						<? if ( ! empty( $czesc['wykonawcy'] ) || @$czesc['cena'] ) { ?>

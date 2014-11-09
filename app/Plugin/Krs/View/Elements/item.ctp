@@ -42,9 +42,9 @@ $title = trim( $title );
 				);
 
 				if ( $result['kapital_zakladowy'] ) {
-					//setlocale(LC_MONETARY, 'pl_PL');
-					//$parts[] = money_format('%i', $result['kapital_zakladowy']);
-					// $parts[] = number_format_h($result['kapital_zakladowy']) . ' PLN';
+					// setlocale(LC_MONETARY, 'pl_PL');
+					// $parts[] = money_format('%i', $result['kapital_zakladowy']);
+					$parts[] = number_format_h($result['kapital_zakladowy']) . ' PLN';
 				}
 
 				$wiek = pl_wiek( $result['data_rejestracji'] );
