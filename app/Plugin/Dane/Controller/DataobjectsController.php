@@ -98,6 +98,7 @@ class DataobjectsController extends DaneAppController {
 			$regexp .= '(.*?)$/i';
 			
 			if( 
+				($pieces['host'] != PK_DOMAIN) && 
 				$this->object->getSlug() && 
 				( $slug != $this->object->getSlug() ) && 
 				preg_match($regexp, $_SERVER['REQUEST_URI'], $match) 
