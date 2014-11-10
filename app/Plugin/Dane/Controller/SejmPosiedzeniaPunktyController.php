@@ -69,6 +69,8 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 						
 					}
 					
+					break;
+					
 				}
 				
 				case "glosowania": {
@@ -102,6 +104,8 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 						die();
 						
 					}
+					
+					break;
 					
 				}
 				
