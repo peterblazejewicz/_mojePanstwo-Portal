@@ -446,8 +446,8 @@ $this->Combinator->add_libs('js', 'graph-krs');
         <div id="historia" class="block historia">
             <div class="block-header">
                 <h2 class="label pull-left">Najnowsze wpisy do KRS</h2>
-                <a class="btn btn-default btn-sm pull-right"
-                   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz całą historię</a>
+                <? /*<a class="btn btn-default btn-sm pull-right"
+                   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz całą historię</a> */ ?>
             </div>
 
             <div class="content">
@@ -478,7 +478,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
 			                	
 			                	<? if( $h->getData('opis_sub') && ($sublocation!==$lastSublocation) ) { ?>
 			                	<div class="sublocation col-md-offset-1">
-				                	<span><?= $h->getData('opis_sub') ?></span> 
+				                	<span><?= preg_replace('/([0-9]{11})/', '---', $h->getData('opis_sub')) ?></span> 
 				                	<? if( $h->getData('nr_sub') ) { ?><span class="desc pull-right">Pozycja <?= $h->getData('nr_sub') ?></span><? } ?>
 			                	</div>
 			                	<? } ?>
@@ -495,7 +495,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
 						                
 					                </div><div class="col-md-10">
 						                <p class="content_">
-						                	<?= $h->getData('tresc') ?>
+						                	<?= preg_replace('/([0-9]{11})/', '---', $h->getData('tresc')) ?>
 					                	</p>
 					                </div>
 				                </div>			                	
