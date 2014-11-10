@@ -9,7 +9,7 @@ class SitemapsController extends AppController {
 
 	function index() {
 
-		$limit = 15000;
+		$limit = 10000;
 
 		$sitemapindex = array(
 			'xmlns:'  => 'http://www.sitemaps.org/schemas/sitemap/0.9',
