@@ -75,8 +75,12 @@ class DataobjectsController extends DaneAppController {
 	public function _prepareView() {
 
 		try {
-									
-			$slug = isset($this->params->slug) ? $this->params->slug : false;
+			
+			$pieces = parse_url( Router::url( $this->here, true ) );					
+			$slug = (
+				($pieces['host'] != PK_DOMAIN) && 
+				isset($this->params->slug)
+			) ? $this->params->slug : false;
 						
 			$this->object = $this->API->getObject( $this->params->controller, $this->params->id, array(
 				'layers'         => $this->initLayers,
