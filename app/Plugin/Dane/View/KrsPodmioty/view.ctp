@@ -211,7 +211,11 @@ $this->Combinator->add_libs('js', 'graph-krs');
     $adres .= ', Polska';
     ?>
 
-    <?php if (!empty($object->getData('adres_ulica')) || !empty($object->getData('adres_numer')) || !empty($object->getData('adres_miejscowosc'))) { ?>
+    <?php if(
+	    	($object->getData('adres_ulica')) && 
+	    	($object->getData('adres_numer')) && 
+	    	($object->getData('adres_miejscowosc'))
+	    ) { ?>
         <div class="block">
             <div class="block-header">
                 <h2 class="label">Adres</h2>

@@ -53,8 +53,7 @@ class SitemapsController extends AppController {
 		$page    = $this->request->params['page'];
 
 		$api = mpapiComponent::getApi()->Dane();
-		$map = $api->getDatasetMap( $dataset, $page );
-
+		$map = $api->getDatasetMap( $dataset, $page );		
 
 		$urlset = array(
 			'xmlns:' => 'http://www.sitemaps.org/schemas/sitemap/0.9',
@@ -62,11 +61,17 @@ class SitemapsController extends AppController {
 		);
 
 		foreach ( $map as $item ) {
+			
+			$loc = 'http://' . PORTAL_DOMAIN . '/dane/' . $dataset . '/' . $item['id'];
+			if( $item['slug'] )
+				$loc .= ',' . $item['slug'];
+			
 			$urlset['url'][] = array(
-				'loc'        => 'http://' . PORTAL_DOMAIN . '/dane/' . $dataset . '/' . $item,
+				'loc'        => $loc,
 				'changefreq' => 'daily',
-				'priority'   => 0.8,
+				'priority'   => $item['weight'],
 			);
+			
 		}
 
 		$this->set( 'data', $urlset['url'] );
