@@ -193,7 +193,15 @@ class AppController extends Controller {
 
 				if ( stripos( $_SERVER['REQUEST_URI'], '/dane/gminy/903' ) === 0 ) {
 
-					$this->redirect( 'http://' . PK_DOMAIN . substr( $_SERVER['REQUEST_URI'], 15 ) );
+					$url = substr( $_SERVER['REQUEST_URI'], 15 );
+					if( $url[0]==',' ) {
+						
+						$p = strpos($url, '/');						
+						$url = ( $p===false ) ? '' : substr($url, $p);
+						
+					}
+					
+					$this->redirect( 'http://' . PK_DOMAIN . $url );
 					die();
 
 				}
@@ -244,8 +252,16 @@ class AppController extends Controller {
 				) {
 				
 				} else {
-
-					$this->redirect( 'http://' . PORTAL_DOMAIN . $_SERVER['REQUEST_URI'] );
+				
+					$url = $_SERVER['REQUEST_URI'];
+					if( $url[0]==',' ) {
+						
+						$p = strpos($url, '/');						
+						$url = ( $p===false ) ? '' : substr($url, $p);
+						
+					}
+					
+					$this->redirect( 'http://' . PORTAL_DOMAIN . $url );
 					die();
 
 				}
