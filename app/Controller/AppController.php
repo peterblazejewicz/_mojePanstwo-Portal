@@ -181,7 +181,7 @@ class AppController extends Controller {
 	}
 
 	public function beforeFilter() {
-
+				
 		if ( defined( 'PORTAL_DOMAIN' ) ) {
 
 			$pieces = parse_url( Router::url( $this->here, true ) );
@@ -205,6 +205,13 @@ class AppController extends Controller {
 					die();
 
 				}
+				
+				if( preg_match('/^(.*?)\,([a-z0-9\-]+)$/', $this->here, $match) ) {
+					
+					$this->redirect( 'http://' . PK_DOMAIN . $match[1] );
+					die();
+				}
+				
 
 				if (
 					( $this->request->params['controller'] == 'gminy' ) &&
