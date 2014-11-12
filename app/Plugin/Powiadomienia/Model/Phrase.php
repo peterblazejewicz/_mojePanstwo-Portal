@@ -1,7 +1,8 @@
 <?php
 
-App::uses( 'SolrAppModel', 'Model' );
+App::uses('SolrAppModel', 'Model');
 
-class Phrase extends SolrAppModel {
+class Phrase extends SolrAppModel
+{
 
 } 

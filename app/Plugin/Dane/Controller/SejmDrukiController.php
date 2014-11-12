@@ -1,7 +1,8 @@
 <?php
 
-App::uses( 'DocsObjectsController', 'Dane.Controller' );
+App::uses('DocsObjectsController', 'Dane.Controller');
 
-class SejmDrukiController extends DocsObjectsController {
-	public $breadcrumbsMode = 'app';
+class SejmDrukiController extends DocsObjectsController
+{
+    public $breadcrumbsMode = 'app';
 } 

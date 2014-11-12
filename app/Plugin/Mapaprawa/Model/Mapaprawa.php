@@ -1,190 +1,192 @@
 <?
 
-class Mapaprawa extends AppModel {
+class Mapaprawa extends AppModel
+{
 
-	public function getPath( $object ) {
+    public function getPath($object)
+    {
 
-		if ( ! $object ) {
-			return false;
-		}
+        if (!$object) {
+            return false;
+        }
 
-		$related = $object->loadRelated();
+        $related = $object->loadRelated();
 
-		$groups      = $related['groups'];
-		$path        = array();
-		$prev_object = false;
-
-
-		for ( $g = 0; $g < count( $groups ); $g ++ ) {
-
-			$group   = $groups[ $g ];
-			$objects = $group['objects'];
+        $groups = $related['groups'];
+        $path = array();
+        $prev_object = false;
 
 
-			for ( $o = 0; $o < count( $objects ); $o ++ ) {
+        for ($g = 0; $g < count($groups); $g++) {
 
-				$object = $objects[ $o ];
-
-				// var_export( $object ); die();
-
-				$dataset   = $object->getDataset();
-				$main_icon = 'pass';
-				$nodes     = array(
-					array(
-						'id'        => $object->getDataset() . '-' . $object->getId(),
-						'icon'      => 'pass',
-						'status'    => '1',
-						'parent_id' => $prev_object ? array( $prev_object->getDataset() . '-' . $prev_object->getId() ) : array(),
-					)
-				);
+            $group = $groups[$g];
+            $objects = $group['objects'];
 
 
-				if ( $dataset == 'rcl_etapy' ) {
+            for ($o = 0; $o < count($objects); $o++) {
 
-					$main_icon = 'doc';
-					$nodes     = array(
-						array(
-							'id'        => $object->getDataset() . '-' . $object->getId(),
-							'icon'      => 'doc',
-							'status'    => '1',
-							'parent_id' => $prev_object ? array( $prev_object->getDataset() . '-' . $prev_object->getId() ) : array(),
-						)
-					);
+                $object = $objects[$o];
 
-				} elseif ( $dataset == 'sejm_posiedzenia_punkty' ) {
+                // var_export( $object ); die();
 
-					$nodes = array(
-						array(
-							'id'        => $object->getDataset() . '-' . $object->getId(),
-							'icon'      => 'pass',
-							'status'    => '1',
-							'parent_id' => array( $prev_object->getDataset() . '-' . $prev_object->getId() ),
-						),
-						array(
-							'id'     => $object->getDataset() . '-' . $object->getId(),
-							'icon'   => 'deny',
-							'status' => '0',
-						),
-					);
-
-					$main_icon = 'pass';
-
-				} elseif ( $dataset == 'sejm_druki' ) {
+                $dataset = $object->getDataset();
+                $main_icon = 'pass';
+                $nodes = array(
+                    array(
+                        'id' => $object->getDataset() . '-' . $object->getId(),
+                        'icon' => 'pass',
+                        'status' => '1',
+                        'parent_id' => $prev_object ? array($prev_object->getDataset() . '-' . $prev_object->getId()) : array(),
+                    )
+                );
 
 
-					$nodes = array(
-						array(
-							'id'        => $object->getDataset() . '-' . $object->getId(),
-							'icon'      => 'doc',
-							'status'    => '1',
-							'parent_id' => array( $prev_object->getDataset() . '-' . $prev_object->getId() ),
-						),
-					);
+                if ($dataset == 'rcl_etapy') {
 
-					$main_icon = 'doc';
+                    $main_icon = 'doc';
+                    $nodes = array(
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'doc',
+                            'status' => '1',
+                            'parent_id' => $prev_object ? array($prev_object->getDataset() . '-' . $prev_object->getId()) : array(),
+                        )
+                    );
 
-				} elseif ( $dataset == 'sejm_zamrazarka' ) {
+                } elseif ($dataset == 'sejm_posiedzenia_punkty') {
 
-					$nodes = array(
-						array(
-							'id'        => $object->getDataset() . '-' . $object->getId(),
-							'icon'      => 'doc',
-							'status'    => '1',
-							'parent_id' => array( $prev_object->getDataset() . '-' . $prev_object->getId() ),
-						),
-					);
+                    $nodes = array(
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'pass',
+                            'status' => '1',
+                            'parent_id' => array($prev_object->getDataset() . '-' . $prev_object->getId()),
+                        ),
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'deny',
+                            'status' => '0',
+                        ),
+                    );
 
-					$main_icon = 'doc';
+                    $main_icon = 'pass';
 
-				} elseif ( $dataset == 'sejm_glosowania' ) {
-
-
-				} elseif ( $dataset == 'prawo' ) {
-
-					$nodes = array(
-						array(
-							'id'        => $object->getDataset() . '-' . $object->getId(),
-							'icon'      => 'accept',
-							'status'    => '1',
-							'parent_id' => array( $prev_object->getDataset() . '-' . $prev_object->getId() ),
-						),
-					);
-
-					$main_icon = 'accept';
-
-				}
+                } elseif ($dataset == 'sejm_druki') {
 
 
-				if ( $dataset != 'sejm_glosowania' ) {
+                    $nodes = array(
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'doc',
+                            'status' => '1',
+                            'parent_id' => array($prev_object->getDataset() . '-' . $prev_object->getId()),
+                        ),
+                    );
 
-					$label    = $dataset;
-					$sublabel = '';
+                    $main_icon = 'doc';
 
-					switch ( $dataset ) {
+                } elseif ($dataset == 'sejm_zamrazarka') {
 
-						case 'rcl_etapy': {
+                    $nodes = array(
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'doc',
+                            'status' => '1',
+                            'parent_id' => array($prev_object->getDataset() . '-' . $prev_object->getId()),
+                        ),
+                    );
 
-							$label = $object->getShortTitle();
-							break;
+                    $main_icon = 'doc';
 
-						}
+                } elseif ($dataset == 'sejm_glosowania') {
 
-						case 'sejm_posiedzenia_punkty': {
 
-							$label    = 'Obrady Sejmu';
-							$sublabel = $object->getData( 'opis' );
-							break;
+                } elseif ($dataset == 'prawo') {
 
-						}
+                    $nodes = array(
+                        array(
+                            'id' => $object->getDataset() . '-' . $object->getId(),
+                            'icon' => 'accept',
+                            'status' => '1',
+                            'parent_id' => array($prev_object->getDataset() . '-' . $prev_object->getId()),
+                        ),
+                    );
 
-						case 'sejm_zamrazarka': {
+                    $main_icon = 'accept';
 
-							$label = 'Projekt wpłynął do Sejmu';
-							break;
+                }
 
-						}
 
-						case 'sejm_druki': {
+                if ($dataset != 'sejm_glosowania') {
 
-							if ( $object->getData( 'typ_id' ) == '1' ) {
-								$label = 'Projekt został doręczony posłom';
-							} else {
-								$label = $object->getData( 'druk_typ_nazwa' );
-							}
+                    $label = $dataset;
+                    $sublabel = '';
 
-							$sublabel = 'Druk nr ' . $object->getData( 'numer' );
-							break;
+                    switch ($dataset) {
 
-						}
+                        case 'rcl_etapy': {
 
-						case 'prawo': {
+                            $label = $object->getShortTitle();
+                            break;
 
-							$label    = 'Publikacja ustawy w Dziennku Ustaw';
-							$sublabel = $object->getData( 'sygnatura' );
-							break;
+                        }
 
-						}
+                        case 'sejm_posiedzenia_punkty': {
 
-					}
+                            $label = 'Obrady Sejmu';
+                            $sublabel = $object->getData('opis');
+                            break;
 
-					$path[] = array(
-						'id'       => $object->getDataset() . '-' . $object->getId(),
-						'label'    => $label,
-						'sublabel' => $sublabel,
-						'date'     => $object->getDate(),
-						'icon'     => $main_icon,
-						'nodes'    => $nodes,
-					);
+                        }
 
-					$prev_object = $object;
+                        case 'sejm_zamrazarka': {
 
-				}
+                            $label = 'Projekt wpłynął do Sejmu';
+                            break;
 
-			}
-		}
+                        }
 
-		return $path;
+                        case 'sejm_druki': {
 
-	}
+                            if ($object->getData('typ_id') == '1') {
+                                $label = 'Projekt został doręczony posłom';
+                            } else {
+                                $label = $object->getData('druk_typ_nazwa');
+                            }
+
+                            $sublabel = 'Druk nr ' . $object->getData('numer');
+                            break;
+
+                        }
+
+                        case 'prawo': {
+
+                            $label = 'Publikacja ustawy w Dziennku Ustaw';
+                            $sublabel = $object->getData('sygnatura');
+                            break;
+
+                        }
+
+                    }
+
+                    $path[] = array(
+                        'id' => $object->getDataset() . '-' . $object->getId(),
+                        'label' => $label,
+                        'sublabel' => $sublabel,
+                        'date' => $object->getDate(),
+                        'icon' => $main_icon,
+                        'nodes' => $nodes,
+                    );
+
+                    $prev_object = $object;
+
+                }
+
+            }
+        }
+
+        return $path;
+
+    }
 
 }

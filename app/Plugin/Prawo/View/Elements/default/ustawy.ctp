@@ -1,1 +1,1 @@
-<?php debug( $item ); ?>
+<?php debug($item); ?>

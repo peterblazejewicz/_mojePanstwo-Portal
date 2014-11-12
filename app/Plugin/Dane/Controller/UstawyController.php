@@ -1,6 +1,7 @@
 <?php
 
-App::uses( 'DocsObjectsController', 'Dane.Controller' );
+App::uses('DocsObjectsController', 'Dane.Controller');
 
-class UstawyController extends DocsObjectsController {
+class UstawyController extends DocsObjectsController
+{
 } 

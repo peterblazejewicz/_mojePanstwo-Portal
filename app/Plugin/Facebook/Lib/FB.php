@@ -8,72 +8,78 @@
  * @license MIT
  */
 
-App::uses( 'Facebook', 'Facebook.Vendor' );
-App::uses( 'FacebookInfo', 'Facebook.Lib' );
+App::uses('Facebook', 'Facebook.Vendor');
+App::uses('FacebookInfo', 'Facebook.Lib');
 
-class FB {
+class FB
+{
 
-	/**
-	 * Facebook Api
-	 */
-	public static $Facebook = null;
+    /**
+     * Facebook Api
+     */
+    public static $Facebook = null;
 
-	public function __construct() {
-		$this->__initInstance();
-	}
+    public function __construct()
+    {
+        $this->__initInstance();
+    }
 
-	/**
-	 * Initialize a new instance if none exists
-	 */
-	private function __initInstance() {
-		if ( empty( self::$Facebook ) ) {
-			self::$Facebook = new Facebook( FacebookInfo::getConfig() );
-		}
-	}
+    /**
+     * Initialize a new instance if none exists
+     */
+    private function __initInstance()
+    {
+        if (empty(self::$Facebook)) {
+            self::$Facebook = new Facebook(FacebookInfo::getConfig());
+        }
+    }
 
-	/**
-	 * PHP 5.3.0 only
-	 * Usage:
-	 * - FB::method(params);
-	 * Example:
-	 * - FB::getUser();
-	 */
-	public static function __callstatic( $method, $params ) {
-		try {
-			if ( empty( self::$Facebook ) ) {
-				$this->__initInstance();
-			}
+    /**
+     * PHP 5.3.0 only
+     * Usage:
+     * - FB::method(params);
+     * Example:
+     * - FB::getUser();
+     */
+    public static function __callstatic($method, $params)
+    {
+        try {
+            if (empty(self::$Facebook)) {
+                $this->__initInstance();
+            }
 
-			return call_user_func_array( array( self::$Facebook, $method ), $params );
-		} catch ( FacebookApiException $e ) {
-			error_log( $e );
-		}
-	}
+            return call_user_func_array(array(self::$Facebook, $method), $params);
+        } catch (FacebookApiException $e) {
+            error_log($e);
+        }
+    }
 
-	/**
-	 * Forward any call to the Facebook API
-	 *
-	 * @param string method name
-	 * @param mixed params passed into method
-	 *
-	 * @return mixed return value of result from Facebook API
-	 */
-	public function __call( $method, $params ) {
-		try {
-			return call_user_func_array( array( self::$Facebook, $method ), $params );
-		} catch ( FacebookApiException $e ) {
-			error_log( $e );
-		}
-	}
+    /**
+     * Forward any call to the Facebook API
+     *
+     * @param string method name
+     * @param mixed params passed into method
+     *
+     * @return mixed return value of result from Facebook API
+     */
+    public function __call($method, $params)
+    {
+        try {
+            return call_user_func_array(array(self::$Facebook, $method), $params);
+        } catch (FacebookApiException $e) {
+            error_log($e);
+        }
+    }
 
-	/**
-	 * Retrieve the property of the Facebook API
-	 *
-	 * @param string name of property
-	 *
-	 * @return mixed property of Facebook API
-	 */
-	public function __get( $name ) {
-		return self::$Facebook->$name;
-	}
+    /**
+     * Retrieve the property of the Facebook API
+     *
+     * @param string name of property
+     *
+     * @return mixed property of Facebook API
+     */
+    public function __get($name)
+    {
+        return self::$Facebook->$name;
+    }
 }

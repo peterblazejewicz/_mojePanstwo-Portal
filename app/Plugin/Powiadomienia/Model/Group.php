@@ -1,7 +1,8 @@
 <?php
 
-App::uses( 'SolrAppModel', 'Model' );
+App::uses('SolrAppModel', 'Model');
 
-class Group extends SolrAppModel {
+class Group extends SolrAppModel
+{
 
 } 

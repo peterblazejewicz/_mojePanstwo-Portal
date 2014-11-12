@@ -1,111 +1,111 @@
 <?
-$this->Combinator->add_libs( 'js', 'jquery-tablesorter-min' );
-$this->Combinator->add_libs( 'js', 'Dane.view-gminy-okreg_wyborczy' );
+$this->Combinator->add_libs('js', 'jquery-tablesorter-min');
+$this->Combinator->add_libs('js', 'Dane.view-gminy-okreg_wyborczy');
 ?>
 <div class="gminy_okregi_wyborcze row">
-	<div class="col-lg-3 objectSide">
-		<div class="objectSideInner">
+    <div class="col-lg-3 objectSide">
+        <div class="objectSideInner">
 
 
-			<ul class="dataHighlights side">
+            <ul class="dataHighlights side">
 
-				<li class="dataHighlight big">
-					<p class="_label">Liczba wyborców</p>
+                <li class="dataHighlight big">
+                    <p class="_label">Liczba wyborców</p>
 
-					<div>
-						<p class="_value"><?= _number( $object->getData( 'liczba_wyborcow' ) ); ?></p>
-					</div>
-				</li>
+                    <div>
+                        <p class="_value"><?= _number($object->getData('liczba_wyborcow')); ?></p>
+                    </div>
+                </li>
 
-				<li class="dataHighlight big">
-					<p class="_label">Liczba kandydatów</p>
+                <li class="dataHighlight big">
+                    <p class="_label">Liczba kandydatów</p>
 
-					<div>
-						<p class="_value"><?= _number( $object->getData( 'liczba_kandydatow' ) ); ?></p>
-					</div>
-				</li>
+                    <div>
+                        <p class="_value"><?= _number($object->getData('liczba_kandydatow')); ?></p>
+                    </div>
+                </li>
 
-				<li class="dataHighlight big">
-					<p class="_label">Liczba mandatów</p>
+                <li class="dataHighlight big">
+                    <p class="_label">Liczba mandatów</p>
 
-					<div>
-						<p class="_value"><?= _number( $object->getData( 'liczba_mandatow' ) ); ?></p>
-					</div>
-				</li>
+                    <div>
+                        <p class="_value"><?= _number($object->getData('liczba_mandatow')); ?></p>
+                    </div>
+                </li>
 
-				<li class="dataHighlight big">
-					<p class="_label">Liczba komitetów</p>
+                <li class="dataHighlight big">
+                    <p class="_label">Liczba komitetów</p>
 
-					<div>
-						<p class="_value"><?= _number( $object->getData( 'liczba_komitetow' ) ); ?></p>
-					</div>
-				</li>
+                    <div>
+                        <p class="_value"><?= _number($object->getData('liczba_komitetow')); ?></p>
+                    </div>
+                </li>
 
-			</ul>
-
-
-		</div>
-	</div>
+            </ul>
 
 
-	<div class="col-lg-9 objectMain">
-		<div class="object">
-
-			<div class="block-group">
+        </div>
+    </div>
 
 
-				<div id="wyniki" class="block">
-					<div class="block-header">
-						<h2 class="label">Wyniki wyborów</h2>
-					</div>
+    <div class="col-lg-9 objectMain">
+        <div class="object">
 
-					<div class="content">
+            <div class="block-group">
 
-						<table id="wynikiTable" class="table table-striped table-hover ">
 
-							<thead>
-							<tr>
-								<th>Wybrany</th>
-								<th>Imię i nazwisko</th>
-								<th>Rok urodzenia</th>
-								<th>Lista</th>
-								<th>Pozycja na liście</th>
+                <div id="wyniki" class="block">
+                    <div class="block-header">
+                        <h2 class="label">Wyniki wyborów</h2>
+                    </div>
 
-								<th>Liczba głosów</th>
-								<th>Procent głosów</th>
-							</tr>
-							</thead>
+                    <div class="content">
 
-							<tbody>
+                        <table id="wynikiTable" class="table table-striped table-hover ">
 
-							<? foreach ( $object->getLayer( 'kandydaci' ) as $kandydat ) {
-								$href = '/dane/gminy/' . $object->getData( 'gmina_id' ) . '/radni/' . $kandydat['radny_id'];
-								?>
-								<tr>
-									<td><? if ( $kandydat['radny_id'] ) { ?><a href="<?= $href ?>"
-									                                           class="glyphicon glyphicon-ok-sign"></a><? } ?>
-									</td>
-									<td><? if ($kandydat['radny_id']){ ?><a
-											href="<?= $href ?>"><? } ?><?= $kandydat['nazwa'] ?><? if ($kandydat['wybrany'] == '1'){ ?></a><? } ?>
-									</td>
-									<td><?= $kandydat['rok_urodzenia'] ?></td>
-									<td><?= $kandydat['komitet_nazwa'] ?></td>
-									<td><?= $kandydat['pozycja'] ?></td>
+                            <thead>
+                            <tr>
+                                <th>Wybrany</th>
+                                <th>Imię i nazwisko</th>
+                                <th>Rok urodzenia</th>
+                                <th>Lista</th>
+                                <th>Pozycja na liście</th>
 
-									<td><?= $kandydat['l_glosow'] ?></td>
-									<td><?= $kandydat['p_glosow'] ?>%</td>
-								</tr>
-							<? } ?>
+                                <th>Liczba głosów</th>
+                                <th>Procent głosów</th>
+                            </tr>
+                            </thead>
 
-							</tbody>
+                            <tbody>
 
-						</table>
+                            <? foreach ($object->getLayer('kandydaci') as $kandydat) {
+                                $href = '/dane/gminy/' . $object->getData('gmina_id') . '/radni/' . $kandydat['radny_id'];
+                                ?>
+                                <tr>
+                                    <td><? if ($kandydat['radny_id']) { ?><a href="<?= $href ?>"
+                                                                             class="glyphicon glyphicon-ok-sign"></a><? } ?>
+                                    </td>
+                                    <td><? if ($kandydat['radny_id']){ ?><a
+                                            href="<?= $href ?>"><? } ?><?= $kandydat['nazwa'] ?><? if ($kandydat['wybrany'] == '1'){ ?></a><? } ?>
+                                    </td>
+                                    <td><?= $kandydat['rok_urodzenia'] ?></td>
+                                    <td><?= $kandydat['komitet_nazwa'] ?></td>
+                                    <td><?= $kandydat['pozycja'] ?></td>
 
-					</div>
-				</div>
+                                    <td><?= $kandydat['l_glosow'] ?></td>
+                                    <td><?= $kandydat['p_glosow'] ?>%</td>
+                                </tr>
+                            <? } ?>
 
-			</div>
+                            </tbody>
 
-		</div>
-	</div>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>

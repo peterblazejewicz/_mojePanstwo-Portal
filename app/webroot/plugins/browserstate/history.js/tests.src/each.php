@@ -3,33 +3,33 @@
 $url = "${browser}.${adapter}.html";
 
 # Titles
-$Browser = strtoupper( $browser );
-$Adapter = ucwords( $adapter );
+$Browser = strtoupper($browser);
+$Adapter = ucwords($adapter);
 $title = "History.js ${Browser} ${Adapter} Test Suite";
 ?><!DOCTYPE html>
 <html debug="true">
 <head>
-	<meta http-equiv="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT"/>
-	<meta http-equiv="PRAGMA" CONTENT="NO-CACHE"/>
-	<meta http-equiv="CACHE-CONTROL" CONTENT="NO-CACHE"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<title><?= $title ?></title>
+    <meta http-equiv="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT"/>
+    <meta http-equiv="PRAGMA" CONTENT="NO-CACHE"/>
+    <meta http-equiv="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title><?= $title ?></title>
 
-	<!-- Check -->
-	<script>
-		var href = window.document.location.href,
-			test_url = href.replace(/(history\.js\/tests\/[^\/\?\#]+).*/, '$1');
-		if (test_url !== href) {
-			window.document.location.href = test_url;
-		}
-	</script>
+    <!-- Check -->
+    <script>
+        var href = window.document.location.href,
+            test_url = href.replace(/(history\.js\/tests\/[^\/\?\#]+).*/, '$1');
+        if (test_url !== href) {
+            window.document.location.href = test_url;
+        }
+    </script>
 
-	<!-- Framework -->
-	<script src="../vendor/<?= $adapter ?>.js"></script>
+    <!-- Framework -->
+    <script src="../vendor/<?= $adapter ?>.js"></script>
 
-	<!-- QUnit -->
-	<link rel="stylesheet" href="../vendor/qunit/qunit/qunit.css" type="text/css" media="screen">
-	<script src="../vendor/qunit/qunit/qunit.js"></script>
+    <!-- QUnit -->
+    <link rel="stylesheet" href="../vendor/qunit/qunit/qunit.css" type="text/css" media="screen">
+    <script src="../vendor/qunit/qunit/qunit.js"></script>
 </head>
 <body>
 <!-- Elements -->

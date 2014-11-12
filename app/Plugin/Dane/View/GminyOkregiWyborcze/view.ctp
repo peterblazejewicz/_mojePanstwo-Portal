@@ -6,8 +6,8 @@
 // $this->Combinator->add_libs('js', 'Dane.view-kolejestacje');
 ?>
 
-<?php echo $this->Element( 'dataobject/pageBegin' ); ?>
-<?php echo $this->Element( 'dataobject/objects/gminy_okregi_wyborcze/page', array(
-	'object' => $object,
-) ); ?>;
-<?php echo $this->Element( 'dataobject/pageEnd' ); ?>
+<?php echo $this->Element('dataobject/pageBegin'); ?>
+<?php echo $this->Element('dataobject/objects/gminy_okregi_wyborcze/page', array(
+    'object' => $object,
+)); ?>;
+<?php echo $this->Element('dataobject/pageEnd'); ?>

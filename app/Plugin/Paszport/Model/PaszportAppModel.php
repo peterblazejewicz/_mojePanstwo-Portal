@@ -8,10 +8,12 @@
  *
  * @package       app.Model
  */
-class PaszportAppModel extends AppModel {
-	public $useTable = false;
+class PaszportAppModel extends AppModel
+{
+    public $useTable = false;
 
-	public function schema() {
-		return array();
-	}
+    public function schema()
+    {
+        return array();
+    }
 }

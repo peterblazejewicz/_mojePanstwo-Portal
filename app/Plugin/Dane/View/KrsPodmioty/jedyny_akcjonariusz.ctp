@@ -1,28 +1,28 @@
-<?php $this->Combinator->add_libs( 'css', $this->Less->css( 'view-krspodmioty', array( 'plugin' => 'Dane' ) ) ); ?>
+<?php $this->Combinator->add_libs('css', $this->Less->css('view-krspodmioty', array('plugin' => 'Dane'))); ?>
 
-<?= $this->Element( 'dataobject/pageBegin' ); ?>
+<?= $this->Element('dataobject/pageBegin'); ?>
 
-	<h1>Jedyny akcjonariusz</h1>
+    <h1>Jedyny akcjonariusz</h1>
 
 <?
-$items = $object->getLayer( 'jedynyAkcjonariusz' );
-if ( count( $items ) ) {
-	?>
-	<ul class="stdUl">
-		<? foreach ( $items as $item ) { ?>
+$items = $object->getLayer('jedynyAkcjonariusz');
+if (count($items)) {
+    ?>
+    <ul class="stdUl">
+        <? foreach ($items as $item) { ?>
 
-			<li>
-				<h2 class="title"><?= $item['nazwa'] ?></h2>
+            <li>
+                <h2 class="title"><?= $item['nazwa'] ?></h2>
 
-				<p class="details"><?= $item['krs'] ?></p>
-			</li>
+                <p class="details"><?= $item['krs'] ?></p>
+            </li>
 
-		<? } ?>
-	</ul>
+        <? } ?>
+    </ul>
 <?
 }
 ?>
 
 
 
-<?= $this->Element( 'dataobject/pageEnd' ); ?>
+<?= $this->Element('dataobject/pageEnd'); ?>

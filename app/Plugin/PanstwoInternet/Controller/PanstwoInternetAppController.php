@@ -1,10 +1,12 @@
 <?php
 
-class PanstwoInternetAppController extends AppController {
+class PanstwoInternetAppController extends AppController
+{
 
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->API = $this->API->PanstwoInternet();
-	}
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->API = $this->API->PanstwoInternet();
+    }
 
 }

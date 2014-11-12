@@ -1,12 +1,12 @@
 <?
 if (
-	isset( $object ) &&
-	(
-		( $object->getDataset() == 'gminy' ) &&
-		( $object->getId() == '903' )
-	)
+    isset($object) &&
+    (
+        ($object->getDataset() == 'gminy') &&
+        ($object->getId() == '903')
+    )
 ) {
-	echo $this->element( 'Dane.stanczyk_footer' );
+    echo $this->element('Dane.stanczyk_footer');
 }
 ?>
 </div>

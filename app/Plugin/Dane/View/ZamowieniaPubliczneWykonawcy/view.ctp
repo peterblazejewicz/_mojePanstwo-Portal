@@ -1,2 +1,2 @@
-<?= $this->Element( 'dataobject/pageBegin' ); ?>
-<?= $this->Element( 'dataobject/pageEnd' ); ?>
+<?= $this->Element('dataobject/pageBegin'); ?>
+<?= $this->Element('dataobject/pageEnd'); ?>

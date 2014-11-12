@@ -1,60 +1,64 @@
 <?php
 
-App::uses( 'DataobjectsController', 'Dane.Controller' );
+App::uses('DataobjectsController', 'Dane.Controller');
 
-class TwitterAccountsController extends DataobjectsController {
+class TwitterAccountsController extends DataobjectsController
+{
 
-	public $components = array(
-		'RequestHandler',
-	);
-	public $uses = array( 'Dane.Dataobject' );
+    public $components = array(
+        'RequestHandler',
+    );
+    public $uses = array('Dane.Dataobject');
 
-	public $menu = array();
-	public $breadcrumbsMode = 'app';
+    public $menu = array();
+    public $breadcrumbsMode = 'app';
 
-	public $objectOptions = array(
-		'hlFields' => array(),
-	);
+    public $objectOptions = array(
+        'hlFields' => array(),
+    );
 
-	public function view() {
+    public function view()
+    {
 
 
-		parent::_prepareView();
-		$powiazania = $this->object->loadLayer( 'powiazania' );
+        parent::_prepareView();
+        $powiazania = $this->object->loadLayer('powiazania');
 
-		if (
-			isset( $powiazania['posel_id'] ) &&
-			$powiazania['posel_id']
-		) {
+        if (
+            isset($powiazania['posel_id']) &&
+            $powiazania['posel_id']
+        ) {
 
-			return $this->redirect( '/dane/poslowie/' . $powiazania['posel_id'] . '/twitter' );
+            return $this->redirect('/dane/poslowie/' . $powiazania['posel_id'] . '/twitter');
 
-		}
+        }
 
-		$this->object->loadLayer( 'followers_chart' );
+        $this->object->loadLayer('followers_chart');
 
-		$this->API->searchDataset( 'twitter', array(
-			'limit'      => 12,
-			'conditions' => array(
-				'twitter_account_id' => $this->object->getId(),
-			),
-		) );
-		$this->set( 'twitts', $this->API->getObjects() );
+        $this->API->searchDataset('twitter', array(
+            'limit' => 12,
+            'conditions' => array(
+                'twitter_account_id' => $this->object->getId(),
+            ),
+        ));
+        $this->set('twitts', $this->API->getObjects());
 
-	}
+    }
 
-	public function twitts() {
-		parent::_prepareView();
-		$this->dataobjectsBrowserView( array(
-			'source'  => 'twitterAccounts.relatedTweets:' . $this->object->getId(),
-			'dataset' => 'twitter',
-			'title'   => 'Powiązane tweety',
-		) );
-	}
+    public function twitts()
+    {
+        parent::_prepareView();
+        $this->dataobjectsBrowserView(array(
+            'source' => 'twitterAccounts.relatedTweets:' . $this->object->getId(),
+            'dataset' => 'twitter',
+            'title' => 'Powiązane tweety',
+        ));
+    }
 
-	public function timeline() {
+    public function timeline()
+    {
 
-		$data = '{
+        $data = '{
     "timeline":
     {
         "headline":"Sh*t People Say",
@@ -89,44 +93,45 @@ class TwitterAccountsController extends DataobjectsController {
     }
 }';
 
-		$data = json_decode( $data, true );
+        $data = json_decode($data, true);
 
-		$this->set( 'data', $data );
-		$this->set( '_serialize', 'data' );
+        $this->set('data', $data);
+        $this->set('_serialize', 'data');
 
-	}
+    }
 
 
-	public function getpagetitle() {
-		if ( $this->data ) {
-			if ( isset( $this->data['url'] ) && preg_match( '/http/', $this->data['url'] ) ) {
-				$ch = curl_init();
-				curl_setopt( $ch, CURLOPT_HEADER, 0 );
-				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-				curl_setopt( $ch, CURLOPT_URL, $this->data['url'] );
-				curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
-				$page = curl_exec( $ch );
-				curl_close( $ch );
+    public function getpagetitle()
+    {
+        if ($this->data) {
+            if (isset($this->data['url']) && preg_match('/http/', $this->data['url'])) {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_URL, $this->data['url']);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                $page = curl_exec($ch);
+                curl_close($ch);
 
-				preg_match( '/<title>(.+)<\/title>/', $page, $matches );
-				if ( count( $matches ) > 0 ) {
-					$title = $matches[1];
-					$this->set( array(
-						'title'      => $title,
-						'_serialize' => 'title',
-					) );
-				} else {
-					throw new NotFoundException();
-					die();
-				}
-			} else {
-				throw new MethodNotAllowedException();
-				die();
-			}
+                preg_match('/<title>(.+)<\/title>/', $page, $matches);
+                if (count($matches) > 0) {
+                    $title = $matches[1];
+                    $this->set(array(
+                        'title' => $title,
+                        '_serialize' => 'title',
+                    ));
+                } else {
+                    throw new NotFoundException();
+                    die();
+                }
+            } else {
+                throw new MethodNotAllowedException();
+                die();
+            }
 
-		} else {
-			throw new MethodNotAllowedException();
-			die();
-		}
-	}
+        } else {
+            throw new MethodNotAllowedException();
+            die();
+        }
+    }
 } 
