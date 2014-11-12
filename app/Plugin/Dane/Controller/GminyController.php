@@ -621,6 +621,16 @@ class GminyController extends DataobjectsController
 
 		$this->set( 'title_for_layout', 'Powiązania radnych gminy  ' . $this->object->getData( 'nazwa' ) . ' z organizacjami w Krajowym Rejestrze Sądowym' );
 	}
+	
+	public function urzednicy_powiazania() {
+
+		$this->addInitLayers( 'urzednicy_powiazania' );
+
+		$this->_prepareView();
+		$this->request->params['action'] = 'urzednicy_powiazania';
+
+		$this->set( 'title_for_layout', 'Powiązania urzędników gminy  ' . $this->object->getData( 'nazwa' ) . ' z organizacjami w Krajowym Rejestrze Sądowym' );
+	}
 
 	public function radni() {
 
@@ -1265,7 +1275,7 @@ class GminyController extends DataobjectsController
 						),
 						array(
 							'id'    => 'radni_powiazania',
-							'label' => 'Powiązania radnych z organizacjami',
+							'label' => 'Powiązania radnych w KRS',
 							'href'  => $href_base . '/radni_powiazania',
 						),
 						array(
@@ -1328,6 +1338,11 @@ class GminyController extends DataobjectsController
 							'id'   => 'urzednicy',
 							'label' => 'Urzędnicy',
 							'href' => $href_base . '/urzednicy',
+						),
+						array(
+							'id'   => 'urzednicy_powiazania',
+							'label' => 'Powiązania urzędników w KRS',
+							'href' => $href_base . '/urzednicy_powiazania',
 						),
 						array(
 							'id'   => 'jednostki',

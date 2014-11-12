@@ -10,7 +10,7 @@ echo $this->Element( 'dataobject/pageBegin', array(
 	'titleTag' => 'p',
 ) );
 
-$powiazania = $object->getLayer( 'radni_powiazania' );
+$powiazania = $object->getLayer( 'urzednicy_powiazania' );
 ?>
 
 	<div class="col-md-10 col-md-offset-1">
@@ -18,11 +18,11 @@ $powiazania = $object->getLayer( 'radni_powiazania' );
 
 			<? if ( $powiazania ) { ?>
 
-				<h1>Powiązania radnych gminy <?= $object->getData( 'nazwa' ) ?> z organizacjami w <a href="/krs">Krajowym
+				<h1>Powiązania urzędników gminy <?= $object->getData( 'nazwa' ) ?> z organizacjami w <a href="/krs">Krajowym
 						Rejestrze Sądowym</a></h1>
-
-				<p class="desc">Zobacz także <a href="/dane/gminy/903,krakow/urzednicy_powiazania">powiązania urzędników &raquo;</a></p>
-
+						
+				<p class="desc">Zobacz także <a href="/dane/gminy/903,krakow/radni_powiazania">powiązania radnych &raquo;</a></p>
+				
 				<div class="block-group">
 
 					<? foreach ( $powiazania as $p ) { ?>
@@ -31,27 +31,15 @@ $powiazania = $object->getLayer( 'radni_powiazania' );
 
 							<div class="block-header">
 								<h2 class="label pull-left"><a
-										href="/dane/gminy/<?= $object->getId() ?>/radni/<?= $p['radny']['id'] ?>"><?= $p['radny']['nazwa'] ?></a>
+										href="/dane/gminy/<?= $object->getId() ?>/urzednicy/<?= $p['urzednik']['id'] ?>"><?= $p['urzednik']['nazwa'] ?></a>
 								</h2>
 
-								<p class="desc pull-right"><?= $p['radny']['komitet'] ?></p>
+								<p class="desc pull-right"><?= $p['urzednik']['opis'] ?></p>
 							</div>
 
 							<div class="content row padding">
 
-								<div class="col-md-2">
-
-									<? if ( $p['radny']['avatar'] == '1' ) { ?>
-										<img
-											src="http://resources.sejmometr.pl/avatars/5/<?= $p['radny']['avatar_id'] ?>.jpg"/>
-									<? } elseif ( $p['radny']['plec'] == 'K' ) { ?>
-										<img src="http://resources.sejmometr.pl/avatars/g/w.png"/>
-									<? } else { ?>
-										<img src="http://resources.sejmometr.pl/avatars/g/m.png"/>
-									<? } ?>
-
-								</div>
-								<div class="col-md-10">
+								<div class="col-md-12">
 
 									<ul>
 										<?
