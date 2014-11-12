@@ -70,14 +70,26 @@ a {
 }
 
 .tooltipIcon {
-    .glyphicon.glyphicon-info-sign {
-        margin-left: 4px
+    .glyphicon {
+        color: #666;
+	    font-size: 14px;
+	    margin-left: 4px;
+	    margin-top: -3px;
+	    position: relative;
+	    top: 3px;
     }
 }
 
 .tooltip {
-    font-size: 10px;
-    padding: 5px;
+	&.top .tooltip-arrow, &.bottom .tooltip-arrow, &.left .tooltip-arrow, &.right .tooltip-arrow {
+		border-top-color: rgba(0, 0, 0, .8);
+	}
+	.tooltip-inner {
+		background-color: rgba(0, 0, 0, .8);
+	    font-size: 10px;
+	    padding: 10px;
+	    font-weight: 400;
+    }
 }
 
 .form-control, textarea.form-control, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
@@ -215,6 +227,92 @@ body > pre:first-child {
     color: #258ac5;
 }
 
+.app-header {
+	
+    background-color: #E3E3E3;
+    border-bottom: 1px solid #BBB;
+    text-align: center;
+    
+    h1 {
+	    font-family: "Lato", sans-serif;
+	    font-size: 26px;
+	    font-weight: 300;
+	    margin: 15px 0;
+	
+	    strong {
+	        font-weight: 400;
+	    }
+	}
+	
+	.main-input {
+		.btn {
+            width: 45px;
+            height: 45px;
+
+            &.loading {
+                background: url(../../img/loader/search-loading.png) center center no-repeat #5CB85C;
+
+                &:before {
+                    content: ' ';
+                }
+            }
+        }
+	}
+	
+	.shortcuts {
+        margin: 1.5em 0;
+        position: relative;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 10px;
+                font-weight: 300;
+                font-size: 16px;
+                display: inline;
+                position: relative;
+
+                a {
+                    color: #157AB5;
+                }
+
+                &.active:before {
+                    border-bottom: 15px solid #BBB;
+                    border-left: 15px solid transparent;
+                    border-right: 15px solid transparent;
+                    bottom: -13px;
+                    content: " ";
+                    height: 0;
+                    left: 50%;
+                    margin-left: -10px;
+                    position: absolute;
+                    width: 0;
+                }
+
+                &.active:after {
+                    border-bottom: 15px solid #F3F3F3;
+                    border-left: 15px solid transparent;
+                    border-right: 15px solid transparent;
+                    bottom: -15px;
+                    content: " ";
+                    height: 0;
+                    left: 50%;
+                    margin-left: -10px;
+                    position: absolute;
+                    width: 0;
+                }
+            }
+
+        }
+
+    }
+}
+
+
+
 .block {
     padding: 0;
     margin: 3px;
@@ -223,7 +321,17 @@ body > pre:first-child {
     -webkit-border-radius: 2px;
     -o-border-radius: 2px;
     border: 1px solid #EAEAEA;
-
+	
+	&.nobg {
+		background-color: inherit;
+		border: 1px solid transparent;
+		border-bottom: 1px solid #DDD;
+		
+		.block-header {
+			background-color: #F3F3F3;
+		}
+	}
+	
     ul.keywords {
         overflow: auto;
         padding: 10px;
@@ -328,9 +436,9 @@ body > pre:first-child {
 
         &.label {
             color: #444;
-            background-color: #FAFAFA;
+            background-color: none;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 0 0 -10px;
             padding: 0 10px;
             white-space: normal !important;
@@ -433,14 +541,18 @@ body > pre:first-child {
     }
 }
 
+
 .dataHighlights {
     margin-top: 10px;
     padding: 0 20px;
 
     .dataHighlight {
         padding: 5px;
-        margin: 5px;
         display: inline-block;
+        
+        &.-block {
+	        display: block;
+        }
 
         ._label {
             font-size: 10px;
@@ -552,7 +664,7 @@ body > pre:first-child {
             border-color: #F3F3F3;
             color: #AAA;
             background-color: #F3F3F3;
-            margin: 2px;
+            margin: 2px 2px 2px 7px;
         }
 
         &:hover .btn {

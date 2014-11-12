@@ -65,12 +65,11 @@ $this->Combinator->add_libs('js', 'graph-krs');
                 <? } ?>
 
 
-                <? /*
                 <? if ($object->getData('wartosc_kapital_zakladowy')) { ?>
                     <li class="dataHighlight topborder">
                         <p class="_label">Kapitał zakładowy</p>
 
-                        <p class="_value"><?= _currency($object->getData('wartosc_kapital_zakladowy')); ?></p>
+                        <p class="_value"><?= number_format_h($object->getData('wartosc_kapital_zakladowy')); ?> PLN</p>
                     </li>
                 <? } ?>
 
@@ -78,7 +77,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight">
                         <p class="_label">Część kapitału wpłaconego</p>
 
-                        <p class="_value"><?= _currency($object->getData('wartosc_czesc_kapitalu_wplaconego')); ?></p>
+                        <p class="_value"><?= number_format_h($object->getData('wartosc_czesc_kapitalu_wplaconego')); ?> PLN</p>
                     </li>
                 <? } ?>
 
@@ -86,7 +85,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight">
                         <p class="_label">Kapitał docelowy</p>
 
-                        <p class="_value"><?= _currency($object->getData('wartosc_kapital_docelowy')); ?></p>
+                        <p class="_value"><?= number_format_h($object->getData('wartosc_kapital_docelowy')); ?> PLN</p>
                     </li>
                 <? } ?>
 
@@ -94,11 +93,9 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight">
                         <p class="_label">Wartość nominalna podwyższenia kapitału</p>
 
-                        <p class="_value"><?= $object->getData('wartosc_nominalna_podwyzszenia_kapitalu'); ?></p>
+                        <p class="_value"><?= number_format_h($object->getData('wartosc_nominalna_podwyzszenia_kapitalu')); ?> PLN</p>
                     </li>
                 <? } ?>
-				<? */
-                ?>
 
 
                 <? if ($object->getData('data_rejestracji')) { ?>
@@ -109,13 +106,13 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     </li>
                 <? } ?>
 
-                <? if ($object->getData('data_dokonania_wpisu')) { ?>
+                <? /* if ($object->getData('data_dokonania_wpisu')) { ?>
                     <li class="dataHighlight inl">
                         <p class="_label">Data ostatniego wpisu</p>
 
                         <p class="_value"><?= $this->Czas->dataSlownie($object->getData('data_dokonania_wpisu')); ?></p>
                     </li>
-                <? } ?>
+                <? } */ ?>
 
 
                 <?
@@ -214,7 +211,11 @@ $this->Combinator->add_libs('js', 'graph-krs');
     $adres .= ', Polska';
     ?>
 
-    <?php if (!empty($object->getData('adres_ulica')) || !empty($object->getData('adres_numer')) || !empty($object->getData('adres_miejscowosc'))) { ?>
+    <?php if(
+	    	($object->getData('adres_ulica')) && 
+	    	($object->getData('adres_numer')) && 
+	    	($object->getData('adres_miejscowosc'))
+	    ) { ?>
         <div class="block">
             <div class="block-header">
                 <h2 class="label">Adres</h2>
@@ -433,7 +434,91 @@ $this->Combinator->add_libs('js', 'graph-krs');
 
     <? } ?>
 
+	
+	<?
+		if ($historia) { 
+		
+			$lastDate = false;
+			$lastLocation = false;
+			$lastSublocation = false;
+			
+	?>
+        <div id="historia" class="block historia">
+            <div class="block-header">
+                <h2 class="label pull-left">Najnowsze wpisy do KRS</h2>
+                <? /*<a class="btn btn-default btn-sm pull-right"
+                   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz całą historię</a> */ ?>
+            </div>
 
+            <div class="content">
+                
+                <ul>
+	                <? 
+		                foreach( $historia as $h ) {
+			               
+			            	$location = $h->getData('nr_dz') . '-' . $h->getData('nr_rub');
+			                $sublocation = $h->getData('nr_dz') . '-' . $h->getData('nr_rub') . '-' . $h->getData('nr_sub');
+			               			               
+		            ?>
+	                <li>
+	                	
+	                	<? if( $h->getDate() != $lastDate ) {?>
+	                	<p class="date"><?= $this->Czas->dataSlownie( $h->getDate() ) ?></p>
+	                	<? } ?>
+	                	
+	                	<div class="row">
+		                	<div class="col-md-12">
+			                			
+			                	<? if( $location!==$lastLocation ) {?>                	
+			                	<div class="location">
+				                	<span class="title"><?= $h->getData('opis') ?></span> 
+				                	<span class="desc pull-right">Dział <?= $h->getData('nr_dz') ?>, Rubryka <?= $h->getData('nr_rub') ?></span>
+				                </div>
+				                <? } ?>
+			                	
+			                	<? if( $h->getData('opis_sub') && ($sublocation!==$lastSublocation) ) { ?>
+			                	<div class="sublocation col-md-offset-1">
+				                	<span><?= preg_replace('/([0-9]{11})/', '---', $h->getData('opis_sub')) ?></span> 
+				                	<? if( $h->getData('nr_sub') ) { ?><span class="desc pull-right">Pozycja <?= $h->getData('nr_sub') ?></span><? } ?>
+			                	</div>
+			                	<? } ?>
+				                
+				                <div class="row col-md-offset-2">
+					                
+					                <div class="col-md-2 text-right">
+						                
+						                <? if( $h->getData('mode') == 'ADD' ) { ?>
+						                	<p class="status label label-success">Wpisać</p>
+						                <? } elseif( $h->getData('mode') == 'REMOVE' ) { ?>
+						                	<p class="status label label-danger">Wykreślić</p>
+						                <? } ?>
+						                
+					                </div><div class="col-md-10">
+						                <p class="content_">
+						                	<?= preg_replace('/([0-9]{11})/', '---', $h->getData('tresc')) ?>
+					                	</p>
+					                </div>
+				                </div>			                	
+			                	
+			                	
+		                	</div>
+	                	</div>
+	                </li>
+	                
+	                <?
+		                	$lastDate = $h->getDate();
+		                	$lastLocation = $location;
+		                	$lastSublocation = $sublocation;
+		                	
+		                }
+		            ?> 
+                </ul>
+                
+            </div>
+        </div>
+    <? } ?>
+	
+	
     <div class="powiazania block">
         <div class="block-header"><h2 class="label">Powiązania</h2></div>
 

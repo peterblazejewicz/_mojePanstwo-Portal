@@ -1,27 +1,39 @@
 <?php
-$this->Combinator->add_libs('css', $this->Less->css('new-look'));
-$this->Combinator->add_libs('css', $this->Less->css('administracja', array('plugin' => 'KtoTuRzadzi')));
-$this->Combinator->add_libs('js', 'KtoTuRzadzi.administracja.js');
+$this->Combinator->add_libs( 'css', $this->Less->css( 'new-look' ) );
+$this->Combinator->add_libs( 'css', $this->Less->css( 'administracja', array( 'plugin' => 'KtoTuRzadzi' ) ) );
+$this->Combinator->add_libs( 'js', 'KtoTuRzadzi.administracja.js' );
 ?>
 
-<div id="administracja">
-    <div class="appHeader">
-        <div class="container innerContent">
-            <h1>Władze centralne</h1>
+<div class="app-header">
+    <div class="container">
+        <h1>Kto Tu Rządzi?</h1>
 
-            <p class="desc">Kilknij kartę instytucji poniżej, aby dowiedzieć się więcej.</p>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+            <? echo $this->Element( 'suggester', array(
+                'app'             => 'kto_tu_rzadzi',
+                'placeholder'        => 'Szukaj instytucji publicznej...',
+            ) ); ?>
+
+            <? echo $this->Element( 'Prawo.menu', array(
+                'selected' => 'start'
+            ) ); ?>
+
         </div>
     </div>
+</div>
 
+
+<div id="administracja">
     <div class="container">
-        <? if ($items = $data['files']) {
+        <? if ( $items = $data['files'] ) {
             ;
         }
         {
             ?>
             <div class="content">
                 <div class="row items">
-                    <? foreach ($items as $item) { ?>
+                    <? foreach ( $items as $item ) { ?>
                         <div class="block col-md-<?= $item['width'] ?>">
                             <div class="item" data-id="<?= $item['id'] ?>">
 
@@ -42,8 +54,8 @@ $this->Combinator->add_libs('js', 'KtoTuRzadzi.administracja.js');
                                     </div>
 
                                     <div class="details">
-                                        <? if ($item['budzet_plan']) { ?><span class="detail">
-                                            Budżet: <?= number_format_h($item['budzet_plan'] * 1000) ?></span><? } ?>
+                                        <? if ( $item['budzet_plan'] ) { ?><span class="detail">
+                                            Budżet: <?= number_format_h( $item['budzet_plan'] * 1000 ) ?></span><? } ?>
                                         <? /*
 										<? if( $item['budzet_plan'] && $item['childsCount'] ) {?><span class="separator">|</span><?}?>
 										<? if( $item['childsCount'] ) {?><span class="detail">Instytucje podległe: <?= $item['childsCount'] ?></span><?}?>
