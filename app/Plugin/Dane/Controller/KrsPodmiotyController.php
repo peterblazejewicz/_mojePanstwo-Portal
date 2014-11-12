@@ -86,7 +86,7 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		
 		$historia = $this->API->searchDataset('msig_zmiany', array(
-			'limit'      => 6,
+			'limit'      => 3,
 			'conditions' => array(
 				'pozycja_id' => $this->object->getId(),
 			),
