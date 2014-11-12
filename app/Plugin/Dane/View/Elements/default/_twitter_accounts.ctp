@@ -1,16 +1,16 @@
 <?
 $number_format = array(
-	'places'    => 0,
-	'before'    => '',
-	'escape'    => false,
-	'decimals'  => '.',
-	'thousands' => ' '
+    'places' => 0,
+    'before' => '',
+    'escape' => false,
+    'decimals' => '.',
+    'thousands' => ' '
 );
 
 ?>
 
 <p class="line signature text-muted">
-	<?= $object->getData( 'description' ); ?>
+    <?= $object->getData('description'); ?>
 </p>
 
-<? echo $this->Dataobject->highlights( $hlFields, $hlFieldsPush ); ?>
+<? echo $this->Dataobject->highlights($hlFields, $hlFieldsPush); ?>

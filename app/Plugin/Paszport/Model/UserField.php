@@ -1,5 +1,6 @@
 <?php
 
-class UserField extends PaszportAppModel {
-	public $belongsTo = array( 'User' );
+class UserField extends PaszportAppModel
+{
+    public $belongsTo = array('User');
 }

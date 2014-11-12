@@ -1,7 +1,8 @@
 <?php
 
-App::uses( 'DocsObjectsController', 'Dane.Controller' );
+App::uses('DocsObjectsController', 'Dane.Controller');
 
-class PoslowieWspolpracownicyController extends DocsObjectsController {
+class PoslowieWspolpracownicyController extends DocsObjectsController
+{
 
 } 

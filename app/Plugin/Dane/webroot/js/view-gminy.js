@@ -155,7 +155,7 @@ $(function () {
             text: null
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b>'
+            enabled: false
         },
         plotOptions: {
             pie: {
@@ -167,7 +167,7 @@ $(function () {
                     enabled: true,
                     format: '{point.name}: <b>{point.y}</b>',
                     style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        color: '#157AB5'
                     }
                 }
             },

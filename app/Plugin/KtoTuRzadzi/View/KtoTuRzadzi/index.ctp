@@ -5,41 +5,41 @@ $this->Combinator->add_libs( 'js', 'KtoTuRzadzi.administracja.js' );
 ?>
 
 <div class="app-header">
-	<div class="container">
-		<h1>Kto Tu Rządzi?</h1>
-				
-		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="container">
+        <h1>Kto Tu Rządzi?</h1>
 
-			<? echo $this->Element( 'suggester', array(
-				'app'             => 'kto_tu_rzadzi',
-				'placeholder'        => 'Szukaj instytucji publicznej...',
-			) ); ?>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-			<? echo $this->Element( 'Prawo.menu', array(
-				'selected' => 'start'
-			) ); ?>
+            <? echo $this->Element( 'suggester', array(
+                'app'             => 'kto_tu_rzadzi',
+                'placeholder'        => 'Szukaj instytucji publicznej...',
+            ) ); ?>
 
-		</div>
-	</div>
+            <? echo $this->Element( 'Prawo.menu', array(
+                'selected' => 'start'
+            ) ); ?>
+
+        </div>
+    </div>
 </div>
 
 
 <div id="administracja">
-	<div class="container">
-		<? if ( $items = $data['files'] ) {
-			;
-		}
-		{
-			?>
-			<div class="content">
-				<div class="row items">
-					<? foreach ( $items as $item ) { ?>
-						<div class="block col-md-<?= $item['width'] ?>">
-							<div class="item" data-id="<?= $item['id'] ?>">
+    <div class="container">
+        <? if ( $items = $data['files'] ) {
+            ;
+        }
+        {
+            ?>
+            <div class="content">
+                <div class="row items">
+                    <? foreach ( $items as $item ) { ?>
+                        <div class="block col-md-<?= $item['width'] ?>">
+                            <div class="item" data-id="<?= $item['id'] ?>">
 
-								<a href="/dane/instytucje/<?= $item['id'] ?>" class="inner"
-								   data-title="<?= $item['nazwa'] ?>"
-								   data-info='{
+                                <a href="/dane/instytucje/<?= $item['id'] ?>" class="inner"
+                                   data-title="<?= $item['nazwa'] ?>"
+                                   data-info='{
                                         "adres": ["Skwer kard. Wyszyńskiego 9 01-015 Warszawa"],
                                         "www": ["http://www.pg.gov.pl/bip/"],
                                         "email":["BPG@pg.gov.pl"],
@@ -48,37 +48,37 @@ $this->Combinator->add_libs( 'js', 'KtoTuRzadzi.administracja.js' );
                                         "instytucje": ["Prokuratura Apelacyjna w Krakowie", "Prokuratura Okręgowa w Kielcach","Prokuratura Okręgowa w Krakowie","Prokuratura Okręgowa w Tarnowie","Prokuratura Okręgowa w Nowym Sączu"]
                                     }'>
 
-									<div class="logo">
-										<img src="/KtoTuRzadzi/img/instytucje/<?= $item['id'] ?>.png"
-										     title="<?= $item['nazwa'] ?>"/>
-									</div>
+                                    <div class="logo">
+                                        <img src="/KtoTuRzadzi/img/instytucje/<?= $item['id'] ?>.png"
+                                             title="<?= $item['nazwa'] ?>"/>
+                                    </div>
 
-									<div class="details">
-										<? if ( $item['budzet_plan'] ) { ?><span class="detail">
-											Budżet: <?= number_format_h( $item['budzet_plan'] * 1000 ) ?></span><? } ?>
-										<? /*
+                                    <div class="details">
+                                        <? if ( $item['budzet_plan'] ) { ?><span class="detail">
+                                            Budżet: <?= number_format_h( $item['budzet_plan'] * 1000 ) ?></span><? } ?>
+                                        <? /*
 										<? if( $item['budzet_plan'] && $item['childsCount'] ) {?><span class="separator">|</span><?}?>
 										<? if( $item['childsCount'] ) {?><span class="detail">Instytucje podległe: <?= $item['childsCount'] ?></span><?}?>
 										*/
-										?>
-									</div>
+                                        ?>
+                                    </div>
 
 
-									<div class="title">
-										<div class="nazwa"><?= $item['nazwa'] ?></div>
-									</div>
+                                    <div class="title">
+                                        <div class="nazwa"><?= $item['nazwa'] ?></div>
+                                    </div>
 
-									<div class="text">
-										<?= $item['opis_html'] ?>
-									</div>
+                                    <div class="text">
+                                        <?= $item['opis_html'] ?>
+                                    </div>
 
-								</a>
+                                </a>
 
-							</div>
-						</div>
-					<? } ?>
-				</div>
-			</div>
-		<? } ?>
-	</div>
+                            </div>
+                        </div>
+                    <? } ?>
+                </div>
+            </div>
+        <? } ?>
+    </div>
 </div>

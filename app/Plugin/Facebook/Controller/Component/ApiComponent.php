@@ -7,23 +7,25 @@
  * @link http://www.webtechnick.com
  * @license MIT
  */
-App::uses( 'FacebookApi', 'Facebook.Lib' );
+App::uses('FacebookApi', 'Facebook.Lib');
 
-class ApiComponent extends Object {
+class ApiComponent extends Object
+{
 
-	/**
-	 * Allow direct access to the facebook API
-	 * @link http://wiki.developers.facebook.com/index.php/Main_Page
-	 * @access public
-	 */
-	public $FB = null;
+    /**
+     * Allow direct access to the facebook API
+     * @link http://wiki.developers.facebook.com/index.php/Main_Page
+     * @access public
+     */
+    public $FB = null;
 
-	/**
-	 * Load the API into a class property and allow access to it.
-	 */
-	public function initialize( $controller ) {
-		$this->FB = new FacebookApi();
-	}
+    /**
+     * Load the API into a class property and allow access to it.
+     */
+    public function initialize($controller)
+    {
+        $this->FB = new FacebookApi();
+    }
 
 
 }

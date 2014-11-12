@@ -1,5 +1,6 @@
 <?php
 
-class Language extends PaszportAppModel {
+class Language extends PaszportAppModel
+{
 
 }

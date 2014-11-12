@@ -1,6 +1,7 @@
 <?php
 
-class SejmometrAppController extends AppController {
+class SejmometrAppController extends AppController
+{
 
 
 }

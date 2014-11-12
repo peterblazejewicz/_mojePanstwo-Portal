@@ -1,7 +1,8 @@
 <?php
 
-App::uses( 'DocsObjectsController', 'Dane.Controller' );
+App::uses('DocsObjectsController', 'Dane.Controller');
 
-class NikRaportyController extends DocsObjectsController {
+class NikRaportyController extends DocsObjectsController
+{
 
 } 

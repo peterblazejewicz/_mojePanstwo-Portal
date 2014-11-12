@@ -1,9 +1,10 @@
 <?php
 
-App::uses( 'DataobjectsController', 'Dane.Controller' );
+App::uses('DataobjectsController', 'Dane.Controller');
 
-class SpOrzeczeniaController extends DataobjectsController {
+class SpOrzeczeniaController extends DataobjectsController
+{
 
-	public $initLayers = array('bloki');
+    public $initLayers = array('bloki');
 
 } 

@@ -1,9 +1,10 @@
 <?php
 namespace Composer\Installers;
 
-class FuelInstaller extends BaseInstaller {
-	protected $locations = array(
-		'module'  => 'fuel/app/modules/{$name}/',
-		'package' => 'fuel/packages/{$name}/',
-	);
+class FuelInstaller extends BaseInstaller
+{
+    protected $locations = array(
+        'module' => 'fuel/app/modules/{$name}/',
+        'package' => 'fuel/packages/{$name}/',
+    );
 }
