@@ -26,7 +26,9 @@ var $P;
 $(document).ready(function () {
     var editor = $('#editor');
 
-    $P = new PISMA();
     if (editor.length)
-        editor.wysiwyg();
+        editor.wysihtml5();
+
+    $P = new PISMA();
+
 });
