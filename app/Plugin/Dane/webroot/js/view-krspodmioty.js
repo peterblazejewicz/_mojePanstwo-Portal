@@ -131,7 +131,7 @@ jQuery(document).ready(function () {
             menuAutoScroll = true,
             headerHeight = jQuery('header').outerHeight(),
             dataHighlightsOptions = jQuery('.dataHighlightsOptions'),
-            $shłowHideSide = $('.showHideSide'),
+            $showHideSide = $('.showHideSide'),
             $objectSideInner = $('.objectSideInner');
 
         if (banner.length > 0) {
