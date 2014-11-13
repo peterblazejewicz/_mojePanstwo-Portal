@@ -56,7 +56,7 @@ if (($object->getDataset() == 'gminy') && ($object->getId() == '903')) {
                         <?php if (($object->getUrl() != false) && !empty($this->request)) { ?>
                         <a href="<?= $object->getUrl() ?>" title="<?= strip_tags($object->getTitle()) ?>">
                             <?php } ?>
-                            <?= $object->getShortTitle() ?>
+                            <span<? if( $microdata['titleprop'] ){?> itemprop="<?=$microdata['titleprop']?>"<?}?>><?= $object->getShortTitle() ?></span>
                             <?php if (($object->getUrl() != false) && !empty($this->request)) { ?>
                         </a> <? if ($object->getTitleAddon()) {
                         echo '<small>' . $object->getTitleAddon() . '</small>';
@@ -95,7 +95,7 @@ if (($object->getDataset() == 'gminy') && ($object->getId() == '903')) {
                     <a class="trimTitle" href="<?= $object->getUrl() ?>"
                        title="<?= strip_tags($object->getTitle()) ?>">
                         <?php } ?>
-                        <?= $object->getShortTitle() ?>
+                        <span<? if( $microdata['titleprop'] ){?> itemprop="<?=$microdata['titleprop']?>"<?}?>><?= $object->getShortTitle() ?></span>
                         <?php if ($object->getUrl() != false){ ?>
                     </a> <? if ($object->getTitleAddon()) {
                     echo '<small>' . $object->getTitleAddon() . '</small>';

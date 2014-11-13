@@ -25,9 +25,9 @@
 </div>
 
 <?
-if (isset($_submenu) && !empty($_submenu)) {
+if (isset($menu) && !empty($menu)) {
     echo $this->Element('Dane.dataobject/menuTabs', array(
-        'menu' => $_submenu,
+        'menu' => $menu,
     ));
 }
 ?>

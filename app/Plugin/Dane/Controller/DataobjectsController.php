@@ -22,7 +22,12 @@ class DataobjectsController extends DaneAppController {
 	public $breadcrumbsMode = 'datachannel';
 
 	public $initLayers = array();
-
+	
+	public $microdata = array(
+	    'itemtype' => false,
+		'titleprop' => false,
+    );
+	
 	public function index() {
 		$this->dataobjectsBrowserView( array(
 			'showTitle'     => true,
@@ -129,6 +134,8 @@ class DataobjectsController extends DaneAppController {
 
 			$this->set( 'object', $this->object );
 			$this->set( 'objectOptions', $this->objectOptions );
+
+			$this->set( 'microdata', $this->microdata );
 
 			$this->set( '_APPLICATION', $this->dataset['App'] );
 
