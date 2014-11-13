@@ -26,30 +26,20 @@
                         if (suggesterData.app)
                             parm += "&app=" + suggesterData.app;
                         $.getJSON("/dane/suggest.json?" + parm, function (data) {
-
                             var results = $.map(data.hits, function (item) {
                                 var shortTitleLimit = 200,
                                     shortTitle = '';
 
                                 if (item.dataset == 'twitter') {
-
                                     shortTitle = item.title.replace(/(<([^>]+)>)/ig, "");
-
-
                                 } else {
-
                                     if (item.title.length > shortTitleLimit) {
-
                                         shortTitle = item.title.substr(0, shortTitleLimit);
                                         shortTitle = shortTitle.substr(0, Math.min(shortTitle.length, shortTitle.lastIndexOf(" "))) + '...';
                                     } else {
-
                                         shortTitle = item.title;
-
                                     }
-
                                 }
-
 
                                 return {
                                     type: 'item',
@@ -88,9 +78,16 @@
                 close: function () {
                     suggesterInput.removeClass('open');
                 },
+                focus: function (event, ui) {
+                    if (ui.item)
+                        suggesterInput.val(ui.item.title);
+                    return false;
+                },
                 select: function (event, ui) {
                     if (ui.item)
                         suggesterInput.val(ui.item.title);
+
+                    window.location.href = ui.item.link;
                     return false;
                 }
             }).autocomplete("widget").addClass("autocompleteSuggester");
@@ -119,4 +116,7 @@
             }
         });
     }
-}(jQuery));
+}
+(jQuery)
+)
+;
