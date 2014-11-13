@@ -1,5 +1,8 @@
+<?php $this->Combinator->add_libs('css', '../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min') ?>
+<?php $this->Combinator->add_libs('js', '../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min') ?>
+<?php /*$this->Combinator->add_libs('js', '../plugins/bootstrap3-wysiwyg/dist/locales/bootstrap-wysihtml5.pl-PL') */ ?>
+
 <?php $this->Combinator->add_libs('css', $this->Less->css('pisma', array('plugin' => 'Pisma'))) ?>
-<?php $this->Combinator->add_libs('js', 'bootstrap-wysiwyg.js') ?>
 <?php $this->Combinator->add_libs('js', 'jquery_steps.js') ?>
 <?php $this->Combinator->add_libs('js', 'Pisma.pisma.js') ?>
 
