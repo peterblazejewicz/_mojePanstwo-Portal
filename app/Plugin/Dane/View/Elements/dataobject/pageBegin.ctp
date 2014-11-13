@@ -1,6 +1,7 @@
 <?
 $object = $this->viewVars['object'];
 $objectOptions = $this->viewVars['objectOptions'];
+$objectOptions['microdata'] = $microdata;
 
 if (isset($titleTag)) {
     $objectOptions['titleTag'] = $titleTag;
@@ -15,7 +16,7 @@ $buttons = isset($objectOptions['buttons']) ? $objectOptions['buttons'] : array(
 <?php $this->Combinator->add_libs('css', $this->Less->css('naglosnij', array('plugin' => 'Dane'))) ?>
 
 <?php $this->Combinator->add_libs('js', array('Dane.naglosnij', 'Dane.related-tabs')); ?>
-<div class="objectsPage">
+<div<?if( $objectOptions['microdata']['itemtype'] ){?> itemscope itemtype="<?= $objectOptions['microdata']['itemtype'] ?>"<?}?> class="objectsPage">
     <?php if (isset($_ALERT_QUERIES)) {
         $alertArray = array();
         foreach ($_ALERT_QUERIES as $alert) {

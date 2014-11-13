@@ -19,8 +19,7 @@ class DataobjectHelper extends AppHelper
 
     public function getDate($field = null, $add_hour = false)
     {
-
-
+		
         if ($this->object->getDate()) {
 
             $temp = '<span>{day}</span><p>{month} {year}</p>';
@@ -77,6 +76,7 @@ class DataobjectHelper extends AppHelper
         $file = isset($options['file']) ? $options['file'] : false;
         $titleTag = isset($options['titleTag']) ? $options['titleTag'] : 'h1';
         $defaults = isset($options['defaults']) ? $options['defaults'] : array();
+        $microdata = isset($options['microdata']) ? $options['microdata'] : array();
 
         $class = isset($options['class']) ? $options['class'] : false;
         $alertsButtons = isset($options['alertsButtons']) ? $options['alertsButtons'] : false;
@@ -114,6 +114,7 @@ class DataobjectHelper extends AppHelper
             'alertsStatus' => $alertsStatus,
             'titleTag' => $titleTag,
             'defaults' => $defaults,
+            'microdata' => $microdata,
         );
 
         return $this->_View->element($theme, $params, array('plugin' => 'Dane'));

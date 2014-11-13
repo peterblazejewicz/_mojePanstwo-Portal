@@ -491,34 +491,101 @@ class GminyController extends DataobjectsController
 		
 		if (isset($this->request->params['pass'][0]) && is_numeric($this->request->params['pass'][0])) {
 			
-			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'view';
+			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'radni';
             $sub_id = (isset($this->request->params['pass'][2]) && $this->request->params['pass'][2]) ? $this->request->params['pass'][2] : false;
 
             $dzielnica = $this->API->getObject('dzielnice', $this->request->params['pass'][0], array(
                 // 'layers' => array('najblizszy_dyzur', 'neighbours'),
             ));
+                        
             // $radny->getLayer('neighbours');
             // $dyzur = $radny->getLayer('najblizszy_dyzur');
             // debug( $dzielnica ); die();
             $title_for_layout = $dzielnica->getTitle();
 			
 			switch ($subaction) {
-                case 'view':
+                case 'radni':
                 {
+										
+					if( 
+						$sub_id && 
+						( $radny = $this->API->getObject('radni_dzielnic', $sub_id) )
+					) {
+						
+						$this->set('radny', $radny);
+						$title_for_layout = $radny->getTitle();
+						$subaction = 'radny';
+						
+						$this->dataobjectsBrowserView(array(
+	                        'source' => 'radni_dzielnic.glosy:' . $radny->getId(),
+	                        'dataset' => 'krakow_radni_dzielnic_glosy',
+	                        'noResultsTitle' => 'Brak wyników',
+	                        'excludeFilters' => array(
+			                    'dzielnica_id'
+			                ),
+			                'title' => 'Wyniki głosowań',
+	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                        'renderFile' => 'radni_dzielnic-uchwaly',
+	                    ));
+												
+					} else {
+					
+						$this->dataobjectsBrowserView(array(
+	                        'source' => 'dzielnice.radni:' . $dzielnica->getId(),
+	                        'dataset' => 'radni_dzielnic',
+	                        'noResultsTitle' => 'Brak radnych',
+	                        'excludeFilters' => array(
+			                    'dzielnica_id'
+			                ),
+	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                    ));
+	                    
+                    }
+                    
+                    break;
+					
 
-					$this->dataobjectsBrowserView(array(
-                        'source' => 'dzielnice.radni:' . $dzielnica->getId(),
-                        'dataset' => 'radni_dzielnic',
-                        'noResultsTitle' => 'Brak radnych',
-                        'excludeFilters' => array(
-		                    'dzielnica_id'
-		                ),
-                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
-                    ));
-
+                }
+                case 'uchwaly':
+                {
+										
+					if( 
+						$sub_id && 
+						( $uchwala = $this->API->getObject('krakow_dzielnice_uchwaly', $sub_id) )
+					) {
+						
+						$this->set('uchwala', $uchwala);
+						$title_for_layout = $uchwala->getTitle();
+						$subaction = 'uchwala';
+						
+						$this->dataobjectsBrowserView(array(
+	                        'source' => 'krakow_dzielnice_uchwaly.glosy:' . $uchwala->getId(),
+	                        'dataset' => 'krakow_radni_dzielnic_glosy',
+	                        'noResultsTitle' => 'Brak wyników',
+	                        'excludeFilters' => array(
+			                    'dzielnica_id'
+			                ),
+			                'title' => 'Wyniki głosowania',
+	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                        'renderFile' => 'krakow_dzielnice_uchwaly-glosy',
+	                    ));
+						
+					} else {
+					
+						$this->dataobjectsBrowserView(array(
+	                        'source' => 'dzielnice.uchwaly:' . $dzielnica->getId(),
+	                        'dataset' => 'krakow_dzielnice_uchwaly',
+	                        'noResultsTitle' => 'Brak uchwał',
+	                        'excludeFilters' => array(
+			                    'dzielnica_id'
+			                ),
+	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                    ));
+	                    
+                    }
+                    
                     break;
 
-                    break;
                 }
             }
             
@@ -532,9 +599,15 @@ class GminyController extends DataobjectsController
                 );
 
                 $submenu['items'][] = array(
-                    'id' => 'view',
+                    'id' => 'radni',
                     'href' => $href_base,
                     'label' => 'Radni dzielnicy',
+                );
+                
+                $submenu['items'][] = array(
+	                'id' => 'uchwaly',
+	                'href' => $href_base . '/uchwaly',
+	                'label' => 'Uchwały',
                 );
                 
                 /*
@@ -549,8 +622,7 @@ class GminyController extends DataobjectsController
                 $this->set('_submenu', $submenu);
 
             }
-            
-            
+                        
             $this->set('dzielnica', $dzielnica);
             $this->set('sub_id', $sub_id);
             $this->set('title_for_layout', $title_for_layout);
@@ -578,6 +650,33 @@ class GminyController extends DataobjectsController
 		
 	}
 	
+	public function dzielnice_uchwaly() {
+		$this->_prepareView();
+		$this->request->params['action'] = 'dzielnice_uchwaly';
+
+		if ( isset( $this->request->params['pass'][0] ) && is_numeric( $this->request->params['pass'][0] ) ) {
+
+			$uchwala = $this->API->getObject( 'krakow_dzielnice_uchwaly', $this->request->params['pass'][0], array(// 'layers' => 'neighbours',
+			) );
+			$this->redirect($uchwala->getUrl());
+
+		} else {
+
+			$this->dataobjectsBrowserView( array(
+				// 'source'         => 'gminy.miejscowosci:' . $this->object->getId(),
+				'dataset'        => 'krakow_dzielnice_uchwaly',
+				'noResultsTitle' => 'Brak uchwał',
+				/*
+				'excludeFilters' => array(
+					'gmina_id'
+				),
+				*/
+				'hlFields'       => array(),
+			) );
+			$this->set( 'title_for_layout', 'Uchwały rad dzielnic w gminie ' . $this->object->getData( 'nazwa' ) );
+
+		}
+	}
 	
 	public function komisje_posiedzenia() {
 		$this->_prepareView();
@@ -934,7 +1033,7 @@ class GminyController extends DataobjectsController
 	public function radni_dzielnic() {
 		$this->_prepareView();
 		$this->dataobjectsBrowserView( array(
-			'source'         => 'gminy.radni_dzielnic:' . $this->object->getId(),
+			// 'source'         => 'gminy.radni_dzielnic:' . $this->object->getId(),
 			'dataset'        => 'radni_dzielnic',
 			'title'          => 'Radni dzielnic',
 			'noResultsTitle' => 'Brak radnych dzielnic dla tej gminy',
@@ -1375,6 +1474,12 @@ class GminyController extends DataobjectsController
 					'href' => $href_base . '/radni_dzielnic'
 				);
 				
+				$dzielnice_items[] = array(
+					'id' => 'dzielnice_uchwaly',
+					'label' => 'Uchwały rad dzielnic',
+					'href' => $href_base . '/dzielnice_uchwaly'
+				);
+				
 				foreach( $dzielnice as $dzielnica )
 					$dzielnice_items[] = array(
 						'id' => $dzielnica['id'],
@@ -1382,7 +1487,7 @@ class GminyController extends DataobjectsController
 						'href' => $href_base . '/dzielnice/' . $dzielnica['id'],
 					);
 				
-				$dzielnice_items[2]['topborder'] = true;
+				$dzielnice_items[3]['topborder'] = true;
 				
 				$menu['items'][] = array(
 					'id' => 'dzielnice',

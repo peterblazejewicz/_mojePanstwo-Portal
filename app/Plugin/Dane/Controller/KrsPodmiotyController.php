@@ -15,6 +15,11 @@ class KrsPodmiotyController extends DataobjectsController {
 
 	public $initLayers = array( 'counters' );
 
+	public $microdata = array(
+		'itemtype' => 'http://schema.org/Organization',
+		'titleprop' => 'name',
+	);
+	
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->deny( array( 'pobierz_odpis', 'odpis' ) );

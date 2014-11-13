@@ -102,7 +102,7 @@ if ( ! function_exists( 'array_column' ) ) {
 	}
 }
 
-function dataSlownie( $data ) {
+function dataSlownie( $data, $options = array() ) {
 	$_data = $data;
 
 	if ( strpos( $data, '/' ) ) {
@@ -164,9 +164,15 @@ function dataSlownie( $data ) {
 		$str .= ' ' . $time_str;
 	*/
 
+	
+	$output = '<span class="_ds"';
+	
+	if( isset($options['itemprop']) && $options['itemprop'] )
+		$output .= ' itemprop="' . $options['itemprop'] . '"';
+	
+	$output .= ' datetime="' . strip_tags( $data ) . '">' . $str . '</span>';
 
-	return '<span class="_ds" value="' . strip_tags( $data ) . '">' . $str . '</span>';
-
+	return $output;
 }
 
 

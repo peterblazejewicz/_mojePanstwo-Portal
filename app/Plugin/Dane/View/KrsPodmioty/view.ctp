@@ -52,7 +52,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight big">
                         <p class="_label">Numer NIP</p>
 
-                        <p class="_value"><?= $object->getData('nip'); ?></p>
+                        <p itemprop="taxID" class="_value"><?= $object->getData('nip'); ?></p>
                     </li>
                 <? } ?>
 
@@ -102,7 +102,9 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight inl topborder">
                         <p class="_label">Data rejestracji</p>
 
-                        <p class="_value"><?= $this->Czas->dataSlownie($object->getData('data_rejestracji')); ?></p>
+                        <p class="_value" ><?= $this->Czas->dataSlownie($object->getData('data_rejestracji'), array(
+	                        	'itemprop' => 'foundingDate',
+	                        )); ?></p>
                     </li>
                 <? } ?>
 
@@ -131,7 +133,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <li class="dataHighlight inl">
                         <p class="_label">Adres e-mail</p>
 
-                        <p class="_value"><a target="_blank" href="mailto:<?= $email ?>"><?= $email; ?></a></p>
+                        <p itemprop="email" class="_value"><a target="_blank" href="mailto:<?= $email ?>"><?= $email; ?></a></p>
                     </li>
                 <? } ?>
             </ul>
@@ -233,12 +235,12 @@ $this->Combinator->add_libs('js', 'graph-krs');
                     <img
                         src="http://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($adres) ?>&markers=<?= urlencode($adres) ?>&zoom=15&sensor=false&size=640x155&scale=2&feature:road"/>
 
-                    <div class="content">
-                        <p>
+                    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="content">
+                        <p itemprop="streetAddress">
                             ul. <?= $object->getData('adres_ulica') ?> <?= $object->getData('adres_numer') ?><? if ($object->getData('adres_lokal')) { ?>/<?= $object->getData('adres_lokal') ?><? } ?></p>
                         <? if ($object->getData('adres_poczta') != $object->getData('adres_miejscowosc')) { ?>
                             <p><?= $object->getData('adres_miejscowosc') ?></p><? } ?>
-                        <p><?= $object->getData('adres_kod_pocztowy') ?> <?= $object->getData('adres_poczta') ?></p>
+                        <p><span itemprop="postalCode"><?= $object->getData('adres_kod_pocztowy') ?></span> <span itemprop="addressLocality"><?= $object->getData('adres_poczta') ?></span></p>
 
                         <p><?= $object->getData('adres_kraj') ?></p>
                     </div>
@@ -319,15 +321,15 @@ $this->Combinator->add_libs('js', 'graph-krs');
                             <? foreach ($organ['content'] as $osoba) { ?>
 
                             <? if (@$osoba['osoba_id']) { ?>
-                            <a class="list-group-item" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>">
+                            <a class="list-group-item" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/Person">
                                 <? } elseif (@$osoba['krs_id']) { ?>
-                                <a class="list-group-item" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>">
+                                <a class="list-group-item" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/Organization">
                                     <? } else { ?>
                                     <div class="list-group-item">
                                         <? } ?>
 
                                         <h4 class="list-group-item-heading">
-                                            <?= $osoba['nazwa'] ?>
+                                            <span itemprop="name"><?= $osoba['nazwa'] ?></span>
                                             <? if (
                                                 ($osoba['privacy_level'] != '1') &&
                                                 $osoba['data_urodzenia'] &&
