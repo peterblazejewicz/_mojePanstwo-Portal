@@ -68,7 +68,7 @@ $(function () {
                                     );
                                     $wyjazdyPoslowMap.append($('<div></div>').addClass('detailInfoBackground'));
                                     $wyjazdyPoslowMap.append($detailInfo);
-                                    $detailInfo.find('.detailInfoClose').click(function () {
+                                    $wyjazdyPoslowMap.find('.detailInfoClose, .detailInfoBackground').click(function () {
                                         $detailInfo.remove();
                                         $wyjazdyPoslowMap.find('.detailInfoBackground').remove();
                                     });
@@ -86,11 +86,17 @@ $(function () {
                                     );
 
                                     $.each(detail, function () {
-                                        var that = this;
+                                        var that = this,
+                                            kraj = "Kraj:&nbsp;<b>" + that.kraj + "</b>";
+
+                                        if (that.miasto && that.miasto !== '?')
+                                            kraj += ', <b>' + that.miasto + '</b>';
 
                                         $detailInfo.find('.content').append(
                                             $('<div></div>').append(
-                                                $('<div></div>').addClass('wyjazdName col-xs-12 row').text(that.delegacja)
+                                                $('<div></div>').addClass('kraj col-xs-12 row').html(kraj)
+                                            ).append(
+                                                $('<div></div>').addClass('nazwa col-xs-12 row').html("Delegacja:&nbsp;<b>" + that.delegacja + "<b>")
                                             ).append(
                                                 $('<table></table>').addClass('table table-condensed col-xs-12').append(
                                                     $('<thead></thead>').append(
