@@ -40,6 +40,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 					<? } ?>
 					</ul>
 					
+					<p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+					
 				</div>
 				<div class="col-md-6">
 					
@@ -69,7 +71,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		<div class="block">
 			
 			<div class="block-header">
-				<h2 class="label">Kontrowersje</h2>
+				<h2 class="label">Wyjazdy posłów, a prace w Sejmie</h2>
 			</div>
 			
 			<div class="content">
