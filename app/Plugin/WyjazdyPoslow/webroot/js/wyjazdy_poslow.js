@@ -2,12 +2,14 @@ $(function () {
     $.getJSON('/WyjazdyPoslow/files/world-highres.geo.json', function (geojson) {
 
         // Prepare the geojson
-        var states = Highcharts.geojson(geojson, 'map'),
+        var mapData = Highcharts.geojson(geojson, 'map'),
             rivers = Highcharts.geojson(geojson, 'mapline'),
-            cities = Highcharts.geojson(geojson, 'mappoint');
+            cities = Highcharts.geojson(geojson, 'mappoint'),
+            $wyjazdyPoslowMap = $('#wyjazdyPoslowMap'),
+            $detailInfo;
 
         // Initiate the chart
-        $('#wyjazdyPoslowMap').highcharts('Map', {
+        $wyjazdyPoslowMap.highcharts('Map', {
             title: {
                 text: ' '
             },
@@ -32,13 +34,30 @@ $(function () {
             },
 
             series: [{
-                data: states,
-
+                data: mapData,
                 dataLabels: {
                     enabled: false
                 },
                 tooltip: {
                     pointFormat: '{point.name}'
+                },
+                events: {
+                    click: function (e) {
+
+                        if (e.point) {
+                            if ($wyjazdyPoslowMap.find('.detailInfo').length == 0) {
+                                $detailInfo = $('<div></div>').addClass('detailInfo');
+                                $wyjazdyPoslowMap.append($detailInfo);
+                            }
+
+                            $detailInfo.css({
+                                left: e.pageX - $wyjazdyPoslowMap.offset().left + 20,
+                                top: e.pageY - $wyjazdyPoslowMap.offset().top + 10
+                            }).html(e.point.name);
+                        } else {
+                            $detailInfo.destroy();
+                        }
+                    }
                 }
             }, {
                 name: '',
