@@ -11,6 +11,7 @@ $(function () {
         $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/world', function (statsData) {
             $.each(statsData, function () {
                 this.value = this.ilosc_wyjazdow;
+                this.laczna_kwota = this.laczna_kwota.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ')
             });
 
             // Initiate the chart
@@ -60,27 +61,30 @@ $(function () {
                         click: function (e) {
                             if (e.point) {
                                 if ($wyjazdyPoslowMap.find('.detailInfo').length == 0) {
-                                    $detailInfo = $('<div></div>').addClass('detailInfo').append($('<span></span>').addClass('detailInfoClose glyphicon glyphicon-remove')).append($('<div></div>').addClass('content'));
+                                    $detailInfo = $('<div></div>').addClass('detailInfo').append(
+                                        $('<span></span>').addClass('detailInfoClose glyphicon glyphicon-remove')
+                                    ).append(
+                                        $('<div></div>').addClass('content loading')
+                                    );
+                                    $wyjazdyPoslowMap.append($('<div></div>').addClass('detailInfoBackground'));
                                     $wyjazdyPoslowMap.append($detailInfo);
                                     $detailInfo.find('.detailInfoClose').click(function () {
                                         $detailInfo.remove();
+                                        $wyjazdyPoslowMap.find('.detailInfoBackground').remove();
                                     });
                                 } else {
                                     $detailInfo.find('.content').empty()
                                 }
 
-                                $detailInfo.css({
-                                    left: (parseInt($detailInfo.css('max-width')) + (e.pageX - $wyjazdyPoslowMap.offset().left) > window.outerWidth) ? (window.outerWidth - parseInt($detailInfo.css('max-width'))) * .8 : e.pageX - $wyjazdyPoslowMap.offset().left,
-                                    top: e.pageY - $wyjazdyPoslowMap.offset().top + 10
-                                });
                                 $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
-                                    $detailInfo.find('.content').append(
+                                    $detailInfo.find('.content').removeClass('loading').append(
                                         $('<div></div>').addClass('row').append(
                                             $('<div></div>').addClass('ilosc col-xs-6').html("Ilość&nbsp;wyjazdów:&nbsp;<b>" + e.point.ilosc_wyjazdow + "</b>")
                                         ).append(
                                             $('<div></div>').addClass('koszt col-xs-6').html("Łączna&nbsp;kwota:&nbsp;<b>" + e.point.laczna_kwota + "</b>")
                                         )
                                     );
+
                                     $.each(detail, function () {
                                         var that = this;
 

@@ -7,12 +7,16 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 <div class="app-header">
 	<div class="container">
 		<h1>Wyjazdy zagraniczne posłów</h1>
-		
-		<p class="desc">Sprawdź gdzie i za ile latają posłowie. Dane na podstawie <a href="http://orka.sejm.gov.pl/media.nsf/files/MDUA-9QSMYW/%24File/ZA%C5%81%C4%84CZNIK%20NR%205%20_Wyjazdy%20zagraniczne%20pos%C5%82%C3%B3w_VII%20kadencja.pdf" target="_blank">materiałów Kancelarii Sejmu</a>.<br/>Zobacz także <a href="#">wpis na blogu Fundacji ePaństwo</a> o transparentności danych o wyjazdach posłów.</p>
+
+        <p class="desc">Sprawdź gdzie i za ile latają posłowie. Dane na podstawie <a
+                href="http://orka.sejm.gov.pl/media.nsf/files/MDUA-9QSMYW/%24File/ZA%C5%81%C4%84CZNIK%20NR%205%20_Wyjazdy%20zagraniczne%20pos%C5%82%C3%B3w_VII%20kadencja.pdf"
+                target="_blank">materiałów Kancelarii Sejmu</a>.<br/>Zobacz także <a
+                href="http://blog.epf.org.pl/2014/11/afera-madrycka/" target="_blank">wpis na blogu Fundacji
+                ePaństwo</a> o transparentności danych o wyjazdach posłów.</p>
 	</div>
 </div>
 
-<div id="wyjazdyPoslowMap"></div>
+<div id="wyjazdyPoslowMap" class="loading"></div>
 
 <div class="container">
     <div class="block-group">
@@ -33,7 +37,10 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 							<div class="col-md-2 text-right">
 								<img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/<?= $i['mowca_id'] ?>.jpg" />
 							</div><div class="col-md-10">
-								<p class="title"><a href="/dane/poslowie/<?= $i['id'] ?>"><?= $i['nazwa'] ?></a> <span class="klub">(<a href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span></p>
+                                <p class="title"><a href="/dane/poslowie/<?= $i['id'] ?>/wyjazdy"><?= $i['nazwa'] ?></a>
+                                    <span class="klub">(<a
+                                            href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span>
+                                </p>
 								<p class="desc"><?= pl_dopelniacz($i['count'], 'wyjazd', 'wyjazdy', 'wyjazdów') ?> na kwotę <?= _currency($i['sum']) ?></p>
 							</div>
 						</li>
@@ -46,8 +53,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 				<div class="col-md-6">
 					
 					<h3>Klubowo</h3>
-					
-					<ul>
+
+                    <ul>
 					<? foreach( $stats['calosc']['klubowe'] as $i ) {?>
 						<li class="row">
 							<div class="col-md-2 text-right">
