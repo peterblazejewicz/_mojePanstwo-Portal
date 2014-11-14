@@ -79,23 +79,19 @@ $(function () {
                                 $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
                                     $detailInfo.find('.content').removeClass('loading').append(
                                         $('<div></div>').addClass('row').append(
-                                            $('<div></div>').addClass('ilosc col-xs-6').html("Ilość&nbsp;wyjazdów:&nbsp;<b>" + e.point.ilosc_wyjazdow + "</b>")
+                                            $('<div></div>').addClass('ilosc col-xs-4').html("Kraj:&nbsp;<b>" + e.point.kraj + "</b>")
                                         ).append(
-                                            $('<div></div>').addClass('koszt col-xs-6').html("Łączna&nbsp;kwota:&nbsp;<b>" + e.point.laczna_kwota + "</b>")
+                                            $('<div></div>').addClass('ilosc col-xs-4').html("Ilość&nbsp;wyjazdów:&nbsp;<b>" + e.point.ilosc_wyjazdow + "</b>")
+                                        ).append(
+                                            $('<div></div>').addClass('koszt col-xs-4').html("Łączna&nbsp;kwota:&nbsp;<b>" + e.point.laczna_kwota + "</b>")
                                         )
                                     );
 
                                     $.each(detail, function () {
-                                        var that = this,
-                                            kraj = "Kraj:&nbsp;<b>" + that.kraj + "</b>";
-
-                                        if (that.miasto && that.miasto !== '?')
-                                            kraj += ', <b>' + that.miasto + '</b>';
+                                        var that = this;
 
                                         $detailInfo.find('.content').append(
-                                            $('<div></div>').append(
-                                                $('<div></div>').addClass('kraj col-xs-12 row').html(kraj)
-                                            ).append(
+                                            $('<div></div>').addClass('slice').append(
                                                 $('<div></div>').addClass('nazwa col-xs-12 row').html("Delegacja:&nbsp;<b>" + that.delegacja + "<b>")
                                             ).append(
                                                 $('<table></table>').addClass('table table-condensed col-xs-12').append(
@@ -123,6 +119,12 @@ $(function () {
                                                 )
                                             )
                                         );
+
+                                        if (that.miasto && that.miasto !== "?")
+                                            $detailInfo.find('.content .slice:last').prepend(
+                                                $('<div></div>').addClass('miasto col-xs-12 row').html('Miasto:&nbsp;<b>' + that.miasto + '</b>')
+                                            );
+
                                         $.each(that.poslowie, function () {
                                             $detailInfo.find('table:last').append(
                                                 $('<tr></tr>').append(
@@ -147,7 +149,7 @@ $(function () {
                                                     $('<td></td>').text(this.koszt_zaliczki)
                                                 )
                                             )
-                                        })
+                                        });
                                     });
                                 })
 
