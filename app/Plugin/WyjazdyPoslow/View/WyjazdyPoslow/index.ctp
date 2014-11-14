@@ -17,7 +17,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		<div class="block">
 			
 			<div class="block-header">
-				<h2 class="label">Najwięcej wydali (całościowo)</h2>
+				<h2 class="label">Najwięcej wydali:</h2>
 			</div>
 			
 			<div class="content row">
@@ -32,7 +32,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 								<img src="http://resources.sejmometr.pl/mowcy/a/2/<?= $i['mowca_id'] ?>.jpg" />
 							</div><div class="col-md-10">
 								<p class="title"><a href="/dane/poslowie/<?= $i['id'] ?>"><?= $i['nazwa'] ?></a> <span class="klub">(<a href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span></p>
-								<p><?= pl_dopelniacz($i['count'], 'wyjazd', 'wyjazdy', 'wyjazdów') ?> na kwotę <?= _currency($i['sum']) ?></p>
+								<p class="desc"><?= pl_dopelniacz($i['count'], 'wyjazd', 'wyjazdy', 'wyjazdów') ?> na kwotę <?= _currency($i['sum']) ?></p>
 							</div>
 						</li>
 					<? } ?>
@@ -56,6 +56,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 			
 		</div>
 	
+		<? /*
 		<div class="block">
 			
 			<div class="block-header">
@@ -134,6 +135,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 			</div>
 			
 		</div>
+		*/ ?>
 		
 	</div>
 		
