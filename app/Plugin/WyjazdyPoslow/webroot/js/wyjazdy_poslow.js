@@ -22,7 +22,8 @@ $(function () {
                 enabled: true,
                 buttonOptions: {
                     verticalAlign: 'bottom'
-                }
+                },
+                enableMouseWheelZoom: false
             },
 
             credits: {
@@ -43,19 +44,19 @@ $(function () {
                 },
                 events: {
                     click: function (e) {
-
                         if (e.point) {
                             if ($wyjazdyPoslowMap.find('.detailInfo').length == 0) {
-                                $detailInfo = $('<div></div>').addClass('detailInfo');
+                                $detailInfo = $('<div></div>').addClass('detailInfo').append($('<span></span>').addClass('detailInfoClose glyphicon glyphicon-remove')).append($('<div></div>').addClass('content'));
                                 $wyjazdyPoslowMap.append($detailInfo);
+                                $detailInfo.find('.detailInfoClose').click(function () {
+                                    $detailInfo.remove();
+                                });
                             }
 
                             $detailInfo.css({
                                 left: e.pageX - $wyjazdyPoslowMap.offset().left + 20,
                                 top: e.pageY - $wyjazdyPoslowMap.offset().top + 10
-                            }).html(e.point.name);
-                        } else {
-                            $detailInfo.destroy();
+                            }).find('.content').html(e.point.name);
                         }
                     }
                 }
