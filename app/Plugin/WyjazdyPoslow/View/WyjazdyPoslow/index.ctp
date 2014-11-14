@@ -7,6 +7,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 <div class="app-header">
 	<div class="container">
 		<h1>Wyjazdy zagraniczne posłów</h1>
+		
+		<p class="desc">Sprawdź gdzie i za ile latają posłowie. Dane na podstawie <a href="http://orka.sejm.gov.pl/media.nsf/files/MDUA-9QSMYW/%24File/ZA%C5%81%C4%84CZNIK%20NR%205%20_Wyjazdy%20zagraniczne%20pos%C5%82%C3%B3w_VII%20kadencja.pdf" target="_blank">materiałów Kancelarii Sejmu</a>.<br/>Zobacz także <a href="#">wpis na blogu Fundacji ePaństwo</a> o transparentności danych o wyjazdach posłów.</p>
 	</div>
 </div>
 
@@ -38,6 +40,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 					<? } ?>
 					</ul>
 					
+					<p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+					
 				</div>
 				<div class="col-md-6">
 					
@@ -67,12 +71,12 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		<div class="block">
 			
 			<div class="block-header">
-				<h2 class="label">Kontrowersje</h2>
+				<h2 class="label">Wyjazdy posłów, a prace w Sejmie</h2>
 			</div>
 			
 			<div class="content">
 				
-				<p>Poniżej prezentujemy daty zagranicznych wydarzeń, w których brali udział posłowie pokrywające się z datami głosowań, na których ci sami posłowie byli obecni.</p>
+				<p>Poniżej prezentujemy daty zagranicznych wydarzeń, w których brali udział posłowie pokrywające się z datami głosowań, na których ci sami posłowie byli obecni w Sejmie.</p>
 
 <p>Zestawienie tych danych nie jest równoznaczne z nieobecnością posłów w delegacjach. Jak poinformowała Kancelaria Sejmu niektórzy z posłów skracali swój pobyt w czasie dłuższych delegacji ze względu na obowiązek wzięcia udziału w głosowaniach w Polsce.</p>
 				
@@ -87,6 +91,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 				<ul class="controversy">
 					
 					
+
+
 <li class="row">
 						<div class="col-md-1 text-right">
 							<img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/763.jpg" />
@@ -239,20 +245,6 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 							<img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/160.jpg" />
 						</div><div class="col-md-11">
 							<p class="title"><a href="/dane/poslowie/170">Joanna Kluzik-Rostkowska</a> <span class="klub">(<a href="/dane/sejm_kluby/1">PO</a>)</span></p><p class="event">ALBANIA Tirana. ZP OBWE Obserwacja wyborów parlamentarnych w Albanii</p><p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-06-20 - 2013-06-24</span>. Poseł głosował w Sejmie w dniach: <span class="label label-danger">2013-06-21</span></p></div>
-					</li>
-
-<li class="row">
-						<div class="col-md-1 text-right">
-							<img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/192.jpg" />
-						</div><div class="col-md-11">
-							<p class="title"><a href="/dane/poslowie/203">Marek Krząkała</a> <span class="klub">(<a href="/dane/sejm_kluby/1">PO</a>)</span></p><p class="event">NIEMCY Berlin. Uroczystości wręczenia nagrody Niemiecko-Polskiej Szkole Europejskiej i Niemiecko-Polskiemu Gimnazjum Locknitz oraz miastu Wrocław</p><p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-14 - 2012-06-14</span>. Poseł głosował w Sejmie w dniach: <span class="label label-danger">2012-06-14</span></p></div>
-					</li>
-
-<li class="row">
-						<div class="col-md-1 text-right">
-							<img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/836.jpg" />
-						</div><div class="col-md-11">
-							<p class="title"><a href="/dane/poslowie/208">Adam Kwiatkowski</a> <span class="klub">(<a href="/dane/sejm_kluby/2">PiS</a>)</span></p><p class="event">BIAŁORUŚ Brześć. LPG Spotkanie z zarządem druż yny sportowej "Sokół-Brześć"</p><p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-09-14 - 2012-09-14</span>. Poseł głosował w Sejmie w dniach: <span class="label label-danger">2012-09-14</span></p></div>
 					</li>
 
 <li class="row">

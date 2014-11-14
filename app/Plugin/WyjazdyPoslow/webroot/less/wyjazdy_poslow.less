@@ -121,39 +121,43 @@
     }
 
     ul.controversy {
-
-        list-style: none;
-
-        li {
-
-            border-bottom: 1px solid #ddd;
-            list-style: outside none none;
-            margin: 15px 0;
-            padding: 5px 0 25px;
-
-            p {
-                margin: 0;
-                padding: 0;
-            }
-
-            .title {
-                font-size: 16px;
-                padding: 0;
-                margin: 0;
-            }
-
-            .event {
-                margin-bottom: 5px;
-                font-weight: 500;
-                font-size: 14px;
-                margin-top: 20px;
-                margin-left: 10px;
-            }
-
-            .dates {
-                margin-left: 10px;
-            }
-        }
+	    
+	    list-style: none;
+	    
+	    li {
+		    
+		    border-bottom: 1px solid #ddd;
+		    list-style: outside none none;
+		    margin: 15px 0;
+		    padding: 5px 0 25px;
+		    
+		    &:last-child {
+			    border-bottom: none;
+		    }
+		    
+		    p {
+			    margin: 0;
+			    padding: 0;
+		    }
+		    
+		    .title {
+			    font-size: 16px;
+			    padding: 0;
+			    margin: 0;
+		    }
+		    
+		    .event {
+			    margin-bottom: 5px;
+			    font-weight: 500;
+			    font-size: 14px;
+			    margin-top: 20px;
+			    margin-left: 10px;
+		    }
+		    
+		    .dates {
+			    margin-left: 10px;
+		    }
+	    }
     }
 
 }

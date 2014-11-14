@@ -169,6 +169,14 @@ class PoslowieController extends DataobjectsController
         }
 
     }
+    
+    public function wyjazdy()
+    {
+
+		$this->addInitLayers(array('wyjazdy'));
+        parent::view();
+
+    }
 
 
     public function finanse()
@@ -599,6 +607,12 @@ class PoslowieController extends DataobjectsController
             'id' => 'finanse',
             'href' => $href_base . '/finanse',
             'label' => 'Informacje finansowe',
+        );
+        
+        $menu['items'][] = array(
+            'id' => 'wyjazdy',
+            'href' => $href_base . '/wyjazdy',
+            'label' => 'Wyjazdy zagraniczne',
         );
 
         if ($this->object->getData('twitter_account_id')) {
