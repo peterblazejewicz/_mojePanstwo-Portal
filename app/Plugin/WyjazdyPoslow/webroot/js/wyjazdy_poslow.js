@@ -8,7 +8,7 @@ $(function () {
             $wyjazdyPoslowMap = $('#wyjazdyPoslowMap'),
             $detailInfo;
 
-        $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/world', function (statsData) {
+        $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/world', function (statsData) {
             $.each(statsData, function () {
                 this.value = this.ilosc_wyjazdow;
                 this.laczna_kwota = this.laczna_kwota.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ')
@@ -21,7 +21,15 @@ $(function () {
                 },
 
                 chart: {
-                    backgroundColor: '#f3f3f3'
+                    backgroundColor: {
+	                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+	                    stops: [
+	                        [0, '#2C333C'],
+	                        [1, '#697078']
+	                    ]
+                    },
+                    borderColor: '#333',
+                    spacing: [0,0,0,0],
                 },
 
                 mapNavigation: {
@@ -35,7 +43,7 @@ $(function () {
                 colorAxis: {
                     min: 1,
                     minColor: '#EEEEFF',
-                    maxColor: '#009de0'
+                    maxColor: '#006df0'
                 },
 
                 credits: {
@@ -76,7 +84,7 @@ $(function () {
                                     $detailInfo.find('.content').empty()
                                 }
 
-                                $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
+                                $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
                                     $detailInfo.find('.content').removeClass('loading').append(
                                         $('<div></div>').addClass('row').append(
                                             $('<div></div>').addClass('ilosc col-xs-4').html("Kraj:&nbsp;<b>" + e.point.kraj + "</b>")

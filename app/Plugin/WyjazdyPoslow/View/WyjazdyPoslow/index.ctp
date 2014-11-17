@@ -4,16 +4,21 @@ $this->Combinator->add_libs('js', '../plugins/highmaps/js/highmaps');
 $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 ?>
 
+<? /*
 <div class="app-header">
 	<div class="container">
 		<h1>Wyjazdy zagraniczne posłów</h1>
 
-        <p class="desc">Sprawdź gdzie i za ile latają posłowie. Dane na podstawie <a
-                href="http://orka.sejm.gov.pl/media.nsf/files/MDUA-9QSMYW/%24File/ZA%C5%81%C4%84CZNIK%20NR%205%20_Wyjazdy%20zagraniczne%20pos%C5%82%C3%B3w_VII%20kadencja.pdf"
-                target="_blank">materiałów Kancelarii Sejmu</a>.<br/>Zobacz także <a
-                href="http://blog.epf.org.pl/2014/11/afera-madrycka/" target="_blank">wpis na blogu Fundacji
-                ePaństwo</a> o transparentności danych o wyjazdach posłów.</p>
+        <p class="desc">       
+	        Sprawdź gdzie latają podróżują w ramach swojej pracy. <a href="http://blog.epf.org.pl/2014/11/afera-madrycka/" target="_blank">Przeczytaj także o metodologii i kontrowersjach</a> związanych z tymi danymi.
+	    </p>
+	    
 	</div>
+</div>
+*/ ?>
+
+<div class="maplabel">
+	Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.
 </div>
 
 <div id="wyjazdyPoslowMap" class="loading"></div>
@@ -23,7 +28,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		<div class="block">
 			
 			<div class="block-header">
-				<h2 class="label">Najwięcej wydali</h2>
+				<h2 class="label">Najwięcej na podróże wydali</h2>
 			</div>
 			
 			<div class="content row">
