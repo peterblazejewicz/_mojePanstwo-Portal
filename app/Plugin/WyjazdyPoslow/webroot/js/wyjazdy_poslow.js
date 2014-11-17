@@ -203,6 +203,9 @@ $(function () {
             plotBorderWidth: null,
             plotShadow: false
         },
+        credits: {
+            enabled: false
+        },
         title: {
             text: ''
         },
@@ -215,10 +218,12 @@ $(function () {
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}',
+                    format: '<div class="pieKlubyTitle"><img src="{point.image}"/><span>{point.name}</span></div>',
                     style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                        width: '100px'
+                    },
+                    useHTML: true
                 }
             }
         },
