@@ -87,7 +87,7 @@ $(function () {
                                 $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
                                     $detailInfo.find('.content').removeClass('loading').append(
                                         $('<div></div>').addClass('row').append(
-                                            $('<div></div>').addClass('ilosc col-xs-4').html("Kraj:&nbsp;<b>" + e.point.kraj + "</b>")
+                                            $('<div></div>').addClass('ilosc col-xs-4').html("Państwo:&nbsp;<b>" + e.point.kraj + "</b>")
                                         ).append(
                                             $('<div></div>').addClass('ilosc col-xs-4').html("Ilość&nbsp;wyjazdów:&nbsp;<b>" + e.point.ilosc_wyjazdow + "</b>")
                                         ).append(
@@ -104,25 +104,25 @@ $(function () {
                                             ).append(
                                                 $('<table></table>').addClass('table table-condensed col-xs-12').append(
                                                     $('<thead></thead>').append(
-                                                        $('<td>').text('Posel')
+                                                        $('<td>').text('Nazwa i skład delegacji')
                                                     ).append(
-                                                        $('<td>').text('Koszt końcowy')
+                                                        $('<td>').html('Koszt<br>transportu')
                                                     ).append(
-                                                        $('<td>').text('Transport')
+                                                        $('<td>').html('Koszt<br>diety')
                                                     ).append(
-                                                        $('<td>').text('Dieta')
+                                                        $('<td>').html('Koszt<br>hoteli')
                                                     ).append(
-                                                        $('<td>').text('Hotel')
+                                                        $('<td>').html('Dojazdy')
                                                     ).append(
-                                                        $('<td>').text('Dojazd')
+                                                        $('<td>').html('Ubezpieczenie')
                                                     ).append(
-                                                        $('<td>').text('Ubezpieczenie')
+                                                        $('<td>').html('Wydatkowany<br>fundusz')
                                                     ).append(
-                                                        $('<td>').text('Fundusz')
+                                                        $('<td>').html('Różnice<br>kursowe')
                                                     ).append(
-                                                        $('<td>').text('Kurs')
+                                                        $('<td>').html('Nierozliczone<br>zaliczki')
                                                     ).append(
-                                                        $('<td>').text('Zaliczka')
+                                                        $('<td>').html('Łączny<br>koszt<br>wyjazdu')
                                                     )
                                                 )
                                             )
@@ -137,8 +137,6 @@ $(function () {
                                             $detailInfo.find('table:last').append(
                                                 $('<tr></tr>').append(
                                                     $('<td></td>').text(this.posel + ' (' + this.klub_skrot + ')')
-                                                ).append(
-                                                    $('<td></td>').text(this.koszt_suma)
                                                 ).append(
                                                     $('<td></td>').text(this.koszt_transport)
                                                 ).append(
@@ -155,6 +153,8 @@ $(function () {
                                                     $('<td></td>').text(this.koszt_kurs)
                                                 ).append(
                                                     $('<td></td>').text(this.koszt_zaliczki)
+                                                ).append(
+                                                    $('<td></td>').text(this.koszt_suma)
                                                 )
                                             )
                                         });
@@ -191,5 +191,40 @@ $(function () {
                 }]
             });
         });
+    });
+
+    var pieKlubowo = $('.pieChartKlubowo'),
+        pieData = pieKlubowo.data('kluby');
+
+    // Build the chart
+    pieKlubowo.highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: 'Wyjazdy:<b>{point.ilosc}<br>Koszt:<b>{point.y}</b></b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            data: pieData
+        }]
     });
 });
