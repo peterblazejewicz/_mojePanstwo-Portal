@@ -337,7 +337,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                                             ) {
                                                 ?>
                                                 <span class="wiek">
-                                                    <?= pl_dopelniacz(pl_wiek($osoba['data_urodzenia']), 'rok', 'lata', 'lat') ?>
+                                                    <?= substr($osoba['data_urodzenia'], 0, 4) ?>'
                                                 </span>
                                             <? } ?>
                                         </h4>
@@ -403,7 +403,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                         <div class="list-group-item row">
                             <? } ?>
 
-                            <h4 class="list-group-item-heading col-md-6">
+                            <h4 class="list-group-item-heading col-xs-6">
                                 <?= $osoba['nazwa'] ?>
                                 <? if (
                                     ($osoba['privacy_level'] != '1') &&
@@ -418,7 +418,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
                             </h4>
 
                             <? if (isset($osoba['funkcja']) && $osoba['funkcja']) { ?>
-                                <p class="list-group-item-text normalizeText col-md-6">
+                                <p class="list-group-item-text normalizeText col-xs-6">
                                     <?= $osoba['funkcja'] ?>
                                 </p>
                             <? } ?>
@@ -434,29 +434,28 @@ $this->Combinator->add_libs('js', 'graph-krs');
     </div>
     </div>
 
-    <? } ?>
-
-	
-	<?
-		if ($historia) { 
+    <? }
 		
-			$lastDate = false;
-			$lastLocation = false;
-			$lastSublocation = false;
-			
+	if ($historia) { 
+	
+		$lastDate = false;
+		$lastLocation = false;
+		$lastSublocation = false;
+		
 	?>
-        <div id="historia" class="block historia">
-            <div class="block-header">
-                <h2 class="label pull-left">Najnowsze wpisy do KRS</h2>
-                <? /*<a class="btn btn-default btn-sm pull-right"
-                   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz całą historię</a> */ ?>
-            </div>
-
-            <div class="content">
-                
-                <ul>
+	<div class="object">
+	    <div id="historia" class="block historia">
+	       
+	       <div class="block-header">
+	       		<h2 class="label">Ostatnie zmiany <span class="subtitle"><?= $this->Czas->dataSlownie($object->getData('data_ostatni_wpis')) ?></span></h2>
+	       </div>
+		   
+		   
+	        <div class="content">
+	            
+	            <ul>
 	                <? 
-		                foreach( $historia as $h ) {
+	                foreach( $historia as $h ) {
 			               
 			            	$location = $h->getData('nr_dz') . '-' . $h->getData('nr_rub');
 			                $sublocation = $h->getData('nr_dz') . '-' . $h->getData('nr_rub') . '-' . $h->getData('nr_sub');
@@ -464,14 +463,10 @@ $this->Combinator->add_libs('js', 'graph-krs');
 		            ?>
 	                <li>
 	                	
-	                	<? if( $h->getDate() != $lastDate ) {?>
-	                	<p class="date"><?= $this->Czas->dataSlownie( $h->getDate() ) ?></p>
-	                	<? } ?>
-	                	
 	                	<div class="row">
 		                	<div class="col-md-12">
 			                			
-			                	<? if( $location!==$lastLocation ) {?>                	
+			                	<? if( $location!==$lastLocation ) { $lastSublocation = false; ?>                	
 			                	<div class="location">
 				                	<span class="title"><?= $h->getData('opis') ?></span> 
 				                	<span class="desc pull-right">Dział <?= $h->getData('nr_dz') ?>, Rubryka <?= $h->getData('nr_rub') ?></span>
@@ -487,18 +482,32 @@ $this->Combinator->add_libs('js', 'graph-krs');
 				                
 				                <div class="row col-md-offset-2">
 					                
-					                <div class="col-md-2 text-right">
+					                <div class="col-xs-2">
 						                
 						                <? if( $h->getData('mode') == 'ADD' ) { ?>
-						                	<p class="status label label-success">Wpisać</p>
+						                	<p class="status label label-success">Dodać</p>
 						                <? } elseif( $h->getData('mode') == 'REMOVE' ) { ?>
-						                	<p class="status label label-danger">Wykreślić</p>
+						                	<p class="status label label-danger">Usunąć</p>
+						                <? } elseif( $h->getData('mode') == 'CHANGE' ) { ?>
+						                	<p class="status label label-warning">Zmienić</p>
 						                <? } ?>
 						                
-					                </div><div class="col-md-10">
-						                <p class="content_">
-						                	<?= preg_replace('/([0-9]{11})/', '---', $h->getData('tresc')) ?>
-					                	</p>
+					                </div><div class="col-xs-10">
+						                <div class="content_">
+						                	<? if( $h->getData('label') ) echo '<span class="_label">' . $h->getData('label') . ':</span> '; ?> 
+						                	<? if( $h->getData('label') ) {?><span class="_value"><? } ?>
+						                	
+						                	<?
+							                	if( $h->getData('tresc_html') )
+							                		echo $h->getData('tresc_html');
+							                	else
+								                	echo preg_replace('/([0-9]{11})/', '---', $h->getData('tresc'));
+							                ?>
+						                	
+						                	
+						                	<? if( $h->getData('label') ) {?></span><? } ?>
+						                	<? if( $h->getData('tresc_poprzednia') ) echo '<span class="_lastvalue" data-placement="top" data-toggle="tooltip" title="' . addslashes( 'Poprzednia wartość: ' . $h->getData('tresc_poprzednia') ) . '"></span> '; ?> 
+					                	</div>
 					                </div>
 				                </div>			                	
 			                	
@@ -513,12 +522,17 @@ $this->Combinator->add_libs('js', 'graph-krs');
 		                	$lastSublocation = $sublocation;
 		                	
 		                }
-		            ?> 
-                </ul>
-                
-            </div>
-        </div>
-    <? } ?>
+		            ?>  
+	            </ul>
+	            
+	            <p class="block-btns">
+		            <a class="btn btn-default btn-sm" href="<?= $object->getUrl(); ?>/historia">Pełna historia zmian &raquo;</a>
+	            </p>
+	            
+	        </div>
+	    </div>
+	</div>
+	<? } ?>
 	
 	
     <div class="powiazania block">

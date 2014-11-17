@@ -87,25 +87,29 @@ class KrsPodmiotyController extends DataobjectsController {
 
 
 		$this->set( 'indicators', $indicators );
+				
+		if( $this->object->getData('ostatni_wpis_id') ) {
+			
+			
+			$historia = $this->API->searchDataset('msig_zmiany', array(
+				'limit'      => 100,
+				'conditions' => array(
+					'wpis_id' => $this->object->getData('ostatni_wpis_id'),
+				),
+				'order' => array(
+					'_date desc',
+					'wpis_id asc',
+					'nr_dz asc',
+					'nr_rub asc',
+					'nr_sub asc',
+					'nr_prub_sub asc',
+					'_ord desc',
+				),
+			));
 
-
+			$this->set( 'historia', $this->API->getObjects() );
 		
-		$historia = $this->API->searchDataset('msig_zmiany', array(
-			'limit'      => 3,
-			'conditions' => array(
-				'pozycja_id' => $this->object->getId(),
-			),
-			'order' => array(
-				'_date desc',
-				'wpis_id asc',
-				'nr_dz asc',
-				'nr_rub asc',
-				'nr_sub asc',
-				'nr_prub_sub asc',
-				'_ord desc',
-			),
-		));
-		$this->set( 'historia', $this->API->getObjects() );
+		}
 		
 		
 		
@@ -263,6 +267,32 @@ class KrsPodmiotyController extends DataobjectsController {
 
 	}
 
+	public function historia() {
+		
+		parent::_prepareView();
+		
+		$historia = $this->API->searchDataset('msig_zmiany', array(
+			'limit'      => 1000,
+			'conditions' => array(
+				'pozycja_id' => $this->object->getId(),
+			),
+			'order' => array(
+				'_date desc',
+				'wpis_id asc',
+				'nr_dz asc',
+				'nr_rub asc',
+				'nr_sub asc',
+				'nr_prub_sub asc',
+				'numer_label asc',
+				'_ord desc',
+			),
+		));
+		$this->set( 'historia', $this->API->getObjects() );
+		
+		$this->set('title_for_layout', 'Histora zmian w ' . $this->object->getShortTitle());
+		
+	}
+	
 	public function graph() {
 		if ( $this->request->params['ext'] == 'json' ) {
 
@@ -415,6 +445,17 @@ class KrsPodmiotyController extends DataobjectsController {
 				),
 			)
 		);
+		
+		if( $this->object->getData('liczba_zmian') ) {
+		
+			$menu['items'][] = array(
+				'id'    => 'historia',
+				'href'  => $href_base . '/historia',
+				'label' => 'Historia',
+				'count' => $this->object->getData('liczba_zmian'),
+			);
+		
+		}
 
 		if ( $this->request->params['id'] == 481129 ) { // KOMITET KONKURSOWY KRAKÓW 2022
 
@@ -442,7 +483,7 @@ class KrsPodmiotyController extends DataobjectsController {
 			);
 		}
 
-
+		/*
 		if ( $counters['liczba_zmian_umow'] ) {
 			$menu['items'][] = array(
 				'id'   => 'zmiany_umow',
@@ -451,6 +492,7 @@ class KrsPodmiotyController extends DataobjectsController {
 				'count' => $counters['liczba_zmian_umow'],
 			);
 		}
+		*/
 
 		if ( $counters['liczba_emisji_akcji'] ) {
 			$menu['items'][] = array(
