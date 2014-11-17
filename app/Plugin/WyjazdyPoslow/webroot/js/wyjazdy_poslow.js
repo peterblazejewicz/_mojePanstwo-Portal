@@ -84,7 +84,7 @@ $(function () {
                                     $detailInfo.find('.content').empty()
                                 }
 
-                                $.getJSON('http://mojepanstwo.pl:4444/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
+                                $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
                                     $detailInfo.find('.content').removeClass('loading').append(
                                         $('<div></div>').addClass('row').append(
                                             $('<div></div>').addClass('ilosc col-xs-4').html("Kraj:&nbsp;<b>" + e.point.kraj + "</b>")

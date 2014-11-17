@@ -28,7 +28,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		<div class="block">
 			
 			<div class="block-header">
-				<h2 class="label">Najwięcej wydali</h2>
+				<h2 class="label">Najwięcej na podróże wydali</h2>
 			</div>
 			
 			<div class="content row">
