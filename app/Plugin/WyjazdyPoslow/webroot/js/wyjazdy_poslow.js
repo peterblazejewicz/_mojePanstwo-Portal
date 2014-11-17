@@ -1,5 +1,5 @@
 $(function () {
-    $.getJSON('/WyjazdyPoslow/files/world-highres.geo.json', function (geojson) {
+    $.getJSON('/WyjazdyPoslow/files/world-highres.gf.geo.json', function (geojson) {
 
         // Prepare the geojson
         var mapData = Highcharts.geojson(geojson, 'map'),
