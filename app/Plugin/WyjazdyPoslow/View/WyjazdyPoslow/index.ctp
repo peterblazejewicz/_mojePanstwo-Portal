@@ -119,7 +119,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                     "name" => $i['skrot'],
                     "fullname" => $i['nazwa'],
                     "link" => "/dane/sejm_kluby/" . $i['id'],
-                    "image" => "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png",
+                    "image" => ($i['id'] != 8) ? "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png" : '',
                     "ilosc" => (int)$i['count'],
                     "y" => round($i['avg'], 2),
                     "sum" => round($i['sum'], 2)

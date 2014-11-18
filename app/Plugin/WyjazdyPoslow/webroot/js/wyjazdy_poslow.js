@@ -58,6 +58,7 @@ $(function () {
                     },
                     data: statsData,
                     mapData: mapData,
+                    nullColor: 'transparent',
                     joinBy: ['iso-a2', 'code'],
                     dataLabels: {
                         enabled: false
@@ -192,7 +193,12 @@ $(function () {
             labels: {
                 rotation: -45,
                 formatter: function () {
-                    return '<div class="klubyTitle"><img src="' + kluby[this.value] + '"/><span>' + this.value + '</span></div>'
+                    var text = '<div class="klubyTitle">';
+                    if (kluby[this.value] != '')
+                        text += '<img src="' + kluby[this.value] + '"/>';
+                    text += '<span>' + this.value + '</span></div>';
+
+                    return text;
                 },
                 useHTML: true
             }
