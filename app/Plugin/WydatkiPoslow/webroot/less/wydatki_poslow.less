@@ -44,6 +44,7 @@
             left: 0;
             display: block;
             height: 100%;
+            min-height: 680px;
         }
 
         .far {
@@ -169,19 +170,40 @@
                         text-align: center;
                     }
                     .scrollHint {
-                        background: url(/WydatkiPoslow/img/scroll_icon.png) center no-repeat;
                         display: block;
-                        height: 500px;
-                        width: 837px;
+                        height: 40vh;
+                        width: 100vw;
+                        max-width: 850px;
+                        min-width: 400px;
                         left: 50%;
                         bottom: 40px;
                         position: absolute;
                         transform: translate(-50%, 0);
 
+                        > img {
+                            position: absolute;
+                        }
+                        .scrollInfo {
+                            top: 0;
+                            height: 70%;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                        }
+                        .poslankaBckgrnd, .poselBckgrnd {
+                            height: 100%;
+                            bottom: 0;
+                        }
+                        .poslankaBckgrnd {
+                            left: 0;
+                        }
+                        .poselBckgrnd {
+                            right: 0;
+                        }
+
                         a {
                             display: block;
                             position: absolute;
-                            top: 385px;
+                            bottom: 25px;
                             left: 50%;
                             transform: translate(-50%, 0);
 

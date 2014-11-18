@@ -20,6 +20,9 @@
                 </div>
                 <div class="subtitle">Łączne wydatki posłów w 2013 roku na swoje biura poselskie.</div>
                 <div class="scrollHint">
+                    <img src="/WydatkiPoslow/img/mysz.svg" class="scrollInfo"/>
+                    <img src="/WydatkiPoslow/img/poslanka.svg" class="poslankaBckgrnd"/>
+                    <img src="/WydatkiPoslow/img/posel.svg" class="poselBckgrnd"/>
                     <a href="#">Zobacz szczegółową listę wydatków</a>
                 </div>
             </div>
