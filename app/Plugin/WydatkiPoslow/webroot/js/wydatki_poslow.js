@@ -43,6 +43,34 @@ jQuery(function ($) {
         return t === d ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
     };
 
+    function introAnimation() {
+        var offset = $story.offset().left,
+            sl = $window.scrollLeft(),
+            value = sl - 2 * offset,
+            sejmLoc = $medium.find('.scene.sejm .building').offset().left - screen.width / 2,
+            base = $medium.find('.scene.intro .scrollHint'),
+            poselPoslankaSize = 411,
+            poselPoslankaSizeLimit = 110,
+            poselPoslankaWalkStart = 40,
+            poselPoslankaWalkScale = .15,
+            poselPoslankaWalkBond = 106,
+            poslanka = base.find('.poslankaBckgrnd'),
+            posel = base.find('.poselBckgrnd');
+
+        if (value < sejmLoc) {
+            poslanka.css({
+                left: value * 1.4,
+                bottom: (Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) : poselPoslankaWalkBond,
+                height: (poselPoslankaSize - value > poselPoslankaSizeLimit) ? (poselPoslankaSize - value) : poselPoslankaSizeLimit
+            });
+            posel.css({
+                right: -value * .9,
+                bottom: (Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) : poselPoslankaWalkBond,
+                height: (poselPoslankaSize - value > poselPoslankaSizeLimit) ? (poselPoslankaSize - value) : poselPoslankaSizeLimit
+            });
+        }
+    }
+
     function calculateOffsets() {
         posMap = [];
         $medium.find('.scene').each(function () {
@@ -362,11 +390,13 @@ jQuery(function ($) {
     $window.resize(calculateOffsets);
     $window.resize(onResize);
 
+    introAnimation();
     repeatButton();
     scrollTo(0);
     setTimeout(function () {
         onResize();
         calculateOffsets();
+        TweenLite.ticker.addEventListener('tick', introAnimation);
     }, 1050);
 
     TweenLite.ticker.addEventListener('tick', tickHandler);
