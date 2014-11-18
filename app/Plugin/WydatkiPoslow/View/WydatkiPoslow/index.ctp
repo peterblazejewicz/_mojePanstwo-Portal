@@ -11,14 +11,17 @@
         <div class="medium">
             <div class="scene intro" data-scene="1">
                 <div class="title">
-                    <h3>Środki finansowe ogółem do rozliczenia</h3>
+                    <h3>Dowiedz się ile wydają posłowie na swoje biura poselskie.</h3>
 
                     <h2>1 209 340
                         <small>PLN</small>
                     </h2>
+
                 </div>
-                <div class="infoIcon icon big biuro">Wydatki na biuro poselskie</div>
-                <div class="scrollHint"></div>
+                <div class="subtitle">Łączne wydatki posłów w 2013 roku na swoje biura poselskie.</div>
+                <div class="scrollHint">
+                    <a href="#">Zobacz szczegółową listę wydatków</a>
+                </div>
             </div>
             <div class="scene sejm" data-scene="2">
                 <div class="building"></div>

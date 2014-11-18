@@ -18,7 +18,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 	    
 	</div>
 </div>
-*/ ?>
+*/
+?>
 
 <div class="maplabel">
     Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.
