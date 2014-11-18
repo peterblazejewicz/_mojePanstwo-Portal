@@ -99,17 +99,19 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
         </div>
         <div class="col-md-7">
 
-            <h3>Klubowo</h3>
+            <h3>Średnio na posła, według klubów</h3>
 
             <?php
             $klubowoChartData = array();
             foreach ($stats['calosc']['klubowe'] as $i) {
                 array_push($klubowoChartData, array(
-                    "name" => $i['nazwa'],
+                    "name" => $i['skrot'],
+                    "fullname" => $i['nazwa'],
                     "link" => "/dane/sejm_kluby/" . $i['id'],
                     "image" => "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png",
-                    "ilosc" => floatval($i['count']),
-                    "y" => floatval($i['sum'])
+                    "ilosc" => (int) $i['count'],
+                    "y" => round($i['avg'], 2),
+                    "sum" => round($i['sum'], 2)
                 ));
             };?>
             <div class="pieChartKlubowo" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"
@@ -153,6 +155,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                 <? } ?>
                 
             </ul>
+            
+            <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
 
         </div>
         
@@ -161,7 +165,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
             <h3>Indywidualnie</h3>
 
             <ul>
-                <? foreach ($stats['calosc']['indywidualne'] as $i) { ?>
+                <? foreach ($stats['najdrozsze']['indywidualnie'] as $i) { ?>
                     <li class="row">
                         <div class="col-md-2 text-right">
                             <img class="border"
@@ -172,9 +176,11 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                                     <span class="klub">(<a
                                             href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span>
                             </p>
-
-                            <p class="desc"><?= pl_dopelniacz($i['count'], 'wyjazd', 'wyjazdy', 'wyjazdów') ?> na
-                                kwotę <?= _currency($i['sum']) ?></p>
+							
+							<div class="desc-loc-cont">
+	                            <p class="desc pull-left"><?= _currency($i['koszt']) ?></p>
+	                            <p class="loc pull-right"><?= $i['lokalizacja'] ?></p>
+							</div>
                         </div>
                     </li>
                 <? } ?>

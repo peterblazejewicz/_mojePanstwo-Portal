@@ -202,21 +202,40 @@ $(function () {
     // Build the chart
     pieKlubowo.highcharts({
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
+            type: 'column'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Wartość [PLN]'
+            }
         },
         credits: {
+            enabled: false
+        },
+        legend: {
             enabled: false
         },
         title: {
             text: ''
         },
         tooltip: {
-            pointFormat: 'Wyjazdy:<b>{point.ilosc}<br>Koszt:<b>{point.y}</b></b>'
-        },
+	        headerForma: '(point.fullname)',
+            pointFormat: '<br>Liczba wyjazdów: <b>{point.ilosc}<br>Koszt wyjazdów: <b>{point.sum}<br>Średnio na posła: <b>{point.y}</b>'
+        }
+        /*,
         plotOptions: {
-            pie: {
+            bar: {
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
@@ -229,10 +248,23 @@ $(function () {
                     useHTML: true
                 }
             }
-        },
+        }*/,
         series: [{
-            type: 'pie',
-            data: pieData
-        }]
+            data: pieData,
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }],
+        
     });
 });
