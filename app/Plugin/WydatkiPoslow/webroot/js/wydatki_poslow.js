@@ -47,27 +47,31 @@ jQuery(function ($) {
         var offset = $story.offset().left,
             sl = $window.scrollLeft(),
             value = sl - 2 * offset,
-            sejmLoc = $medium.find('.scene.sejm .building').offset().left - screen.width / 2,
+            sejmLoc = $medium.find('.scene.sejm .building').offset().left,
             base = $medium.find('.scene.intro .scrollHint'),
             poselPoslankaSize = 411,
             poselPoslankaSizeLimit = 110,
             poselPoslankaWalkStart = 40,
-            poselPoslankaWalkScale = .15,
+            poselWalkScale = .3,
+            poslankaWalkScale = .15,
             poselPoslankaWalkBond = 106,
             poslanka = base.find('.poslankaBckgrnd'),
             posel = base.find('.poselBckgrnd');
 
         if (value < sejmLoc) {
             poslanka.css({
-                left: value * 1.4,
-                bottom: (Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) : poselPoslankaWalkBond,
+                left: (value * 1.4 < sejmLoc) ? value * 1.4 : (poslanka.offset().left > sejmLoc) ? value * 1.4 : poslanka.offset().left,
+                bottom: (Math.floor(poselPoslankaWalkStart + value * poslankaWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poslankaWalkScale) : poselPoslankaWalkBond,
                 height: (poselPoslankaSize - value > poselPoslankaSizeLimit) ? (poselPoslankaSize - value) : poselPoslankaSizeLimit
             });
             posel.css({
-                right: -value * .9,
-                bottom: (Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poselPoslankaWalkScale) : poselPoslankaWalkBond,
+                right: (value * .9 < sejmLoc) ? -value * .9 : (poslanka.offset().left > sejmLoc) ? -value * 0.9 : -sejmLoc,
+                bottom: (Math.floor(poselPoslankaWalkStart + value * poselWalkScale) < poselPoslankaWalkBond) ? Math.floor(poselPoslankaWalkStart + value * poselWalkScale) : poselPoslankaWalkBond,
                 height: (poselPoslankaSize - value > poselPoslankaSizeLimit) ? (poselPoslankaSize - value) : poselPoslankaSizeLimit
             });
+
+            (poslanka.offset().left > sejmLoc) ? poslanka.css('visibility', 'hidden') : poslanka.css('visibility', 'visible');
+            (posel.offset().left > sejmLoc) ? posel.css('visibility', 'hidden') : posel.css('visibility', 'visible');
         }
     }
 

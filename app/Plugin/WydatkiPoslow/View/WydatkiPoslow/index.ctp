@@ -133,6 +133,8 @@
                     </strong>
 
                     <div class="icon posel">wydatki na posłów w 2013r.</div>
+
+                    <a class="btn btn-primary btn-sm">Zobacz przeloty pozostałych posłów</a>
                 </div>
                 <div class="marker"></div>
             </div>
