@@ -11,14 +11,15 @@
         <div class="medium">
             <div class="scene intro" data-scene="1">
                 <div class="title">
-                    <h3><strong>Dowiedz się ile wydają posłowie</strong><br>na swoje biura poselskie.</h3>
+                    <h3><strong>Dowiedz się ile kosztuje</strong><br>obsługa pracy posłów.</h3>
                 </div>
                 <div class="scrollHint">
                     <img src="/WydatkiPoslow/img/mysz.svg" class="scrollInfo"/>
                     <img src="/WydatkiPoslow/img/poslanka.svg" class="poslankaBckgrnd"/>
                     <img src="/WydatkiPoslow/img/posel.svg" class="poselBckgrnd"/>
-                    <a href="#">Zobacz szczegółową listę wydatków</a>
                 </div>
+                <a class="wyjazdyBtn" href="/wyjazdy_poslow" target="_self">Dodatkowo<br>sprawdź gdzie<br>i za ile
+                    wyjażdzają<br>posłowie<i class="glyphicon glyphicon-chevron-right"></i></a>
             </div>
             <div class="scene sejm" data-scene="2">
                 <div class="building"></div>

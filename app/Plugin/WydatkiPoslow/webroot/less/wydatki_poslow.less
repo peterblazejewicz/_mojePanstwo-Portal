@@ -138,6 +138,32 @@
                             }
                         }
                     }
+                    .wyjazdyBtn {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        z-index: 2;
+                        transform: translate(0, -50%);
+                        width: 380px;
+                        height: 142px;
+                        background: url(/WydatkiPoslow/img/button/wyjazdyBtn.png) bottom left no-repeat #003b6d;
+                        display: block;
+                        padding: 30px 40px 30px 130px;
+                        text-align: left;
+
+                        font-size: 18px;
+                        line-height: 20px;
+                        font-weight: bold;
+                        color: #ffffff;
+                        text-transform: uppercase;
+
+                        i {
+                            position: absolute;
+                            top: 50%;
+                            right: 15px;
+                            transform: translate(0, -50%);
+                        }
+                    }
                     .scrollHint {
                         display: block;
                         height: 66vh;
@@ -167,22 +193,6 @@
                         }
                         .poselBckgrnd {
                             right: 0;
-                        }
-
-                        a {
-                            display: block;
-                            position: absolute;
-                            bottom: 40px;
-                            left: 50%;
-                            transform: translate(-50%, 0);
-
-                            width: auto;
-                            padding: 8px;
-                            color: #ffffff;
-                            font-size: 18px;
-                            text-transform: uppercase;
-                            border: 3px solid #FFFFFF;
-                            cursor: pointer;
                         }
                     }
                 }
@@ -454,11 +464,10 @@
             }
         }
         .near {
-            .posel {
+            .posel, .poslanka {
                 display: block;
                 width: 60px;
                 height: 110px;
-                background: url(/WydatkiPoslow/img/animated_posel.png) top left no-repeat;
                 z-index: 1;
 
                 position: absolute;
@@ -468,6 +477,12 @@
                 &.outfit {
                     background-position: top right;
                 }
+            }
+            .posel {
+                background: url(/WydatkiPoslow/img/animated_posel.png) top left no-repeat;
+            }
+            .poslanka {
+                background: url(/WydatkiPoslow/img/animated_poslanka.png) top left no-repeat;
             }
             .samochod {
                 display: block;
