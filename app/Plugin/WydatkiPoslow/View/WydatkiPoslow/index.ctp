@@ -11,14 +11,8 @@
         <div class="medium">
             <div class="scene intro" data-scene="1">
                 <div class="title">
-                    <h3>Dowiedz się ile wydają posłowie na swoje biura poselskie.</h3>
-
-                    <h2>1 209 340
-                        <small>PLN</small>
-                    </h2>
-
+                    <h3><strong>Dowiedz się ile wydają posłowie</strong><br>na swoje biura poselskie.</h3>
                 </div>
-                <div class="subtitle">Łączne wydatki posłów w 2013 roku na swoje biura poselskie.</div>
                 <div class="scrollHint">
                     <img src="/WydatkiPoslow/img/mysz.svg" class="scrollInfo"/>
                     <img src="/WydatkiPoslow/img/poslanka.svg" class="poslankaBckgrnd"/>
