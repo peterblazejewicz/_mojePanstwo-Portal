@@ -1,3 +1,9 @@
+.shadow() {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#AAAAAA)"; /*IE 8*/
+    text-shadow: 0px 0px 1px #AAAAAA; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#AAAAAA); /*IE 5.5-7*/
+}
+
 .cookieLaw {
     display: none;
 }
@@ -119,6 +125,10 @@
                     position: absolute;
                     width: 5px;
                     bottom: 0;
+                }
+
+                .stat {
+                    .shadow();
                 }
 
                 &.intro {
