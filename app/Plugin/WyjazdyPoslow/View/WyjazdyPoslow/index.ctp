@@ -30,37 +30,48 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 <div class="container">
 
 <div class="stats text-center">
-	
-	<div class="bigger">
-		<p class="_label">Na podróże posłów w VII Kadencji Sejmu, wydaliśmy:</p>
-		<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['calosc'] ) ?></p>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-3">
-			<p class="_label">Na trasport</p>
-			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['transport'] ) ?></p>
-		</div>
-		<div class="col-md-3">
-			<p class="_label">Na hotele</p>
-			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['hotele'] ) ?></p>
-		</div>
-		<div class="col-md-3">
-			<p class="_label">Na diety</p>
-			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['diety'] ) ?></p>
-		</div>
-		<div class="col-md-3">
-			<p class="_label">Pozostałe koszta</p>
-			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['pozostale'] ) ?></p>
-		</div>
-	</div>
-	
+
+    <div class="bigger">
+        <p class="_label">Na podróże posłów w VII Kadencji Sejmu, wydaliśmy:</p>
+
+        <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['calosc']) ?></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <p class="_label">Na trasport</p>
+
+            <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['transport']) ?></p>
+        </div>
+        <div class="col-md-3">
+            <p class="_label">Na hotele</p>
+
+            <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['hotele']) ?></p>
+        </div>
+        <div class="col-md-3">
+            <p class="_label">Na diety</p>
+
+            <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['diety']) ?></p>
+        </div>
+        <div class="col-md-3">
+            <p class="_label">Pozostałe koszta</p>
+
+            <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['pozostale']) ?></p>
+        </div>
+    </div>
+
 </div>
 
-<div class="baner">
-	<p>Chcesz wiedzieć na co jeszcze posłowie wydają pieniądze?</p>
-	<p><a class="btn btn-medium btn-primary" href="/wydatki_poslow">Zobacz wszystkie wydatki biur poselskich &raquo;</a></p>
-</div>
+<a href="/wydatki_poslow" target="_self" class="baner">
+    <div class="inner col-xs-12 col-md-8 col-md-offset-2">
+        <div class="text">
+            <p>Chcesz wiedzieć na co jeszcze posłowie wydają pieniądze?</p>
+
+            <p>Zobacz wszystkie wydatki biur poselskich</p>
+        </div>
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </div>
+</a>
 
 <div class="block-group">
 <div class="block">
@@ -109,7 +120,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                     "fullname" => $i['nazwa'],
                     "link" => "/dane/sejm_kluby/" . $i['id'],
                     "image" => "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png",
-                    "ilosc" => (int) $i['count'],
+                    "ilosc" => (int)$i['count'],
                     "y" => round($i['avg'], 2),
                     "sum" => round($i['sum'], 2)
                 ));
@@ -123,7 +134,6 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 </div>
 
 
-
 <div class="block">
 
     <div class="block-header">
@@ -131,35 +141,39 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
     </div>
 
     <div class="content row">
-        
+
         <div class="col-md-6">
 
             <h3>Całościowo</h3>
 
             <ul>
-	            <? foreach ($stats['najdrozsze']['calosc'] as $i) { ?>
+                <? foreach ($stats['najdrozsze']['calosc'] as $i) { ?>
                     <li class="row">
-  
+
                         <div class="col-md-12">
                             <p class="title">
-	                            <a href="#"><?= $i['delegacja']  ?></a>
+                                <a href="#"><?= $i['delegacja'] ?></a>
                             </p>
-							
-							<p class="loc">
-								<?= $i['lokalizacja'] ?>
-							</p>
-							
-                            <p class="desc"><?= _currency($i['koszt']) ?> <span class="separator">|</span> <?= pl_dopelniacz($i['liczba_dni'], 'dzień', 'dni', 'dni') ?> <span class="separator">|</span> <?= pl_dopelniacz($i['liczba_poslow'], 'posel', 'posłów', 'posłów') ?></p>
+
+                            <p class="loc">
+                                <?= $i['lokalizacja'] ?>
+                            </p>
+
+                            <p class="desc"><?= _currency($i['koszt']) ?> <span
+                                    class="separator">|</span> <?= pl_dopelniacz($i['liczba_dni'], 'dzień', 'dni', 'dni') ?>
+                                <span
+                                    class="separator">|</span> <?= pl_dopelniacz($i['liczba_poslow'], 'posel', 'posłów', 'posłów') ?>
+                            </p>
                         </div>
                     </li>
                 <? } ?>
-                
+
             </ul>
-            
+
             <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
 
         </div>
-        
+
         <div class="col-md-6">
 
             <h3>Indywidualnie</h3>
@@ -176,11 +190,12 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                                     <span class="klub">(<a
                                             href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span>
                             </p>
-							
-							<div class="desc-loc-cont">
-	                            <p class="desc pull-left"><?= _currency($i['koszt']) ?></p>
-	                            <p class="loc pull-right"><?= $i['lokalizacja'] ?></p>
-							</div>
+
+                            <div class="desc-loc-cont">
+                                <p class="desc pull-left"><?= _currency($i['koszt']) ?></p>
+
+                                <p class="loc pull-right"><?= $i['lokalizacja'] ?></p>
+                            </div>
                         </div>
                     </li>
                 <? } ?>
@@ -189,7 +204,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
             <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
 
         </div>
-        
+
     </div>
 
 </div>
@@ -218,60 +233,74 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 <div class="col-md-10 col-md-offset-1">
 
-	<ul class="controversy">
-	
-		<? foreach( $stats['wydarzenia'] as $w ) { ?> 
-			
-			<li>
-				
-				
-				<div class="loc">
-					<p class="w_title pull-left"><a href="#"><?= $w['data']['delegacja'] ?></a></p>
-					<p class="pull-right"><span class="licza_dni"><?= pl_dopelniacz($w['data']['liczba_dni'], 'dzień', 'dni', 'dni') ?></span> <span class="label label-warning"><?= $w['data']['date_start'] ?> - <?= $w['data']['date_stop'] ?></span></p> 
-				</div>
-				
-				<p class="desc"><?= $w['data']['lokalizacja'] ?></p>
-				
-				<ul class="poslowie">
-					
-					<li class="row">
-						<p class="col-sm-4">Poseł</p>
-						<p class="col-sm-2">Transport</p>
-						<p class="col-sm-2">Hotel</p>
-						<p class="col-sm-2">Dieta</p>
-						<p class="col-sm-2 text-right">Aktywności w Sejmie</p>
-					</li>
-					
-				<? foreach( $w['poslowie'] as $p ) {?>
-				
-					<li class="row">
-						
-						<p class="col-sm-4">
-							<img class="border"
-                                 src="http://resources.sejmometr.pl/mowcy/a/3/<?= $p['mowca_id'] ?>.jpg"/>
-							<a class="title" href="#"><?= $p['nazwa'] ?></a> <span class="klub"><a href="#"><?= $p['klub_skrot'] ?></a></span> 
-						</p>
-						<p class="col-sm-2">
-							<?= _currency($p['koszt_transport']) ?>
-						</p>
-						<p class="col-sm-2">
-							<?= _currency($p['koszt_hotel']) ?>
-						</p>
-						<p class="col-sm-2">
-							<?= _currency($p['koszt_dieta']) ?>
-						</p>
-						<p class="col-sm-2 text-right">
-							<span class="label label-danger"><?= implode('</span> <span class="label label-danger">', $p['glosowania_dni']) ?></span>
-						</p>
-						
-					</li>
-				
-				<? } ?>
-				</ul>
-			
-			</li>
-			
-		<? /*
+    <ul class="controversy">
+
+        <? foreach ($stats['wydarzenia'] as $w) { ?>
+
+            <li>
+
+
+                <div class="loc">
+                    <p class="w_title pull-left"><a href="#"><?= $w['data']['delegacja'] ?></a></p>
+
+                    <p class="pull-right"><span
+                            class="licza_dni"><?= pl_dopelniacz($w['data']['liczba_dni'], 'dzień', 'dni', 'dni') ?></span>
+                        <span class="label label-warning"><?= $w['data']['date_start'] ?>
+                            - <?= $w['data']['date_stop'] ?></span></p>
+                </div>
+
+                <p class="desc"><?= $w['data']['lokalizacja'] ?></p>
+
+                <ul class="poslowie">
+
+                    <li class="row">
+                        <p class="col-sm-4">Poseł</p>
+
+                        <p class="col-sm-2">Transport</p>
+
+                        <p class="col-sm-2">Hotel</p>
+
+                        <p class="col-sm-2">Dieta</p>
+
+                        <p class="col-sm-2 text-right">Aktywności w Sejmie</p>
+                    </li>
+
+                    <? foreach ($w['poslowie'] as $p) { ?>
+
+                        <li class="row">
+
+                            <p class="col-sm-4">
+                                <img class="border"
+                                     src="http://resources.sejmometr.pl/mowcy/a/3/<?= $p['mowca_id'] ?>.jpg"/>
+                                <a class="title" href="#"><?= $p['nazwa'] ?></a> <span class="klub"><a
+                                        href="#"><?= $p['klub_skrot'] ?></a></span>
+                            </p>
+
+                            <p class="col-sm-2">
+                                <?= _currency($p['koszt_transport']) ?>
+                            </p>
+
+                            <p class="col-sm-2">
+                                <?= _currency($p['koszt_hotel']) ?>
+                            </p>
+
+                            <p class="col-sm-2">
+                                <?= _currency($p['koszt_dieta']) ?>
+                            </p>
+
+                            <p class="col-sm-2 text-right">
+                                <span
+                                    class="label label-danger"><?= implode('</span> <span class="label label-danger">', $p['glosowania_dni']) ?></span>
+                            </p>
+
+                        </li>
+
+                    <? } ?>
+                </ul>
+
+            </li>
+
+            <? /*
 		<li class="row">
 		    <div class="col-md-1 text-right">
 		        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/9.jpg"/>
@@ -285,12 +314,13 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 		        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
 		            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p></div>
 		</li>
-		<? */ ?>
-		
-		<? } ?>
-	
-	
-	</ul>
+		<? */
+            ?>
+
+        <? } ?>
+
+
+    </ul>
 
 </div>
 

@@ -5,71 +5,104 @@
 #_wrapper #_main {
     margin: 0;
     padding-bottom: 40px;
-	
-	.baner {
-		background-color: #ddd;
-	    margin: 15px 5px;
-	    padding: 10px 0 5px;
-	    text-align: center;
-	}
-	
-	.stats {
-		margin: 10px 0;
-		
-		.bigger {
-			border-bottom: 1px solid #ddd;
-		    margin-bottom: 10px;
-		    padding-bottom: 0;
-		    
-			._label {
-			}
-			._value {
-				font-size: 18px;
-				margin-top: 3px;	
-			}
-		}
-		
-		._label {
-			font-size: 13px;
-			margin-bottom: 0;
-		}
-		._value {
-			font-size: 14px;
-			color: green;
-			font-weight: 400;
-			
-			strong {
-				font-weight: 500;
-			}
-		}
-	}
-	
-	.maplabel {
-		background-color: #263339;
-	    color: #ddd;
-	    font-family: lato;
-	    font-weight: 300;
-	    padding: 10px 0 20px;
-	    text-align: center;
-	}
-	
+
+    .baner {
+        @height: 80px;
+
+        background-color: #4eafe1;
+        margin: 15px 5px;
+        display: block;
+        height: @height;
+
+        .inner {
+            background: url(/WyjazdyPoslow/img/banerhead.png) 54px center no-repeat;
+            height: @height;
+            position: relative;
+            color: #ffffff;
+
+            .text {
+                position: relative;
+                top: 50%;
+                transform: translate(0, -50%);
+
+                p {
+                    padding-left: 135px;
+                    padding-right: 35px;
+                    font-size: 18px;
+
+                    margin-bottom: 5px;
+                    line-height: 1em;
+
+                    &:first-of-type {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            i {
+                position: absolute;
+                right: 30px;
+                top: 50%;
+                transform: translate(0px, -50%);
+            }
+        }
+    }
+
+    .stats {
+        margin: 10px 0;
+
+        .bigger {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+
+            ._label {
+            }
+            ._value {
+                font-size: 18px;
+                margin-top: 3px;
+            }
+        }
+
+        ._label {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+        ._value {
+            font-size: 14px;
+            color: green;
+            font-weight: 400;
+
+            strong {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .maplabel {
+        background-color: #263339;
+        color: #ddd;
+        font-family: lato;
+        font-weight: 300;
+        padding: 10px 0 20px;
+        text-align: center;
+    }
+
     #wyjazdyPoslowMap {
         position: relative;
         min-height: 500px;
         max-height: 80vh;
         display: block;
         margin-bottom: 10px;
-        
-        
-		background: rgba(38,51,57,1);
-		background: -moz-linear-gradient(top, rgba(38,51,57,1) 0%, rgba(105,112,120,1) 100%);
-		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(38,51,57,1)), color-stop(100%, rgba(105,112,120,1)));
-		background: -webkit-linear-gradient(top, rgba(38,51,57,1) 0%, rgba(105,112,120,1) 100%);
-		background: -o-linear-gradient(top, rgba(38,51,57,1) 0%, rgba(105,112,120,1) 100%);
-		background: -ms-linear-gradient(top, rgba(38,51,57,1) 0%, rgba(105,112,120,1) 100%);
-		background: linear-gradient(to bottom, rgba(38,51,57,1) 0%, rgba(105,112,120,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#263339', endColorstr='#697078', GradientType=0 );
 
+        background: rgba(38, 51, 57, 1);
+        background: -moz-linear-gradient(top, rgba(38, 51, 57, 1) 0%, rgba(105, 112, 120, 1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(38, 51, 57, 1)), color-stop(100%, rgba(105, 112, 120, 1)));
+        background: -webkit-linear-gradient(top, rgba(38, 51, 57, 1) 0%, rgba(105, 112, 120, 1) 100%);
+        background: -o-linear-gradient(top, rgba(38, 51, 57, 1) 0%, rgba(105, 112, 120, 1) 100%);
+        background: -ms-linear-gradient(top, rgba(38, 51, 57, 1) 0%, rgba(105, 112, 120, 1) 100%);
+        background: linear-gradient(to bottom, rgba(38, 51, 57, 1) 0%, rgba(105, 112, 120, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#263339', endColorstr='#697078', GradientType=0);
 
         .detailInfoBackground {
             position: fixed;
@@ -120,14 +153,14 @@
                 text-align: center;
                 font-size: 14px;
             }
-			
-			.detail-header {
-				background-color: #157ab5;
-				color: #FFF;
-				margin-top: -8px;
-				margin-bottom: 8px;
-			}
-			
+
+            .detail-header {
+                background-color: #157ab5;
+                color: #FFF;
+                margin-top: -8px;
+                margin-bottom: 8px;
+            }
+
             .content {
                 height: auto;
                 max-height: 85vh;
@@ -157,21 +190,21 @@
                     line-height: 14px;
                 }
                 .delegacja {
-	                font-size: 15px;
-	                margin: 10px 0 5px;
+                    font-size: 15px;
+                    margin: 10px 0 5px;
                 }
                 table {
                     font-size: 10px;
                     padding-bottom: 16px;
                     background-color: #FFF;
-                    border-radius: 5px;			
-					
+                    border-radius: 5px;
+
                     td {
                         padding: 5px;
                     }
                     thead > td {
-	                    color: #999;
-	                    font-size: 9px;
+                        color: #999;
+                        font-size: 9px;
                     }
                 }
             }
@@ -185,13 +218,13 @@
         }
         ul li {
             border-bottom: 1px solid #ddd;
-		    margin: 0 10px;
-		    padding: 10px 0;
-			
-			&:last-child {
-				border-bottom: none;
-			}
-			
+            margin: 0 10px;
+            padding: 10px 0;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
             img.border {
                 border: 1px solid #DDD;
             }
@@ -207,11 +240,11 @@
                 }
             }
 
-			.loc {
-				font-weight: 500;
-				font-size: 12px;
-			}
-			
+            .loc {
+                font-weight: 500;
+                font-size: 12px;
+            }
+
             .desc {
                 padding: 0;
                 margin: 5px 0 0;
@@ -224,33 +257,34 @@
                     font-size: 13px;
                 }
             }
-            
+
             .desc-loc-cont {
-	            margin-top: 5px;
-	            overflow: auto;
-	            .desc {
-		            margin: 0;
-		            padding: 0;
-	            }
-	            .loc {
-		            margin: 2px 0 0;
-		            padding: 0;
-	            }
+                margin-top: 5px;
+                overflow: auto;
+                .desc {
+                    margin: 0;
+                    padding: 0;
+                }
+                .loc {
+                    margin: 2px 0 0;
+                    padding: 0;
+                }
             }
-            
+
         }
 
-        .pieKlubyTitle {
+        .klubyTitle {
             @imgSize: 30px;
 
             img {
                 float: left;
                 width: @imgSize;
+                transform: translate(0px, -25%);
             }
             span {
                 display: block;
-                line-height: 12px;
                 margin-left: @imgSize+5px;
+                font-size: 13px;
             }
         }
 
@@ -262,38 +296,36 @@
         list-style: none;
 
         li {
-           
+
             list-style: outside none none;
             margin: 15px 0;
             padding: 5px 0 25px;
 
-			border-bottom: 1px solid #DDD;
+            border-bottom: 1px solid #DDD;
             &:last-child {
                 border-bottom: none;
             }
-			
-			.poslowie {
-				margin: 0;
-				padding: 0;
-				background-color: #FCFCFC;
-				border-radius: 5px;
-				li {
-					padding: 5px;
-					margin: 5px;
-					min-height: 33px;
-					
-					border-bottom: 1px solid #EEE;
-		            &:last-child {
-		                border-bottom: none;
-		            }
-				}
-			}
-			
+
+            .poslowie {
+                margin: 0;
+                padding: 0;
+                background-color: #FCFCFC;
+                border-radius: 5px;
+                li {
+                    padding: 5px;
+                    margin: 5px;
+                    min-height: 33px;
+
+                    border-bottom: 1px solid #EEE;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
             p {
                 margin: 0;
                 padding: 0;
-
-                
 
                 &.event {
                     font-weight: 500;
@@ -309,51 +341,51 @@
                     .label {
                         padding: 2px 6px;
                     }
-                }                
+                }
             }
-            
+
             .title {
                 margin-left: 5px;
                 font-size: 15px;
             }
-            
+
             .w_title {
                 font-size: 18px;
             }
-            
+
             ._currency {
-	            font-size: 12px;
+                font-size: 12px;
             }
-            
+
             .loc {
                 overflow: auto;
             }
-            
+
             .desc {
-	            font-size: 12px;
-	            padding: 5px 5px 10px;
-	            color: green;
+                font-size: 12px;
+                padding: 5px 5px 10px;
+                color: green;
             }
-            
+
             .licza_dni {
-	            color: green;
-	            position: relative;
-	            top: 1px;
-	            strong {
-		            font-weight: 500;
-	            }
+                color: green;
+                position: relative;
+                top: 1px;
+                strong {
+                    font-weight: 500;
+                }
             }
-            
+
             .klub {
-	            color: #999;
-	            font-size: 10px;
-	            font-weight: 600;
-	            a {
-		            color: #777;
-		            &:hover {
-			            color: #157ab5;
-		            }
-	            }
+                color: #999;
+                font-size: 10px;
+                font-weight: 600;
+                a {
+                    color: #777;
+                    &:hover {
+                        color: #157ab5;
+                    }
+                }
             }
         }
     }

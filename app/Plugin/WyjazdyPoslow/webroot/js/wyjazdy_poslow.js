@@ -3,15 +3,13 @@ $(function () {
 
         // Prepare the geojson
         var mapData = Highcharts.geojson(geojson, 'map'),
-            rivers = Highcharts.geojson(geojson, 'mapline'),
-            cities = Highcharts.geojson(geojson, 'mappoint'),
             $wyjazdyPoslowMap = $('#wyjazdyPoslowMap'),
             $detailInfo;
 
         $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/world', function (statsData) {
             $.each(statsData, function () {
                 this.value = this.ilosc_wyjazdow;
-                this.laczna_kwota = this.laczna_kwota.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ')
+                this.laczna_kwota = this.laczna_kwota.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ');
             });
 
             // Initiate the chart
@@ -22,11 +20,11 @@ $(function () {
 
                 chart: {
                     backgroundColor: {
-	                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	                    stops: [
-	                        [0, '#263339'],
-	                        [1, '#697078']
-	                    ]
+                        linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1},
+                        stops: [
+                            [0, '#263339'],
+                            [1, '#697078']
+                        ]
                     },
                     borderColor: '#333',
                     spacing: [0, 0, 0, 0]
@@ -55,9 +53,9 @@ $(function () {
                 },
 
                 series: [{
-	                animation: {
-	                    duration: 1000
-	                },
+                    animation: {
+                        duration: 1000
+                    },
                     data: statsData,
                     mapData: mapData,
                     joinBy: ['iso-a2', 'code'],
@@ -131,12 +129,12 @@ $(function () {
                                             )
                                         );
 
-										/*
-                                        if (that.miasto && that.miasto !== "?")
-                                            $detailInfo.find('.content .slice:last').prepend(
-                                                $('<div></div>').addClass('miasto col-xs-12 row').html('Miasto:&nbsp;<b>' + that.miasto + '</b>')
-                                            );
-                                        */
+                                        /*
+                                         if (that.miasto && that.miasto !== "?")
+                                         $detailInfo.find('.content .slice:last').prepend(
+                                         $('<div></div>').addClass('miasto col-xs-12 row').html('Miasto:&nbsp;<b>' + that.miasto + '</b>')
+                                         );
+                                         */
 
                                         $.each(that.poslowie, function () {
                                             $detailInfo.find('table:last').append(
@@ -159,7 +157,7 @@ $(function () {
                                                 ).append(
                                                     $('<td></td>').text(this.koszt_zaliczki)
                                                 ).append(
-                                                    $('<td></td>').html('<b>'+this.koszt_suma+'</b>')
+                                                    $('<td></td>').html('<b>' + this.koszt_suma + '</b>')
                                                 )
                                             )
                                         });
@@ -169,37 +167,20 @@ $(function () {
                             }
                         }
                     }
-                }, {
-                    name: '',
-                    type: 'mapline',
-                    data: rivers,
-                    color: Highcharts.getOptions().colors[0],
-                    tooltip: {
-                        enabled: false
-                    }
-                }, {
-                    name: 'Miasta',
-                    type: 'mappoint',
-                    data: cities,
-                    color: 'black',
-                    marker: {
-                        radius: 2
-                    },
-                    dataLabels: {
-                        align: 'left',
-                        verticalAlign: 'middle'
-                    },
-                    animation: false,
-                    tooltip: {
-                        pointFormat: '{point.name}'
-                    }
                 }]
             });
         });
     });
 
     var pieKlubowo = $('.pieChartKlubowo'),
+        kluby = {},
         pieData = pieKlubowo.data('kluby');
+
+    $.each(pieData, function () {
+        kluby[this.name] = this.image;
+    });
+
+    console.log(kluby);
 
     // Build the chart
     pieKlubowo.highcharts({
@@ -210,10 +191,10 @@ $(function () {
             type: 'category',
             labels: {
                 rotation: -45,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
+                formatter: function () {
+                    return '<div class="klubyTitle"><img src="' + kluby[this.value] + '"/><span>' + this.value + '</span></div>'
+                },
+                useHTML: true
             }
         },
         yAxis: {
@@ -232,25 +213,25 @@ $(function () {
             text: ''
         },
         tooltip: {
-	        headerFormat: '(point.fullname)',
+            headerFormat: '(point.name)',
             pointFormat: '<br>Liczba wyjazdów: <b>{point.ilosc}<br>Koszt wyjazdów: <b>{point.sum}<br>Średnio na posła: <b>{point.y}</b>'
         }
         /*,
-        plotOptions: {
-            bar: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<div class="pieKlubyTitle"><img src="{point.image}"/><span>{point.name}</span></div>',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                        width: '100px'
-                    },
-                    useHTML: true
-                }
-            }
-        }*/,
+         plotOptions: {
+         bar: {
+         allowPointSelect: true,
+         cursor: 'pointer',
+         dataLabels: {
+         enabled: true,
+         format: '<div class="pieKlubyTitle"><img src="{point.image}"/><span>{point.name}</span></div>',
+         style: {
+         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+         width: '100px'
+         },
+         useHTML: true
+         }
+         }
+         }*/,
         series: [{
             data: pieData,
             dataLabels: {
@@ -267,6 +248,6 @@ $(function () {
                 }
             }
         }],
-        
+
     });
 });

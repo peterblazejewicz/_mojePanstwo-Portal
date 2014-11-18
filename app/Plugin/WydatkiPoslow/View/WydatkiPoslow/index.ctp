@@ -132,7 +132,7 @@
                         <small>PLN</small>
                     </strong>
 
-                    <div class="icon posel">wydatki na posłów w 2013r.</div>
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
 
                     <a class="btn btn-primary btn-sm">Zobacz przeloty pozostałych posłów</a>
                 </div>
