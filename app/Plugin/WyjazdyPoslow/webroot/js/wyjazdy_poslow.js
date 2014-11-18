@@ -24,7 +24,7 @@ $(function () {
                     backgroundColor: {
 	                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
 	                    stops: [
-	                        [0, '#2C333C'],
+	                        [0, '#263339'],
 	                        [1, '#697078']
 	                    ]
                     },
@@ -55,6 +55,9 @@ $(function () {
                 },
 
                 series: [{
+	                animation: {
+	                    duration: 1000
+	                },
                     data: statsData,
                     mapData: mapData,
                     joinBy: ['iso-a2', 'code'],
