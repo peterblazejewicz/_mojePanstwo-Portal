@@ -89,7 +89,7 @@ $(function () {
 
                                 $.getJSON('http://api.mojepanstwo.pl/wyjazdyposlow/countryDetails/' + e.point.code.toLowerCase(), function (detail) {
                                     $detailInfo.find('.content').removeClass('loading').append(
-                                        $('<div></div>').addClass('row').append(
+                                        $('<div></div>').addClass('row').addClass('detail-header').append(
                                             $('<div></div>').addClass('ilosc col-xs-4').html("Państwo:&nbsp;<b>" + e.point.kraj + "</b>")
                                         ).append(
                                             $('<div></div>').addClass('ilosc col-xs-4').html("Ilość&nbsp;wyjazdów:&nbsp;<b>" + e.point.ilosc_wyjazdow + "</b>")
@@ -103,17 +103,17 @@ $(function () {
 
                                         $detailInfo.find('.content').append(
                                             $('<div></div>').addClass('slice').append(
-                                                $('<div></div>').addClass('nazwa col-xs-12 row').html("Delegacja:&nbsp;<b>" + that.delegacja + "<b>")
+                                                $('<div></div>').addClass('nazwa col-xs-12 row').html("<p class=\"delegacja\"><a href=\"#\">" + that.delegacja + "</a></p>")
                                             ).append(
                                                 $('<table></table>').addClass('table table-condensed col-xs-12').append(
                                                     $('<thead></thead>').append(
-                                                        $('<td>').text('Nazwa i skład delegacji')
+                                                        $('<td>').text('Poseł')
                                                     ).append(
-                                                        $('<td>').html('Koszt<br>transportu')
+                                                        $('<td>').html('Transport')
                                                     ).append(
-                                                        $('<td>').html('Koszt<br>diety')
+                                                        $('<td>').html('Diety')
                                                     ).append(
-                                                        $('<td>').html('Koszt<br>hoteli')
+                                                        $('<td>').html('Hotele')
                                                     ).append(
                                                         $('<td>').html('Dojazdy')
                                                     ).append(
@@ -125,16 +125,18 @@ $(function () {
                                                     ).append(
                                                         $('<td>').html('Nierozliczone<br>zaliczki')
                                                     ).append(
-                                                        $('<td>').html('Łączny<br>koszt<br>wyjazdu')
+                                                        $('<td>').html('Koszt')
                                                     )
                                                 )
                                             )
                                         );
 
+										/*
                                         if (that.miasto && that.miasto !== "?")
                                             $detailInfo.find('.content .slice:last').prepend(
                                                 $('<div></div>').addClass('miasto col-xs-12 row').html('Miasto:&nbsp;<b>' + that.miasto + '</b>')
                                             );
+                                        */
 
                                         $.each(that.poslowie, function () {
                                             $detailInfo.find('table:last').append(
@@ -157,7 +159,7 @@ $(function () {
                                                 ).append(
                                                     $('<td></td>').text(this.koszt_zaliczki)
                                                 ).append(
-                                                    $('<td></td>').text(this.koszt_suma)
+                                                    $('<td></td>').html('<b>'+this.koszt_suma+'</b>')
                                                 )
                                             )
                                         });
@@ -230,7 +232,7 @@ $(function () {
             text: ''
         },
         tooltip: {
-	        headerForma: '(point.fullname)',
+	        headerFormat: '(point.fullname)',
             pointFormat: '<br>Liczba wyjazdów: <b>{point.ilosc}<br>Koszt wyjazdów: <b>{point.sum}<br>Średnio na posła: <b>{point.y}</b>'
         }
         /*,
