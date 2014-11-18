@@ -29,7 +29,7 @@ $(function () {
 	                    ]
                     },
                     borderColor: '#333',
-                    spacing: [0,0,0,0],
+                    spacing: [0, 0, 0, 0]
                 },
 
                 mapNavigation: {

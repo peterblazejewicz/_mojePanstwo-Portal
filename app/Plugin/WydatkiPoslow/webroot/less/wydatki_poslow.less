@@ -2,12 +2,6 @@
     display: none;
 }
 
-.shadow() {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#333333)"; /*IE 8*/
-    text-shadow: 0px 0px 1px #333333; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#333333); /*IE 5.5-7*/
-}
-
 #_wrapper {
     header, footer {
         z-index: 999;
@@ -48,9 +42,17 @@
         }
 
         .far {
-            background: url(/WydatkiPoslow/img/background_sky.png) bottom left repeat-x #3ca6dd;
             position: relative;
             overflow: hidden;
+
+            background: #5eb7e4;
+            background: -moz-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eb7e4), color-stop(100%, #7db9e8));
+            background: -webkit-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
+            background: -o-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
+            background: -ms-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
+            background: linear-gradient(to bottom, #5eb7e4 0%, #7db9e8 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5eb7e4', endColorstr='#7db9e8', GradientType=0);
 
             .clouds {
                 background: url(/WydatkiPoslow/img/background_clouds.png) bottom left no-repeat;
@@ -77,17 +79,14 @@
                 > p {
                     font-size: 28px;
                     line-height: 28px;
-                    .shadow();
                 }
 
                 > strong {
                     font-size: 72px;
                     line-height: 72px;
-                    .shadow();
 
                     small {
                         font-size: 24px;
-                        .shadow();
                     }
                 }
 
@@ -97,7 +96,6 @@
                     font-size: 10px;
                     padding-left: 4px;
                     text-transform: uppercase;
-                    .shadow();
 
                     &:before {
                         margin-right: 10px;
@@ -124,18 +122,9 @@
                 }
 
                 &.intro {
+                    background: url(/WydatkiPoslow/img/default_green.png) bottom left repeat-x;
                     position: relative;
                     text-align: center;
-                    overflow-y: hidden;
-
-                    background: #5eb7e4;
-                    background: -moz-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
-                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eb7e4), color-stop(100%, #7db9e8));
-                    background: -webkit-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
-                    background: -o-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
-                    background: -ms-linear-gradient(top, #5eb7e4 0%, #7db9e8 100%);
-                    background: linear-gradient(to bottom, #5eb7e4 0%, #7db9e8 100%);
-                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5eb7e4', endColorstr='#7db9e8', GradientType=0);
 
                     .title {
                         padding: 10px 65px;
@@ -143,35 +132,15 @@
                         h3 {
                             color: #ffffff;
                             font-size: 40px;
-                        }
 
-                        h2 {
-                            color: #ffffff;
-                            font-size: 230px;
-                            font-weight: bold;
-                            margin-top: -10px;
-                            margin-bottom: -30px;
-                            .shadow();
-
-                            small {
-                                color: #ffffff;
-                                font-size: 70px;
-                                font-weight: bold;
-                                margin-left: -55px;
-                                .shadow();
+                            strong {
+                                font-size: 65px;
                             }
                         }
                     }
-                    .subtitle {
-                        color: #ffffff;
-                        font-size: 22px;
-                        padding-right: 250px;
-                        text-transform: uppercase;
-                        text-align: center;
-                    }
                     .scrollHint {
                         display: block;
-                        height: 40vh;
+                        height: 66vh;
                         width: 100vw;
                         max-width: 850px;
                         min-width: 400px;
@@ -185,13 +154,13 @@
                         }
                         .scrollInfo {
                             top: 0;
-                            height: 70%;
+                            height: 52%;
                             left: 50%;
                             transform: translate(-50%, 0);
                         }
                         .poslankaBckgrnd, .poselBckgrnd {
-                            height: 100%;
-                            bottom: 0;
+                            height: 80%;
+                            bottom: 40px;
                         }
                         .poslankaBckgrnd {
                             left: 0;
@@ -203,7 +172,7 @@
                         a {
                             display: block;
                             position: absolute;
-                            bottom: 25px;
+                            bottom: 40px;
                             left: 50%;
                             transform: translate(-50%, 0);
 
@@ -383,7 +352,6 @@
                                 > h3 {
                                     color: #ffffff;
                                     font-size: 34px;
-                                    .shadow();
                                 }
                                 > h2 {
                                     color: #ffffff;
@@ -397,7 +365,6 @@
                                         font-size: 70px;
                                         font-weight: bold;
                                         margin-left: -55px;
-                                        .shadow();
                                     }
                                 }
                             }
