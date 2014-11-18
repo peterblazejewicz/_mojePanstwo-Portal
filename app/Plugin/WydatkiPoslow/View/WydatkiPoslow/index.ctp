@@ -25,7 +25,7 @@
                 <div class="building"></div>
                 <div class="stat przejazd">
                     <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -35,7 +35,7 @@
             <div class="scene biuro" data-scene="3">
                 <div class="stat biura">
                     <p>Koszty wynajmu lokalu<br>na biura poselskie</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[12]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -46,7 +46,7 @@
             <div class="scene szpital" data-scene="4">
                 <div class="stat korespondencja">
                     <p>Korespondencja i ogłoszenia</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -54,7 +54,7 @@
                 </div>
                 <div class="stat badania">
                     <p>Badanie lekarskie<br>i szkolenia pracowników</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[3]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -64,7 +64,7 @@
             <div class="scene bank" data-scene="5">
                 <div class="stat rachunki">
                     <p>Obsługa rachunkowo-księgowa<br>i bankowa biur poselskich</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[20]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -78,7 +78,7 @@
                 <div class="men"></div>
                 <div class="stat sala">
                     <p>Koszty wynajmowania sal<br>na spotkania z wyborcami</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -88,7 +88,7 @@
             <div class="scene tlumaczenia" data-scene="7">
                 <div class="stat ekspertyzy">
                     <p>Ekspertyzy, opinie, tłumaczenia</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[5]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -115,8 +115,8 @@
             </div>
             <div class="scene droga" data-scene="9">
                 <div class="stat taksowka">
-                    <p>Przejazdy posłów teksówkami</p>
-                    <strong>209 304
+                    <p>Przejazdy posłów taksówkami</p>
+                    <strong><?= number_format($biura[11]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -128,13 +128,13 @@
                 <div class="building"></div>
                 <div class="stat loty">
                     <p>Podróże służbowe pracowników<br>biur poselskich</p>
-                    <strong>209 304
+                    <strong><?= number_format($biura[17]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
 
-                    <a class="btn btn-primary btn-sm">Zobacz przeloty pozostałych posłów</a>
+                    <a class="btn btn-primary btn-sm">Zobacz gdzie i za ile latają posłowie &raquo;</a>
                 </div>
                 <div class="marker"></div>
             </div>
