@@ -28,6 +28,40 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 <div id="wyjazdyPoslowMap" class="loading"></div>
 
 <div class="container">
+
+<div class="stats text-center">
+	
+	<div class="bigger">
+		<p class="_label">Na podróże posłów w VII Kadencji Sejmu, wydaliśmy:</p>
+		<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['calosc'] ) ?></p>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3">
+			<p class="_label">Na trasport</p>
+			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['transport'] ) ?></p>
+		</div>
+		<div class="col-md-3">
+			<p class="_label">Na hotele</p>
+			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['hotele'] ) ?></p>
+		</div>
+		<div class="col-md-3">
+			<p class="_label">Na diety</p>
+			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['diety'] ) ?></p>
+		</div>
+		<div class="col-md-3">
+			<p class="_label">Pozostałe koszta</p>
+			<p class="_value"><?= $this->Waluta->slownie( $stats['koszta']['pozostale'] ) ?></p>
+		</div>
+	</div>
+	
+</div>
+
+<div class="baner">
+	<p>Chcesz wiedzieć na co jeszcze posłowie wydają pieniądze?</p>
+	<p><a class="btn btn-medium btn-primary" href="/wydatki_poslow">Zobacz wszystkie wydatki biur poselskich &raquo;</a></p>
+</div>
+
 <div class="block-group">
 <div class="block">
 
@@ -36,6 +70,92 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
     </div>
 
     <div class="content row">
+        <div class="col-md-5">
+
+            <h3>Indywidualnie</h3>
+
+            <ul>
+                <? foreach ($stats['calosc']['indywidualne'] as $i) { ?>
+                    <li class="row">
+                        <div class="col-md-2 text-right">
+                            <img class="border"
+                                 src="http://resources.sejmometr.pl/mowcy/a/2/<?= $i['mowca_id'] ?>.jpg"/>
+                        </div>
+                        <div class="col-md-10">
+                            <p class="title"><a href="/dane/poslowie/<?= $i['id'] ?>/wyjazdy"><?= $i['nazwa'] ?></a>
+                                    <span class="klub">(<a
+                                            href="/dane/sejm_kluby/<?= $i['klub_id'] ?>"><?= $i['skrot'] ?></a>)</span>
+                            </p>
+
+                            <p class="desc"><?= pl_dopelniacz($i['count'], 'wyjazd', 'wyjazdy', 'wyjazdów') ?> na
+                                kwotę <?= _currency($i['sum']) ?></p>
+                        </div>
+                    </li>
+                <? } ?>
+            </ul>
+
+            <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+
+        </div>
+        <div class="col-md-7">
+
+            <h3>Klubowo</h3>
+
+            <?php
+            $klubowoChartData = array();
+            foreach ($stats['calosc']['klubowe'] as $i) {
+                array_push($klubowoChartData, array(
+                    "name" => $i['nazwa'],
+                    "link" => "/dane/sejm_kluby/" . $i['id'],
+                    "image" => "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png",
+                    "ilosc" => floatval($i['count']),
+                    "y" => floatval($i['sum'])
+                ));
+            };?>
+            <div class="pieChartKlubowo" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"
+                 data-kluby='<?php echo json_encode($klubowoChartData) ?>'></div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="block">
+
+    <div class="block-header">
+        <h2 class="label">Najdroższe wyjazdy</h2>
+    </div>
+
+    <div class="content row">
+        
+        <div class="col-md-6">
+
+            <h3>Całościowo</h3>
+
+            <ul>
+	            <? foreach ($stats['najdrozsze']['calosc'] as $i) { ?>
+                    <li class="row">
+  
+                        <div class="col-md-12">
+                            <p class="title">
+	                            <a href="#"><?= $i['delegacja']  ?></a>
+                            </p>
+							
+							<p class="loc">
+								<?= $i['lokalizacja'] ?>
+							</p>
+							
+                            <p class="desc"><?= _currency($i['koszt']) ?> <span class="separator">|</span> <?= pl_dopelniacz($i['liczba_dni'], 'dzień', 'dni', 'dni') ?> <span class="separator">|</span> <?= pl_dopelniacz($i['liczba_poslow'], 'posel', 'posłów', 'posłów') ?></p>
+                        </div>
+                    </li>
+                <? } ?>
+                
+            </ul>
+
+        </div>
+        
         <div class="col-md-6">
 
             <h3>Indywidualnie</h3>
@@ -63,25 +183,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
             <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
 
         </div>
-        <div class="col-md-6">
-
-            <h3>Klubowo</h3>
-
-            <?php
-            $klubowoChartData = array();
-            foreach ($stats['calosc']['klubowe'] as $i) {
-                array_push($klubowoChartData, array(
-                    "name" => $i['nazwa'],
-                    "link" => "/dane/sejm_kluby/" . $i['id'],
-                    "image" => "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png",
-                    "ilosc" => floatval($i['count']),
-                    "y" => floatval($i['sum'])
-                ));
-            };?>
-            <div class="pieChartKlubowo" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"
-                 data-kluby='<?php echo json_encode($klubowoChartData) ?>'></div>
-
-        </div>
+        
     </div>
 
 </div>
@@ -110,554 +212,79 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 <div class="col-md-10 col-md-offset-1">
 
-<ul class="controversy">
-
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/9.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/12">Paweł Arndt</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">CHORWAC JA Dubrownik. ZP NATO Doroczna sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/17.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/21">Barbara Bartuś</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/2">PiS</a>)</span></p>
-
-        <p class="event">ROSJA Moskwa, Irkuck, Władywostok. ZP OBWE Obserwacja wyborów parlamentarnych</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2011-11-30 - 2011-12-05</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2011-12-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/768.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/26">Robert Biedroń</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/5">RP</a>)</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/38.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/50">Renata Butryn</a> <span class="klub">(<a href="/dane/sejm_kluby/1">PO</a>)</span>
-        </p>
-
-        <p class="event">LITWA Wilno. ZP NATO Wiosenna Sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-05-29 - 2014-06-02</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-05-30</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/93.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/102">Zbigniew Girzyński</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/2">PiS</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 2 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-04-22 - 2012-04-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-04-25</span> <span
-                class="label label-danger">2012-04-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-26</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/802.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/113">Jarosław Górczyński</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/3">PSL</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/108.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/118">Mariusz Grad</a> <span class="klub">(<a href="/dane/sejm_kluby/1">PO</a>)</span>
-        </p>
-
-        <p class="event">ROSJA Moskwa, Irkuck, Władywostok. ZP OBWE Obserwacja wyborów parlamentarnych</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2011-11-30 - 2011-12-05</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2011-12-01</span></p>
-
-        <p class="event">ALBANIA Tirana. ZP OBWE Obserwacja wyborów parlamentarnych w Albanii</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-06-20 - 2013-06-24</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-06-21</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/115.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/124">Iwona Guzowska</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/117.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/125">Andrzej Halicki</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 2 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-04-22 - 2012-04-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-04-25</span> <span
-                class="label label-danger">2012-04-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/121.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/129">Adam Hofman</a> <span class="klub">(<a href="/dane/sejm_kluby/2">PiS</a>)</span>
-        </p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-26</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/122.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/133">Stanisław Huskowski</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-25</span> <span
-                class="label label-danger">2012-01-26</span> <span class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 2 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-04-22 - 2012-04-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-04-25</span> <span
-                class="label label-danger">2012-04-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/123.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/134">Tadeusz Iwiński</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/4">SLD</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-25</span> <span
-                class="label label-danger">2014-06-26</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/819.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/157">Mariusz Antoni Kamiński</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/2">PiS</a>)</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-26</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/153.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/163">Jan Kaźmierczak</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/160.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/170">Joanna Kluzik-Rostkowska</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">ALBANIA Tirana. ZP OBWE Obserwacja wyborów parlamentarnych w Albanii</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-06-20 - 2013-06-24</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-06-21</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/845.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/235">Jagna Marczułajtis-Walczak</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/250.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/254">Arkadiusz Mularczyk</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/6">SP</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-25</span> <span
-                class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/855.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/267">Wanda Nowicka</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/7">Niezrzeszeni</a>)</span></p>
-
-        <p class="event">EKWADOR Quito. UM 128 Sesja Unii Międzyparlamentarnej oraz spotkanie Stowarzyszenia Sekretarzy
-            Generalnych</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-03-20 - 2013-03-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-03-22</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/263.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/268">Mirosława Nykiel</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 2 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-04-22 - 2012-04-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-04-25</span> <span
-                class="label label-danger">2012-04-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/273.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/276">Maciej Orzechowski</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/861.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/291">Wojciech Penkalski</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/5">RP</a>)</span></p>
-
-        <p class="event">LITWA Wilno. ZP NATO Wiosenna Sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-05-29 - 2014-06-02</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-05-30</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/310.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/321">Elżbieta Radziszewska</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 1 część sesji 2012</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-01-21 - 2012-01-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-01-26</span> <span
-                class="label label-danger">2012-01-27</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 2 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-04-22 - 2012-04-27</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-04-25</span> <span
-                class="label label-danger">2012-04-27</span></p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/318.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/326">Adam Rogacki</a> <span class="klub">(<a href="/dane/sejm_kluby/2">PiS</a>)</span>
-        </p>
-
-        <p class="event">FRANCJA, Strasburg. ZPRE 3 część sesji 2012 r.</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2012-06-24 - 2012-06-29</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2012-06-28</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-26</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/337.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/349">Dariusz Seliga</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/2">PiS</a>)</span></p>
-
-        <p class="event">CHORWAC JA Dubrownik. ZP NATO Doroczna sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/884.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/358">Henryk Smolarz</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/3">PSL</a>)</span></p>
-
-        <p class="event">ALBANIA Tirana. ZP OBWE Obserwacja wyborów parlamentarnych w Albanii</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-06-20 - 2013-06-24</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-06-21</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/366.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/369">Paweł Suski</a> <span class="klub">(<a href="/dane/sejm_kluby/1">PO</a>)</span>
-        </p>
-
-        <p class="event">CHORWAC JA Dubrownik. ZP NATO Doroczna sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/370.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/373">Michał Szczerba</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">LITWA Wilno. ZP NATO Wiosenna Sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-05-29 - 2014-06-02</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-05-30</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/394.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/403">Cezary Tomczyk</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
-
-        <p class="event">CHORWAC JA Dubrownik. ZP NATO Doroczna sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p>
-
-        <p class="event">LITWA Wilno. ZP NATO Wiosenna Sesja</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-05-29 - 2014-06-02</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-05-30</span></p></div>
-</li>
-
-<li class="row">
-    <div class="col-md-1 text-right">
-        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/442.jpg"/>
-    </div>
-    <div class="col-md-11">
-        <p class="title"><a href="/dane/poslowie/441">Łukasz Zbonikowski</a> <span class="klub">(<a
-                    href="/dane/sejm_kluby/2">PiS</a>)</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 3 część sesji 2014</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-06-21 - 2014-06-28</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-06-26</span></p>
-
-        <p class="event">FRANCJA Strasburg. ZPRE 4 część sesji</p>
-
-        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2014-09-27 - 2014-10-03</span>. Poseł
-            głosował w Sejmie w dniach: <span class="label label-danger">2014-10-01</span></p>
-
-    </div>
-</li>
-
-
-</ul>
+	<ul class="controversy">
+	
+		<? foreach( $stats['wydarzenia'] as $w ) { ?> 
+			
+			<li>
+				
+				
+				<div class="loc">
+					<p class="w_title pull-left"><a href="#"><?= $w['data']['delegacja'] ?></a></p>
+					<p class="pull-right"><span class="licza_dni"><?= pl_dopelniacz($w['data']['liczba_dni'], 'dzień', 'dni', 'dni') ?></span> <span class="label label-warning"><?= $w['data']['date_start'] ?> - <?= $w['data']['date_stop'] ?></span></p> 
+				</div>
+				
+				<p class="desc"><?= $w['data']['lokalizacja'] ?></p>
+				
+				<ul class="poslowie">
+					
+					<li class="row">
+						<p class="col-sm-4">Poseł</p>
+						<p class="col-sm-2">Transport</p>
+						<p class="col-sm-2">Hotel</p>
+						<p class="col-sm-2">Dieta</p>
+						<p class="col-sm-2 text-right">Aktywności w Sejmie</p>
+					</li>
+					
+				<? foreach( $w['poslowie'] as $p ) {?>
+				
+					<li class="row">
+						
+						<p class="col-sm-4">
+							<img class="border"
+                                 src="http://resources.sejmometr.pl/mowcy/a/3/<?= $p['mowca_id'] ?>.jpg"/>
+							<a class="title" href="#"><?= $p['nazwa'] ?></a> <span class="klub"><a href="#"><?= $p['klub_skrot'] ?></a></span> 
+						</p>
+						<p class="col-sm-2">
+							<?= _currency($p['koszt_transport']) ?>
+						</p>
+						<p class="col-sm-2">
+							<?= _currency($p['koszt_hotel']) ?>
+						</p>
+						<p class="col-sm-2">
+							<?= _currency($p['koszt_dieta']) ?>
+						</p>
+						<p class="col-sm-2 text-right">
+							<span class="label label-danger"><?= implode('</span> <span class="label label-danger">', $p['glosowania_dni']) ?></span>
+						</p>
+						
+					</li>
+				
+				<? } ?>
+				</ul>
+			
+			</li>
+			
+		<? /*
+		<li class="row">
+		    <div class="col-md-1 text-right">
+		        <img class="border" src="http://resources.sejmometr.pl/mowcy/a/2/9.jpg"/>
+		    </div>
+		    <div class="col-md-11">
+		        <p class="title"><a href="/dane/poslowie/12">Paweł Arndt</a> <span class="klub">(<a
+		                    href="/dane/sejm_kluby/1">PO</a>)</span></p>
+		
+		        <p class="event">CHORWAC JA Dubrownik. ZP NATO Doroczna sesja</p>
+		
+		        <p class="dates">Wydarzenie w dniach: <span class="label label-warning">2013-10-10 - 2013-10-15</span>. Poseł
+		            głosował w Sejmie w dniach: <span class="label label-danger">2013-10-11</span></p></div>
+		</li>
+		<? */ ?>
+		
+		<? } ?>
+	
+	
+	</ul>
 
 </div>
 
