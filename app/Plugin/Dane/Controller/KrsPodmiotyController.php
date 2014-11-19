@@ -259,6 +259,7 @@ class KrsPodmiotyController extends DataobjectsController {
 			$desc_bodies_parts[] = 'otrzymane dotacje';
 		$this->set( 'dotacje', $this->API->getObjects() );
 		
+		$desc_bodies_parts[] = 'odpis z KRS';
 
 		$dzialalnosc = $this->object->getLayer( 'dzialalnosci' );
 		if ( $dzialalnosc ) {
@@ -267,7 +268,7 @@ class KrsPodmiotyController extends DataobjectsController {
 				'idTag'   => 'dzialalnosc',
 				'content' => $dzialalnosc,
 			);
-			$desc_bodies_parts[] = 'działalność według PKD';
+			$desc_bodies_parts[] = 'działalność PKD';
 		}
 		$menu[] = array(
 			'id'    => 'dzialalnosc',
@@ -279,7 +280,6 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		$this->set( '_menu', $menu );
 		
-		$desc_bodies_parts[] = 'odpis z KRS';
 		$desc_parts[] = ucfirst(implode(', ', $desc_bodies_parts));
 		$this->setMetaDesc(implode('. ', $desc_parts) . '.');
 

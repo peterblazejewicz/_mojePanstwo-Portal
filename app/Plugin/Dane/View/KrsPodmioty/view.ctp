@@ -338,7 +338,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
 	                                        $osoba['data_urodzenia'] != '0000-00-00'
 	                                    ) {
 	                                        ?>
-	                                        <span itemprop="birthDate" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
+	                                        <span itemprop="birthDate" datetime="<?= substr($osoba['data_urodzenia'], 0, 4) ?>" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
 	                                    <? } ?>
 	                                </h4>
 
@@ -409,7 +409,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
 		                        $osoba['data_urodzenia'] != '0000-00-00'
 		                    ) {
 		                        ?>
-		                        <span itemprop="birthDate" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
+		                        <span itemprop="birthDate" datetime="<?= substr($osoba['data_urodzenia'], 0, 4) ?>" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
 		                    <? } ?>
 		                </h4>
 		
