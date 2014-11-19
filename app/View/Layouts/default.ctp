@@ -29,7 +29,7 @@
     ));
     echo $this->Html->meta(array(
         'property' => 'og:image',
-        'content' => FULL_BASE_URL . '/img/favicon/facebook-400x400.png'
+        'content' => FULL_BASE_URL . '/img/favicon/facebook-400x400.jpg'
     ));
     echo $this->Html->meta(array('property' => 'fb:admins', 'content' => '100000234760647'));
     echo $this->Html->meta(array('property' => 'fb:admins', 'content' => '100000078295509'));
