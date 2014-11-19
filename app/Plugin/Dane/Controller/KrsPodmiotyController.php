@@ -332,10 +332,23 @@ class KrsPodmiotyController extends DataobjectsController {
 		$this->dataobjectsBrowserView( array(
 			'source'         => 'krs_podmioty.zamowienia:' . $this->object->getId(),
 			'dataset'        => 'zamowienia_publiczne',
-			'title'          => 'Zamówienia publiczne udzielone organizacji',
+			'title'          => 'Udzielone zamówienia publiczne',
 			'noResultsTitle' => 'Brak zamówień publicznych',
 		) );
-		$this->set( 'title_for_layout', 'Zamówienia publiczne udzielone organizacji ' . $this->object->getTitle() );
+		$this->set( 'title_for_layout', 'Zamówienia publiczne udzielone ' . $this->object->getTitle() );
+
+	}
+	
+	public function dotacje() {
+
+		$this->_prepareView();
+		$this->dataobjectsBrowserView( array(
+			'source'         => 'krs_podmioty.dotacje_ue:' . $this->object->getId(),
+			'dataset'        => 'dotacje_ue',
+			'title'          => 'Udzielone dotacje',
+			'noResultsTitle' => 'Brak dotacji',
+		) );
+		$this->set( 'title_for_layout', 'Dotacje udzielone ' . $this->object->getTitle() );
 
 	}
 
