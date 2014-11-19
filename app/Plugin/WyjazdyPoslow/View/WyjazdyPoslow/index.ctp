@@ -3,22 +3,7 @@ $this->Combinator->add_libs('css', $this->Less->css('wyjazdy_poslow', array('plu
 $this->Combinator->add_libs('js', '../plugins/highcharts/js/highcharts');
 $this->Combinator->add_libs('js', '../plugins/highcharts/locals');
 $this->Combinator->add_libs('js', '../plugins/highcharts/plugin/map');
-//$this->Combinator->add_libs('js', '../plugins/highmaps/js/highmaps');
 $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
-?>
-
-<? /*
-<div class="app-header">
-	<div class="container">
-		<h1>Wyjazdy zagraniczne posłów</h1>
-
-        <p class="desc">       
-	        Sprawdź gdzie latają podróżują w ramach swojej pracy. <a href="http://blog.epf.org.pl/2014/11/afera-madrycka/" target="_blank">Przeczytaj także o metodologii i kontrowersjach</a> związanych z tymi danymi.
-	    </p>
-	    
-	</div>
-</div>
-*/
 ?>
 
 <div class="maplabel">
@@ -121,8 +106,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                     "link" => "/dane/sejm_kluby/" . $i['id'],
                     "image" => ($i['id'] != 8) ? "http://resources.sejmometr.pl/s_kluby/" . $i['id'] . "_s_t.png" : '',
                     "ilosc" => (int)$i['count'],
-                    "y" => round($i['avg'], 2),
-                    "sum" => round($i['sum'], 2)
+                    "y" => (int)($i['avg']),
+                    "avg" => _currency(round($i['avg'], 2)),
+                    "sum" => _currency($i['sum'])
                 ));
             };?>
             <div class="pieChartKlubowo" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"

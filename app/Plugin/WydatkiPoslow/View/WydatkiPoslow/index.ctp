@@ -23,9 +23,27 @@
             </div>
             <div class="scene sejm" data-scene="2">
                 <div class="building"></div>
-                <div class="stat przejazd">
-                    <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
-                    <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
+                <div class="stat wyplacane">
+                    <p>Wynagrodzenia wypłacane na podstawie<br>zawartych przez posła umów zleceń<br>i o dzieło wraz z
+                        pochodnymi</p>
+                    <strong><?= number_format($biura[4]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat pracownikow">
+                    <p>Wynagrodzenia pracowników biura poselskiego<br>zatrudnionych na podstawie<br>umowy o pracę wraz z
+                        pochodnymi</p>
+                    <strong><?= number_format($biura[2]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat zlecenia">
+                    <p>(TRZECIA WARTOŚć)</p>
+                    <strong>0
                         <small>PLN</small>
                     </strong>
 
@@ -41,9 +59,45 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="stat konserwacje">
+                    <p>Koszty konserwacji i naprawy<br>sprzętu techniczneg obiura poselskiego<br>oraz koszty jego
+                        eksploatacji</p>
+                    <strong><?= number_format($biura[13]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat naprawy">
+                    <p>Koszty drobnych napraw<br>i remontów lokalu biura poselskiego</p>
+                    <strong><?= number_format($biura[14]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
                 <div class="marker"></div>
             </div>
-            <div class="scene szpital" data-scene="4">
+            <div class="scene sklep" data-scene="4">
+                <div class="stat materialy">
+                    <p>Zakup materiałów biurowych,<br>prasy, wydawnictw, środków bhp itp</p>
+                    <strong><?= number_format($biura[15]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat srodki">
+                    <p>Zakup środków trwalych<br>o charakterze wyposażenia</p>
+                    <strong><?= number_format($biura[16]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="marker"></div>
+            </div>
+            <div class="scene szpital" data-scene="5">
                 <div class="stat korespondencja">
                     <p>Korespondencja i ogłoszenia</p>
                     <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
@@ -61,7 +115,7 @@
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
             </div>
-            <div class="scene bank" data-scene="5">
+            <div class="scene bank" data-scene="6">
                 <div class="stat rachunki">
                     <p>Obsługa rachunkowo-księgowa<br>i bankowa biur poselskich</p>
                     <strong><?= number_format($biura[20]['wartosc'], 0, '.', ' ') ?>
@@ -71,7 +125,7 @@
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
             </div>
-            <div class="scene spotkanie" data-scene="6">
+            <div class="scene spotkanie" data-scene="7">
                 <div class="name">
                     <p>Spotkanie z posłem</p>
                 </div>
@@ -84,8 +138,16 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="stat przejazd">
+                    <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
+                    <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
             </div>
-            <div class="scene tlumaczenia" data-scene="7">
+            <div class="scene tlumaczenia" data-scene="8">
                 <div class="stat ekspertyzy">
                     <p>Ekspertyzy, opinie, tłumaczenia</p>
                     <strong><?= number_format($biura[5]['wartosc'], 0, '.', ' ') ?>
@@ -95,7 +157,7 @@
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
             </div>
-            <div class="scene dom" data-scene="8">
+            <div class="scene dom" data-scene="9">
                 <div class="stat prywatny">
                     <p>Koszty wynajmu kwater prywatnych</p>
                     <strong>209 304
@@ -113,7 +175,7 @@
                     <div class="icon posel">wydatki na posłów w 2013r.</div>
                 </div>
             </div>
-            <div class="scene droga" data-scene="9">
+            <div class="scene droga" data-scene="10">
                 <div class="stat taksowka">
                     <p>Przejazdy posłów taksówkami</p>
                     <strong><?= number_format($biura[11]['wartosc'], 0, '.', ' ') ?>
@@ -124,7 +186,7 @@
                 </div>
                 <div class="marker"></div>
             </div>
-            <div class="scene lotnisko" data-scene="10">
+            <div class="scene lotnisko" data-scene="11">
                 <div class="building"></div>
                 <div class="stat loty">
                     <p>Podróże służbowe pracowników<br>biur poselskich</p>
@@ -138,8 +200,8 @@
                 </div>
                 <div class="marker"></div>
             </div>
-            <div class="scene lot" data-scene="11"></div>
-            <div class="scene stats" data-scene="12">
+            <div class="scene lot" data-scene="12"></div>
+            <div class="scene stats" data-scene="13">
                 <div class="screen">
                     <div class="container">
                         <div class="col-xs-12">
