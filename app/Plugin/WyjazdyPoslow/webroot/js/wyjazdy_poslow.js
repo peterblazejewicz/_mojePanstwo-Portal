@@ -218,7 +218,7 @@ $(function () {
         },
         tooltip: {
             headerFormat: '',
-            pointFormat: '<b>{point.fullname}</b><br>Liczba wyjazdów: <b>{point.ilosc}<br>Koszt wyjazdów: <b>{point.sum}<br>Średnio na posła: <b>{point.y}</b>'
+            pointFormat: '<b>{point.fullname}</b><br>Liczba wyjazdów: <b>{point.ilosc}<br>Koszt wyjazdów: <b>{point.sum}<br>Średnio na posła: <b>{point.avg}</b>'
         }
         /*,
          plotOptions: {
