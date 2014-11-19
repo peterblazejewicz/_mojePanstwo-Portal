@@ -23,9 +23,27 @@
             </div>
             <div class="scene sejm" data-scene="2">
                 <div class="building"></div>
-                <div class="stat przejazd">
-                    <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
-                    <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
+                <div class="stat wyplacane">
+                    <p>Wynagrodzenia wypłacane na podstawie<br>zawartych przez posła umów zleceń<br>i o dzieło wraz z
+                        pochodnymi</p>
+                    <strong><?= number_format($biura[4]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat pracownikow">
+                    <p>Wynagrodzenia pracowników biura poselskiego<br>zatrudnionych na podstawie<br>umowy o pracę wraz z
+                        pochodnymi</p>
+                    <strong><?= number_format($biura[2]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat zlecenia">
+                    <p>(TRZECIA WARTOŚć)</p>
+                    <strong>0
                         <small>PLN</small>
                     </strong>
 
@@ -41,12 +59,37 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="stat konserwacje">
+                    <p>Koszty konserwacji i naprawy<br>sprzętu techniczneg obiura poselskiego<br>oraz koszty jego
+                        eksploatacji</p>
+                    <strong><?= number_format($biura[13]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat naprawy">
+                    <p>Koszty drobnych napraw<br>i remontów lokalu biura poselskiego</p>
+                    <strong><?= number_format($biura[14]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
                 <div class="marker"></div>
             </div>
             <div class="scene sklep" data-scene="4">
-                <div class="stat biura">
-                    <p>Koszty wynajmu lokalu<br>na biura poselskie</p>
-                    <strong><?= number_format($biura[12]['wartosc'], 0, '.', ' ') ?>
+                <div class="stat materialy">
+                    <p>Zakup materiałów biurowych,<br>prasy, wydawnictw, środków bhp itp</p>
+                    <strong><?= number_format($biura[15]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat srodki">
+                    <p>Zakup środków trwalych<br>o charakterze wyposażenia</p>
+                    <strong><?= number_format($biura[16]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
@@ -90,6 +133,14 @@
                 <div class="stat sala">
                     <p>Koszty wynajmowania sal<br>na spotkania z wyborcami</p>
                     <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
+                <div class="stat przejazd">
+                    <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
+                    <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
