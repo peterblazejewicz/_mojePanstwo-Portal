@@ -73,6 +73,7 @@ class AppController extends Controller {
 	public $statusbarCrumbs = array();
 	public $statusbarMode = false;
 	public $User = false;
+	public $meta = array();
 
 	public $Applications = array(
 		array(
@@ -350,5 +351,25 @@ class AppController extends Controller {
 		$this->statusbarCrumbs[] = $item;
 		$this->set( 'statusbarCrumbs', $this->statusbarCrumbs );
 
+	}
+	
+	public function setMeta($key, $val) {
+		
+		if( !$val )
+			return false; 
+		
+		$this->meta[ $key ] = $val;
+		$this->set('_META', $this->meta);
+		
+		return $val;
+		
+	}
+	
+	public function setMetaDesc($val) {
+		return $this->setMetaDescription($val);
+	}
+	
+	public function setMetaDescription($val) {
+		return $this->setMeta('description', $val);
 	}
 }

@@ -3,6 +3,10 @@
 <head>
     <title><?= htmlspecialchars(strip_tags($title_for_layout)) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <? if( isset($_META) && !empty($_META) ) {
+		foreach( $_META as $key => $val ) 
+		    echo $this->Html->meta(array('property' => $key, 'content' => $val));
+    } ?>
     <?php echo $this->Html->meta('favicon.ico', '/img/favicon/fav.ico', array('type' => 'icon')); ?>
     <?php echo $this->Html->meta('favicon.ico', '/img/favicon/apple-touch-icon.ico', array(
         'type' => 'icon',
@@ -25,7 +29,7 @@
     echo $this->Html->meta(array('property' => 'og:title', 'content' => strip_tags($title_for_layout)));
     echo $this->Html->meta(array(
         'property' => 'og:description',
-        'content' => strip_tags(__('LC_MAINHEADER_TEXT'))
+        'content' => (isset($_META) && array_key_exists('description', $_META)) ? strip_tags($_META['description']) : strip_tags(__('LC_MAINHEADER_TEXT'))
     ));
     echo $this->Html->meta(array(
         'property' => 'og:image',

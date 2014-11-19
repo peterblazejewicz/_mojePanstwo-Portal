@@ -318,120 +318,116 @@ $this->Combinator->add_libs('js', 'graph-krs');
 
                         <? if ($organ['content']) { ?>
                         <div class="list-group less-borders">
+                            
                             <? foreach ($organ['content'] as $osoba) { ?>
-
-                            <? if (@$osoba['osoba_id']) { ?>
-                            <a class="list-group-item" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/Person">
+							
+                            	
+	                            <? if (@$osoba['osoba_id']) { ?>
+	                            <a class="list-group-item" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/OrganizationRole">
                                 <? } elseif (@$osoba['krs_id']) { ?>
-                                <a class="list-group-item" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/Organization">
-                                    <? } else { ?>
-                                    <div class="list-group-item">
-                                        <? } ?>
+                                <a class="list-group-item" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>" itemprop="member" itemscope itemtype="http://schema.org/OrganizationRole">
+                                <? } else { ?>
+                                <div class="list-group-item" itemprop="member" itemscope itemtype="http://schema.org/OrganizationRole">
+	                            <? } ?>
 
-                                        <h4 class="list-group-item-heading">
-                                            <span itemprop="name"><?= $osoba['nazwa'] ?></span>
-                                            <? if (
-                                                ($osoba['privacy_level'] != '1') &&
-                                                $osoba['data_urodzenia'] &&
-                                                $osoba['data_urodzenia'] != '0000-00-00'
-                                            ) {
-                                                ?>
-                                                <span class="wiek">
-                                                    <?= substr($osoba['data_urodzenia'], 0, 4) ?>'
-                                                </span>
-                                            <? } ?>
-                                        </h4>
+	                                <h4 class="list-group-item-heading" itemprop="member" itemscope itemtype="http://schema.org/OrganizationPerson">
+	                                    <span itemprop="name"><?= $osoba['nazwa'] ?></span>
+	                                    <? if (
+	                                        ($osoba['privacy_level'] != '1') &&
+	                                        $osoba['data_urodzenia'] &&
+	                                        $osoba['data_urodzenia'] != '0000-00-00'
+	                                    ) {
+	                                        ?>
+	                                        <span itemprop="birthDate" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
+	                                    <? } ?>
+	                                </h4>
 
-                                        <?
-                                        if (isset($osoba['funkcja']) && $osoba['funkcja']) {
+                                    <?
+                                    if (isset($osoba['funkcja']) && $osoba['funkcja']) {
 
-                                            if ($organ['idTag'] == 'reprezentacja') {
+                                        if ($organ['idTag'] == 'reprezentacja') {
 
-                                                $useLabel = true;
-                                                $class = 'warning';
-                                                foreach (array('prezes', 'prezydent', 'przewodnicząc') as $phr) {
-                                                    if (stripos($osoba['funkcja'], ltrim($phr)) === 0) {
-                                                        $class = 'danger';
-                                                        break;
-                                                    }
+                                            $useLabel = true;
+                                            $class = 'warning';
+                                            foreach (array('prezes', 'prezydent', 'przewodnicząc') as $phr) {
+                                                if (stripos($osoba['funkcja'], ltrim($phr)) === 0) {
+                                                    $class = 'danger';
+                                                    break;
                                                 }
-
-                                            } else {
-
-                                                $useLabel = false;
-
                                             }
 
-                                            ?>
-                                            <p class="list-group-item-text <? if ($useLabel) { ?> label label-<?= $class ?><? } ?>">
-                                                <?= $osoba['funkcja'] ?>
-                                            </p>
-                                        <? } ?>
+                                        } else {
+                                            $useLabel = false;
+                                        }
+                                    ?>
+                                        <p itemprop="namedPosition" class="list-group-item-text <? if ($useLabel) { ?> label label-<?= $class ?><? } ?>"><?= $osoba['funkcja'] ?></p>
+                                    <? } ?>
 
-                                        <? if (@$osoba['osoba_id'] || @$osoba['krs_id']) { ?>
+                                <? if (@$osoba['osoba_id'] || @$osoba['krs_id']) { ?>
                                 </a>
                                 <? } else { ?>
+		                        </div>
+			                    <? } ?>
+		                    <? } ?>
 
-                        </div>
-                    <? } ?>
-                    <? } ?>
-                    </div>
-                    <? } ?>
-                </div>
-            </div>
-            <? } ?>
+	                    </div>
+	                    <? } ?>
+	                </div>
+	            </div>
+	            <? } ?>
             <? } ?>
         </div>
-
     </div>
 
 
     <? if ($wspolnicy = $object->getLayer('wspolnicy')) { ?>
 
     <div class="wspolnicy block">
-        <div class="block-header"><h2 class="label">Udziały w tej firmie posiadają:</h2></div>
+        <div class="block-header">
+	        <h2 class="label">Udziałowcy:</h2>
+	    </div>
 
         <div id="wspolnicy_graph">
             <div class="list-group less-borders wspolnicy">
                 <? foreach ($wspolnicy as $osoba) { ?>
-
-                <? if (@$osoba['osoba_id']) { ?>
-                <a class="list-group-item row" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>">
-                    <? } elseif (@$osoba['krs_id']) { ?>
-                    <a class="list-group-item row" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>">
-                        <? } else { ?>
-                        <div class="list-group-item row">
-                            <? } ?>
-
-                            <h4 class="list-group-item-heading col-xs-6">
-                                <?= $osoba['nazwa'] ?>
-                                <? if (
-                                    ($osoba['privacy_level'] != '1') &&
-                                    $osoba['data_urodzenia'] &&
-                                    $osoba['data_urodzenia'] != '0000-00-00'
-                                ) {
-                                    ?>
-                                    <span class="wiek">
-                                        <?= pl_dopelniacz(pl_wiek($osoba['data_urodzenia']), 'rok', 'lata', 'lat') ?>
-                                    </span>
-                                <? } ?>
-                            </h4>
-
-                            <? if (isset($osoba['funkcja']) && $osoba['funkcja']) { ?>
-                                <p class="list-group-item-text normalizeText col-xs-6">
-                                    <?= $osoba['funkcja'] ?>
-                                </p>
-                            <? } ?>
-
-                            <? if (@$osoba['osoba_id'] || @$osoba['krs_id']) { ?>
-                    </a>
-                    <? } else { ?>
-
-            </div>
-            <? } ?>
-            <? } ?>
-        </div>
-    </div>
+					
+					<span itemprop="member" itemscope itemtype="http://schema.org/OrganizationRole">
+					
+		                <? if (@$osoba['osoba_id']) { $class="Person"; ?>
+			                <a class="list-group-item row" href="/dane/krs_osoby/<?= $osoba['osoba_id'] ?>" >
+		                <? } elseif (@$osoba['krs_id']) { $class="Organization"; ?>
+		                    <a class="list-group-item row" href="/dane/krs_podmioty/<?= $osoba['krs_id'] ?>">
+		                <? } else { $class="Intangible"; ?>
+		                    <div class="list-group-item row">
+		                <? } ?>
+		
+		                <h4 class="list-group-item-heading col-xs-6" itemprop="member" itemscope itemtype="http://schema.org/Organization<?= $class ?>">
+		                    <span itemprop="name"><?= $osoba['nazwa'] ?></span>
+		                    <? if (
+		                        ($osoba['privacy_level'] != '1') &&
+		                        $osoba['data_urodzenia'] &&
+		                        $osoba['data_urodzenia'] != '0000-00-00'
+		                    ) {
+		                        ?>
+		                        <span itemprop="birthDate" class="wiek"><?= substr($osoba['data_urodzenia'], 0, 4) ?>'</span>
+		                    <? } ?>
+		                </h4>
+		
+		                <? if (isset($osoba['funkcja']) && $osoba['funkcja']) { ?>
+		                    <p itemprop="namedPosition" class="list-group-item-text normalizeText col-xs-6"><?= $osoba['funkcja'] ?></p>
+		                <? } ?>
+		
+		                <? if (@$osoba['osoba_id'] || @$osoba['krs_id']) { ?>
+		                    </a>
+		                <? } else { ?>
+				            </div>
+			            <? } ?>
+		            
+		            </span>
+		            
+	            <? } ?>
+	        </div>
+	    </div>
     </div>
 
     <? } ?>

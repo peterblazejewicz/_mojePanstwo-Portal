@@ -149,6 +149,9 @@ class DataobjectsController extends DaneAppController {
 			$this->set( 'menu', $this->menu );
 			$this->set( 'menuMode', $this->menuMode );
 			$this->set( 'title_for_layout', $title_for_layout );
+			
+			if( $desc = $this->object->getDescription() )
+				$this->setMetaDescription($desc);
 
 		} else {
 

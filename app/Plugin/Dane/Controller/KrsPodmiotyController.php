@@ -26,7 +26,7 @@ class KrsPodmiotyController extends DataobjectsController {
 	}
 
 	public function view() {
-
+				
 		$this->addInitLayers( array(
 			'reprezentacja',
 			'wspolnicy',
@@ -45,6 +45,9 @@ class KrsPodmiotyController extends DataobjectsController {
 
 		$this->_prepareView();
 				
+		$desc_parts = array('Informacje gospodarcze o ' . $this->object->getShortTitle());
+		$desc_bodies_parts = array();
+		
 		if ( $this->Session->read( 'KRS.odpis' ) == $this->object->getId() ) {
 
 			$odpis = $this->object->getLayer( 'odpis' );
@@ -114,23 +117,7 @@ class KrsPodmiotyController extends DataobjectsController {
 		
 		
 		
-		$zamowienia = $this->API->search( array(
-			'limit'      => 9,
-			'conditions' => array(
-				'_source' => 'krs_podmioty.zamowienia:' . $this->object->getId(),
-				'dataset' => 'zamowienia_publiczne',
-			),
-		) );
-		$this->set( 'zamowienia', $this->API->getObjects() );
 		
-		$dotacje = $this->API->search( array(
-			'limit'      => 9,
-			'conditions' => array(
-				'_source' => 'krs_podmioty.dotacje_ue:' . $this->object->getId(),
-				'dataset' => 'dotacje_ue',
-			),
-		) );
-		$this->set( 'dotacje', $this->API->getObjects() );
 
 		/*
 		$obszary = new MP\Obszary();
@@ -164,9 +151,15 @@ class KrsPodmiotyController extends DataobjectsController {
 				'id'    => 'reprezentacja',
 				'label' => $this->object->getData( 'nazwa_organu_reprezentacji' ),
 			);
+			
+			$desc_bodies_parts[] = mb_strtolower( $this->object->getData('nazwa_organu_reprezentacji') );
 		}
 
 		$wspolnicy = $this->object->getLayer( 'wspolnicy' );
+		if( $wspolnicy )
+			$desc_bodies_parts[] = 'udziałowcy';
+		
+		
 		/*
 		if (!empty($wspolnicy)) {
 			$organy[] = array(
@@ -180,33 +173,7 @@ class KrsPodmiotyController extends DataobjectsController {
 			);
 		}
 		*/
-
-		$akcjonariusze = $this->object->getLayer( 'jedynyAkcjonariusz' );
-		if ( ! empty( $akcjonariusze ) ) {
-			$organy[] = array(
-				'title'   => 'Jedyny akcjonariusz',
-				'idTag'   => 'akcjonariusz',
-				'content' => $akcjonariusze,
-			);
-			$menu[]   = array(
-				'id'    => 'akcjonariusz',
-				'label' => 'Jedyny akcjonariusz',
-			);
-		}
-
-		$prokurenci = $this->object->getLayer( 'prokurenci' );
-		if ( ! empty( $prokurenci ) ) {
-			$organy[] = array(
-				'title'   => 'Prokurenci',
-				'idTag'   => 'prokurenci',
-				'content' => $prokurenci,
-			);
-			$menu[]   = array(
-				'id'    => 'prokurenci',
-				'label' => 'Prokurenci',
-			);
-		}
-
+		
 		$nadzor = $this->object->getLayer( 'nadzor' );
 		if ( ! empty( $nadzor ) ) {
 			$organy[] = array(
@@ -219,6 +186,7 @@ class KrsPodmiotyController extends DataobjectsController {
 				'id'    => 'nadzor',
 				'label' => $this->object->getData( 'nazwa_organu_nadzoru' ),
 			);
+			$desc_bodies_parts[] = mb_strtolower($this->object->getData( 'nazwa_organu_nadzoru' ));
 		}
 
 		$komitetZalozycielski = $this->object->getLayer( 'komitetZalozycielski' );
@@ -232,11 +200,65 @@ class KrsPodmiotyController extends DataobjectsController {
 				'id'    => 'zalozyciele',
 				'label' => 'Komitet założycielski',
 			);
+			$desc_bodies_parts[] = 'komitet założycielski';
+		}
+		
+		$akcjonariusze = $this->object->getLayer( 'jedynyAkcjonariusz' );
+		if ( ! empty( $akcjonariusze ) ) {
+			$organy[] = array(
+				'title'   => 'Jedyny akcjonariusz',
+				'idTag'   => 'akcjonariusz',
+				'content' => $akcjonariusze,
+			);
+			$menu[]   = array(
+				'id'    => 'akcjonariusz',
+				'label' => 'Jedyny akcjonariusz',
+			);
+			
+			$desc_bodies_parts[] = 'akcjonariusze';
 		}
 
+		$prokurenci = $this->object->getLayer( 'prokurenci' );
+		if ( ! empty( $prokurenci ) ) {
+			$organy[] = array(
+				'title'   => 'Prokurenci',
+				'idTag'   => 'prokurenci',
+				'content' => $prokurenci,
+			);
+			$menu[]   = array(
+				'id'    => 'prokurenci',
+				'label' => 'Prokurenci',
+			);
+			$desc_bodies_parts[] = 'prokurenci';
+		}
 
+		
 		$this->set( 'organy', $organy );
-
+		
+		
+		
+		$zamowienia = $this->API->search( array(
+			'limit'      => 9,
+			'conditions' => array(
+				'_source' => 'krs_podmioty.zamowienia:' . $this->object->getId(),
+				'dataset' => 'zamowienia_publiczne',
+			),
+		) );
+		if( $zamowienia )
+			$desc_bodies_parts[] = 'realizowane zamówienia publiczne';
+		$this->set( 'zamowienia', $this->API->getObjects() );
+		
+		$dotacje = $this->API->search( array(
+			'limit'      => 9,
+			'conditions' => array(
+				'_source' => 'krs_podmioty.dotacje_ue:' . $this->object->getId(),
+				'dataset' => 'dotacje_ue',
+			),
+		) );
+		if( $dotacje )
+			$desc_bodies_parts[] = 'otrzymane dotacje';
+		$this->set( 'dotacje', $this->API->getObjects() );
+		
 
 		$dzialalnosc = $this->object->getLayer( 'dzialalnosci' );
 		if ( $dzialalnosc ) {
@@ -245,6 +267,7 @@ class KrsPodmiotyController extends DataobjectsController {
 				'idTag'   => 'dzialalnosc',
 				'content' => $dzialalnosc,
 			);
+			$desc_bodies_parts[] = 'działalność według PKD';
 		}
 		$menu[] = array(
 			'id'    => 'dzialalnosc',
@@ -255,7 +278,10 @@ class KrsPodmiotyController extends DataobjectsController {
 
 
 		$this->set( '_menu', $menu );
-
+		
+		$desc_bodies_parts[] = 'odpis z KRS';
+		$desc_parts[] = ucfirst(implode(', ', $desc_bodies_parts));
+		$this->setMetaDesc(implode('. ', $desc_parts) . '.');
 
 	}
 
@@ -299,7 +325,7 @@ class KrsPodmiotyController extends DataobjectsController {
 		));
 		$this->set( 'historia', $this->API->getObjects() );
 		
-		$this->set('title_for_layout', 'Histora zmian w ' . $this->object->getShortTitle());
+		$this->set('title_for_layout', 'Histora zmian w ' . $this->object->getData('nazwa'));
 		
 	}
 	
