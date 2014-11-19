@@ -109,7 +109,10 @@ var d3Data;
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.right + ")")
                 .call(d3Data.zoom)
-                .on("dblclick.zoom", null);
+                .on("dblclick.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("wheel.zoom", null)
+                .on("mousewheel.zoom", null);
 
             d3Data.borderLine = d3Data.svg.append("rect")
                 .attr("width", width)
