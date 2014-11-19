@@ -389,7 +389,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
     <? if ($wspolnicy = $object->getLayer('wspolnicy')) { ?>
 
     <div class="wspolnicy block">
-        <div class="block-header"><h2 class="label">Struktura właścicielska</h2></div>
+        <div class="block-header"><h2 class="label">Udziały w tej firmie posiadają:</h2></div>
 
         <div id="wspolnicy_graph">
             <div class="list-group less-borders wspolnicy">
@@ -434,8 +434,41 @@ $this->Combinator->add_libs('js', 'graph-krs');
     </div>
     </div>
 
-    <? }
+    <? } ?>
+	    
+	<? if ($firmy = $object->getLayer('firmy')) { ?>
+
+    <div class="wspolnicy block">
+        <div class="block-header"><h2 class="label">Ta firma posiada udziały w:</h2></div>
+
+        <div id="wspolnicy_graph">
+            <div class="list-group less-borders wspolnicy">
+                <? foreach ($firmy as $firma) { ?>
+					
+					<a class="list-group-item row" href="/dane/krs_podmioty/<?= $firma['id'] ?>">
+						<div class="list-group-item row">
+
+                            <h4 class="list-group-item-heading col-xs-6">
+                                <?= $firma['nazwa'] ?>
+                            </h4>
+
+                            <? if (isset($firma['udzialy_str']) && $firma['udzialy_str']) { ?>
+                                <p class="list-group-item-text normalizeText col-xs-6">
+                                    <?= $firma['udzialy_str'] ?>
+                                </p>
+                            <? } ?>
+						</div>
+					</a>
+					
+              <? } ?>
+	        </div>
+	    </div>
+    </div>
+
+    <? } ?>
 		
+		
+	<?
 	if ($historia) { 
 	
 		$lastDate = false;
@@ -447,7 +480,7 @@ $this->Combinator->add_libs('js', 'graph-krs');
 	    <div id="historia" class="block historia">
 	       
 	       <div class="block-header">
-	       		<h2 class="label">Ostatnie zmiany <span class="subtitle"><?= $this->Czas->dataSlownie($object->getData('data_ostatni_wpis')) ?></span></h2>
+	       		<h2 class="label">Ostatnie wpisy do KRS <span class="subtitle"><?= $this->Czas->dataSlownie($object->getData('data_ostatni_wpis')) ?></span></h2>
 	       </div>
 		   
 		   
@@ -547,13 +580,36 @@ $this->Combinator->add_libs('js', 'graph-krs');
             <div class="block-header">
                 <h2 class="label pull-left">Realizowane zamówienia publiczne</h2>
                 <a class="btn btn-default btn-sm pull-right"
-                   href="/dane/krs_podmioty/<?= $object->getId() ?>/zamowienia">Zobacz wszystkie</a>
+                   href="<?= $object->getUrl() ?>/zamowienia">Zobacz wszystkie</a>
             </div>
 
             <div class="content">
                 <div class="dataobjectsSliderRow row">
                     <div>
                         <?php echo $this->dataobjectsSlider->render($zamowienia, array(
+                            'perGroup' => 3,
+                            'rowNumber' => 1,
+                            'labelMode' => 'none',
+                            'dfFields' => array('data'),
+                        )) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <? } ?>
+    
+    <? if ($dotacje) { ?>
+        <div id="zamowienia" class="block">
+            <div class="block-header">
+                <h2 class="label pull-left">Udzielone dotacje</h2>
+                <a class="btn btn-default btn-sm pull-right"
+                   href="<?= $object->getUrl() ?>/dotacje">Zobacz wszystkie</a>
+            </div>
+
+            <div class="content">
+                <div class="dataobjectsSliderRow row">
+                    <div>
+                        <?php echo $this->dataobjectsSlider->render($dotacje, array(
                             'perGroup' => 3,
                             'rowNumber' => 1,
                             'labelMode' => 'none',
