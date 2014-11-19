@@ -181,8 +181,6 @@ $(function () {
         kluby[this.name] = this.image;
     });
 
-    console.log(kluby);
-
     // Build the chart
     pieKlubowo.highcharts({
         chart: {

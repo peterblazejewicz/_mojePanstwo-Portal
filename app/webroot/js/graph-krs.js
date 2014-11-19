@@ -557,8 +557,6 @@ var d3Data;
                     'target': '_self'
                 }).text(_mPHeart.translation.LC_DANE_VIEW_KRSPODMIOTY_LINK);
 
-                console.log(node, node.data);
-
                 $.each(node.data, function (label, value) {
                     if (label == 'mp_id') {
                         if (node.label == "podmiot") {

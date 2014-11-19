@@ -1,7 +1,4 @@
 $(document).ready(function () {
-
-    console.log('ready');
-
     var timeline_data = [
         {
             type: 'blog_post',
@@ -24,5 +21,4 @@ $(document).ready(function () {
 
     var timeline = new Timeline($('#timeline'), timeline_data);
     timeline.display();
-
-})
+});

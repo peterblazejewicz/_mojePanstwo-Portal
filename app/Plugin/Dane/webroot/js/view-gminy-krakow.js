@@ -14,11 +14,9 @@ function initialize() {
     };
 
     var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
-    console.log(kmlLayer);
 
     google.maps.event.addListener(kmlLayer, 'click', function (kmlEvent) {
         var text = kmlEvent.featureData;
-        console.log(text);
     });
 
 }

@@ -74,7 +74,6 @@
                             var errors = data.alerts.error;
 
                             for (var i = 0; i < errors.length; i++) {
-                                console.log(errors[i]);
                                 globalAlert('alert-danger', eval('_mPHeart.translation.' + errors[i]));
                             }
                         }

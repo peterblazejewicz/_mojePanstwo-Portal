@@ -569,7 +569,6 @@ jQuery(document).ready(function () {
     autocomplete.autocomplete({
         minLength: 2,
         source: function (request, response) {
-            console.log(request.term);
             var term = request.term;
             if (term in cache) {
                 response(cache[term]);

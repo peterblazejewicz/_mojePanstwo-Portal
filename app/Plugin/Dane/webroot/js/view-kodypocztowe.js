@@ -33,7 +33,6 @@ var googleMapKodyPocztowe = {
 
             var mapWidthInterval = setInterval(function () {
                 var mapWidth = jQuery('#mapa').css('width');
-                console.log(mapWidth);
                 jQuery('#map_cont').css('width', mapWidth);
 
                 /*SECURE FOR GOOGLE MAP LOADING SYSTEM - IF MAP IS NOT LOADED YET AND GOT 0px WE RUN CHECK WIDTH AGAIN AFTER SOME SHORT PERIOD OF TIME*/

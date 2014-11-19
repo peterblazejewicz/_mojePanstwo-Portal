@@ -877,7 +877,6 @@ InfoGraph.prototype = {
         this.schema.base.animate({
             'height': baseHeight
         }, 800, function () {
-            console.log('anim');
             if (typeof sBase !== "undefined" && sBase) {
                 sBase.flippy({
                     duration: "1200",
