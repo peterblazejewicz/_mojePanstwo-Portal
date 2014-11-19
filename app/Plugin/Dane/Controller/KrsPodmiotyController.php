@@ -36,6 +36,7 @@ class KrsPodmiotyController extends DataobjectsController {
 			'komitetZalozycielski',
 			'dzialalnosci',
 			'udzialy',
+			'firmy',
 		) );
 
 		if ( $this->Session->read( 'KRS.odpis' ) == $this->params->id ) {
@@ -43,7 +44,7 @@ class KrsPodmiotyController extends DataobjectsController {
 		}
 
 		$this->_prepareView();
-
+				
 		if ( $this->Session->read( 'KRS.odpis' ) == $this->object->getId() ) {
 
 			$odpis = $this->object->getLayer( 'odpis' );
@@ -121,6 +122,15 @@ class KrsPodmiotyController extends DataobjectsController {
 			),
 		) );
 		$this->set( 'zamowienia', $this->API->getObjects() );
+		
+		$dotacje = $this->API->search( array(
+			'limit'      => 9,
+			'conditions' => array(
+				'_source' => 'krs_podmioty.dotacje_ue:' . $this->object->getId(),
+				'dataset' => 'dotacje_ue',
+			),
+		) );
+		$this->set( 'dotacje', $this->API->getObjects() );
 
 		/*
 		$obszary = new MP\Obszary();
