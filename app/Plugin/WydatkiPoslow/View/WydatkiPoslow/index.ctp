@@ -25,23 +25,19 @@
     <div class="building"></div>
     <div class="stat wyplacane">
         <p>Wynagrodzenia posłów</p>
-        <strong><?= number_format($biura[4]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat pracownikow">
         <p>Wynagrodzenia pracowników posłów</p>
-        <strong><?= number_format($biura[2]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[2]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[2]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat zlecenia">
         <p>Wynagrodzenia<br>współpracowników posłów</p>
@@ -49,25 +45,21 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: 0
-            <small>PLN</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
 </div>
 <div class="scene biuro" data-scene="3">
     <div class="stat biura">
         <p>Koszty wynajmu lokalu<br>na biura poselskie</p>
-        <strong><?= number_format($biura[12]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[12]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[12]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat konserwacje">
         <p>Konserwacja i naprawa<br>sprzętu technicznego<br>w biurze poselskim</p>
-        <strong><?= number_format($biura[13]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[13]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -77,8 +69,8 @@
     </div>
     <div class="stat naprawy">
         <p>Koszty drobnych napraw<br>i remontów lokalu biura poselskiego</p>
-        <strong><?= number_format($biura[14]['wartosc'], 0, '.', ' ') ?>
-            <small>PLN</small>
+        <strong><?= number_format($biura[14]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
+            <small>PLN</small> 
         </strong>
 
         <div class="sub">Średnia na posła: <?= number_format($biura[14]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
@@ -90,7 +82,7 @@
 <div class="scene sklep" data-scene="4">
     <div class="stat materialy">
         <p>Zakup materiałów biurowych,<br>prasy, wydawnictw, środków bhp itp</p>
-        <strong><?= number_format($biura[15]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[15]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -100,7 +92,7 @@
     </div>
     <div class="stat srodki">
         <p>Zakup środków trwalych<br>o charakterze wyposażenia</p>
-        <strong><?= number_format($biura[16]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[16]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -123,7 +115,7 @@
     </div>
     <div class="stat badania">
         <p>Badanie lekarskie<br>i szkolenia pracowników</p>
-        <strong><?= number_format($biura[3]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[3]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -133,7 +125,7 @@
     </div>
     <div class="stat swiadczenia">
         <p>Świadczenia urlopowe wypłacane<br>pracownikom biura poselskiego,<br>o których mowa w pkt 1</p>
-        <strong><?= number_format($biura[19]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[19]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -145,7 +137,7 @@
 <div class="scene bank" data-scene="6">
     <div class="stat rachunki">
         <p>Obsługa rachunkowo-księgowa<br>i bankowa biur poselskich</p>
-        <strong><?= number_format($biura[20]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[20]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -161,7 +153,7 @@
     <div class="men"></div>
     <div class="stat sala">
         <p>Koszty wynajmowania sal<br>na spotkania z wyborcami</p>
-        <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[9]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -174,7 +166,7 @@
 <div class="scene tlumaczenia" data-scene="8">
     <div class="stat przejazd">
         <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
-        <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[10]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -184,7 +176,7 @@
     </div>
     <div class="stat ekspertyzy">
         <p>Ekspertyzy, opinie, tłumaczenia</p>
-        <strong><?= number_format($biura[5]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[5]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -198,7 +190,7 @@
     <div class="stat telefonDom">
         <p>Koszty usług telekomunikacyjnych<br>w "Domu Poselskim"<br>oraz w kwaterach prywatnych<br>w
             Warszawie, potrąconych<br>przez Kancelarię Sejmu<br>z ryczałtu na biuro poselskie</p>
-        <strong><?= number_format($biura[7]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[7]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
@@ -209,7 +201,7 @@
     <div class="stat telefonPosel">
         <p>Koszty usług telekomunikacyjnych<br>związanych z wykonaniem<br>mandatu poselskiego,<br>z
             wyjątkiem kosztów<br>o których mowa w pkt 6</p>
-        <strong><?= number_format($biura[6]['wartosc'], 0, '.', ' ') ?>
+        <strong><?= number_format($biura[6]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
