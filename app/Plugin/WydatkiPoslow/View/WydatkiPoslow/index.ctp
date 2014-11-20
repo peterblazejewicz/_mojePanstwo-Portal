@@ -25,12 +25,12 @@
     <div class="building"></div>
     <div class="stat wyplacane">
         <span data-toggle="tooltip" data-placement="bottom"
-              title="<?= $biura[4]['tytul'] ?>"><?= $biura[4]['skrot'] ?></span>
-        <strong><?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
+              title="Kwota obejmuje wydatki na uposażenia poselskie i dodatki do uposażeń, odprawy emerytalne oraz wynagrodzenie Prezydium Sejmu (nie obejmuje składek na ubezpieczenie społeczne oraz składek na fundusz pracy)">Wydatki na wynagrodzenie posłów i dodatkowe świadczenia</span>
+        <strong><?= number_format(54889000 / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
     </div>
     <div class="stat pracownikow">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -39,15 +39,16 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
     </div>
     <div class="stat zlecenia">
-        <span>Wynagrodzenia współpracowników posłów</span>
-        <strong>0
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[4]['tytul'] ?>"><?= $biura[4]['skrot'] ?></span>
+        <strong><?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
     </div>
 </div>
 <div class="scene biuro" data-scene="3">
@@ -58,7 +59,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat konserwacje">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -67,7 +68,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat naprawy">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -76,7 +77,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
@@ -88,7 +89,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat srodki">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -97,7 +98,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
@@ -109,7 +110,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat badania">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -118,7 +119,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat swiadczenia">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -127,7 +128,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
 </div>
 <div class="scene bank" data-scene="6">
@@ -138,7 +139,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
 </div>
 <div class="scene spotkanie" data-scene="7">
@@ -153,7 +154,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
@@ -165,7 +166,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat ekspertyzy">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -174,7 +175,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
@@ -186,7 +187,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat telefonPosel">
         <span data-toggle="tooltip" data-placement="bottom"
@@ -195,15 +196,16 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat prywatny">
-        <span>Koszty wynajmu kwater prywatnych</span>
-        <strong>209 304
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="Posłom, którzy nie są zameldowani na pobyt stały w Warszawie i nie posiadają innego uprawnienia do zakwaterowania na terenie tego miasta przysługuje refundacja kosztów za najem kwatery prywatnej">Koszty wynajmu kwater prywatnych</span>
+        <strong>4 239 804
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="stat dom hide">
         <span>Koszty najmu kwater<br>w Domu poselskim</span>
@@ -211,7 +213,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
 </div>
 <div class="scene droga" data-scene="10">
@@ -222,7 +224,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
@@ -235,7 +237,7 @@
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
+        <div class="sub">Średni miesięczny koszt poniesiony w 2013 r.</div>
 
         <a class="btn btn-primary btn-sm">Zobacz gdzie i za ile latają posłowie &raquo;</a>
     </div>
