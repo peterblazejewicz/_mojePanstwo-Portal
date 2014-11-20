@@ -24,17 +24,17 @@
             <div class="scene sejm" data-scene="2">
                 <div class="building"></div>
                 <div class="stat wyplacane">
-                    <p>Wynagrodzenia wypłacane na podstawie<br>zawartych przez posła umów zleceń<br>i o dzieło wraz z
-                        pochodnymi</p>
+                    <p>Wynagrodzenia posłów</p>
                     <strong><?= number_format($biura[4]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
 
-                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                    <div class="sub">Średnia na posła: <?= number_format($biura[4]['wartosc'] / 460, 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </div>
                 </div>
                 <div class="stat pracownikow">
-                    <p>Wynagrodzenia pracowników biura poselskiego<br>zatrudnionych na podstawie<br>umowy o pracę wraz z
-                        pochodnymi</p>
+                    <p>Wynagrodzenia pracowników posłów</p>
                     <strong><?= number_format($biura[2]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
@@ -42,7 +42,7 @@
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
                 <div class="stat zlecenia">
-                    <p>(TRZECIA WARTOŚć)</p>
+                    <p>Wynagrodzenia?<br>współpracowników posłów</p>
                     <strong>0
                         <small>PLN</small>
                     </strong>
@@ -60,8 +60,7 @@
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
                 <div class="stat konserwacje">
-                    <p>Koszty konserwacji i naprawy<br>sprzętu techniczneg obiura poselskiego<br>oraz koszty jego
-                        eksploatacji</p>
+                    <p>Konserwacja i naprawa<br>sprzętu technicznego<br>w biurze poselskim</p>
                     <strong><?= number_format($biura[13]['wartosc'], 0, '.', ' ') ?>
                         <small>PLN</small>
                     </strong>
@@ -114,6 +113,14 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="stat swiadczenia">
+                    <p>Świadczenia urlopowe wypłacane<br>pracownikom biura poselskiego,<br>o których mowa w pkt 1</p>
+                    <strong><?= number_format($biura[19]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
+                </div>
             </div>
             <div class="scene bank" data-scene="6">
                 <div class="stat rachunki">
@@ -138,6 +145,9 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="marker"></div>
+            </div>
+            <div class="scene tlumaczenia" data-scene="8">
                 <div class="stat przejazd">
                     <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
                     <strong><?= number_format($biura[10]['wartosc'], 0, '.', ' ') ?>
@@ -146,8 +156,6 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
-            </div>
-            <div class="scene tlumaczenia" data-scene="8">
                 <div class="stat ekspertyzy">
                     <p>Ekspertyzy, opinie, tłumaczenia</p>
                     <strong><?= number_format($biura[5]['wartosc'], 0, '.', ' ') ?>
@@ -156,8 +164,27 @@
 
                     <div class="icon biuro">wydatki na biura poselskie w 2013r.</div>
                 </div>
+                <div class="marker"></div>
             </div>
             <div class="scene dom" data-scene="9">
+                <div class="stat telefonDom">
+                    <p>Koszty usług telekomunikacyjnych<br>w "Domu Poselskim"<br>oraz w kwaterach prywatnych<br>w
+                        Warszawie, potrąconych<br>przez Kancelarię Sejmu<br>z ryczałtu na biuro poselskie</p>
+                    <strong><?= number_format($biura[7]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon posel">wydatki na posłów w 2013r.</div>
+                </div>
+                <div class="stat telefonPosel">
+                    <p>Koszty usług telekomunikacyjnych<br>związanych z wykonaniem<br>mandatu poselskiego,<br>z
+                        wyjątkiem kosztów<br>o których mowa w pkt 6</p>
+                    <strong><?= number_format($biura[6]['wartosc'], 0, '.', ' ') ?>
+                        <small>PLN</small>
+                    </strong>
+
+                    <div class="icon posel">wydatki na posłów w 2013r.</div>
+                </div>
                 <div class="stat prywatny">
                     <p>Koszty wynajmu kwater prywatnych</p>
                     <strong>209 304

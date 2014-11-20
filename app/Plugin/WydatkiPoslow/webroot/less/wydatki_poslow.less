@@ -280,7 +280,11 @@
                     }
                     .stat.badania {
                         bottom: 470px;
-                        right: -140px;
+                        right: 40px;
+                    }
+                    .stat.swiadczenia {
+                        bottom: 470px;
+                        right: -425px;
                     }
                 }
                 &.bank {
@@ -329,18 +333,38 @@
                         bottom: 450px;
                         left: 370px;
                     }
+                    .marker {
+                        right: 150px;
+                    }
                 }
                 &.tlumaczenia {
                     background: url(/WydatkiPoslow/img/scene_07_tlumaczenia.png) bottom right no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
+
+                    .stat.przejazd {
+                        bottom: 280px;
+                        left: 0px;
+                    }
 
                     .stat.ekspertyzy {
                         bottom: 510px;
                         right: -320px;
                     }
+
+                    .marker {
+                        right: 500px;
+                    }
                 }
                 &.dom {
                     background: url(/WydatkiPoslow/img/scene_08_dom.png) bottom right no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
 
+                    .telefonDom {
+                        bottom: 280px;
+                        left: 0px;
+                    }
+                    .telefonPosel {
+                        bottom: 280px;
+                        left: 370px;
+                    }
                     .stat.prywatny {
                         bottom: 500px;
                         right: -540px;
@@ -576,29 +600,9 @@
             }
         }
 
-        .icon {
-            &:before {
-                content: " ";
-                background-image: url(/WydatkiPoslow/img/icons.png);
-                background-position: no-repeat;
-                background-size: cover;
-                display: block;
-                float: left;
-                width: 32px;
-                height: 32px;
-            }
+        .sub {
+            text-transform: uppercase;
 
-            &.big:before {
-                width: 54px;
-                height: 55px;
-            }
-
-            &.posel:before {
-                background-position: top left;
-            }
-            &.biuro:before {
-                background-position: bottom left;
-            }
         }
     }
 }
