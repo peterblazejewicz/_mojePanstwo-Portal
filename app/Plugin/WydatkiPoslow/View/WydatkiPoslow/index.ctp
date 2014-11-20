@@ -11,7 +11,7 @@
 <div class="medium">
 <div class="scene intro" data-scene="1">
     <div class="title">
-        <h3><strong>Dowiedz się ile kosztuje</strong><br>obsługa pracy posłów.</h3>
+        <h3><strong>Dowiedz się ile kosztuje</strong><br>obsługa pracy posłów</h3>
     </div>
     <div class="scrollHint">
         <img src="/WydatkiPoslow/img/mysz.svg" class="scrollInfo"/>
@@ -24,7 +24,8 @@
 <div class="scene sejm" data-scene="2">
     <div class="building"></div>
     <div class="stat wyplacane">
-        <p>Wynagrodzenia posłów</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[4]['tytul'] ?>"><?= $biura[4]['skrot'] ?></span>
         <strong><?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
@@ -32,7 +33,8 @@
         <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat pracownikow">
-        <p>Wynagrodzenia pracowników posłów</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[2]['tytul'] ?>"><?= $biura[2]['skrot'] ?></span>
         <strong><?= number_format($biura[2]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
@@ -40,7 +42,7 @@
         <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat zlecenia">
-        <p>Wynagrodzenia<br>współpracowników posłów</p>
+        <span>Wynagrodzenia współpracowników posłów</span>
         <strong>0
             <small>PLN</small>
         </strong>
@@ -50,7 +52,8 @@
 </div>
 <div class="scene biuro" data-scene="3">
     <div class="stat biura">
-        <p>Koszty wynajmu lokalu<br>na biura poselskie</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[12]['tytul'] ?>"><?= $biura[12]['skrot'] ?></span>
         <strong><?= number_format($biura[12]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
@@ -58,92 +61,84 @@
         <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat konserwacje">
-        <p>Konserwacja i naprawa<br>sprzętu technicznego<br>w biurze poselskim</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[13]['tytul'] ?>"><?= $biura[13]['skrot'] ?></span>
         <strong><?= number_format($biura[13]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[13]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat naprawy">
-        <p>Koszty drobnych napraw<br>i remontów lokalu biura poselskiego</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[14]['tytul'] ?>"><?= $biura[14]['skrot'] ?></span>
         <strong><?= number_format($biura[14]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN</small> 
+            <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[14]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
 <div class="scene sklep" data-scene="4">
     <div class="stat materialy">
-        <p>Zakup materiałów biurowych,<br>prasy, wydawnictw, środków bhp itp</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[15]['tytul'] ?>"><?= $biura[15]['skrot'] ?></span>
         <strong><?= number_format($biura[15]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[15]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat srodki">
-        <p>Zakup środków trwalych<br>o charakterze wyposażenia</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[16]['tytul'] ?>"><?= $biura[16]['skrot'] ?></span>
         <strong><?= number_format($biura[16]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[16]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
 <div class="scene szpital" data-scene="5">
     <div class="stat korespondencja">
-        <p>Korespondencja i ogłoszenia</p>
-        <strong><?= number_format($biura[9]['wartosc'], 0, '.', ' ') ?>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[8]['tytul'] ?>"><?= $biura[8]['skrot'] ?></span>
+        <strong><?= number_format($biura[8]['wartosc'], 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[9]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat badania">
-        <p>Badanie lekarskie<br>i szkolenia pracowników</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[3]['tytul'] ?>"><?= $biura[3]['skrot'] ?></span>
         <strong><?= number_format($biura[3]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[3]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat swiadczenia">
-        <p>Świadczenia urlopowe wypłacane<br>pracownikom biura poselskiego,<br>o których mowa w pkt 1</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[19]['tytul'] ?>"><?= $biura[19]['skrot'] ?></span>
         <strong><?= number_format($biura[19]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[19]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
 </div>
 <div class="scene bank" data-scene="6">
     <div class="stat rachunki">
-        <p>Obsługa rachunkowo-księgowa<br>i bankowa biur poselskich</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[20]['tytul'] ?>"><?= $biura[20]['skrot'] ?></span>
         <strong><?= number_format($biura[20]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[20]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
 </div>
 <div class="scene spotkanie" data-scene="7">
@@ -152,108 +147,95 @@
     </div>
     <div class="men"></div>
     <div class="stat sala">
-        <p>Koszty wynajmowania sal<br>na spotkania z wyborcami</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[9]['tytul'] ?>"><?= $biura[9]['skrot'] ?></span>
         <strong><?= number_format($biura[9]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[9]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
 <div class="scene tlumaczenia" data-scene="8">
     <div class="stat przejazd">
-        <p>Przejazdy posłów<br>samochodem własnym lub innym</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[10]['tytul'] ?>"><?= $biura[10]['skrot'] ?></span>
         <strong><?= number_format($biura[10]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[10]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat ekspertyzy">
-        <p>Ekspertyzy, opinie, tłumaczenia</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[5]['tytul'] ?>"><?= $biura[5]['skrot'] ?></span>
         <strong><?= number_format($biura[5]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[5]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
 <div class="scene dom" data-scene="9">
     <div class="stat telefonDom">
-        <p>Koszty usług telekomunikacyjnych<br>w "Domu Poselskim"<br>oraz w kwaterach prywatnych<br>w
-            Warszawie, potrąconych<br>przez Kancelarię Sejmu<br>z ryczałtu na biuro poselskie</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[7]['tytul'] ?>"><?= $biura[7]['skrot'] ?></span>
         <strong><?= number_format($biura[7]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[7]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat telefonPosel">
-        <p>Koszty usług telekomunikacyjnych<br>związanych z wykonaniem<br>mandatu poselskiego,<br>z
-            wyjątkiem kosztów<br>o których mowa w pkt 6</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[6]['tytul'] ?>"><?= $biura[6]['skrot'] ?></span>
         <strong><?= number_format($biura[6]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[6]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="stat prywatny">
-        <p>Koszty wynajmu kwater prywatnych</p>
+        <span>Koszty wynajmu kwater prywatnych</span>
         <strong>209 304
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
-    <div class="stat dom">
-        <p>Koszty najmu kwater<br>w Domu poselskim</p>
+    <div class="stat dom hide">
+        <span>Koszty najmu kwater<br>w Domu poselskim</span>
         <strong>209 304
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[4]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
 </div>
 <div class="scene droga" data-scene="10">
     <div class="stat taksowka">
-        <p>Przejazdy posłów taksówkami</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[11]['tytul'] ?>"><?= $biura[11]['skrot'] ?></span>
         <strong><?= number_format($biura[11]['wartosc'], 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[11]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
     </div>
     <div class="marker"></div>
 </div>
 <div class="scene lotnisko" data-scene="11">
     <div class="building"></div>
     <div class="stat loty">
-        <p>Podróże służbowe pracowników<br>biur poselskich</p>
+        <span data-toggle="tooltip" data-placement="bottom"
+              title="<?= $biura[17]['tytul'] ?>"><?= $biura[17]['skrot'] ?></span>
         <strong><?= number_format($biura[17]['wartosc'], 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>
 
-        <div class="sub">Średnia na posła: <?= number_format($biura[17]['wartosc'] / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN / miesiąc</small>
-        </div>
+        <div class="sub">Średnia miesięczna na posła w 2013 r.</div>
 
         <a class="btn btn-primary btn-sm">Zobacz gdzie i za ile latają posłowie &raquo;</a>
     </div>

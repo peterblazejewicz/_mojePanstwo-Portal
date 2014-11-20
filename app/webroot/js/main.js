@@ -287,7 +287,12 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
 
     /*INITIALIZE BOOTSTRAP TOOLTIP*/
     $('[data-toggle="tooltip"]').each(function () {
-        var that = $(this);
-        that.addClass('tooltipIcon').append($('<i></i>').addClass('glyphicon glyphicon-info-sign').data(that.data()).attr('title', that.attr('title')).tooltip());
+        var that = $(this),
+            iconTip = $('<i></i>').addClass('glyphicon glyphicon-info-sign').data(that.data()).attr('title', that.attr('title'));
+
+        $.each(that.data(), function (key, value) {
+            iconTip.attr(key, value);
+        });
+        that.addClass('tooltipIcon').append(iconTip.tooltip());
     });
 })(jQuery);

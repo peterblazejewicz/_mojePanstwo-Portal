@@ -82,9 +82,17 @@
                     opacity: 1;
                 }
 
-                > p {
+                > span {
                     font-size: 28px;
                     line-height: 28px;
+                    display: block;
+                    white-space: pre-line;
+                    width: 400px;
+
+                    &.tooltipIcon .glyphicon {
+                        color: #FFFFFF;
+                        margin-left: 8px;
+                    }
                 }
 
                 > strong {
@@ -93,6 +101,7 @@
 
                     small {
                         font-size: 24px;
+                        margin-left: -15px;
                     }
                 }
 
@@ -226,12 +235,12 @@
 
                     .stat.pracownikow {
                         bottom: 500px;
-                        left: 800px;
+                        left: 745px;
                     }
 
                     .stat.zlecenia {
                         bottom: 250px;
-                        left: 925px;
+                        left: 770px
                     }
                 }
                 &.biuro {
@@ -239,17 +248,17 @@
 
                     .stat.biura {
                         bottom: 450px;
-                        right: 230px;
+                        right: 585px;
                     }
 
                     .stat.konserwacje {
                         bottom: 480px;
-                        right: -235px;
+                        right: 0px;
                     }
 
                     .stat.naprawy {
                         bottom: 250px;
-                        right: -235px;
+                        right: 0px;
                     }
                     .marker {
                         right: 200px;
@@ -260,11 +269,11 @@
 
                     .stat.materialy {
                         bottom: 450px;
-                        right: 100px;
+                        right: 205px;
                     }
                     .stat.srodki {
                         bottom: 450px;
-                        right: -380px;
+                        right: -335px;
                     }
 
                     .marker {
@@ -280,11 +289,11 @@
                     }
                     .stat.badania {
                         bottom: 470px;
-                        right: 40px;
+                        right: 135px;
                     }
                     .stat.swiadczenia {
                         bottom: 470px;
-                        right: -425px;
+                        right: -285px;
                     }
                 }
                 &.bank {
@@ -347,7 +356,7 @@
 
                     .stat.ekspertyzy {
                         bottom: 510px;
-                        right: -320px;
+                        right: -210px;
                     }
 
                     .marker {
@@ -358,20 +367,20 @@
                     background: url(/WydatkiPoslow/img/scene_08_dom.png) bottom right no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
 
                     .telefonDom {
-                        bottom: 280px;
-                        left: 0px;
+                        bottom: 260px;
+                        left: 50px;
                     }
                     .telefonPosel {
-                        bottom: 280px;
-                        left: 370px;
+                        bottom: 260px;
+                        left: 460px;
                     }
                     .stat.prywatny {
                         bottom: 500px;
-                        right: -540px;
+                        right: -400px;
                     }
                     .stat.dom {
                         bottom: 290px;
-                        right: -540px;
+                        right: -400px;
                     }
                 }
                 &.droga {
@@ -401,13 +410,13 @@
                     }
 
                     .stat.loty {
-                        bottom: 470px;
+                        bottom: 455px;
                         left: 200px;
 
                         a {
                             float: left;
                             clear: both;
-                            margin-top: 15px;
+                            margin: 10px 0;
                         }
                     }
                     .marker {
@@ -545,16 +554,26 @@
                 position: absolute;
                 left: -999px;
                 bottom: 122px;
-
-                &.outfit {
-                    background-position: top right;
-                }
             }
             .posel {
                 background: url(/WydatkiPoslow/img/animated_posel.png) top left no-repeat;
+
+                &.outfit {
+                    background-position: -60px 0;
+                }
+                &.phone {
+                    background-position: -128px 0;
+                }
             }
             .poslanka {
                 background: url(/WydatkiPoslow/img/animated_poslanka.png) top left no-repeat;
+
+                &.outfit {
+                    background-position: -60px 0;
+                }
+                &.phone {
+                    background-position: -123px 0;
+                }
             }
             .samochod {
                 display: block;
@@ -602,7 +621,7 @@
 
         .sub {
             text-transform: uppercase;
-            margin-top: -20px;
+            margin-top: -30px;
             font-size: 11px;
         }
     }
