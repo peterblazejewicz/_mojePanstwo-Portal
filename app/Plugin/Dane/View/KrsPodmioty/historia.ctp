@@ -20,7 +20,7 @@ if ($historia) {
             <ul>
                 <? 
 	                foreach( $historia as $h ) {
-		               
+		               			               	
 		            	$location = $h->getData('nr_dz') . '-' . $h->getData('nr_rub');
 		                $sublocation = $h->getData('nr_dz') . '-' . $h->getData('nr_rub') . '-' . $h->getData('nr_sub');
 		               			               

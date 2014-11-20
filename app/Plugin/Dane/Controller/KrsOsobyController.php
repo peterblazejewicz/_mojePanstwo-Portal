@@ -14,7 +14,12 @@ class KrsOsobyController extends DataobjectsController
     );
 
     public $initLayers = array('powiazania', 'organizacje');
-
+	
+	public $microdata = array(
+		'itemtype' => 'http://schema.org/Person',
+		'titleprop' => 'name',
+	);
+	
     public function view()
     {
         parent::view();
@@ -30,4 +35,53 @@ class KrsOsobyController extends DataobjectsController
         }
 
     }
+    
+    public function graph() {
+		if ( $this->request->params['ext'] == 'json' ) {
+
+			$this->addInitLayers( 'graph' );
+			$this->_prepareView();
+			$data = $this->object->getLayer( 'graph' );
+
+			$this->set( 'data', $data );
+			$this->set( '_serialize', 'data' );
+
+		} else {
+			return false;
+		}
+	}
+    
+    public function beforeRender() {
+
+		// PREPARE MENU
+		$href_base = $this->object->getUrl();
+
+		$menu = array(
+			'items' => array(
+				array(
+					'id'    => '',
+					'href'  => $href_base,
+					'label' => 'Informacje i powiązania',
+				),
+			)
+		);
+		
+		/*
+		if( $this->object->getData('liczba_zmian') ) {
+		
+			$menu['items'][] = array(
+				'id'    => 'historia',
+				'href'  => $href_base . '/historia',
+				'label' => 'Historia',
+				'count' => $this->object->getData('liczba_zmian'),
+			);
+		
+		}
+		*/
+
+		$menu['selected'] = ( $this->request->params['action'] == 'view' ) ? '' : $this->request->params['action'];
+		$this->set( '_menu', $menu );
+
+	}
+	
 }

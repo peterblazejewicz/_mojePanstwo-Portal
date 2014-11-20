@@ -8,7 +8,7 @@
 
         <ul class="list-group less-borders">
             <?
-            foreach ($organizacje as $organizacja) {
+            foreach ($organizacje as $organizacja) { 
                 $kapitalZakladowy = (float)$organizacja['kapital_zakladowy'];
                 ?>
                 <li class="list-group-item">
@@ -19,6 +19,10 @@
                         <? if ($organizacja['wykreslony'] == '1') { ?><span class="label label-danger">Podmiot wykreślony z KRS</span>
                             <span class="separator">|</span> <? } ?>
                         <span class="normalizeText"><?= $organizacja['forma_prawna_str'] ?></span>
+                        <? if ($organizacja['adres_miejscowosc']) { ?>
+                            <span class="separator">|</span> <?
+                            echo $organizacja['adres_miejscowosc'];
+                        }?>
                         <? if ($kapitalZakladowy) { ?>
                             <span class="separator">|</span> kapitał zakładowy: <?
                             //setlocale(LC_MONETARY, 'pl_PL');
