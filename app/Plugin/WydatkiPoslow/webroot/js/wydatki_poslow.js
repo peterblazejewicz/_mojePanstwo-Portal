@@ -188,6 +188,7 @@ jQuery(function ($) {
         /*SEJM POSEL*/
         var sejmPosel = new TimelineMax()
             .add(TweenMax.fromTo($medium.find('.scene.sejm .stat.wyplacane'), 0.25, {opacity: 0}, {opacity: 1}))
+            .add(TweenMax.fromTo($medium.find('.scene.sejm .stat.diety'), 0.25, {opacity: 0}, {opacity: 1}))
             .add(TweenMax.fromTo($medium.find('.scene.sejm .stat.pracownikow'), 0.25, {opacity: 0}, {opacity: 1}))
             .add(TweenMax.fromTo($medium.find('.scene.sejm .stat.zlecenia'), 0.25, {opacity: 0}, {opacity: 1}))
             .add(TweenMax.fromTo($near.find('.posel'), 3, {

@@ -293,6 +293,7 @@ jQuery.extend(jQuery.ui.dialog.prototype.options, {
         $.each(that.data(), function (key, value) {
             iconTip.attr(key, value);
         });
-        that.addClass('tooltipIcon').append(iconTip.tooltip());
+
+        that.removeAttr('title').addClass('tooltipIcon').append(iconTip.tooltip());
     });
 })(jQuery);

@@ -32,6 +32,14 @@
 
         <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
     </div>
+    <div class="stat diety">
+        <span>Diety poselskie</span>
+        <strong><?= number_format(13607000 / 460 / 12, 0, '.', ' ') ?>
+            <small>PLN</small>
+        </strong>
+
+        <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
+    </div>
     <div class="stat pracownikow">
         <span data-toggle="tooltip" data-placement="bottom"
               title="<?= $biura[2]['tytul'] ?>"><?= $biura[2]['skrot'] ?></span>
