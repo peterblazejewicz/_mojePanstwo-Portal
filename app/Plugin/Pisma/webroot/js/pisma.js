@@ -1,6 +1,5 @@
 var PISMA = Class.extend({
     init: function () {
-
         this.stepper_div = $("#stepper");
 
         this.stepper = this.stepper_div.steps({
@@ -17,18 +16,20 @@ var PISMA = Class.extend({
             enableFinishButton: false,
             saveState: true
         });
-
     }
 });
 
 var $P;
 
 $(document).ready(function () {
-    var editor = $('#editor');
-
-    if (editor.length)
-        editor.wysihtml5();
-
     $P = new PISMA();
 
+    var editor = $('#editor');
+
+    if (editor.length) {
+        editor.wysihtml5({
+            locale: 'pl-PL'
+        });
+        editor.removeClass('loading');
+    }
 });
