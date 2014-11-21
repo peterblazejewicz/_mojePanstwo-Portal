@@ -20,10 +20,10 @@
                         "rel": "any",
                         "target": "any"
                     }
-                },
+    },
                 "abbr": {
                     "unwrap": 1
-                },
+    },
                 "acronym": {
                     "rename_tag": "span"
                 },
@@ -691,7 +691,7 @@
                 },
                 "xmp": {
                     "unwrap": 1
-                }
+    }
             },
             "type_definitions": {
                 "alignment_object": {

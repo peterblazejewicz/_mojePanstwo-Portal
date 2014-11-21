@@ -1,5 +1,6 @@
 <?php $this->Combinator->add_libs('css', '../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min') ?>
 
+<?php /*https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg*/ ?>
 <?php echo $this->Html->script('../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.all.min', array('block' => 'scriptBlock')); ?>
 <?php echo $this->Html->script('../plugins/bootstrap3-wysiwyg/dist/locales/bootstrap-wysihtml5.pl-PL', array('block' => 'scriptBlock')); ?>
 
