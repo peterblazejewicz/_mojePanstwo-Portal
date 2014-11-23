@@ -1042,8 +1042,9 @@ header {
 
     #_main {
         padding-top: @headerHeight;
-        padding-bottom: @footerHeight + 20px; /*FOOTER HEIGHT + SECURE PADDING FOR NOT TOUCHING BOTTOM BY CONTENT */
-
+        // padding-bottom: @footerHeight + 20px; /*FOOTER HEIGHT + SECURE PADDING FOR NOT TOUCHING BOTTOM BY CONTENT */
+		padding-bottom: @headerHeight;
+		
         .container.app {
             margin-top: 2em;
 
@@ -1129,3 +1130,10 @@ footer {
         color: darken(@footerColor, 15%);
     }
 }
+
+.dataBrowser._dataset_patenty .description {
+	padding: 10px 0;
+	.dataHighlights .dataHighlight {
+        width: 100%;
+    }
+} 

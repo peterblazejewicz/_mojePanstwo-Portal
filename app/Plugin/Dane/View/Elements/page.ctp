@@ -37,7 +37,7 @@ if (($object->getDataset() == 'gminy') && ($object->getId() == '903')) {
                         <?php if ($object->getUrl() != false) { ?>
                         <a class="thumb_cont" href="<?= $object->getUrl() ?>">
                             <?php } ?>
-                            <img class="thumb" onerror="imgFixer(this)"
+                            <img itemprop="image" class="thumb" onerror="imgFixer(this)"
                                  src="<?= $object->getThumbnailUrl($thumbSize) ?>"
                                  alt="<?= strip_tags($object->getTitle()) ?>"/>
                             <?php if ($object->getUrl() != false) { ?>
@@ -75,7 +75,7 @@ if (($object->getDataset() == 'gminy') && ($object->getId() == '903')) {
                         echo $this->Dataobject->highlights($hlFields);
                         if ($object->getDescription()) {
                             ?>
-                            <div class="description">
+                            <div itemprop="description" class="description">
                                 <?= $object->getDescription() ?>
                             </div>
                         <?

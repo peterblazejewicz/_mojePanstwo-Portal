@@ -25,15 +25,13 @@
     <div class="building"></div>
     <div class="stat wyplacane">
         <span data-toggle="tooltip" data-placement="bottom"
-              title="Kwota obejmuje wydatki na uposażenia poselskie i dodatki do uposażeń, odprawy emerytalne oraz wynagrodzenie Prezydium Sejmu (nie obejmuje składek na ubezpieczenie społeczne oraz składek na fundusz pracy)">Wydatki na wynagrodzenie posłów i dodatkowe świadczenia</span>
-        <strong><?= number_format(54889000 / 460 / 12, 0, '.', ' ') ?>
-            <small>PLN</small>
-        </strong>
+              title="Kwota obejmuje wydatki na uposażenia poselskie i dodatki do uposażeń, odprawy emerytalne oraz wynagrodzenie Prezydium Sejmu (nie obejmuje składek na ubezpieczenie społeczne oraz składek na fundusz pracy)">Wynagrodzenie</span>
+        <strong><?= number_format(54889000 / 460 / 12, 0, '.', ' ') ?> <small>PLN / miesiąc</small></strong>
 
         <div class="sub">Średni miesięczny koszt poniesiony na posła w 2013 r.</div>
     </div>
     <div class="stat diety">
-        <span>Diety poselskie</span>
+        <span>Dieta</span>
         <strong><?= number_format(13607000 / 460 / 12, 0, '.', ' ') ?>
             <small>PLN</small>
         </strong>

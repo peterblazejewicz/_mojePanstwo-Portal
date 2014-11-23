@@ -100,7 +100,7 @@ echo $this->Element('dataobject/pageBegin');
                             $isap_str .= str_pad($object->getData('nr'), 3, "0", STR_PAD_LEFT);
                             $isap_str .= str_pad($object->getData('poz'), 4, "0", STR_PAD_LEFT);
                             ?>
-                            <a href="http://isap.sejm.gov.pl/DetailsServlet?id=<?= $isap_str ?>"
+                            <a itemprop="sameAs" href="http://isap.sejm.gov.pl/DetailsServlet?id=<?= $isap_str ?>"
                                target="_blank">ISAP</a>
                         </p>
                     </li>

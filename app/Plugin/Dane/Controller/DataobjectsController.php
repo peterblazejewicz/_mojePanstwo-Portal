@@ -24,8 +24,8 @@ class DataobjectsController extends DaneAppController {
 	public $initLayers = array();
 	
 	public $microdata = array(
-	    'itemtype' => false,
-		'titleprop' => false,
+	    'itemtype' => 'http://schema.org/Intangible',
+		'titleprop' => 'name',
     );
 	
 	public function index() {
