@@ -216,7 +216,75 @@ $szablony = array(
 
         <h2>Zapisz i wyślij</h2>
         <section>
-            <p>The next and previous buttons help you to navigate through your content.</p>
+            <div class="container">
+				
+				<form action="/pisma/nowe" method="post">
+					
+					<div class="row">
+						<div class="col-md-10">
+							<fieldset>
+								<div class="form-group">
+									<label for="inputEmail" class="col-lg-2 control-label">Tytuł pisma</label>
+									<div class="col-lg-10">
+										<input class="form-control" id="inputEmail" type="text">
+										<p class="desc">Adresat pisma nie zobaczy powyższego tytułu. Będzie on używany tylko do organizacji Twoich pism.</p>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					
+	                <div class="row">
+	                    <div class="col-md-10">
+								
+							<div id="editor-cont" class="preview">
+	
+	                            <div class="editor-controls">
+	
+	                                <p class="control control-date">24 listopada 2014</p>
+	
+	                                <p class="control control-sender">Jan Kowalski</p>
+	
+	                                <p class="control control-addressee">Sąd Najwyższy RP</p>
+	
+	                                <p class="control control-template">Wniosek o udostępnienie informacji publicznej</p>
+	
+	                            </div>
+	
+	                            <div>
+	
+	                                Na podstawie art. 61 Konstytucji RP oraz art. 10 ust. 1 <a target="_blank"
+	                                                                                           href="http://mojepanstwo.pl/dane/prawo/2007,ustawa-dostepie-informacji-publicznej">ustawy
+	                                    z dnia 6 września 2001 r. o dostępie do informacji publicznej</a> wnoszę o
+	                                udostępnienie informacji publicznej w postaci:<br/><br/><br/><br/>
+	
+	                            </div>
+	
+	                            <div class="editor-controls">
+	
+	                                <p class="control control-signature">Z poważaniem<br/>Jan Kowalski</p>
+	
+	                            </div>
+	
+	                        </div>
+	
+	                    </div>
+	                    <div class="col-md-2">
+	                        <div class="editor-tooltip">
+	
+	                            <ul class="form-buttons">
+		                            <li class="inner-addon"><i class="glyphicon glyphicon-print"></i><input type="submit" name="print" value="Wydrukuj" class="btn btn-primary" /></li>
+		                            <li class="inner-addon"><i class="glyphicon glyphicon-saved"></i><input type="submit" name="save" value="Zapisz" class="btn btn-primary" /></li>
+		                            <li class="inner-addon"><i class="glyphicon glyphicon-send"></i><input type="submit" name="send" value="Zapisz i wyślij" class="btn btn-primary" /></li>
+	                            </ul>
+	
+	                        </div>
+	                    </div>
+	                </div>
+                
+                </form>
+
+            </div>
         </section>
 
     </div>

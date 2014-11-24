@@ -441,18 +441,71 @@
             display: block;
         }
     }
-
+	
+	.form-buttons {
+		list-style: none;
+		li {
+			list-style: none;
+			
+			.glyphicon {
+				color: #FFF;
+				top: -2px;
+			}
+			
+			input {
+				font-family: lato;
+			    font-size: 12px;
+			    font-weight: 600;
+			    margin: 10px auto;
+			    text-transform: uppercase;
+			    width: 170px;
+			    border: 1px solid #FFF;
+			}
+		}
+	}
+	
+	.form-group {
+		overflow: auto;
+		label {
+			margin-top: 8px;
+			font-weight: 500;
+			text-align: right;
+		}
+		.desc {
+			color: #666;
+		    font-family: lato;
+		    font-size: 13px;
+		    margin: 5px 13px;
+		}
+	}
+	
     #editor-cont {
         background-color: #FFFFFF;
         border: 1px solid #E3E3E3;
         padding: 20px;
         position: relative;
         margin-top: 40px;
-
+		
+		&.preview {
+			margin-top: 10px;
+			background-color: #FEFEFE;
+		}
+		
         .wysihtml5-toolbar {
             position: absolute;
             top: -50px;
-
+            margin-left: -20px;
+			
+			.btn {
+				font-size: 12px; 
+			}
+			
+			.glyphicon-quote:before {
+				font-size: 38px;
+				top: -2px;
+				left: -2px;
+			}
+			
             ul, ul li {
                 list-style: none;
             }
