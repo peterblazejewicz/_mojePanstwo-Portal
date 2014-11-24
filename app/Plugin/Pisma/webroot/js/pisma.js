@@ -42,11 +42,18 @@ $(document).ready(function () {
     if (editor.length) {
         editor.wysihtml5({
             toolbar: {
-                "lists": true,
-                "image": false
+                "image": false,
+                "textAlign": true
             },
             locale: 'pl-PL'
         });
         editor.removeClass('loading');
+        $('.wysihtml5-toolbar').find('[data-wysihtml5-command="bold"]').html($('<span></span>').addClass('glyphicon glyphicon-bold'))
+            .end()
+            .find('[data-wysihtml5-command="italic"]').html($('<span></span>').addClass('glyphicon glyphicon-italic'))
+            .end()
+            .find('[data-wysihtml5-command="underline"]').html($('<span></span>').addClass('glyphicon glyphicon-magnet'))
+            .end()
+            .find('[data-wysihtml5-command="createLink"]').html($('<span></span>').addClass('glyphicon glyphicon-link'));
     }
 });
