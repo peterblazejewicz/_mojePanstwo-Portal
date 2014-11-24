@@ -1,475 +1,350 @@
 #_wrapper .innerContent #shortcuts ul li.active:after {
-	border-bottom: 15px solid #d2e3c0 !important;
+    border-bottom: 15px solid #d2e3c0 !important;
 }
-
-/*
-    Common 
-*/
-
-
 
 .wizard,
 .tabcontrol {
     display: block;
     width: 100%;
     overflow: hidden;
-}
 
-.wizard a,
-.tabcontrol a {
-    outline: 0;
-}
+    a {
+        outline: 0;
+    }
 
-.wizard ul,
-.tabcontrol ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    width: 1170px;
-}
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
 
-.wizard ul > li,
-.tabcontrol ul > li {
-    display: block;
-    padding: 0;
-}
+        > li {
+            display: block;
+            padding: 0;
+        }
+    }
 
-/* Accessibility */
-.wizard > .steps .current-info,
-.tabcontrol > .steps .current-info {
-    position: absolute;
-    left: -999em;
-}
+    > .steps .current-info {
+        position: absolute;
+        left: -999em;
+    }
 
-.wizard > .content > .title,
-.tabcontrol > .content > .title {
-    position: absolute;
-    left: -999em;
-}
+    > .content > .title {
+        position: absolute;
+        left: -999em;
+    }
 
-/*
-    Wizard
-*/
+    .ul-raw {
+        list-style: none;
+        margin: inherit;
+        padding: 0 10px;
+        width: inherit;
 
-.wizard > .steps {
-    position: relative;
-    display: block;
-    margin: 0;
-    text-align: center;
-    background-color: lighten(desaturate(#88c149, 10%), 30%);
-}
+        li {
+            list-style: none;
+            font-size: 16px;
+            border-bottom: 1px solid #E6E6E6;
+            padding: 10px;
 
-.wizard.vertical > .steps {
-    display: inline;
-    float: left;
-    width: 30%;
-}
+            p {
+                padding: 0;
+                margin: 0;
+            }
 
-.wizard > .steps .number {
-    font-size: 1.429em;
-}
+            &:last-child {
+                border-bottom: none;
+            }
+        }
 
-.wizard > .steps > ul > li {
-    width: 25%;
-}
+        li:last-child {
+            border-bottom: none;
+        }
 
-.wizard > .steps > ul > li,
-.wizard > .actions > ul > li {
-    float: left;
-}
-
-.wizard.vertical > .steps > ul > li {
-    float: none;
-    width: 100%;
-}
-
-.wizard > .steps a,
-.wizard > .steps a:hover,
-.wizard > .steps a:active {
-    display: block;
-    width: auto;
-    margin: 0;
-    padding: 4px 5px 7px;
-    text-decoration: none;
-    
-    font-family: lato;
-    font-weight: 600;
-    color: #696;
-    background-color: lighten(desaturate(#88c149, 10%), 30%);
-    
-    .number {
     }
 }
 
-.wizard > .steps .disabled a,
-.wizard > .steps .disabled a:hover,
-.wizard > .steps .disabled a:active {
-    color: #aaa;
-    cursor: default;
+.wizard {
+    &.vertical {
+        > .steps {
+            display: inline;
+            float: left;
+            width: 30%;
+
+            > ul > li {
+                float: none;
+                width: 100%;
+            }
+        }
+
+        > .content {
+            display: inline;
+            float: left;
+            margin: 0 2.5% 0.5em 2.5%;
+            width: 65%;
+        }
+        > .actions {
+            display: inline;
+            float: right;
+            margin: 0 2.5%;
+            width: 100%;
+
+            > ul > li {
+                margin: 0 0 0 1em;
+            }
+        }
+    }
+
+    > .steps > ul > li,
+    > .actions > ul > li {
+        float: left;
+    }
+
+    > .steps {
+        position: relative;
+        display: block;
+        margin: 0;
+        text-align: center;
+        background-color: lighten(desaturate(#88c149, 10%), 30%);
+
+        > ul > li {
+            width: 25%;
+        }
+
+        .number {
+            font-size: 1.429em;
+        }
+
+        a, a:hover, a:active {
+            display: block;
+            width: auto;
+            margin: 0;
+            padding: 4px 5px 7px;
+            text-decoration: none;
+
+            font-family: lato;
+            font-weight: 600;
+            color: #696;
+            background-color: lighten(desaturate(#88c149, 10%), 30%);
+        }
+
+        .disabled a,
+        .disabled a:hover,
+        .disabled a:active {
+            color: #aaa;
+            cursor: default;
+        }
+
+        .current a,
+        .current a:hover,
+        .current a:active {
+            background: #88c149;
+            color: #fff;
+            cursor: default;
+        }
+
+        .done a,
+        .done a:hover,
+        .done a:active {
+            background: lighten(desaturate(#88c149, 10%), 30%);
+        }
+
+        .error a,
+        .error a:hover,
+        .error a:active {
+            background: #ff3111;
+        }
+    }
+    > .content {
+        display: block;
+        margin: 0.5em;
+        min-height: 35em;
+        overflow: hidden;
+        position: relative;
+        width: auto;
+
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        > .body {
+            float: left;
+            position: absolute;
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            padding: 30px 0;
+
+            ul {
+                list-style: disc;
+
+                > li {
+                    display: list-item;
+                }
+            }
+
+            > iframe {
+                border: 0 none;
+                width: 100%;
+                height: 100%;
+            }
+
+            input {
+                display: block;
+                border: 1px solid #ccc;
+
+                &[type="checkbox"] {
+                    display: inline-block;
+                }
+                &.error {
+                    background: rgb(251, 227, 228);
+                    border: 1px solid #fbc2c4;
+                    color: #8a1f11;
+                }
+            }
+        }
+    }
+    > .actions {
+        display: block;
+        text-align: center;
+        width: 100%;
+        background-color: lighten(desaturate(#88c149, 10%), 30%);
+        position: absolute;
+        bottom: 40px;
+
+        > ul {
+            display: inline-block;
+            text-align: right;
+
+            > li {
+                margin: 0 0.5em;
+            }
+        }
+
+        a, a:hover, a:active {
+            color: #696;
+            display: block;
+            padding: 9px 5px 4px;
+            font-size: 16px;
+            text-decoration: none;
+            font-family: lato;
+            font-weight: 600;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            visibility: visible;
+        }
+        .disabled a,
+        .disabled a:hover,
+        .disabled a:active {
+            visibility: hidden;
+        }
+    }
 }
 
-.wizard > .steps .current a,
-.wizard > .steps .current a:hover,
-.wizard > .steps .current a:active {
-    background: #88c149;
-    color: #fff;
-    cursor: default;
+.tabcontrol {
+    > .steps {
+        position: relative;
+        display: block;
+        width: 100%;
+
+        > ul {
+            position: relative;
+            margin: 6px 0 0 0;
+            top: 1px;
+            z-index: 1;
+
+            > li {
+                float: left;
+                margin: 5px 2px 0 0;
+                padding: 1px;
+
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+
+                &:hover {
+                    background: #edecec;
+                    border: 1px solid #bbb;
+                    padding: 0;
+                }
+                &.current {
+                    background: #fff;
+                    border: 1px solid #bbb;
+                    border-bottom: 0 none;
+                    padding: 0 0 1px 0;
+                    margin-top: 0;
+                }
+
+                > a {
+                    color: #5f5f5f;
+                    display: inline-block;
+                    border: 0 none;
+                    margin: 0;
+                    padding: 10px 30px;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                .current > a {
+                    padding: 15px 30px 10px 30px;
+                }
+            }
+        }
+    }
+    > .content {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 35em;
+        overflow: hidden;
+        border-top: 1px solid #bbb;
+        padding-top: 20px;
+
+        > .body {
+            float: left;
+            position: absolute;
+            width: 95%;
+            height: 95%;
+            padding: 2.5%;
+
+            ul {
+                list-style: disc;
+
+                > li {
+                    display: list-item;
+                }
+
+            }
+        }
+    }
 }
 
-.wizard > .steps .done a,
-.wizard > .steps .done a:hover,
-.wizard > .steps .done a:active {
-    background: lighten(desaturate(#88c149, 10%), 30%);
-}
-
-.wizard > .steps .error a,
-.wizard > .steps .error a:hover,
-.wizard > .steps .error a:active {
-    background: #ff3111;
-}
-
-.wizard > .content {
-    display: block;
-    margin: 0.5em;
-    min-height: 35em;
-    overflow: hidden;
-    position: relative;
-    width: auto;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.wizard.vertical > .content {
-    display: inline;
-    float: left;
-    margin: 0 2.5% 0.5em 2.5%;
-    width: 65%;
-}
-
-.wizard > .content > .body {
-    float: left;
-    position: absolute;
-    width: 95%;
-    height: 95%;
-    padding: 2.5%;
-}
-
-.wizard > .content > .body ul {
-    list-style: disc;
-}
-
-.wizard > .content > .body ul > li {
-    display: list-item;
-}
-
-.wizard > .content > .body > iframe {
-    border: 0 none;
-    width: 100%;
-    height: 100%;
-}
-
-.wizard > .content > .body input {
-    display: block;
-    border: 1px solid #ccc;
-}
-
-.wizard > .content > .body input[type="checkbox"] {
-    display: inline-block;
-}
-
-.wizard > .content > .body input.error {
-    background: rgb(251, 227, 228);
-    border: 1px solid #fbc2c4;
-    color: #8a1f11;
-}
-
-.wizard > .content > .body label {
-    display: inline-block;
-    margin-bottom: 0.5em;
-}
-
-.wizard > .content > .body label.error {
-    color: #8a1f11;
-    display: inline-block;
-    margin-left: 1.5em;
-}
-
-.wizard > .actions {
-    position: relative;
-    display: block;
+.btn_cont {
     text-align: center;
-    width: 100%;
-    background-color: lighten(desaturate(#88c149, 10%), 30%);
-    position: fixed;
-    bottom: 39px;
-}
-
-.wizard.vertical > .actions {
-    display: inline;
-    float: right;
-    margin: 0 2.5%;
-    width: 95%;
-}
-
-.wizard > .actions > ul {
-    display: inline-block;
-    text-align: right;
-}
-
-.wizard > .actions > ul > li {
-    margin: 0 0.5em;
-}
-
-.wizard.vertical > .actions > ul > li {
-    margin: 0 0 0 1em;
-}
-
-.wizard > .actions a,
-.wizard > .actions a:hover,
-.wizard > .actions a:active {
-    color: #696;
-    display: block;
-    padding: 9px 5px 4px;
-    font-size: 16px;
-    text-decoration: none;
-    font-family: lato;
-    font-weight: 600;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    visibility: visible;
-}
-
-.wizard > .actions .disabled a,
-.wizard > .actions .disabled a:hover,
-.wizard > .actions .disabled a:active {
-	visibility: hidden;
-}
-
-.wizard > .loading {
-}
-
-.wizard > .loading .spinner {
-}
-
-/*
-    Tabcontrol
-*/
-
-.tabcontrol > .steps {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.tabcontrol > .steps > ul {
-    position: relative;
-    margin: 6px 0 0 0;
-    top: 1px;
-    z-index: 1;
-}
-
-.tabcontrol > .steps > ul > li {
-    float: left;
-    margin: 5px 2px 0 0;
-    padding: 1px;
-
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.tabcontrol > .steps > ul > li:hover {
-    background: #edecec;
-    border: 1px solid #bbb;
-    padding: 0;
-}
-
-.tabcontrol > .steps > ul > li.current {
-    background: #fff;
-    border: 1px solid #bbb;
-    border-bottom: 0 none;
-    padding: 0 0 1px 0;
-    margin-top: 0;
-}
-
-.tabcontrol > .steps > ul > li > a {
-    color: #5f5f5f;
-    display: inline-block;
-    border: 0 none;
-    margin: 0;
-    padding: 10px 30px;
-    text-decoration: none;
-}
-
-.tabcontrol > .steps > ul > li > a:hover {
-    text-decoration: none;
-}
-
-.tabcontrol > .steps > ul > li.current > a {
-    padding: 15px 30px 10px 30px;
-}
-
-.tabcontrol > .content {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 35em;
-    overflow: hidden;
-    border-top: 1px solid #bbb;
-    padding-top: 20px;
-}
-
-.tabcontrol > .content > .body {
-    float: left;
-    position: absolute;
-    width: 95%;
-    height: 95%;
-    padding: 2.5%;
-}
-
-.tabcontrol > .content > .body ul {
-    list-style: disc;
-}
-
-.tabcontrol > .content > .body ul > li {
-    display: list-item;
+    min-height: 45px;
 }
 
 .wysihtml5-toolbar {
     ul, ul li {
         list-style: none;
     }
-}
+    a[data-wysihtml5-command="underline"] {
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+    a[data-wysihtml5-command="underline"] {
 
-#_wrapper {
-    
-    
-    #editor-cont {
-    	
-    	background-color: #FFF;
-	    border: 1px solid #E3E3E3;
-	    padding: 20px;
-		position: relative;
-		margin-top: 40px;
-		
-		.wysihtml5-toolbar {
-			position: absolute;
-			top: -50px;
-		}
-		
-    	.editor-controls {
-	    	
-	    	.control {
-		    	
-		    	&.control-date {text-align: right;}
-		    	&.control-sender {text-align: left;}
-		    	&.control-addressee {text-align: right;}
-		    	&.control-template {text-align: center;}
-		    	
-	    	}
-	    		    	
-    	}
-    	
-	    #editor {
-	    
-		    height: 100%;
-		    line-height: 1em;
-		    min-height: 300px;
-		    overflow-y: scroll;
-		    outline: none;
-		    margin-top: 40px;
-	    
-	    }
-	    
-	    .hints {
-		    ul {
-			    list-style: none;
-			    li {
-				    list-style: none;
-			    }
-		    }
-	    }
-    
     }
-    
-
-    /*RESET TO BOOTSTRAP 3 BASIC SETUP*/
-    ul, ol {
-        margin-bottom: 10px;
-        margin-top: 0;
-        list-style: disc outside;
+    a[data-wysihtml5-command="small"],
+    a[data-wysihtml5-command="insertOrderedList"] {
+        display: none;
     }
-
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-        color: inherit;
-        font-family: inherit;
-        font-weight: 500;
-        line-height: 1.1;
-    }
-    h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
-        color: #999;
-        font-weight: 400;
-        line-height: 1;
-    }
-    h1, .h1, h2, .h2, h3, .h3 {
-        margin-bottom: 10px;
-        margin-top: 20px;
-    }
-    h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
-        font-size: 65%;
-    }
-    h4, .h4, h5, .h5, h6, .h6 {
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-    h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small, h4 .small, .h4 .small, h5 .small, .h5 .small, h6 .small, .h6 .small {
-        font-size: 75%;
-    }
-    h1, .h1 {
-        font-size: 36px;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-    h2, .h2 {
-        font-size: 30px;
-        font-weight: bold;
-        text-align: left;
-    }
-    h3, .h3 {
-        font-size: 24px;
-    }
-    h4, .h4 {
-        font-size: 18px;
-    }
-    h5, .h5 {
-        font-size: 14px;
-    }
-    h6, .h6 {
-        font-size: 12px;
-    }
-    p {
-        margin: 0 0 5px;
-    }
-    small, .small {
-        font-size: 85%;
-    }
-
-    /*END OF RESET TO BOOTSTRAP 3 BASIC SETUP*/
-
-}
-
-
-
-.btn_cont {
-    text-align: center;
-    min-height: 45px;
 }
 
 #_wrapper {
@@ -478,49 +353,6 @@
     .appHeader {
         background-color: #E3E3E3;
         border-bottom: 1px solid #BBB;
-    }
-
-    h1 {
-        font-family: "Lato", sans-serif;
-        font-size: 26px;
-        font-weight: 300;
-        margin-bottom: 20px;
-
-        strong {
-            font-weight: 400;
-        }
-    }
-
-    h2 {
-        font-family: "Lato", sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        text-align: center;
-    }
-
-    .innerContent {
-        text-align: center;
-
-        .main_input {
-            margin: 20px 0 10px;
-
-            input {
-                font-size: 16px;
-            }
-
-            .btn {
-                width: 45px;
-                height: 45px;
-
-                &.loading {
-                    background: url(../../img/loader/search-loading.png) center center no-repeat #5CB85C;
-
-                    &:before {
-                        content: ' ';
-                    }
-                }
-            }
-        }
 
         #shortcuts {
             margin: 1.5em 0;
@@ -574,6 +406,49 @@
         }
     }
 
+    h1 {
+        font-family: "Lato", sans-serif;
+        font-size: 26px;
+        font-weight: 300;
+        margin-bottom: 20px;
+
+        strong {
+            font-weight: 400;
+        }
+    }
+
+    h2 {
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .innerContent {
+        text-align: center;
+
+        .main_input {
+            margin: 20px 0 10px;
+
+            input {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 45px;
+                height: 45px;
+
+                &.loading {
+                    background: url(../../img/loader/search-loading.png) center center no-repeat #5CB85C;
+
+                    &:before {
+                        content: ' ';
+                    }
+                }
+            }
+        }
+    }
+
     .dataliner {
         margin: 20px;
 
@@ -584,64 +459,150 @@
         }
     }
 
-}
+    #editor-cont {
+        background-color: #FFFFFF;
+        border: 1px solid #E3E3E3;
+        padding: 20px;
+        position: relative;
+        margin-top: 40px;
 
-.hint-title {
-	font-size: 16px;
-	font-weight: 300;
-	margin-bottom: 40px;
-	text-align: center;
-}
+        .wysihtml5-toolbar {
+            position: absolute;
+            top: -50px;
+        }
 
-.wizard ul.ul-raw, .tabcontrol ul.ul-raw, .ul-raw {
-	list-style: none;
-	margin: inherit;
-	padding: 0 10px;
-	width: inherit;
-	
-	li {
-		list-style: none;
-		font-size: 16px;
-		border-bottom: 1px solid #E6E6E6;
-		padding: 10px;
-		
-		p {
-			padding: 0;
-			margin: 0;
-		}
-		
-		&:last-child {
-			border-bottom: none;
-		}
-	}
-	
-	li:last-child {
-		border-bottom: none;
-	}
-	
-}
+        .editor-controls {
+            .control {
+                &.control-date {
+                    text-align: right;
+                }
+                &.control-sender {
+                    text-align: left;
+                }
+                &.control-addressee {
+                    text-align: right;
+                }
+                &.control-template {
+                    text-align: center;
+                }
 
-.block {
-	margin: 20px 0;
-	
-	&.search {
-		h2 {
-			margin: 7px 0 0 0;
-		}
-	}
-	
-	.content {
-		padding: 10px 30px;
-	}
-	
-	.block-header {
-		
-		padding: 10px;
-		
-		input[type=text] {
-			width: 100%;
-			border-color: #EEE;
-			padding: 8px 10px 6px;
-		}
-	}
+            }
+
+        }
+
+        #editor {
+            height: 100%;
+            line-height: 1em;
+            min-height: 300px;
+            padding: 10px;
+            outline: none;
+
+            /*RESET TO BOOTSTRAP 3 BASIC SETUP*/
+            ul, ol {
+                margin-bottom: 10px;
+                margin-top: 0;
+                list-style: disc outside;
+            }
+
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                color: inherit;
+                font-family: inherit;
+                font-weight: 500;
+                line-height: 1.1;
+            }
+            h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+                color: #999;
+                font-weight: 400;
+                line-height: 1;
+            }
+            h1, .h1, h2, .h2, h3, .h3 {
+                margin-bottom: 10px;
+                margin-top: 20px;
+            }
+            h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
+                font-size: 65%;
+            }
+            h4, .h4, h5, .h5, h6, .h6 {
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+            h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small, h4 .small, .h4 .small, h5 .small, .h5 .small, h6 .small, .h6 .small {
+                font-size: 75%;
+            }
+            h1, .h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            h2, .h2 {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: left;
+            }
+            h3, .h3 {
+                font-size: 24px;
+            }
+            h4, .h4 {
+                font-size: 18px;
+            }
+            h5, .h5 {
+                font-size: 14px;
+            }
+            h6, .h6 {
+                font-size: 12px;
+            }
+            p {
+                margin: 0 0 5px;
+            }
+            small, .small {
+                font-size: 85%;
+            }
+
+            /*END OF RESET TO BOOTSTRAP 3 BASIC SETUP*/
+
+        }
+    }
+
+    .btn_cont {
+        text-align: center;
+        min-height: 45px;
+    }
+
+    .hint-title {
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .block {
+        margin: 20px 0;
+        display: block;
+        float: left;
+        width: 100%;
+
+        &.search h2 {
+            margin: 7px 0 0 0;
+        }
+
+        .block-header, .content {
+            float: left;
+            display: block;
+            width: 100%;
+        }
+
+        .block-header {
+            padding: 10px;
+
+            input[type=text] {
+                width: 100%;
+                border-color: #EEE;
+                padding: 8px 10px 6px;
+            }
+        }
+
+        .content {
+            padding: 10px 30px;
+        }
+    }
 }
