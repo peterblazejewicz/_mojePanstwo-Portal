@@ -45,14 +45,15 @@ $(document).ready(function () {
                 "image": false,
                 "textAlign": true
             },
+            "fa": true,
             locale: 'pl-PL'
         });
         editor.removeClass('loading');
-        $('.wysihtml5-toolbar').find('[data-wysihtml5-command="bold"]').html($('<span></span>').addClass('glyphicon glyphicon-bold'))
+        $('.wysihtml5-toolbar').find('[data-wysihtml5-command="bold"]').html($('<span></span>').addClass('fa fa-bold'))
             .end()
-            .find('[data-wysihtml5-command="italic"]').html($('<span></span>').addClass('glyphicon glyphicon-italic'))
+            .find('[data-wysihtml5-command="italic"]').html($('<span></span>').addClass('fa fa-italic'))
             .end()
-            .find('[data-wysihtml5-command="underline"]').html($('<span></span>').addClass('glyphicon glyphicon-magnet'))
+            .find('[data-wysihtml5-command="underline"]').html($('<span></span>').addClass('fa fa-underline'))
             .end()
             .find('[data-wysihtml5-command="createLink"]').html($('<span></span>').addClass('glyphicon glyphicon-link'));
     }
