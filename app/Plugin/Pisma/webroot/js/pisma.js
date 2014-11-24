@@ -7,7 +7,9 @@ var PISMA = Class.extend({
             bodyTag: "section",
             transitionEffect: "slideLeft",
             autoFocus: true,
-
+			
+			next: "Dalej",
+			
             enableAllSteps: true,
             enableKeyNavigation: false,
             enablePagination: true,

@@ -38,3 +38,8 @@ Router::connect("$pisma_prefix/:id/delete", array(
     'action' => 'delete'
 ), array('id' => '[0-9]+', 'pass' => array('id')));
 
+Router::connect("$pisma_prefix/szablony/:id", array(
+    'plugin' => 'Pisma',
+    'controller' => 'Szablony',
+    'action' => 'view'
+), array('id' => '[0-9]+', 'pass' => array('id')));

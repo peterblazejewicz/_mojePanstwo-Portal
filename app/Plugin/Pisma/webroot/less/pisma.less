@@ -348,15 +348,56 @@
     }
 }
 
-#_wrapper #editor {
-    height: 100%;
-    line-height: 1em;
-    min-height: 300px;
-    overflow-y: scroll;
-    background-color: #FFF;
-    padding: 10px;
-    border: 1px solid #E3E3E3;
-    outline: none;
+#_wrapper {
+    
+    
+    #editor-cont {
+    	
+    	background-color: #FFF;
+	    border: 1px solid #E3E3E3;
+	    padding: 20px;
+		position: relative;
+		margin-top: 40px;
+		
+		.wysihtml5-toolbar {
+			position: absolute;
+			top: -50px;
+		}
+		
+    	.editor-controls {
+	    	
+	    	.control {
+		    	
+		    	&.control-date {text-align: right;}
+		    	&.control-sender {text-align: left;}
+		    	&.control-addressee {text-align: right;}
+		    	&.control-template {text-align: center;}
+		    	
+	    	}
+	    		    	
+    	}
+    	
+	    #editor {
+	    
+		    height: 100%;
+		    line-height: 1em;
+		    min-height: 300px;
+		    overflow-y: scroll;
+		    outline: none;
+		    margin-top: 40px;
+	    
+	    }
+	    
+	    .hints {
+		    ul {
+			    list-style: none;
+			    li {
+				    list-style: none;
+			    }
+		    }
+	    }
+    
+    }
     
 
     /*RESET TO BOOTSTRAP 3 BASIC SETUP*/
