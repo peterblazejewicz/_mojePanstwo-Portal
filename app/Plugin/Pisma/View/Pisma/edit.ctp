@@ -19,7 +19,7 @@
 <div class="container">
 
     <h1><?= $pismo['tytul'] ?></h1>
-    
-    <!-- Editor here -->
+
+    <? echo $this->Element('Pisma.editor'); ?>
 
 </div>

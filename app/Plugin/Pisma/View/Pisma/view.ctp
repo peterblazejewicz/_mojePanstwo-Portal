@@ -20,4 +20,7 @@
 
     <h1><?= $pismo['tytul'] ?></h1>
 
+    <div class="col-md-10">
+        <? echo $this->Element('Pisma.render'); ?>
+    </div>
 </div>
