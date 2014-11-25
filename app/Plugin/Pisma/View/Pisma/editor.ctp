@@ -48,7 +48,7 @@ $szablony = array(
         <h2>Wybierz szablon pisma</h2>
         <section>
 
-            <div class="container">
+            <div class="container szablony">
 
                 <div class="col-md-10 col-md-offset-1">
 
@@ -75,7 +75,7 @@ $szablony = array(
                         </div>
                     </div>
 
-                    <div class="block search">
+                    <div class="block search ">
                         <div class="block-header">
                             <h2 class="label pull-left">Popularne szablony</h2>
 
@@ -111,7 +111,7 @@ $szablony = array(
         <h2>Wybierz adresata</h2>
         <section>
 
-            <div class="container">
+            <div class="container adresaci">
 
                 <div class="col-md-10 col-md-offset-1">
 
@@ -127,10 +127,6 @@ $szablony = array(
                             </div>
                         </div>
                         <div class="content">
-                            <!-- 
-                                http://api.mojepanstwo.pl/dane/dataset/instytucje/search.json?conditions[q]=%22ministerstwo%22 
-                                http://mojepanstwo.pl/pisma/szablony/2.json
-                            -->
                             <ul class="ul-raw">
                                 <li class="row">
                                     <div>
@@ -166,14 +162,13 @@ $szablony = array(
                         <div id="editor-cont">
 
                             <div class="editor-controls">
+                                <input type="text" class="control control-date" value="(Ustaw datę)">
 
-                                <p class="control control-date">24 listopada 2014</p>
+                                <p class="control control-sender">(Wybierz nadawcę)</p>
 
-                                <p class="control control-sender">Jan Kowalski</p>
+                                <p class="control control-addressee">(Wybierz odbiorcę)</p>
 
-                                <p class="control control-addressee">Sąd Najwyższy RP</p>
-
-                                <p class="control control-template">Wniosek o udostępnienie informacji publicznej</p>
+                                <p class="control control-template">(Wybierz szablon)</p>
 
                             </div>
 

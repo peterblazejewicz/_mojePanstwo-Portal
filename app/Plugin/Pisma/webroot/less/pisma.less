@@ -441,71 +441,71 @@
             display: block;
         }
     }
-	
-	.form-buttons {
-		list-style: none;
-		li {
-			list-style: none;
-			
-			.glyphicon {
-				color: #FFF;
-				top: -2px;
-			}
-			
-			input {
-				font-family: lato;
-			    font-size: 12px;
-			    font-weight: 600;
-			    margin: 10px auto;
-			    text-transform: uppercase;
-			    width: 170px;
-			    border: 1px solid #FFF;
-			}
-		}
-	}
-	
-	.form-group {
-		overflow: auto;
-		label {
-			margin-top: 8px;
-			font-weight: 500;
-			text-align: right;
-		}
-		.desc {
-			color: #666;
-		    font-family: lato;
-		    font-size: 13px;
-		    margin: 5px 13px;
-		}
-	}
-	
+
+    .form-buttons {
+        list-style: none;
+        li {
+            list-style: none;
+
+            .glyphicon {
+                color: #FFF;
+                top: -2px;
+            }
+
+            input {
+                font-family: lato;
+                font-size: 12px;
+                font-weight: 600;
+                margin: 10px auto;
+                text-transform: uppercase;
+                width: 170px;
+                border: 1px solid #FFF;
+            }
+        }
+    }
+
+    .form-group {
+        overflow: auto;
+        label {
+            margin-top: 8px;
+            font-weight: 500;
+            text-align: right;
+        }
+        .desc {
+            color: #666;
+            font-family: lato;
+            font-size: 13px;
+            margin: 5px 13px;
+        }
+    }
+
     #editor-cont {
         background-color: #FFFFFF;
         border: 1px solid #E3E3E3;
         padding: 20px;
         position: relative;
         margin-top: 40px;
-		
-		&.preview {
-			margin-top: 10px;
-			background-color: #FEFEFE;
-		}
-		
+
+        &.preview {
+            margin-top: 10px;
+            background-color: #FEFEFE;
+        }
+
         .wysihtml5-toolbar {
             position: absolute;
             top: -50px;
             margin-left: -20px;
-			
-			.btn {
-				font-size: 12px; 
-			}
-			
-			.glyphicon-quote:before {
-				font-size: 38px;
-				top: -2px;
-				left: -2px;
-			}
-			
+
+            .btn {
+                font-size: 12px;
+            }
+
+            .glyphicon-quote:before {
+                font-size: 38px;
+                top: -2px;
+                left: -2px;
+            }
+
             ul, ul li {
                 list-style: none;
             }
@@ -525,6 +525,8 @@
         .editor-controls {
             .control {
                 &.control-date {
+                    border: none;
+                    float: right;
                     text-align: right;
                 }
                 &.control-sender {
@@ -541,21 +543,10 @@
 
         }
 
-        #editor {
-            height: 100%;
-            line-height: 1em;
-            min-height: 300px;
-            padding: 10px;
-            outline: none;
-
-            /*RESET TO BOOTSTRAP 3 BASIC SETUP*/
-            ul, ol {
-                margin-bottom: 10px;
-                margin-top: 0;
-                list-style: disc outside;
-            }
-
-            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        .wysihtml5-toolbar .dropdown-menu, #editor {
+            [data-wysihtml5-command-value="h1"], [data-wysihtml5-command-value="h2"], [data-wysihtml5-command-value="h3"], [data-wysihtml5-command-value="h4"], [data-wysihtml5-command-value="h5"], [data-wysihtml5-command-value="h6"],
+            h1, h2, h3, h4, h5, h6,
+            .h1, .h2, .h3, .h4, .h5, .h6 {
                 color: inherit;
                 font-family: inherit;
                 font-weight: 500;
@@ -570,6 +561,9 @@
                 margin-bottom: 10px;
                 margin-top: 20px;
             }
+            h2, .h2 {
+                text-align: left;
+            }
             h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
                 font-size: 65%;
             }
@@ -580,37 +574,43 @@
             h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small, h4 .small, .h4 .small, h5 .small, .h5 .small, h6 .small, .h6 .small {
                 font-size: 75%;
             }
-            h1, .h1 {
+            [data-wysihtml5-command-value="h1"], h1, .h1 {
                 font-size: 36px;
-                margin-bottom: 10px;
                 font-weight: bold;
             }
-            h2, .h2 {
+            [data-wysihtml5-command-value="h2"], h2, .h2 {
                 font-size: 30px;
                 font-weight: bold;
-                text-align: left;
             }
-            h3, .h3 {
+            [data-wysihtml5-command-value="h3"], h3, .h3 {
                 font-size: 24px;
             }
-            h4, .h4 {
+            [data-wysihtml5-command-value="h4"], h4, .h4 {
                 font-size: 18px;
             }
-            h5, .h5 {
+            [data-wysihtml5-command-value="h5"], h5, .h5 {
                 font-size: 14px;
             }
-            h6, .h6 {
+            [data-wysihtml5-command-value="h6"], h6, .h6 {
                 font-size: 12px;
             }
             p {
                 margin: 0 0 5px;
             }
-            small, .small {
-                font-size: 85%;
+        }
+
+        #editor {
+            height: 100%;
+            line-height: 1em;
+            min-height: 300px;
+            padding: 10px;
+            outline: none;
+
+            ul, ol {
+                margin-bottom: 10px;
+                margin-top: 0;
+                list-style: disc outside;
             }
-
-            /*END OF RESET TO BOOTSTRAP 3 BASIC SETUP*/
-
         }
     }
 
