@@ -224,9 +224,9 @@ $szablony = array(
 						<div class="col-md-10">
 							<fieldset>
 								<div class="form-group">
-									<label for="inputEmail" class="col-lg-2 control-label">Tytuł pisma</label>
+									<label for="inputTtitle" class="col-lg-2 control-label">Tytuł pisma</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="inputEmail" type="text">
+										<input name="tytul" class="form-control" id="inputTtitle" type="text">
 										<p class="desc">Adresat pisma nie zobaczy powyższego tytułu. Będzie on używany tylko do organizacji Twoich pism.</p>
 									</div>
 								</div>
@@ -273,9 +273,9 @@ $szablony = array(
 	                        <div class="editor-tooltip">
 	
 	                            <ul class="form-buttons">
-		                            <li class="inner-addon"><i class="glyphicon glyphicon-print"></i><input type="submit" name="print" value="Wydrukuj" class="btn btn-primary" /></li>
-		                            <li class="inner-addon"><i class="glyphicon glyphicon-saved"></i><input type="submit" name="save" value="Zapisz" class="btn btn-primary" /></li>
 		                            <li class="inner-addon"><i class="glyphicon glyphicon-send"></i><input type="submit" name="send" value="Zapisz i wyślij" class="btn btn-primary" /></li>
+		                            <li class="inner-addon"><i class="glyphicon glyphicon-saved"></i><input type="submit" name="save" value="Zapisz" class="btn btn-primary" /></li>
+		                            <li class="inner-addon"><i class="glyphicon glyphicon-print"></i><input type="submit" name="print" value="Wydrukuj" class="btn btn-primary" /></li>
 	                            </ul>
 	
 	                        </div>

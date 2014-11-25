@@ -23,8 +23,8 @@ var PISMA = Class.extend({
             saveState: true,
             labels: {
                 finish: "Zakończ",
-                next: "Następny",
-                previous: "Poprzedni",
+                next: "Dalej",
+                previous: "Cofnij",
                 loading: "Ładowanie..."
             }
         });
