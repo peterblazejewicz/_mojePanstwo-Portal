@@ -4,7 +4,7 @@ class PismaController extends AppController
 {
 
     public $helpers = array('Form');
-    public $uses = array('Pisma.Document');
+    public $uses = array('Pisma.Pismo');
 
     /*
     public function beforeFilter() {
@@ -67,14 +67,58 @@ class PismaController extends AppController
 
     }
 
+	
+	public function view($id, $slug) {
+		
+		$pismo = $this->API->Pisma()->load($id);
+	    $this->set('title_for_layout', $pismo['tytul']);
+		$this->set('pismo', $pismo);
+		
+	}
+	
+	
+	
+	
     /**
      * Saves sent data
      */
-    public function add()
+    public function save()
     {
+	    
+	    if( isset($this->request->data['send']) ) {
+		    
+		    $pismo = $this->API->Pisma()->save( $this->request->data );
+		    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
+			    
+			    $this->redirect($pismo['url']);
+			    
+		    }
+		    
+	    } elseif( isset($this->request->data['save']) ) {
+		    
+		    $pismo = $this->Pismo->save( $this->request->data );
+		    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
+			    
+			    $this->redirect($pismo['url']);
+			    
+		    }
+		    
+		} elseif( isset($this->request->data['print']) ) {
+			
+			$pismo = $this->Pismo->generatePDF( $this->request->data );
+			
+	    }
+	    
+	    
+	    
+	    
+	    // $this->API->Pisma()->
+	    
+	    /*
         if ($doc = $this->saveForm($this->request->data)) {
             $this->redirect(array('action' => 'edit', 'id' => $doc['id']));
         }
+        */
     }
 
     private function saveForm($data)
@@ -122,6 +166,12 @@ class PismaController extends AppController
 
     public function edit($id)
     {
+	    
+	    $pismo = $this->API->Pisma()->load($id);
+	    $this->set('title_for_layout', $pismo['tytul']);
+		$this->set('pismo', $pismo);
+	    
+	    /*
         if ($this->request->is('get')) {
             $doc = $this->api->document_get($id);
             $this->set('doc', $doc);
@@ -134,6 +184,7 @@ class PismaController extends AppController
                 $this->set('doc', $doc);
             }
         }
+        */
     }
 
     public function delete($id)

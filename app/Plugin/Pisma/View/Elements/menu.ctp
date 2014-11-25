@@ -1,3 +1,7 @@
+<?
+	if( !isset($selected) )
+		$selected = false;	
+?>
 <div id="shortcuts">
     <ul>
         <li<? if ($selected == 'home') { ?> class="active"<? } ?>><a href="/pisma">Start</a></li>

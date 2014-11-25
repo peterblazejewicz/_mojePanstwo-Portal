@@ -220,6 +220,13 @@ $szablony = array(
 				
 				<form action="/pisma/nowe" method="post">
 					
+					<input name="data" type="hidden" />
+					<input name="nadawca" type="hidden" />
+					<input name="adresat_id" type="hidden" />
+					<input name="szablon_id" type="hidden" />
+					<input name="tresc" type="hidden" />
+					<input name="podpis" type="hidden" />
+					
 					<div class="row">
 						<div class="col-md-10">
 							<fieldset>

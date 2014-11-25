@@ -19,7 +19,5 @@
 <div class="container">
 
     <h1><?= $pismo['tytul'] ?></h1>
-    
-    <!-- Editor here -->
 
 </div>
