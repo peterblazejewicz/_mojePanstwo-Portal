@@ -1,33 +1,50 @@
-.editor-controls {
-    .control {
-        .empty {
-            cursor: pointer;
-            font-weight: bold;
-        }
-        &.control-date {
-            float: right;
-            width: 100%;
+#editor-cont {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    padding: 20px;
+    position: relative;
+    margin-top: 40px;
+    float: left;
+    width: 100%;
 
-            input {
-                float: right;
-                text-align: right;
-                border: none;
+    .editor-controls {
+        float: left;
+        width: 100%;
+
+        .control {
+            .empty {
+                cursor: pointer;
+                font-weight: bold;
             }
-        }
-        &.control-sender {
-            text-align: left;
-            width: 50%;
-            float: left;
-        }
-        &.control-addressee {
-            text-align: right;
-            width: 50%;
-            float: right;
-        }
-        &.control-template {
-            float: left;
-            text-align: center;
-            width: 100%;
+            &.control-date {
+                float: right;
+                width: 100%;
+
+                input {
+                    float: right;
+                    text-align: right;
+                    border: none;
+                }
+            }
+            &.control-sender {
+                text-align: left;
+                width: 50%;
+                float: left;
+            }
+            &.control-addressee {
+                text-align: right;
+                width: 50%;
+                float: right;
+            }
+            &.control-template {
+                float: left;
+                text-align: center;
+                width: 100%;
+            }
+            &.control-signature {
+                float: left;
+                width: 100%;
+            }
         }
     }
 }
@@ -90,11 +107,13 @@
 }
 
 #editor {
+    width: 100%;
     height: 100%;
     line-height: 1em;
     min-height: 300px;
     padding: 10px;
     outline: none;
+    float: left;
 
     ul, ol {
         margin-bottom: 10px;

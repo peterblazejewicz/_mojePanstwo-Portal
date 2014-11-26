@@ -3,9 +3,15 @@ var PISMA = Class.extend({
         stepper_div: $("#stepper")
     },
     methods: {
-        stepper: null,
+        stepper: null
+    },
+    objects: {
         szablon: null,
+        adresaci: null,
         editor: null
+    },
+    cache: {
+        adresaci: {}
     },
     init: function () {
         this.steps();
@@ -22,11 +28,12 @@ var PISMA = Class.extend({
         this.html.adresaci = this.html.stepper_div.find('.adresaci');
         this.html.editorTop = this.html.stepper_div.find('.editor-controls');
         this.html.editor = this.html.stepper_div.find('#editor');
+        this.html.finalForm = this.html.stepper_div.find('#finalForm');
     },
     steps: function () {
         var self = this;
 
-        self.html.stepper_div.steps({
+        self.methods.stepper = self.html.stepper_div.steps({
             headerTag: "h2",
             bodyTag: "section",
             transitionEffect: "slideLeft",
@@ -44,17 +51,18 @@ var PISMA = Class.extend({
                 previous: "Cofnij",
                 loading: "Ładowanie..."
             },
+            onInit: function () {
+                self.html.stepper_div.find('ul[role="tablist"]').addClass('container');
+            },
             onStepChanged: function () {
                 self.checkStep();
             }
         });
-
-        self.methods.stepper = self.html.stepper_div.data();
     },
     checkStep: function () {
-        if (this.methods.stepper.state.currentIndex == 2) {
+        if (this.methods.stepper.data().state.currentIndex == 2) {
             this.editorDetail();
-        } else if (this.methods.stepper.state.currentIndex == 3) {
+        } else if (this.methods.stepper.data().state.currentIndex == 3) {
             this.lastPage();
         }
     },
@@ -74,16 +82,16 @@ var PISMA = Class.extend({
                 self.szablonReset(self);
 
                 that.removeClass('btn-success').addClass('btn-default disabled');
-                self.methods.szablon = {
+                self.objects.szablon = {
                     id: slice.data('id'),
                     title: slice.data('title')
                 };
-                self.html.editorTop.find('.control-template').text(self.methods.szablon.title);
+                self.html.editorTop.find('.control-template').text(self.objects.szablon.title);
 
                 self.html.szablony.find('#chosen-template ul').empty().append(
                     $('<li></li>').addClass('row').append(
                         $('<div></div>').append(
-                            $('<p></p>').text(self.methods.szablon.title)
+                            $('<p></p>').text(self.objects.szablon.title)
                         )
                     )
                 );
@@ -95,7 +103,7 @@ var PISMA = Class.extend({
     },
     szablonReset: function (self) {
         self.html.szablony.find('.ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
-        self.methods.szablon = null;
+        self.objects.szablon = null;
     },
     adresaci: function () {
         var self = this;
@@ -105,11 +113,27 @@ var PISMA = Class.extend({
                 self.adresaciReset(self);
             });
         });
-        /*input autocomplete*/
-        $.getJSON("http://api.mojepanstwo.pl/dane/dataset/instytucje/search.json?conditions[q]=%22ministerstwo%22", function (data) {
-            self.html.adresaci.find('.content').empty().append(
-                $('<ul></ul>').addClass('ul-raw')
-            ).show();
+        self.html.adresaci.find('.search').on('keyup', function () {
+            var adresat = $(this).val();
+
+            if (adresat in self.cache.adresaci) {
+                self.adresaciList(self.cache.adresaci[adresat]);
+            } else {
+                $.getJSON("http://api.mojepanstwo.pl/dane/dataset/instytucje/search.json?conditions[q]=" + adresat, function (data) {
+                    self.cache.adresaci[adresat] = data;
+                    self.adresaciList(data);
+                });
+            }
+        });
+    },
+    adresaciList: function (data) {
+        var self = this;
+
+        self.html.adresaci.find('.content').empty().append(
+            $('<ul></ul>').addClass('ul-raw')
+        ).show();
+
+        if (data.search.dataobjects.length) {
 
             $.each(data.search.dataobjects, function () {
                 var that = this;
@@ -135,21 +159,21 @@ var PISMA = Class.extend({
                                     self.adresaciReset(self);
 
                                     that.removeClass('btn-success').addClass('btn-default disabled');
-                                    self.methods.adresaci = {
+                                    self.objects.adresaci = {
                                         id: slice.data('id'),
                                         title: slice.data('title'),
                                         adres: slice.data('adres')
                                     };
                                     self.html.editorTop.find('.control-addressee').empty().append(
-                                        $('<p></p>').text(self.methods.adresaci.title)
+                                        $('<p></p>').text(self.objects.adresaci.title)
                                     ).append(
-                                        $('<p></p>').text(self.methods.adresaci.adres)
+                                        $('<p></p>').text(self.objects.adresaci.adres)
                                     );
 
                                     self.html.adresaci.find('#chosen-addressee ul').empty().append(
                                         $('<li></li>').addClass('row').append(
                                             $('<div></div>').append(
-                                                $('<p></p>').text(self.methods.adresaci.title)
+                                                $('<p></p>').text(self.objects.adresaci.title)
                                             )
                                         )
                                     );
@@ -162,21 +186,27 @@ var PISMA = Class.extend({
                     )
                 );
             });
-        });
+        } else {
+            self.html.adresaci.find('.ul-raw').append(
+                $('<li></li>').addClass('row').append(
+                    $('<p></p>').addClass('col-md-12').text('Brak wyników dla szukanej frazy')
+                )
+            )
+        }
     },
     adresaciReset: function (self) {
         self.html.adresaci.find('.ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
-        self.methods.adresaci = null;
+        self.objects.adresaci = null;
     },
     editor: function () {
         var self = this;
 
         self.html.editorTop.find('.control-addressee').click(function () {
-            self.html.stepper_div.steps("previous");
+            self.methods.stepper.steps("previous");
         }).end()
             .find('.control-template').click(function () {
-                self.html.stepper_div.steps("previous");
-                self.html.stepper_div.steps("previous");
+                self.methods.stepper.steps("previous");
+                self.methods.stepper.steps("previous");
             });
 
         var months = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
@@ -238,25 +268,45 @@ var PISMA = Class.extend({
     editorDetail: function () {
         var self = this;
 
-        if (self.methods.szablon != null && (self.methods.editor == null || (self.methods.editor.szablon != self.methods.szablon.id))) {
-            $.getJSON("/pisma/szablony/" + self.methods.szablon.id + ".json", function (data) {
-                self.methods.editor = {
+        if (self.objects.szablon != null && (self.objects.editor == null || (self.objects.editor.szablon != self.objects.szablon.id))) {
+            $.getJSON("/pisma/szablony/" + self.objects.szablon.id + ".json", function (data) {
+                if (self.objects.editor !== null) {
+                    if ((self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == ''))
+                        self.html.editor.empty().html(data.formula_start);
+                } else {
+                    self.html.editor.empty().html(data.formula_start);
+                }
+                self.html.editorTop.find('.control-template').text(data.tytul);
+
+                self.objects.editor = {
                     id: data.id,
                     tytul: data.tytul,
                     text: data.formula_start
                 };
-                self.html.editorTop.find('.control-template').text(self.methods.editor.tytul);
-                self.html.editor.empty().append($('<p></p>').text(self.methods.editor.text));
             });
         }
     },
     lastPage: function () {
-        console.log(prev);
-        var prev = this.html.stepper_div.find('.edit .col-md-10').clone();
+        var self = this,
+            prev = self.html.stepper_div.find('.edit .col-md-10').clone();
 
-        prev.find('.wysihtml5-toolbar').remove().end().find('#editor').removeClass('loading');
-        this.html.stepper_div.find('.preview .previewRender .col-md-10').remove();
-        this.html.stepper_div.find('.preview .previewRender').prepend(prev);
+        /*CLEAN UP*/
+        prev.find('.wysihtml5-toolbar').remove().end().find('.control .empty').remove().end().find('#editor').attr('contenteditable', false);
+
+        self.html.stepper_div.find('.preview .previewRender .col-md-10').remove();
+        self.html.stepper_div.find('.preview .previewRender').prepend(prev);
+
+        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input').val())
+            .end()
+            .find('input[name="nadawca"]').val(prev.find('.control.controler-sender').html())
+            .end()
+            .find('input[name="adresat_id"]').val((self.objects.adresaci) ? self.objects.adresaci.id : '')
+            .end()
+            .find('input[name="szablon_id"]').val((self.objects.szablon) ? self.objects.szablon.id : '')
+            .end()
+            .find('input[name="tresc"]').val(prev.find('#editor').html())
+            .end()
+            .find('input[name="podpis"]').val(prev.find('.control.control-signature').html());
     }
 });
 

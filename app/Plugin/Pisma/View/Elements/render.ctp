@@ -13,19 +13,10 @@
 
     </div>
 
-    <div id="editor" class="loading">
-
-        Na podstawie art. 61 Konstytucji RP oraz art. 10 ust. 1 <a target="_blank"
-                                                                   href="http://mojepanstwo.pl/dane/prawo/2007,ustawa-dostepie-informacji-publicznej">ustawy
-            z dnia 6 września 2001 r. o dostępie do informacji publicznej</a> wnoszę o
-        udostępnienie informacji publicznej w postaci:<br/><br/><br/><br/>
-
-    </div>
+    <div id="editor"></div>
 
     <div class="editor-controls">
-
-        <p class="control control-signature">Z poważaniem<br/>Jan Kowalski</p>
-
+        <div class="control control-signature"><span class="empty">(Wybierz sygnaturę)</span></div>
     </div>
 
 </div>

@@ -8,18 +8,12 @@
     <div class="container innerContent">
 
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-            <? echo $this->Element('Pisma.menu', array(
-                // 'selected' => 'nowe'
+            <? echo $this->Element('Pisma.menu', array(// 'selected' => 'nowe'
             )); ?>
         </div>
 
     </div>
 </div>
 
-<div class="container">
+<? echo $this->Element('Pisma.editor', array('title' => $pismo['tytul'])); ?>
 
-    <h1><?= $pismo['tytul'] ?></h1>
-
-    <? echo $this->Element('Pisma.editor'); ?>
-
-</div>
