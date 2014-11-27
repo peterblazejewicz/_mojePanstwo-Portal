@@ -234,6 +234,8 @@ var PISMA = Class.extend({
             dayNamesMin: ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
             weekHeader: 'Tydz',
             dateFormat: 'd MM yy',
+            altField: '#datepickerAlt',
+            altFormat: "yy-mm-dd",
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -293,17 +295,27 @@ var PISMA = Class.extend({
             prev = self.html.stepper_div.find('.edit .col-md-10').clone();
 
         /*CLEAN UP*/
-        prev.find('.wysihtml5-toolbar').remove().end().find('.control span.empty').remove().end().find('.control .empty').removeClass('empty').end().find('.control input, .control textarea').attr('disabled', 'disabled').end().find('#editor').attr('contenteditable', false);
+        prev.find('.wysihtml5-toolbar').remove()
+            .end()
+            .find('.control span.empty').remove()
+            .end()
+            .find('.control .empty').removeClass('empty')
+            .end()
+            .find('.control input, .control textarea').attr('disabled', 'disabled')
+            .end()
+            .find('#editor').attr('contenteditable', false);
 
         self.html.stepper_div.find('.preview .previewRender .col-md-10').remove();
         self.html.stepper_div.find('.preview .previewRender').prepend(prev);
 
-        /*COPY TEXTAREA*/
+        /*COPY TEXTAREA VALUE*/
+        if (prev.find('.control.control-date input.city').val() == '')
+            prev.find('.control.control-date input.city').val(' ');
         self.html.stepper_div.find('.edit .col-md-10').find("textarea").each(function (idx) {
-            self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx).val($(this).val());
+            self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx).val(($(this).val() == '') ? ' ' : $(this).val());
         });
 
-        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input.datepicker').val())
+        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input#datepickerAlt').val())
             .end()
             .find('input[name="miejscowosc"]').val(prev.find('.control.control-date input.city').val())
             .end()
