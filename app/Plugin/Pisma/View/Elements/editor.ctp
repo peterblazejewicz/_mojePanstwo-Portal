@@ -163,7 +163,7 @@ $szablony = array(
 
             <form id="finalForm" action="/pisma/nowe" method="post">
                 <input name="miejscowosc" type="hidden" maxlength="127"/>
-                <input name="data" type="hidden" maxlength="10"/>/*2014-12-20*/
+                <input name="data" type="hidden" maxlength="10"/>
                 <input name="nadawca" type="hidden" maxlength="511"/>
                 <input name="adresat_id" type="hidden"/>
                 <input name="szablon_id" type="hidden"/>

@@ -5,7 +5,7 @@
     <div class="editor-controls">
         <div class="control control-date">
             <input type="text" class="datepicker">
-            <input type="hidden" id="datepickerAlt">
+            <input type="hidden" id="datepickerAlt" value="<?php echo date('Y-m-d') ?>">
             <input type="text" class="city empty" placeholder="Wybierz miejscowość" maxlength="127">
         </div>
 
