@@ -18,7 +18,7 @@
             margin-bottom: 10px;
 
             span, textarea, input {
-                padding: 5px 10px;
+                padding: 10px 15px;
             }
 
             p {
@@ -73,24 +73,40 @@
                 width: 100%;
             }
             .empty {
-                font-weight: normal;
-                cursor: pointer;
-                background-color: #ffc;
-                color: #000000;
-
+                background-color: #eef;
+			    border-radius: 5px;
+			    color: #31708f;
+			    cursor: pointer;
+			    font-family: lato;
+			    font-size: 12px;
+			    font-weight: normal;
+			    text-transform: uppercase;
+				
             }
+            
+            textarea.empty {
+	        	background-color: #FFE;
+			    border-radius: inherit;
+			    color: inherit;
+			    cursor: inherit;
+			    font-family: inherit;
+			    font-size: inherit;
+			    font-weight: inherit;
+			    text-transform: inherit;
+            }
+            
             ::-moz-placeholder {
-                color: #000000;
+                color: #999;
                 opacity: 1;
             }
 
             ::-webkit-placeholder {
-                color: #000000;
+                color: #999;
                 opacity: 1;
             }
 
             ::-placeholder {
-                color: #000000;
+                color: #999;
                 opacity: 1;
             }
         }

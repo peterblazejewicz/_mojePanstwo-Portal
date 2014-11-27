@@ -6,17 +6,17 @@
         <div class="control control-date">
             <input type="text" class="datepicker">
             <input type="hidden" id="datepickerAlt" value="<?php echo date('Y-m-d') ?>">
-            <input type="text" class="city empty" placeholder="Wybierz miejscowość" maxlength="127">
+            <input type="text" class="city empty" placeholder="Wybierz miejscowość" maxlength="127" style="display: none;">
         </div>
 
         <div class="control control-sender">
-            <textarea class="nadawca empty" placeholder="Wpisz nadawcę" rows="1" maxlength="511"></textarea>
+            <textarea class="nadawca empty" placeholder="Wpisz dane nadawcy..." rows="1" maxlength="511"></textarea>
             <textarea class="sprawa empty hide" placeholder="Wpisz znak sprawy" rows="1"></textarea>
         </div>
 
-        <div class="control control-addressee"><span class="empty">Wybierz odbiorcę</span></div>
+        <div class="control control-addressee"><span class="empty">Wybierz adresata</span></div>
 
-        <div class="control control-template"><span class="empty">Wybierz szablon</span></div>
+        <div class="control control-template"><span class="empty">Wybierz szablon pisma</span></div>
 
     </div>
 
@@ -24,7 +24,7 @@
 
     <div class="editor-controls">
         <div class="control control-signature">
-            <textarea class="podpis empty" placeholder="Wpisz sygnaturę" rows="1" maxlength="255"></textarea>
+            <textarea class="podpis empty" placeholder="Podpisz się" rows="1" maxlength="255"></textarea>
         </div>
     </div>
 
