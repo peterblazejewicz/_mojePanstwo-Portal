@@ -27,7 +27,8 @@ $szablony = array(
 <?php echo $this->Html->script('../plugins/bootstrap3-wysiwyg/dist/locales/bootstrap-wysihtml5.pl-PL', array('block' => 'scriptBlock')); ?>
 
 <?php $this->Combinator->add_libs('css', $this->Less->css('pisma', array('plugin' => 'Pisma'))) ?>
-<?php $this->Combinator->add_libs('js', 'jquery_steps.js') ?>
+<?php $this->Combinator->add_libs('js', 'Pisma.jquery.autosize.min.js') ?>
+<?php $this->Combinator->add_libs('js', 'Pisma.jquery_steps.js') ?>
 <?php $this->Combinator->add_libs('js', 'Pisma.pisma.js') ?>
 
 <div id="stepper">

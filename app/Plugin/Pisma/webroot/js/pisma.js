@@ -201,6 +201,10 @@ var PISMA = Class.extend({
     editor: function () {
         var self = this;
 
+        $('textarea').autosize({
+            append: false
+        });
+
         self.html.editorTop.find('.control-addressee').click(function () {
             self.methods.stepper.steps("previous");
         }).end()
@@ -312,7 +316,7 @@ var PISMA = Class.extend({
         if (prev.find('.control.control-date input.city').val() == '')
             prev.find('.control.control-date input.city').val(' ');
         self.html.stepper_div.find('.edit .col-md-10').find("textarea").each(function (idx) {
-            self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx).val(($(this).val() == '') ? ' ' : $(this).val());
+            $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith("<span>" + $(this).val() + "</span>");
         });
 
         self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input#datepickerAlt').val())
