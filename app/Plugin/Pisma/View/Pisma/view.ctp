@@ -9,7 +9,7 @@
 
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <? echo $this->Element('Pisma.menu', array(
-                // 'selected' => 'nowe'
+                'selected' => 'moje'
             )); ?>
         </div>
 

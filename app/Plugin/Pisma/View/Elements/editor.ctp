@@ -162,12 +162,13 @@ $szablony = array(
         <div class="container preview">
 
             <form id="finalForm" action="/pisma/nowe" method="post">
-                <input name="data" type="hidden"/>
-                <input name="nadawca" type="hidden"/>
+                <input name="miejscowosc" type="hidden" maxlength="127"/>
+                <input name="data" type="hidden" maxlength="10"/>/*2014-12-20*/
+                <input name="nadawca" type="hidden" maxlength="511"/>
                 <input name="adresat_id" type="hidden"/>
                 <input name="szablon_id" type="hidden"/>
                 <input name="tresc" type="hidden"/>
-                <input name="podpis" type="hidden"/>
+                <input name="podpis" type="hidden" maxlength="255"/>
 
                 <div class="row">
                     <div class="col-md-10">
@@ -177,6 +178,7 @@ $szablony = array(
 
                                 <div class="col-lg-10">
                                     <input name="tytul" class="form-control" id="inputTtitle" autocomplete="off"
+                                           maxlength="255"
                                            type="text"<?php if (!empty($title)) echo ' value="' . $title . '"' ?>>
 
                                     <p class="desc">Adresat pisma nie zobaczy powyższego tytułu. Będzie on używany tylko

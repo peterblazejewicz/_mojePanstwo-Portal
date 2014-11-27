@@ -285,20 +285,29 @@ var PISMA = Class.extend({
                 };
             });
         }
+
+        self.html.editor.focus();
     },
     lastPage: function () {
         var self = this,
             prev = self.html.stepper_div.find('.edit .col-md-10').clone();
 
         /*CLEAN UP*/
-        prev.find('.wysihtml5-toolbar').remove().end().find('.control .empty').remove().end().find('#editor').attr('contenteditable', false);
+        prev.find('.wysihtml5-toolbar').remove().end().find('.control span.empty').remove().end().find('.control .empty').removeClass('empty').end().find('.control input, .control textarea').attr('disabled', 'disabled').end().find('#editor').attr('contenteditable', false);
 
         self.html.stepper_div.find('.preview .previewRender .col-md-10').remove();
         self.html.stepper_div.find('.preview .previewRender').prepend(prev);
 
-        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input').val())
+        /*COPY TEXTAREA*/
+        self.html.stepper_div.find('.edit .col-md-10').find("textarea").each(function (idx) {
+            self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx).val($(this).val());
+        });
+
+        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input.datepicker').val())
             .end()
-            .find('input[name="nadawca"]').val(prev.find('.control.controler-sender').html())
+            .find('input[name="miejscowosc"]').val(prev.find('.control.control-date input.city').val())
+            .end()
+            .find('input[name="nadawca"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-sender textarea.nadawca').val())
             .end()
             .find('input[name="adresat_id"]').val((self.objects.adresaci) ? self.objects.adresaci.id : '')
             .end()
@@ -306,7 +315,7 @@ var PISMA = Class.extend({
             .end()
             .find('input[name="tresc"]').val(prev.find('#editor').html())
             .end()
-            .find('input[name="podpis"]').val(prev.find('.control.control-signature').html());
+            .find('input[name="podpis"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-signature textarea').val());
     }
 });
 

@@ -12,29 +12,52 @@
         width: 100%;
 
         .control {
-            .empty {
-                cursor: pointer;
-                font-weight: bold;
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            p {
+                margin-bottom: 0;
+                padding: 0 5px;
             }
+
+            input, textarea {
+                border: none;
+
+                &[disabled="disabled"] {
+                    background-color: #ffffff;
+                }
+            }
+
             &.control-date {
+                width: 50%;
                 float: right;
-                width: 100%;
 
                 input {
                     float: right;
-                    text-align: right;
-                    border: none;
+                    text-align: left;
+
+                    &.city {
+                        text-align: right;
+                    }
                 }
             }
             &.control-sender {
                 text-align: left;
                 width: 50%;
-                float: left;
+
+                textarea {
+                    width: 100%;
+                    height: auto;
+                    overflow: hidden;
+                }
             }
             &.control-addressee {
-                text-align: right;
-                width: 50%;
-                float: right;
+                text-align: left;
+                margin-left: 65%;
+                width: 35%;
+                font-weight: bold;
             }
             &.control-template {
                 float: left;
@@ -44,6 +67,26 @@
             &.control-signature {
                 float: left;
                 width: 100%;
+            }
+            .empty {
+                font-weight: normal;
+                cursor: pointer;
+                background-color: #ffc;
+                color: #000000;
+            }
+            ::-moz-placeholder {
+                color: #000000;
+                opacity: 1;
+            }
+
+            ::-webkit-placeholder {
+                color: #000000;
+                opacity: 1;
+            }
+
+            ::-placeholder {
+                color: #000000;
+                opacity: 1;
             }
         }
     }
@@ -123,5 +166,10 @@
 
     blockquote {
         font-size: 14px;
+    }
+
+    p {
+        line-height: 1.5em;
+        margin: 0 0 15px;
     }
 }
