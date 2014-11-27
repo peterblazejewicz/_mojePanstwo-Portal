@@ -1,7 +1,7 @@
 <?php $this->Combinator->add_libs('css', $this->Less->css('pisma', array('plugin' => 'Pisma'))) ?>
 <?php $this->Combinator->add_libs('js', 'Pisma.pisma.js') ?>
 
-
+<? var_dump($pismo) ?>
 
 
 <div class="appHeader">
@@ -16,11 +16,30 @@
     </div>
 </div>
 
-<div class="container">
-
-    <h1><?= $pismo['tytul'] ?></h1>
-
+<div id="stepper" class="container">
+    <div class="col-md-12">
+        <h1><?= $pismo['tytul'] ?></h1>
+    </div>
     <div class="col-md-10">
         <? echo $this->Element('Pisma.render'); ?>
+    </div>
+    <div class="col-md-2">
+        <div class="editor-tooltip">
+            <ul class="form-buttons">
+                <li class="inner-addon">
+                    <i class="glyphicon glyphicon-send"></i>
+                    <input type="submit" name="send" value="Wyślij"
+                           class="btn btn-primary"/>
+                </li>
+                <li class="inner-addon">
+                    <i class="glyphicon glyphicon-print"></i>
+                    <input type="submit" name="print" value="Wydrukuj" class="btn btn-primary"/>
+                </li>
+                <li class="inner-addon">
+                    <i class="glyphicon glyphicon-download-alt"></i>
+                    <a href="/edit" target="_self" class="btn btn-primary">Edytuj</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -10,7 +10,11 @@
         </div>
 
         <div class="control control-sender">
-            <textarea class="nadawca empty" placeholder="Wpisz dane nadawcy..." rows="1" maxlength="511"></textarea>
+            <?php if (empty($pismo['nadawca'])) { ?>
+                <textarea class="nadawca empty" placeholder="Wpisz dane nadawcy..." rows="1" maxlength="511"></textarea>
+            <? } else { ?>
+                <div class="pre"><?= str_replace("\n", '<br/>', $pismo['nadawca']) ?></div>
+            <? } ?>
             <textarea class="sprawa empty hide" placeholder="Wpisz znak sprawy" rows="1"></textarea>
         </div>
 
@@ -24,7 +28,12 @@
 
     <div class="editor-controls">
         <div class="control control-signature">
-            <textarea class="podpis empty" placeholder="Podpisz się" rows="1" maxlength="255"></textarea>
+            <?php if (empty($pismo['podpis'])) { ?>
+                <textarea class="podpis empty" placeholder="Podpisz się" rows="1" maxlength="255"></textarea>
+            <? } else { ?>
+                <div class="pre"><?= str_replace("\n", '<br/>', $pismo['podpis']) ?></div>
+            <? } ?>
+
         </div>
     </div>
 

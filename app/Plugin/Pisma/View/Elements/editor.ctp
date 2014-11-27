@@ -165,11 +165,11 @@ $szablony = array(
             <form id="finalForm" action="/pisma/nowe" method="post">
                 <input name="miejscowosc" type="hidden" maxlength="127"/>
                 <input name="data" type="hidden" maxlength="10"/>
-                <input name="nadawca" type="hidden" maxlength="511"/>
+                <textarea name="nadawca" class="hide" maxlength="511"></textarea>
                 <input name="adresat_id" type="hidden"/>
                 <input name="szablon_id" type="hidden"/>
                 <input name="tresc" type="hidden"/>
-                <input name="podpis" type="hidden" maxlength="255"/>
+                <textarea class="hide" name="podpis" maxlength="255"/></textarea>
 
                 <div class="row">
                     <div class="col-md-10">

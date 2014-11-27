@@ -14,14 +14,16 @@ var PISMA = Class.extend({
         adresaci: {}
     },
     init: function () {
-        this.steps();
-        this.stepsMarkers();
+        if (this.html.stepper_div.length) {
+            this.steps();
+            this.stepsMarkers();
 
-        this.checkStep();
+            this.checkStep();
 
-        this.szablon();
-        this.adresaci();
-        this.editor();
+            this.szablon();
+            this.adresaci();
+            this.editor();
+        }
     },
     stepsMarkers: function () {
         this.html.szablony = this.html.stepper_div.find('.szablony');
@@ -203,6 +205,10 @@ var PISMA = Class.extend({
 
         $('textarea').autosize({
             append: false
+        }).keyup(function () {
+            var that = $(this);
+
+            (that.val() == "") ? that.addClass('empty') : that.removeClass('empty');
         });
 
         self.html.editorTop.find('.control-addressee').click(function () {
@@ -315,15 +321,17 @@ var PISMA = Class.extend({
         /*COPY TEXTAREA VALUE*/
         if (prev.find('.control.control-date input.city').val() == '')
             prev.find('.control.control-date input.city').val(' ');
-        self.html.stepper_div.find('.edit .col-md-10').find("textarea").each(function (idx) {
-            $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith("<span>" + $(this).val() + "</span>");
+
+        self.html.stepper_div.find('.edit .col-md-10').find("textarea:not('.hide')").each(function (idx) {
+            console.log($(this).attr('class'), $(this).val(), $(self.html.stepper_div.find('.preview .previewRender').find("textarea:not('.hide')").eq(idx)).attr('class'));
+            $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith('<div class="pre">' + $(this).val().replace(/\n/g, '<br/>') + '</div>');
         });
 
         self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input#datepickerAlt').val())
             .end()
             .find('input[name="miejscowosc"]').val(prev.find('.control.control-date input.city').val())
             .end()
-            .find('input[name="nadawca"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-sender textarea.nadawca').val())
+            .find('textarea[name="nadawca"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-sender textarea.nadawca').val())
             .end()
             .find('input[name="adresat_id"]').val((self.objects.adresaci) ? self.objects.adresaci.id : '')
             .end()
@@ -331,7 +339,7 @@ var PISMA = Class.extend({
             .end()
             .find('input[name="tresc"]').val(prev.find('#editor').html())
             .end()
-            .find('input[name="podpis"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-signature textarea').val());
+            .find('textarea[name="podpis"]').val(self.html.stepper_div.find('.edit .col-md-10 .control.control-signature textarea.podpis').val());
     }
 });
 
