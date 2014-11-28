@@ -45,7 +45,7 @@ class PismaController extends AppController
 
     public function editor()
     {
-
+		
         $API = $this->API->Pisma();
 
         // $forms = $API->getForms();
@@ -64,6 +64,15 @@ class PismaController extends AppController
         );
 
         $this->set('forms', $forms);
+        
+        $query = array_merge($this->request->query, $this->request->params);
+        
+        $pismo = array(
+	        'szablon_id' => isset($query['szablon_id']) ? $query['szablon_id'] : false,
+	        'adresat_id' => isset($query['adresat_id']) ? $query['adresat_id'] : false,
+        );
+                
+        $this->set('pismo_init', $pismo);
 
     }
 

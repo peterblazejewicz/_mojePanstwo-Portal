@@ -26,6 +26,15 @@ Router::connect("$pisma_prefix/nowe", array(
     'action' => 'editor',
     '[method]' => 'GET'
 ));
+Router::connect("$pisma_prefix/nowe/szablon/:szablon_id/adresat/:adresat_id", array(
+    'plugin' => 'Pisma',
+    'controller' => 'Pisma',
+    'action' => 'editor',
+    '[method]' => 'GET'
+), array(
+	'szablon_id' => '[0-9]+',
+	'adresat_id' => '[0-9]+',
+));
 Router::connect("$pisma_prefix/:id,:slug", array(
     'plugin' => 'Pisma',
     'controller' => 'Pisma',

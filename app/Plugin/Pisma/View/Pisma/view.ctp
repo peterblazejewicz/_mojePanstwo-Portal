@@ -22,19 +22,21 @@
     </div>
     <div class="col-md-2">
         <div class="editor-tooltip">
+            
+            <? $href_base = '/pisma/' . $pismo['alphaid'] . ',' . $pismo['slug']; ?>
+            
             <ul class="form-buttons">
                 <li class="inner-addon">
                     <i class="glyphicon glyphicon-send"></i>
-                    <input type="submit" name="send" value="Wyślij"
-                           class="btn btn-primary"/>
+                    <a href="<?= $href_base . '/send' ?>" target="_self" class="btn btn-primary">Wyślij</a>
                 </li>
                 <li class="inner-addon">
                     <i class="glyphicon glyphicon-print"></i>
-                    <input type="submit" name="print" value="Wydrukuj" class="btn btn-primary"/>
+                    <a href="<?= $href_base . '/print' ?>" target="_self" class="btn btn-primary">Wydrukuj</a>
                 </li>
                 <li class="inner-addon">
                     <i class="glyphicon glyphicon-download-alt"></i>
-                    <a href="/edit" target="_self" class="btn btn-primary">Edytuj</a>
+                    <a href="<?= $href_base . '/edit' ?>" target="_self" class="btn btn-primary">Edytuj</a>
                 </li>
             </ul>
         </div>
