@@ -4,9 +4,20 @@
 
     <div class="editor-controls">
         <div class="control control-date">
-            <input type="text" class="datepicker">
-            <input type="hidden" id="datepickerAlt" value="<?php echo date('Y-m-d') ?>">
-            <input type="text" class="city empty" placeholder="Wybierz miejscowość" maxlength="127" style="display: none;">
+            <input type="text" class="datepicker" <?php if (!empty($pismo['data_pisma'])) {
+                $months = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+                $data_proc = explode('-', $pismo['data_pisma']);
+                $data_slownie = $data_proc[2] . ' ' . $months[$data_proc[1] - 1] . ' ' . $data_proc[0];
+
+                echo 'value="' . $data_slownie . '"';
+            } ?>>
+            <input type="hidden" id="datepickerAlt" value="<?php if (!empty($pismo['data_pisma'])) {
+                echo $pismo['data_pisma'];
+            } else {
+                echo date('Y-m-d');
+            } ?>">
+            <input type="text" class="city empty" placeholder="Wybierz miejscowość" maxlength="127"
+                   style="display: none;">
         </div>
 
         <div class="control control-sender">
@@ -20,11 +31,21 @@
 
         <div class="control control-addressee"><span class="empty">Wybierz adresata</span></div>
 
-        <div class="control control-template"><span class="empty">Wybierz szablon pisma</span></div>
+        <div class="control control-template">
+            <?php if (empty($pismo['tytul'])) { ?>
+                <span class="empty">Wybierz szablon pisma</span>
+            <? } else { ?>
+                <?= $pismo['tytul'] ?>
+            <? } ?>
+        </div>
 
     </div>
 
-    <div id="editor"></div>
+    <div id="editor">
+        <? if (!empty($pismo['tresc'])) {
+            echo $pismo['tresc'];
+        } ?>
+    </div>
 
     <div class="editor-controls">
         <div class="control control-signature">
@@ -33,7 +54,6 @@
             <? } else { ?>
                 <div class="pre"><?= str_replace("\n", '<br/>', $pismo['podpis']) ?></div>
             <? } ?>
-
         </div>
     </div>
 

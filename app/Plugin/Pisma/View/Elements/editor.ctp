@@ -167,7 +167,9 @@ $szablony = array(
                 <input name="data_pisma" type="hidden" maxlength="10"/>
                 <textarea name="nadawca" class="hide" maxlength="511"></textarea>
                 <input name="adresat_id" type="hidden"/>
+                <input name="adresat" type="hidden" maxlength="511"/>
                 <input name="szablon_id" type="hidden"/>
+                <input name="tytul" type="hidden" maxlength="511"/>
                 <input name="tresc" type="hidden"/>
                 <textarea class="hide" name="podpis" maxlength="255"/></textarea>
 
@@ -175,12 +177,12 @@ $szablony = array(
                     <div class="col-md-10">
                         <fieldset>
                             <div class="form-group">
-                                <label for="inputTtitle" class="col-lg-2 control-label">Tytuł pisma</label>
+                                <label for="inputTtitle" class="col-lg-2 control-label">Nazwa pisma</label>
 
                                 <div class="col-lg-10">
-                                    <input name="tytul" class="form-control" id="inputTtitle" autocomplete="off"
-                                           maxlength="255"
-                                           type="text"<?php if (!empty($title)) echo ' value="' . $title . '"' ?>>
+                                    <input name="nazwa" class="form-control" id="inputTtitle" autocomplete="off"
+                                           maxlength="255" required="required"
+                                           type="text"<?php if (!empty($pismo['nazwa'])) echo ' value="' . $pismo['nazwa'] . '"' ?>>
 
                                     <p class="desc">Adresat pisma nie zobaczy powyższego tytułu. Będzie on używany tylko
                                         do organizacji Twoich pism.</p>

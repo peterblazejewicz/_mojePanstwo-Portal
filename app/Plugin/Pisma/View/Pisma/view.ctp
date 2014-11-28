@@ -1,9 +1,6 @@
 <?php $this->Combinator->add_libs('css', $this->Less->css('pisma', array('plugin' => 'Pisma'))) ?>
 <?php $this->Combinator->add_libs('js', 'Pisma.pisma.js') ?>
 
-<? var_dump($pismo) ?>
-
-
 <div class="appHeader">
     <div class="container innerContent">
 
@@ -18,9 +15,9 @@
 
 <div id="stepper" class="container">
     <div class="col-md-12">
-        <h1><?= $pismo['tytul'] ?></h1>
+        <h1><?= $pismo['nazwa'] ?></h1>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 view">
         <? echo $this->Element('Pisma.render'); ?>
     </div>
     <div class="col-md-2">
