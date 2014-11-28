@@ -327,7 +327,7 @@ var PISMA = Class.extend({
             $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith('<div class="pre">' + $(this).val().replace(/\n/g, '<br/>') + '</div>');
         });
 
-        self.html.finalForm.find('input[name="data"]').val(prev.find('.control.control-date input#datepickerAlt').val())
+        self.html.finalForm.find('input[name="data_pisma"]').val(prev.find('.control.control-date input#datepickerAlt').val())
             .end()
             .find('input[name="miejscowosc"]').val(prev.find('.control.control-date input.city').val())
             .end()
