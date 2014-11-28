@@ -13,6 +13,15 @@
 </div>
 
 <div class="container">
-
+	
+	<ul>
+	<? foreach($search['items'] as $item) { ?>
+		
+		<li>
+			<a href="/pisma/<?=$item['alphaid']?>,<?=$item['slug']?>"><?= $item['name'] ?></a> (<?= $item['created_at'] ?>)
+		</li>
+		
+	<? } ?>
+	</ul>
 
 </div>

@@ -40,7 +40,10 @@ class PismaController extends AppController
 
     public function my()
     {
-
+		
+		$search = $this->API->Pisma()->search();
+		$this->set('search', $search);
+		
     }
 
     public function editor()
