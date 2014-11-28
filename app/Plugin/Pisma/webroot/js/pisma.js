@@ -322,6 +322,7 @@ var PISMA = Class.extend({
             self.html.stepper_div.find('.wysihtml5-toolbar').find('[data-wysihtml5-command="bold"]').html($('<span></span>').addClass('fa fa-bold'))
                 .end()
                 .find('[data-wysihtml5-command="italic"]').html($('<span></span>').addClass('fa fa-italic'))
+
                 .end()
                 .find('[data-wysihtml5-command="underline"]').html($('<span></span>').addClass('fa fa-underline'))
                 .end()

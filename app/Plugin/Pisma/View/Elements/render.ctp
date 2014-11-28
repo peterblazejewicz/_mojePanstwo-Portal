@@ -29,7 +29,14 @@
             <textarea class="sprawa empty hide" placeholder="Wpisz znak sprawy" rows="1"></textarea>
         </div>
 
-        <div class="control control-addressee"><span class="empty">Wybierz adresata</span></div>
+        <div class="control control-addressee">
+            <?php if (empty($pismo['adresat'])) { ?>
+                <span class="empty">Wybierz adresata</span>
+            <?
+            } else {
+                echo $pismo['adresat'];
+            } ?>
+        </div>
 
         <div class="control control-template">
             <?php if (empty($pismo['tytul'])) { ?>
