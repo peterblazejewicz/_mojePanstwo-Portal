@@ -21,17 +21,23 @@
                 padding: 10px 15px;
             }
 
-            p {
-                margin-bottom: 0;
-                padding: 0 5px;
+            span.pre {
+                width: 100%;
+                height: auto;
             }
 
             input, textarea {
                 border: none;
+                resize: none;
 
                 &[disabled="disabled"] {
                     background-color: #ffffff;
                 }
+            }
+
+            p {
+                margin-bottom: 0;
+                padding: 0 5px;
             }
 
             &.control-date {
@@ -69,14 +75,18 @@
                 width: 100%;
             }
             &.control-signature {
-                float: left;
-                width: 100%;
+                text-align: left;
+                margin-left: 65%;
+                width: 35%;
+
+                textarea {
+                    width: 100%;
+                }
             }
             .empty {
 			    color: #157ab5;
 			    cursor: pointer;
 			    font-weight: normal;
-				
             }
             
             textarea.empty {
