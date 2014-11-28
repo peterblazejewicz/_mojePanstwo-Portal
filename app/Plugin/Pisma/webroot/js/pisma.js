@@ -6,6 +6,7 @@ var PISMA = Class.extend({
         stepper: null
     },
     objects: {
+        starter: null,
         szablon: null,
         adresaci: null,
         editor: null
@@ -31,6 +32,7 @@ var PISMA = Class.extend({
         this.html.editorTop = this.html.stepper_div.find('.editor-controls');
         this.html.editor = this.html.stepper_div.find('#editor');
         this.html.finalForm = this.html.stepper_div.find('#finalForm');
+        this.objects.starter = this.html.stepper_div.data('pismo');
     },
     steps: function () {
         var self = this;
@@ -76,7 +78,7 @@ var PISMA = Class.extend({
                 self.szablonReset(self);
             });
         });
-        self.html.szablony.find('.ul-raw li .btn').click(function () {
+        self.html.szablony.find('.list .ul-raw li .btn').click(function () {
             var that = $(this),
                 slice = that.parents('li');
 
@@ -102,9 +104,30 @@ var PISMA = Class.extend({
                     self.html.szablony.find('#chosen-template').slideDown();
             }
         });
+        if (self.objects.starter.szablon_id) {
+            var choosen = self.html.szablony.find('.list .ul-raw li[data-id="' + self.objects.starter.szablon_id + '"]');
+
+            choosen.find('.btn').removeClass('btn-success').addClass('btn-default disabled');
+            self.objects.szablon = {
+                id: choosen.data('id'),
+                title: choosen.data('title')
+            };
+            self.html.editorTop.find('.control-template').text(self.objects.szablon.title);
+
+            self.html.szablony.find('#chosen-template ul').empty().append(
+                $('<li></li>').addClass('row').append(
+                    $('<div></div>').append(
+                        $('<p></p>').text(self.objects.szablon.title)
+                    )
+                )
+            );
+
+            if (self.html.szablony.find('#chosen-template').is(':hidden'))
+                self.html.szablony.find('#chosen-template').slideDown();
+        }
     },
     szablonReset: function (self) {
-        self.html.szablony.find('.ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
+        self.html.szablony.find('.list .ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
         self.objects.szablon = null;
     },
     adresaci: function () {
@@ -127,11 +150,39 @@ var PISMA = Class.extend({
                 });
             }
         });
+
+        if (self.objects.starter.adresat_id) {
+            $.getJSON("http://api.mojepanstwo.pl/dane/instytucje/" + self.objects.starter.adresat_id + ".json", function (d) {
+                self.objects.adresaci = {
+                    id: d.object.id,
+                    title: d.object.data['instytucje.nazwa'],
+                    adres: d.object.data['instytucje.adres']
+                };
+
+                self.html.editorTop.find('.control-addressee').empty().append(
+                    $('<p></p>').text(self.objects.adresaci.title)
+                ).append(
+                    $('<p></p>').text(self.objects.adresaci.adres)
+                );
+
+                self.html.adresaci.find('#chosen-addressee ul').empty().append(
+                    $('<li></li>').addClass('row').append(
+                        $('<div></div>').append(
+                            $('<p></p>').text(self.objects.adresaci.title)
+                        )
+                    )
+                );
+
+                if (self.html.adresaci.find('#chosen-addressee').is(':hidden'))
+                    self.html.adresaci.find('#chosen-addressee').slideDown();
+
+            });
+        }
     },
     adresaciList: function (data) {
         var self = this;
 
-        self.html.adresaci.find('.content').empty().append(
+        self.html.adresaci.find('.list').empty().append(
             $('<ul></ul>').addClass('ul-raw')
         ).show();
 
@@ -140,7 +191,7 @@ var PISMA = Class.extend({
             $.each(data.search.dataobjects, function () {
                 var that = this;
 
-                self.html.adresaci.find('.ul-raw').append(
+                self.html.adresaci.find('.list .ul-raw').append(
                     $('<li></li>').addClass('row').data({
                         id: that.id,
                         title: that.data['instytucje.nazwa'],
@@ -189,7 +240,7 @@ var PISMA = Class.extend({
                 );
             });
         } else {
-            self.html.adresaci.find('.ul-raw').append(
+            self.html.adresaci.find('.list .ul-raw').append(
                 $('<li></li>').addClass('row').append(
                     $('<p></p>').addClass('col-md-12').text('Brak wyników dla szukanej frazy')
                 )
@@ -197,7 +248,7 @@ var PISMA = Class.extend({
         }
     },
     adresaciReset: function (self) {
-        self.html.adresaci.find('.ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
+        self.html.adresaci.find('.list .ul-raw .btn-default').removeClass('btn-default disabled').addClass('btn-success');
         self.objects.adresaci = null;
     },
     editor: function () {
@@ -262,7 +313,7 @@ var PISMA = Class.extend({
             self.html.editor.wysihtml5({
                 toolbar: {
                     "image": false,
-                    "textAlign": true
+                    "emSmall": false
                 },
                 "fa": true,
                 locale: 'pl-PL'

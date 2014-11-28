@@ -23,6 +23,7 @@ $szablony = array(
 
 <?php $this->Combinator->add_libs('css', '../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min') ?>
 
+
 <?php echo $this->Html->script('../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.all.min', array('block' => 'scriptBlock')); ?>
 <?php echo $this->Html->script('../plugins/bootstrap3-wysiwyg/dist/locales/bootstrap-wysihtml5.pl-PL', array('block' => 'scriptBlock')); ?>
 
@@ -31,7 +32,13 @@ $szablony = array(
 <?php $this->Combinator->add_libs('js', 'Pisma.jquery_steps.js') ?>
 <?php $this->Combinator->add_libs('js', 'Pisma.pisma.js') ?>
 
-<div id="stepper">
+<?php
+if (!empty($pismo['szablon_id'])) $pismo_init['szablon_id'] = $pismo['szablon_id'];
+if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id'];
+?>
+
+
+<div id="stepper"<? if (!empty($pismo_init)) echo ' data-pismo=' . json_encode($pismo_init); ?>>
 
     <h2>Wybierz szablon pisma</h2>
     <section>
@@ -71,7 +78,7 @@ $szablony = array(
                             <input type="text" name="szablon" placeholder="Szukaj szablonu..."/>
                         </div>
                     </div>
-                    <div class="content">
+                    <div class="list content">
                         <ul class="ul-raw">
                             <?
                             foreach ($szablony as $szablon) {
@@ -123,7 +130,7 @@ $szablony = array(
                     <div class="block-header">
                         <input class="search" type="text" name="adresat" placeholder="Szukaj adresata..."/>
                     </div>
-                    <div class="content" style="display: none"></div>
+                    <div class="list content" style="display: none"></div>
                 </div>
 
             </div>
