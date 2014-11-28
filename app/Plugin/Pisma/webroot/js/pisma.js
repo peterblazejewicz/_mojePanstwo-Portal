@@ -323,7 +323,6 @@ var PISMA = Class.extend({
             prev.find('.control.control-date input.city').val(' ');
 
         self.html.stepper_div.find('.edit .col-md-10').find("textarea:not('.hide')").each(function (idx) {
-            console.log($(this).attr('class'), $(this).val(), $(self.html.stepper_div.find('.preview .previewRender').find("textarea:not('.hide')").eq(idx)).attr('class'));
             $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith('<div class="pre">' + $(this).val().replace(/\n/g, '<br/>') + '</div>');
         });
 
