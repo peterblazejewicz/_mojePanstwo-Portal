@@ -437,7 +437,7 @@ var PISMA = Class.extend({
                         liczba = Math.floor(liczba / 1000);
                     }
 
-                    that.next().html(' PLN <span class="_slownie">(słownie ' + znak + wynik + ' polskich złotych)</span>');
+                    that.next().html(' PLN <span class="_slownie">(słownie: ' + znak + wynik + ' polskich złotych)</span>');
                 });
             }
 
