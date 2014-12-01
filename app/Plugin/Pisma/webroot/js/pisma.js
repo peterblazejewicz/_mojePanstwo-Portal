@@ -349,10 +349,13 @@ var PISMA = Class.extend({
             self.html.editor.addClass('loading');
             $.getJSON("/pisma/szablony/" + self.objects.szablon.id + ".json", function (data) {
                 if (self.objects.editor !== null) {
-                    if ((self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == ''))
+                    if ((self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == '')) {
                         self.html.editor.empty().html(data.tresc);
+                        self.convertEditor();
+                    }
                 } else {
                     self.html.editor.empty().html(data.tresc);
+                    self.convertEditor();
                 }
                 self.html.editorTop.find('.control-template').text(data.nazwa);
 
@@ -362,7 +365,6 @@ var PISMA = Class.extend({
                     text: data.tresc
                 };
                 self.html.editor.removeClass('loading');
-                self.convertEditor();
             });
         }
     },
