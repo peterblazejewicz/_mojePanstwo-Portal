@@ -1,5 +1,5 @@
 $(function () {
-    $.getJSON('/BankDanychLokalnych/files/pl-all.geo.json', function (geojson) {
+    $.getJSON('http://api.mojepanstwo.pl/geo/geojson/wojewodztwa', function (geojson) {
 
         // Prepare the geojson
         var states = Highcharts.geojson(geojson, 'map'),
