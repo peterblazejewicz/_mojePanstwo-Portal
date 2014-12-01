@@ -86,7 +86,8 @@ var PISMA = Class.extend({
 
         });
         self.html.szablony.find('.list .ul-raw li .btn').click(function () {
-            var that = $(this);
+            var that = $(this),
+                slice = that.parents('li');
 
             if (that.hasClass('btn-success')) {
                 self.szablonReset(self);
@@ -331,7 +332,8 @@ var PISMA = Class.extend({
             self.html.stepper_div.find('.wysihtml5-toolbar').find('[data-wysihtml5-command="bold"]').html($('<span></span>').addClass('fa fa-bold'))
                 .end()
                 .find('[data-wysihtml5-command="italic"]').html($('<span></span>').addClass('fa fa-italic'))
-
+                .end()
+                .find('[data-wysihtml5-command="small"]').remove()
                 .end()
                 .find('[data-wysihtml5-command="underline"]').html($('<span></span>').addClass('fa fa-underline'))
                 .end()
