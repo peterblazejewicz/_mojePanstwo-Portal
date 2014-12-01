@@ -60,7 +60,12 @@ class PismaController extends AppController
 	        'szablon_id' => isset($query['szablon_id']) ? $query['szablon_id'] : false,
 	        'adresat_id' => isset($query['adresat_id']) ? $query['adresat_id'] : false,
         );
-                
+        
+        if( $session = $this->Session->read('Pisma.unsaved') ) {
+	        $this->set('pismo', $session);
+		    $this->Session->delete('Pisma.unsaved');
+	    }
+	                    
         $this->set('pismo_init', $pismo);
 
     }
@@ -83,41 +88,45 @@ class PismaController extends AppController
     public function save()
     {
 	    
-	    if( isset($this->request->data['send']) ) {
-		    
-		    $pismo = $this->API->Pisma()->save( $this->request->data );
-		    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
+	    if( $this->Auth->loggedIn() ) {
+	    	
+		    $this->Session->delete('Pisma.unsaved');
+	    	
+		    if( isset($this->request->data['send']) ) {
 			    
-			    $this->redirect($pismo['url']);
 			    
+			    $pismo = $this->API->Pisma()->save( $this->request->data );
+			    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
+				    
+				    $this->redirect($pismo['url']);
+				    
+			    }
+			    
+		    } elseif( isset($this->request->data['save']) ) {
+			    
+			    $pismo = $this->Pismo->save( $this->request->data );
+			    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
+				    
+				    $this->redirect($pismo['url']);
+				    
+			    }
+			    
+			} elseif( isset($this->request->data['print']) ) {
+				
+				$pismo = $this->Pismo->generatePDF( $this->request->data );
+				
 		    }
+	    
+	    } else {
 		    
-	    } elseif( isset($this->request->data['save']) ) {
+		    $this->Session->write('Pisma.unsaved', $this->request->data);
+		    $this->redirect('/login');
 		    
-		    $pismo = $this->Pismo->save( $this->request->data );
-		    if( $pismo && isset($pismo['id']) && $pismo['id'] ) {
-			    
-			    $this->redirect($pismo['url']);
-			    
-		    }
-		    
-		} elseif( isset($this->request->data['print']) ) {
-			
-			$pismo = $this->Pismo->generatePDF( $this->request->data );
-			
 	    }
 	    
-	    
-	    
-	    
-	    // $this->API->Pisma()->
-	    
-	    /*
-        if ($doc = $this->saveForm($this->request->data)) {
-            $this->redirect(array('action' => 'edit', 'id' => $doc['id']));
-        }
-        */
     }
+    
+    
 
     private function saveForm($data)
     {
