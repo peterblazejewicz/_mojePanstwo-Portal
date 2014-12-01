@@ -51,22 +51,8 @@ class PismaController extends AppController
 		
         $API = $this->API->Pisma();
 
-        // $forms = $API->getForms();
-
-        $forms = array(
-            array(
-                'id' => '1',
-                'tytul' => 'Wniosek o udostępnienie informacji publicznej',
-                'opis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur aliquam arcu, non placerat justo placerat sed. Cras lacinia enim sit amet risus tincidunt, eget auctor ligula venenatis. Sed porttitor urna in egestas vestibulum. Nulla a dictum magna, id laoreet tellus.',
-            ),
-            array(
-                'id' => '2',
-                'tytul' => 'Wniosek o wyznaczenie terminu egzaminu powtórkowego',
-                'opis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur aliquam arcu, non placerat justo placerat sed. Cras lacinia enim sit amet risus tincidunt, eget auctor ligula venenatis. Sed porttitor urna in egestas vestibulum. Nulla a dictum magna, id laoreet tellus.',
-            ),
-        );
-
-        $this->set('forms', $forms);
+        $templatesGroups = $API->getTemplatesGrouped();
+        $this->set('templatesGroups', $templatesGroups);
         
         $query = array_merge($this->request->query, $this->request->params);
         

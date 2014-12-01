@@ -1,26 +1,3 @@
-<?
-$szablony = array(
-    array(
-        'id' => '1',
-        'tytul' => 'Wniosek o udostępnienie informacji publicznej',
-    ),
-    array(
-        'id' => '2',
-        'tytul' => 'Wniosek o wydanie wyciągu z KRS-u',
-    ),
-    array(
-        'id' => '3',
-        'tytul' => 'Wniosek o zwolnienie z kary grzywny w postępowaniu administracyjnym',
-    ),
-    array(
-        'id' => '4',
-        'tytul' => 'Odwołanie od decyzji wydanej w pierwszej instancji w postępowaniu administracyjnym',
-    ),
-);
-?>
-
-
-
 <?php $this->Combinator->add_libs('css', '../plugins/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min') ?>
 
 
@@ -60,33 +37,25 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                         </div>
                     </div>
                     <div class="content">
-                        <ul class="ul-raw">
-                            <li class="row">
-                                <div>
-                                    <p>Wniosek o udostępnienie informacji publicznej</p>
-                                </div>
-                            </li>
-                        </ul>
+                        <ul class="ul-raw"></ul>
                     </div>
                 </div>
-
+				
+				<? foreach( $templatesGroups as $group ) { ?>
                 <div class="block search ">
                     <div class="block-header">
-                        <h2 class="label pull-left">Popularne szablony</h2>
-
-                        <div class="pull-right">
-                            <input type="text" name="szablon" placeholder="Szukaj szablonu..."/>
-                        </div>
+                        <h2 class="label"><?= $group['nazwa'] ?></h2>
                     </div>
                     <div class="list content">
                         <ul class="ul-raw">
-                            <?
-                            foreach ($szablony as $szablon) {
+                            <? 
+                            foreach ($group['templates'] as $template) {
                                 ?>
-                                <li data-id="<?= $szablon['id'] ?>"
-                                    data-title="<?= addslashes($szablon['tytul']) ?>" class="row">
+                                <li data-id="<?= $template['id'] ?>"
+                                    data-title="<?= addslashes($template['nazwa']) ?>" class="row">
                                     <div class="pull-left col-md-11">
-                                        <p><a href="#"><?= $szablon['tytul'] ?></a></p>
+                                        <p class="title"><a href="#"><?= $template['nazwa'] ?></a></p>
+                                        <p style="display: none;" class="desc"><?= $template['opis'] ?></p>
                                     </div>
                                     <div class="pull-right  col-md-1">
                                         <button class="btn btn-success btn-xs">Wybierz</button>
@@ -96,6 +65,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                         </ul>
                     </div>
                 </div>
+                <? } ?>
 
             </div>
 
@@ -168,7 +138,11 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
     <h2>Zapisz i wyślij</h2>
     <section>
         <div class="container preview">
-
+			
+			<div class="col-md-10 col-md-offset-1">
+				<p class="hint-title">To jest Twoje gotowe pismo! Możesz je teraz wysłać do adresata lub tylko zapisać. <br/>Twoje pismo jest prywatne - tylko Ty masz do niego dostęp. Po zapisaniu, będziesz mógł je zanonimizować i upublicznić.</p>
+			</div>
+			
             <form id="finalForm" action="/pisma/nowe" method="post">
                 <input name="miejscowosc" type="hidden" maxlength="127"/>
                 <input name="data_pisma" type="hidden" maxlength="10"/>
@@ -179,7 +153,9 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                 <input name="tytul" type="hidden" maxlength="511"/>
                 <input name="tresc" type="hidden"/>
                 <textarea class="hide" name="podpis" maxlength="255"/></textarea>
-
+                <input name="nazwa" type="hidden" value="Nowe pismo"/>
+				
+				<? /*
                 <div class="row">
                     <div class="col-md-10">
                         <fieldset>
@@ -198,6 +174,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                         </fieldset>
                     </div>
                 </div>
+                */ ?>
 
                 <div class="row previewRender">
                     <div class="col-md-10">
