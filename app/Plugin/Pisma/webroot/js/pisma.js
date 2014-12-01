@@ -347,16 +347,16 @@ var PISMA = Class.extend({
             $.getJSON("/pisma/szablony/" + self.objects.szablon.id + ".json", function (data) {
                 if (self.objects.editor !== null) {
                     if ((self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == ''))
-                        self.html.editor.empty().html(data.formula_start);
+                        self.html.editor.empty().html(data.tresc);
                 } else {
-                    self.html.editor.empty().html(data.formula_start);
+                    self.html.editor.empty().html(data.tresc);
                 }
-                self.html.editorTop.find('.control-template').text(data.tytul);
+                self.html.editorTop.find('.control-template').text(data.nazwa);
 
                 self.objects.editor = {
                     id: data.id,
-                    tytul: data.tytul,
-                    text: data.formula_start
+                    tytul: data.nazwa,
+                    text: data.tresc
                 };
             });
         }
