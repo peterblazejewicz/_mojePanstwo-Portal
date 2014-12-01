@@ -78,9 +78,15 @@ var PISMA = Class.extend({
                 self.szablonReset(self);
             });
         });
+        self.html.szablony.find('.list .ul-raw li .title a').click(function (e) {
+            var parent = $(this).parents('li');
+            e.preventDefault();
+
+            parent.find('.desc').stop(true, false).slideToggle();
+
+        });
         self.html.szablony.find('.list .ul-raw li .btn').click(function () {
-            var that = $(this),
-                slice = that.parents('li');
+            var that = $(this);
 
             if (that.hasClass('btn-success')) {
                 self.szablonReset(self);
@@ -102,6 +108,8 @@ var PISMA = Class.extend({
 
                 if (self.html.szablony.find('#chosen-template').is(':hidden'))
                     self.html.szablony.find('#chosen-template').slideDown();
+
+                self.methods.stepper.steps("next");
             }
         });
         if (self.objects.starter.szablon_id) {
@@ -187,7 +195,6 @@ var PISMA = Class.extend({
         ).show();
 
         if (data.search.dataobjects.length) {
-
             $.each(data.search.dataobjects, function () {
                 var that = this;
 
@@ -234,6 +241,8 @@ var PISMA = Class.extend({
                                     if (self.html.adresaci.find('#chosen-addressee').is(':hidden'))
                                         self.html.adresaci.find('#chosen-addressee').slideDown();
                                 }
+
+                                self.methods.stepper.steps("next");
                             })
                         )
                     )
