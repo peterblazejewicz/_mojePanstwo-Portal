@@ -15435,7 +15435,6 @@ this["wysihtml5"]["tpl"]["lists"] = Handlebars.template(function (Handlebars, de
             },
             bypassDefaults: function (options) {
                 return this.each(function () {
-                    w
                     var $this = $(this);
                     $this.data('wysihtml5', new Wysihtml5($this, options));
                 });
