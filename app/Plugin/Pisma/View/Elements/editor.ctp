@@ -54,7 +54,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                                 <li data-id="<?= $template['id'] ?>"
                                     data-title="<?= addslashes($template['nazwa']) ?>" class="row">
                                     <div class="pull-left col-md-11">
-                                        <p class="title"><a href="#"><?= $template['nazwa'] ?></a></p>
+                                        <p class="title"><a href="/dane/pisma_szablony/<?= $template['id'] ?>"><?= $template['nazwa'] ?></a></p>
                                         <p style="display: none;" class="desc"><?= $template['opis'] ?></p>
                                     </div>
                                     <div class="pull-right  col-md-1">
