@@ -9,5 +9,12 @@ class Pismo extends AppModel
 		return $this->API->save( $data );
 				
 	}
+	
+	public function getTemplate($id) {
+		
+		$this->API = mpapiComponent::getApi()->Pisma();
+		return $this->API->getTemplate( $id );
+		
+	}
 
 }
