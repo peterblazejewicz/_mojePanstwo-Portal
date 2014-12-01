@@ -5,7 +5,7 @@
     <div class="editor-controls">
         <div class="control control-date">
             <input type="text" class="datepicker" <?php if (!empty($pismo['data_pisma'])) {
-                $months = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+                $months = array('stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia');
                 $data_proc = explode('-', $pismo['data_pisma']);
                 $data_slownie = $data_proc[2] . ' ' . $months[$data_proc[1] - 1] . ' ' . $data_proc[0];
 
