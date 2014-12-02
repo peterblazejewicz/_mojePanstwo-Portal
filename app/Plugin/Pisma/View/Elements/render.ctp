@@ -48,11 +48,11 @@
 
     </div>
 
-    <div id="editor">
+    <article id="editor">
         <? if (!empty($pismo['tresc'])) {
             echo $pismo['tresc'];
         } ?>
-    </div>
+    </article>
 
     <div class="editor-controls">
         <div class="control control-signature">

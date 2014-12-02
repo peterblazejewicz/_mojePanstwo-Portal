@@ -380,6 +380,26 @@ var PISMA = Class.extend({
                 that.append(
                     $('<input>').addClass('datepicker').datepicker()
                 );
+            } else if (that.hasClass('daterange')) {
+                that.append(
+                    $('<label></label>').attr('for', 'from').text('od dnia ')
+                ).append(
+                    $('<input>').addClass('datepicker from').attr('name', 'from')
+                        .datepicker({
+                            onClose: function (selectedDate) {
+                                that.find('.datepicker.to').datepicker("option", "minDate", selectedDate);
+                            }
+                        })
+                ).append(
+                    $('<label></label>').attr('for', 'to').text(' do dnia ')
+                ).append(
+                    $('<input>').addClass('datepicker to').attr('name', 'to')
+                        .datepicker({
+                            onClose: function (selectedDate) {
+                                that.find('.datepicker.from').datepicker("option", "maxDate", selectedDate);
+                            }
+                        })
+                );
             } else if (that.hasClass('email')) {
                 that.addClass('mirrorable').append(
                     $('<input>').addClass('emailEnter').attr({
@@ -448,7 +468,7 @@ var PISMA = Class.extend({
                 });
             } else {
                 if (that.attr('class').split(" ").length == 1)
-                    that.html('<br>');
+                    that.html('<br type="_editor">');
             }
 
             if (that.hasClass('mirrorable')) {
@@ -472,8 +492,12 @@ var PISMA = Class.extend({
             if (that.hasClass('copyaddresee')) {
                 if (self.objects.adresaci)
                     that.html(self.objects.adresaci.title)
+                else
+                    that.html('<br type="_editor">');
             }
         });
+
+        self.cursorPosition();
     },
     convertEditorInputWidth: function (that) {
         var mirror = that.find('.mirror'),
@@ -486,6 +510,26 @@ var PISMA = Class.extend({
             mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
             input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
         });
+    },
+    cursorPosition: function () {
+        var elEd = document.getElementById('editor');
+
+        if (window.getSelection) {
+            var sel = window.getSelection(),
+                elCr = elEd.getElementsByClassName('cursorhere')[0].parentNode,
+                range = document.createRange();
+
+            range.setStart(elCr, 1);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            $(elCr).find('span.cursorhere').remove();
+
+            if ($(elCr).html() == '')
+                $(elCr).html('<br>');
+        }
+        elEd.focus();
     },
     lastPage: function () {
         var self = this,

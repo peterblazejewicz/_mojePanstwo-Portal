@@ -1,3 +1,5 @@
+@editable: #f5e625;
+
 #editor-cont {
     background-color: #FFFFFF;
     border: 1px solid #E3E3E3;
@@ -98,7 +100,7 @@
             }
 
             textarea.empty {
-                background-color: #f5e625;
+                background-color: @editable;
                 border-radius: inherit;
                 color: inherit;
                 cursor: inherit;
@@ -214,15 +216,26 @@
 
     .editable {
         min-height: 20px;
-        background-color: #f5e625;
+        background-color: @editable;
         min-width: 10px;
         display: inline-block;
-        
+
         input {
             min-width: 110px;
             background: none;
             border: none;
             text-align: center;
+        }
+
+        &.daterange {
+            background: none;
+            label {
+                font-weight: normal;
+                margin-bottom: 0;
+            }
+            input {
+                background-color: @editable;
+            }
         }
     }
     
