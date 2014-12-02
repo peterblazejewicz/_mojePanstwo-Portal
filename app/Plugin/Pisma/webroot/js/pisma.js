@@ -245,6 +245,7 @@ var PISMA = Class.extend({
                                         self.html.adresaci.find('#chosen-addressee').slideDown();
                                 }
 
+                                self.scanEditor();
                                 self.methods.stepper.steps("next");
                             })
                         )
@@ -369,9 +370,10 @@ var PISMA = Class.extend({
         }
     },
     convertEditor: function () {
-        var self = this.html.editor;
+        var self = this,
+            editor = this.html.editor;
 
-        self.find('.editable').each(function () {
+        editor.find('.editable').each(function () {
             var that = $(this);
 
             if (that.hasClass('date')) {
@@ -379,9 +381,14 @@ var PISMA = Class.extend({
                     $('<input>').addClass('datepicker').datepicker()
                 );
             } else if (that.hasClass('email')) {
-                console.log('email', that)
+                that.addClass('mirrorable').append(
+                    $('<input>').addClass('emailEnter').attr({
+                        type: "email",
+                        placeholder: "(podaj adres email)"
+                    })
+                )
             } else if (that.hasClass('currencypln')) {
-                that.append(
+                that.addClass('mirrorable').append(
                     $('<input>').addClass('kwota').attr('title', that.attr('title'))
                 ).after(
                     $('<span></span>').addClass('slownie')
@@ -437,12 +444,47 @@ var PISMA = Class.extend({
                         liczba = Math.floor(liczba / 1000);
                     }
 
-                    that.next().html(' PLN <span class="_slownie">(słownie: ' + znak + wynik + ' polskich złotych)</span>');
+                    that.next().html('&nbsp;PLN <span class="_slownie">(słownie: ' + znak + wynik + ' polskich złotych)</span>');
                 });
+            } else {
+                if (that.attr('class').split(" ").length == 1)
+                    that.html('<br>');
             }
+
+            if (that.hasClass('mirrorable')) {
+                that.prepend($('<div></div>').addClass('mirror').css({'visibility': 'hidden', 'position': 'absolute'}));
+                self.convertEditorInputWidth(that);
+            }
+
+            self.scanEditor();
 
             if (that.attr('title'))
                 that.tooltip();
+        });
+    },
+    scanEditor: function () {
+        var self = this,
+            editor = this.html.editor;
+
+        editor.find('.editable').each(function () {
+            var that = $(this);
+
+            if (that.hasClass('copyaddresee')) {
+                if (self.objects.adresaci)
+                    that.html(self.objects.adresaci.title)
+            }
+        });
+    },
+    convertEditorInputWidth: function (that) {
+        var mirror = that.find('.mirror'),
+            input = that.find('input');
+
+        mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
+        input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
+
+        input.keyup(function () {
+            mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
+            input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
         });
     },
     lastPage: function () {
