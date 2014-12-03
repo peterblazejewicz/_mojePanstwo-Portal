@@ -346,26 +346,22 @@ var PISMA = Class.extend({
     editorDetail: function () {
         var self = this;
 
-        if (self.objects.szablon != null && (self.objects.editor == null || (self.objects.editor.szablon != self.objects.szablon.id))) {
+        if (self.objects.szablon != null && (self.objects.editor == null || (self.objects.editor.id != self.objects.szablon.id))) {
             self.html.editor.addClass('loading');
             $.getJSON("/pisma/szablony/" + self.objects.szablon.id + ".json", function (data) {
                 if (self.objects.editor !== null) {
-                    if ((self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == '')) {
+                    if ($(self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == '')) {
                         self.html.editor.empty().html(data.tresc);
-                        self.convertEditor();
                     }
                 } else {
                     self.html.editor.empty().html(data.tresc);
-                    self.convertEditor();
                 }
-                self.html.editorTop.find('.control-template').text(data.nazwa);
-
                 self.objects.editor = {
                     id: data.id,
-                    tytul: data.nazwa,
-                    text: data.tresc
+                    tytul: data.nazwa
                 };
-                self.html.editor.removeClass('loading');
+                self.html.editorTop.find('.control-template').text(data.nazwa);
+                self.convertEditor();
             });
         }
     },
@@ -408,10 +404,16 @@ var PISMA = Class.extend({
                     })
                 )
             } else if (that.hasClass('currencypln')) {
-                that.addClass('mirrorable').append(
+                var rand = '',
+                    randLength = 32,
+                    randChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+                for (var i = randLength; i > 0; --i) rand += randChars[Math.round(Math.random() * (randChars.length - 1))];
+
+                that.addClass('mirrorable').attr('data-unique', rand).append(
                     $('<input>').addClass('kwota').attr('title', that.attr('title'))
                 ).after(
-                    $('<span></span>').addClass('slownie')
+                    $('<span></span>').addClass('slownie').attr('data-unique', rand)
                 );
 
                 that.removeAttr('title');
@@ -464,7 +466,8 @@ var PISMA = Class.extend({
                         liczba = Math.floor(liczba / 1000);
                     }
 
-                    that.next().html('&nbsp;PLN <span class="_slownie">(słownie: ' + znak + wynik + ' polskich złotych)</span>');
+                    self.html.editor.find('.slownie[data-unique="' + $(this).parent().data('unique') + '"]')
+                        .html('&nbsp;PLN <span class="_slownie">(słownie: ' + znak + wynik + ' polskich złotych)</span>');
                 });
             } else {
                 if (that.attr('class').split(" ").length == 1)
@@ -497,6 +500,8 @@ var PISMA = Class.extend({
             }
         });
 
+        self.objects.editor.text = editor.text();
+        editor.removeClass('loading');
         self.cursorPosition();
     },
     convertEditorInputWidth: function (that) {
@@ -514,7 +519,7 @@ var PISMA = Class.extend({
     cursorPosition: function () {
         var elEd = document.getElementById('editor');
 
-        if (window.getSelection) {
+        if (window.getSelection && elEd.getElementsByClassName('cursorhere').length) {
             var sel = window.getSelection(),
                 elCr = elEd.getElementsByClassName('cursorhere')[0].parentNode,
                 range = document.createRange();
@@ -557,7 +562,31 @@ var PISMA = Class.extend({
             $(self.html.stepper_div.find('.preview .previewRender').find("textarea").eq(idx)).replaceWith('<div class="pre">' + $(this).val().replace(/\n/g, '<br/>') + '</div>');
         });
 
-        self.html.finalForm.find('input[name="data_pisma"]').val(prev.find('.control.control-date input#datepickerAlt').val())
+        self.html.finalForm
+            .find('br[type="_editor"]').remove()
+            .end()
+            .find('.mirrorable').remove()
+            .end()
+            .find('.editable').each(function () {
+                var that = $(this);
+
+                if (that.hasClass('date')) {
+                    that.replaceWith(that.find('input.datepicker').val());
+                } else if (that.hasClass('daterange')) {
+                    that.replaceWith(that.find('label[for="from"]').html() + that.find('input[name="from"]').val() + that.find('label[for="to"]').html() + that.find('input[name="to"]').val())
+                } else if (that.hasClass('email')) {
+                    that.replaceWith(that.find('input[type="email"]').val());
+                } else if (that.hasClass('currencypln')) {
+                    var slownie = self.html.finalForm.find('.slownie[data-unique="' + that.data('unique') + '"]');
+
+                    that.replaceWith(that.find('input.kwota').val());
+                    slownie.replaceWith(slownie.html());
+                } else {
+                    that.replaceWith(that.html())
+                }
+            })
+            .end()
+            .find('input[name="data_pisma"]').val(prev.find('.control.control-date input#datepickerAlt').val())
             .end()
             .find('input[name="miejscowosc"]').val(prev.find('.control.control-date input.city').val())
             .end()

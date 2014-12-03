@@ -10,7 +10,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
     Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.
 </div>
 
-<div id="wyjazdyPoslowMap" class="loading"></div>
+<div id="wyjazdyPoslowMap">
+    <div class="loading"></div>
+</div>
 
 <div class="container">
 
@@ -24,7 +26,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
     <div class="row">
         <div class="col-md-3">
-            <p class="_label">Na trasport</p>
+            <p class="_label">Na transport</p>
 
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['transport']) ?></p>
         </div>
@@ -39,7 +41,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['diety']) ?></p>
         </div>
         <div class="col-md-3">
-            <p class="_label">Pozostałe koszta</p>
+            <p class="_label">Pozostałe koszty</p>
 
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['pozostale']) ?></p>
         </div>
@@ -50,7 +52,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 <a href="http://blog.epf.org.pl/2014/12/afera-madrycka-czyli-dlaczego-otwarte-dane-sa-wazne/" target="_blank" class="baner">
     <div class="inner col-xs-12 col-md-8 col-md-offset-2">
         <div class="text">
-            <p>Dlaczego Kancelaria Sejmu utrudnia analizowanie danych o wyjazdach posłów?</p>
+            <p>“Afera madrycka”, czyli dlaczego otwarte dane są ważne!</p>
             <p>Przeczytaj wpis na blogu Fundacji ePaństwo</p>
         </div>
         <i class="glyphicon glyphicon-chevron-right"></i>
