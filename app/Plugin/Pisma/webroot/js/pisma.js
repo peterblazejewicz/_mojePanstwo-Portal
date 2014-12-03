@@ -351,7 +351,6 @@ var PISMA = Class.extend({
             $.getJSON("/pisma/szablony/" + self.objects.szablon.id + ".json", function (data) {
                 if (self.objects.editor !== null) {
                     if ($(self.objects.editor.text === self.html.editor.text()) || (self.html.editor.text() == '')) {
-                        d
                         self.html.editor.empty().html(data.tresc);
                     }
                 } else {
