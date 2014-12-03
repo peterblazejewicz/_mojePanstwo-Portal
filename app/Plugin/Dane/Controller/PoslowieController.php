@@ -175,7 +175,9 @@ class PoslowieController extends DataobjectsController
 
 		$this->addInitLayers(array('wyjazdy'));
         parent::view();
-
+		
+		$this->set('title_for_layout', "Wyjazdy zagraniczne " . $this->object->getData('dopelniacz'));
+		
     }
 
 
@@ -609,11 +611,11 @@ class PoslowieController extends DataobjectsController
             'label' => 'Informacje finansowe',
         );
         
-//        $menu['items'][] = array(
-//            'id' => 'wyjazdy',
-//            'href' => $href_base . '/wyjazdy',
-//            'label' => 'Wyjazdy zagraniczne',
-//        );
+        $menu['items'][] = array(
+            'id' => 'wyjazdy',
+            'href' => $href_base . '/wyjazdy',
+            'label' => 'Wyjazdy zagraniczne',
+        );
 
         if ($this->object->getData('twitter_account_id')) {
             $menu['items'][] = array(

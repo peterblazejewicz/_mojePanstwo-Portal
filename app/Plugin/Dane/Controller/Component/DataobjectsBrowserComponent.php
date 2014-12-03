@@ -252,6 +252,8 @@ class DataobjectsBrowserComponent extends Component
                         'direction' => isset($order_parts[1]) ? $order_parts[1] : 'desc',
                     );
                     $order['str'] = $order['field'] . ' ' . $order['direction'];
+                    
+                    $this->hlFieldsPush = array($order['field']);
 
                     break;
                 }
