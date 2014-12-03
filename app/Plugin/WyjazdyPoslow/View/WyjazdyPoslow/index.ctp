@@ -10,7 +10,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
     Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.
 </div>
 
-<div id="wyjazdyPoslowMap" class="loading"></div>
+<div id="wyjazdyPoslowMap">
+    <div class="loading"></div>
+</div>
 
 <div class="container">
 
