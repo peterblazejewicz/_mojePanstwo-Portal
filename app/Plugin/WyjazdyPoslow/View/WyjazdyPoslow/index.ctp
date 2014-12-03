@@ -47,8 +47,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 </div>
 
-<? /*
-<a href="/wydatki_poslow" target="_self" class="baner">
+<a href="http://blog.epf.org.pl/2014/12/afera-madrycka-czyli-dlaczego-otwarte-dane-sa-wazne/" target="_blank" class="baner">
     <div class="inner col-xs-12 col-md-8 col-md-offset-2">
         <div class="text">
             <p>Dlaczego Kancelaria Sejmu utrudnia analizowanie danych o wyjazdach posłów?</p>
@@ -57,7 +56,6 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
         <i class="glyphicon glyphicon-chevron-right"></i>
     </div>
 </a>
-*/ ?>
 
 <div class="block-group">
 <div class="block">
