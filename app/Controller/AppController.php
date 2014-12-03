@@ -131,7 +131,7 @@ class AppController extends Controller {
 			'folder_id' => '13'
 		),
 		array(
-			'id'     => '3',
+			'id'     => '18',
 			'slug'   => 'wyjazdy_poslow',
 			'name'   => 'Wyjazdy posłów',
 			'plugin' => 'WyjazdyPoslow',
