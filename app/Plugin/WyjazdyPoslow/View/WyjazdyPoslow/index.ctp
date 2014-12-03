@@ -24,7 +24,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
     <div class="row">
         <div class="col-md-3">
-            <p class="_label">Na trasport</p>
+            <p class="_label">Na transport</p>
 
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['transport']) ?></p>
         </div>
@@ -39,7 +39,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['diety']) ?></p>
         </div>
         <div class="col-md-3">
-            <p class="_label">Pozostałe koszta</p>
+            <p class="_label">Pozostałe koszty</p>
 
             <p class="_value"><?= $this->Waluta->slownie($stats['koszta']['pozostale']) ?></p>
         </div>
