@@ -47,6 +47,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 </div>
 
+<? /*
 <a href="/wydatki_poslow" target="_self" class="baner">
     <div class="inner col-xs-12 col-md-8 col-md-offset-2">
         <div class="text">
@@ -57,6 +58,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
         <i class="glyphicon glyphicon-chevron-right"></i>
     </div>
 </a>
+*/ ?>
 
 <div class="block-group">
 <div class="block">
@@ -90,7 +92,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                 <? } ?>
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie?order=wartosc_wyjazdow desc">Zobacz pełny ranking</a></p>
 
         </div>
         <div class="col-md-7">
@@ -138,7 +140,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
                         <div class="col-md-12">
                             <p class="title">
-                                <a href="#"><?= $i['delegacja'] ?></a>
+                                <a href="/dane/poslowie_wyjazdy_wydarzenia/<?= $i['id'] ?>"><?= $i['delegacja'] ?></a>
                             </p>
 
                             <p class="loc">
@@ -156,7 +158,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie_wyjazdy_wydarzenia?order=wartosc_koszt desc">Zobacz pełny ranking</a></p>
 
         </div>
 
@@ -187,7 +189,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                 <? } ?>
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-default" href="#">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie_wyjazdy?order=wartosc_koszt desc">Zobacz pełny ranking</a></p>
 
         </div>
 
@@ -227,7 +229,7 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 
                 <div class="loc">
-                    <p class="w_title pull-left"><a href="#"><?= $w['data']['delegacja'] ?></a></p>
+                    <p class="w_title pull-left"><a href="/dane/poslowie_wyjazdy_wydarzenia/<?= $w['data']['id'] ?>"><?= $w['data']['delegacja'] ?></a></p>
 
                     <p class="pull-right"><span
                             class="licza_dni"><?= pl_dopelniacz($w['data']['liczba_dni'], 'dzień', 'dni', 'dni') ?></span>
@@ -258,8 +260,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                             <p class="col-sm-4">
                                 <img class="border"
                                      src="http://resources.sejmometr.pl/mowcy/a/3/<?= $p['mowca_id'] ?>.jpg"/>
-                                <a class="title" href="#"><?= $p['nazwa'] ?></a> <span class="klub"><a
-                                        href="#"><?= $p['klub_skrot'] ?></a></span>
+                                <a class="title" href="/dane/poslowie/<?= $p['id'] ?>/wyjazdy"><?= $p['nazwa'] ?></a> <span class="klub"><a
+                                        href="/dane/sejm_kluby/<?= $p['klub_id'] ?>"><?= $p['klub_skrot'] ?></a></span>
                             </p>
 
                             <p class="col-sm-2">

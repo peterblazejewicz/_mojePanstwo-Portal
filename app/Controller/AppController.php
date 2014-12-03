@@ -95,6 +95,24 @@ class AppController extends Controller {
 			'folder_id' => '13'
 		),
 		array(
+			'id'     => '6',
+			'slug'   => 'krs',
+			'name'   => 'Krajowy Rejestr Sądowy',
+			'plugin' => 'krs',
+			'type'   => 'app',
+			'home'   => '1',
+			'folder_id' => '13'
+		),
+		array(
+			'id'     => '5',
+			'slug'   => 'zamowienia_publiczne',
+			'name'   => 'Zamówienia publiczne',
+			'plugin' => 'zamowienia_publiczne',
+			'type'   => 'app',
+			'home'   => '1',
+			'folder_id' => '13'
+		),
+		array(
 			'id'     => '12',
 			'slug'   => 'media',
 			'name'   => 'Media',
@@ -113,19 +131,10 @@ class AppController extends Controller {
 			'folder_id' => '13'
 		),
 		array(
-			'id'     => '6',
-			'slug'   => 'krs',
-			'name'   => 'Krajowy Rejestr Sądowy',
-			'plugin' => 'krs',
-			'type'   => 'app',
-			'home'   => '1',
-			'folder_id' => '13'
-		),
-		array(
-			'id'     => '5',
-			'slug'   => 'zamowienia_publiczne',
-			'name'   => 'Zamówienia publiczne',
-			'plugin' => 'zamowienia_publiczne',
+			'id'     => '3',
+			'slug'   => 'wyjazdy_poslow',
+			'name'   => 'Wyjazdy posłów',
+			'plugin' => 'WyjazdyPoslow',
 			'type'   => 'app',
 			'home'   => '1',
 			'folder_id' => '13'

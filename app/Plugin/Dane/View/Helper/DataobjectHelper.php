@@ -70,7 +70,7 @@ class DataobjectHelper extends AppHelper
         $bg = isset($options['bg']) ? $options['bg'] : false;
         $hlFields = isset($options['hlFields']) ? $options['hlFields'] : false;
         $bigTitle = isset($options['bigTitle']) ? $options['bigTitle'] : false;
-        $hlFieldsPush = isset($options['hlFieldsPush']) ? $options['hlFieldsPush'] : false;
+        $hlFieldsPush = isset($options['hlFieldsPush']) ? $options['hlFieldsPush'] : false;        
         $routes = isset($options['routes']) ? $options['routes'] : array();
         $forceLabel = isset($options['forceLabel']) ? $options['forceLabel'] : false;
         $file = isset($options['file']) ? $options['file'] : false;
@@ -137,10 +137,8 @@ class DataobjectHelper extends AppHelper
     public function highlights($fields = false, $fieldsPush = false, $options = array())
     {
 
-
         $output = '';
-        $fields = $this->object->getHiglightedFields($fields, $fieldsPush);
-
+        $fields = $this->object->getHiglightedFields($fields, $fieldsPush);		
 
         $fields_count = count($fields);
         if ($fields_count) {
