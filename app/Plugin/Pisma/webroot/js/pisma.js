@@ -536,7 +536,7 @@ var PISMA = Class.extend({
         mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
         input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
 
-        input.keydown(function () { //TODO: sprawdzic czy "skacze"
+        input.keydown(function () {
             mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
             input.attr('value', (input.val() == '') ? '' : input.val());
             input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
