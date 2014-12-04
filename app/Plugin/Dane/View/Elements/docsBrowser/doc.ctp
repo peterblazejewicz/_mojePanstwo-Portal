@@ -17,7 +17,7 @@ echo $this->Html->css($document->getCSSLocation());
      data-document-id="<?php echo $document->getId(); ?>">
 
 
-    <? echo $this->Element('toolbar'); ?>
+    <? echo $this->Element('Dane.toolbar'); ?>
 
     <div class="document container">
         <div class="row">
