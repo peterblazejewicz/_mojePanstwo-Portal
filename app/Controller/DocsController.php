@@ -9,8 +9,15 @@ class DocsController extends AppController
     {
 
         $doc = new MP\Document($this->request->params['id']);
-        $this->set('doc', $doc->getData());
+        $data = $doc->getData();
+        $this->set('doc', $data);
         $this->set('_serialize', 'doc');
+        
+        $document = $this->API->document($this->request->params['id']);
+		$this->set('document', $document);
+		$this->set('documentPackage', 1);
+        
+        $this->set('title_for_layout', $data['filename']);
 
     }
 
