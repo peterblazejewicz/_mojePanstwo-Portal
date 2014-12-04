@@ -1,13 +1,21 @@
 <?php
 $this->Combinator->add_libs('css', $this->Less->css('wyjazdy_poslow', array('plugin' => 'WyjazdyPoslow')));
+$this->Combinator->add_libs('css', $this->Less->css('naglosnij', array('plugin' => 'Dane')));
+
 $this->Combinator->add_libs('js', '../plugins/highcharts/js/highcharts');
 $this->Combinator->add_libs('js', '../plugins/highcharts/locals');
 $this->Combinator->add_libs('js', '../plugins/highcharts/plugin/map');
 $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
+$this->Combinator->add_libs('js', 'Dane.naglosnij.js');
 ?>
 
 <div class="maplabel">
-    Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.
+    <p>Kliknij na podświetlone Państwo, aby poznać szczegóły wyjazdów.</p>
+
+    <div class="naglosnijHandler">
+        <?php echo $this->element('Dane.dataobject/buttons/shoutIt'); ?>
+    </div>
+
 </div>
 
 <div id="wyjazdyPoslowMap">
@@ -49,10 +57,12 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 </div>
 
-<a href="http://blog.epf.org.pl/2014/12/afera-madrycka-czyli-dlaczego-otwarte-dane-sa-wazne/" target="_blank" class="baner">
+<a href="http://blog.epf.org.pl/2014/12/afera-madrycka-czyli-dlaczego-otwarte-dane-sa-wazne/" target="_blank"
+   class="baner">
     <div class="inner col-xs-12 col-md-8 col-md-offset-2">
         <div class="text">
             <p>“Afera madrycka”, czyli dlaczego otwarte dane są ważne!</p>
+
             <p>Przeczytaj wpis na blogu Fundacji ePaństwo</p>
         </div>
         <i class="glyphicon glyphicon-chevron-right"></i>
@@ -91,7 +101,8 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                 <? } ?>
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie?order=wartosc_wyjazdow desc">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie?order=wartosc_wyjazdow desc">Zobacz
+                    pełny ranking</a></p>
 
         </div>
         <div class="col-md-7">
@@ -157,7 +168,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie_wyjazdy_wydarzenia?order=wartosc_koszt desc">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary"
+                                      href="/dane/poslowie_wyjazdy_wydarzenia?order=wartosc_koszt desc">Zobacz pełny
+                    ranking</a></p>
 
         </div>
 
@@ -188,7 +201,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                 <? } ?>
             </ul>
 
-            <p class="text-center"><a class="btn btn-sm btn-primary" href="/dane/poslowie_wyjazdy?order=wartosc_koszt desc">Zobacz pełny ranking</a></p>
+            <p class="text-center"><a class="btn btn-sm btn-primary"
+                                      href="/dane/poslowie_wyjazdy?order=wartosc_koszt desc">Zobacz pełny ranking</a>
+            </p>
 
         </div>
 
@@ -228,7 +243,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
 
 
                 <div class="loc">
-                    <p class="w_title pull-left"><a href="/dane/poslowie_wyjazdy_wydarzenia/<?= $w['data']['id'] ?>"><?= $w['data']['delegacja'] ?></a></p>
+                    <p class="w_title pull-left"><a
+                            href="/dane/poslowie_wyjazdy_wydarzenia/<?= $w['data']['id'] ?>"><?= $w['data']['delegacja'] ?></a>
+                    </p>
 
                     <p class="pull-right"><span
                             class="licza_dni"><?= pl_dopelniacz($w['data']['liczba_dni'], 'dzień', 'dni', 'dni') ?></span>
@@ -259,7 +276,9 @@ $this->Combinator->add_libs('js', 'WyjazdyPoslow.wyjazdy_poslow.js');
                             <p class="col-sm-4">
                                 <img class="border"
                                      src="http://resources.sejmometr.pl/mowcy/a/3/<?= $p['mowca_id'] ?>.jpg"/>
-                                <a class="title" href="/dane/poslowie/<?= $p['id'] ?>/wyjazdy"><?= $p['nazwa'] ?></a> <span class="klub"><a
+                                <a class="title"
+                                   href="/dane/poslowie/<?= $p['id'] ?>/wyjazdy"><?= $p['nazwa'] ?></a> <span
+                                    class="klub"><a
                                         href="/dane/sejm_kluby/<?= $p['klub_id'] ?>"><?= $p['klub_skrot'] ?></a></span>
                             </p>
 
