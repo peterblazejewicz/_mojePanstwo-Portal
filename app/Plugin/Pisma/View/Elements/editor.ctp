@@ -21,7 +21,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
 
         <div class="container szablony">
 
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
 
                 <p class="hint-title">Wybierz szablon, aby ułatwić tworzenie pisma. Na podstawie wybranego szablonu,
                     umieścimy w Twoim piśmie odpowiednie formułki prawne i inne informacje. Jeśli nie chcesz
@@ -77,7 +77,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
 
         <div class="container adresaci">
 
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
 
                 <p class="hint-title">Wybierz adresata, do którego chcesz napisać. To pozwoli automatycznie wypełnić
                     dane teleadresowe w Twoim piśmie.</p>
@@ -113,10 +113,10 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
         <div class="container edit">
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-xs-12 col-md-10">
                     <? echo $this->Element('Pisma.render'); ?>
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-12 col-md-2">
                     <div class="editor-tooltip">
 
                         <div class="hints alert alert-info" style="margin-top: 40px;">
@@ -137,8 +137,8 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
     <h2>Zapisz i wyślij</h2>
     <section>
         <div class="container preview">
-			
-			<div class="col-md-10 col-md-offset-1">
+
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
 				<p class="hint-title">To jest Twoje gotowe pismo! Możesz je teraz wysłać do adresata lub tylko zapisać. <br/>Twoje pismo jest prywatne - tylko Ty masz do niego dostęp. Po zapisaniu, będziesz mógł je zanonimizować i upublicznić.</p>
 			</div>
 			
@@ -156,7 +156,7 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
 				
 				<? /*
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-xs-12 col-md-10">
                         <fieldset>
                             <div class="form-group">
                                 <label for="inputTtitle" class="col-lg-2 control-label">Nazwa pisma</label>
@@ -176,10 +176,10 @@ if (!empty($pismo['adresat_id'])) $pismo_init['adresat_id'] = $pismo['adresat_id
                 */ ?>
 
                 <div class="row previewRender">
-                    <div class="col-md-10">
+                    <div class="col-xs-12 col-md-10">
                         <div id="editor-cont" class="loading"></div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-xs-12 col-md-2">
                         <div class="editor-tooltip">
 
                             <ul class="form-buttons">

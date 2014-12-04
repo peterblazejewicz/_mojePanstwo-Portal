@@ -105,14 +105,58 @@
     }
 
     > .steps {
-        position: relative;
         display: block;
         margin: 0;
         text-align: center;
         background-color: #ddd;
 
         > ul > li {
+            @width: 30px;
+            @height: 15px;
+
             width: 25%;
+            display: block;
+            overflow-x: hidden;
+            position: relative;
+            margin-top: -@height;
+            padding-top: @height;
+
+            .arrow {
+                width: @width;
+                height: @height;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+
+                &:before, &:after {
+                    border-left: 15px solid transparent;
+                    border-right: 15px solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                &:before {
+                    border-bottom: 15px solid #bbb;
+                    margin-top: -1px;
+                }
+
+                &:after {
+                    border-bottom: 15px solid #ddd;
+                }
+            }
+
+            &.current {
+                z-index: 1;
+
+                .arrow:after {
+                    border-bottom-color: #AAA;
+                }
+            }
         }
 
         .number {
@@ -368,7 +412,7 @@
                         color: #157AB5;
                     }
 
-                    &.active:before {
+                    /*&.active:before {
                         border-bottom: 15px solid #BBB;
                         border-left: 15px solid transparent;
                         border-right: 15px solid transparent;
@@ -392,7 +436,7 @@
                         margin-left: -10px;
                         position: absolute;
                         width: 0;
-                    }
+                    }*/
                 }
 
             }

@@ -56,7 +56,24 @@ var PISMA = Class.extend({
                 loading: "Ładowanie..."
             },
             onInit: function () {
+                var activeMenu = $('#shortcuts li.active'),
+                    activeMenuPos = Math.floor(activeMenu.offset().left),
+                    activeMenuWidth = activeMenu.outerWidth();
+
                 self.html.stepper_div.find('ul[role="tablist"]').addClass('container');
+                self.html.stepper_div.find('ul.container > li').each(function () {
+                    var that = $(this);
+
+                    that.append(
+                        $('<div></div>').addClass('arrow')
+                    );
+
+                    if (activeMenu) {
+                        var liPos = Math.floor(that.offset().left);
+                        that.find('.arrow').css('left', activeMenuPos - liPos + (activeMenuWidth / 2));
+                    }
+
+                })
             },
             onStepChanged: function () {
                 self.checkStep();
@@ -110,6 +127,8 @@ var PISMA = Class.extend({
                 if (self.html.szablony.find('#chosen-template').is(':hidden'))
                     self.html.szablony.find('#chosen-template').slideDown();
 
+                self.editorDetail();
+
                 self.methods.stepper.steps("next");
             }
         });
@@ -152,13 +171,17 @@ var PISMA = Class.extend({
         self.html.adresaci.find('.search').on('keyup', function () {
             var adresat = $(this).val();
 
-            if (adresat in self.cache.adresaci) {
-                self.adresaciList(self.cache.adresaci[adresat]);
+            if (adresat.length > 0) {
+                if (adresat in self.cache.adresaci) {
+                    self.adresaciList(self.cache.adresaci[adresat]);
+                } else {
+                    $.getJSON("http://api.mojepanstwo.pl/dane/dataset/instytucje/search.json?conditions[q]=" + adresat, function (data) {
+                        self.cache.adresaci[adresat] = data;
+                        self.adresaciList(data);
+                    });
+                }
             } else {
-                $.getJSON("http://api.mojepanstwo.pl/dane/dataset/instytucje/search.json?conditions[q]=" + adresat, function (data) {
-                    self.cache.adresaci[adresat] = data;
-                    self.adresaciList(data);
-                });
+                self.html.adresaci.find('.list').hide();
             }
         });
 
@@ -247,6 +270,7 @@ var PISMA = Class.extend({
 
                                 self.scanEditor();
                                 self.methods.stepper.steps("next");
+                                self.html.adresaci.find('.search').val('').end().find('.list').hide();
                             })
                         )
                     )
@@ -489,20 +513,21 @@ var PISMA = Class.extend({
         var self = this,
             editor = this.html.editor;
 
-        editor.find('.editable').each(function () {
-            var that = $(this);
+        if (editor.text().trim() != '') {
+            editor.find('.editable').each(function () {
+                var that = $(this);
 
-            if (that.hasClass('copyaddresee')) {
-                if (self.objects.adresaci)
-                    that.html(self.objects.adresaci.title)
-                else
-                    that.html('<br type="_editor">');
-            }
-        });
+                if (that.hasClass('copyaddresee')) {
+                    if (self.objects.adresaci)
+                        that.html(self.objects.adresaci.title)
+                    else
+                        that.html('<br type="_editor">');
+                }
+            });
 
-        self.objects.editor.text = editor.text();
-        editor.removeClass('loading');
-        self.cursorPosition();
+            editor.removeClass('loading');
+            self.cursorPosition();
+        }
     },
     convertEditorInputWidth: function (that) {
         var mirror = that.find('.mirror'),
@@ -511,13 +536,15 @@ var PISMA = Class.extend({
         mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
         input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
 
-        input.keyup(function () {
+        input.keydown(function () { //TODO: sprawdzic czy "skacze"
             mirror.html((input.val() == '') ? input.attr('placeholder') : input.val());
+            input.attr('value', (input.val() == '') ? '' : input.val());
             input.css('width', (mirror.outerWidth() < input.css('min-width')) ? input.css('min-width') : mirror.outerWidth());
         });
     },
     cursorPosition: function () {
-        var elEd = document.getElementById('editor');
+        var self = $(this),
+            elEd = document.getElementById('editor');
 
         if (window.getSelection && elEd.getElementsByClassName('cursorhere').length) {
             var sel = window.getSelection(),
@@ -534,6 +561,10 @@ var PISMA = Class.extend({
             if ($(elCr).html() == '')
                 $(elCr).html('<br>');
         }
+
+        if (self.objects.editor !== null)
+            self.objects.editor.text = editor.text();
+
         elEd.focus();
     },
     lastPage: function () {
@@ -565,7 +596,7 @@ var PISMA = Class.extend({
         self.html.finalForm
             .find('br[type="_editor"]').remove()
             .end()
-            .find('.mirrorable').remove()
+            .find('.mirror').remove()
             .end()
             .find('.editable').each(function () {
                 var that = $(this);
