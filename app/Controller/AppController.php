@@ -140,6 +140,15 @@ class AppController extends Controller {
 			'folder_id' => '13'
 		),
 		array(
+			'id'     => '19',
+			'slug'   => 'wydatki_poslow',
+			'name'   => 'Wydatki Posłów',
+			'plugin' => 'WydatkiPoslow',
+			'type'   => 'app',
+			'home'   => '1',
+			'folder_id' => '13'
+		),
+		array(
 			'id'     => '4',
 			'slug'   => 'moja_gmina',
 			'name'   => 'Moja Gmina',

@@ -185,15 +185,21 @@ class PoslowieController extends DataobjectsController
     {
 
         parent::_prepareView();
-
-        if (
-            $this->object->getData('krs_osoba_id') &&
-            ($krs_osoba = $this->API->Dane()->getObject('krs_osoby', $this->object->getData('krs_osoba_id'))) &&
-            $krs_osoba->loadLayer('organizacje')
-        ) {
-
-            $this->set('krs_osoba', $krs_osoba);
-
+		
+		try {
+	        if (
+	            $this->object->getData('krs_osoba_id') &&
+	            ($krs_osoba = $this->API->Dane()->getObject('krs_osoby', $this->object->getData('krs_osoba_id'))) &&
+	            $krs_osoba->loadLayer('organizacje')
+	        ) {
+	
+	            $this->set('krs_osoba', $krs_osoba);
+	
+	        }
+        } catch(Exception $e) {
+	        
+	        
+	        
         }
 
 

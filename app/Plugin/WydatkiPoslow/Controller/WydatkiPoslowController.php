@@ -10,8 +10,8 @@ class WydatkiPoslowController extends AppController
         $application = $this->getApplication();
         $api = $this->API->WydatkiPoslow();
         
-        $stats = $api->getStats();
-        
+        $stats = $api->getStats();  
+                      
         $biura = array();
         foreach( $stats['biura'] as $d ) 
 	        $biura[ $d['id'] ] = $d;

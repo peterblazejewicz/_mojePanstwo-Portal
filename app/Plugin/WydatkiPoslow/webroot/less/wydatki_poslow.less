@@ -1,7 +1,7 @@
 .shadow() {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#AAAAAA)"; /*IE 8*/
-    text-shadow: 0px 0px 1px #AAAAAA; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#AAAAAA); /*IE 5.5-7*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#333)"; /*IE 8*/
+    text-shadow: 1px 1px 1px #333; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color=#333); /*IE 5.5-7*/
 }
 
 .cookieLaw {
@@ -77,7 +77,53 @@
                 position: absolute;
                 top: auto;
                 line-height: 32px;
-
+                z-index: 2;
+				
+				p {
+					
+					padding: 0;
+					margin: 0;
+					
+					small {
+						display: block;
+					}
+					.number {
+						font-size: 54px;
+						font-weight: 600;
+						
+						small {
+							display: inline;
+							font-size: 24px;
+						}
+					}
+					
+					.l {
+						text-transform: uppercase;
+						font-size: 10px;
+					}
+					
+				}
+				
+				.nposel {
+					img {margin-right: 5px;}
+				}
+				
+				.srednio {
+					display: block;
+				}
+				
+				.najwiecej {
+					display: block;
+					.number {
+						font-size: 36px;
+						line-height: 22px;
+						
+						small {
+							font-size: 18px;
+						}
+					}
+				}
+				
                 &.out {
                     opacity: 1;
                 }
@@ -92,6 +138,8 @@
                     &.tooltipIcon .glyphicon {
                         color: #FFFFFF;
                         margin-left: 8px;
+                        position: relative;
+                        top: 0;
                     }
                 }
 
@@ -101,6 +149,13 @@
 
                     small {
                         font-size: 24px;
+                    }
+                    
+                    small.l {
+	                    font-size: 11px;
+						font-weight: 400;
+						text-transform: uppercase;
+						margin-right: 5px;
                     }
                 }
 
@@ -155,6 +210,9 @@
                                 font-size: 65px;
                             }
                         }
+                    }
+                    .subtitle {
+                        color: #FFF;
                     }
                     .wyjazdyBtn {
                         position: absolute;
@@ -212,6 +270,12 @@
                         .poselBckgrnd {
                             right: 0;
                         }
+                        .wszystkie {
+	                        bottom: 180px;
+	                        position: absolute;
+	                        left: 50%;
+                            transform: translate(-50%, 0);
+                        }
                     }
                 }
                 &.sejm {
@@ -237,22 +301,19 @@
                         left: 600px;
                     }
 
-                    .stat.pracownikow {
-                        bottom: 560px;
-                        left: 1000px;
-                    }
-
-                    .stat.zlecenia {
-                        bottom: 560px;
-                        left: 1400px
-                    }
+                    
                 }
                 &.biuro {
-                    background: url(/WydatkiPoslow/img/scene_02_biuro.png) bottom center no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
+                    background: url(/WydatkiPoslow/img/scene_02_biuro.png) 300px bottom no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
 
                     .stat.biura {
-                        bottom: 450px;
-                        right: 585px;
+					    bottom: 390px;
+					    right: 600px;
+                    }
+                    
+                    .stat.pracownikow {
+                        bottom: 440px;
+					    right: 134px;
                     }
 
                     .stat.konserwacje {
@@ -273,11 +334,11 @@
 
                     .stat.materialy {
                         bottom: 450px;
-                        right: 205px;
+                        right: 405px;
                     }
                     .stat.srodki {
                         bottom: 450px;
-                        right: -335px;
+                        right: -107px;
                     }
 
                     .marker {
@@ -351,7 +412,7 @@
                     }
                 }
                 &.tlumaczenia {
-                    background: url(/WydatkiPoslow/img/scene_07_tlumaczenia.png) bottom right no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
+                    background: url(/WydatkiPoslow/img/scene_07_tlumaczenia.png) 700px bottom no-repeat, url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
 
                     .stat.przejazd {
                         bottom: 280px;
@@ -360,11 +421,16 @@
 
                     .stat.ekspertyzy {
                         bottom: 510px;
-                        right: -210px;
+                        right: 64px;
                     }
-
+					
+					.stat.zlecenia {
+                        bottom: 510px;
+                        right: -350px;
+                    }
+					
                     .marker {
-                        right: 500px;
+                        right: 1000px;
                     }
                 }
                 &.dom {
@@ -376,7 +442,7 @@
                     }
                     .telefonPosel {
                         bottom: 260px;
-                        left: 460px;
+                        left: 315px;
                     }
                     .stat.prywatny {
                         bottom: 500px;
@@ -391,7 +457,7 @@
                     background: url(/WydatkiPoslow/img/default_road.png) bottom left repeat-x;
 
                     .stat.taksowka {
-                        bottom: 220px;
+                        bottom: 250px;
                         left: 50%;
                         margin-left: -100px;
                     }
@@ -433,7 +499,50 @@
                 &.stats {
                     background-color: #41a8de;
                     z-index: 1;
+					
+					.repeat {
+						cursor: pointer;
+					}
+					
+					.scrollHint {
+                        display: block;
+                        height: 66vh;
+                        width: 100vw;
+                        max-width: 850px;
+                        min-width: 400px;
+                        left: 50%;
+                        bottom: 40px;
+                        position: absolute;
+                        transform: translate(-50%, 0);
 
+                        > img {
+                            position: absolute;
+                        }
+                        .scrollInfo {
+                            top: 0;
+                            height: 52%;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                        }
+                        .poslankaBckgrnd, .poselBckgrnd {
+                            height: 80%;
+                            bottom: 40px;
+                        }
+                        .poslankaBckgrnd {
+                            left: 0;
+                        }
+                        .poselBckgrnd {
+                            right: 0;
+                        }
+                        .wszystkie {
+	                        bottom: 180px;
+	                        position: absolute;
+	                        left: 50%;
+                            transform: translate(-50%, 0);
+                        }
+                    }
+		
+					
                     .screen {
                         float: left;
                         height: 100%;
@@ -461,6 +570,9 @@
                                     }
                                 }
                             }
+                            
+                            
+                            
                             .infoIcon {
                                 color: #ffffff;
                                 float: left;
@@ -627,6 +739,22 @@
             text-transform: uppercase;
             margin-top: -20px;
             font-size: 11px;
+            
+            strong {
+	            font-size: 18px;
+	            margin-left: 5px;
+            }
+            
+            small {
+	            font-size: 12px;
+			    font-weight: 600;
+			    margin-left: 4px;
+            }
+            
+            .posel {
+	            margin-left: 5px;
+            }
+            
         }
     }
 }
