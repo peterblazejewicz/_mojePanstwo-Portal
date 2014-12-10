@@ -8,6 +8,7 @@ class WydatkiPoslowController extends AppController
     {
 	    
 	    $this->setMeta('image', '/wydatki_poslow/img/wydatki_poslow.png');
+	    $this->setMeta('description', 'Sprawdź na co posłowie wydają publiczne pieniądze.');
 	    
         $application = $this->getApplication();
         $api = $this->API->WydatkiPoslow();
