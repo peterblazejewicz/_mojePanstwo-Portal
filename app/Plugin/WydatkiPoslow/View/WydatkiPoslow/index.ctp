@@ -2,6 +2,7 @@
 <?php $this->Combinator->add_libs('css', $this->Less->css('wydatki_poslow', array('plugin' => 'WydatkiPoslow'))); ?>
 <?php $this->Combinator->add_libs('js', 'WydatkiPoslow.libs.js'); ?>
 <?php $this->Combinator->add_libs('js', 'WydatkiPoslow.wydatki_poslow.js'); ?>
+<?php $this->Combinator->add_libs('js', 'Dane.naglosnij.js'); ?>
 
 <div id="storyLine">
 <div class="innerStory">
@@ -12,13 +13,26 @@
 <div class="scene intro" data-scene="1">
     <div class="title">
         <h3>Sprawdź na co posłowie wydają publiczne pieniądze</h3>
+
     </div>
     <div class="scrollHint">
         <img src="/WydatkiPoslow/img/mysz.svg" class="scrollInfo"/>
         <img src="/WydatkiPoslow/img/poslanka.svg" class="poslankaBckgrnd"/>
         <img src="/WydatkiPoslow/img/posel.svg" class="poselBckgrnd"/>
 	    <a target="_blank" class="wszystkie btn btn-primary" href="/dane/poslowie_biura_wydatki">Zobacz wszystkie dane w formie listy &raquo;</a>
-
+		
+		<div class="social">
+		<script language="javascript">
+		// wykopywarka wersja standardowa (72x65)
+		var wykop_url="http://mojepanstwo.pl/wydatki_poslow";// Link do strony
+		var wykop_title=encodeURIComponent('Wydatki posłów');	// Tytuł strony (pobierany z <title>)
+		var wykop_desc=encodeURIComponent('Sprawdź na co posłowie wydają publiczne pieniądze');
+		var widget_bg='7CAD2B';
+		var widget_type='normal';
+		var widget_url='http://www.wykop.pl/dataprovider/diggerwidget/?url='+encodeURIComponent(wykop_url)+'&title='+(wykop_title)+'&desc='+(wykop_desc)+'&bg='+(widget_bg)+'&type='+(widget_type);
+		document.write('<div><iframe src="'+widget_url+'" style="border:none;width:72px;height:65px;overflow:hidden;margin:0;padding:0;" frameborder="0" border="0"></iframe></div>');</script>
+		</div>
+		
     </div>
 
 	<? /*
@@ -225,6 +239,18 @@
 	        <img src="/WydatkiPoslow/img/poslanka.svg" class="poslankaBckgrnd"/>
 	        <img src="/WydatkiPoslow/img/posel.svg" class="poselBckgrnd"/>
 		    <a target="_blank" class="wszystkie btn btn-primary" href="/dane/poslowie_biura_wydatki">Zobacz wszystkie dane w formie listy &raquo;</a>
+		    
+		    <div class="social">
+			<script language="javascript">
+			// wykopywarka wersja standardowa (72x65)
+			var wykop_url="http://mojepanstwo.pl/wydatki_poslow";// Link do strony
+			var wykop_title=encodeURIComponent('Wydatki posłów');	// Tytuł strony (pobierany z <title>)
+			var wykop_desc=encodeURIComponent('Sprawdź na co posłowie wydają publiczne pieniądze');
+			var widget_bg='7CAD2B';
+			var widget_type='normal';
+			var widget_url='http://www.wykop.pl/dataprovider/diggerwidget/?url='+encodeURIComponent(wykop_url)+'&title='+(wykop_title)+'&desc='+(wykop_desc)+'&bg='+(widget_bg)+'&type='+(widget_type);
+			document.write('<div><iframe src="'+widget_url+'" style="border:none;width:72px;height:65px;overflow:hidden;margin:0;padding:0;" frameborder="0" border="0"></iframe></div>');</script>
+			</div>
 	    </div>
         
     </div>
