@@ -7,6 +7,8 @@ class WydatkiPoslowController extends AppController
     public function index()
     {
 	    
+	    $this->setMeta('image', '/wydatki_poslow/img/wydatki_poslow.png');
+	    
         $application = $this->getApplication();
         $api = $this->API->WydatkiPoslow();
         
