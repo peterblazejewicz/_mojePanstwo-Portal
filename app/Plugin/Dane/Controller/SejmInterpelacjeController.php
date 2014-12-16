@@ -16,7 +16,17 @@ class SejmInterpelacjeController extends DataobjectsController
     {
 	    
         parent::view();        
-        
+
+	    if(
+	    	isset( $this->request->params['t_id'] ) && 
+	    	$this->request->params['t_id']
+	    ) {
+		    
+		    $this->redirect( $this->object->getUrl() . '/pismo/' . $this->request->params['t_id'] );
+		    die();
+		    
+	    }
+	            
         $params = array(
 	        'dataset' => $this->object->getDataset(),
 			'id' => $this->object->getId(),
