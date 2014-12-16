@@ -76,6 +76,19 @@ class DataobjectsController extends DaneAppController {
 	public function view() {
 		$this->_prepareView();
 	}
+	
+	public function feed() {
+		
+		$this->_prepareView();
+		
+		$this->feed = $this->Components->load('Dane.DataobjectsFeed', array(
+			'dataset' => $this->object->getDataset(),
+            'id' => $this->object->getId(),
+		));
+
+        $this->set('title_for_layout', $this->object->getTitle());
+		
+	}
 
 	public function _prepareView() {
 

@@ -569,12 +569,11 @@ body > pre:first-child {
 }
 
 .dataHighlights {
-    margin-top: 10px;
     padding: 0 20px;
 
     .dataHighlight {
         padding: 5px;
-        display: inline-block;
+        display: block;
 
         &.-block {
             display: block;
@@ -638,8 +637,8 @@ body > pre:first-child {
 }
 
 .dataHighlights.side {
-
-    margin-top: 10px;
+	
+	margin: 20px 0;
     padding: 0 !important;
 
     h2 {
@@ -651,6 +650,7 @@ body > pre:first-child {
     .dataHighlight {
         margin-top: 10px;
         list-style: none;
+        overflow: auto;
 
         p {
             margin-bottom: 0;
@@ -673,6 +673,7 @@ body > pre:first-child {
         }
 
         ._value {
+	        padding: 0 3px;
             font-size: 14px;
             &.sources {
                 font-size: 12px;

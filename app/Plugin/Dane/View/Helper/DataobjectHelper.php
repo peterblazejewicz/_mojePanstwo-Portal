@@ -94,7 +94,8 @@ class DataobjectHelper extends AppHelper
                 $theme = 'default';
         }
         */
-
+		
+		
         $params = array(
             'item' => $this->object->getObject(),
             'object' => $this->object,
@@ -104,7 +105,6 @@ class DataobjectHelper extends AppHelper
             'hlFieldsPush' => $hlFieldsPush,
             'bigTitle' => $bigTitle,
             'forceLabel' => $forceLabel,
-            'file' => $this->object->getDataset(),
             'thumbSize' => $this->getThumbSize(),
             'gid' => @$this->object->id,
             'file' => $file,
@@ -477,6 +477,15 @@ class DataobjectHelper extends AppHelper
     private function getRenderPath($object, $theme)
     {
         return App::pluginPath('Dane') . '/View/Elements/' . $theme . '/' . $object->getDataset() . '.ctp';
+    }
+    
+    public function feed( $params ) {
+	    	    
+	    return $this->_View->element('DataobjectsFeed/view', array(
+		    'objects' => $params['data'],
+		    'preset' => $params['dataset']
+	    ), array('plugin' => 'Dane'));
+	    
     }
 
 } 

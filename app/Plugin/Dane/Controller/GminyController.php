@@ -730,7 +730,34 @@ class GminyController extends DataobjectsController
 
 		$this->set( 'title_for_layout', 'Powiązania urzędników gminy  ' . $this->object->getData( 'nazwa' ) . ' z organizacjami w Krajowym Rejestrze Sądowym' );
 	}
+	
+	public function radni_6() {
 
+		$this->_prepareView();
+		$this->request->params['action'] = 'radni_6';
+		
+		$params = array(
+			'source'         => 'gminy.radni6:' . $this->object->getId(),
+			'dataset'        => 'radni_gmin',
+			'noResultsTitle' => 'Brak radnych dla tej gminy',
+			'excludeFilters' => array(
+				'gmina_id',
+				'gminy.powiat_id',
+				'gminy.wojewodztwo_id'
+			),
+			'hlFields'       => array( 'nazwa', 'liczba_glosow' ),
+			'limit'          => 100,
+		);
+
+		if ( $this->object->getData( 'id' ) == '903' ) {
+			$params['title'] = 'Radni miasta 6-tej kadencji';
+		}
+
+		$this->dataobjectsBrowserView( $params );
+		$this->set( 'title_for_layout', 'Radni gminy ' . $this->object->getData( 'nazwa' ) . ' 6-tej kadencji' );
+		
+	}
+	
 	public function radni() {
 
 		$this->_prepareView();
@@ -921,7 +948,7 @@ class GminyController extends DataobjectsController
 		} else {
 
 			$params = array(
-				'source'         => 'gminy.radni:' . $this->object->getId(),
+				'source'         => 'gminy.radni7:' . $this->object->getId(),
 				'dataset'        => 'radni_gmin',
 				'noResultsTitle' => 'Brak radnych dla tej gminy',
 				'excludeFilters' => array(
@@ -929,7 +956,7 @@ class GminyController extends DataobjectsController
 					'gminy.powiat_id',
 					'gminy.wojewodztwo_id'
 				),
-				'hlFields'       => array( 'nazwa', 'liczba_glosow' ),
+				'hlFields'       => array( 'komitet', 'liczba_glosow' ),
 				'limit'          => 100,
 			);
 
@@ -1369,8 +1396,13 @@ class GminyController extends DataobjectsController
 					'items' => array(
 						array(
 							'id'    => 'radni',
-							'label' => 'Radni',
+							'label' => 'Radni aktualnej kadencji',
 							'href'  => $href_base . '/radni',
+						),
+						array(
+							'id'    => 'radni_6',
+							'label' => 'Radni 6-tej kadencji kadencji',
+							'href'  => $href_base . '/radni_6',
 						),
 						array(
 							'id'    => 'radni_powiazania',

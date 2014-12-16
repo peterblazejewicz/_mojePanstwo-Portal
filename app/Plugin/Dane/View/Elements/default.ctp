@@ -25,6 +25,7 @@ $this->Dataobject->setObject($object);
     echo " readed";
 } ?>"
      oid="<?php echo $object->getId() ?>" gid="<?php echo $object->getGlobalId() ?>">
+	
     <div class="row">
         <? if ($this->Dataobject->getDate()) { ?>
             <div class="formatDate col-md-1 dimmed">
@@ -32,6 +33,11 @@ $this->Dataobject->setObject($object);
             </div>
         <? } ?>
         <div class="data col-md-<?= $this->Dataobject->getDate() ? '11' : '12' ?>">
+            
+            <? if( $sentence = $object->getSentence() ) { ?>
+				<p class="sentence"><?= $sentence ?></p>
+			<? } ?>
+            
             <div class="row">
 
                 <?

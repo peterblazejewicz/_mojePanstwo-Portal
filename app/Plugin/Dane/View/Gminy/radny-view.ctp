@@ -34,10 +34,12 @@ echo $this->Element('Dane.dataobject/subobject', array(
                     <p class="_label">Liczba głosów</p>
 
                     <p class="_value pull-left"><?= _number($radny->getData('liczba_glosow')); ?></p>
-
+					
+					<? /*
                     <p class="pull-right nopadding"><a class="btn btn-sm btn-default"
                                                        href="/dane/gminy/<?= $object->getId() ?>/okregi_wyborcze/<?= $radny->getData('okreg_id') ?>">Wyniki
                             w okręgu &raquo;</a></p>
+                    */ ?>
                 </li>
 
                 <li class="dataHighlight big">
@@ -49,9 +51,10 @@ echo $this->Element('Dane.dataobject/subobject', array(
                 <li class="dataHighlight">
                     <p class="_label">Komitet</p>
 
-                    <p class="_value"><?= $radny->getData('rady_gmin_komitety.skrot_nazwy'); ?></p>
+                    <p class="_value"><?= $radny->getData('komitet'); ?></p>
                 </li>
-
+				
+				<? /*
                 <li class="dataHighlight">
                     <p class="_label">Pozycja na liście</p>
 
@@ -63,6 +66,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
 
                     <p class="_value"><?= $radny->getData('rok_urodzenia'); ?></p>
                 </li>
+                */ ?>
 
             </ul>
 
@@ -110,7 +114,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
 
         ?>
 
-        <? if ($details) { ?>
+        <? if ($opis) { ?>
             <div id="info" class="block">
 
                 <div class="block-header">
