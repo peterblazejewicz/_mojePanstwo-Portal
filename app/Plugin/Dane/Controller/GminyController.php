@@ -745,7 +745,7 @@ class GminyController extends DataobjectsController
 				'gminy.powiat_id',
 				'gminy.wojewodztwo_id'
 			),
-			'hlFields'       => array( 'nazwa', 'liczba_glosow' ),
+			'hlFields'       => array( 'nazwa' ),
 			'limit'          => 100,
 		);
 
