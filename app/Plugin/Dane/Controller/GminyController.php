@@ -956,7 +956,7 @@ class GminyController extends DataobjectsController
 					'gminy.powiat_id',
 					'gminy.wojewodztwo_id'
 				),
-				'hlFields'       => array( 'komitet', 'liczba_glosow' ),
+				'hlFields'       => array( 'komitet' ),
 				'limit'          => 100,
 			);
 
@@ -1064,7 +1064,7 @@ class GminyController extends DataobjectsController
 			'dataset'        => 'radni_dzielnic',
 			'title'          => 'Radni dzielnic',
 			'noResultsTitle' => 'Brak radnych dzielnic dla tej gminy',
-			'hlFields'       => array( 'dzielnice.nazwa', 'liczba_glosow' ),
+			'hlFields'       => array( 'dzielnice.nazwa' ),
 		) );
 	}
 
