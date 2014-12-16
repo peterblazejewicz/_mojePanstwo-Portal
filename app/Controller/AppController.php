@@ -247,6 +247,8 @@ class AppController extends Controller {
 						'radni_powiazania',
 						'urzednicy_powiazania',
 						'radni',
+						'radni_6',
+						'radni6',
 						'uchwaly',
 						'radni_dzielnic',
 						'darczyncy',
