@@ -26,21 +26,11 @@ class SejmInterpelacjeController extends DataobjectsController
 		    die();
 		    
 	    }
-	            
-        $params = array(
-	        'dataset' => $this->object->getDataset(),
-			'id' => $this->object->getId(),
-			'direction' => 'asc',
-        );
-        
-        $this->API->feed($params);
-        
-        $feed = array_merge($params, array(
-	        'data' => $this->API->getObjects(),
-        ));
-                
-        $this->set('feed', $feed);
-        
+	    
+	    $this->prepareFeed(array(
+		    'direction' => 'asc',
+	    ));
+	        
     }
 		
 	public function pismo()	

@@ -40,7 +40,7 @@ $buttons = isset($objectOptions['buttons']) ? $objectOptions['buttons'] : array(
     }
     ?>
 
-
+	<div class="objectPageHeaderBg">
     <div
         class="objectPageHeaderContainer topheader <? if (($object->getDataset() == 'gminy') && ($object->getId() == '903')) { ?> krakow<? } ?>">
         <div class="container">
@@ -99,6 +99,8 @@ $buttons = isset($objectOptions['buttons']) ? $objectOptions['buttons'] : array(
         </div>
 
     <? } ?>
+    
+	</div>
 
     <div class="objectsPageWindow">
         <div class="container">
