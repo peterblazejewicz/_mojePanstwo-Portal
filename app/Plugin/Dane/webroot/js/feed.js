@@ -26,6 +26,12 @@ $(document).ready(function() {
 				
 				element.find('.spinner').hide();
 			   	element.find('.button').show();
+			   	
+			   	try {
+					$SG.update();
+				}
+				catch(err) {}
+			   	
 				
 			}, {
 				'element': element,
