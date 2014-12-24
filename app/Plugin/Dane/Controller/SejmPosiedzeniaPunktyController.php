@@ -151,6 +151,7 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 					'id'    => '',
 					'href'  => $href_base,
 					'label' => 'Podsumowanie',
+					'icon' => 'glyphicon glyphicon-align-justify',
 				),
 			)
 		);
@@ -178,6 +179,7 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 					'items' => $debaty,
 				),
 				'count' => count( $debaty ),
+				'icon' => 'glyphicon glyphicon-speakers',
 			);
 			
 		}
@@ -189,6 +191,7 @@ class SejmPosiedzeniaPunktyController extends DataobjectsController {
 				'label'    => 'Głosowania',
 				'count' => $count,
 				'href'  => $href_base . '/glosowania',
+				'icon' => 'glyphicon glyphicon-votings',
 			);
 			
 		}

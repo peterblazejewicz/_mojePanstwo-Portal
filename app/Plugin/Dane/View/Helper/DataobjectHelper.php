@@ -435,7 +435,7 @@ class DataobjectHelper extends AppHelper
             return '';
         }
 
-        $output = '<div class="dataHighlights normal">';
+        $output = '<div class="dataHighlights normal row">';
         $index = 0;
         $limit = isset($options['limit']) ? $options['limit'] : 4;
         if (!isset($options['col_width'])) {
@@ -480,10 +480,13 @@ class DataobjectHelper extends AppHelper
     }
     
     public function feed( $params ) {
-	    	    
+	   		   	
 	    return $this->_View->element('DataobjectsFeed/view', array(
 		    'objects' => $params['data'],
-		    'preset' => $params['dataset']
+		    'preset' => $params['dataset'],
+		    'direction' => $params['direction'],
+		    'perPage' => $params['perPage'],
+		    'pagination' => $params['pagination'],
 	    ), array('plugin' => 'Dane'));
 	    
     }

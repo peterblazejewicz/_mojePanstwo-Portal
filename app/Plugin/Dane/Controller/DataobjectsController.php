@@ -83,15 +83,41 @@ class DataobjectsController extends DaneAppController {
 	        'dataset' => $this->object->getDataset(),
 			'id' => $this->object->getId(),
 			'direction' => 'desc',
+			'perPage' => 20,
         ), $params);
-		        
+		
+	    if( $this->request->is('ajax') )
+	    	$params = array_merge($params, array(
+		    	'page' => @$this->request->query['page'],
+		    	'perPage' => @$this->request->query['perPage'],
+		    	'direction' => @$this->request->query['direction'],
+	    	));
+		
         $this->API->feed($params);
         
-        $feed = array_merge($params, array(
-	        'data' => $this->API->getObjects(),
-        ));
-                
-        $this->set('feed', $feed);
+        if( $this->request->is('ajax') ) {
+	        
+	        $view = new View($this, false);
+	        
+	        $html = $view->element('Dane.DataobjectsFeed/loop', array(
+		        'objects' => $this->API->getObjects(),
+		        'preset' => $this->object->getDataset(),
+	        ));
+	        
+	        $this->set('html', $html);
+	        $this->set('pagination', $this->API->getPagination());
+	        $this->set('_serialize', array('pagination', 'html'));
+	        
+        } else {
+        
+	        $feed = array_merge($params, array(
+		        'data' => $this->API->getObjects(),
+		        'pagination' => $this->API->getPagination(),
+	        ));
+	                
+	        $this->set('feed', $feed);
+        
+        }
 		
 	}
 

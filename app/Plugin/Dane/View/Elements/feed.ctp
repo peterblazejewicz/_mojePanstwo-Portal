@@ -33,16 +33,24 @@ $this->Dataobject->setObject($object);
      oid="<?php echo $object->getId() ?>" gid="<?php echo $object->getGlobalId() ?>">
 	
     <div class="row">
-        <? if ($this->Dataobject->getDate()) { ?>
-            <div class="formatDate col-md-1 dimmed">
-                <?php echo($this->Dataobject->getDate()); ?>
-            </div>
-        <? } ?>
-        <div class="data col-md-<?= $this->Dataobject->getDate() ? '11' : '12' ?>">
+        <div class="col-sm-1 action nopadding text-center">
+            <span class="glyphicon glyphicon-volume-up"></span>
+        </div>
+        <div class="data col-sm-11">
             
-            <? if( $sentence = $object->getSentence() ) { ?>
-				<p class="sentence"><?= $sentence ?></p>
-			<? } ?>
+            <div class="feed-header">
+            	
+            	<? if( $object->getCreator('url') ) {?>
+	            <img alt="<?= addslashes( $object->getCreator('name') ) ?>" src="<?= $object->getCreator('url') ?>" onerror="imgFixer(this)" class="thumb">
+	            <? } ?>
+	            
+				<div class="inner">
+	            <? if( $sentence = $object->getSentence() ) { ?>
+					<p class="sentence"><?= $sentence ?></p>
+					<p class="date"><?= $this->Czas->dataSlownie($object->getDate()) ?></p>
+				<? } ?>
+				</div>
+            </div>
             
             <div class="row">
 

@@ -239,12 +239,27 @@ body > pre:first-child {
 }
 
 .nav > li > a {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     font-weight: 600;
     font-family: "Lato", Arial, sans-serif;
-    text-transform: uppercase;
     color: #258ac5;
+    position: relative;
+    top: 1px;
+    
+    .glyphicon {
+        font-size: 16px;
+	    font-weight: 200;
+	    margin-right: 5px;
+	    position: relative;
+	    top: 2px;
+    }
+    
+    .badge {
+	    background-color: #009de0;
+	    position: relative;
+	    top: -1px;
+    }
 }
 
 .app-header {
@@ -333,12 +348,15 @@ body > pre:first-child {
 
 .block {
     padding: 0;
-    margin: 3px;
-    background-color: #FFF;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    border: 1px solid #EAEAEA;
+    margin: 10px 5px;
+    background-color: #FFF;    
+    border-color: #e9eaed #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
 
     &.nobg {
         background-color: inherit;
@@ -393,13 +411,16 @@ body > pre:first-child {
         display: inline-block;
         width: 100%;
         min-height: 35px;
-        background-color: #FAFAFA;
+        background-color: #f6f7f8;
+        border-bottom: 1px solid #e9eaed;
         padding: 10px 15px;
 
-        border-top-right-radius: 2px;
-        border-top-left-radius: 2px;
-        -webkit-border-top-right-radius: 2px;
-        -webkit-border-top-left-radius: 2px;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        -webkit-border-top-right-radius: 6px;
+        -webkit-border-top-left-radius: 6px;
+        -o-border-top-right-radius: 6px;
+        -o-border-top-left-radius: 6px;
 
         .btn {
             position: absolute;
@@ -462,7 +483,7 @@ body > pre:first-child {
             color: #444;
             background-color: none;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 0 0 -10px;
             padding: 0 10px;
             white-space: normal !important;
@@ -636,21 +657,41 @@ body > pre:first-child {
     }
 }
 
+.block {
+	.dataHighlights.side {
+		.dataHighlight {
+	        border-bottom: 1px solid #DDD;
+	        
+	        .btn {
+	            border-color: #FFF;
+	            color: #AAA;
+	            background-color: #FFF;
+	            margin: 2px 2px 2px 7px;
+	        }
+		}
+	}
+}
+
 .dataHighlights.side {
 	
-	margin: 20px 0;
+	margin: 0;
     padding: 0 !important;
+    min-height: 20px;
 
     h2 {
         font-size: 13px;
         border-top: 1px solid #CCC;
         padding-top: 10px;
     }
-
+		
     .dataHighlight {
-        margin-top: 10px;
+        margin: 10px;
         list-style: none;
         overflow: auto;
+        
+        &:last-child {
+	        border-bottom: none;
+        }
 
         p {
             margin-bottom: 0;
@@ -688,9 +729,9 @@ body > pre:first-child {
         }
 
         .btn {
-            border-color: #F3F3F3;
+            border-color: #eaebee;
             color: #AAA;
-            background-color: #F3F3F3;
+            background-color: #eaebee;
             margin: 2px 2px 2px 7px;
         }
 
@@ -1050,7 +1091,7 @@ header {
 #_wrapper {
     min-height: 100%;
     position: relative;
-    background-color: #F3F3F3;
+    background-color: #EAEBEE;
 
     &.white {
         background-color: #FFF;
@@ -1156,3 +1197,51 @@ footer {
         width: 100%;
     }
 } 
+
+.glyphicon {
+	&.glyphicon-feed {
+		
+		display: inline-block;
+		text-indent: -9999px;
+		width: 16px;
+		height: 16px;
+		background: url(/icon/feed.svg);
+		background-size: 16px 16px;
+		
+	}
+	
+	&.glyphicon-speakers {
+		
+
+			
+	}
+	
+	&.glyphicon-votings {
+		
+		
+		
+	}
+	
+	&.glyphicon-travels {
+		
+		display: inline-block;
+		text-indent: -9999px;
+		width: 16px;
+		height: 16px;
+		background: url(/icon/travels.svg);
+		background-size: 16px 16px;
+		
+	}
+	
+	&.glyphicon-spendings {
+		
+		display: inline-block;
+		text-indent: -9999px;
+		width: 16px;
+		height: 16px;
+		background: url(/icon/spendings.svg);
+		background-size: 16px 16px;
+		
+	}
+	
+}

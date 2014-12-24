@@ -10,15 +10,23 @@ class PoslowieController extends DataobjectsController
     );
 
     public $menu = array();
-
     public $breadcrumbsMode = 'app';
-
+	
+	public $objectOptions = array(
+		'hlFields' => array('sejm_kluby.nazwa'),
+	);
+	
     public function view()
     {
 
-        $this->addInitLayers(array('terms'));
+        // $this->addInitLayers(array('terms'));
         parent::view();
-
+                
+        $this->prepareFeed(array(
+	        'perPage' => 20,
+        ));
+		
+		/*
         if (($terms = $this->object->getLayer('terms')) && !empty($terms)) {
 
             $font = array(
@@ -77,7 +85,7 @@ class PoslowieController extends DataobjectsController
             'order' => 'data_status desc',
         ));
         $this->set('poslowie_nieobecni', $this->API->getObjects());
-
+		*/
 
         /*
         $menu = array(
@@ -181,11 +189,12 @@ class PoslowieController extends DataobjectsController
     }
 
 
-    public function finanse()
+    public function wydatki()
     {
 
         parent::_prepareView();
 		
+		/*		
 		try {
 	        if (
 	            $this->object->getData('krs_osoba_id') &&
@@ -201,7 +210,7 @@ class PoslowieController extends DataobjectsController
 	        
 	        
         }
-
+	    */
 
         $wydatki = $this->object->loadLayer('wydatki');
         $rok = @$this->request->params['pass'][0];
@@ -280,7 +289,7 @@ class PoslowieController extends DataobjectsController
 
     }
 
-    public function aktywnosci()
+    public function dane()
     {
 
         parent::_prepareView();
@@ -352,6 +361,7 @@ class PoslowieController extends DataobjectsController
             'title' => 'Wystąpienia w Sejmie',
             'noResultsTitle' => 'Brak wystąpień',
             'hlFields' => array('sejm_debaty.tytul'),
+            'hiddenFilters' => array('sejm_wystapienia.klub_id'),
         ));
 
         $this->set('title_for_layout', 'Wystąpienia sejmowe ' . $this->object->getData('dopelniacz'));
@@ -365,6 +375,7 @@ class PoslowieController extends DataobjectsController
             'dataset' => 'sejm_interpelacje',
             'title' => 'Interpelacje',
             'noResultsTitle' => 'Brak interpelacji',
+            'excludeFilters' => array('sejm_interpelacje.posel_id'),
         ));
     }
 
@@ -387,6 +398,9 @@ class PoslowieController extends DataobjectsController
             'dataset' => 'poslowie_glosy',
             'title' => 'Wyniki głosowań',
             'noResultsTitle' => 'Brak wyników głosowań',
+            'excludeFilters' => array('poslowie_glosy.klub_id'),
+            'renderFile' => 'poslowie-glosy',
+			'class' => 'glosowania-glosy',
         ));
     }
 
@@ -473,96 +487,7 @@ class PoslowieController extends DataobjectsController
         $this->set('title_for_layout', 'Uchwały Komisji Etyki wobec ' . $this->object->getData('dopelniacz'));
     }
 
-    public function timeline()
-    {
-
-        parent::_prepareView();
-
-        $this->API->search(array(
-            'conditions' => array(
-                '_source' => 'poslowie.aktywnosci:' . $this->object->getId(),
-            ),
-            'q' => 'test',
-            'limit' => '100',
-            'order' => 'date desc'
-        ));
-
-        $objects = $this->API->getObjects();
-
-
-        $output = array(
-            'timeline' => array(
-                'headline' => 'Ostatnie aktywności posła Jana Kowalskiego',
-                'type' => 'default',
-                'text' => "<p>Ta linia czasu pokazuje ostatnie aktywności w Sejmie posła Jana Kowalskiego.</p>",
-                'font' => 'NewsCycle-Merriweather',
-                'date' => array(),
-            ),
-        );
-
-
-        foreach ($objects as $object) {
-
-            $dataset = $object->getDataset();
-
-            $date = $object->getDate();
-            $dateParts = explode('-', $date);
-            $date = $dateParts[0] . ',' . $dateParts[1] . ',' . $dateParts[2];
-
-            switch ($dataset) {
-
-                case 'sejm_wystapienia': {
-
-
-                    $output['timeline']['date'][] = array(
-                        'startDate' => $date,
-                        'headline' => 'Wystąpienie w Sejmie',
-                        'text' => '<p>Poseł wziął udział w debacie Sejmowej</p>',
-                        'tag' => 'Wystąpienie w Sejmie',
-                        'classname' => 'klasa',
-                        'asset' => array(
-                            'media' => 'http://mojepanstwo/dane/poslowie/123',
-                            'thumbnail' => 'optional-32x32px.jpg',
-                            'credit' => 'Credit Name Goes Here',
-                            'caption' => 'Caption text goes here',
-                        ),
-                    );
-
-                    break;
-
-                }
-
-                case 'sejm_interpelacje': {
-
-                    $output['timeline']['date'][] = array(
-                        'startDate' => $date,
-                        'headline' => $object->getData('tytul'),
-                        'text' => '<p>Poseł złożył interpelację</p>',
-                        'tag' => 'Interpelacja',
-                        'classname' => 'klasa',
-                        'asset' => array(
-                            'media' => 'http://mojepanstwo/dane/poslowie/123',
-                            'thumbnail' => 'optional-32x32px.jpg',
-                            'credit' => 'Credit Name Goes Here',
-                            'caption' => 'Caption text goes here',
-                        ),
-                    );
-
-                    break;
-
-                }
-
-            }
-
-        }
-
-
-        $this->set('data', $output);
-        $this->set('_serialize', 'data');
-
-    }
-
-
+    
     public function beforeRender()
     {
 
@@ -576,23 +501,19 @@ class PoslowieController extends DataobjectsController
                 array(
                     'id' => '',
                     'href' => $href_base,
-                    'label' => 'Podsumowanie',
+                    'label' => 'Aktualności',
+					'icon' => 'glyphicon glyphicon-feed',
                 ),
             )
         );
 
         $menu['items'][] = array(
-            'id' => 'aktywnosci',
-            'label' => 'Aktywności',
+            'id' => 'dane',
+            'label' => 'Dane',
+			'icon' => 'glyphicon glyphicon-align-justify',
             'dropdown' => array(
                 'items' => array(
                     array(
-                        'id' => 'wszystkie',
-                        'href' => $href_base . '/aktywnosci',
-                        'label' => 'Wszystkie',
-                    ),
-                    array(
-                        'topborder' => true,
                         'id' => 'wystapienia',
                         'href' => $href_base . '/wystapienia',
                         'label' => 'Wystąpienia',
@@ -607,20 +528,38 @@ class PoslowieController extends DataobjectsController
                         'href' => $href_base . '/interpelacje',
                         'label' => 'Interpelacje',
                     ),
+                    array(
+                        'id' => 'wspolpracownicy',
+                        'href' => $href_base . '/wspolpracownicy',
+                        'label' => 'Współpracownicy',
+                        'topborder' => true,
+                    ),
+                    array(
+                        'id' => 'oswiadczenia_majatkowe',
+                        'href' => $href_base . '/oswiadczenia_majatkowe',
+                        'label' => 'Oświadczenia majątkowe',
+                    ),
+                    array(
+                        'id' => 'rejestr_korzysci',
+                        'href' => $href_base . '/rejestr_korzysci',
+                        'label' => 'Rejestr korzyści',
+                    ),
                 ),
             ),
         );
 
         $menu['items'][] = array(
-            'id' => 'finanse',
-            'href' => $href_base . '/finanse',
-            'label' => 'Informacje finansowe',
+            'id' => 'wydatki',
+            'href' => $href_base . '/wydatki',
+            'label' => 'Wydatki',
+            'icon' => 'glyphicon glyphicon-spendings',
         );
         
         $menu['items'][] = array(
             'id' => 'wyjazdy',
             'href' => $href_base . '/wyjazdy',
             'label' => 'Wyjazdy zagraniczne',
+            'icon' => 'glyphicon glyphicon-travels',
         );
 
         if ($this->object->getData('twitter_account_id')) {

@@ -8,6 +8,6 @@
 </div>
 <? } ?>
 
-<?php echo $this->Filter->generateFilters($filters, $switchers, $facets, $page, $conditions); ?>
+<?php echo $this->Filter->generateFilters($filters, $switchers, $facets, $page, $conditions, $dataBrowser->hiddenFilters); ?>
 
 </div>

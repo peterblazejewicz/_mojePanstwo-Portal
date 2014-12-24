@@ -91,18 +91,17 @@
 }
 
 .objectsPage .dataFeed {
-    margin: 17px;    
     
     .dataObjects .innerContainer {
 	    
 	    background-color: inherit;
-	    
+	    	    
 	    .objectRender {
 		    border-width: 1px;
 		    border-style: solid;
 		    border-color: #e9eaed #dfe0e4 #d0d1d5;
 		    background-color: #FFF;
-		    margin: 8px;
+		    margin: 10px;
 		    border-radius: 3px;
 		    -moz-border-radius: 3px;
 		    -webkit-border-radius: 3px;
@@ -116,8 +115,56 @@
 			    
 		    }
 		    
+		    .feed-header {
+			    
+			    overflow: auto;
+			    
+			    .thumb {
+				    float: left;
+				    margin: 10px 10px 0 0;
+			    }
+			    
+			    .inner {
+			    
+				    margin-left: 4px;
+				    
+				    .date {
+					    color: #818793;
+					    font-size: 11px;
+					    margin-top: 3px;
+				    }
+			    
+			    }
+		    }
+		    
 	    }
 	}
+	
+	.loadMoreContent {
+		
+		text-align: center;
+		
+		.button {
+			height: 35px;
+			margin: 0;
+			padding: 0;
+			span {
+				position: relative;
+				top: 2px;
+				margin-right: 4px;
+			}
+		}
+		
+		.spinner {
+			height: 24px;
+			> div {
+		    	background-color: #ABC;
+			}
+	    }
+	}
+	
+	
+	
 }
 
 blockquote {
@@ -153,7 +200,7 @@ blockquote {
         padding-left: 0;
     }
     h1, h2 {
-        font-size: 35px;
+        font-size: 32px;
         font-weight: 300;
         margin-top: 0;
         margin-bottom: 20px;
@@ -292,7 +339,7 @@ blockquote {
 
         #filters {
             list-style-type: none;
-            padding: 0 15px 0 0;
+            padding: 0 15px 0 10px;
             color: #2F2F2F;
             font-size: 14px;
             margin-top: 0;
@@ -588,7 +635,7 @@ blockquote {
 
             #innerSearch {
                 font-weight: 400;
-                background-color: #EAEAEA;
+                background-color: #f6f7f8;
 			    border: medium none;
 			    box-shadow: none;
             }
@@ -755,7 +802,15 @@ blockquote {
                 &.bg {
                     background-color: #FEFEFE;
                 }
-                                
+                
+                .action {
+	                span {
+		                color: #bacbce;
+					    font-size: 40px;
+					    margin-top: 5px;
+	                }
+                }
+                               
             }
         }
 
@@ -836,9 +891,13 @@ blockquote {
     }
     
     .sentence {
-		color: #555;
+		color: #444;
 	    margin: 9px 0 1px -5px;
 	    padding: 0;
+	    
+	    a {
+		    color: #424b7a;
+	    }
 	}
 
     .hl_ul {
@@ -1122,31 +1181,60 @@ blockquote {
     font-size: 16px;
 }
 
-.sejm_glosowania img.kluby {
-    height: 20px;
-}
+.sejm_glosowanie-voting {
+	
+	margin: 15px -10px;
+	
+	.wynikGlosowania {
+	    display: block;
+	    font-size: 16px;
+	    font-weight: 400;
+	    padding: 5px 4px;
+	    width: 80px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 31px;
+	
+	    &.z {
+	        background-color: #109618;
+	    }
+	    &.p {
+	        background-color: #DC3912;
+	    }
+	    &.w {
+	        background-color: #3366CC;
+	    }
+	    &.n {
+	        background-color: #DDDDDD;
+	    }
+	}
+	
+	.wynikiKlubowe {
+		p {
+			font-size: 10px;
+		    font-weight: 600;
+		    margin: 0;
+		    padding: 0;
+		    text-transform: uppercase;
+		}
+		ul {
+			padding: 1px;
+			margin: 1px;
+			li {
+				padding: 1px;
+				margin: 1px;
+				.exception {
+					font-size: 11px;
+					color: #666;
+				}
+			}
+		}
+	}
+	
+	.highchart {
+		height: 100px;
+	}
 
-.wynikGlosowania {
-    display: block;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 5px 4px;
-    width: 80px;
-    margin-left: auto;
-    margin-right: auto;
-
-    &.z {
-        background-color: #109618;
-    }
-    &.p {
-        background-color: #DC3912;
-    }
-    &.w {
-        background-color: #3366CC;
-    }
-    &.n {
-        background-color: #DDDDDD;
-    }
 }
 
 .legislacjaProjekty > .object {

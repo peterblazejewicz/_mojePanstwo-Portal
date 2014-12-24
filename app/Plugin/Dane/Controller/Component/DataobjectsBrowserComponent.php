@@ -29,6 +29,7 @@ class DataobjectsBrowserComponent extends Component
     public $class = false;
 
     public $excludeFilters = array();
+    public $hiddenFilters = array();
 
     public $components = array(
         'Paginator',
@@ -78,6 +79,10 @@ class DataobjectsBrowserComponent extends Component
 
         if (isset($settings['excludeFilters'])) {
             $this->excludeFilters = $settings['excludeFilters'];
+        }
+        
+        if (isset($settings['hiddenFilters'])) {
+            $this->hiddenFilters = $settings['hiddenFilters'];
         }
 
         if (isset($settings['hlFields'])) {
@@ -528,8 +533,10 @@ class DataobjectsBrowserComponent extends Component
                     'controlls' => $config['controlls'],
                 )
             ));
-
-            $filters = $view->element('Dane.DataobjectsBrowser/filters', compact('conditions', 'filters', 'switchers', 'facets', 'page'));
+			
+			
+			
+            $filters = $view->element('Dane.DataobjectsBrowser/filters', array_merge(compact('conditions', 'filters', 'switchers', 'facets', 'page'), array('dataBrowser' => $this)));
             $pagination = $view->element('Dane.DataobjectsBrowser/pagination', compact('pagination'));
 
             $controller->set(compact('objects', 'header', 'filters', 'pagination'));

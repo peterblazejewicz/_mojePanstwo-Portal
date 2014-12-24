@@ -1,3 +1,5 @@
+<? if( !empty($hlFields)) { ?>
+
 <div class="avatar col-md-10">
     <div class="col-md-1">
         <div class="row">
@@ -13,3 +15,5 @@
         <p>(<?php echo $item['data']['sejm_kluby.skrot']; ?>)</p>
     </div>
 </div>
+
+<? } ?>

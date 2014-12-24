@@ -13,7 +13,7 @@ class FilterHelper extends AppHelper
     public $switchers = array();
     public $conditions = array();
 
-    public function generateFilters($filters = array(), $switchers = array(), $facets = array(), $page = array(), $conditions = array())
+    public function generateFilters($filters = array(), $switchers = array(), $facets = array(), $page = array(), $conditions = array(), $hiddenFilters = array())
     {
 
 
@@ -107,9 +107,23 @@ class FilterHelper extends AppHelper
 
             if (($filter['filter']['typ_id'] == 1) && @empty($facet['params']['options'])) {
             } else {
-
+												
                 $out .= '<li class="filter form-group changeable';
-                if (isset($filter['filter']['default_hidden']) && $filter['filter']['default_hidden'] == 1) $out .= " inactive";
+                
+                if( 
+	                ( !array_key_exists($filter['filter']['field'], $conditions) ) && 
+	                (
+		                (
+		                	isset( $filter['filter']['default_hidden'] ) && 
+		                	( $filter['filter']['default_hidden'] == 1 ) 
+	                	) || 
+	                	(
+		                	in_array($filter['filter']['field'], $hiddenFilters)
+	                	)
+                	)
+                )
+                	$out .= " inactive";
+                
                 $out .= '">';
                 $out .= '<div class="label_cont"><label><span class="glyphicon glyphicon-filter"></span> ' . $filter['filter']['label'] . '</label>';
 

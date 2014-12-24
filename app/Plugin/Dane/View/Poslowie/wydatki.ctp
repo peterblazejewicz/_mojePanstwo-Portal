@@ -12,7 +12,7 @@ if (
 
     <div id="wydatki" class="block">
         <div class="block-header">
-            <h2 class="label label-danger pull-left">Wydatki biura poselskiego</h2>
+            <h2 class="label">Wydatki biura poselskiego</h2>
         </div>
 
         <div class="content">
