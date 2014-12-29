@@ -273,6 +273,7 @@ class AppController extends Controller {
 						'zarzadzenia',
 						'zarzadzenie',
 						'urzad',
+						'rada',
 					) )
 				) {
 
