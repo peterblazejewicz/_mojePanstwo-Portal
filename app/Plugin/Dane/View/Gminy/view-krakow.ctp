@@ -241,9 +241,9 @@
 				<ul class="docs-list">
 				<? foreach( $prawo_lokalne as $obj ) {?>
 					<li>
-						<a href="#"><img src="http://docs.sejmometr.pl/thumb/4/<?= $obj->getData('dokument_id') ?>.png" /></a>
+						<a href="<?= $obj->getUrl() ?>"><img src="http://docs.sejmometr.pl/thumb/4/<?= $obj->getData('dokument_id') ?>.png" /></a>
 						<div class="inner">
-							<p class="title"><a href="#"><?= $obj->getShortTitle() ?></a></p>
+							<p class="title"><a href="<?= $obj->getUrl() ?>"><?= $obj->getShortTitle() ?></a></p>
 							<p class="date"><?= $this->Czas->dataSlownie($obj->getDate()) ?></p>
 						</div>
 					</li>
