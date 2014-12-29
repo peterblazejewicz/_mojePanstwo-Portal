@@ -1,7 +1,3 @@
-<?
-$emptyFilters = empty($filters) && empty($switchers);
-?>
-
 <div
     class="container dataBrowser _dataset_<?= $page['tag'] ?><? if ($emptyFilters) { ?> emptyFilters<?
     } ?><? if (isset($class)) {
@@ -18,13 +14,15 @@ $emptyFilters = empty($filters) && empty($switchers);
 
 
     <div class="row">
-
+		
+		
         <? echo $this->element('Dane.DataobjectsBrowser/filters', array(
             'filters' => $filters,
             'switchers' => $switchers,
             'facets' => $facets,
             'page' => $page,
             'conditions' => $conditions,
+            'emptyFilters' => $emptyFilters,
         )); ?>
 
         <div class="col-xs-12 col-sm-9 dataObjects">
@@ -38,6 +36,7 @@ $emptyFilters = empty($filters) && empty($switchers);
                     'page' => $page,
                     'controlls' => $config['controlls'],
                     'didyoumean' => $didyoumean,
+		            'emptyFilters' => $emptyFilters,
                 )); ?>
             </div>
 

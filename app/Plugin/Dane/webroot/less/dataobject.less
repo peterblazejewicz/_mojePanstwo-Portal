@@ -119,9 +119,15 @@
 			    
 			    overflow: auto;
 			    
-			    .thumb {
-				    float: left;
+			    .thumb_cont {
+					max-height: 50px;
+					overflow: hidden;
+					float: left;
 				    margin: 10px 10px 0 0;
+			    }
+			    
+			    .thumb {
+				    
 			    }
 			    
 			    .inner {
@@ -290,7 +296,7 @@ blockquote {
             padding-top: 62px;
 
             > .header {
-
+								
                 h2 {
                     margin-top: -55px;
                     margin-bottom: 55px;
@@ -815,6 +821,12 @@ blockquote {
         }
 
     }
+}
+
+.dataFeed {
+	.objectRender .attachment img {
+		max-width: 130px;
+	}
 }
 
 .objectRender {

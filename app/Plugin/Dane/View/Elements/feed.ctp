@@ -41,7 +41,7 @@ $this->Dataobject->setObject($object);
             <div class="feed-header">
             	
             	<? if( $object->getCreator('url') ) {?>
-	            <img alt="<?= addslashes( $object->getCreator('name') ) ?>" src="<?= $object->getCreator('url') ?>" onerror="imgFixer(this)" class="thumb">
+	            <div class="thumb_cont"><img alt="<?= addslashes( $object->getCreator('name') ) ?>" src="<?= $object->getCreator('url') ?>" onerror="imgFixer(this)" class="thumb"></div>
 	            <? } ?>
 	            
 				<div class="inner">

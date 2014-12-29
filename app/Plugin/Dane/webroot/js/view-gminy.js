@@ -128,8 +128,8 @@ $(document).ready(function () {
 
 
 $(function () {
-
-    if (!wyniki_wyborow)
+	
+    if (typeof(wyniki_wyborow)=='undefined' || !wyniki_wyborow)
         return false;
 
     var data = [];
@@ -149,10 +149,10 @@ $(function () {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            height: 120
+            height: 130
         },
         title: {
-            text: null
+            text: ''
         },
         tooltip: {
             enabled: false
@@ -162,14 +162,15 @@ $(function () {
                 size: 70,
                 allowPointSelect: true,
                 cursor: 'pointer',
-                center: ["50%", "80%"],
+                center: ["50%", "20%"],
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     format: '{point.name}: <b>{point.y}</b>',
                     style: {
                         color: '#157AB5'
                     }
-                }
+                },
+                showInLegend: true
             },
             series: {
                 cursor: 'pointer',
@@ -191,6 +192,10 @@ $(function () {
                 name: 'Liczba radnych',
                 data: data
             }
-        ]
+        ],
+        legend: {
+	        align: 'right',
+	        verticalAlign: 'top'
+        }
     });
 });

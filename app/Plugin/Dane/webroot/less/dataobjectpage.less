@@ -77,6 +77,13 @@
             .container .objectRender .header {
                 margin-bottom: 5px;
             }
+            
+            .btn-back-cont {
+	            max-width: 40px;
+	            .btn-back {
+		            margin-top: 7px;
+	            }
+            }
         }
 
         .container {
@@ -87,6 +94,14 @@
                 .header {
                     color: #777;
                     font-size: 12px;
+                    
+                    a {
+	                    color: #777;
+	                    &:hover {
+		                    color: #157ab5;
+	                    }
+                    }
+                    
                 }
 
                 .title {
@@ -141,6 +156,10 @@
 
                 padding: 0 0 0 5px;
                 
+                &.rrs {
+	                padding: 0 5px 0 5px;
+                }
+                
                 &.rs {
 	                padding: 0 10px 0 5px;
                 }
@@ -150,6 +169,37 @@
                 }
 
             }
+            
+            
+            
+            
+            .dataHighlights.side .dataHighlight {
+	            
+	            padding: 0 5px 10px;
+	            
+	            &:last-child {
+		            border-bottom: none;
+		            padding-bottom: 0;
+	            }
+	            
+	            .glyphicon, .icon.icon-moon {
+		            font-size: 18px;
+				    margin-right: 10px;
+				    position: relative;
+				    top: 2px;
+				    width: 16px;
+				    color: #9aabae;
+	            }
+	            
+	            .glyphicon.glyphicon-chevron-right {
+		            font-size: 12px;
+		            float: right;
+		            color: #bacbce;
+		            margin-right: 0;
+				    margin-top: 4px;
+	            }
+	        }
+	        
         }
 
         .objectMenu {
@@ -188,7 +238,7 @@
             min-height: 400px;
             position: relative;
             top: -4px;
-            padding: 20px 0;
+            padding: 10px 0;
 			
 			.object-nav {
 				.title {

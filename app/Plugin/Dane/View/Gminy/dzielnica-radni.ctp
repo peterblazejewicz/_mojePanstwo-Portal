@@ -9,6 +9,7 @@ echo $this->Element('dataobject/pageBegin', array(
     'titleTag' => 'p',
 ));
 
+/*
 echo $this->Element('Dane.dataobject/subobject', array(
     'menu' => $_submenu,
     'object' => $dzielnica,
@@ -17,6 +18,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
         'bigTitle' => true,
     )
 ));
+*/
 
 echo $this->Element('Dane.DataobjectsBrowser/view', array(
     'page' => $page,

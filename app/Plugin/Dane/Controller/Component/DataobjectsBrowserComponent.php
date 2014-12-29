@@ -27,6 +27,8 @@ class DataobjectsBrowserComponent extends Component
     public $dataset_dictionary = array();
     public $renderFile = false;
     public $class = false;
+    public $back = false;
+    public $backTitle = false;
 
     public $excludeFilters = array();
     public $hiddenFilters = array();
@@ -115,6 +117,14 @@ class DataobjectsBrowserComponent extends Component
 
         if (isset($settings['allowedParams']) && $settings['allowedParams']) {
             $this->allowedParams = $settings['allowedParams'];
+        }
+        
+        if (isset($settings['back']) && $settings['back']) {
+            $this->back = $settings['back'];
+        }
+        
+        if (isset($settings['backTitle']) && $settings['backTitle']) {
+            $this->backTitle = $settings['backTitle'];
         }
 
 
@@ -496,6 +506,9 @@ class DataobjectsBrowserComponent extends Component
         if (isset($controller->request->query)) {
             $controller->data = array('Dataset' => $controller->request->query);
         }
+		
+		
+		$emptyFilters = empty($filters) && empty($switchers);
 
 
         $page = array(
@@ -507,6 +520,8 @@ class DataobjectsBrowserComponent extends Component
             'showTitle' => $this->showTitle,
             'titleTag' => $this->titleTag,
             'noResultsTitle' => $this->noResultsTitle,
+            'back' => $this->back,
+            'backTitle' => $this->backTitle,
         );
 
         $config = $this->config;
@@ -518,7 +533,7 @@ class DataobjectsBrowserComponent extends Component
             $view = new View($controller, false);
 
             $objects = $view->element('Dane.DataobjectsBrowser/objects', array_merge(
-                compact('objects', 'page', 'defaults'),
+                compact('objects', 'page', 'defaults', 'emptyFilters'),
                 array(
                     'dataBrowser' => $this,
                     'defaults' => $config['defaults'],
@@ -528,7 +543,7 @@ class DataobjectsBrowserComponent extends Component
             ));
 
             $header = $view->element('Dane.DataobjectsBrowser/header', array_merge(
-                compact('pagination', 'orders', 'page', 'didyoumean'),
+                compact('pagination', 'orders', 'page', 'didyoumean', 'emptyFilters'),
                 array(
                     'controlls' => $config['controlls'],
                 )
@@ -536,7 +551,7 @@ class DataobjectsBrowserComponent extends Component
 			
 			
 			
-            $filters = $view->element('Dane.DataobjectsBrowser/filters', array_merge(compact('conditions', 'filters', 'switchers', 'facets', 'page'), array('dataBrowser' => $this)));
+            $filters = $view->element('Dane.DataobjectsBrowser/filters', array_merge(compact('conditions', 'filters', 'switchers', 'facets', 'page', 'emptyFilters'), array('dataBrowser' => $this)));
             $pagination = $view->element('Dane.DataobjectsBrowser/pagination', compact('pagination'));
 
             $controller->set(compact('objects', 'header', 'filters', 'pagination'));
@@ -555,7 +570,7 @@ class DataobjectsBrowserComponent extends Component
             }
 
             $controller->set(array_merge(
-                compact('conditions', 'objects', 'pagination', 'orders', 'filters', 'didyoumean', 'total', 'facets', 'page', 'title_for_layout', 'switchers', 'q'),
+                compact('conditions', 'objects', 'pagination', 'orders', 'filters', 'didyoumean', 'total', 'facets', 'page', 'title_for_layout', 'switchers', 'q', 'emptyFilters'),
                 array(
                     'renderFile' => $this->renderFile,
                     'class' => $this->class,

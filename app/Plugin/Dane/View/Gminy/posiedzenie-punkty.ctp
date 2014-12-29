@@ -21,6 +21,10 @@ echo $this->Element('Dane.dataobject/subobject', array(
             'shortTitle' => 'pageTitle'
         ),
     ),
+    'back' => array(
+	    'href' => '/dane/gminy/903,krakow/posiedzenia',
+	    'title' => 'Wszystkie posiedzenia rady miasta',
+    ),
 ));
 
 if (!@$this->request->query['q'] && ($terms = $posiedzenie->getLayer('terms')) && !empty($terms)) {

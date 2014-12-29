@@ -18,10 +18,8 @@ $powiazania = $object->getLayer('radni_powiazania');
 
             <? if ($powiazania) { ?>
 
-                <h1>Powiązania radnych gminy <?= $object->getData('nazwa') ?> z organizacjami w <a href="/krs">Krajowym
+                <h1><a href="<?= $object->getUrl() ?>/rada" class="btn-back glyphicon glyphicon-circle-arrow-left"></a> Powiązania radnych gminy <?= $object->getData('nazwa') ?> z organizacjami w <a href="/krs">Krajowym
                         Rejestrze Sądowym</a></h1>
-
-				<p class="desc">Zobacz także <a href="/dane/gminy/903,krakow/urzednicy_powiazania">powiązania urzędników &raquo;</a></p>
 
 				<div class="block-group">
 

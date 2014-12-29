@@ -10,76 +10,18 @@ $this->Combinator->add_libs('js', 'Dane.view-radygmindebaty');
 echo $this->Element('dataobject/pageBegin', array(
     'titleTag' => 'p',
 ));
-?>
 
-    <div class="objectPageHeaderContainer subobjectContainer">
-        <div style="width: inherit;" class="container">
-            <div class="col-md-12">
-                <div class="objectPageHeader">
-                    <div oid="115" class="objectRender col-md-12 krakow_posiedzenia"
-                         style="border-bottom: 1px solid #DDD;">
-                        <div class="row">
-                            <div class="formatDate col-md-1 dimmed">
-                                <?
-                                if ($debata->getData('krakow_posiedzenia.data')) {
 
-                                    $temp = '<span>{day}</span><p>{month} {year}</p>';
-
-                                    $ts = strtotime($debata->getData('krakow_posiedzenia.data'));
-
-                                    $formatting = array(
-                                        'day' => date('j', $ts),
-                                        'year' => date('Y', $ts),
-                                        'month' => __(date('M', $ts), true),
-                                    );
-
-                                    foreach ($formatting as $key => $partial) {
-                                        $temp = preg_replace('/\{' . $key . '\}/', $partial, $temp);
-                                    }
-
-                                    echo $temp;
-                                }
-                                ?>
-                            </div>
-
-                            <div class="data col-md-11">
-                                <div class="row">
-
-                                    <div class="content">
-                                        <p class="header">
-                                            Posiedzenie Rady Miasta </p>
-
-                                        <p class="title big">
-                                            <a title="Sesja <?= $debata->getData('krakow_sesje.str_numer') ?> - Posiedzenie <?= $debata->getData('krakow_posiedzenia.numer') ?>"
-                                               href="/dane/gminy/903/posiedzenia/<?= $debata->getData('posiedzenie_id') ?>"
-                                               class="trimTitle">
-                                                Sesja
-                                                <strong><?= $debata->getData('krakow_sesje.str_numer') ?></strong> -
-                                                Posiedzenie
-                                                #<strong><?= $debata->getData('krakow_posiedzenia.numer') ?></strong>
-                                            </a></p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-<?
 echo $this->Element('Dane.dataobject/subobject', array(
     'menu' => isset($_submenu) ? $_submenu : false,
     'object' => $debata,
     'objectOptions' => array(
-        // 'hlFields' => array('rady_gmin_posiedzenia.numer', 'numer_punktu'),
+        'hlFields' => array('rady_gmin_posiedzenia.numer', 'numer_punktu'),
         'bigTitle' => true,
-        'routes' => array(
-            'date' => false,
-        ),
+    ),
+    'back' => array(
+	    'href' => '/dane/gminy/903,krakow/posiedzenia/' . $debata->getData('krakow_posiedzenia.id'),
+	    'title' => 'Wszystkie punkty podczas posiedzenia nr ' . $debata->getData('krakow_posiedzenia.numer') . ', sesja ' . $debata->getData('krakow_sesje.str_numer'),
     ),
 ));
 ?>

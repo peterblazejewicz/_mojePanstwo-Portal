@@ -7,7 +7,7 @@
 		    <?
 			if (isset($objects)) {
 			    if (empty($objects)) {
-			        echo '<p class="noResults">' . __d('dane', 'LC_DANE_BRAK_WYNIKOW') . '</p>';
+			        // echo '<p class="noResults">' . __d('dane', 'LC_DANE_BRAK_WYNIKOW') . '</p>';
 			    } else {
 			        ?>
 			        <ul class="dataFeed-ul list-group list-dataobjects">

@@ -269,7 +269,10 @@ class AppController extends Controller {
 						'komisje',
 						'komisje_posiedzenia',
 						'sklad',
-						'dzielnice'
+						'dzielnice',
+						'zarzadzenia',
+						'zarzadzenie',
+						'urzad',
 					) )
 				) {
 

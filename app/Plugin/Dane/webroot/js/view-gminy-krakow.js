@@ -2,7 +2,14 @@ var map;
 
 function initialize() {
     var mapOptions = {
-        zoom: 10
+        zoom: 11,
+        draggable: true,
+        disableDefaultUI: true,
+        scrollwheel: false,
+	    navigationControl: true,
+	    mapTypeControl: false,
+	    scaleControl: false,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById('dzielnice_map'), mapOptions);
 
@@ -14,7 +21,12 @@ function initialize() {
     };
 
     var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
-
+	
+	google.maps.event.addListenerOnce(map, 'idle', function(){
+		console.log('onload', map);
+		map.setZoom(11);
+	});
+	
     google.maps.event.addListener(kmlLayer, 'click', function (kmlEvent) {
         var text = kmlEvent.featureData;
     });
