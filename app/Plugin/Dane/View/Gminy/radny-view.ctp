@@ -81,17 +81,21 @@ echo $this->Element('Dane.dataobject/subobject', array(
 	            	
 		            <ul class="dataHighlights side">
 			            
+			            <? if( $radny->getData('liczba_wystapien') ) {?>
 			            <li class="dataHighlight">
 			            	<a href="<?= $radny->getUrl() ?>/wystapienia"><span class="icon icon-moon">&#xe615;</span>Wystąpienia <span class="glyphicon glyphicon-chevron-right"></a>
 			            </li>
+			            <? } ?>
 			            
 			            <li class="dataHighlight">
 			            	<a href="<?= $radny->getUrl() ?>/glosowania"><span class="glyphicon glyphicon-list"></span>Wyniki głosowań <span class="glyphicon glyphicon-chevron-right"></a>
 			            </li>
 			            
+			            <? if( $radny->getData('liczba_interpelacji') ) {?>
 			            <li class="dataHighlight">
 			            	<a href="<?= $radny->getUrl() ?>/interpelacje"><span class="icon icon-moon">&#xe614;</span>Interpelacje <span class="glyphicon glyphicon-chevron-right"></a>
 			            </li>
+			            <? } ?>
 			            
 			            <li class="dataHighlight">
 			            	<a href="<?= $radny->getUrl() ?>/komisje"><span class="icon icon-moon">&#xe613;</span>Przynależność do komisji <span class="glyphicon glyphicon-chevron-right"></a>
@@ -101,6 +105,8 @@ echo $this->Element('Dane.dataobject/subobject', array(
 		            
 	            </div>
 	            
+	            <? if( $radny->getData('liczba_oswiadczen') || $radny->getData('krs_osoba_id') ) { ?>
+	            
 	            <div class="block">
 	            	
 	            	<div class="block-header">
@@ -109,17 +115,23 @@ echo $this->Element('Dane.dataobject/subobject', array(
 	            	
 		            <ul class="dataHighlights side">
 			            
+			            <? if( $radny->getData('liczba_oswiadczen') ) {?>
 			            <li class="dataHighlight">
-			            	<a href="<?= $radny->getUrl() ?>/oswiadczenia_majatkowe"><span class="icon icon-moon">&#xe61b;</span>Oświadczenia majątkowe <span class="glyphicon glyphicon-chevron-right"></a>
+			            	<a href="<?= $radny->getUrl() ?>/oswiadczenia"><span class="icon icon-moon">&#xe61b;</span>Oświadczenia majątkowe <span class="glyphicon glyphicon-chevron-right"></a>
 			            </li>
+			            <? } ?>
 			            			            
+			            <? if( $radny->getData('krs_osoba_id') ) {?>
 			            <li class="dataHighlight">
 			            	<a href="<?= $radny->getUrl() ?>/krs"><span class="icon icon-moon">&#xe611;</span>Powiązania w KRS <span class="glyphicon glyphicon-chevron-right"></a>
 			            </li>
+			            <? } ?>
 			            
 		            </ul>
 		            
 	            </div>
+	            
+	            <? } ?>
 	            	            
 	            <div class="block">
 	            	
@@ -139,7 +151,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
 	
 	    <div class="col-lg-7 nopadding">
 		    <div class="object">
-				
+								
 				<?= $this->dataobject->feed($feed); ?>
 				
 				<? /*
@@ -169,11 +181,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
 			    <? } ?>
 				
 				
-				
-				
-				<? debug( $radny->getLayer('bip_url') ); ?>
-				
-				
+
 				
 			    <?
 			    if ($object->getId() == '903') {
@@ -185,48 +193,7 @@ echo $this->Element('Dane.dataobject/subobject', array(
 			        ?>
 			
 			        
-			
-			        <? if ($komisje = $radny->getLayer('komisje')) { ?>
-			            <div id="interpelacje" class="block">
-			
-			                <div class="block-header">
-			                    <h2 class="label">Komisje Rady Miasta, w których zasiada radny</h2>
-			                </div>
-			
-			
-			                <div class="content sklad padding">
-			                    <ul class="list-group list-dataobjects">
-			
-			                        <? foreach ($komisje as $komisja) { ?>
-			
-			                            <div class="objectRender readed">
-			
-			                                <div class="row">
-			                                    <div class="data col-md-12">
-			                                        <div class="row">
-			
-			                                            <div class="content">
-			                                                <p class="title">
-			                                                    <a title="Komisja Budżetowa"
-			                                                       href="/dane/gminy/903/komisje/<?= $komisja['id'] ?>"><?= $komisja['nazwa'] ?></a>
-			                                                    <span
-			                                                        class="label label-<?= $komisja['label'] ?>"><?= $komisja['stanowisko'] ?></span>
-			                                                </p>
-			
-			                                            </div>
-			                                        </div>
-			                                    </div>
-			                                </div>
-			                            </div>
-			
-			                        <? } ?>
-			
-			                    </ul>
-			                </div>
-			
-			            </div>
-			        <? } ?>
-			
+						
 			        <? if ($d = $radny->getLayer('najblizszy_dyzur')) { ?>
 			            <script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
 			            <? $this->Combinator->add_libs('css', $this->Less->css('view-gminy-dyzury', array('plugin' => 'Dane'))); ?>
@@ -290,71 +257,6 @@ echo $this->Element('Dane.dataobject/subobject', array(
 			    <? } ?>
 			
 			
-			
-			
-			    <? if ($object->getId() == '903') { ?>
-			
-			        <? if (false && isset($wystapienia)) { ?>
-			            <div id="wystapienia" class="block">
-			
-			                <div class="block-header">
-			                    <h2 class="label pull-left">Wystąpienia na posiedzeniach rady</h2>
-			                    <a class="btn btn-default btn-sm pull-right"
-			                       href="/dane/gminy/<?= $object->getId() ?>/radni/<?= $radny->getId() ?>/wystapienia">Zobacz
-			                        wszystkie</a>
-			                </div>
-			
-			
-			                <div class="content">
-			                    <div class="dataobjectsSliderRow row">
-			                        <div>
-			                            <?php echo $this->dataobjectsSlider->render($wystapienia, array(
-			                                'perGroup' => 3,
-			                                'rowNumber' => 1,
-			                                'labelMode' => 'none',
-			                                // 'file' => 'rady_posiedzenia-gminy',
-			                            )) ?>
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
-			        <? } ?>
-			
-			        <? if (isset($interpelacje)) { ?>
-			            <div id="interpelacje" class="block">
-			
-			                <div class="block-header">
-			                    <h2 class="label pull-left">Interpelacje złożone przez radnego</h2>
-			                    <a class="btn btn-default btn-sm pull-right"
-			                       href="/dane/gminy/<?= $object->getId() ?>/radni/<?= $radny->getId() ?>/interpelacje">Zobacz
-			                        wszystkie</a>
-			
-			                </div>
-			
-			
-			                <div class="content">
-			                    <div class="dataobjectsSliderRow row">
-			                        <div>
-			                            <?php echo $this->dataobjectsSlider->render($interpelacje, array(
-			                                'perGroup' => 2,
-			                                'rowNumber' => 1,
-			                                'labelMode' => 'none',
-			                                // 'file' => 'rady_posiedzenia-gminy',
-			                            )) ?>
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
-			        <? } ?>
-			
-			
-			    <? } ?>
-			
-			    <? if (isset($osoba) && $osoba) {
-			        echo $this->Element('Dane.objects/krs_osoby/organizacje', array(
-			            'organizacje' => $osoba->getLayer('organizacje'),
-			        ));
-			    } ?>
 			    
 			    <? */ ?>
 					

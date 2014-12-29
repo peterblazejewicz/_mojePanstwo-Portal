@@ -845,36 +845,6 @@ class GminyController extends DataobjectsController
 
 					// $radny->loadLayer( 'details' );
 					
-					/*
-                    if ($radny->getData('liczba_wystapien')) {
-                        $this->API->searchDataset('rady_gmin_wystapienia', array(
-                            'limit' => 8,
-                            'conditions' => array(
-                                'radny_id' => $radny->getId(),
-                            ),
-                        ));
-                        $this->set('wystapienia', $this->API->getObjects());
-                    }
-
-					if ( $radny->getData( 'liczba_interpelacji' ) ) {
-						$this->API->searchDataset( 'rady_gmin_interpelacje', array(
-							'limit'      => 8,
-							'conditions' => array(
-								'radny_id' => $radny->getId(),
-							),
-						) );
-						$this->set( 'interpelacje', $this->API->getObjects() );
-					}
-
-					if ( $radny->getData( 'krs_osoba_id' ) ) {
-
-						$osoba = $this->API->getObject( 'krs_osoby', $radny->getData( 'krs_osoba_id' ) );
-						$osoba->loadLayer( 'organizacje' );
-						$this->set( 'osoba', $osoba );
-
-					}
-					*/
-					
 					$this->prepareFeed(array(
 				        'perPage' => 20,
 				        'dataset' => 'radni_gmin',
@@ -899,6 +869,8 @@ class GminyController extends DataobjectsController
 						'backTitle' => 'Profil radnego',
 					) );
 
+					$title_for_layout .= ' - Wystąpienia na posiedzeniach rady miasta';
+					
 					break;
 				}
 				case 'glosowania': {
@@ -914,6 +886,8 @@ class GminyController extends DataobjectsController
 						'backTitle' => 'Profil radnego',
 					) );
 
+					$title_for_layout .= ' - Wyniki głosowań';
+
 					break;
 				}
 				case 'interpelacje': {
@@ -928,6 +902,8 @@ class GminyController extends DataobjectsController
 						'back' => $radny->getUrl(),
 						'backTitle' => 'Profil radnego',
 					) );
+
+					$title_for_layout .= ' - Interpelacje';
 
 					break;
 				}
@@ -948,80 +924,46 @@ class GminyController extends DataobjectsController
 							'dataset'        => 'radni_gmin_oswiadczenia_majatkowe',
 							'noResultsTitle' => 'Brak oświadczeń majątkowych',
 							// 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+							'title' => 'Oświadczenia majątkowe radnego',
+							'back' => $radny->getUrl(),
+							'backTitle' => 'Profil radnego',
 						) );
+	
+						$title_for_layout .= ' - Oświadczenia majątkowe';
 
 					}
 
 					break;
 				}
+				case 'komisje': {
+
+					$radny->loadLayer( 'komisje' );
+					break;
+
+				}
+				
 				case 'dyzury': {
 
 					$radny->loadLayer( 'dyzury' );
 					break;
 
 				}
+				
+				case 'krs': {
+
+					$osoba = $this->API->getObject( 'krs_osoby', $radny->getData( 'krs_osoba_id' ) );
+					$osoba->loadLayer( 'organizacje' );
+					$this->set( 'osoba', $osoba );
+					
+					break;
+
+				}
+				
+				
 			}
 
 
-			if ( $this->object->getId() == 903 ) {
-
-				$href_base = '/dane/gminy/' . $this->object->getId() . '/radni/' . $radny->getId();
-
-				$submenu = array(
-					'items' => array(),
-				);
-
-				$submenu['items'][] = array(
-					'id'    => 'view',
-					'href'  => $href_base,
-					'label' => ( $radny->getData( 'plec' ) == 'K' ) ? 'Radna' : 'Radny',
-				);
-
-				if ( $dyzur ) {
-					$submenu['items'][] = array(
-						'id'    => 'dyzury',
-						'href'  => $href_base . '/dyzury',
-						'label' => 'Dyżury',
-					);
-				}
-
-                if ($radny->getData('liczba_wystapien'))
-                    $submenu['items'][] = array(
-                        'id' => 'wystapienia',
-                        'href' => $href_base . '/wystapienia',
-                        'label' => 'Wystąpienia',
-                        'count' => $radny->getData('liczba_wystapien'),
-                    );
-
-				$submenu['items'][] = array(
-					'id'    => 'glosowania',
-					'href'  => $href_base . '/glosowania',
-					'label' => 'Wyniki głosowań',
-					// 'count' => $radny->getData('liczba_wystapien'),
-				);
-
-				if ( $radny->getData( 'liczba_interpelacji' ) ) {
-					$submenu['items'][] = array(
-						'id'    => 'interpelacje',
-						'href'  => $href_base . '/interpelacje',
-						'label' => 'Interpelacje',
-						'count' => $radny->getData( 'liczba_interpelacji' ),
-					);
-				}
-
-				if ( $radny->getData( 'liczba_oswiadczen' ) ) {
-					$submenu['items'][] = array(
-						'id'    => 'oswiadczenia',
-						'href'  => $href_base . '/oswiadczenia',
-						'label' => 'Oświadczenia majątkowe',
-						'count' => $radny->getData( 'liczba_oswiadczen' ),
-					);
-				}
-
-				$submenu['selected'] = $subaction;
-				$this->set( '_submenu', $submenu );
-
-			}
+	
 
 			$this->set( 'radny', $radny );
 			$this->set( 'sub_id', $sub_id );
