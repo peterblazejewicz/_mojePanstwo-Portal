@@ -5,8 +5,26 @@ App::uses('DataobjectsController', 'Dane.Controller');
 class InstytucjeController extends DataobjectsController
 {
     public $menu = array();
-    public $initLayers = array('nav', 'tree', 'menu', 'info');
-
+    public $initLayers = array('instytucja_nadrzedna', 'tree', 'menu', 'info');
+	
+	public function view()
+	{
+				
+		parent::_prepareView();
+		
+		if( $this->object->getData('file')=='1' ) 
+        	$this->prepareFeed();
+		
+	}
+	
+	public function instytucje()
+	{
+				
+		parent::_prepareView();
+		$this->request->params['action'] = 'instytucje';
+		
+	}
+	
     public function prawo()
     {
         parent::_prepareView();
@@ -17,9 +35,31 @@ class InstytucjeController extends DataobjectsController
             'excludeFilters' => array(
                 'autor_id',
             ),
+            'title' => 'Akty prawne',
+            'back' => $this->object->getUrl(),
+            'backTitle' => $this->object->getTitle(),
         ));
 
         $this->set('title_for_layout', "Akty prawne wydane przez " . $this->object->getTitle());
+
+    }
+    
+    public function tweety()
+    {
+        parent::_prepareView();
+        $this->dataobjectsBrowserView(array(
+            'source' => 'instytucje.twitter:' . $this->object->getId(),
+            'dataset' => 'twitter',
+            'noResultsTitle' => 'Brak tweetów',
+            'title' => 'Tweety',
+            'back' => $this->object->getUrl(),
+            'backTitle' => $this->object->getTitle(),
+            'excludeFilters' => array(
+	            'twitter_accounts.id', 'twitter_accounts.typ_id'
+            ),
+        ));
+
+        $this->set('title_for_layout', "Tweety napisane przez " . $this->object->getTitle());
 
     }
 
@@ -30,6 +70,11 @@ class InstytucjeController extends DataobjectsController
             'source' => 'instytucje.zamowienia_udzielone:' . $this->object->getId(),
             'dataset' => 'zamowienia_publiczne',
             'noResultsTitle' => 'Brak zamówień',
+            'title' => 'Zamówienia publiczne',
+            'back' => $this->object->getUrl(),
+            'backTitle' => $this->object->getTitle(),
+            'hiddenFilters' => array('zamowienia_publiczne.zamawiajacy_id', 'zamowienia_publiczne.data_publikacji'),
+            'excludeFilters' => array('zamowienia_publiczne.gmina_id'),
         ));
 
         $this->set('title_for_layout', "Zamówienia publiczne udzielone przez " . $this->object->getTitle());
@@ -61,7 +106,8 @@ class InstytucjeController extends DataobjectsController
                 array(
                     'id' => '',
                     'href' => $href_base,
-                    'label' => 'Informacje',
+                    'label' => 'Aktualności',
+                    'icon' => 'glyphicon glyphicon-feed',
                 ),
             )
         );
@@ -73,9 +119,21 @@ class InstytucjeController extends DataobjectsController
                 'label' => 'Budżet',
             );
         }
-
+		
+		if ( $this->object->getData('liczba_instytucji') ) {
+			
+			$menu['items'][] = array(
+                'id' => 'instytucje',
+                'href' => $href_base . '/instytucje',
+                'label' => 'Instytucje nadzorowane',
+            );
+			
+		}
+		
+		$items = array();
+				
         if (isset($_menu['zamowienia_udzielone']) && !empty($_menu['zamowienia_udzielone'])) {
-            $menu['items'][] = array(
+            $items['items'][] = array(
                 'id' => 'zamowienia',
                 'href' => $href_base . '/zamowienia',
                 'label' => 'Zamówienia publiczne',
@@ -83,17 +141,34 @@ class InstytucjeController extends DataobjectsController
         }
 
         if (isset($_menu['prawo']) && $_menu['prawo']) {
-            $menu['items'][] = array(
+            $items['items'][] = array(
                 'id' => 'prawo',
                 'href' => $href_base . '/prawo',
                 'label' => 'Akty prawne',
             );
         }
+        
+        if( $this->object->getData('twitter_account_id') ) {
+	        $items['items'][] = array(
+                'id' => 'tweety',
+                'href' => $href_base . '/tweety',
+                'label' => 'Tweety',
+            );
+        }
+        
+        if( !empty($items) ) {
+	        $menu['items'][] = array(
+	            'id' => 'dane',
+	            'label' => 'Dane',
+	            'dropdown' => $items,
+	        );
+        }
 
-
+		
         $menu['selected'] = ($this->request->params['action'] == 'view') ? '' : $this->request->params['action'];
 
-        $this->set('_menu', $menu);
+        $this->set('_menu', $menu);        
+        
 
     }
 
