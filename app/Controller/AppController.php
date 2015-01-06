@@ -276,6 +276,8 @@ class AppController extends Controller {
 						'rada',
 						'krs',
 						'komisje',
+						'rada_posiedzenia',
+						'rada_uchwaly',
 					) )
 				) {
 

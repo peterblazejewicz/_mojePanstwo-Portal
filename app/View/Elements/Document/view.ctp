@@ -16,7 +16,9 @@ echo $this->Html->css($document->getCSSLocation());
      data-pages="<?php echo $document->getPagesCount(); ?>"
      data-document-id="<?php echo $document->getId(); ?>">
 
-    <? echo $this->Element('toolbar'); ?>
+    <? echo $this->Element('toolbar', array(
+		'document' => $document,
+	)); ?>
 
     <div class="document container">
         <div class="row">

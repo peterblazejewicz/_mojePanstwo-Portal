@@ -61,7 +61,7 @@
 	                </li>
 	                
 	                <li class="dataHighlight">
-	                    <a href="<?= $object->getUrl() . '/rada_uchwaly' ?>"><span class="icon icon-moon">&#xe614;</span>Uchwały Rady Mista <span class="glyphicon glyphicon-chevron-right"></span></a>
+	                    <a href="<?= $object->getUrl() . '/rada_uchwaly' ?>"><span class="icon icon-moon">&#xe614;</span>Uchwały Rady Miasta <span class="glyphicon glyphicon-chevron-right"></span></a>
 	                </li>
 									
 				</ul>

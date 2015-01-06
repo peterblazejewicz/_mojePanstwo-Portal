@@ -547,7 +547,7 @@ class GminyController extends DataobjectsController
 		
 		if (isset($this->request->params['pass'][0]) && is_numeric($this->request->params['pass'][0])) {
 			
-			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'radni';
+			$subaction = (isset($this->request->params['pass'][1]) && $this->request->params['pass'][1]) ? $this->request->params['pass'][1] : 'view';
             $sub_id = (isset($this->request->params['pass'][2]) && $this->request->params['pass'][2]) ? $this->request->params['pass'][2] : false;
 
             $dzielnica = $this->API->getObject('dzielnice', $this->request->params['pass'][0], array(
@@ -560,6 +560,20 @@ class GminyController extends DataobjectsController
             $title_for_layout = $dzielnica->getTitle();
 			
 			switch ($subaction) {
+                
+                case 'view':
+                {
+	                
+	                $this->prepareFeed(array(
+				        'perPage' => 20,
+				        'dataset' => 'dzielnice',
+				        'id' => $dzielnica->getId(),
+			        ));
+
+					break;
+	                
+                }
+                
                 case 'radni':
                 {
 										
@@ -582,6 +596,8 @@ class GminyController extends DataobjectsController
 			                'title' => 'Wyniki głosowań',
 	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
 	                        'renderFile' => 'radni_dzielnic-uchwaly',
+	                        'back' 			 => $dzielnica->getUrl(),
+							'backTitle' 	 => 'Dzielnica ' . $dzielnica->getTitle(),
 	                    ));
 												
 					} else {
@@ -595,6 +611,8 @@ class GminyController extends DataobjectsController
 			                ),
 			                'title' => 'Radni dzielnicy ' . $dzielnica->getTitle(),
 	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                        'back' 			 => $dzielnica->getUrl(),
+							'backTitle' 	 => 'Dzielnica ' . $dzielnica->getTitle(),
 	                    ));
 	                    
                     }
@@ -603,7 +621,53 @@ class GminyController extends DataobjectsController
 					
 
                 }
-                case 'uchwaly':
+                
+                case 'rada_posiedzenia':
+                {
+										
+					if( 
+						$sub_id && 
+						( $posiedzenie = $this->API->getObject('krakow_dzielnice_rady_posiedzenia', $sub_id) )
+					) {
+						
+						// debug( $this->API->document($posiedzenie->getData('przedmiot_dokument_id')) ); die();
+						
+						if( $posiedzenie->getData('protokol_dokument_id') ) 
+							$this->set('protokol_dokument', $this->API->document($posiedzenie->getData('protokol_dokument_id')));
+						
+						if( $posiedzenie->getData('przedmiot_dokument_id') ) 
+							$this->set('przedmiot_dokument', $this->API->document($posiedzenie->getData('przedmiot_dokument_id')));
+						
+						$this->set( 'documentPackage', 1 );
+						$this->set('posiedzenie', $posiedzenie);
+						$title_for_layout = $posiedzenie->getTitle();
+						$subaction = 'posiedzenie';
+						
+						
+												
+					} else {
+					
+						$this->dataobjectsBrowserView(array(
+	                        'source' => 'dzielnice.posiedzenia:' . $dzielnica->getId(),
+	                        'dataset' => 'krakow_dzielnice_rady_posiedzenia',
+	                        'noResultsTitle' => 'Brak posiedzen',
+	                        'excludeFilters' => array(
+			                    'dzielnica_id'
+			                ),
+			                'title' => 'Posiedzenia rady dzielnicy ' . $dzielnica->getTitle(),
+	                        // 'hlFields' => array('dzielnice.nazwa', 'liczba_glosow'),
+	                        'back' 			 => $dzielnica->getUrl(),
+							'backTitle' 	 => 'Dzielnica ' . $dzielnica->getTitle(),
+	                    ));
+	                    
+                    }
+                    
+                    break;
+					
+
+                }
+                
+                case 'rada_uchwaly':
                 {
 										
 					if( 
